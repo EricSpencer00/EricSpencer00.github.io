@@ -1,55 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Your Name - Personal Website</title>
+    <title>Space Jam Website</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        header {
+            background-color: #0d0d0d;
+            padding: 10px;
+        }
+        header h1 {
+            font-size: 48px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            margin: 10px;
+            color: #fff;
+        }
+        section {
+            padding: 20px;
+        }
+        .poster {
+            max-width: 100%;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 30px;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="about">
-      <h1>About Me</h1>
-      <p>Introduce yourself and provide a brief overview of your background, skills, and interests.</p>
+    <header>
+        <h1>Welcome to Space Jam</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Characters</a>
+            <a href="#">Games</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Space Jam: A New Legacy</h2>
+        <p>Get ready for an epic adventure with your favorite Looney Tunes characters in Space Jam: A New Legacy.</p>
+        <div class="poster">
+            <img src="space_jam_poster.jpg" alt="Space Jam: A New Legacy Poster">
+        </div>
     </section>
-
-    <section id="projects">
-      <h1>Projects</h1>
-      <ul>
-        <li>
-          <h2>Project 1</h2>
-          <p>Description of project 1.</p>
-        </li>
-        <li>
-          <h2>Project 2</h2>
-          <p>Description of project 2.</p>
-        </li>
-        <!-- Add more projects as needed -->
-      </ul>
+    <section>
+        <h2>Watch the Trailer</h2>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+        </div>
     </section>
-
-    <section id="contact">
-      <h1>Contact Me</h1>
-      <p>You can reach me at:</p>
-      <ul>
-        <li>Email: yourname@example.com</li>
-        <li>Phone: 123-456-7890</li>
-      </ul>
+    <section>
+        <h2>Meet the Characters</h2>
+        <!-- Add character images and descriptions here -->
     </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2023 Your Name. All rights reserved.</p>
-  </footer>
+    <footer>
+        <p>&copy; 2023 Space Jam. All rights reserved.</p>
+    </footer>
 </body>
 </html>
