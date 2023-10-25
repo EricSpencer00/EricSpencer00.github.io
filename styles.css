@@ -1,67 +1,38 @@
-/* Reset some default styles */
-body, h1, h2, p {
-    margin: 0;
-    padding: 0;
+div.wbPolicyUpdatedDivStyle {
+    border-radius: 7px;
+    background-color: #000000;
+    color:#FFFFFF;
+    border: solid 1px #999;
+    bottom: 7px;
+    font-size: 12px;
+    left: 5px;
+    line-height: 18px;
+    padding: 7px;
+    position: fixed;
+    max-width: 45%;
+    width: auto;
+    z-index: 1002;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
-body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    text-align: center;
+.wb-policy-updated-div-body a{
+	color:#e80000;
+	
 }
 
-header {
-    background-color: #0d0d0d;
-    padding: 10px;
-}
 
-header h1 {
-    font-size: 48px;
-    color: #fff;
-}
-
-nav {
-    margin-top: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    margin: 10px;
-    color: #fff;
-    font-size: 18px;
-}
-
-section {
-    padding: 20px;
-    color: #fff;
-}
-
-.poster {
-    max-width: 100%;
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-}
-
-.video-container iframe {
+div.wbPolicyUpdatedDivCloseStyle {
+    cursor: pointer;
+    float: right;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    right: 8px;
+    top: 8px;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 12px;
+    margin-left: 5px;
 }
 
-footer {
-    background-color: #0d0d0d;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    color: #fff;
+div.wbPolicyUpdatedDivBodyStyle {
+    margin: 0px 20px 0px 0px;
 }
