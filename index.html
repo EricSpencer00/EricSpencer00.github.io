@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+    <script src="confetti.js"></script>
     <title>Eric Spencer</title>
   </head>
   <body>
@@ -12,12 +14,19 @@
       <h1>Eric Spencer</h1>  
     </header>
     <main>
-      <p class = "bigger-text">
-        <Strong></Strong>
+      <p class = "Headshot">
         <img src="Images/EricSpencerHeadshot.jpeg" alt="Photo of Eric Spencer">
       </p>
+
+      <p class = "AboutMe">
+        Loyola University Chicago | Class of 2026<br>
+        College of Arts and Sciences | Computer Science<br>
+        Quinlan School of Business | Information Systems<br>
+
+
+      </p>
       <hr />
-    <p>
+    <p class = "Contacts">
       <a href="https://www.github.com/ericspencer00">My GitHub</a><br><br>
       <a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a><br><br>
       <a href="tel:+16307965368" >(630)-796-5368</a><br><br>
@@ -29,6 +38,8 @@
       <a href="AnagramSolverV1.html">Anagram Solver V1</a><br><br>
       <a href="FreeTimeCalculator.html">Free Time Calculator</a><br><br>
 
+      <button onClick="secretFunction()">Secret Button!</button>
+      <p id="SecretButton" style="display:none"></p>
     </main>
     </div>
   </body>

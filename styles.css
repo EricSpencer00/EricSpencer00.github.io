@@ -12,8 +12,10 @@ h1 {
   padding-top: 3rem;
 }
 
-.bigger-text {
-  font-size: 1.15rem;
+img {
+  max-width: 100%;
+  border: solid 3px;
+  height: auto;
 }
 
 .container {
