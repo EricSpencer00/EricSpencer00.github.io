@@ -1,50 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="styles.css"/>
     <script src="script.js"></script>
     <script src="confetti.js"></script>
     <title>Eric Spencer</title>
-  </head>
-  <body>
-    <div class="container">
+</head>
+<body>
+<div class="container">
     <header>
-      <h1>Eric Spencer</h1>  
-    </header>
-    <main>
-      <p class = "Headshot">
-        <img src="Images/EricSpencerHeadshot.jpeg" alt="Photo of Eric Spencer">
-      </p>
-
-      <p class = "AboutMe">
-        Loyola University Chicago | Class of 2026<br>
-        College of Arts and Sciences | Computer Science<br>
-        Quinlan School of Business | Information Systems<br>
-      </p>
-      <hr />
-    <p class = "Contacts">
-      <a href="https://www.github.com/ericspencer00">My GitHub</a><br><br>
-      <a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a><br><br>
-      <a href="tel:+16307965368" >(630)-796-5368</a><br><br>
-    </p>
-
-      <hr>
-      <header>
+        <h1>Eric Spencer</h1>
+        <em>Computer Science</em> and <em>Information Systems</em> Student<br>
+        <em>Sophomore at </em><strong>Loyola University Chicago</strong><br><br>
+        <hr>
         <h1>Projects</h1>
-      </header>
-      <a href="AnagramSolverV1.html">Anagram Solver V1</a><br><br>
-      <a href="FreeTimeCalculator.html">Free Time Calculator</a><br><br>
+    </header>
+    <h4>
+        <a href="AnagramSolverV1.html">Anagram Solver V1</a><br><br>
+        <a href="FreeTimeCalculator.html">Free Time Calculator</a><br><br>
+        <a href="ChatGPTResearch.html">Undergraduate Research on ChatGPT</a>
+    </h4>
+
+    <main>
+<!--        <p class="Headshot">-->
+<!--            <img src="Images/EricSpencerHeadshot.jpeg" alt="Photo of Eric Spencer">-->
+<!--        </p>-->
 
 
-      <p class = "Resume">
-        <a href="Images/EricSpencerResume.pdf">March 2024 Resume</a>
-      </p>
+        <hr/>
+        <p class="Contacts">
+            <a href="https://www.github.com/ericspencer00">My GitHub</a><br><br>
+        </p>
+        <hr>
+        <p class="Resume">
+            <a href="Images/EricSpencerResume.pdf">March 2024 Resume</a>
+        </p>
 
-      <button onClick="secretFunction()">Secret Button!</button>
-      <p id="SecretButton" style="display:none"></p>
+        <p class="VerboseAboutMe">
+            <strong>Loyola University Chicago</strong> | <em>Class of 2026</em><br>
+            <em>College of Arts and Sciences</em> | <strong>Computer Science</strong><br>
+            <em>Quinlan School of Business</em> | <strong>Information Systems</strong><br>
+            <a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a><br><br>
+            <img src="Images/email22.gif" alt="email gif">
+        </p>
+
+        <p class="MainPageNavigation+LastUpdated">
+            Last updated:
+        </p>
+        <p id="date"></p>
+        <script>
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+        </script>
+
+        <button onClick="secretFunction()">Confetti Button!</button>
+        <p id="SecretButton" style="display:none"></p>
     </main>
-    </div>
-  </body>
+</div>
+</body>
 </html>

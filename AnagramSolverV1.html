@@ -1,42 +1,49 @@
 <!DOCTYPE html>
-<html lang="en-US"></html>
- <head>
-     <meta charset="utf-8" />
-     <meta name="AnagramSolver" content="width-device-width, initial-scale+1.0" />
-     <link rel="stylesheet" href="styles.css" />
-     <title>Anagram Solver V1</title>
- </head>
- <body>
-  <div class="container">
-      <header>
-       <h1>Anagram Solver in Java</h1>
-          <hr>
-      </header>
-      <main>
-          <p>
-              Due to my love for Scrabble, I created an Anagram solver for the game.<br>
-              Out of the 7 letters you have in your deck, the solver will tell you<br>
-              all the possible words you can play, according to the official <br>
-              scrabble dictionary. <br><br>
-              It is coded entirely in Java, employing HashMaps and HashSets for <br>
-              fast lookup based on your letters. In Scrabble, there are space <br>
-              characters that allow for any letter to be played. This adds <br>
-              complexity due to the amount of permutations possible for each of 26 <br>
-              letters to be compared with your stack. <br><br>
-              The first version can be found here: <br><br>
-              <a href="https://github.com/EricSpencer00/AnagramSolverV1">Anagram Solver V1</a>
-              <br><br>
-              In the second iteration there will be changes to the lookup algorithm adding<br>
-              even faster lookup. As it stands for the output, all results are looked up<br>
-              first and then output second after sorting. <br>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="AnagramSolver" content="width-device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Anagram Solver V1</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Anagram Solver in Java</h1>
+        <h3>February 2024</h3>
+        <hr>
+    </header>
+    <main>
+        <p class="paragraphText">
+            Due to my love for Scrabble, I created an Anagram solver for the game.
+            Out of the 7 letters you have in your deck, the solver will tell you
+            all the possible words you can play, according to the official
+            scrabble dictionary.
+            It is coded entirely in Java, employing HashMaps and HashSets for
+            fast lookup based on your letters. In Scrabble, there are space
+            characters that allow for any letter to be played. This adds
+            complexity due to the amount of permutations possible for each of 26
+            letters to be compared with your stack. <br><br>
+            The first version can be found here: <br><br>
+            <a href="https://github.com/EricSpencer00/AnagramSolverV1">Anagram Solver V1</a>
+            <br><br>
+            In the second iteration there will be changes to the lookup algorithm adding
+            even faster lookup. As it stands for the output, all results are looked up
+            first and then output second after sorting.
 
-          </p>
-          <hr>
-          <p>
-              <a href="https://ericspencer00.github.io">Go back to Main Page</a>
-              <br><br>
-              Last updated: March 14, 2024
-          </p>
-      </main>
-  </div>
- </body>
+        </p>
+        <hr>
+        <p>
+            <a href="https://ericspencer00.github.io">Go back to Main Page</a>
+            <br><br>
+            Last updated:
+        </p>
+        <p id="date"></p>
+        <script>
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+        </script>
+    </main>
+</div>
+</body>
+</html>
