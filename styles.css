@@ -1,5 +1,5 @@
 body {
-  background: url("Images/WhiteStars.jpeg");
+  background: url("Images/SparkleStars.gif");
   text-align: center;
 }
 
@@ -13,8 +13,7 @@ h1 {
 }
 
 img {
-  max-width: 100%;
-  border: solid 3px;
+  max-width: 50%;
   height: auto;
 }
 

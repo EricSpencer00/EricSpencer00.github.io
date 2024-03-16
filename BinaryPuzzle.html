@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Binary Bomb Puzzle</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Binary Bomb Puzzle</h1>
+        <h3>November 2023</h3>
+        <hr>
+    </header>
+    <main>
+        <p>
+            During my Fall 2023 semester, I had an assignment that had me find solutions for
+            a Binary Bomb Puzzle. In order to solve this puzzle, I had to solve a series of "Phases"
+            that would then let me onto the next phase. <br><br>
+
+        </p>
+        <hr>
+        <p>
+            <a href="https://ericspencer00.github.io">Go back to Main Page</a>
+            <br><br>
+            Last updated:
+        </p>
+        <p id="date"></p>
+        <script>
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+        </script>
+
+    </main>
+</div>
+</body>
+</html>

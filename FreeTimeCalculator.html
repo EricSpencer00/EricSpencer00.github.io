@@ -16,8 +16,14 @@
     <main>
         <p>
             My first full-fledged project. <br><br>
-            Here's how it works, enter in
-
+            Here's how it works: enter in the start of the time you or a friend is available for
+            a given day, (say 4-6pm and 8-10pm) then, enter in a second person's available time
+            (5-9pm). Once inputted, the program will print the time spreadsheet to the console and also
+            return the hours that everyone is available. The program works for up to four people at once.
+            <br><br>
+            The design, implementation, and testing was all performed by me,<br> coded with Java.
+            <br><br>
+            <strong>Workings and Caveats</strong><br>
             Utilized a 2-D Array that looped over a set of data the user provided.
             Was difficult to implement due to the nature of 10, 11, and 12 A.M. and P.M.
             Coded entirely inside a JVM.
@@ -43,13 +49,16 @@
         <p>
             <a href="https://ericspencer00.github.io">Go back to Main Page</a>
             <br><br>
-            Last updated:
-        </p>
-        <p id="date"></p>
-        <script>
-            const options = { month: 'long', day: 'numeric', year: 'numeric' };
-            document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
-        </script>
+        <footer>
+            <p class="MainPageNavigation+LastUpdated">
+                Last updated: <span id="date"></span>
+            </p>
+            <script>
+                const options = { month: 'long', day: 'numeric', year: 'numeric' };
+                document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+            </script>
+            <p>&copy; <span id="copyrightYear"></span> Eric Spencer. All rights reserved.</p>
+        </footer>
 
     </main>
 </div>
