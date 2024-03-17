@@ -3,6 +3,14 @@ body {
   text-align: center;
 }
 
+a {
+    text-decoration: none; /* Remove default underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Apply underline on hover */
+}
+
 h1, 
 p {
   color: black;
@@ -13,7 +21,7 @@ h1 {
 }
 
 img {
-  max-width: 50%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -27,3 +35,28 @@ img {
   width: 500px;
   margin: auto;
 }
+
+.paragraph {
+  text-align: left;
+  background-color: white;
+  background-size: color;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+  width: 800px;
+  margin: auto;
+}
+
+.paragraph ul {
+  list-style-type: disc; /* Change bullet point style */
+  margin-left: 20px; /* Adjust spacing */
+}
+
+.paragraph code {
+  font-family: 'Courier New', Courier, monospace; /* Use monospaced font for code */
+  background-color: #f4f4f4; /* Add background color */
+  padding: 2px 4px; /* Add padding to separate code */
+  border: 1px solid #ccc; /* Add border for clarity */
+}
+
+

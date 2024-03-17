@@ -7,23 +7,110 @@
     <title>Binary Bomb Puzzle</title>
 </head>
 <body>
-<div class="container">
+<div class="paragraph">
     <header>
         <h1>Binary Bomb Puzzle</h1>
         <h3>November 2023</h3>
+        <img src="Images/bbomb.gif" alt="bomb gif">
         <hr>
     </header>
     <main>
         <p>
-            During my Fall 2023 semester, I had an assignment that had me find solutions for
-            a Binary Bomb Puzzle. In order to solve this puzzle, I had to solve a series of "Phases"
-            that would then let me onto the next phase. <br><br>
+            During my Fall 2023 semester, I had an extra credit assignment
+            for my Introduction to Computer Systems class that had me find solutions for
+            a Binary Bomb Puzzle. This led me to gain skills such as debugging an assembly file,
+            converting assembly commands back into high level language code, and searching registers
+            for what was written to its memory.<br><br>
+            In order to solve this puzzle, I had to solve a series of "Phases"
+            that would then let me onto the next phase.<br><br>
+            The "Binary" file I'm talking about is from the original code that has now been
+            translated into machine code (assembly) that I must now decode.<br><br>
+            I'll attach the original instructions from Carnegie Mellon University:
+            <a href="http://csapp.cs.cmu.edu/public/bomblab.pdf">Bomb Lab</a>
+
+            <br><br>
+
+        <ul><h3>Phase 1</h3></ul>
+            Phase 1 was obviously the easiest, but as we go further and further the
+            difficulty will get increasingly harder.<br><br>
+            Knowledge of the following items are necessary to solve the puzzle:
+            <ul>
+                <li>gdb: GNU debugger</li>
+                <li>strings: print all strings in Binary file</li>
+                <li>objdump: dump objects' registers and contents to console</li>
+            </ul>
+
+
+            Second, we will use 'strings' on our Binary file and output it to a .txt
+            file. This will output all the printable strings in our file.<br>
+            <ul>
+                <code>strings bomb > strings.txt</code><br>
+                <li>strings is our objdump<br>
+                <li>bomb is our file<br>
+                <li>> will declare all outputs from strings bomb into a file called strings.txt <br>
+                <li>strings.txt is our output file.
+            </ul><br><br>
+            When we run this command we get about 300 lines of strings from our file.<br>
+            A list of notable strings can be found: <a href="strings.txt.html">here</a>.
+            <br><img src="Images/BBPhase1Strings.png" alt="List of Strings"><br><br>
+            There are a couple of lines which seem to be phrases we output to the user when we run the bomb program.
+            Under the main phrases of the string dump, lots of internal variables, probably used to code the original
+            file.
+            The list of CMU Fish that appear after the main Strings appear to be a list of computers
+            at Carnegie Mellon University and have no reference to our solution, see <a href="https://www.cs.cmu.edu/afs/cs/academic/class/15213-f02/www/intel.html">"Fish Machines"</a><br><br>
+            Besides these things, I also see a reference to a "secret phase" with a reference to "fun7"
+            or, function #7, which are probably related since we are only told about 6 phases to begin with.
+            <br><br>
+            Okay, now that we have our strings, lets do the same for our assembly code. With this info we can see
+            how the Strings and original file talk.
+        <br><br><ul><code>objdump -d bomb > bomb.asm</code></ul><br><br>
+            This will dump our assembly code into a new file, where we can then read what the program does
+            upon success for each of the stages. Think of it as a map for the program. This map is not easy to
+            read, though. As some places have many loops within that can be hard to follow.<br><br>
+            Luckily for us, the assembly code has identifiers for the different phases and functions.<br><br>
+            <img src="Images/BBPhase1Assembly.png" alt="Phase 1 code"><br><br>
+            Immediately, we can see that a String gets passed into a register "DWORD PTR" and then
+            is checked against an existing register. If the Strings do not match, explode the bomb. <br><br>
+            Now, we don't want to explode the bomb, so we will create a breakpoint using GDB and follow the
+            code as it moves through each assembly command using <ul><code>disas</code></ul>
+        <br><br>
+            <img src="Images/BBPhase1GDBDebug1.png" alt="GDB Debugger in action"><br><br>
+            Now, at this point I don't know for sure if the phrase we picked earlier is correct, so my breakpoint
+            will save me from explosion.<br><br>
+            <img src="Images/BBPhase1GDBDebug2.png" alt="GDB Debugger phase 1 phrase"><br><br>
+            Great! We have the answer to our first phase.<br><br>
+            In order to not have to keep entering that in, I will create an "answers.txt" file that I can directly
+            run in GDB.<br><br>
+            <ul><code>echo "Verbosity leads to unclear, inarticulate things." >> answers.txt
+            </code></ul>
+            <ul><code>run answers.txt</code></ul>
+
+
+
+            <h3>Phase 2</h3>
+            Using our assembly file, we can break down what Phase 2 is doing step by step with its variables.
+            Phase 2 has list of commands that moves around various values to various registers. One thing we can pick out
+            is the function <\read_six_numbers\>
+            <h3>Phase 3</h3>
+            <h3>Phase 4</h3>
+            <h3>Phase 5</h3>
+            <h3>Phase 6</h3>
+            <h3>Secret Phase</h3>
+            <h3>Answers</h3>
+            Here are the answers to the first 5 phases of the puzzle. I do not plan on solving the last 2 anytime soon<br><br>
+        <ul>
+            <li>Verbosity leads to unclear, inarticulate things.</li>
+            <li>1 2 6 24 120 720</li>
+            <li>3 811</li>
+            <li>15</li>
+            <li>55 93</li>
+        </ul>
+
 
         </p>
         <hr>
-        <p>
-            <a href="https://ericspencer00.github.io">Go back to Main Page</a>
-            <br><br>
+        <p class="">
+            <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
             Last updated:
         </p>
         <p id="date"></p>
@@ -31,6 +118,10 @@
             const options = { month: 'long', day: 'numeric', year: 'numeric' };
             document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
         </script>
+        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br>
 
     </main>
 </div>
