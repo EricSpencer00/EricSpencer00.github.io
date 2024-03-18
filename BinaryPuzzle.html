@@ -38,6 +38,7 @@
                 <li>gdb: GNU debugger</li>
                 <li>strings: print all strings in Binary file</li>
                 <li>objdump: dump objects' registers and contents to console</li>
+                <li>Assembly code and the ability to trace registers</li>
             </ul>
 
 
@@ -90,20 +91,58 @@
             <h3>Phase 2</h3>
             Using our assembly file, we can break down what Phase 2 is doing step by step with its variables.
             Phase 2 has list of commands that moves around various values to various registers. One thing we can pick out
-            is the function <\read_six_numbers\><br><br>
+            is the function: read_six_numbers<br><br>
             <img src="Images/BBPhase2Assembly.png" alt="GDB Debugger output for func2">
             <br><br>Now, let's look at our read_six_numbers function to see what it does.
             We know that "cmpl" will compare 1 (denoted with $1 for a constant term) with our input (denoted with
-            -0x28(%ebp).
-
+            -0x28(%ebp) after it has been run through the read_six_numbers function. <br><br>
+            <img src="Images/BBPhase2ReadSixNumbers.png" alt="six numbers function"><br><br>
+            Just confirming. It seems like the function does what it says it does.<br><br>
+            Now, when we have 6 variables in the input, we will not auto fail. If we don't have exactly 6 variables,
+            we jump to the explode_bomb function. <br><br>
+            On lines +36 through +64 we have a loop, you can tell because we have an increment (%ebx) and a jle command
+            on lines +60 and +64.
+            On line +44, we mutate our first variable by adding %ebx * 4 to our value in the %eax register.
+            Then on the next line +49, we compare that value %eax with the %ebx * 4 value. If these are equal,
+            we jump and increment to the next variable we entered. Once we have 6 successful runs, we will finish the
+            Phase 2 function.<br><br>
+            For this function, the answer is that we are actually doing a function for a factorial number.
+            When we multiply the number we have with that one previously, we are essentially doing a factorial.
+            Our six numbers, then, are a list of factorials that are next to each other, but since we start at 1, we must
+            start with 1 factorial. Our answer is 1! 2! 3! 4! 5! 6! or 1 2 6 24 120 720.<br><br>
+            <img src="Images/BBPhase2Complete.png" alt="Phase 2 complete"><br><br>
 
             <h3>Phase 3</h3>
+            Onto Phase 3!<br><br>
+            <img src="Images/BBPhase3Assembly.png" alt="Phase 3 Assembly"><br><br>
+            Whew, it only gets harder from here on out.
             <h3>Phase 4</h3>
             <h3>Phase 5</h3>
             <h3>Phase 6</h3>
+            Here's where I stopped trying.<br><br>
+            <img src="Images/BBPhase6Assembly.png" alt="Phase 6 Assembly"><br><br>
+            The 6th phase has three functions, one "main" function, a scrambling function, and a function
+            that converts a String to a Long Integer. <br><br>
+            The main function is above. Below is the scrambler function.<br><br>
+            <img src="Images/BBPhase6FuncAssembly.png" alt="Phase 6 helper func">
+            As you can see, this one has many, many, many abstractions and variables to keep track of.
+            What i've concluded is that there are 6 numbers to enter, then that string will be converted into a long int.
+            After that long int is compared and mish mashed through the entire function, if its correct
+            then we get to move onto the next phase.<br><br>
+            I've theorized that the puzzle takes 6 numbers 1 through 6 ie "1 2 3 4 5 6" and it's up to you
+            to find the right permutation of these numbers. Without knowing how the function works, there are
+            720 possibilities. I got through about 45% of them before I gave up.<br><br>
+            <img src="Images/BrainRot.png" alt="Brain Rot" style="
+            display: block; margin: 0; max-height: 20%; max-width: 20%; " />
+            <br><br>
+            There's probably some simple solution I'm not seeing, if you see something I don't then please
+            shoot me an email.
             <h3>Secret Phase</h3>
+            Well, since I didn't get Phase 6, I can only tell you about the existence of the secret phase, Phase 7.
+            According to the web, you access Phase 7 by entering "austinpowers" after you complete Phase 6, which you
+            are then met with another Phase prompt. You can find the exact output in the <a href="strings.txt.html">strings file</a>.
             <h3>Answers</h3>
-            Here are the answers to the first 5 phases of the puzzle. I do not plan on solving the last 2 anytime soon<br><br>
+            Here are the answers to the first 5 phases of the puzzle.<br><br>
         <ul>
             <li>Verbosity leads to unclear, inarticulate things.</li>
             <li>1 2 6 24 120 720</li>
@@ -117,9 +156,9 @@
         <hr>
         <p class="">
             <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
-            Last updated:
+            Last updated: <p id="date"></p>
         </p>
-        <p id="date"></p>
+
         <script>
             const options = { month: 'long', day: 'numeric', year: 'numeric' };
             document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);

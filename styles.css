@@ -3,6 +3,10 @@ body {
   text-align: center;
 }
 
+.closing {
+  text-align: center;
+}
+
 a {
     text-decoration: none; /* Remove default underline */
 }
