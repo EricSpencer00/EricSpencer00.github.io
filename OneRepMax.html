@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>One Rep Max Calculator</title>
+    <style>
+        input[type="number"] {
+            width: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        button:active {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+<div class="paragraph">
+<h1>One Rep Max Calculator</h1>
+<form id="maxForm">
+    <label for="weight">Weight (in pounds):</label>
+    <input type="number" id="weight" min="1" required>
+    <label for="reps">Number of Reps:</label>
+    <input type="number" id="reps" min="1" required>
+    <button type="submit">Calculate</button>
+</form>
+<div id="result"></div>
+</div>
+<script>
+    document.getElementById('maxForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        calculateMax();
+    });
+
+    function calculateMax() {
+
+        const reps = parseInt(document.getElementById('reps').value);
+        const weight = parseInt(document.getElementById('weight').value);
+
+        //Epley formula
+        const oneRepMax = weight * (1 + reps / 30);
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <p></p>
+            <ul>
+                <li>1 Rep Max: ${oneRepMax.toFixed(2)} pounds</>
+                <li>2 Rep Max: ${(oneRepMax / (1 + 2/30)).toFixed(2)} pounds</li>
+                <li>3 Rep Max: ${(oneRepMax / (1 + 3/30)).toFixed(2)} pounds</li>
+                <li>4 Rep Max: ${(oneRepMax / (1 + 4/30)).toFixed(2)} pounds</li>
+                <li>5 Rep Max: ${(oneRepMax / (1 + 5/30)).toFixed(2)} pounds</li>
+                <li>6 Rep Max: ${(oneRepMax / (1 + 6/30)).toFixed(2)} pounds</li>
+                <li>7 Rep Max: ${(oneRepMax / (1 + 7/30)).toFixed(2)} pounds</li>
+                <li>8 Rep Max: ${(oneRepMax / (1 + 8/30)).toFixed(2)} pounds</li>
+                <li>9 Rep Max: ${(oneRepMax / (1 + 9/30)).toFixed(2)} pounds</li>
+                <li>10 Rep Max: ${(oneRepMax / (1 + 10/30)).toFixed(2)} pounds</li>
+                <li>11 Rep Max: ${(oneRepMax / (1 + 11/30)).toFixed(2)} pounds</li>
+                <li>12 Rep Max: ${(oneRepMax / (1 + 12/30)).toFixed(2)} pounds</li>
+                <li>13 Rep Max: ${(oneRepMax / (1 + 13/30)).toFixed(2)} pounds</li>
+                <li>14 Rep Max: ${(oneRepMax / (1 + 14/30)).toFixed(2)} pounds</li>
+                <li>15 Rep Max: ${(oneRepMax / (1 + 15/30)).toFixed(2)} pounds</li>
+                <li>16 Rep Max: ${(oneRepMax / (1 + 16/30)).toFixed(2)} pounds</li>
+                <li>17 Rep Max: ${(oneRepMax / (1 + 17/30)).toFixed(2)} pounds</li>
+                <li>18 Rep Max: ${(oneRepMax / (1 + 18/30)).toFixed(2)} pounds</li>
+                <li>19 Rep Max: ${(oneRepMax / (1 + 19/30)).toFixed(2)} pounds</li>
+                <li>20 Rep Max: ${(oneRepMax / (1 + 20/30)).toFixed(2)} pounds</li>
+                <li>21 Rep Max: ${(oneRepMax / (1 + 21/30)).toFixed(2)} pounds</li>
+                <li>22 Rep Max: ${(oneRepMax / (1 + 22/30)).toFixed(2)} pounds</li>
+                <li>23 Rep Max: ${(oneRepMax / (1 + 23/30)).toFixed(2)} pounds</li>
+                <li>24 Rep Max: ${(oneRepMax / (1 + 24/30)).toFixed(2)} pounds</li>
+                <li>25 Rep Max: ${(oneRepMax / (1 + 25/30)).toFixed(2)} pounds</li>
+                <li>50 Rep Max: ${(oneRepMax / (1 + 50/30)).toFixed(2)} pounds</li>
+                <li>100 Rep Max: ${(oneRepMax / (1 + 100/30)).toFixed(2)} pounds</li>
+            </ul>
+        `;
+    }
+</script>
+</body>
+</html>

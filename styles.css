@@ -59,4 +59,16 @@ img {
   border: 1px solid #ccc; /* Add border for clarity */
 }
 
+#reaction-test {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#start-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
 

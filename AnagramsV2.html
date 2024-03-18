@@ -6,17 +6,41 @@
     <title>Scrabble Anagrams</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Helvetica, sans-serif;
             text-align: center;
+            height: 100%;
+        }
+        .wordButton {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 10px;
+        }
+        .inputBox {
+          width: 300px; /* Adjust width as needed */
+          height: 40px; /* Adjust height as needed */
+          padding: 10px;
+          font-size: 16px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          box-sizing: border-box; /* Ensures padding and border are included in the width */
+          margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-<h1>Scrabble Anagrams</h1>
-<p>Welcome to Scrabble Anagrams!</p>
-<p>Enter the letters you have, including '?' for a wildcard (max of 2 ?'s):</p>
-<input type="text" id="userLetters">
-<button onclick="printAllAnagrams()">Submit</button>
+<h1>Anagram Solver</h1>
+<p></p>
+<p>Enter the letters you have:</p>
+<input class="inputBox" type="text" id="userLetters">
+<button class="wordButton" onclick="printAllAnagrams()">Submit</button>
 <div id="anagramsOutput"></div>
 
 <script>
@@ -83,12 +107,17 @@
         if (anagrams.length > 0) {
             const anagramsByLength = {};
             for (const word of anagrams) {
-                const length = word.length;
-                anagramsByLength[length] = anagramsByLength[length] || [];
-                anagramsByLength[length].push(word);
+                if(word.length > 0) {
+                    const length = word.length;
+                    anagramsByLength[length] = anagramsByLength[length] || [];
+                    anagramsByLength[length].push(word);
+                }
             }
             outputElement.innerHTML = '';
-            for (const length in anagramsByLength) {
+
+            const lengths = Object.keys(anagramsByLength).map(Number).sort((a, b) => b - a);
+
+            for (const length of lengths) {
                 const words = anagramsByLength[length];
                 outputElement.innerHTML += `<p>Words with length ${length}: ${words.join(', ')}</p>`;
             }
