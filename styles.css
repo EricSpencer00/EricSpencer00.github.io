@@ -51,6 +51,17 @@ img {
   margin: auto;
 }
 
+.paragraph-centered {
+  text-align: center;
+  background-color: white;
+  background-size: color;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+  width: 800px;
+  margin: auto;
+}
+
 .paragraph ul {
   list-style-type: disc; /* Change bullet point style */
   margin-left: 20px; /* Adjust spacing */

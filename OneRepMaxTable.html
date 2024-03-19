@@ -11,11 +11,6 @@
         input[type="number"] {
             width: 100px;
         }
-        ul {
-            list-style: none;
-            font-size: 150%;
-            padding-left: 0;
-        }
         button {
             display: inline-block;
             padding: 10px 20px;
@@ -30,25 +25,16 @@
         button:active {
             background-color: #1e7e34;
         }
-
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button,   /* Remove increment button on text boxes */
-        input[type="number"]::-webkit-clear-button {
-            -webkit-appearance: none;
-            appearance: none;
-            margin: 0;
-    }
     </style>
 </head>
 <body>
 <div class="paragraph-centered">
-<h1>One Rep Max Calculator</h1>
+    <h1>One Rep Max Calculator</h1>
     <p>Defined as the maximum amount of weight you can theoretically lift for one repetition.
         \[
         \text{1RM} = W \times \left(1 + \frac{R}{30}\right)
         \]
-        where \( W \) is the weight lifted and \( R \) is the number of repetitions performed.(Epley's formula)
-
+        where \( W \) is the weight lifted and \( R \) is the number of repetitions performed.
     </p>
     <form id="maxForm">
         <label for="weight"></label>
@@ -64,7 +50,21 @@
         <button type="submit">Calculate</button>
     </form>
 
-<div id="result"></div>
+        <table id="dataTable">
+            <thead>
+            <tr>
+                <th>REPS</th>
+                <th>WEIGHT</th>
+                <th>% OF 1RM</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Table rows will be dynamically generated here -->
+            </tbody>
+        </table>
+
+
+    <div id="result"></div>
 
     <p>The conversion for Pounds and Kilograms is the same</p>
     <hr>
@@ -83,39 +83,44 @@
 </div>
 <script>
     window.addEventListener('beforeunload', function(event) {
+        event.preventDefault();
         event.returnValue = '';
     });
     document.getElementById('maxForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        calculateMax();
-
+        calculateMaxTable();
     });
 
-    function calculateMax() {
-        const reps = parseFloat(document.getElementById('reps').value);
-        const weight = parseFloat(document.getElementById('weight').value);
+    function calculateMaxTable() {
+    const reps = parseFloat(document.getElementById('reps').value);
+    const weight = parseFloat(document.getElementById('weight').value);
 
-        //Epley formula
-        const oneRepMax = weight * (1 + reps / 30);
+    const tableBody = document.getElementById('dataTable').querySelector('tbody');
+    tableBody.innerHTML = '';
 
-        const resultDiv = document.getElementById('result');
+    for (let i = 1; i <= 100; i++) {
+        const oneRepMax = weight * (1 + i / 30);
+        const percentageOf1RM = ((weight / oneRepMax) * 100).toFixed(2);
 
-        const repMaxEstimates = generateRepMaxEstimates(oneRepMax);
+        const newRow = document.createElement('tr');
 
-        resultDiv.innerHTML = repMaxEstimates;
+        const repsCell = document.createElement('td');
+        repsCell.textContent = i;
 
-        console.log('100 Rep Max: 10LB means that you can lift 10LB 100 times before failure');
+        const weightCell = document.createElement('td');
+        weightCell.textContent = weight.toFixed(2);
+
+        const percentageCell = document.createElement('td'); // Define percentageCell
+        percentageCell.textContent = percentageOf1RM; // Assign percentageOf1RM to percentageCell
+
+        newRow.appendChild(repsCell);
+        newRow.appendChild(weightCell);
+        newRow.appendChild(percentageCell); // Append percentageCell to newRow
+
+        tableBody.appendChild(newRow);
     }
+}
 
-    function generateRepMaxEstimates(oneRepMax) {
-        const estimates = [];
-        estimates.push(`<li>Your One Rep Max is ${(oneRepMax / (1 + 1/30)).toFixed(2)}lb</li>`);
-        estimates.push('<hr>');
-        for (let i = 2; i <= 100; i++) {
-            estimates.push(`<li>You can lift ${(oneRepMax / (1 + i/30)).toFixed(2)}lb for ${i} reps</li>`);
-        }
-        return `<ul>${estimates.join("\n")}</ul>`;
-    }
 </script>
 </body>
 </html>
