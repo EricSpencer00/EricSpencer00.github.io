@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
     <title>Scrabble Anagrams</title>
+<div class="paragraph-centered">
     <style>
         body {
             font-family: Helvetica, sans-serif;
@@ -34,16 +36,35 @@
           margin-bottom: 10px;
         }
     </style>
+
 </head>
 <body>
 <h1>Anagram Solver</h1>
+<hr>
 <p></p>
 <p>Enter the letters you have:</p>
 <input class="inputBox" type="text" id="userLetters">
 <button class="wordButton" onclick="printAllAnagrams()">Submit</button>
 <div id="anagramsOutput"></div>
 
+<hr>
+<p class="">
+    <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
+    Last updated: <p id="date"></p>
+
+</div>
+
 <script>
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+</script>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+
+<script>
+
     let scrabbleDictionary = [];
 
     // Load the dictionary from the file
@@ -104,26 +125,29 @@
 
     function displayAnagrams(anagrams) {
         const outputElement = document.getElementById('anagramsOutput');
-        if (anagrams.length > 0) {
-            const anagramsByLength = {};
-            for (const word of anagrams) {
-                if(word.length > 0) {
-                    const length = word.length;
-                    anagramsByLength[length] = anagramsByLength[length] || [];
-                    anagramsByLength[length].push(word);
-                }
-            }
-            outputElement.innerHTML = '';
 
-            const lengths = Object.keys(anagramsByLength).map(Number).sort((a, b) => b - a);
-
-            for (const length of lengths) {
-                const words = anagramsByLength[length];
-                outputElement.innerHTML += `<p>Words with length ${length}: ${words.join(', ')}</p>`;
-            }
-        } else {
-            outputElement.textContent = 'No valid anagrams found';
+        if (!anagrams || anagrams.length === 0) {
+            outputElement.textContent = 'No valid words found';
+            return;
         }
+
+        const anagramsByLength = {};
+        for (const word of anagrams) {
+            if (word.length > 0) {
+                const length = word.length;
+                anagramsByLength[length] = anagramsByLength[length] || [];
+                anagramsByLength[length].push(word);
+            }
+        }
+        outputElement.innerHTML = '';
+
+        const lengths = Object.keys(anagramsByLength).map(Number).sort((a, b) => b - a);
+
+        for (const length of lengths) {
+            const words = anagramsByLength[length];
+            outputElement.innerHTML += `<p>Words with length ${length}: ${words.join(', ')}</p>`;
+        }
+
     }
 </script>
 </body>

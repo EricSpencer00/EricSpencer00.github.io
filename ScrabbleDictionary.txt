@@ -1,5 +1,4 @@
-/*dictionary_obtained_From_https://github.com/redbo/scrabble/blob/master/dictionary.txt_*/
-/*if_adding_words_make_sure_all_capital_letters,_comments_should_be_in_lowercase*/
+
 
 AA
 AAH
