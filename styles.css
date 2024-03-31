@@ -1,3 +1,21 @@
+@media screen and (max-width: 801px) {
+  pre.ascii-art{
+    font-size: 1.0em;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  pre.ascii-art {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  pre.ascii-art {
+    font-size: 0.6em;
+  }
+}
+
 body {
   background: url("Images/SparkleStars.gif");
   text-align: center;
