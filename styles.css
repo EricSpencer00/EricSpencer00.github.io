@@ -1,4 +1,4 @@
-@media screen and (max-width: 801px) {
+@media screen and (max-width: 701px) {
   pre.ascii-art{
     font-size: 1.0em;
   }
@@ -10,9 +10,14 @@
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 500px) {
   pre.ascii-art {
     font-size: 0.6em;
+  }
+}
+@media screen and (max-width: 350px) {
+  pre.ascii-art {
+    display: none;
   }
 }
 

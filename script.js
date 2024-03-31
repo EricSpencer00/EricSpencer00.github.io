@@ -6,4 +6,3 @@ function secretFunction() {
     }, 7000); // 7 seconds
 }
 
-
