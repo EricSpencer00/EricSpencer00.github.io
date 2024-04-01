@@ -37,9 +37,11 @@
 
 a {
     text-decoration: none; /* Remove default underline */
+    color: lime; 
 }
 a:hover {
     text-decoration: underline; /* Apply underline on hover */
+    color: rgb(121, 238, 121);
 }
 
 h1, 
