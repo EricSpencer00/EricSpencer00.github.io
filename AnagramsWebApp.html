@@ -7,9 +7,9 @@
     <title>Scrabble Anagrams</title>
 <div class="container">
     <style>
-
+        
         body {
-            background-color: black;
+            background: black;
             font-family: Helvetica, sans-serif;
             text-align: center;
             height: 100%;
@@ -101,13 +101,28 @@
     }
 
     function canCreateWord(word, letterCount) {
-        const wildcardCount = (word.match(/\?/g) || []).length;
-        for (let i = 0; i <= wildcardCount; i++) {
-            if (wordFitsLetters(word.replace(/\?/g, '{'+i+'}'), letterCount)) {
+    const wildcardCount = (word.match(/\?/g) || []).length;
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const regexPattern = '^' + word.replace(/\?/g, '.') + '$';
+
+    for (let i = 0; i < Math.pow(26, wildcardCount); i++) {
+        let currentPattern = regexPattern;
+        let temp = i;
+        for (let j = 0; j < wildcardCount; j++) {
+            const letterIndex = temp % 26;
+            const letter = alphabet.charAt(letterIndex);
+            currentPattern = currentPattern.replace('.', letter);
+            temp = Math.floor(temp / 26);
+        }
+
+        const wildcardRegex = new RegExp(currentPattern, 'i');
+        for (const dictionaryWord of scrabbleDictionary) {
+            if (wildcardRegex.test(dictionaryWord) && wordFitsLetters(dictionaryWord, letterCount)) {
                 return true;
             }
         }
-        return false;
+    }
+    return false;
     }
 
     function wordFitsLetters(word, letterCount) {
