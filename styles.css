@@ -36,11 +36,11 @@
 }
 
 a {
-    text-decoration: none; /* Remove default underline */
+    text-decoration: none;
     color: lime; 
 }
 a:hover {
-    text-decoration: underline; /* Apply underline on hover */
+    text-decoration: underline;
     color: rgb(121, 238, 121);
 }
 
@@ -114,12 +114,12 @@ footer {
   padding: 0 3px 0 3px;
 }
 .paragraph ul {
-  list-style-type: disc; /* Change bullet point style */
-  margin-left: 20px; /* Adjust spacing */
+  list-style-type: disc; 
+  margin-left: 20px;
 }
 .paragraph code {
   font-family: Consolas, Monaco, monospace; 
-  background-color: #ffffff; /* Add background color */
-  padding: 2px 4px; /* Add padding to separate code */
-  border: 1px solid #ccc; /* Add border for clarity */
+  background-color: #ffffff;
+  padding: 2px 4px;
+  border: 1px solid #ccc; 
 }
