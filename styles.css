@@ -2,28 +2,33 @@
   pre.ascii-art{
     font-size: 1.0em;
   }
+  pre.summary {
+    font-size: 200%;
+  }
 }
-
 @media screen and (max-width: 601px) {
   pre.ascii-art {
     font-size: 0.8em;
   }
+  pre.summary {
+    font-size: 150%;
+  }
 }
-
 @media screen and (max-width: 500px) {
   pre.ascii-art {
     font-size: 0.6em;
   }
+  pre.summary {
+    font-size: 140%;
+  }
 }
 @media screen and (max-width: 350px) {
   pre.ascii-art {
-    display: none;
+    display: 0.4em;
   }
-}
-
-body {
-  background: url("Images/SparkleStars.gif");
-  text-align: center;
+  pre.summary {
+    font-size: 100%;
+  }
 }
 
 .closing {
@@ -33,18 +38,19 @@ body {
 a {
     text-decoration: none; /* Remove default underline */
 }
-
 a:hover {
     text-decoration: underline; /* Apply underline on hover */
 }
 
 h1, 
 p {
-  color: black;
+  color: white;
+  font-family: sans-serif;
 }
 h1 {
   font-size: 2rem;
   padding-top: 3rem;
+  font-family: sans-serif;
 }
 
 img {
@@ -52,36 +58,51 @@ img {
   height: auto;
 }
 
+.summary {
+  color: white;
+  text-align: left;
+  font-size: 2rem;
+}
+
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  background: black;
+}
+
 .container {
-  background-color: white;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   max-width: 90%;
-  padding: 20px;
-  height: 90vh;
-  width: 500px;
   margin: auto;
-  overflow-y: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  color: white;
+}
+
+.main {
+  color: white;
 }
 
 .paragraph {
   text-align: left;
-  background-color: white;
+  background-color: black;
+  color: white;
   background-size: color;
   background-repeat: no-repeat;
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
   width: 800px;
   margin: auto;
   padding-left: 15px;
-  padding-right: 15px
+  padding-right: 15px;
 }
-
 .paragraph-centered {
   text-align: center;
-  background-color: white;
+  background-color: black;
+  color: white;
   background-size: color;
   background-repeat: no-repeat;
   max-width: 100%;
@@ -90,29 +111,13 @@ img {
   margin: auto;
   padding: 0 3px 0 3px;
 }
-
 .paragraph ul {
   list-style-type: disc; /* Change bullet point style */
   margin-left: 20px; /* Adjust spacing */
 }
-
 .paragraph code {
-  font-family: 'Courier New', Courier, monospace; /* Use monospaced font for code */
-  background-color: #f4f4f4; /* Add background color */
+  font-family: Consolas, Monaco, monospace; 
+  background-color: #ffffff; /* Add background color */
   padding: 2px 4px; /* Add padding to separate code */
   border: 1px solid #ccc; /* Add border for clarity */
 }
-
-#reaction-test {
-    text-align: center;
-    margin-top: 100px;
-}
-
-#start-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-
-
