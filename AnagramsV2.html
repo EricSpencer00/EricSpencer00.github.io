@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Anagrams</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: black;
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            height: 100%;
+        }
+        .wordButton {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .inputBox {
+            width: 300px;
+            height: 40px; 
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* Ensures padding and border are included in the width */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Anagram Solver</h1>
+    <hr>
+    <p>Enter the letters you have, including '?' for a wildcard (max of 2 ?'s):</p>
+    <input class="inputBox" type="text" id="userLetters">
+    <button class="wordButton" onclick="printAllAnagrams()">Submit</button>
+    <div id="anagramsOutput"></div>
+    <hr>
+    <p>
+        <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
+        Last updated: <span id="date"></span>
+    </p>
+</div>
+
+<script>
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+
+    class TrieNode {
+        constructor() {
+            this.children = Array(26).fill(null);
+            this.isEndOfWord = false;
+        }
+    }
+
+    class Trie {
+        constructor() {
+            this.root = new TrieNode();
+        }
+
+        insert(word) {
+            let node = this.root;
+            for (let i = 0; i < word.length; i++) {
+                const index = word.charCodeAt(i) - 'A'.charCodeAt(0);
+                if (!node.children[index]) {
+                    node.children[index] = new TrieNode();
+                }
+                node = node.children[index];
+            }
+            node.isEndOfWord = true;
+        }
+
+        search(word) {
+            let node = this.root;
+            for (let i = 0; i < word.length; i++) {
+                const index = word.charCodeAt(i) - 'A'.charCodeAt(0);
+                if (!node.children[index]) {
+                    return false;
+                }
+                node = node.children[index];
+            }
+            return node !== null && node.isEndOfWord;
+        }
+
+        loadWords(words) {
+            for (const word of words) {
+                this.insert(word);
+            }
+        }
+    }
+
+    const dictionary = new Trie();
+
+    function loadWordsFromText(text) {
+    const words = text.split('\n').map(word => word.trim().toUpperCase());
+    console.log("Loaded words:", words);
+    dictionary.loadWords(words);
+    console.log("Dictionary:", dictionary);
+}
+
+
+    function printAllAnagrams() {
+        const userLetters = document.getElementById('userLetters').value.toUpperCase();
+        const results = new Set();
+        const letterFrequency = countLetters(userLetters);
+
+        searchAnagrams(dictionary.root, '', userLetters, new Map(letterFrequency), results);
+
+        const outputElement = document.getElementById('anagramsOutput');
+        outputElement.innerHTML = '';
+
+        if (results.size === 0) {
+            outputElement.textContent = 'No valid words found';
+            return;
+        }
+
+        const wordsByLength = new Map();
+        results.forEach(word => {
+            const length = word.length;
+            wordsByLength.set(length, (wordsByLength.get(length) || []).concat(word));
+        });
+
+        [...wordsByLength.entries()]
+            .filter(([length]) => length > 1)
+            .sort(([a], [b]) => b - a)
+            .forEach(([length, words]) => {
+                words.sort((w1, w2) => scoreWord(w2) - scoreWord(w1));
+                outputElement.innerHTML += `<p>Words with length ${length}: ${words.join(', ')}</p>`;
+            });
+    }
+
+    function searchAnagrams(node, prefix, letters, letterFrequency, results) {
+        if (node.isEndOfWord && dictionary.search(prefix)) {
+            results.add(prefix);
+        }
+
+        for (let letter = 'A'.charCodeAt(0); letter <= 'Z'.charCodeAt(0); letter++) {
+            const char = String.fromCharCode(letter);
+            if (letterFrequency.get(char) > 0) {
+                const index = char.charCodeAt(0) - 'A'.charCodeAt(0);
+                if (node.children[index] !== null) {
+                    letterFrequency.set(char, letterFrequency.get(char) - 1);
+                    searchAnagrams(node.children[index], prefix + char, letters, new Map(letterFrequency), results);
+                    letterFrequency.set(char, letterFrequency.get(char) + 1);
+                }
+            }
+        }
+
+        if (letterFrequency.get('?') > 0) {
+            letterFrequency.set('?', letterFrequency.get('?') - 1);
+            for (let i = 0; i < 26; i++) {
+                if (node.children[i] !== null) {
+                    searchAnagrams(node.children[i], prefix + String.fromCharCode('A'.charCodeAt(0) + i), letters, new Map(letterFrequency), results);
+                }
+            }
+            letterFrequency.set('?', letterFrequency.get('?') + 1);
+        }
+    }
+
+    function countLetters(letters) {
+        const letterCount = new Map();
+        for (const letter of letters) {
+            if (letter !== '?') {
+                letterCount.set(letter, (letterCount.get(letter) || 0) + 1);
+            } else {
+                letterCount.set(letter, 1); // Assuming a single '?' for simplicity
+            }
+        }
+        return letterCount;
+    }
+
+    function scoreWord(word) {
+        let score = 0;
+        for (const letter of word) {
+            score += getLetterScore(letter);
+        }
+        return score;
+    }
+
+    function getLetterScore(letter) {
+        switch (letter) {
+            case 'E':
+            case 'A':
+            case 'I':
+            case 'O':
+            case 'N':
+            case 'R':
+            case 'T':
+            case 'L':
+            case 'S':
+            case 'U':
+                return 1;
+            case 'D':
+            case 'G':
+                return 2;
+            case 'B':
+            case 'C':
+            case 'M':
+            case 'P':
+                return 3;
+            case 'F':
+            case 'H':
+            case 'V':
+            case 'W':
+            case 'Y':
+                return 4;
+            case 'K':
+                return 5;
+            case 'J':
+            case 'X':
+                return 8;
+            case 'Q':
+            case 'Z':
+                return 10;
+            default:
+                return 0; // Blank tiles (or any other characters) score 0 points
+        }
+    }
+
+    // Load the dictionary from the file
+    fetch('./ScrabbleDictionary.txt')
+        .then(response => response.text())
+        .then(text => {
+            loadWordsFromText(text);
+        })
+        .catch(error => console.error('Error loading dictionary:', error));
+</script>
+
+</body>
+</html>

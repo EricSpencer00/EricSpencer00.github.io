@@ -59,7 +59,7 @@
     let scrabbleDictionary = [];
 
     // Load the dictionary from the file
-    fetch('ScrabbleDictionary.txt')
+    fetch('./ScrabbleDictionary.txt')
         .then(response => response.text())
         .then(text => {
             scrabbleDictionary = text.split('\n').map(word => word.trim().toUpperCase());
@@ -94,38 +94,19 @@
     }
 
     function canCreateWord(word, letterCount) {
-        const wildcardCount = (word.match(/\?/g) || []).length;
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const regexPattern = '^' + word.replace(/\?/g, '.') + '$';
+        let wordPattern = word.replace(/\?/g, '.');
+        const wordRegex = new RegExp('^' + wordPattern + '$', 'i');
 
-        for (let i = 0; i < Math.pow(26, wildcardCount); i++) {
-            let currentPattern = regexPattern;
-            let temp = i;
-            for (let j = 0; j < wildcardCount; j++) {
-                const letterIndex = temp % 26;
-                const letter = alphabet.charAt(letterIndex);
-                currentPattern = currentPattern.replace('.', letter);
-                temp = Math.floor(temp / 26);
-            }
-
-            const wildcardRegex = new RegExp(currentPattern, 'i');
-            for (const dictionaryWord of scrabbleDictionary) {
-                if (wildcardRegex.test(dictionaryWord) && wordFitsLetters(dictionaryWord, letterCount)) {
-                    return true;
-                }
-            }
+        if (!wordRegex.test(Object.keys(letterCount).join(''))) {
+            return false;
         }
-        return false;
-    }
 
-    function wordFitsLetters(word, letterCount) {
-        const wordLetters = countLetters(word);
-        for (const letter in wordLetters) {
-            if (letter === '{') continue;
-            if (!letterCount[letter] || wordLetters[letter] > letterCount[letter]) {
+        for (const letter in letterCount) {
+            if (!word.includes(letter)) {
                 return false;
             }
         }
+
         return true;
     }
 
