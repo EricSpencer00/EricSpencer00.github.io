@@ -12,12 +12,15 @@ function typeText(text, id, speed) {
 
     function type() {
         const currentTime = performance.now();
-        const elapsedTime = currentTime - startTime; 
-        const expectedTime = index * speed; 
+        const elapsedTime = currentTime - startTime;
+        const expectedTime = index * speed;
         const remainingTime = Math.max(0, expectedTime - elapsedTime);
 
         const char = text[index++];
-        container.textContent += char;
+        const span = document.createElement('span');
+        span.textContent = char;
+        container.appendChild(span);
+
         if (index < text.length) {
             setTimeout(type, remainingTime);
         }
@@ -25,6 +28,7 @@ function typeText(text, id, speed) {
 
     type();
 }
+
 
 
 
