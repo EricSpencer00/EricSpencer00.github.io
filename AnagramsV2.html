@@ -231,9 +231,11 @@
     fetch('./ScrabbleDictionary.txt')
         .then(response => response.text())
         .then(text => {
-            loadWordsFromText(text);
-        })
-        .catch(error => console.error('Error loading dictionary:', error));
+        loadWordsFromText(text); // Call loadWordsFromText function here
+        console.log('Dictionary loaded successfully.');
+    })
+    .catch(error => console.error('Error loading dictionary:', error));
+
 </script>
 
 </body>
