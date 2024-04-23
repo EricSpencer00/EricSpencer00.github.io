@@ -10,4 +10,3 @@ Anagram Web App:
 One Rep Max Calculator App:
 - Uses the Epley formula for calculating your One Rep Max
 - Displays the results of your strength with 100 proportionate results
-- 
