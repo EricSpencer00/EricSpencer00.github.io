@@ -24,7 +24,7 @@
 }
 @media screen and (max-width: 350px) {
   pre.ascii-art {
-    display: 0.4em;
+    font-size: 0.4em;
   }
   pre.summary {
     font-size: 100%;
@@ -75,6 +75,7 @@ body {
 
 footer {
   background: black;
+  padding-top: 10px;
 }
 
 .container {
