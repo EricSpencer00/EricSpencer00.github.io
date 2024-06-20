@@ -31,23 +31,28 @@ function typeText(text, id, speed) {
 
 function chessStats() { 
     document.addEventListener('DOMContentLoaded', function() {
-        const username = 'EricSpencer00'
+        const username = 'EricSpencer00';
         const statsDiv = document.getElementById('stats');
 
         fetch(`https://api.chess.com/pub/player/${username}/stats`)
             .then(response => response.json())
             .then(data => {
-                const { chess_blitz, chess_bullet, chess_rapid, chess_daily } = data;
-                const statsHTML = `
-                <h2>Chess.com Stats for ${username}</h2>
-                <p><strong>Blitz:</strong> ${chess_blitz.last.rating}</p>
-                <p><strong>Bullet:</strong> ${chess_bullet.last.rating}</p>
-                <p><strong>Rapid:</strong> ${chess_rapid.last.rating}</p>
-            `;
-                statsDiv.textContent = `Rating: ${stats.last.rating}, Wins: ${stats.record.win}, Losses: ${stats.record.loss}, Draws: ${stats.record.draw}`;
+                if (data && data.chess_blitz && data.chess_bullet && data.chess_rapid) {
+                    const { chess_blitz, chess_bullet, chess_rapid } = data;
+                    const statsHTML = `
+                        <h2>Chess.com Stats for ${username}</h2>
+                        <p><strong>Blitz:</strong> ${chess_blitz.last.rating}</p>
+                        <p><strong>Bullet:</strong> ${chess_bullet.last.rating}</p>
+                        <p><strong>Rapid:</strong> ${chess_rapid.last.rating}</p>
+                    `;
+                    statsDiv.innerHTML = statsHTML;
+                } else {
+                    statsDiv.innerHTML = '<p>Stats not available for the user.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statsDiv.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
             });
+    });
 }
-
-
-
-
