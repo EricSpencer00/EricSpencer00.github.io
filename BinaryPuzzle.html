@@ -11,7 +11,7 @@
     <header>
         <h1>Binary Bomb Puzzle</h1>
         <h3>November 2023</h3>
-        <img src="Images/bbomb.gif" alt="bomb gif">
+        <img src="Images/Bomb/bbomb.gif" alt="bomb gif">
         <hr>
     </header>
     <main>
@@ -59,7 +59,7 @@
         <br><br>
         When we run this command we get about 300 lines of strings from our file.<br>
         A list of notable strings can be found: <a href="strings.txt.html">here</a>.
-        <br><img src="Images/BBPhase1Strings.png" alt="List of Strings"><br><br>
+        <br><img src="Images/Bomb/BBPhase1Strings.png" alt="List of Strings"><br><br>
         There are a couple of lines which seem to be phrases we output to the user when we run the bomb program.
         Under the main phrases of the string dump, lots of internal variables, probably used to code the original
         file.
@@ -78,17 +78,17 @@
         upon success for each of the stages. Think of it as a map for the program. This map is not easy to
         read, though. As some places have many loops within that can be hard to follow.<br><br>
         Luckily for us, the assembly code has identifiers for the different phases and functions.<br><br>
-        <img src="Images/BBPhase1Assembly.png" alt="Phase 1 code"><br><br>
+        <img src="Images/Bomb/BBPhase1Assembly.png" alt="Phase 1 code"><br><br>
         Immediately, we can see that a String gets passed into a register "DWORD PTR" and then
         is checked against an existing register. If the Strings do not match, explode the bomb. <br><br>
         Now, we don't want to explode the bomb, so we will create a breakpoint using GDB and follow the
         code as it moves through each assembly command using
         <ul><code>disas</code></ul>
         <br><br>
-        <img src="Images/BBPhase1GDBDebug1.png" alt="GDB Debugger in action"><br><br>
+        <img src="Images/Bomb/BBPhase1GDBDebug1.png" alt="GDB Debugger in action"><br><br>
         Now, at this point I don't know for sure if the phrase we picked earlier is correct, so my breakpoint
         will save me from explosion.<br><br>
-        <img src="Images/BBPhase1GDBDebug2.png" alt="GDB Debugger phase 1 phrase"><br><br>
+        <img src="Images/Bomb/BBPhase1GDBDebug2.png" alt="GDB Debugger phase 1 phrase"><br><br>
         Great! We have the answer to our first phase.<br><br>
         In order to not have to keep entering that in, I will create an "answers.txt" file that I can directly
         run in GDB.<br><br>
@@ -102,11 +102,11 @@
         Using our assembly file, we can break down what Phase 2 is doing step by step with its variables.
         Phase 2 has list of commands that moves around various values to various registers. One thing we can pick out
         is the function: read_six_numbers<br><br>
-        <img src="Images/BBPhase2Assembly.png" alt="GDB Debugger output for func2">
+        <img src="Images/Bomb/BBPhase2Assembly.png" alt="GDB Debugger output for func2">
         <br><br>Now, let's look at our read_six_numbers function to see what it does.
         We know that "cmpl" will compare 1 (denoted with $1 for a constant term) with our input (denoted with
         -0x28(%ebp) after it has been run through the read_six_numbers function. <br><br>
-        <img src="Images/BBPhase2ReadSixNumbers.png" alt="six numbers function"><br><br>
+        <img src="Images/Bomb/BBPhase2ReadSixNumbers.png" alt="six numbers function"><br><br>
         Just confirming. It seems like the function does what it says it does.<br><br>
         Now, when we have 6 variables in the input, we will not auto fail. If we don't have exactly 6 variables,
         we jump to the explode_bomb function. <br><br>
@@ -120,20 +120,20 @@
         When we multiply the number we have with that one previously, we are essentially doing a factorial.
         Our six numbers, then, are a list of factorials that are next to each other, but since we start at 1, we must
         start with 1 factorial. Our answer is 1! 2! 3! 4! 5! 6! or 1 2 6 24 120 720.<br><br>
-        <img src="Images/BBPhase2Complete.png" alt="Phase 2 complete"><br><br>
+        <img src="Images/Bomb/BBPhase2Complete.png" alt="Phase 2 complete"><br><br>
 
         <hr>
         <ul><h3>Phase 3</h3></ul>
         Onto Phase 3!<br><br>
-        <img src="Images/BBPhase3Assembly.png" alt="Phase 3 Assembly"><br><br>
+        <img src="Images/Bomb/BBPhase3Assembly.png" alt="Phase 3 Assembly"><br><br>
         Whew, it only gets harder from here on out.<br><br>
         Reading the string txt we know that the function expects the input "%d %d" which means two integers.
         The sscanf@plt function scans the first integer to make sure it is greater than the constant $1. In other words,
         our first integer must be 2 or greater.
         <br><br>
-        <img src="Images/BBPhase3InfoReg.png" alt="Info Register in action"><br><br>
+        <img src="Images/Bomb/BBPhase3InfoReg.png" alt="Info Register in action"><br><br>
         <br><br>
-        <img src="Images/BBPhase3Register.png" alt="using i r to find solution"><br><br>
+        <img src="Images/Bomb/BBPhase3Register.png" alt="using i r to find solution"><br><br>
         Using nexti and i r to sift through the registers we can find what's inside the register we need right before
         the final comparison.
         We can see that the %ebx register holds 811 as its value, so that is our answer. This solution works because to
@@ -148,11 +148,11 @@
         <hr>
         <ul><h3>Phase 6</h3></ul>
         Here's where I stopped trying.<br><br>
-        <img src="Images/BBPhase6Assembly.png" alt="Phase 6 Assembly"><br><br>
+        <img src="Images/Bomb/BBPhase6Assembly.png" alt="Phase 6 Assembly"><br><br>
         The 6th phase has three functions, one "main" function, a scrambling function, and a function
         that converts a String to a Long Integer. <br><br>
         The main function is above. Below is the scrambler function.<br><br>
-        <img src="Images/BBPhase6FuncAssembly.png" alt="Phase 6 helper func">
+        <img src="Images/Bomb/BBPhase6FuncAssembly.png" alt="Phase 6 helper func">
         As you can see, this one has many, many, many abstractions and variables to keep track of.
         What i've concluded is that there are 6 numbers to enter, then that string will be converted into a long int.
         After that long int is compared and mish mashed through the entire function, if its correct
@@ -160,7 +160,7 @@
         I've theorized that the puzzle takes 6 numbers 1 through 6 ie "1 2 3 4 5 6" and it's up to you
         to find the right permutation of these numbers. Without knowing how the function works, there are
         720 possibilities. I got through about 45% of them before I gave up.<br><br>
-        <img src="Images/BrainRot.png" alt="Brain Rot" style="
+        <img src="Images/Bomb/BrainRot.png" alt="Brain Rot" style="
             display: block; margin: 0; max-height: 20%; max-width: 20%; "/>
         <br><br>
         There's probably some simple solution I'm not seeing, if you see something I don't then please
