@@ -72,39 +72,6 @@ Software Developer
             <a mailto="espencer2@luc.edu">espencer2@luc.edu</a>
         </p>
         <hr>
-        <p class=""></p>
-
-        <p class="Statistics">
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const username = 'EricSpencer00';
-                    const statsDiv = document.getElementById('stats');
-
-                    fetch(`https://api.chess.com/pub/player/${username}/stats`)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data && data.chess_blitz && data.chess_bullet && data.chess_rapid) {
-                                const { chess_blitz, chess_bullet, chess_rapid } = data;
-                                const statsHTML = `
-                                    <h2>Chess.com Stats for ${username}</h2>
-                                    <p><strong>Blitz:</strong> ${chess_blitz.last.rating}</p>
-                                    <p><strong>Bullet:</strong> ${chess_bullet.last.rating}</p>
-                                    <p><strong>Rapid:</strong> ${chess_rapid.last.rating}</p>
-                                `;
-                                statsDiv.innerHTML = statsHTML;
-                            } else {
-                                statsDiv.innerHTML = '<p>Stats not available for the user.</p>';
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            statsDiv.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
-                        });
-                });
-            </script>
-        </p>
-
-        
 
         <footer>
             <p class="MainPageNavigation+LastUpdated">
@@ -132,6 +99,9 @@ Software Developer
  `-'     `-' 
                 </a></pre>
             </p>
+
+            <label for="styleButton">Simple Page Style</label>
+            <input type="checkbox" id="styleButton" onclick="changeStyle()">
         </footer>
         <script>
             const currentYear = new Date().getFullYear();
@@ -292,6 +262,19 @@ Software Developer`;
                 typeText(summary, "Summary", 75);
                 chessStats();
             }  
+
+            document.getElementById("StyleButton")
+                .addEventListener("click", changeStyle);
+
+            function changeStyle() {
+                const style = document.getElementById("styleButton");
+                const styleSheet = document.getElementById("styleSheet");
+                if (style.checked) {
+                    styleSheet.href = "styles.css";
+                } else {
+                    styleSheet.href = "simple.css";
+                }
+            }
         </script>
         
     </main>
