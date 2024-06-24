@@ -7,6 +7,20 @@ function secretFunction() {
 
 function typeText(text, id, speed) {
     const container = document.getElementById(id);
+    container.innerHTML = ''; // Clear the container
+
+    // Pre-allocate lines
+    const lines = text.split('');
+    lines.forEach(() => {
+        const line = document.createElement('div');
+        container.appendChild(line);
+    });
+
+    const cursor = document.createElement('span');
+    cursor.textContent = '|';
+    cursor.style.animation = 'blink 1s step-end infinite';
+    container.appendChild(cursor);
+
     let index = 0;
     const startTime = performance.now();
 
@@ -17,17 +31,40 @@ function typeText(text, id, speed) {
         const remainingTime = Math.max(0, expectedTime - elapsedTime);
 
         const char = text[index++];
-        const span = document.createElement('span');
-        span.textContent = char;
-        container.appendChild(span);
+        if (char === '\n') {
+            cursor.parentElement.appendChild(cursor);
+        } else {
+            const span = document.createElement('span');
+            span.textContent = char;
+            cursor.parentElement.insertBefore(span, cursor);
+        }
 
         if (index < text.length) {
             setTimeout(type, remainingTime);
+        } else {
+            cursor.style.animation = 'blink 1s step-end infinite';
         }
     }
 
     type();
 }
+
+// CSS for cursor blinking
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+    pre {
+        display: inline-block;
+        white-space: pre;
+    }
+    span {
+        white-space: pre;
+    }
+`;
+document.head.appendChild(style);
+
 
 function chessStats() { 
     document.addEventListener('DOMContentLoaded', function() {

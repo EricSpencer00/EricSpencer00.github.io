@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link id="styleSheet" href=styles.css/>
+    <link id="styleSheet" rel="stylesheet" href="styles.css"/>
     <script src="script.js"></script>
     <script src="confetti.js"></script>
     <title>Eric Spencer</title>
@@ -93,7 +93,7 @@ Software Developer
                 <pre><a id="teddyBear" onclick="secretFunction()"
                     style="text-decoration: none;
                     cursor: pointer;">
-<!-- #region Preformatted Text-->
+<!-- #region Preformatted Text--> 
    _     _   
   (c).-.(c)  
    / ._. \   
@@ -119,7 +119,7 @@ SimpleStyleButton
 <script>
     const currentYear = new Date().getFullYear();
     document.getElementById("copyrightYear").textContent = currentYear;
-    // #region ASCII Name Array
+    // #region ASCII Name Array DONT TOUCH
     const asciiNameArray = [`
     ______     _         _____                                
    / ____/____(_)____   / ___/____  ___  ____  ________  _____
@@ -156,7 +156,7 @@ ___________      .__           _________
 | {_  | {}  }| |/  ___}   { {__  | {}  }| {_  |  \`| |/  ___}| {_  | {}  }
 | {__ | .-. \\| |\\     }   .-._} }| .--' | {__ | |\\  |\\     }| {__ | .-. \\
 \`----'\`-' \`-'\`-' \`---'    \`----' \`-'    \`----'\`-' \`-' \`---' \`----'\`-' \`-'`,`
-   __      _        __                                
+   __     _        __                                
   /__\\ __(_) ___  / _\\_ __   ___ _ __   ___ ___ _ __ 
  /_\\| '__| |/ __| \\ \\| '_ \\ / _ \\ '_ \\ / __/ _ \\ '__|
 //__| |  | | (__  _\\ \\ |_) |  __/ | | | (_|  __/ |   
@@ -233,7 +233,7 @@ E  r   i   c   S  p   e   n   c  e   r`,`
 | __> _ _ <_> ___  / __> ___  ___ ._ _  ___  ___  _ _ 
 | _> | '_>| |/ | ' \\__ \\| . \\/ ._>| ' |/ | '/ ._>| '_>
 |___>|_|  |_|\\_|_. <___/|  _/\\___.|_|_|\\_|_.\\___.|_|  
-                             |_|                           `,`
+                        |_|                           `,`
 45 72 69 63  53 70 65 6E 63 65 72
 E  r  i  c   S  p  e  n  c  e  r
 `,`
@@ -274,21 +274,22 @@ Software Developer`;
     window.onload = function() {
         typeText(asciiName, "asciiName", 0);
         typeText(summary, "Summary", 75);
-        chessStats();
-        changeStyle(); 
+        // chessStats();
     }  
 
     function changeStyle() {
         const style = document.getElementById("styleButton");
         const styleSheet = document.getElementById("styleSheet");
         if (styleSheet.href.includes("styles.css")) {
-            styleSheet.href = "styles.css";
-            style.textContent = "SimpleStyleButton";
-        } else {
             styleSheet.href = "simple.css";
             style.textContent = "FancyStyleButton";
+        } 
+        if(styleSheet.href.includes("simple.css")) {
+            styleSheet.href = "styles.css";
+            style.textContent = "SimpleStyleButton";
         }
     }
+
 </script>
 </body>
 </html>
