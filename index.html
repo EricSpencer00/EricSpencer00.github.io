@@ -19,17 +19,19 @@
             <pre id="asciiName" class="ascii-art" style="color: lime;">
                 aria-label="Eric Spencer">
 <!-- #region Preformatted Text-->
-    ______     _         _____                                
+    ______     _         _____
    / ____/____(_)____   / ___/____  ___  ____  ________  _____
   / __/ / ___/ / ___/   \__ \/ __ \/ _ \/ __ \/ ___/ _ \/ ___/
  / /___/ /  / / /__    ___/ / /_/ /  __/ / / / /__/  __/ /    
 /_____/_/  /_/\___/   /____/ .___/\___/_/ /_/\___/\___/_/     
                           /_/
-<!-- #endregion -->            
+<!-- #endregion -->
                         </pre>
             <pre id="Summary" class="summary"
             aria-label="Software Developer">
+<!-- #region Preformatted Text-->
 Software Developer
+<!-- #endregion -->
             </pre>
         </noscript>
     </header>
@@ -91,6 +93,7 @@ Software Developer
                 <pre><a id="teddyBear" onclick="secretFunction()"
                     style="text-decoration: none;
                     cursor: pointer;">
+<!-- #region Preformatted Text-->
    _     _   
   (c).-.(c)  
    / ._. \   
@@ -100,6 +103,7 @@ Software Developer
  _.' `-' '._ 
 (.-./`-'\.-.)
  `-'     `-' 
+<!-- #endregion -->
                 </a></pre>
             </p>
 
@@ -115,7 +119,7 @@ SimpleStyleButton
 <script>
     const currentYear = new Date().getFullYear();
     document.getElementById("copyrightYear").textContent = currentYear;
-
+    // #region ASCII Name Array
     const asciiNameArray = [`
     ______     _         _____                                
    / ____/____(_)____   / ___/____  ___  ____  ________  _____
@@ -256,9 +260,11 @@ ___  __     __      __   __   ___       __   ___  __
 ╚══════╝╚═╝░░╚═╝╚═╝░╚════╝░░░╚═════╝░╚═╝░░░░░╚══════╝╚═╝░░╚══╝░╚════╝░╚══════╝╚═╝░░╚═╝`
 
 ];
-
+    // #endregion
+    // #region Summary Text
     const summary = `                                   
 Software Developer`;
+    // #endregion
 
     function getRandomAsciiArt() {
         return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
