@@ -5,24 +5,34 @@ function secretFunction() {
     }, 7000); // 7 seconds
 }
 
-function typeText(text, id, speed) {
+function typeText(text, id, speed, includeCursor = false) {
     const container = document.getElementById(id);
     container.innerHTML = ''; // Clear the container
 
     // Pre-allocate lines
-    const lines = text.split('');
-    lines.forEach(() => {
-        const line = document.createElement('div');
-        container.appendChild(line);
-    });
+    const lines = text.split('\n');
+    const numberOfLines = lines.length;
 
-    const cursor = document.createElement('span');
-    cursor.textContent = '|';
-    cursor.style.animation = 'blink 1s step-end infinite';
-    container.appendChild(cursor);
+    const measurementSpan = document.createElement('span');
+    measurementSpan.style.visibility = 'hidden';
+    measurementSpan.style.whiteSpace = 'pre';
+    measurementSpan.textContent = 'A';
+    container.appendChild(measurementSpan);
+    const lineHeight = measurementSpan.offsetHeight;
+    container.removeChild(measurementSpan);
+
+    container.style.height = `${numberOfLines * lineHeight}px`;
 
     let index = 0;
     const startTime = performance.now();
+
+    let cursor;
+    if (includeCursor) {
+        cursor = document.createElement('span');
+        cursor.textContent = '|';
+        cursor.style.animation = 'blink 1s step-end infinite';
+        container.appendChild(cursor);
+    }
 
     function type() {
         const currentTime = performance.now();
@@ -30,19 +40,23 @@ function typeText(text, id, speed) {
         const expectedTime = index * speed;
         const remainingTime = Math.max(0, expectedTime - elapsedTime);
 
-        const char = text[index++];
-        if (char === '\n') {
-            cursor.parentElement.appendChild(cursor);
-        } else {
-            const span = document.createElement('span');
-            span.textContent = char;
-            cursor.parentElement.insertBefore(span, cursor);
-        }
-
         if (index < text.length) {
+            const char = text[index++];
+            if (char === '\n') {
+                container.appendChild(document.createElement('br'));
+            } else {
+                const span = document.createElement('span');
+                span.textContent = char;
+                if (includeCursor) {
+                    container.insertBefore(span, cursor);
+                } else {
+                    container.appendChild(span);
+                }
+            }
+
             setTimeout(type, remainingTime);
-        } else {
-            cursor.style.animation = 'blink 1s step-end infinite';
+        } else if (includeCursor) {
+            container.appendChild(cursor); // Make sure the cursor is at the end
         }
     }
 
@@ -55,7 +69,7 @@ style.textContent = `
     @keyframes blink {
         50% { opacity: 0; }
     }
-    pre {
+    .cursor {
         display: inline-block;
         white-space: pre;
     }
