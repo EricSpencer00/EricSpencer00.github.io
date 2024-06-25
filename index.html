@@ -66,6 +66,7 @@ Software Developer
             <h2>Miscellaneous</h2>
             <a href="https://www.luc.edu/modernlang/homenews/chinesemid-autumnfestival.shtml" target="_blank">Chinese Mid-Autumn Festival Presentation on Tea</a><br><br>
             <a href="https://youtu.be/MQ8fYoJRSpg?si=hz0nohKVNvW8wfTM" target="_blank">How to make Fried Rice (Mandarin)</a><br><br>
+            <a href="AnagramsInfo.html" target="_blank">Java Anagram Solver</a><br><br>
         </p>
         <hr>
         <p class="BusinessAboutMe">
@@ -266,6 +267,34 @@ Eric Spencer`,`
     const summary = `                                   
 Software Developer`;
     // #endregion
+    const arrays = [
+        [`
+    ,---,. 
+  ,'  .' | 
+,---.'   | 
+|   |   .' 
+:   :  |-, 
+:   |  ;/| 
+|   :   .' 
+|   |  |-, 
+'   :  ;/| 
+|   |    \\ 
+|   :   .' 
+|   | ,'   
+\`----'     `],
+            [`
+  __  ,-. 
+,' ,'/ /| 
+'  | |' | 
+|  |   ,' 
+'  :  /   
+|  | '    
+;  : |    
+|  , ;    
+ ---'     
+        `]
+    ]
+    
     function getRandomAsciiArt() {
         return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
     } 
@@ -274,21 +303,9 @@ Software Developer`;
 
     window.onload = function() {
         typeText(asciiName, "asciiName", 0);
+        // typeText2dArray(arrays, "asciiName", 2000);
         typeText(summary, "Summary", 75);
         // chessStats();
-    }  
-
-    function changeStyle() {
-        const style = document.getElementById("styleButton");
-        const styleSheet = document.getElementById("styleSheet");
-        if (styleSheet.href.includes("styles.css")) {
-            styleSheet.href = "simple.css";
-            style.textContent = "FancyStyleButton";
-        } 
-        if(styleSheet.href.includes("simple.css")) {
-            styleSheet.href = "styles.css";
-            style.textContent = "SimpleStyleButton";
-        }
     }
 
 </script>

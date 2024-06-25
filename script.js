@@ -5,9 +5,59 @@ function secretFunction() {
     }, 7000); // 7 seconds
 }
 
-function typeText(text, id, speed, includeCursor = false) {
+function typeText2dArray(asciiArtArray, id, speed) {
     const container = document.getElementById(id);
-    container.innerHTML = ''; // Clear the container
+    container.innerHTML = '';
+
+    // Determine the size of the canvas
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+    asciiArtArray.forEach(letter => {
+        canvasWidth += letter[0].length;
+        canvasHeight = Math.max(canvasHeight, letter.length);
+    });
+
+    // Initialize the canvas with empty spaces
+    const canvas = Array(canvasHeight).fill('').map(() => Array(canvasWidth).fill(' '));
+
+    function mergeLetter(letter, startCol) {
+        for (let row = 0; row < letter.length; row++) {
+            for (let col = 0; col < letter[row].length; col++) {
+                const char = letter[row][col];
+                if (char !== ' ') {
+                    canvas[row][startCol + col] = char;
+                }
+            }
+        }
+    }
+
+    function printCanvas() {
+        container.innerHTML = canvas.map(row => row.join('')).join('\n');
+    }
+
+    let letterIndex = 0;
+    let currentCol = 0;
+    const totalLetters = asciiArtArray.length;
+
+    function type() {
+        if (letterIndex < totalLetters) {
+            const letter = asciiArtArray[letterIndex];
+            mergeLetter(letter, currentCol);
+            currentCol += letter[0].length;
+
+            letterIndex++;
+            setTimeout(type, speed);
+            printCanvas();
+        }
+    }
+
+    type();
+}
+
+
+function typeText(text, id, speed, includeCursor) {
+    const container = document.getElementById(id);
+    container.innerHTML = '';
 
     // Pre-allocate lines
     const lines = text.split('\n');
