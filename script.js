@@ -79,7 +79,7 @@ function typeText(text, id, speed, includeCursor) {
     let cursor;
     if (includeCursor) {
         cursor = document.createElement('span');
-        cursor.textContent = '|';
+        cursor.textContent = '▌';
         cursor.style.animation = 'blink 1s step-end infinite';
         container.appendChild(cursor);
     }
