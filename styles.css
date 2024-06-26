@@ -110,7 +110,7 @@ body, html {
   flex-wrap: wrap;
   align-content: flex-start;
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.01);
+  color: rgba(255, 255, 255, 0.02);
   background: black;
   text-align: center;
 }
