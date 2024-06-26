@@ -37,7 +37,7 @@
     <header>
         <pre id="asciiName" class="ascii-art" style="color: lime;"
         aria-label="Eric Spencer"></pre>
-        <pre id="Summary" class="summary"
+        <pre id="Summary" class="Summary"
         aria-label="Software Developer"></pre>
         <noscript>
             <pre id="asciiName" class="ascii-art" style="color: lime;">
@@ -63,6 +63,7 @@ Software Developer
         <hr>
         </p>
         <p class="Projects">
+            <p id="typeProjects" class="typeProjects"></p>
         <h2>$ ls Projects/<span class="cursor">▐</span></h2>
         <h4>
             <a href="Projects/DailyTask.html" target="_blank">DailyTask iOS App</a><br><br>
@@ -96,6 +97,7 @@ Software Developer
         <hr>
         <p class="BusinessAboutMe">
             <h2>$ whoami<span class="cursor">▐</span></h2>
+            <pre id="typeBusinessAboutMe"></pre>
             <em>Eric Spencer</em><br>
             <strong>Loyola University Chicago</strong> | <em>Class of 2026</em><br>
             <em>College of Arts and Sciences</em> | <strong>Computer Science</strong><br>
@@ -326,12 +328,14 @@ Software Developer`;
     } 
 
     const asciiName = getRandomAsciiArt();
-
+    const typeProjects = "Projects";
+    
     window.onload = function() {
         typeText(asciiName, "asciiName", 0);
         // typeText2dArray(arrays, "asciiName", 2000);
         typeText(summary, "Summary", 75);
         // chessStats();
+        typeText(typeProjects, "typeProjects", 75);
     }
 
 </script>

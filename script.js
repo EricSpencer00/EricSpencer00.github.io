@@ -73,6 +73,21 @@ function typeText2dArray(asciiArtArray, id, speed) {
     type();
 }
 
+function typeHTML(text, id, speed) {
+    const element = document.getElementById(id);
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            // Use innerHTML to correctly interpret HTML tags
+            element.innerHTML += text[index];
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
 
 function typeText(text, id, speed, includeCursor) {
     const container = document.getElementById(id);

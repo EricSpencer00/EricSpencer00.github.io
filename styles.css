@@ -124,7 +124,7 @@ footer {
 .container {
   max-width: 90%;
   margin: auto;
-  font-family: Monaco;
+  font-family: sans-serif;
   color: white;
   position: relative;
   text-align: left;
