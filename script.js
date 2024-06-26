@@ -5,6 +5,25 @@ function secretFunction() {
     }, 7000); // 7 seconds
 }
 
+function generateHexGrid(width, height) {
+    let grid = '';
+    for (let h = 0; h < height; h++) {
+        let line = '';
+        for (let w = 0; w < width; w++) {
+            line += (w % 19 === 0 && w !== 0) ? "    " : Math.floor(Math.random() * 256).toString(16).padStart(2, '0').toUpperCase() + " ";
+        }
+        grid += line.trim() + '\n';
+    }
+    return grid;
+}
+
+function updateBackgroundHex() {
+    const hexElement = document.getElementById('hexBackground');
+    hexElement.textContent = generateHexGrid(20, 20);
+}
+
+setInterval(updateBackgroundHex, 1000)
+
 function typeText2dArray(asciiArtArray, id, speed) {
     const container = document.getElementById(id);
     container.innerHTML = '';
