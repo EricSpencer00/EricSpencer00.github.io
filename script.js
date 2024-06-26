@@ -19,10 +19,10 @@ function generateHexGrid(width, height) {
 
 function updateBackgroundHex() {
     const hexElement = document.getElementById('hexBackground');
-    hexElement.textContent = generateHexGrid(20, 20);
+    hexElement.textContent = generateHexGrid(200, 20);
 }
 
-setInterval(updateBackgroundHex, 1000)
+// setInterval(updateBackgroundHex, 1000)
 
 function typeText2dArray(asciiArtArray, id, speed) {
     const container = document.getElementById(id);
