@@ -1,4 +1,4 @@
-    const asciiNameArray = [`
+const asciiNameArray = [`
     ______     _         _____                                
    / ____/____(_)____   / ___/____  ___  ____  ________  _____
   / __/ / ___/ / ___/   \\__ \\/ __ \\/ _ \\/ __ \\/ ___/ _ \\/ ___/
@@ -486,3 +486,7 @@ Eric
 Spencer
 `
 ];
+
+function getRandomAsciiArt() {
+    return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
+}

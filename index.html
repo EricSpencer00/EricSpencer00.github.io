@@ -6,6 +6,7 @@
     <link id="styleSheet" rel="stylesheet" href="styles.css"/>
     <script src="script.js"></script>
     <script src="confetti.js"></script>
+    <script src="ascii.js"></script>
     <title>Eric Spencer</title>
     <link rel="icon" href="Images/logo.png" type="image/png"/>
 </head>
@@ -156,21 +157,13 @@ DEAD UNTIL FURTHER NOTICE
     const summary = `                                   
 Software Developer`;
     // #endregion
-    
-    function getRandomAsciiArt() {
-        return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
-    }
-
     const asciiName = getRandomAsciiArt();
     const typeProjects = "Projects";
     
     window.onload = function() {
         typeText(asciiName, "asciiName", 0);
-        // typeText2dArray(arrays, "asciiName", 2000);
         typeText(summary, "Summary", 75);
-        // chessStats();
         typeText(typeProjects, "typeProjects", 75);
-        
     }
 
 </script>
