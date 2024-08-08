@@ -196,6 +196,14 @@ function getRandomAsciiArt() {
     return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
 }
 
+/* Mobile browser width in spaces below, X's inclusive
+
+X                                                                            X
+
+*/
+
+
+
 const asciiNameArray = [`
     ______     _         _____                                
    / ____/____(_)____   / ___/____  ___  ____  ________  _____
@@ -349,23 +357,6 @@ Eric Spencer`,`
 ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░             ░▒▓█▓▒░ 
 ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓███████▓▒░  
 `,`                                                                                     
-EEEEEEEEEEEEEEEEEEEEEE                     iiii                              SSSSSSSSSSSSSSS 
-E::::::::::::::::::::E                    i::::i                           SS:::::::::::::::S
-E::::::::::::::::::::E                     iiii                           S:::::SSSSSS::::::S
-EE::::::EEEEEEEEE::::E                                                    S:::::S     SSSSSSS
-  E:::::E       EEEEEErrrrr   rrrrrrrrr  iiiiiii     cccccccccccccccc     S:::::S            
-  E:::::E             r::::rrr:::::::::r i:::::i   cc:::::::::::::::c     S:::::S            
-  E::::::EEEEEEEEEE   r:::::::::::::::::r i::::i  c:::::::::::::::::c      S::::SSSS         
-  E:::::::::::::::E   rr::::::rrrrr::::::ri::::i c:::::::cccccc:::::c       SS::::::SSSSS    
-  E:::::::::::::::E    r:::::r     r:::::ri::::i c::::::c     ccccccc         SSS::::::::SS  
-  E::::::EEEEEEEEEE    r:::::r     rrrrrrri::::i c:::::c                         SSSSSS::::S 
-  E:::::E              r:::::r            i::::i c:::::c                              S:::::S
-  E:::::E       EEEEEE r:::::r            i::::i c::::::c     ccccccc                 S:::::S
-EE::::::EEEEEEEE:::::E r:::::r           i::::::ic:::::::cccccc:::::c     SSSSSSS     S:::::S
-E::::::::::::::::::::E r:::::r           i::::::i c:::::::::::::::::c     S::::::SSSSSS:::::S
-E::::::::::::::::::::E r:::::r           i::::::i  cc:::::::::::::::c     S:::::::::::::::SS 
-EEEEEEEEEEEEEEEEEEEEEE rrrrrrr           iiiiiiii    cccccccccccccccc      SSSSSSSSSSSSSSS   
-`,`
 ┏┓  •   ┏┓           
 ┣ ┏┓┓┏  ┗┓┏┓┏┓┏┓┏┏┓┏┓
 ┗┛┛ ┗┗  ┗┛┣┛┗ ┛┗┗┗ ┛ 
@@ -644,7 +635,30 @@ EEEEE   rrr  r iii cc         SSSSS  ppp  pp ee   e nnn  nn cc     ee   e rrr  r
 EE      rr     iii cc             SS pppppp  eeeee  nn   nn cc     eeeee  rr     
 EEEEEEE rr     iii  ccccc     SSSSS  pp       eeeee nn   nn  ccccc  eeeee rr     
                                      pp                                          
-`,`
+`
+];
+
+largeAsciiNameArray = [`
+EEEEEEEEEEEEEEEEEEEEEE                     iiii                              SSSSSSSSSSSSSSS 
+E::::::::::::::::::::E                    i::::i                           SS:::::::::::::::S
+E::::::::::::::::::::E                     iiii                           S:::::SSSSSS::::::S
+EE::::::EEEEEEEEE::::E                                                    S:::::S     SSSSSSS
+    E:::::E       EEEEEErrrrr   rrrrrrrrr  iiiiiii     cccccccccccccccc     S:::::S            
+    E:::::E             r::::rrr:::::::::r i:::::i   cc:::::::::::::::c     S:::::S            
+    E::::::EEEEEEEEEE   r:::::::::::::::::r i::::i  c:::::::::::::::::c      S::::SSSS         
+    E:::::::::::::::E   rr::::::rrrrr::::::ri::::i c:::::::cccccc:::::c       SS::::::SSSSS    
+    E:::::::::::::::E    r:::::r     r:::::ri::::i c::::::c     ccccccc         SSS::::::::SS  
+    E::::::EEEEEEEEEE    r:::::r     rrrrrrri::::i c:::::c                         SSSSSS::::S 
+    E:::::E              r:::::r            i::::i c:::::c                              S:::::S
+    E:::::E       EEEEEE r:::::r            i::::i c::::::c     ccccccc                 S:::::S
+EE::::::EEEEEEEE:::::E r:::::r           i::::::ic:::::::cccccc:::::c     SSSSSSS     S:::::S
+E::::::::::::::::::::E r:::::r           i::::::i c:::::::::::::::::c     S::::::SSSSSS:::::S
+E::::::::::::::::::::E r:::::r           i::::::i  cc:::::::::::::::c     S:::::::::::::::SS 
+EEEEEEEEEEEEEEEEEEEEEE rrrrrrr           iiiiiiii    cccccccccccccccc      SSSSSSSSSSSSSSS   
+`
+]
+
+tinyAsciiNameArray = [`
 E very
 R ed
 I tem
@@ -683,6 +697,6 @@ Romeo
 Eric
 Spencer
 `
-];
+]
 
 
