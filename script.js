@@ -192,6 +192,10 @@ function chessStats() {
     });
 }
 
+function getRandomAsciiArt() {
+    return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
+}
+
 const asciiNameArray = [`
     ______     _         _____                                
    / ____/____(_)____   / ___/____  ___  ____  ________  _____
@@ -681,6 +685,4 @@ Spencer
 `
 ];
 
-function getRandomAsciiArt() {
-    return asciiNameArray[Math.floor(Math.random() * asciiNameArray.length)];
-}
+
