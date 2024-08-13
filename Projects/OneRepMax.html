@@ -17,6 +17,11 @@
             font-size: 150%;
             padding-left: 0;
         }
+        .input {
+            width: 100px;
+            height: 60px;
+            font-size: 16px;
+        }
         button {
             display: inline-block;
             padding: 10px 20px;
@@ -43,8 +48,9 @@
             margin-left: auto;
             margin-right: auto;
             background-color: #ffffff;
-            
-    }
+        }
+
+
     </style>
 </head>
 <body>
@@ -69,6 +75,13 @@
                style="width: 120px;
                 height: 60px;
                 font-size: 16px">
+        <select id="unit">
+            <option value="lbs">lbs</option>
+            <option value="kg">kg</option>
+            <option value="oz">oz</option>
+            <option value="g">g</option>
+            <option value=" dogs">dogs</option>
+        </select>
         <br>
         <button type="submit">Calculate</button>
     </form>
@@ -104,25 +117,26 @@
     function calculateMax() {
         const reps = parseFloat(document.getElementById('reps').value);
         const weight = parseFloat(document.getElementById('weight').value);
+        const unit = document.getElementById('unit').value;
 
         //Epley formula
         const oneRepMax = weight * (1 + reps / 30);
 
         const resultDiv = document.getElementById('result');
 
-        const repMaxEstimates = generateRepMaxEstimates(oneRepMax);
+        const repMaxEstimates = generateRepMaxEstimates(oneRepMax, unit);
 
         resultDiv.innerHTML = repMaxEstimates;
 
         // console.log('100 Rep Max: 10LB means that you can lift 10LB 100 times before failure');
     }
 
-    function generateRepMaxEstimates(oneRepMax) {
+    function generateRepMaxEstimates(oneRepMax, unit) {
         const estimates = [];
-        estimates.push(`<li>Your One Rep Max is ${(oneRepMax / (1 + 1/30)).toFixed(2)} units</li>`);
+        estimates.push(`<li>Your One Rep Max is ${(oneRepMax / (1 + 1/30)).toFixed(2)}${unit}</li>`);
         estimates.push('<hr>');
         for (let i = 2; i <= 100; i++) {
-            estimates.push(`<li>You can lift ${(oneRepMax / (1 + i/30)).toFixed(2)} units for ${i} reps</li>`);
+            estimates.push(`<li>You can lift ${(oneRepMax / (1 + i/30)).toFixed(2)}${unit} for ${i} reps</li>`);
         }
         return `<ul>${estimates.join("\n")}</ul>`;
     }
