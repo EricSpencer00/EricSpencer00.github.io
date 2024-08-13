@@ -125,12 +125,27 @@ function typeText(text, id, speed, includeCursor) {
         const remainingTime = Math.max(0, expectedTime - elapsedTime);
 
         if (index < text.length) {
-            const char = text[index++];
+            let char = text[index];
+            let span = document.createElement('span');
+            
             if (char === '\n') {
                 container.appendChild(document.createElement('br'));
+                index++;
+            } else if (char === ' ') {
+                let spaceCount = 0;
+                while (text[index] === ' ') {
+                    spaceCount++;
+                    index++;
+                }
+                span.textContent = ' '.repeat(spaceCount);
+                if (includeCursor) {
+                    container.insertBefore(span, cursor);
+                } else {
+                    container.appendChild(span);
+                }
             } else {
-                const span = document.createElement('span');
                 span.textContent = char;
+                index++;
                 if (includeCursor) {
                     container.insertBefore(span, cursor);
                 } else {
@@ -146,6 +161,7 @@ function typeText(text, id, speed, includeCursor) {
 
     type();
 }
+
 
 // CSS for cursor blinking
 const style = document.createElement('style');
