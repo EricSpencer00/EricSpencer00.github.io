@@ -24,6 +24,9 @@
             color: #ffffff;
             border: none;
             cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
         }
         button:hover {
             background-color: #218838;
@@ -37,8 +40,10 @@
         input[type="number"]::-webkit-clear-button {
             -webkit-appearance: none;
             appearance: none;
-            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
             background-color: #ffffff;
+            
     }
     </style>
 </head>
@@ -56,21 +61,22 @@
     <form id="maxForm">
         <label for="weight"></label>
         <input type="number" id="weight" min="1" step="0.01" placeholder="Weight" required
-               style="width: 300px;
-        height: 60px;
-        font-size: 16px;">
+               style="width: 120px;
+                height: 60px;
+                font-size: 16px;">
         <label for="reps"></label>
         <input type="number" id="reps" min="1" step="0.01" placeholder="Reps" required
-               style="width: 80px;
-        height: 60px;
-        font-size: 16px">
+               style="width: 120px;
+                height: 60px;
+                font-size: 16px">
+        <br>
         <button type="submit">Calculate</button>
     </form>
 
 <div id="result"></div>
 
-    <p>The conversion for Pounds and Kilograms is the same<br><br>
-        ie. 3 reps at 140kg is the same conversion as 3 reps at 140lb</p>
+    <!-- <p>The conversion for Pounds and Kilograms is the same<br><br>
+        ie. 3 reps at 140kg is the same conversion as 3 reps at 140lb</p> -->
     <hr>
     <p class="">
         <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
@@ -108,15 +114,15 @@
 
         resultDiv.innerHTML = repMaxEstimates;
 
-        console.log('100 Rep Max: 10LB means that you can lift 10LB 100 times before failure');
+        // console.log('100 Rep Max: 10LB means that you can lift 10LB 100 times before failure');
     }
 
     function generateRepMaxEstimates(oneRepMax) {
         const estimates = [];
-        estimates.push(`<li>Your One Rep Max is ${(oneRepMax / (1 + 1/30)).toFixed(2)}lb</li>`);
+        estimates.push(`<li>Your One Rep Max is ${(oneRepMax / (1 + 1/30)).toFixed(2)} units</li>`);
         estimates.push('<hr>');
         for (let i = 2; i <= 100; i++) {
-            estimates.push(`<li>You can lift ${(oneRepMax / (1 + i/30)).toFixed(2)}lb for ${i} reps</li>`);
+            estimates.push(`<li>You can lift ${(oneRepMax / (1 + i/30)).toFixed(2)} units for ${i} reps</li>`);
         }
         return `<ul>${estimates.join("\n")}</ul>`;
     }
