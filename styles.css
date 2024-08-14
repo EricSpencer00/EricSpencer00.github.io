@@ -101,12 +101,13 @@ body, html {
 
 #hexBackground {
   font-family: Monaco, 'Lucida Console', monospace;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: absolute;
+  top: -2.5%;
+  left: -10%;
+  width: 120%;
+  bottom: -30%;
   height: 100%;
-  font-size: 3vw; /* Adjust size as necessary */
+  font-size: 3vw;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -114,11 +115,16 @@ body, html {
   color: rgba(255, 255, 255, 0.1);
   background: black;
   text-align: center;
+  z-index: 0;
+  background: transparent;
 }
 
 footer {
   /* background: black; */
   padding-top: 10px;
+  position: relative;
+  z-index: 1;
+  background: transparent;
 }
 
 .container {

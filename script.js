@@ -19,7 +19,9 @@ function generateHexGrid(width, height) {
 
 function updateBackgroundHex() {
     const hexElement = document.getElementById('hexBackground');
-    hexElement.textContent = generateHexGrid(200, 20);
+    if (hexElement) {
+        hexElement.innerHTML = generateHexGrid(200, 20);
+    }
 }
 
 // setInterval(updateBackgroundHex, 1000)
