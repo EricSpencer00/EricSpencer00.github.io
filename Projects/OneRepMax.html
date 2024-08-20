@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="../styles.css"/>
     <link rel="icon" href="../Images/logo.png" type="image/png"/>
     <title>One Rep Max Calculator</title>
@@ -56,7 +57,9 @@
 </head>
 <body>
 <div class="container">
-<h1>One Rep Max Calculator</h1>
+<h1>
+    <div class="title">One Rep Max Calculator</div>
+</h1> <!-- Title -->
     <hr>
     <p>Defined as the maximum amount of weight you can theoretically lift for one repetition.
         \[
@@ -122,7 +125,6 @@
     document.getElementById('maxForm').addEventListener('submit', function(event) {
         event.preventDefault();
         calculateMax();
-
     });
 
     function calculateMax() {
@@ -132,11 +134,9 @@
 
         //Epley formula
         const oneRepMax = weight * (1 + reps / 30);
-
         const resultDiv = document.getElementById('result');
 
         const repMaxEstimates = generateRepMaxEstimates(oneRepMax, unit);
-
         resultDiv.innerHTML = repMaxEstimates;
 
         // console.log('100 Rep Max: 10LB means that you can lift 10LB 100 times before failure');
