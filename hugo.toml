@@ -1,4 +1,5 @@
 baseURL = 'https://EricSpencer00.github.io'
+publicDir = "public"
 languageCode = 'en-us'
 title = 'Eric Spencer'
 theme = "hugo-PaperMod"
