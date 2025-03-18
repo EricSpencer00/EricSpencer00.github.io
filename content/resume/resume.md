@@ -4,4 +4,4 @@ draft = false
 title = 'Resume'
 +++
 
-Here is my resume
+[Resume](/images/EricSpencerResume.pdf)
