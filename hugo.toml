@@ -7,25 +7,18 @@ theme = "hugo-PaperMod"
     avatar = "images/avatar.jpeg"
     [Params.profileMode]
         enabled = true
-        title = "<Title>" # optional default will be site title
-        subtitle = "This is subtitle"
-        imageUrl = "<image link>" # optional
-        imageTitle = "<title of image as alt>" # optional
-        imageWidth = 120 # custom size
-        imageHeight = 120 # custom size
-        [[Params.profileMode.buttons]]
-            name = "Archive"
-            url = "/archive"
+        title = "<Eric Spencer>" # optional default will be site title
+        subtitle = "Eric Spencer"
+        imageUrl = "images/avatar.jpeg"
+        imageTitle = "Profile Picture" # optional
+        imageWidth = 240 # custom size
+        imageHeight = 240 # custom size
         [[Params.profileMode.buttons]]
             name = "Github"
             url = "https://github.com/EricSpencer00"
-
-    [[Params.socialIcons]] # optional
-        name = "<platform>"
-        url = "<link>"
-    [[Params.socialIcons]]
-        name = "<platform 2>"
-        url = "<link2>"
+        [[Params.profileMode.buttons]]
+            name = "LinkedIn"
+            url = "https://linkedin.com/in/EricSpencer00"
 
 [[menu.main]]
     name = "Posts"
