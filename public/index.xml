@@ -50,5 +50,12 @@
       <guid>http://localhost:1313/projects/serenity/</guid>
       <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
     </item>
+    <item>
+      <title>Free Time Calculator in Java</title>
+      <link>http://localhost:1313/projects/freetime-calc/</link>
+      <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/freetime-calc/</guid>
+      <description>A Java program to find overlapping free time for up to four people.</description>
+    </item>
   </channel>
 </rss>
