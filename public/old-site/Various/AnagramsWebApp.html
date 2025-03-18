@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Anagrams</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="Images/logo.png" type="image/png"/>
+    <style>
+        body {
+            background: black;
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            height: 100%;
+        }
+        .wordButton {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .inputBox {
+            width: 300px;
+            height: 40px; 
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* Ensures padding and border are included in the width */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Anagram Solver</h1>
+    <hr>
+    <p>Enter the letters you have:</p>
+    <input class="inputBox" type="text" id="userLetters">
+    <button class="wordButton" onclick="printAllAnagrams()">Submit</button>
+    <div id="anagramsOutput"></div>
+    <hr>
+    <p>
+        <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
+        Last updated: <span id="date"></span>
+    </p>
+</div>
+<script src="AnagramWebApp.js"></script>
+</body>
+</html>

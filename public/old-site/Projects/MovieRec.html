@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <title>DailyTask App</title>
+    <link rel="icon" href="../Images/logo.png" type="image/png"/>
+
+    <style>
+        .image-container {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .image-container img {
+            width: 75%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Movie Recommendation Website</h1>
+        <h3>August - December 2024</h3>
+        <hr>
+    </header>
+    <main>
+        <p>
+            As a part of the Loyola AI Club's Fall 2024 project, we worked to create a movie recommendation website.
+            
+            <br><br>
+            I was the VP of Frontend Development. That meant implementing hosting services, connecting a backend model to a UI, and creating a user-friendly interface.
+            <br><br>
+            You can check out the official website here: <a href="https://movierec-f24-e040c420e2f6.herokuapp.com">https://movierec-f24-e040c420e2f6.herokuapp.com</a><br><br>
+            Any source code without environment variables is here: <a href="https://github.com/loyolaAI/MovieRec-F24">https://github.com/loyolaAI/MovieRec-F24</a><br><br>
+            <div class="image-container">
+                <img src="../Images/MovieRec/MovieScreen.png" alt="MovieRec" width="300" height="300">
+                <img src="../Images/MovieRec/Recommended.png" alt="MovieRec" width="300" height="300">
+        
+            </div>
+            <br><br>
+            <h3>Some things I'm proud of:</h3>
+            <ul>
+                <li>Connecting webscraped data to a machine learning model</li>
+                <li>Clickable movie icons that loads its own ML model</li>
+                <li>That it works</li>
+
+        <p>
+
+        <hr>
+        </p>
+        <p>
+            <a href="https://ericspencer00.github.io">Go back to Main Page</a>
+            <br><br>
+        <footer>
+            <p class="MainPageNavigation+LastUpdated">
+                Last updated: January 8, 2025</span>
+            </p>
+            <p>&copy; <span id="copyrightYear"></span> Eric Spencer. All rights reserved.</p>
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="styles.css"/>
+    <title>One Rep Max Calculator</title>
+    <style>
+        input[type="number"] {
+            width: 100px;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        button:active {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+<div class="paragraph-centered">
+    <h1>One Rep Max Calculator</h1>
+    <p>Defined as the maximum amount of weight you can theoretically lift for one repetition.
+        \[
+        \text{1RM} = W \times \left(1 + \frac{R}{30}\right)
+        \]
+        where \( W \) is the weight lifted and \( R \) is the number of repetitions performed.
+    </p>
+    <form id="maxForm">
+        <label for="weight"></label>
+        <input type="number" id="weight" min="1" step="0.01" placeholder="Weight" required
+               style="width: 300px;
+        height: 60px;
+        font-size: 16px;">
+        <label for="reps"></label>
+        <input type="number" id="reps" min="1" step="0.01" placeholder="Reps" required
+               style="width: 80px;
+        height: 60px;
+        font-size: 16px">
+        <button type="submit">Calculate</button>
+    </form>
+
+        <table id="dataTable">
+            <thead>
+            <tr>
+                <th>REPS</th>
+                <th>WEIGHT</th>
+                <th>% OF 1RM</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Table rows will be dynamically generated here -->
+            </tbody>
+        </table>
+
+
+    <div id="result"></div>
+
+    <p>The conversion for Pounds and Kilograms is the same<br><br>
+        ie. 3 reps at 140kg is the same conversion as 3 reps at 140lb</p>
+    <hr>
+    <p class="">
+        <a href="https://ericspencer00.github.io">Go back to Main Page</a><br><br>
+        Last updated: <p id="date"></p>
+
+    <script>
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+    </script>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+</div>
+<script>
+    window.addEventListener('beforeunload', function(event) {
+        event.preventDefault();
+        event.returnValue = '';
+    });
+    document.getElementById('maxForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        calculateMaxTable();
+    });
+
+    function calculateMaxTable() {
+    const reps = parseFloat(document.getElementById('reps').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+
+    const tableBody = document.getElementById('dataTable').querySelector('tbody');
+    tableBody.innerHTML = '';
+
+    for (let i = 1; i <= 100; i++) {
+        const oneRepMax = weight * (1 + i / 30);
+        const percentageOf1RM = ((weight / oneRepMax) * 100).toFixed(2);
+
+        const newRow = document.createElement('tr');
+
+        const repsCell = document.createElement('td');
+        repsCell.textContent = i;
+
+        const weightCell = document.createElement('td');
+        weightCell.textContent = weight.toFixed(2);
+
+        const percentageCell = document.createElement('td'); // Define percentageCell
+        percentageCell.textContent = percentageOf1RM; // Assign percentageOf1RM to percentageCell
+
+        newRow.appendChild(repsCell);
+        newRow.appendChild(weightCell);
+        newRow.appendChild(percentageCell); // Append percentageCell to newRow
+
+        tableBody.appendChild(newRow);
+    }
+}
+
+</script>
+</body>
+</html>
