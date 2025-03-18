@@ -21,6 +21,11 @@ theme = "hugo-PaperMod"
             name = "LinkedIn"
             url = "https://linkedin.com/in/EricSpencer00"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [[menu.main]]
     name = "Posts"
     url = "/posts/"
