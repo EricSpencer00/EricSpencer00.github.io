@@ -20,48 +20,49 @@
       <link>http://localhost:1313/resume/resume/</link>
       <pubDate>Tue, 04 Mar 2025 16:13:32 -0600</pubDate>
       <guid>http://localhost:1313/resume/resume/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:1313/images/EricSpencerResume.pdf&#34;&gt;Resume&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;-my-resume&#34;&gt;📄 My Resume&lt;/h1&gt;
+&lt;iframe src=&#34;http://localhost:1313/images/EricSpencerResume.pdf&#34; width=&#34;100%&#34; height=&#34;800px&#34;&gt;&lt;/iframe&gt;</description>
     </item>
     <item>
       <title>Movie Recommendation Website</title>
-      <link>http://localhost:1313/projects/movierec/</link>
+      <link>http://localhost:1313/projects/recent/movierec/</link>
       <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/movierec/</guid>
+      <guid>http://localhost:1313/projects/recent/movierec/</guid>
       <description>A movie recommendation website developed as part of the Loyola AI Club&amp;#39;s Fall 2024 project.</description>
     </item>
     <item>
       <title>DailyTask iOS App</title>
-      <link>http://localhost:1313/projects/dailytask/</link>
+      <link>http://localhost:1313/projects/old/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/dailytask/</guid>
+      <guid>http://localhost:1313/projects/old/dailytask/</guid>
       <description>An iOS app to help track daily tasks, including medication reminders.</description>
     </item>
     <item>
       <title>DexVal</title>
-      <link>http://localhost:1313/projects/dexval/</link>
+      <link>http://localhost:1313/projects/old/dexval/</link>
       <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/dexval/</guid>
+      <guid>http://localhost:1313/projects/old/dexval/</guid>
       <description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description>
     </item>
     <item>
       <title>One Rep Max Calculator</title>
-      <link>http://localhost:1313/projects/one-rep-max/</link>
+      <link>http://localhost:1313/projects/old/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/one-rep-max/</guid>
+      <guid>http://localhost:1313/projects/old/one-rep-max/</guid>
       <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Serenity</title>
-      <link>http://localhost:1313/projects/serenity/</link>
+      <link>http://localhost:1313/projects/old/serenity/</link>
       <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/serenity/</guid>
+      <guid>http://localhost:1313/projects/old/serenity/</guid>
       <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
-      <link>http://localhost:1313/projects/freetime-calc/</link>
+      <link>http://localhost:1313/projects/old/freetime-calc/</link>
       <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/freetime-calc/</guid>
+      <guid>http://localhost:1313/projects/old/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
   </channel>

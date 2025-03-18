@@ -14,6 +14,9 @@ theme = "hugo-PaperMod"
         imageTitle = "Profile Picture" # optional
         imageWidth = 240 # custom size
         imageHeight = 240 # custom size
+
+        ShowSearch = true
+
         [[Params.profileMode.buttons]]
             name = "Github"
             url = "https://github.com/EricSpencer00"
@@ -32,12 +35,26 @@ theme = "hugo-PaperMod"
     weight = 5
 [[menu.main]]
     name = "Resume"
-    url = "/images/EricSpencerResume.pdf"
+    url = "/resume/"
     weight = 4
+
 [[menu.main]]
     name = "Projects"
-    url = "/Projects/"
+    url = "/projects/"
     weight = 2
+
+[[menu.main]]
+    name = "Recent"
+    url = "/projects/recent/"
+    parent = "Projects"
+    weight = 4
+
+[[menu.main]]
+    name = "Old"
+    url = "/projects/old/"
+    parent = "Projects"
+    weight = 3
+
 [[menu.main]]
     name = "About Me"
     url= "/AboutMe/"
