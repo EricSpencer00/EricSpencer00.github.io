@@ -6,14 +6,28 @@
     <description>Recent content in Projects on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Movie Recommendation Website</title>
+      <link>http://localhost:1313/projects/movierec/</link>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/movierec/</guid>
+      <description>A movie recommendation website developed as part of the Loyola AI Club&amp;#39;s Fall 2024 project.</description>
+    </item>
+    <item>
+      <title>DailyTask iOS App</title>
+      <link>http://localhost:1313/projects/dailytask/</link>
+      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/dailytask/</guid>
+      <description>An iOS app to help track daily tasks, including medication reminders.</description>
+    </item>
     <item>
       <title>One Rep Max Calculator</title>
       <link>http://localhost:1313/projects/one-rep-max/</link>
-      <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/one-rep-max/</guid>
-      <description>Calculate your theoretical one rep max using Epley&amp;#39;s formula.</description>
+      <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Serenity</title>

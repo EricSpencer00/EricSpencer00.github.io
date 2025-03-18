@@ -8,30 +8,6 @@
     <loc>http://localhost:1313/miscellaneous/</loc>
     <lastmod>2025-03-18T16:13:32-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/calculator/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/fitness/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/projects/one-rep-max/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/projects/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/projects/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/strength/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-03-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/my-first/</loc>
     <lastmod>2025-03-04T16:13:32-06:00</lastmod>
   </url><url>
@@ -44,16 +20,55 @@
     <loc>http://localhost:1313/resume/</loc>
     <lastmod>2025-03-04T16:13:32-06:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/ai-club/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/machine-learning/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/movierec/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/projects/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/web-development/</loc>
+    <lastmod>2025-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/dailytask/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/ios/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/productivity/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/swift/</loc>
+    <lastmod>2024-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/one-rep-max/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/weightlifting/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/wellness/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/hackathon/</loc>
     <lastmod>2024-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/mental-wellness/</loc>
-    <lastmod>2024-04-07T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/projects/serenity/</loc>
-    <lastmod>2024-04-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/web-development/</loc>
     <lastmod>2024-04-07T00:00:00+00:00</lastmod>
   </url>
 </urlset>
