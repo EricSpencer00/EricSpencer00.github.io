@@ -32,7 +32,7 @@ theme = "hugo-PaperMod"
     weight = 5
 [[menu.main]]
     name = "Resume"
-    url = "/Resume/"
+    url = "/images/EricSpencerResume.pdf"
     weight = 4
 [[menu.main]]
     name = "Projects"
