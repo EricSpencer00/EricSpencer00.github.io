@@ -32,6 +32,18 @@ jobs:
         with:
           path: ./public
 
+      - name: Build Hugo Site
+        run: |
+            hugo --minify
+            ls -la public  # Debugging: Check if public folder exists
+
+      - name: Upload Artifact for Deployment
+        if: success()
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: public
+        
+
   deploy-to-gh-pages:
     needs: deploy
     runs-on: ubuntu-latest
