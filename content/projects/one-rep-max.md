@@ -2,7 +2,7 @@
 title: "One Rep Max Calculator"
 date: 2024-04-15
 description: "Calculate your One Rep Max"
-tags: ["weightlifting", "web development", "wellness"]
+tags: ["calculator", "web development", "wellness"]
 categories: ["Projects"]
 image: "../Images/logo.png"
 draft: false
@@ -51,3 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+
+---
+
+This was converted from html/js to md, view the original here:
+[1RM Calculator](https://EricSpencer00.github.io/old-site/Projects/OneRepMax.html)
