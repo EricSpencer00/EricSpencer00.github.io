@@ -8,8 +8,8 @@ theme = "hugo-PaperMod"
     avatar = "images/avatar.jpeg"
     [Params.profileMode]
         enabled = true
-        title = "<Eric Spencer>" # optional default will be site title
-        subtitle = "Eric Spencer"
+        title = "<Eric Spencer>"
+        subtitle = "Eric Spencer, This site is currently under progress of being converted"
         imageUrl = "images/avatar.jpeg"
         imageTitle = "Profile Picture" # optional
         imageWidth = 240 # custom size
