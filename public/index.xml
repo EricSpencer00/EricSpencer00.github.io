@@ -128,5 +128,13 @@
       <guid>http://localhost:1313/projects/old/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/aboutme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/aboutme/</guid>
+      <description>&lt;p&gt;Hi, I&amp;rsquo;m Eric Spencer! 👋&lt;br&gt;
+This is my Hugo-powered personal site.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

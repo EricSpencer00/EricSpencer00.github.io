@@ -9,7 +9,8 @@ theme = "hugo-PaperMod"
     [Params.profileMode]
         enabled = true
         title = "<Eric Spencer>"
-        subtitle = "Eric Spencer, This site is currently under progress of being converted"
+        subtitle = "Eric Spencer, This site is currently under progress of being converted to Hugo"  
+
         imageUrl = "images/avatar.jpeg"
         imageTitle = "Profile Picture" # optional
         imageWidth = 240 # custom size
@@ -17,12 +18,21 @@ theme = "hugo-PaperMod"
 
         ShowSearch = true
 
-        [[Params.profileMode.buttons]]
-            name = "Github"
-            url = "https://github.com/EricSpencer00"
-        [[Params.profileMode.buttons]]
-            name = "LinkedIn"
-            url = "https://linkedin.com/in/EricSpencer00"
+[[Params.socialIcons]]
+    name = "github"
+    url = "https://github.com/EricSpencer00"
+
+[[Params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/EricSpencer00"
+
+[[Params.socialIcons]]
+    name = "Email"
+    url = "mailto:ericspencer1450@gmail.com"
+
+[[Params.socialIcons]]
+    name = "CV"
+    url = "resume/resume"
 
 [markup]
   [markup.goldmark]
@@ -34,9 +44,9 @@ theme = "hugo-PaperMod"
     url = "/posts/"
     weight = 5
 [[menu.main]]
-    name = "Resume"
-    url = "/resume/"
-    weight = 4
+    name = ""
+    url = "/Resume/"
+    weight = 10
 
 [[menu.main]]
     name = "Projects"
@@ -57,9 +67,9 @@ theme = "hugo-PaperMod"
 
 [[menu.main]]
     name = "About Me"
-    url= "/AboutMe/"
+    url= "/aboutMe/"
     weight = 1
 [[menu.main]]
     name = "Miscellaneous"
-    url = "/Miscellaneous/"
+    url = "/miscellaneous/"
     weight = 3
