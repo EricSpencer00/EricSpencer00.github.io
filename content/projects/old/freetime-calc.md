@@ -30,7 +30,7 @@ This project helps people find **overlapping free time** in their schedules.
 ---
 
 ### 📸 Screenshot:
-![Free Time Calculator Output](../Images/FreeTimeCalcSS.png)  
+![Free Time Calculator Output]("/images/projects/FreeTimeCalcSS.png")  
 
 ---
 
