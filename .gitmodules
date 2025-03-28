@@ -1,3 +1,12 @@
 [submodule "hugo-PaperMod"]
 	path = hugo-PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "content/github-repos"]
+	path = content/github-repos
+	url = https://github.com/EricSpencer00/EricSpencer00
+[submodule "content/gh-repos/EricSpencer00"]
+	path = content/gh-repos/EricSpencer00
+	url = https://github.com/EricSpencer00/EricSpencer00
+[submodule "content/gh-repos/DexcomNavBarIcon-macos"]
+	path = content/gh-repos/DexcomNavBarIcon-macos
+	url = https://github.com/EricSpencer00/DexcomNavBarIcon-macos
