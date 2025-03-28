@@ -6,8 +6,15 @@
     <description>Recent content on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>flatten-repo VSC Extension</title>
+      <link>http://localhost:1313/projects/recent/flatten-repo/</link>
+      <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/recent/flatten-repo/</guid>
+      <description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description>
+    </item>
     <item>
       <title>My ~/.zshrc file</title>
       <link>http://localhost:1313/miscellaneous/my-zshrc/</link>
