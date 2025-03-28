@@ -4,5 +4,6 @@ url = "/aboutme/"
 draft = false
 +++
 
-Hi, I'm Eric Spencer! 👋  
-This is my Hugo-powered personal site.
+
+
+{{< import-readme src="content/gh-repos/EricSpencer00/README.md" >}}!

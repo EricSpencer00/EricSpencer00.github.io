@@ -143,12 +143,115 @@
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
     <item>
+      <title></title>
+      <link>http://localhost:1313/gh-repos/dexcomnavbaricon-macos/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/gh-repos/dexcomnavbaricon-macos/readme/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Build macOS DMG&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/EricSpencer00/DexcomNavBarIcon-macos/actions/workflows/main.yml/badge.svg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Icon&#34; loading=&#34;lazy&#34; src=&#34;icon.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Dexcom Navigation Bar Icon on MacOS&lt;/p&gt;
+&lt;p&gt;Using the pydexcom python package, view your Dexcom numbers in the top of your navigation bar on Mac.&lt;/p&gt;
+&lt;p&gt;Installation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download the .dmg file&lt;/li&gt;
+&lt;li&gt;Click on app via the window that pops up&lt;/li&gt;
+&lt;li&gt;Open System Preferences&lt;/li&gt;
+&lt;li&gt;Navigate to Security &amp;amp; Privacy&lt;/li&gt;
+&lt;li&gt;Allow the App to Run&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on how to allow apps from unidentified developers, visit &lt;a href=&#34;https://easymacos.com/cannot-be-opened-because-it-is-from-an-unidentified-developer.html&#34;&gt;this link&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Then, sign in with your Dexcom username and password along with your region&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;Screenshot 2025-03-05 at 12 59 37\u202fPM&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/f547bb49-6a3d-4d2d-a4f2-07099d0cc680&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/gh-repos/ericspencer00/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/gh-repos/ericspencer00/readme/</guid>
+      <description>&lt;h3 id=&#34;hi-there-&#34;&gt;Hi there 👋&lt;/h3&gt;
+&lt;p&gt;I&amp;rsquo;m Eric, a CS major at Loyola University Chicago&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔭 I’m currently enjoying break and learning new Hosting technology&lt;/li&gt;
+&lt;li&gt;🤔 I’m looking for help with anything you find interesting on my GitHub&lt;/li&gt;
+&lt;li&gt;🌱 I’m currently learning Visual Detection Models&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://linkedin.com/in/ericspencer00&#34;&gt;&lt;img alt=&#34;LinkedIn&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;mailto:ericspencer1450@gmail.com&#34;&gt;&lt;img alt=&#34;Gmail&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Gmail-ericspencer1450@gmail.com-red?logo=gmail&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;mailto:espencer2@luc.edu&#34;&gt;&lt;img alt=&#34;Gmail&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Gmail-espencer2@luc.edu-red?logo=gmail&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;https://ericspencer00.github.io/resume/resume/&#34;&gt;&lt;img alt=&#34;Resume&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Resume-PDF-blue?logo=adobeacrobatreader&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;https://EricSpencer00.github.io&#34;&gt;&lt;img alt=&#34;Website&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Website-ericspencer00.github.io-0A66C2?logo=githubpages&amp;logoColor=white&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;proficient-technologies--tools&#34;&gt;Proficient Technologies &amp;amp; Tools&lt;/h3&gt;
+&lt;p align=&#34;left&#34;&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png&#34; alt=&#34;Java&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png&#34; alt=&#34;Spring Boot&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png&#34; alt=&#34;Postgresql&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png&#34; alt=&#34;Python&#34; /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;et-cetra&#34;&gt;et cetra&lt;/h3&gt;
+&lt;p align=&#34;left&#34;&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/hadoop.png&#34; alt=&#34;Hadoop&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/c.png&#34; alt=&#34;C&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/numpy.png&#34; alt=&#34;Numpy&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/pandas.png&#34; alt=&#34;Pandas&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/tensorflow.png&#34; alt=&#34;TensorFlow&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/angular.png&#34; alt=&#34;Angular&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/vue_js.png&#34; alt=&#34;Vue.js&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png&#34; alt=&#34;React&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/go.png&#34; alt=&#34;Go&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/swift.png&#34; alt=&#34;Swift&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png&#34; alt=&#34;Docker&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/gcp.png&#34; alt=&#34;GCP&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/aws.png&#34; alt=&#34;AWS&#34; /&gt;  
+&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>About Me</title>
       <link>http://localhost:1313/aboutme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/aboutme/</guid>
       <description>&lt;p&gt;Hi, I&amp;rsquo;m Eric Spencer! 👋&lt;br&gt;
-This is my Hugo-powered personal site.&lt;/p&gt;</description>
+This is my Hugo-powered personal site.&lt;/p&gt;
+
+
+&lt;h3 id=&#34;hi-there-&#34;&gt;Hi there 👋&lt;/h3&gt;
+&lt;p&gt;I&amp;rsquo;m Eric, a CS major at Loyola University Chicago&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔭 I’m currently enjoying break and learning new Hosting technology&lt;/li&gt;
+&lt;li&gt;🤔 I’m looking for help with anything you find interesting on my GitHub&lt;/li&gt;
+&lt;li&gt;🌱 I’m currently learning Visual Detection Models&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://linkedin.com/in/ericspencer00&#34;&gt;&lt;img alt=&#34;LinkedIn&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;mailto:ericspencer1450@gmail.com&#34;&gt;&lt;img alt=&#34;Gmail&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Gmail-ericspencer1450@gmail.com-red?logo=gmail&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;mailto:espencer2@luc.edu&#34;&gt;&lt;img alt=&#34;Gmail&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Gmail-espencer2@luc.edu-red?logo=gmail&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;https://ericspencer00.github.io/resume/resume/&#34;&gt;&lt;img alt=&#34;Resume&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Resume-PDF-blue?logo=adobeacrobatreader&amp;logoColor=white&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;https://EricSpencer00.github.io&#34;&gt;&lt;img alt=&#34;Website&#34; loading=&#34;lazy&#34; src=&#34;https://img.shields.io/badge/Website-ericspencer00.github.io-0A66C2?logo=githubpages&amp;logoColor=white&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;proficient-technologies--tools&#34;&gt;Proficient Technologies &amp;amp; Tools&lt;/h3&gt;
+&lt;p align=&#34;left&#34;&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png&#34; alt=&#34;Java&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png&#34; alt=&#34;Spring Boot&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png&#34; alt=&#34;Postgresql&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png&#34; alt=&#34;Python&#34; /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;et-cetra&#34;&gt;et cetra&lt;/h3&gt;
+&lt;p align=&#34;left&#34;&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/hadoop.png&#34; alt=&#34;Hadoop&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/c.png&#34; alt=&#34;C&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/numpy.png&#34; alt=&#34;Numpy&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/pandas.png&#34; alt=&#34;Pandas&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/tensorflow.png&#34; alt=&#34;TensorFlow&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/angular.png&#34; alt=&#34;Angular&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/vue_js.png&#34; alt=&#34;Vue.js&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png&#34; alt=&#34;React&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/go.png&#34; alt=&#34;Go&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/swift.png&#34; alt=&#34;Swift&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png&#34; alt=&#34;Docker&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/gcp.png&#34; alt=&#34;GCP&#34; /&gt;
+  &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/aws.png&#34; alt=&#34;AWS&#34; /&gt;  
+&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

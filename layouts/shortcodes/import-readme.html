@@ -1,0 +1,3 @@
+{{ $src := .Get "src" }}
+{{ $readme := readFile $src }}
+{{ $readme | markdownify }}
