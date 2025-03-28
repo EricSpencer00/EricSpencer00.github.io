@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Anagrams</title>
+    <link rel="icon" href="../Images/logo.png" type="image/png"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Scrabble Anagrams</h1>
+<p>Welcome to Scrabble Anagrams!</p>
+<p>Enter the letters you have, including '?' for a wildcard (max of 2 ?'s):</p>
+<input type="text" id="userLetters">
+<button onclick="printAllAnagrams()">Submit</button>
+<p id="anagramsOutput"></p>
+
+<script>
+    let scrabbleDictionary = [];
+
+    // Load the dictionary from the file
+    fetch('ScrabbleDictionary.txt')
+        .then(response => response.text())
+        .then(text => {
+            scrabbleDictionary = text.split('\n').map(word => word.trim().toUpperCase());
+        })
+        .catch(error => console.error('Error loading dictionary:', error));
+
+    function printAllAnagrams() {
+        const userLetters = document.getElementById('userLetters').value.toUpperCase();
+        const anagrams = findAnagrams(userLetters, scrabbleDictionary);
+        displayAnagrams(anagrams);
+    }
+
+    function findAnagrams(letters, dictionary) {
+        const validAnagrams = [];
+        const letterCount = countLetters(letters);
+
+        for (const word of dictionary) {
+            if (canCreateWord(word, letterCount)) {
+                validAnagrams.push(word);
+            }
+        }
+
+        return validAnagrams;
+    }
+
+    function countLetters(letters) {
+        const letterCount = {};
+        for (const letter of letters) {
+            letterCount[letter] = (letterCount[letter] || 0) + 1;
+        }
+        return letterCount;
+    }
+
+    function canCreateWord(word, letterCount) {
+        const wordLetters = countLetters(word);
+        for (const letter in wordLetters) {
+            if (!letterCount[letter] || wordLetters[letter] > letterCount[letter]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function displayAnagrams(anagrams) {
+            const outputElement = document.getElementById('anagramsOutput');
+            if (anagrams.length > 0) {
+                const anagramsByLength = {};
+                for (const word of anagrams) {
+                    const length = word.length;
+                    anagramsByLength[length] = anagramsByLength[length] || [];
+                    anagramsByLength[length].push(word);
+                }
+                outputElement.innerHTML = '';
+                for (const length in anagramsByLength) {
+                    const words = anagramsByLength[length];
+                    outputElement.innerHTML += `<p>Words with length ${length}: ${words.join(', ')}</p>`;
+                }
+            } else {
+                outputElement.textContent = 'No valid anagrams found';
+            }
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+@media screen and (max-width: 701px) {
+  pre.ascii-art{
+    font-size: 1.0em;
+  }
+  pre.summary {
+    font-size: 200%;
+  }
+}
+@media screen and (max-width: 601px) {
+  pre.ascii-art {
+    font-size: 0.8em;
+  }
+  pre.summary {
+    font-size: 150%;
+  }
+}
+@media screen and (max-width: 500px) {
+  pre.ascii-art {
+    font-size: 0.6em;
+  }
+  pre.summary {
+    font-size: 140%;
+  }
+}
+@media screen and (max-width: 350px) {
+  pre.ascii-art {
+    font-size: 0.4em;
+  }
+  pre.summary {
+    font-size: 100%;
+  }
+}
+
+.closing {
+  text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: lime; 
+}
+a:hover {
+    text-decoration: underline;
+    color: rgb(121, 238, 121);
+}
+
+h1, 
+p {
+  color: white;
+  font-family: sans-serif;
+}
+h1 {
+  font-size: 2rem;
+  padding-top: 3rem;
+  font-family: sans-serif;
+}
+
+img {
+  max-width: 90%;
+  height: auto;
+}
+
+.background {
+  font-family: monospace;
+  color: #fff;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-size: 24px;
+
+}
+
+.summary {
+  color: white;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+      background-color: transparent;
+  }
+}
+
+body, html {
+  color: white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+}
+
+#hexBackground {
+  font-family: Monaco, 'Lucida Console', monospace;
+  position: absolute;
+  top: -2.5%;
+  left: -10%;
+  width: 120%;
+  bottom: -30%;
+  height: 100%;
+  font-size: 3vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.1);
+  background: black;
+  text-align: center;
+  z-index: 0;
+  background: transparent;
+}
+
+footer {
+  /* background: black; */
+  padding-top: 10px;
+  /* padding-bottom: 0; */
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.container {
+  max-width: 90%;
+  margin: auto;
+  font-family: sans-serif;
+  color: white;
+  position: relative;
+  text-align: left;
+}
+
+.main {
+  color: white;
+}
+
+.paragraph {
+  text-align: left;
+  background-color: black;
+  color: white;
+  background-size: color;
+  background-repeat: no-repeat;
+  max-width: 90%;
+  height: auto;
+  width: 800px;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.paragraph-centered {
+  text-align: center;
+  background-color: black;
+  color: white;
+  background-size: color;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+  width: 800px;
+  margin: auto;
+  padding: 0 3px 0 3px;
+}
+.paragraph ul {
+  list-style-type: disc; 
+  margin-left: 20px;
+}
+.paragraph code {
+  font-family: Consolas, Monaco, monospace; 
+  background-color: #ffffff;
+  padding: 2px 4px;
+  border: 1px solid #ccc; 
+}

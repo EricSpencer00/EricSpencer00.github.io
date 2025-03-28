@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <title>Dexcom Statistics Info</title>
+    <link rel="icon" href="../Images/logo.png" type="image/png"/>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>DexVal</h1>
+        <h3>April 2024</h3>
+        <hr>
+    </header>
+    <main>
+        <p>
+            Being a Type 1 Diabetic, a CGM is necessary for my day to day life. 
+            The Dexcom allows me to see my blood glucose levels throughout the day. 
+            Things like a Time in Range percentage and A1C estimator keep me alive and help 
+            make sure I am staying healthy.
+            Through a sensor on my body, a transmitter reads the level given to it by the sensor
+            and then transmits the number to my phone using Dexcom's cloud database.
+            Using Dexcom's g6 mobile app I can see this data, up to 24 hours.
+            Using Dexcom's Clarity mobile app I can see the data for the past year.
+            However, I am looking to do more than what the Clarity app does.
+            I want to learn how my habits, trends, and other factors can influence
+            my data. As of right now, all I can do is display data, but in the
+            future I hope to have even more functionality than apps like Sugarmate 
+            and Clarity<br><br>
+
+            Example output using main.py:<br><br>
+            Your current glucose level is 136 mg/dL (steady →)<br>
+            Time of reading: 2024-04-18 13:07:31<br>
+            Glucose state: In Range<br>
+            Average glucose level: 141.5451 mg/dL<br>
+            Estimated A1C: 9.484<br>
+            Time in Range (70-150 mg/dL): 58.33%<br><br>
+
+            You can visit the repository here: <a href="https://github.com/EricSpencer00/Dexcom-Statistics">https://github.com/EricSpencer00/Dexcom-Statistics</a>
+        </p>
+        <p>
+            <a href="https://ericspencer00.github.io">Go back to Main Page</a>
+            <br><br>
+        <footer>
+            <p class="MainPageNavigation+LastUpdated">
+                Last updated: <span id="date"></span>
+            </p>
+            <script>
+                const options = { month: 'long', day: 'numeric', year: 'numeric' };
+                document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+            </script>
+            <p>&copy; <span id="copyrightYear"></span> Eric Spencer. All rights reserved.</p>
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>

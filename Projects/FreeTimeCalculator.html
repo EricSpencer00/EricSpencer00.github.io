@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <title>Free Time Calculator</title>
+    <link rel="icon" href="../Images/logo.png" type="image/png"/>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Free Time Calculator in Java</h1>
+        <h3>December 2022</h3>
+        <hr>
+    </header>
+    <main>
+        <p>
+            My first full-fledged project. <br><br>
+            Here's how it works: enter in the start of the time you or a friend is available for
+            a given day, (say 4-6pm and 8-10pm) then, enter in a second person's available time
+            (5-9pm). Once inputted, the program will print the time spreadsheet to the console and also
+            return the hours that everyone is available. The program works for up to four people at once.
+            <br><br>
+            The design, implementation, and testing was all performed by me,<br> coded with Java.
+            <br><br>
+            <strong>Workings and Caveats</strong><br>
+            Utilized a 2-D Array that looped over a set of data the user provided.
+            Was difficult to implement due to the nature of 10, 11, and 12 A.M. and P.M.
+            Coded entirely inside a JVM.
+            <br><br>
+            <img src="../Images/FreeTimeCalcSS.png" alt="Photo of FreeTimeCalculator Output">
+            <br><br>
+            Unfortunately, due to the way the code was stored,
+            on the school's virtual machine, I lost access to the source.
+            Fortunately, this video exists of me doing a sample for
+            the class: <br>
+        </p>
+        <div class="video-container">
+            <iframe width="440" height="315"
+                    src="https://www.youtube-nocookie.com/embed/cB18-RJ2Vg4?si=VruYExOECKTb8Z41"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+
+            </iframe>
+        </div>
+        <a href="https://www.youtube.com/watch?v=cB18-RJ2Vg4&t">YouTube Video</a>
+        <hr>
+        <p>
+            <a href="https://ericspencer00.github.io">Go back to Main Page</a>
+            <br><br>
+        <footer>
+            <p class="MainPageNavigation+LastUpdated">
+                Last updated: <span id="date"></span>
+            </p>
+            <script>
+                const options = { month: 'long', day: 'numeric', year: 'numeric' };
+                document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+            </script>
+            <p>&copy; <span id="copyrightYear"></span> Eric Spencer. All rights reserved.</p>
+        </footer>
+
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Eric Spencer</title>
+    <link rel="icon" href="../Images/logo.png" type="image/png"/>
+    <style>
+        body {
+            background-color: black; /* Set background color to black */
+            color: white; /* Set text color to white */
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            font-family: monospace;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <pre id="dynamic-text" class="ascii-art"
+        style="color: lime;"></pre>
+        <hr>
+        <strong>Computer Science</strong> and <strong>Information Systems</strong><br>
+        <em>Sophomore at </em><strong>Loyola University Chicago</strong><br><br><br><br>
+    </header>
+    <hr>
+    <h1>Projects</h1>
+    <h4>
+        <a href="../Projects/AnagramsWebApp.html" target="_blank">Anagram Solver (Web App)</a><br><br>
+        <a href="../Projects/OneRepMax.html" target="_blank">One Rep Max Calculator (Web App)</a><br><br>
+        <a href="../Projects/FreeTimeCalculator.html">Free Time Calculator (Info)</a><br><br>
+        <a href="../Projects/BinaryPuzzle.html">Binary Puzzle (Tutorial)</a><br><br>
+    </h4>
+
+    <main>
+        <hr>
+        <p class="Contacts">
+            <h1>Professional Socials</h1>
+            <a href="https://www.github.com/ericspencer00" target="_blank">My GitHub</a><br><br>
+            <a href="https://www.linkedin.com/in/ericspencer00/" target="_blank">My LinkedIn</a><br><br>
+            <a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a><br><br>
+        <hr>
+        <p class="Resume">
+            <a href="../Images/EricSpencerResume.pdf">March2024Resume.pdf</a>
+        </p>
+
+        <p class="BusinessAboutMe">
+            <em>Eric Spencer</em><br>
+            <em>Class of 2026</em><br>
+            <em>College of Arts and Sciences</em> | <strong>Computer Science</strong><br>
+            <em>Quinlan School of Business</em> | <strong>Information Systems</strong><br>
+        </p>
+
+        <footer>
+            <p class="MainPageNavigation+LastUpdated">
+                Last updated: <span id="date"></span>
+            </p>
+            <script>
+                const options = { month: 'long', day: 'numeric', year: 'numeric' };
+                document.getElementById("date").innerHTML = new Date(document.lastModified).toLocaleDateString('en-US', options);
+            </script>
+            <p>&copy; <span id="copyrightYear"></span> Eric Spencer. All rights reserved.</p>
+            <button onclick="goBack()"
+            style="background-color: black;
+            color: white;
+            font-family: monospace;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid white;
+            border-radius: 5px;">Go Back</button>
+
+            <script>
+                function goBack() {
+                    window.history.back(); // Navigate back using browser history
+                }
+            </script>
+        </footer>
+    </main>
+</div>
+
+<script>
+    const text = `
+     ______     _         _____                                
+    / ____/____(_)____   / ___/____  ___  ____  ________  _____
+   / __/ / ___/ / ___/   \\__ \\/ __ \\/ _ \\/ __ \\/ ___/ _ \\/ ___/
+  / /___/ /  / / /__    ___/ / /_/ /  __/ / / / /__/  __/ /    
+ /_____/_/  /_/\\___/   /____/ .___/\\___/_/ /_/\\___/\\___/_/     
+                           /_/                                       
+    `;
+
+    const container = document.getElementById('dynamic-text');
+    let index = 0;
+
+    function typeText() {
+        const char = text[index++];
+        container.textContent += char;
+        if (index < text.length) {
+            setTimeout(typeText, 15); // Adjust typing speed as needed
+        }
+    }
+
+    // Start typing when the page loads
+    window.onload = typeText;
+</script>
+
+</body>
+</html>
