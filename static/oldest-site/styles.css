@@ -1,0 +1,28 @@
+body {
+  background: url("stars.jpeg");
+  text-align: center;
+}
+
+h1, 
+p {
+  color: black;
+}
+h1 {
+  font-size: 2rem;
+  padding-top: 3rem;
+}
+
+.bigger-text {
+  font-size: 1.15rem;
+}
+
+.container {
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: 500px;
+  width: 500px;
+  margin: auto;
+}

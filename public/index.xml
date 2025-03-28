@@ -208,13 +208,18 @@
 &lt;/p&gt;</description>
     </item>
     <item>
+      <title></title>
+      <link>http://localhost:1313/miscellaneous/oldest-site/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/miscellaneous/oldest-site/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/oldest-site&#34;&gt;My oldest website&lt;/a&gt;, inspired by Space Jam&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>About Me</title>
       <link>http://localhost:1313/aboutme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/aboutme/</guid>
-      <description>&lt;p&gt;Hi, I&amp;rsquo;m Eric Spencer! 👋&lt;br&gt;
-This is my Hugo-powered personal site.&lt;/p&gt;
-
+      <description>&lt;p&gt;
 
 &lt;h3 id=&#34;hi-there-&#34;&gt;Hi there 👋&lt;/h3&gt;
 &lt;p&gt;I&amp;rsquo;m Eric, a CS major at Loyola University Chicago&lt;/p&gt;
@@ -251,7 +256,9 @@ This is my Hugo-powered personal site.&lt;/p&gt;
   &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png&#34; alt=&#34;Docker&#34; /&gt;
   &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/gcp.png&#34; alt=&#34;GCP&#34; /&gt;
   &lt;img height=&#34;40&#34; src=&#34;https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/aws.png&#34; alt=&#34;AWS&#34; /&gt;  
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+!&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
