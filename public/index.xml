@@ -10,16 +10,16 @@
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>flatten-repo VSC Extension</title>
-      <link>http://localhost:1313/projects/recent/flatten-repo/</link>
+      <link>http://localhost:1313/projects/2025/flatten-repo/</link>
       <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/recent/flatten-repo/</guid>
+      <guid>http://localhost:1313/projects/2025/flatten-repo/</guid>
       <description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description>
     </item>
     <item>
       <title>Dexcom Navbar Icon Mac OS</title>
-      <link>http://localhost:1313/projects/recent/dexcom-navbar-macos/</link>
+      <link>http://localhost:1313/projects/2025/dexcom-navbar-macos/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/recent/dexcom-navbar-macos/</guid>
+      <guid>http://localhost:1313/projects/2025/dexcom-navbar-macos/</guid>
       <description>View your Dexcom number in your Mac OS Navigation Bar</description>
     </item>
     <item>
@@ -95,44 +95,44 @@
     </item>
     <item>
       <title>Terminal GPT</title>
-      <link>http://localhost:1313/projects/recent/terminalgpt/</link>
+      <link>http://localhost:1313/projects/2025/terminalgpt/</link>
       <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/recent/terminalgpt/</guid>
+      <guid>http://localhost:1313/projects/2025/terminalgpt/</guid>
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
       <title>Movie Recommendation Website</title>
-      <link>http://localhost:1313/projects/recent/movierec/</link>
+      <link>http://localhost:1313/projects/2025/movierec/</link>
       <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/recent/movierec/</guid>
+      <guid>http://localhost:1313/projects/2025/movierec/</guid>
       <description>A movie recommendation website developed as part of the Loyola AI Club&amp;#39;s Fall 2024 project.</description>
     </item>
     <item>
       <title>DailyTask iOS App</title>
-      <link>http://localhost:1313/projects/old/dailytask/</link>
+      <link>http://localhost:1313/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/old/dailytask/</guid>
+      <guid>http://localhost:1313/projects/2024/dailytask/</guid>
       <description>An iOS app to help track daily tasks, including medication reminders.</description>
     </item>
     <item>
       <title>DexVal</title>
-      <link>http://localhost:1313/projects/old/dexval/</link>
+      <link>http://localhost:1313/projects/2024/dexval/</link>
       <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/old/dexval/</guid>
+      <guid>http://localhost:1313/projects/2024/dexval/</guid>
       <description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description>
     </item>
     <item>
       <title>One Rep Max Calculator</title>
-      <link>http://localhost:1313/projects/old/one-rep-max/</link>
+      <link>http://localhost:1313/projects/2024/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/old/one-rep-max/</guid>
+      <guid>http://localhost:1313/projects/2024/one-rep-max/</guid>
       <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Serenity</title>
-      <link>http://localhost:1313/projects/old/serenity/</link>
+      <link>http://localhost:1313/projects/2024/serenity/</link>
       <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/old/serenity/</guid>
+      <guid>http://localhost:1313/projects/2024/serenity/</guid>
       <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
     </item>
     <item>
@@ -144,9 +144,9 @@
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
-      <link>http://localhost:1313/projects/old/freetime-calc/</link>
+      <link>http://localhost:1313/projects/2022/freetime-calc/</link>
       <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/old/freetime-calc/</guid>
+      <guid>http://localhost:1313/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
     <item>
