@@ -40,10 +40,6 @@ theme = "hugo-PaperMod"
       unsafe = true
 
 [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
-    weight = 5
-[[menu.main]]
     name = ""
     url = "/Resume/"
     weight = 10
