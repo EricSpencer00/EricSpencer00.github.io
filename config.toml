@@ -18,6 +18,10 @@ theme = "hugo-PaperMod"
 
         ShowSearch = true
 
+  ShowImageInList = true
+  ShowImageInPost = true
+
+
 [[Params.socialIcons]]
     name = "github"
     url = "https://github.com/EricSpencer00"

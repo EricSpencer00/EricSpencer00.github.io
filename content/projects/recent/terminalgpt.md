@@ -4,7 +4,7 @@ date: 2025-01-10
 description: "Your AI assistant in the terminal"
 tags: ["python", "LLM", "terminal"]
 categories: ["Projects"]
-image: "../Images/logo.png"
+images: ["/images/avatar.jpeg"]
 draft: false
 ---
 
