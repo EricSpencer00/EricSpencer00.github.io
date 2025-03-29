@@ -1,0 +1,58 @@
+baseURL: "https://EricSpencer00.github.io"
+publicDir: "public"
+languageCode: "en-us"
+title: "Eric Spencer"
+theme: "hugo-PaperMod"
+
+Params:
+  avatar: "images/avatar.jpeg"
+  profileMode:
+    enabled: true
+    title: "<Eric Spencer>"
+    subtitle: "Eric Spencer, This site is currently under progress of being converted to Hugo"
+    imageUrl: "images/avatar.jpeg"
+    imageTitle: "Profile Picture"
+    imageWidth: 240
+    imageHeight: 240
+    ShowSearch: true
+
+  ShowImageInList: true
+  ShowImageInPost: true
+
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/EricSpencer00"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/EricSpencer00"
+    - name: "Email"
+      url: "mailto:ericspencer1450@gmail.com"
+    - name: "CV"
+      url: "resume/resume"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+menu:
+  main:
+    - name: ""
+      url: "/Resume/"
+      weight: 10
+    - name: "Projects"
+      url: "/projects/"
+      weight: 2
+    - name: "Recent"
+      url: "/projects/recent/"
+      parent: "Projects"
+      weight: 4
+    - name: "Old"
+      url: "/projects/old/"
+      parent: "Projects"
+      weight: 3
+    - name: "About Me"
+      url: "/aboutMe/"
+      weight: 1
+    - name: "Miscellaneous"
+      url: "/miscellaneous/"
+      weight: 3
