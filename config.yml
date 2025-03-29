@@ -4,7 +4,11 @@ languageCode: "en-us"
 title: "Eric Spencer"
 theme: "hugo-PaperMod"
 
-Params:
+params:  # for post thumbnails and general settings
+  ShowImageInList: true
+  ShowImageInPost: true
+
+Params:  # capital P needed for profileMode to work properly in some themes
   avatar: "images/avatar.jpeg"
   profileMode:
     enabled: true
@@ -15,9 +19,6 @@ Params:
     imageWidth: 240
     imageHeight: 240
     ShowSearch: true
-
-  ShowImageInList: true
-  ShowImageInPost: true
 
   socialIcons:
     - name: "github"
@@ -36,7 +37,7 @@ markup:
 
 menu:
   main:
-    - name: ""
+    - name: "Resume"
       url: "/Resume/"
       weight: 10
     - name: "Projects"
@@ -56,5 +57,3 @@ menu:
     - name: "Miscellaneous"
       url: "/miscellaneous/"
       weight: 3
-
-
