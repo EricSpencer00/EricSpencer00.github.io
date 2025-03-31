@@ -52,7 +52,7 @@ menu:
       parent: "Projects"
       weight: 3
     - name: "About Me"
-      url: "/aboutMe/"
+      url: "/aboutme/"
       weight: 1
     - name: "Miscellaneous"
       url: "/miscellaneous/"
