@@ -101,13 +101,6 @@
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
-      <title>Movie Recommendation Website</title>
-      <link>http://localhost:1313/projects/2025/movierec/</link>
-      <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2025/movierec/</guid>
-      <description>A movie recommendation website developed as part of the Loyola AI Club&amp;#39;s Fall 2024 project.</description>
-    </item>
-    <item>
       <title>DailyTask iOS App</title>
       <link>http://localhost:1313/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>

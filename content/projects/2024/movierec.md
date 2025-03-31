@@ -1,6 +1,6 @@
 ---
 title: "Movie Recommendation Website"
-date: 2025-01-08
+date: 2025-12-14
 description: "A movie recommendation website developed as part of the Loyola AI Club's Fall 2024 project."
 tags: ["machine learning", "web development", "AI Club"]
 categories: ["Projects"]
