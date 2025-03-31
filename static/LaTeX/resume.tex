@@ -1,0 +1,227 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Eric Spencer} \\ \vspace{1pt}
+    \small \href{mailto:ericspencer1450@gmail.com}{\underline{ericspencer1450@gmail.com}} $|$ 
+    \href{https://ericspencer00.github.io}{\underline{ericspencer00.github.io}} $|$
+    \href{https://linkedin.com/in/ericspencer00}{\underline{linkedin.com/in/ericspencer00}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Loyola University Chicago}{Chicago, IL}
+      {Bachelor of Science in Computer Science, Minor in Information Systems}{Expected May 2026}
+      \resumeItemListStart
+        \resumeItem{Dean’s List: Fall 2023, Spring 2024, Fall 2024}
+        % \resumeItem{Trustee Scholarship recipient}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+    {Software Engineering Intern}{January 2025 -- Present}
+      {EpiFinder Medical Solutions}{Chicago, IL}
+      \resumeItemListStart
+        \resumeItem{Develop software solutions to optimize medical clinic operations and workflows.}
+        \resumeItem{Design and implement internal tools to improve staff efficiency and patient care.}
+        \resumeItem{Gain hands-on experience in understanding and addressing the technical needs of a medical clinic.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {ITS Service Desk Technician}{July 2024 -- Present}
+      {Loyola University Chicago}{Chicago, IL}
+      \resumeItemListStart
+        \resumeItem{Resolve over 50 support tickets weekly, ensuring prompt and effective resolutions to user issues.}
+        \resumeItem{Utilize Azure and BI tools to verify identity and grant secure access.}
+        \resumeItem{Collaborate with backend teams to address complex customer challenges.}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {Undergraduate Research Assistant}{April 2023 -- August 2023}
+      {Loyola University Chicago}{Chicago, IL}
+      \resumeItemListStart
+        \resumeItem{Investigated AI interpretability through a research study analyzing ChatGPT's handling of advanced Java concepts.}
+        \resumeItem{Collaborated with professors and peers to document findings and refine methodologies.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Honor Caddie}{Seasonal 2017 -- 2024}
+      {Oak Park Country Club}{River Grove, IL}
+      \resumeItemListStart
+        \resumeItem{Provided a customer-focused experience while supporting players with on-course decision-making.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+         \resumeProjectHeading
+          {\textbf{Health-Up App} $|$ \emph{Java, Swift, React Native, RESTful APIs}}{}
+          \resumeItemListStart
+            \resumeItem{Built a fitness app leveraging nutrition and workout data using public APIs in collaboration with another programmer.}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+          {\textbf{Movie Recommendation Model} $|$ \emph{Flask, Tensorflow, BeautifulSoup}}{}
+          \resumeItemListStart
+            \resumeItem{Hosted a recommendation model using Heroku, integrating data from Letterboxd.}
+            \resumeItem{Optimized API calls to ensure performance within a 30-second limit for user-facing interactions.}
+          \resumeItemListEnd
+        
+      \resumeProjectHeading
+          {\textbf{Dexcom Alerts System} $|$ \emph{MySQL, Matplotlib}}{}
+          \resumeItemListStart
+            \resumeItem{Developed an alert system for critical glucose levels, ensuring timely notifications.}
+            \resumeItem{Designed data integration pipelines for long-term statistical analysis beyond 24-hour CGM data.}
+          \resumeItemListEnd
+
+
+      \resumeProjectHeading
+          {\textbf{Google AI Cloud Computing Hackathon} $|$ \emph{Vertex AI}}{}
+          \resumeItemListStart
+            \resumeItem{Developed a machine learning prediction model to classify whether a current Major League Baseball player would be inducted to the Hall of Fame.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------EXTRACURRICULARS-----------
+\section{Extracurriculars}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Vice President of Technology}{Fall 2024 – Spring 2025}{Loyola AI Club}{Chicago, IL}
+      \resumeItemListStart
+        \resumeItem{Manage and coordinate semester-long projects, enhancing members' technical and collaborative skills.}
+      \resumeItemListEnd
+    
+
+    % \resumeSubheading
+    %   {IT Chair}{Spring 2024 -- Fall 2024}{Alpha Kappa Psi, Gamma Iota}{Chicago, IL}
+    %   \resumeItemListStart
+    %     \resumeItem{Developed and managed the organization's official website, ensuring its user experience and usability.}
+    %   \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Java, Python, JavaScript, TypeScript, Swift} \\
+     \textbf{Technologies}{: MySQL, Azure, Heroku, Google Cloud} \\
+     \textbf{Frameworks}{: React Native, Angular}\\
+     \textbf{Tools}{: Git, Excel, Tableau, UNIX}
+     
+    }}
+ \end{itemize}
+%-------------------------------------------
+\end{document}

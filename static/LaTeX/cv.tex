@@ -1,0 +1,207 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{4pt}\scshape\raggedright\Large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\cvItem}[1]{
+  \item\small{#1}
+}
+
+\newcommand{\cvSubheading}[4]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\cvSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]} 
+\newcommand{\cvSubHeadingListEnd}{\end{itemize}} 
+\newcommand{\cvItemListStart}{\begin{itemize}} 
+\newcommand{\cvItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Eric Spencer} \\ \vspace{1pt}
+    \small \href{mailto:ericspencer1450@gmail.com}{\underline{ericspencer1450@gmail.com}} $|$ 
+    \href{https://ericspencer00.github.io}{\underline{ericspencer00.github.io}} $|$
+    \href{https://linkedin.com/in/ericspencer00}{\underline{linkedin.com/in/ericspencer00}} $|$
+    \href{https://github.com/EricSpencer00}{\underline{github.com/EricSpencer00}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+\cvSubHeadingListStart
+  \cvSubheading
+    {Loyola University Chicago}{Chicago, IL}
+    {Bachelor of Science in Computer Science, Minor in Information Systems}{Expected May 2026}
+    \cvItemListStart
+      \cvItem{Dean's List: Fall 2023, Spring 2024, Fall 2024}
+      \cvItem{Scholarship: [Insert scholarship name]}
+      \cvItem{Relevant Coursework: [Add courses here]}
+    \cvItemListEnd
+\cvSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\cvSubHeadingListStart
+  \cvSubheading
+    {Software Engineering Intern – CCC Intelligent Solutions}{May 2025 -- August 2025}
+    {Chicago, IL}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Software Engineering Intern – EpiFinder Medical}{January 2025 -- May 2025}
+    {Remote}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {ITS Service Desk Technician – Loyola University Chicago}{July 2024 -- Present}
+    {Chicago, IL}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Junior AI Prompt Engineer – Unchained}{March 2024}
+    {Remote}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Honor Caddie – Oak Park Country Club}{April 2017 -- July 2024 (Seasonal)}
+    {River Grove, IL}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Undergraduate Research Assistant – Loyola University Chicago}{May 2023 -- August 2023}
+    {Chicago, IL}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Independent Seller – Grailed}{2020 -- 2021}
+    {Remote}{}
+    \cvItemListStart
+      \cvItem{[Add description placeholder]}
+    \cvItemListEnd
+\cvSubHeadingListEnd
+
+%-----------SCHOOL EXTRACURRICULARS-----------
+\section{School Extracurriculars}
+\cvSubHeadingListStart
+  \cvSubheading
+    {Vice President of Technology – Loyola AI Club}{2024 -- 2025}
+    {Chicago, IL}{}
+    \cvItemListStart
+      \cvItem{Led frontend for Movie Recommendation project (Fall 2024)}
+      \cvItem{Oversee and coordinate Spring 2025 AI project}
+    \cvItemListEnd
+
+  \cvSubheading
+    {IT Chair – Alpha Kappa Psi, Gamma Iota Chapter}{2024 -- 2025}
+    {Chicago, IL}{}
+    \cvItemListStart
+      \cvItem{Manage and maintain organization website}
+    \cvItemListEnd
+\cvSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\cvSubHeadingListStart
+  \cvSubheading
+    {DexVal – Glucose Analyzer}{2024}
+    {\href{https://github.com/EricSpencer00/dexval}{github.com/EricSpencer00/dexval}}{}
+    \cvItemListStart
+      \cvItem{Technologies: Python, MySQL, scikit-learn}
+      \cvItem{[Add project description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Dexcom Menubar App – MacOS Utility}{2025}
+    {\href{https://github.com/EricSpencer00/dexmenu}{github.com/EricSpencer00/dexmenu}}{}
+    \cvItemListStart
+      \cvItem{Technologies: Python, Pydexcom, MacOS APIs}
+      \cvItem{[Add project description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {TerminalGPT – CLI AI Chatbot}{2025}
+    {\href{https://github.com/EricSpencer00/terminalgpt}{github.com/EricSpencer00/terminalgpt}}{}
+    \cvItemListStart
+      \cvItem{Technologies: Python, OpenAI API}
+      \cvItem{[Add project description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {Movie Recommendation System (AI Club)}{2024}
+    {\href{https://github.com/EricSpencer00/movie-rec}{github.com/EricSpencer00/movie-rec}}{}
+    \cvItemListStart
+      \cvItem{Technologies: Flask, scikit-learn, React, Heroku}
+      \cvItem{[Add project description placeholder]}
+    \cvItemListEnd
+
+  \cvSubheading
+    {ASL Recognition Tool}{2025}
+    {\href{https://github.com/EricSpencer00/asl-model}{github.com/EricSpencer00/asl-model}}{}
+    \cvItemListStart
+      \cvItem{Technologies: TensorFlow, OpenCV, Keras}
+      \cvItem{[Add project description placeholder]}
+    \cvItemListEnd
+\cvSubHeadingListEnd
+
+%-----------TOOLS & TECHNOLOGIES-----------
+\section{Tools and Technologies}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \item \textbf{Programming:} Java, Python, JavaScript, TypeScript, C, Swift, Go
+  \item \textbf{Frameworks:} Flask, React, Vue.js, Angular, Spring Boot
+  \item \textbf{ML/Data:} scikit-learn, TensorFlow, Keras, Pandas, OpenCV
+  \item \textbf{DevOps:} Git, Docker, MySQL, GCP, AWS, Heroku
+  \item \textbf{Other:} 1.6k+ GitHub contributions; Unix/Bash scripting
+\end{itemize}
+
+\end{document}
