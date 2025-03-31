@@ -136,6 +136,13 @@
       <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/oldest-site&#34;&gt;My oldest website&lt;/a&gt;, inspired by Space Jam&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Binary Bomb Puzzle</title>
+      <link>http://localhost:1313/projects/2023/bbomb/</link>
+      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2023/bbomb/</guid>
+      <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
+    </item>
+    <item>
       <title>Free Time Calculator in Java</title>
       <link>http://localhost:1313/projects/2022/freetime-calc/</link>
       <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>

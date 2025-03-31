@@ -2,6 +2,7 @@
 title = "About Me"
 url = "/aboutme/"
 draft = false
+layout = "aboutme/single"
 +++
 
 ### Hi there 👋
