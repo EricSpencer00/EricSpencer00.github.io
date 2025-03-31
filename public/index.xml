@@ -189,7 +189,7 @@
       <link>http://localhost:1313/miscellaneous/search-engine/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/miscellaneous/search-engine/</guid>
-      <description>&lt;p&gt;Here&amp;rsquo;s a search engine from Google, custom tuned to be as basic as possible:&lt;/p&gt;
+      <description>&lt;p&gt;Here&amp;rsquo;s my custom search engine from Google, tuned to be as basic as possible:&lt;/p&gt;
 
 &lt;script async src=&#34;https://cse.google.com/cse.js?cx=b70876f0d6e93494a&#34;&gt;
 &lt;/script&gt;
@@ -198,7 +198,7 @@
 
 &lt;p&gt;If you&amp;rsquo;re interested in using this outside of this page you can set your computer to run it&amp;rsquo;s default browser from:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0&#34;&gt;Open in a new browser&lt;/a&gt;&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0&#34;&gt;Open in this window&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
