@@ -87,11 +87,11 @@
 &lt;p&gt;My favorite part is the refresh button displays my name in ever-updating ASCII, typed out like a old computer terminal.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Resume</title>
-      <link>http://localhost:1313/resume/resume/</link>
-      <pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate>
-      <guid>http://localhost:1313/resume/resume/</guid>
-      <description>&lt;iframe src=&#34;http://localhost:1313/images/EricSpencerResume.pdf&#34; width=&#34;100%&#34; height=&#34;930px&#34;&gt;&lt;/iframe&gt;</description>
+      <title>CTA Transit Tracker</title>
+      <link>http://localhost:1313/projects/2025/loyolahack/</link>
+      <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/loyolahack/</guid>
+      <description>A real-time bus and train tracking system built during Loyola&amp;#39;s Hackathon.</description>
     </item>
     <item>
       <title>Terminal GPT</title>
@@ -136,16 +136,9 @@
       <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/oldest-site&#34;&gt;My oldest website&lt;/a&gt;, inspired by Space Jam&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Binary Bomb Puzzle</title>
-      <link>http://localhost:1313/projects/2023/bbomb/</link>
-      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/bbomb/</guid>
-      <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
-    </item>
-    <item>
       <title>Free Time Calculator in Java</title>
       <link>http://localhost:1313/projects/2022/freetime-calc/</link>
-      <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>

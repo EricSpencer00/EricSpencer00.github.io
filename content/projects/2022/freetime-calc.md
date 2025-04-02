@@ -1,6 +1,6 @@
 ---
 title: "Free Time Calculator in Java"
-date: 2022-12-01
+date: 2022-12-10
 description: "A Java program to find overlapping free time for up to four people."
 tags: ["Java", "calculator", "algorithms"]
 categories: ["Projects"]
@@ -26,11 +26,6 @@ This project helps people find **overlapping free time** in their schedules.
 - Utilized a **2-D Array** to process user-provided schedules.
 - Handling **AM/PM time conversions** (especially 10, 11, and 12) was challenging.
 - **Coded entirely inside a JVM**.
-
----
-
-### 📸 Screenshot:
-![Free Time Calculator Output]("EricSpencer00.github.io/old-site/Images/FreeTimeCalcSS.png")  
 
 ---
 
