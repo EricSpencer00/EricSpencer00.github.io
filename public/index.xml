@@ -2,38 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Eric Spencer</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:64060/</link>
     <description>Recent content on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Wireshark Network Analysis</title>
-      <link>http://localhost:1313/miscellaneous/cybersecurity/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/miscellaneous/cybersecurity/</guid>
-      <description>Analysis of network traffic using Wireshark for COMP 301 Project 1.</description>
-    </item>
+    <lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:64060/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>flatten-repo VSC Extension</title>
-      <link>http://localhost:1313/projects/2025/flatten-repo/</link>
+      <link>http://localhost:64060/projects/2025/flatten-repo/</link>
       <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2025/flatten-repo/</guid>
+      <guid>http://localhost:64060/projects/2025/flatten-repo/</guid>
       <description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description>
     </item>
     <item>
       <title>Dexcom Navbar Icon Mac OS</title>
-      <link>http://localhost:1313/projects/2025/dexcom-navbar-macos/</link>
+      <link>http://localhost:64060/projects/2025/dexcom-navbar-macos/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2025/dexcom-navbar-macos/</guid>
+      <guid>http://localhost:64060/projects/2025/dexcom-navbar-macos/</guid>
       <description>View your Dexcom number in your Mac OS Navigation Bar</description>
     </item>
     <item>
       <title>My ~/.zshrc file</title>
-      <link>http://localhost:1313/miscellaneous/my-zshrc/</link>
+      <link>http://localhost:64060/miscellaneous/my-zshrc/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/miscellaneous/my-zshrc/</guid>
+      <guid>http://localhost:64060/miscellaneous/my-zshrc/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PROMPT&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%F{green}$USER%f $ &amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8b    d8  dP\&amp;#34;Yb   88888 88 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;88b  d88 dP   Yb     88 88 
@@ -87,31 +80,31 @@
     </item>
     <item>
       <title>Old Website</title>
-      <link>http://localhost:1313/miscellaneous/old-website/</link>
+      <link>http://localhost:64060/miscellaneous/old-website/</link>
       <pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate>
-      <guid>http://localhost:1313/miscellaneous/old-website/</guid>
+      <guid>http://localhost:64060/miscellaneous/old-website/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/old-site&#34;&gt;My old website&lt;/a&gt;, inspired by pure html/js/css and pre-2010 website design.&lt;/p&gt;
 &lt;p&gt;My favorite part is the refresh button displays my name in ever-updating ASCII, typed out like a old computer terminal.&lt;/p&gt;</description>
     </item>
     <item>
       <title>CTA Transit Tracker</title>
-      <link>http://localhost:1313/projects/2025/loyolahack/</link>
+      <link>http://localhost:64060/projects/2025/loyolahack/</link>
       <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2025/loyolahack/</guid>
+      <guid>http://localhost:64060/projects/2025/loyolahack/</guid>
       <description>A real-time bus and train tracking system built during Loyola&amp;#39;s Hackathon.</description>
     </item>
     <item>
       <title>Terminal GPT</title>
-      <link>http://localhost:1313/projects/2025/terminalgpt/</link>
+      <link>http://localhost:64060/projects/2025/terminalgpt/</link>
       <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2025/terminalgpt/</guid>
+      <guid>http://localhost:64060/projects/2025/terminalgpt/</guid>
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
       <title>COMP322 Final Project Reflection</title>
-      <link>http://localhost:1313/projects/2024/healthup/</link>
+      <link>http://localhost:64060/projects/2024/healthup/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2024/healthup/</guid>
+      <guid>http://localhost:64060/projects/2024/healthup/</guid>
       <description>&lt;h1 id=&#34;comp322-final-project-reflection&#34;&gt;COMP322 Final Project Reflection&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;Eric Spencer + Matthew Caballero&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;December 14, 2024&lt;/em&gt;&lt;br&gt;
@@ -125,58 +118,51 @@
     </item>
     <item>
       <title>DailyTask iOS App</title>
-      <link>http://localhost:1313/projects/2024/dailytask/</link>
+      <link>http://localhost:64060/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2024/dailytask/</guid>
+      <guid>http://localhost:64060/projects/2024/dailytask/</guid>
       <description>An iOS app to help track daily tasks, including medication reminders.</description>
     </item>
     <item>
       <title>DexVal</title>
-      <link>http://localhost:1313/projects/2024/dexval/</link>
+      <link>http://localhost:64060/projects/2024/dexval/</link>
       <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2024/dexval/</guid>
+      <guid>http://localhost:64060/projects/2024/dexval/</guid>
       <description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description>
     </item>
     <item>
       <title>One Rep Max Calculator</title>
-      <link>http://localhost:1313/projects/2024/one-rep-max/</link>
+      <link>http://localhost:64060/projects/2024/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2024/one-rep-max/</guid>
+      <guid>http://localhost:64060/projects/2024/one-rep-max/</guid>
       <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Serenity</title>
-      <link>http://localhost:1313/projects/2024/serenity/</link>
+      <link>http://localhost:64060/projects/2024/serenity/</link>
       <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2024/serenity/</guid>
+      <guid>http://localhost:64060/projects/2024/serenity/</guid>
       <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
     </item>
     <item>
       <title>Oldest Website</title>
-      <link>http://localhost:1313/miscellaneous/oldest-site/</link>
+      <link>http://localhost:64060/miscellaneous/oldest-site/</link>
       <pubDate>Mon, 01 Apr 2024 16:13:32 -0600</pubDate>
-      <guid>http://localhost:1313/miscellaneous/oldest-site/</guid>
+      <guid>http://localhost:64060/miscellaneous/oldest-site/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/oldest-site&#34;&gt;My oldest website&lt;/a&gt;, inspired by Space Jam&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Binary Bomb Puzzle</title>
-      <link>http://localhost:1313/projects/2023/bbomb/</link>
-      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/bbomb/</guid>
-      <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
-    </item>
-    <item>
       <title>Free Time Calculator in Java</title>
-      <link>http://localhost:1313/projects/2022/freetime-calc/</link>
+      <link>http://localhost:64060/projects/2022/freetime-calc/</link>
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2022/freetime-calc/</guid>
+      <guid>http://localhost:64060/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
     <item>
       <title>Search Engine</title>
-      <link>http://localhost:1313/miscellaneous/search-engine/</link>
+      <link>http://localhost:64060/miscellaneous/search-engine/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/miscellaneous/search-engine/</guid>
+      <guid>http://localhost:64060/miscellaneous/search-engine/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s my custom search engine from Google, tuned to be as basic as possible:&lt;/p&gt;
 
 &lt;script async src=&#34;https://cse.google.com/cse.js?cx=b70876f0d6e93494a&#34;&gt;
