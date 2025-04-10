@@ -6,12 +6,12 @@
     <description>Recent content in Java on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Dec 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Dec 2022 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Free Time Calculator in Java</title>
       <link>http://localhost:1313/projects/2022/freetime-calc/</link>
-      <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>

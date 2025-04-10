@@ -1,0 +1,105 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\pdfgentounicode=1
+\setlength{\tabcolsep}{0in}
+\raggedright
+\raggedbottom
+
+\titleformat{\section}{\scshape\large\raggedright}{}{0em}{}[\titlerule]
+
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-2pt}}}
+\newcommand{\resumeSubheading}[4]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]} 
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}} 
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+  \textbf{\Huge Eric Spencer} \\ \vspace{2pt}
+  \href{mailto:ericspencer1450@gmail.com}{ericspencer1450@gmail.com}, 
+  \href{https://ericspencer00.github.io}{ericspencer00.github.io}, 
+  \href{https://linkedin.com/in/ericspencer00}{linkedin.com/in/ericspencer00}
+\end{center}
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Loyola University Chicago}{Chicago, IL}
+    {Bachelor of Science in Computer Science, Minor in Information Systems}{Expected May 2026}
+    \resumeItemListStart
+      \resumeItem{Dean’s List: Fall 2023, Spring 2024, Fall 2024}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Software Engineering Intern}{Jan 2025 – Present}
+    {EpiFinder Medical Solutions}{Chicago, IL}
+    \resumeItemListStart
+      \resumeItem{Developed internal tools to optimize medical clinic operations.}
+      \resumeItem{Enhanced workflows for staff using custom software solutions.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {ITS Service Desk Technician}{July 2024 – Present}
+    {Loyola University Chicago}{Chicago, IL}
+    \resumeItemListStart
+      \resumeItem{Resolved over 50+ tickets weekly using Azure and BI tools.}
+      \resumeItem{Assisted backend teams with escalated access issues.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Health-Up App}{Java, Swift, React Native, REST APIs}
+    {}{}
+    \resumeItemListStart
+      \resumeItem{Built a cross-platform fitness app using public APIs.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Movie Recommendation Model}{Flask, TensorFlow, Heroku}
+    {}{}
+    \resumeItemListStart
+      \resumeItem{Built ML model to suggest movies based on user history.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Technical Skills}
+\resumeSubHeadingListStart
+  \item \textbf{Languages:} Java, Python, JavaScript, Swift, TypeScript \\
+  \textbf{Technologies:} MySQL, Azure, Google Cloud, Heroku \\
+  \textbf{Frameworks:} React Native, Angular \\
+  \textbf{Tools:} Git, Excel, Tableau, UNIX
+\resumeSubHeadingListEnd
+
+\end{document}

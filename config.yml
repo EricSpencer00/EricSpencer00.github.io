@@ -13,7 +13,7 @@ Params:  # capital P needed for profileMode to work properly in some themes
   profileMode:
     enabled: true
     title: "<Eric Spencer>"
-    subtitle: "Eric Spencer, This site is currently under progress of being converted to Hugo"
+    subtitle: "3rd year Computer Science Major at Loyola University Chicago"
     imageUrl: "images/avatar.jpeg"
     imageTitle: "Profile Picture"
     imageWidth: 240
