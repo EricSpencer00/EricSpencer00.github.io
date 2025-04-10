@@ -108,11 +108,20 @@
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
-      <title>HealthUp! - iOS/Android Application</title>
+      <title>COMP322 Final Project Reflection</title>
       <link>http://localhost:1313/projects/2024/healthup/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2024/healthup/</guid>
-      <description>COMP 322/422 Reflection for HealthUp! project by Eric Spencer and Matthew Caballero.</description>
+      <description>&lt;h1 id=&#34;comp322-final-project-reflection&#34;&gt;COMP322 Final Project Reflection&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Eric Spencer + Matthew Caballero&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;December 14, 2024&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;COMP 322/422 Reflection&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;reflections-on-healthup&#34;&gt;Reflections on HealthUp!&lt;/h1&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;HealthUp! is an application focused on bettering a user’s information about their health. Users can log nutritional information of foods and track their workouts. We wanted to develop this app to support our passion for healthy living.&lt;/p&gt;
+&lt;h2 id=&#34;repository-without-keys&#34;&gt;Repository (without keys)&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/EricSpencer00/HealthUp-&#34;&gt;GitHub Repository&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;If you attempt to download and run the app, see the bolded text in “Testing &amp;amp; Iterative Design.” The iOS version of the app does not work.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>DailyTask iOS App</title>
