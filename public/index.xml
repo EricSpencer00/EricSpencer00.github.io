@@ -1,178 +1,67 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Eric Spencer</title>
-    <link>http://localhost:64060/</link>
-    <description>Recent content on Eric Spencer</description>
-    <generator>Hugo -- 0.145.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:64060/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>flatten-repo VSC Extension</title>
-      <link>http://localhost:64060/projects/2025/flatten-repo/</link>
-      <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2025/flatten-repo/</guid>
-      <description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description>
-    </item>
-    <item>
-      <title>Dexcom Navbar Icon Mac OS</title>
-      <link>http://localhost:64060/projects/2025/dexcom-navbar-macos/</link>
-      <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2025/dexcom-navbar-macos/</guid>
-      <description>View your Dexcom number in your Mac OS Navigation Bar</description>
-    </item>
-    <item>
-      <title>My ~/.zshrc file</title>
-      <link>http://localhost:64060/miscellaneous/my-zshrc/</link>
-      <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/miscellaneous/my-zshrc/</guid>
-      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PROMPT&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%F{green}$USER%f $ &amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8b    d8  dP\&amp;#34;Yb   88888 88 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;88b  d88 dP   Yb     88 88 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;88YbdP88 Yb   dP o.  88 88 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;88 YY 88  YbodP  \&amp;#34;bod8\&amp;#34; 88 \n&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Customized shell prompt in PS1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PS1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%F{28}&lt;/span&gt;$USER&lt;span style=&#34;color:#e6db74&#34;&gt;%F{reset} %# &amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Ruby Gems PATH&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/usr/local/lib/ruby/gems/3.3.0/bin:&lt;/span&gt;$PATH&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Configure GPG for terminal&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export GPG_TTY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;tty&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Android SDK and platform-tools PATH configuration&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export ANDROID_HOME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$HOME/Library/Android/sdk
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$ANDROID_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/platform-tools:&lt;/span&gt;$ANDROID_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/tools:&lt;/span&gt;$ANDROID_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/tools/bin:&lt;/span&gt;$PATH&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Java environment configuration&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export JAVA_HOME&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;/usr/libexec/java_home -v 21&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$JAVA_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/bin:&lt;/span&gt;$PATH&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Combine Android SDK and Java paths into a single line&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$ANDROID_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/platform-tools:&lt;/span&gt;$ANDROID_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/tools:&lt;/span&gt;$JAVA_HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/bin:&lt;/span&gt;$PATH&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Useful aliases for common commands&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias gs&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;git status&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias gp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;git pull --rebase&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias ..&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cd ..&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias c&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;clear&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias ls&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ls --color=auto&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias gpt&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cd ~/Documents/Github/Project &amp;amp;&amp;amp; source venv/bin/activate &amp;amp;&amp;amp; python3 gpt.py&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias py&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;python3 -m venv venv&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias v&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;source venv/bin/activate&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Color settings for &amp;#39;ls&amp;#39; command&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export LSCOLORS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;GxFxCxDxBxegedabagaced&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Google Cloud SDK PATH&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$PATH&lt;span style=&#34;color:#e6db74&#34;&gt;:&lt;/span&gt;$HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/google-cloud-sdk/bin&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Include additional paths for npm global binaries&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$HOME&lt;span style=&#34;color:#e6db74&#34;&gt;/.npm-global/bin:&lt;/span&gt;$PATH&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias latexcompile&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;pdflatex myfile.tex &amp;amp;&amp;amp; rm *.aux *.log *.out *.synctex.gz&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Python SSL Certificate&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export SSL_CERT_FILE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;python -m certifi&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;$HOME/.npm-global/bin:$PATH
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>Old Website</title>
-      <link>http://localhost:64060/miscellaneous/old-website/</link>
-      <pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate>
-      <guid>http://localhost:64060/miscellaneous/old-website/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/old-site&#34;&gt;My old website&lt;/a&gt;, inspired by pure html/js/css and pre-2010 website design.&lt;/p&gt;
-&lt;p&gt;My favorite part is the refresh button displays my name in ever-updating ASCII, typed out like a old computer terminal.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CTA Transit Tracker</title>
-      <link>http://localhost:64060/projects/2025/loyolahack/</link>
-      <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2025/loyolahack/</guid>
-      <description>A real-time bus and train tracking system built during Loyola&amp;#39;s Hackathon.</description>
-    </item>
-    <item>
-      <title>Terminal GPT</title>
-      <link>http://localhost:64060/projects/2025/terminalgpt/</link>
-      <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2025/terminalgpt/</guid>
-      <description>Your AI assistant in the terminal</description>
-    </item>
-    <item>
-      <title>COMP322 Final Project Reflection</title>
-      <link>http://localhost:64060/projects/2024/healthup/</link>
-      <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2024/healthup/</guid>
-      <description>&lt;h1 id=&#34;comp322-final-project-reflection&#34;&gt;COMP322 Final Project Reflection&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;Eric Spencer + Matthew Caballero&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;December 14, 2024&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;COMP 322/422 Reflection&lt;/em&gt;&lt;/p&gt;
-&lt;h1 id=&#34;reflections-on-healthup&#34;&gt;Reflections on HealthUp!&lt;/h1&gt;
-&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
-&lt;p&gt;HealthUp! is an application focused on bettering a user’s information about their health. Users can log nutritional information of foods and track their workouts. We wanted to develop this app to support our passion for healthy living.&lt;/p&gt;
-&lt;h2 id=&#34;repository-without-keys&#34;&gt;Repository (without keys)&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/EricSpencer00/HealthUp-&#34;&gt;GitHub Repository&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;If you attempt to download and run the app, see the bolded text in “Testing &amp;amp; Iterative Design.” The iOS version of the app does not work.&lt;/em&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>DailyTask iOS App</title>
-      <link>http://localhost:64060/projects/2024/dailytask/</link>
-      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2024/dailytask/</guid>
-      <description>An iOS app to help track daily tasks, including medication reminders.</description>
-    </item>
-    <item>
-      <title>DexVal</title>
-      <link>http://localhost:64060/projects/2024/dexval/</link>
-      <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2024/dexval/</guid>
-      <description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description>
-    </item>
-    <item>
-      <title>One Rep Max Calculator</title>
-      <link>http://localhost:64060/projects/2024/one-rep-max/</link>
-      <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2024/one-rep-max/</guid>
-      <description>Calculate your One Rep Max</description>
-    </item>
-    <item>
-      <title>Serenity</title>
-      <link>http://localhost:64060/projects/2024/serenity/</link>
-      <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2024/serenity/</guid>
-      <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
-    </item>
-    <item>
-      <title>Oldest Website</title>
-      <link>http://localhost:64060/miscellaneous/oldest-site/</link>
-      <pubDate>Mon, 01 Apr 2024 16:13:32 -0600</pubDate>
-      <guid>http://localhost:64060/miscellaneous/oldest-site/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/oldest-site&#34;&gt;My oldest website&lt;/a&gt;, inspired by Space Jam&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Free Time Calculator in Java</title>
-      <link>http://localhost:64060/projects/2022/freetime-calc/</link>
-      <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/projects/2022/freetime-calc/</guid>
-      <description>A Java program to find overlapping free time for up to four people.</description>
-    </item>
-    <item>
-      <title>Search Engine</title>
-      <link>http://localhost:64060/miscellaneous/search-engine/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:64060/miscellaneous/search-engine/</guid>
-      <description>&lt;p&gt;Here&amp;rsquo;s my custom search engine from Google, tuned to be as basic as possible:&lt;/p&gt;
-
-&lt;script async src=&#34;https://cse.google.com/cse.js?cx=b70876f0d6e93494a&#34;&gt;
-&lt;/script&gt;
-&lt;div class=&#34;gcse-search&#34;&gt;&lt;/div&gt;
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;p&gt;If you&amp;rsquo;re interested in using this outside of this page you can set your computer to run it&amp;rsquo;s default browser from:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0&#34;&gt;Open in this window&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Eric Spencer</title><link>https://EricSpencer00.github.io/</link><description>Recent content on Eric Spencer</description><generator>Hugo -- 0.145.0</generator><language>en-us</language><lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://EricSpencer00.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>flatten-repo VSC Extension</title><link>https://EricSpencer00.github.io/projects/2025/flatten-repo/</link><pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2025/flatten-repo/</guid><description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description></item><item><title>Dexcom Navbar Icon Mac OS</title><link>https://EricSpencer00.github.io/projects/2025/dexcom-navbar-macos/</link><pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2025/dexcom-navbar-macos/</guid><description>View your Dexcom number in your Mac OS Navigation Bar</description></item><item><title>My ~/.zshrc file</title><link>https://EricSpencer00.github.io/miscellaneous/my-zshrc/</link><pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/miscellaneous/my-zshrc/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>PROMPT&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;%F{green}$USER%f $ &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#e6db74">&amp;#34;8b d8 dP\&amp;#34;Yb 88888 88
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">88b d88 dP Yb 88 88
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">88YbdP88 Yb dP o. 88 88
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74">88 YY 88 YbodP \&amp;#34;bod8\&amp;#34; 88 \n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Customized shell prompt in PS1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PS1&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;%F{28}&lt;/span>$USER&lt;span style="color:#e6db74">%F{reset} %# &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Ruby Gems PATH&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;/usr/local/lib/ruby/gems/3.3.0/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Configure GPG for terminal&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export GPG_TTY&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>tty&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Android SDK and platform-tools PATH configuration&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export ANDROID_HOME&lt;span style="color:#f92672">=&lt;/span>$HOME/Library/Android/sdk
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$ANDROID_HOME&lt;span style="color:#e6db74">/platform-tools:&lt;/span>$ANDROID_HOME&lt;span style="color:#e6db74">/tools:&lt;/span>$ANDROID_HOME&lt;span style="color:#e6db74">/tools/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Java environment configuration&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export JAVA_HOME&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>/usr/libexec/java_home -v 21&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$JAVA_HOME&lt;span style="color:#e6db74">/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Combine Android SDK and Java paths into a single line&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$ANDROID_HOME&lt;span style="color:#e6db74">/platform-tools:&lt;/span>$ANDROID_HOME&lt;span style="color:#e6db74">/tools:&lt;/span>$JAVA_HOME&lt;span style="color:#e6db74">/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Useful aliases for common commands&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias gs&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;git status&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias gp&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;git pull --rebase&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias ..&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;cd ..&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;clear&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias ls&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;ls --color=auto&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias gpt&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;cd ~/Documents/Github/Project &amp;amp;&amp;amp; source venv/bin/activate &amp;amp;&amp;amp; python3 gpt.py&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias py&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;python3 -m venv venv&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias v&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;source venv/bin/activate&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Color settings for &amp;#39;ls&amp;#39; command&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export LSCOLORS&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;GxFxCxDxBxegedabagaced&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Google Cloud SDK PATH&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$PATH&lt;span style="color:#e6db74">:&lt;/span>$HOME&lt;span style="color:#e6db74">/google-cloud-sdk/bin&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Include additional paths for npm global binaries&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$HOME&lt;span style="color:#e6db74">/.npm-global/bin:&lt;/span>$PATH&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias latexcompile&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;pdflatex myfile.tex &amp;amp;&amp;amp; rm *.aux *.log *.out *.synctex.gz&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Python SSL Certificate&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export SSL_CERT_FILE&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>python -m certifi&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>export PATH&lt;span style="color:#f92672">=&lt;/span>$HOME/.npm-global/bin:$PATH
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Old Website</title><link>https://EricSpencer00.github.io/miscellaneous/old-website/</link><pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate><guid>https://EricSpencer00.github.io/miscellaneous/old-website/</guid><description>&lt;p>&lt;a href="https://EricSpencer00.github.io/old-site">My old website&lt;/a>, inspired by pure html/js/css and pre-2010 website design.&lt;/p>
+&lt;p>My favorite part is the refresh button displays my name in ever-updating ASCII, typed out like a old computer terminal.&lt;/p></description></item><item><title>CTA Transit Tracker</title><link>https://EricSpencer00.github.io/projects/2025/loyolahack/</link><pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2025/loyolahack/</guid><description>A real-time bus and train tracking system built during Loyola&amp;#39;s Hackathon.</description></item><item><title>Terminal GPT</title><link>https://EricSpencer00.github.io/projects/2025/terminalgpt/</link><pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2025/terminalgpt/</guid><description>Your AI assistant in the terminal</description></item><item><title>COMP322 Final Project Reflection</title><link>https://EricSpencer00.github.io/projects/2024/healthup/</link><pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2024/healthup/</guid><description>&lt;h1 id="comp322-final-project-reflection">COMP322 Final Project Reflection&lt;/h1>
+&lt;p>&lt;em>Eric Spencer + Matthew Caballero&lt;/em>&lt;br>
+&lt;em>December 14, 2024&lt;/em>&lt;br>
+&lt;em>COMP 322/422 Reflection&lt;/em>&lt;/p>
+&lt;h1 id="reflections-on-healthup">Reflections on HealthUp!&lt;/h1>
+&lt;h2 id="abstract">Abstract&lt;/h2>
+&lt;p>HealthUp! is an application focused on bettering a user’s information about their health. Users can log nutritional information of foods and track their workouts. We wanted to develop this app to support our passion for healthy living.&lt;/p>
+&lt;h2 id="repository-without-keys">Repository (without keys)&lt;/h2>
+&lt;p>&lt;a href="https://github.com/EricSpencer00/HealthUp-">GitHub Repository&lt;/a>&lt;/p>
+&lt;p>&lt;em>If you attempt to download and run the app, see the bolded text in “Testing &amp;amp; Iterative Design.” The iOS version of the app does not work.&lt;/em>&lt;/p></description></item><item><title>DailyTask iOS App</title><link>https://EricSpencer00.github.io/projects/2024/dailytask/</link><pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2024/dailytask/</guid><description>An iOS app to help track daily tasks, including medication reminders.</description></item><item><title>DexVal</title><link>https://EricSpencer00.github.io/projects/2024/dexval/</link><pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2024/dexval/</guid><description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description></item><item><title>One Rep Max Calculator</title><link>https://EricSpencer00.github.io/projects/2024/one-rep-max/</link><pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2024/one-rep-max/</guid><description>Calculate your One Rep Max</description></item><item><title>Serenity</title><link>https://EricSpencer00.github.io/projects/2024/serenity/</link><pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2024/serenity/</guid><description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description></item><item><title>Oldest Website</title><link>https://EricSpencer00.github.io/miscellaneous/oldest-site/</link><pubDate>Mon, 01 Apr 2024 16:13:32 -0600</pubDate><guid>https://EricSpencer00.github.io/miscellaneous/oldest-site/</guid><description>&lt;p>&lt;a href="https://EricSpencer00.github.io/oldest-site">My oldest website&lt;/a>, inspired by Space Jam&lt;/p></description></item><item><title>Free Time Calculator in Java</title><link>https://EricSpencer00.github.io/projects/2022/freetime-calc/</link><pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/projects/2022/freetime-calc/</guid><description>A Java program to find overlapping free time for up to four people.</description></item><item><title>Search Engine</title><link>https://EricSpencer00.github.io/miscellaneous/search-engine/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://EricSpencer00.github.io/miscellaneous/search-engine/</guid><description>&lt;p>Here&amp;rsquo;s my custom search engine from Google, tuned to be as basic as possible:&lt;/p>
+&lt;script async src="https://cse.google.com/cse.js?cx=b70876f0d6e93494a">
+&lt;/script>
+&lt;div class="gcse-search">&lt;/div>
+&lt;br>&lt;br>&lt;br>
+&lt;p>If you&amp;rsquo;re interested in using this outside of this page you can set your computer to run it&amp;rsquo;s default browser from:&lt;/p>
+&lt;pre tabindex="0">&lt;code>https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0
+&lt;/code>&lt;/pre>&lt;p>&lt;a href="https://cse.google.com/cse?cx=b70876f0d6e93494a#gsc.tab=0">Open in this window&lt;/a>&lt;/p></description></item></channel></rss>
