@@ -18,7 +18,7 @@ Params:  # capital P needed for profileMode to work properly in some themes
     imageTitle: "Profile Picture"
     imageWidth: 240
     imageHeight: 240
-    ShowSearch: true
+  ShowSearch: true
 
   socialIcons:
     - name: "github"

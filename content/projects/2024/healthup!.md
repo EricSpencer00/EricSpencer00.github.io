@@ -7,8 +7,6 @@ authors:
 draft: false
 ---
 
-# COMP322 Final Project Reflection
-
 _Eric Spencer + Matthew Caballero_  
 _December 14, 2024_  
 _COMP 322/422 Reflection_
