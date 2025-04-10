@@ -13,7 +13,13 @@ Params:  # capital P needed for profileMode to work properly in some themes
   profileMode:
     enabled: true
     title: "<Eric Spencer>"
-    subtitle: "3rd year Computer Science Major at Loyola University Chicago"
+    subtitle: |
+      <em>3rd year Computer Science Major at Loyola University Chicago</em><br>
+      <strong>Loyola University Chicago | Class of 2026</strong><br>
+      <strong>College of Arts and Sciences | Computer Science</strong><br>
+      <strong>Quinlan School of Business | Information Systems</strong><br>
+      <strong>espencer2 at luc dot edu</strong><br>
+      <strong>ericspencer1450 at gmail dot com</strong>
     imageUrl: "images/avatar.jpeg"
     imageTitle: "Profile Picture"
     imageWidth: 240
