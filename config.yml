@@ -14,12 +14,10 @@ Params:  # capital P needed for profileMode to work properly in some themes
     enabled: true
     title: "<Eric Spencer>"
     subtitle: |
-      <em>3rd year Computer Science Major at Loyola University Chicago</em><br>
-      <strong>Loyola University Chicago | Class of 2026</strong><br>
-      <strong>College of Arts and Sciences | Computer Science</strong><br>
-      <strong>Quinlan School of Business | Information Systems</strong><br>
-      <strong>espencer2 at luc dot edu</strong><br>
-      <strong>ericspencer1450 at gmail dot com</strong>
+      <em>3rd year Computer Science Major</em><br>
+      Loyola University Chicago, Class of 2026<br>
+      espencer2@luc.edu · ericspencer1450@gmail.com
+
     imageUrl: "images/avatar.jpeg"
     imageTitle: "Profile Picture"
     imageWidth: 240
@@ -34,7 +32,7 @@ Params:  # capital P needed for profileMode to work properly in some themes
     - name: "Email"
       url: "mailto:ericspencer1450@gmail.com"
     - name: "CV"
-      url: "resume/resume"
+      url: "resume/"
 
 markup:
   goldmark:
@@ -44,7 +42,7 @@ markup:
 menu:
   main:
     - name: "Resume"
-      url: "/Resume/"
+      url: "/Resume"
       weight: 10
     - name: "Projects"
       url: "/projects/"
