@@ -27,6 +27,6 @@ While the app itself doesn't do much, it was a **valuable learning experience** 
 ### 🔗 Useful Links:
 - 📜 [The Devpost Submission](https://devpost.com/software/serenity-sf17b2)  
 - 💻 [The GitHub Repo](https://github.com/EricSpencer00/Serenity)  
-- 🌐 [Project Website](https://www.weshouldshareourstoriesonserenity.blog)  
+- 🌐 [https://www.weshouldshareourstoriesonserenity.blog](https://www.weshouldshareourstoriesonserenity.blog) # Domain was not renewed, so this won't work anymore
 
 ---
