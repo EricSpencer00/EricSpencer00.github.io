@@ -8,5 +8,8 @@ images: ["/images/avatar.jpeg"]
 draft: false
 ---
 
-[View PDF Presentation](/images/projects/coq.pdf)
+<iframe src="/images/projects/coq.pdf" width="90%" height="600px" style="border: none;">
+    This browser does not support PDFs. Please download the PDF to view it: 
+    <a href="/images/projects/coq.pdf">Download PDF</a>.
+</iframe>
 
