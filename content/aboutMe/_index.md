@@ -5,8 +5,6 @@ draft = false
 layout = "aboutme/single"
 +++
 
-### Hi there 👋
-
 I'm Eric, a Computer Science major at Loyola University Chicago
 
 - 🔭 I’m currently enjoying break and learning new Hosting technology
