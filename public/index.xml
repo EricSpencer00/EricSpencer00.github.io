@@ -6,14 +6,14 @@
     <description>Recent content on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Wireshark Network Analysis</title>
-      <link>http://localhost:1313/miscellaneous/cybersecurity/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/miscellaneous/cybersecurity/</guid>
-      <description>Analysis of network traffic using Wireshark for COMP 301 Project 1.</description>
+      <title>coq Presentation</title>
+      <link>http://localhost:1313/projects/2025/coq/</link>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/coq/</guid>
+      <description>The formal methods language</description>
     </item>
     <item>
       <title>flatten-repo VSC Extension</title>
@@ -156,13 +156,6 @@
       <pubDate>Mon, 01 Apr 2024 16:13:32 -0600</pubDate>
       <guid>http://localhost:1313/miscellaneous/oldest-site/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://EricSpencer00.github.io/oldest-site&#34;&gt;My oldest website&lt;/a&gt;, inspired by Space Jam&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Binary Bomb Puzzle</title>
-      <link>http://localhost:1313/projects/2023/bbomb/</link>
-      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/bbomb/</guid>
-      <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
