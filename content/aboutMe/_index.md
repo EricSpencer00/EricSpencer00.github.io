@@ -7,11 +7,12 @@ layout = "aboutme/single"
 
 ### Hi there 👋
 
-I'm Eric, a CS major at Loyola University Chicago
+I'm Eric, a Computer Science major at Loyola University Chicago
 
 - 🔭 I’m currently enjoying break and learning new Hosting technology
 - 🤔 I’m looking for help with anything you find interesting on my GitHub
-- 🌱 I’m currently learning Visual Detection Models
+- 🌱 I’m currently learning SaaS Apps, TLA+, and Fullstack methods
+- 🏋️‍♂️ I'm rated 1500 in Chess and can bench 225
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white)](https://linkedin.com/in/ericspencer00)
 [![Gmail](https://img.shields.io/badge/Gmail-ericspencer1450@gmail.com-red?logo=gmail&logoColor=white)](mailto:ericspencer1450@gmail.com)
