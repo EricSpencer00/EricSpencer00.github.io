@@ -2,6 +2,7 @@
 title: "My ~/.zshrc file"
 date: 2025-03-20T00:00:00Z
 draft: false
+description: "Ran every time I open a terminal"
 thumbnail: "images/avatar.jpeg"
 ---
 
@@ -50,9 +51,14 @@ export PATH="$PATH:$HOME/google-cloud-sdk/bin"
 
 # Include additional paths for npm global binaries
 export PATH="$HOME/.npm-global/bin:$PATH"
-alias latexcompile="pdflatex myfile.tex && rm *.aux *.log *.out *.synctex.gz"
 
 # Python SSL Certificate
 export SSL_CERT_FILE=$(python -m certifi)
 export PATH=$HOME/.npm-global/bin:$PATH
 ```
+
+Notes: 
+
+* gpt.py is a CLI for ChatGPT. You can install it via [TerminalGPT](https://github.com/EricSpencer00/TerminalGPT)
+* You should use --rebase with git pull
+
