@@ -7,8 +7,8 @@ layout = "aboutme/single"
 
 I'm Eric, a Computer Science major at Loyola University Chicago
 
-- 🔭 I’m currently enjoying break and learning new Hosting technology
-- 🤔 I’m looking for help with anything you find interesting on my GitHub
+- 🔭 I’m interning for the summer and my contribution page will reflect that
+- 🤔 Take a look at my repos and see if you find anything interesting
 - 🌱 I’m currently learning SaaS Apps, TLA+, and Fullstack methods
 - 🏋️‍♂️ I'm rated 1500 in Chess and can bench 225
 
