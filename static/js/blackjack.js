@@ -13,6 +13,18 @@ let activeHandIndex = 0; // Track which hand is currently being played
 let canDoubleDown = true; // Track if double down is available
 let canSplit = true; // Track if split is available
 
+// Animation variables
+let animationInProgress = false;
+const ANIMATION_DURATION = 300; // milliseconds
+let animationStartTime = 0;
+let animationCards = [];
+let animationTargets = [];
+let dealerAnimationStep = 0;
+let isFlippingCard = false;
+let flipCardIndex = -1;
+let dealerCardsToDeal = 0;
+let pendingCardReveals = [];
+
 // Canvas Elements
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -199,6 +211,151 @@ function calculateScore(hand) {
     return score;
 }
 
+function animateCards(timestamp) {
+    if (!animationStartTime) animationStartTime = timestamp;
+    const progress = Math.min((timestamp - animationStartTime) / ANIMATION_DURATION, 1);
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw dealer's hand
+    dealerHand.forEach((card, index) => {
+        const x = canvas.width/2 - (dealerHand.length * (CARD_WIDTH + CARD_SPACING))/2 + index * (CARD_WIDTH + CARD_SPACING);
+        if (isFlippingCard && index === flipCardIndex) {
+            // Draw flipping card
+            const centerX = x + CARD_WIDTH / 2;
+            const scale = Math.abs(Math.cos(progress * Math.PI));
+            ctx.save();
+            ctx.translate(centerX, DEALER_HAND_Y);
+            ctx.scale(scale, 1);
+            ctx.translate(-centerX, -DEALER_HAND_Y);
+            drawCard(card, x, DEALER_HAND_Y, progress > 0.5);
+            ctx.restore();
+        } else {
+            // Only show cards that have been officially dealt
+            const isCardVisible = index === 0 || (dealerSecondCardRevealed && index < dealerHand.length - dealerCardsToDeal);
+            drawCard(card, x, DEALER_HAND_Y, isCardVisible);
+        }
+    });
+    
+    // Draw all player hands
+    playerHands.forEach((hand, handIndex) => {
+        const handY = PLAYER_HAND_Y + (handIndex * HAND_SPACING);
+        const isActiveHand = handIndex === activeHandIndex;
+        
+        hand.forEach((card, index) => {
+            const x = canvas.width/2 - (hand.length * (CARD_WIDTH + CARD_SPACING))/2 + index * (CARD_WIDTH + CARD_SPACING);
+            drawCard(card, x, handY, true);
+        });
+        
+        // Draw score
+        ctx.fillStyle = isActiveHand ? '#FFD700' : '#fff';
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText(`Hand ${handIndex + 1}: ${playerScores[handIndex]}`, 20, handY - 20);
+    });
+    
+    // Draw animated cards (always face down during movement)
+    animationCards.forEach((card, index) => {
+        const startX = canvas.width / 2;
+        const startY = canvas.height / 2;
+        const target = animationTargets[index];
+        
+        const currentX = startX + (target.x - startX) * progress;
+        const currentY = startY + (target.y - startY) * progress;
+        
+        // Always show card back during movement
+        drawCard(card, currentX, currentY, false);
+    });
+    
+    // Draw other UI elements
+    drawUI();
+    
+    if (progress < 1) {
+        requestAnimationFrame(animateCards);
+    } else {
+        animationInProgress = false;
+        animationStartTime = 0;
+        animationCards = [];
+        animationTargets = [];
+        
+        if (isFlippingCard) {
+            isFlippingCard = false;
+            flipCardIndex = -1;
+            dealerSecondCardRevealed = true;
+            setTimeout(() => processNextDealerAction(), 500);
+        } else if (pendingCardReveals.length > 0) {
+            // Process any pending card reveals
+            const reveal = pendingCardReveals.shift();
+            if (reveal.type === 'dealer') {
+                isFlippingCard = true;
+                flipCardIndex = reveal.cardIndex;
+                animationStartTime = 0;
+                requestAnimationFrame(animateCards);
+            }
+        } else {
+            drawGame();
+        }
+    }
+}
+
+function flipDealerCard() {
+    isFlippingCard = true;
+    flipCardIndex = 1; // Index of the hidden card
+    animationStartTime = 0;
+    requestAnimationFrame(animateCards);
+}
+
+function processNextDealerAction() {
+    if (dealerAnimationStep === 0) {
+        // Start card flip animation
+        flipDealerCard();
+        dealerAnimationStep++;
+    } else if (dealerAnimationStep === 1) {
+        // Deal new cards if needed
+        if (dealerScore < 17) {
+            const targetX = canvas.width/2 - (dealerHand.length * (CARD_WIDTH + CARD_SPACING))/2 + 
+                          dealerHand.length * (CARD_WIDTH + CARD_SPACING);
+            const newCard = dealCardWithAnimation(targetX, DEALER_HAND_Y, true, dealerHand.length);
+            dealerHand.push(newCard);
+            dealerScore = calculateScore(dealerHand);
+            dealerCardsToDeal--;
+            drawGame();
+            
+            // If dealer still needs cards, continue the sequence
+            if (dealerScore < 17) {
+                setTimeout(() => processNextDealerAction(), 1000);
+            } else {
+                setTimeout(() => evaluateHands(), 1000);
+            }
+        } else {
+            // No more cards needed, evaluate hands
+            evaluateHands();
+        }
+    }
+}
+
+function dealCardWithAnimation(targetX, targetY, isDealerCard = false, cardIndex = -1) {
+    const card = dealCard();
+    animationCards.push(card);
+    animationTargets.push({ x: targetX, y: targetY });
+    
+    if (!animationInProgress) {
+        animationInProgress = true;
+        requestAnimationFrame(animateCards);
+    }
+    
+    // If this is a dealer card, add it to pending reveals
+    if (isDealerCard && cardIndex >= 0) {
+        pendingCardReveals.push({
+            type: 'dealer',
+            cardIndex: cardIndex
+        });
+    }
+    
+    return card;
+}
+
 function newGame() {
     if (currentBet === 0) {
         gameMessage = "Please place a bet first!";
@@ -219,11 +376,26 @@ function newGame() {
     canSplit = true;
     gameMessage = 'Dealing cards...';
 
-    // Deal initial cards
-    playerHands[0].push(dealCard());
-    dealerHand.push(dealCard());
-    playerHands[0].push(dealCard());
-    dealerHand.push(dealCard());
+    // Deal initial cards with animation
+    const playerCard1 = dealCardWithAnimation(
+        canvas.width/2 - CARD_WIDTH - CARD_SPACING/2,
+        PLAYER_HAND_Y
+    );
+    const dealerCard1 = dealCardWithAnimation(
+        canvas.width/2 - CARD_WIDTH - CARD_SPACING/2,
+        DEALER_HAND_Y
+    );
+    const playerCard2 = dealCardWithAnimation(
+        canvas.width/2 + CARD_SPACING/2,
+        PLAYER_HAND_Y
+    );
+    const dealerCard2 = dealCardWithAnimation(
+        canvas.width/2 + CARD_SPACING/2,
+        DEALER_HAND_Y
+    );
+
+    playerHands[0] = [playerCard1, playerCard2];
+    dealerHand = [dealerCard1, dealerCard2];
 
     playerScores[0] = calculateScore(playerHands[0]);
     dealerScore = calculateScore(dealerHand);
@@ -242,14 +414,17 @@ function newGame() {
         }
         endGame();
     }
-
-    drawGame();
 }
 
 function hit() {
     if (!gameInProgress) return;
 
-    playerHands[activeHandIndex].push(dealCard());
+    const targetX = canvas.width/2 - (playerHands[activeHandIndex].length * (CARD_WIDTH + CARD_SPACING))/2 + 
+                   playerHands[activeHandIndex].length * (CARD_WIDTH + CARD_SPACING);
+    const targetY = PLAYER_HAND_Y + (activeHandIndex * HAND_SPACING);
+    
+    const newCard = dealCardWithAnimation(targetX, targetY);
+    playerHands[activeHandIndex].push(newCard);
     playerScores[activeHandIndex] = calculateScore(playerHands[activeHandIndex]);
     canDoubleDown = false;
     canSplit = false;
@@ -263,9 +438,10 @@ function hit() {
             // All hands are done, dealer's turn
             dealerPlay();
         }
+    } else if (playerScores[activeHandIndex] === 21) {
+        // Auto-stand on 21
+        stand();
     }
-
-    drawGame();
 }
 
 function stand() {
@@ -315,37 +491,20 @@ function split() {
 }
 
 function dealerPlay() {
-    dealerSecondCardRevealed = true;
+    dealerAnimationStep = 0;
     gameMessage = "Dealer's turn...";
 
-    while (dealerScore < 17) {
-        dealerHand.push(dealCard());
-        dealerScore = calculateScore(dealerHand);
+    // Calculate how many cards the dealer needs to take
+    dealerCardsToDeal = 0;
+    let tempScore = dealerScore;
+    while (tempScore < 17) {
+        const newCard = dealCard();
+        tempScore += newCard.value > 11 ? 1 : newCard.value;
+        dealerCardsToDeal++;
     }
-
-    // Check each player hand against dealer
-    for (let i = 0; i < playerHands.length; i++) {
-        if (playerScores[i] > 21) {
-            // Hand already busted
-            continue;
-        }
-
-        if (dealerScore > 21) {
-            gameMessage = "Dealer busts! You win!";
-            winBet(i);
-        } else if (dealerScore > playerScores[i]) {
-            gameMessage = "Dealer wins!";
-        } else if (dealerScore < playerScores[i]) {
-            gameMessage = "You win!";
-            winBet(i);
-        } else {
-            gameMessage = "Push! It's a tie!";
-            pushBet(i);
-        }
-    }
-
-    endGame();
-    drawGame();
+    
+    // Start the dealer animation sequence
+    processNextDealerAction();
 }
 
 function endGame() {
@@ -429,6 +588,26 @@ function drawCard(card, x, y, faceUp = true) {
     ctx.restore();
 }
 
+function drawUI() {
+    // Draw dealer score
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'left';
+    const visibleDealerScore = dealerSecondCardRevealed ? dealerScore : '?';
+    ctx.fillText(`Dealer: ${visibleDealerScore}`, 20, DEALER_HAND_Y - 20);
+    
+    // Draw money and high score
+    ctx.textAlign = 'right';
+    ctx.fillText(`Money: $${playerMoney}`, canvas.width - 20, 30);
+    ctx.fillText(`High Score: $${highScore}`, canvas.width - 20, 60);
+    if (currentBet > 0) {
+        ctx.fillText(`Current Bet: $${currentBet}`, canvas.width - 20, 90);
+    }
+    
+    // Draw game message
+    ctx.textAlign = 'center';
+    ctx.fillText(gameMessage, canvas.width/2, canvas.height/2);
+}
+
 function drawGame() {
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -457,22 +636,34 @@ function drawGame() {
         ctx.fillText(`Hand ${handIndex + 1}: ${playerScores[handIndex]}`, 20, handY - 20);
     });
     
-    // Draw dealer score
-    ctx.fillStyle = '#fff';
-    ctx.textAlign = 'left';
-    ctx.fillText(`Dealer: ${dealerSecondCardRevealed ? dealerScore : '?'}`, 20, DEALER_HAND_Y - 20);
-    
-    // Draw money and high score
-    ctx.textAlign = 'right';
-    ctx.fillText(`Money: $${playerMoney}`, canvas.width - 20, 30);
-    ctx.fillText(`High Score: $${highScore}`, canvas.width - 20, 60);
-    if (currentBet > 0) {
-        ctx.fillText(`Current Bet: $${currentBet}`, canvas.width - 20, 90);
+    // Draw UI elements
+    drawUI();
+}
+
+function evaluateHands() {
+    // Check each player hand against dealer
+    for (let i = 0; i < playerHands.length; i++) {
+        if (playerScores[i] > 21) {
+            // Hand already busted
+            continue;
+        }
+
+        if (dealerScore > 21) {
+            gameMessage = "Dealer busts! You win!";
+            winBet(i);
+        } else if (dealerScore > playerScores[i]) {
+            gameMessage = "Dealer wins!";
+        } else if (dealerScore < playerScores[i]) {
+            gameMessage = "You win!";
+            winBet(i);
+        } else {
+            gameMessage = "Push! It's a tie!";
+            pushBet(i);
+        }
     }
-    
-    // Draw game message
-    ctx.textAlign = 'center';
-    ctx.fillText(gameMessage, canvas.width/2, canvas.height/2);
+
+    endGame();
+    drawGame();
 }
 
 // Event Listeners
@@ -487,6 +678,13 @@ function createBettingButtons() {
     const controls = document.querySelector('.controls');
     const betContainer = document.createElement('div');
     betContainer.className = 'bet-controls';
+    
+    // Add reset button
+    const resetButton = document.createElement('button');
+    resetButton.textContent = 'Reset Game';
+    resetButton.className = 'reset-btn';
+    resetButton.onclick = resetGame;
+    betContainer.appendChild(resetButton);
     
     const betAmounts = [10, 25, 50, 100];
     betAmounts.forEach(amount => {
@@ -511,4 +709,20 @@ function createBettingButtons() {
 loadGameState().then(() => {
     createBettingButtons();
     drawGame();
-}); 
+});
+
+function resetGame() {
+    // Clear localStorage
+    localStorage.removeItem('blackjackMoney');
+    localStorage.removeItem('blackjackHighScore');
+    
+    // Reset game state
+    playerMoney = 1000;
+    highScore = 0;
+    currentBet = 0;
+    gameInProgress = false;
+    gameMessage = "Game Reset! Place your bet to start!";
+    
+    // Update UI
+    drawGame();
+} 
