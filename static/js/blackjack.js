@@ -24,21 +24,42 @@ const standButton = document.getElementById('stand-btn');
 const doubleDownButton = document.getElementById('double-down-btn');
 const splitButton = document.getElementById('split-btn');
 
+// Storage interface
+const storage = {
+    async loadHighScore() {
+        const savedHighScore = localStorage.getItem('blackjackHighScore');
+        return savedHighScore ? parseInt(savedHighScore) : 0;
+    },
+
+    async saveHighScore(score) {
+        localStorage.setItem('blackjackHighScore', score.toString());
+    },
+
+    async loadMoney() {
+        const savedMoney = localStorage.getItem('blackjackMoney');
+        return savedMoney ? parseInt(savedMoney) : 1000;
+    },
+
+    async saveMoney(amount) {
+        localStorage.setItem('blackjackMoney', amount.toString());
+    }
+};
+
 // Load saved state
-function loadGameState() {
-    const savedMoney = localStorage.getItem('blackjackMoney');
-    const savedHighScore = localStorage.getItem('blackjackHighScore');
-    if (savedMoney) playerMoney = parseInt(savedMoney);
-    if (savedHighScore) highScore = parseInt(savedHighScore);
+async function loadGameState() {
+    playerMoney = await storage.loadMoney();
+    highScore = await storage.loadHighScore();
+    drawGame(); // Make sure to draw the game after loading state
 }
 
 // Save game state
-function saveGameState() {
-    localStorage.setItem('blackjackMoney', playerMoney.toString());
+async function saveGameState() {
+    await storage.saveMoney(playerMoney);
     if (playerMoney > highScore) {
         highScore = playerMoney;
-        localStorage.setItem('blackjackHighScore', highScore.toString());
+        await storage.saveHighScore(highScore);
     }
+    drawGame(); // Make sure to draw the game after saving state
 }
 
 // Card Data
@@ -58,9 +79,20 @@ let gameMessage = 'Click "Deal New Hand" to start!';
 
 // Betting functions
 function placeBet(amount) {
-    if (amount <= playerMoney && !gameInProgress) {
+    if (!gameInProgress && amount <= playerMoney) {
         currentBet = amount;
         playerMoney -= amount;
+        saveGameState();
+        return true;
+    }
+    return false;
+}
+
+function checkGameOver() {
+    if (playerMoney <= 0) {
+        gameMessage = "Game Over! Starting new game with $1000";
+        playerMoney = 1000;
+        currentBet = 0;
         saveGameState();
         return true;
     }
@@ -70,16 +102,19 @@ function placeBet(amount) {
 function winBet(handIndex = 0) {
     playerMoney += currentBet * 2; // Regular win pays 1:1
     saveGameState();
+    checkGameOver();
 }
 
 function blackjackWin(handIndex = 0) {
     playerMoney += currentBet * 2.5; // Blackjack pays 3:2
     saveGameState();
+    checkGameOver();
 }
 
 function pushBet(handIndex = 0) {
     playerMoney += currentBet; // Push returns the bet
     saveGameState();
+    checkGameOver();
 }
 
 function doubleDownBet() {
@@ -461,6 +496,9 @@ function createBettingButtons() {
         button.onclick = () => {
             if (placeBet(amount)) {
                 newGame();
+            } else {
+                gameMessage = "Cannot place bet!";
+                drawGame();
             }
         };
         betContainer.appendChild(button);
@@ -470,6 +508,7 @@ function createBettingButtons() {
 }
 
 // Initialize game
-loadGameState();
-createBettingButtons();
-drawGame(); 
+loadGameState().then(() => {
+    createBettingButtons();
+    drawGame();
+}); 
