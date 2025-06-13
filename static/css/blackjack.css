@@ -1,0 +1,160 @@
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #228B22;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    background-color: #1a5a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #FFD700;
+    font-size: 2.5em;
+}
+
+canvas {
+    background-color: #33a033;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    display: block;
+    touch-action: none;
+    outline: none;
+    margin-bottom: 20px;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #555;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.bet-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.bet-btn {
+    padding: 8px 16px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #4a90e2;
+    background-image: linear-gradient(to bottom right, #4a90e2, #357abd);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.bet-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #357abd;
+}
+
+.bet-btn:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.controls button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.controls button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.controls button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+#deal-btn {
+    background-color: #007BFF;
+    background-image: linear-gradient(to bottom right, #007BFF, #0056b3);
+}
+#deal-btn:hover:not(:disabled) { background-color: #0056b3; }
+
+#hit-btn {
+    background-color: #4CAF50;
+    background-image: linear-gradient(to bottom right, #4CAF50, #367c39);
+}
+#hit-btn:hover:not(:disabled) { background-color: #367c39; }
+
+#stand-btn {
+    background-color: #f44336;
+    background-image: linear-gradient(to bottom right, #f44336, #da190b);
+}
+#stand-btn:hover:not(:disabled) { background-color: #da190b; }
+
+#double-down-btn {
+    background-color: #9C27B0;
+    background-image: linear-gradient(to bottom right, #9C27B0, #7B1FA2);
+}
+#double-down-btn:hover:not(:disabled) { background-color: #7B1FA2; }
+
+#split-btn {
+    background-color: #FF9800;
+    background-image: linear-gradient(to bottom right, #FF9800, #F57C00);
+}
+#split-btn:hover:not(:disabled) { background-color: #F57C00; }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); 
