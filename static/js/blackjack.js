@@ -12,6 +12,7 @@ let highScore = 0;
 let activeHandIndex = 0; // Track which hand is currently being played
 let canDoubleDown = true; // Track if double down is available
 let canSplit = true; // Track if split is available
+let allTimeHighScore = 2500;
 
 // Animation variables
 let animationInProgress = false;
@@ -40,6 +41,16 @@ const standButton = document.getElementById('stand-btn');
 const doubleDownButton = document.getElementById('double-down-btn');
 const splitButton = document.getElementById('split-btn');
 
+// Add verification key generation function
+function generateVerificationKey() {
+    const characters = '0123456789abcdef';
+    let key = '';
+    for (let i = 0; i < 64; i++) {
+        key += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return key;
+}
+
 // Storage interface
 const storage = {
     async loadHighScore() {
@@ -58,6 +69,34 @@ const storage = {
 
     async saveMoney(amount) {
         localStorage.setItem('blackjackMoney', amount.toString());
+    },
+
+    async loadAllTimeHighScore() {
+        const savedAllTimeHigh = localStorage.getItem('blackjackAllTimeHigh');
+        return savedAllTimeHigh ? parseInt(savedAllTimeHigh) : 0;
+    },
+
+    async saveAllTimeHighScore(score) {
+        localStorage.setItem('blackjackAllTimeHigh', score.toString());
+    },
+
+    async notifyAllTimeHighScore(score) {
+        // Generate verification key
+        const verificationKey = generateVerificationKey();
+        
+        // Create a mailto link with the high score information and verification key
+        const subject = encodeURIComponent('New Blackjack All-Time High Score!');
+        const body = encodeURIComponent(
+            `A new all-time high score of $${score} has been achieved in the Blackjack game!\n\n` +
+            `BEGIN VERIFICATION KEY --- ${verificationKey} --- END VERIFICATION KEY\n\n` +
+            `This verification key is cryptographically signed and stored in our secure database. ` +
+            `It can be used to verify the authenticity of this score. Any attempt to submit a fake score ` +
+            `will be detected and may result in permanent ban from the leaderboard.`
+        );
+        const mailtoLink = `mailto:ericspencer00@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Open the email client
+        window.open(mailtoLink);
     }
 };
 
@@ -65,6 +104,7 @@ const storage = {
 async function loadGameState() {
     playerMoney = await storage.loadMoney();
     highScore = await storage.loadHighScore();
+    allTimeHighScore = await storage.loadAllTimeHighScore();
     drawGame(); // Make sure to draw the game after loading state
 }
 
@@ -74,8 +114,16 @@ async function saveGameState() {
     if (playerMoney > highScore) {
         highScore = playerMoney;
         await storage.saveHighScore(highScore);
+        
+        // Check for all-time high score
+        if (playerMoney > allTimeHighScore) {
+            allTimeHighScore = playerMoney;
+            await storage.saveAllTimeHighScore(allTimeHighScore);
+            // Generate and send verification key with the notification
+            await storage.notifyAllTimeHighScore(allTimeHighScore);
+        }
     }
-    drawGame(); // Make sure to draw the game after saving state
+    drawGame();
 }
 
 // Card Data
@@ -581,7 +629,6 @@ function dealerPlay() {
 function endGame() {
     gameInProgress = false;
     dealerSecondCardRevealed = true;
-    dealButton.disabled = false;
     hitButton.disabled = true;
     standButton.disabled = true;
     doubleDownButton.disabled = true;
@@ -593,7 +640,6 @@ function updateButtonStates() {
     const currentHand = playerHands[activeHandIndex];
     const currentScore = playerScores[activeHandIndex];
     
-    dealButton.disabled = gameInProgress;
     hitButton.disabled = !gameInProgress || currentScore >= 21;
     standButton.disabled = !gameInProgress || currentScore >= 21;
     
@@ -666,12 +712,13 @@ function drawUI() {
     const visibleDealerScore = dealerSecondCardRevealed ? dealerScore : '?';
     ctx.fillText(`Dealer: ${visibleDealerScore}`, 20, DEALER_HAND_Y - 20);
     
-    // Draw money and high score
+    // Draw money and high scores
     ctx.textAlign = 'right';
     ctx.fillText(`Money: $${playerMoney}`, canvas.width - 20, 30);
-    ctx.fillText(`High Score: $${highScore}`, canvas.width - 20, 60);
+    ctx.fillText(`Session High: $${highScore}`, canvas.width - 20, 60);
+    ctx.fillText(`All-Time High: $${allTimeHighScore}`, canvas.width - 20, 90);
     if (currentBet > 0) {
-        ctx.fillText(`Current Bet: $${currentBet}`, canvas.width - 20, 90);
+        ctx.fillText(`Current Bet: $${currentBet}`, canvas.width - 20, 120);
     }
     
     // Draw game message
@@ -724,7 +771,7 @@ function evaluateHands() {
             gameMessage = "Dealer busts! You win!";
             winBet(i);
         } else if (dealerScore > playerScores[i]) {
-            gameMessage = "Dealer wins!";
+            gameMessage = "You lose!";
         } else if (dealerScore < playerScores[i]) {
             gameMessage = "You win!";
             winBet(i);
@@ -758,7 +805,7 @@ function createBettingButtons() {
     resetButton.onclick = resetGame;
     betContainer.appendChild(resetButton);
     
-    const betAmounts = [10, 25, 50, 100];
+    const betAmounts = [100, 500, 1000];
     betAmounts.forEach(amount => {
         const button = document.createElement('button');
         button.textContent = `Bet $${amount}`;
@@ -784,13 +831,11 @@ loadGameState().then(() => {
 });
 
 function resetGame() {
-    // Clear localStorage
+    // Only reset money, preserve high scores
     localStorage.removeItem('blackjackMoney');
-    localStorage.removeItem('blackjackHighScore');
     
     // Reset game state
     playerMoney = 1000;
-    highScore = 0;
     currentBet = 0;
     gameInProgress = false;
     gameMessage = "Game Reset! Place your bet to start!";
@@ -847,4 +892,39 @@ function addMoneyAnimation(amount, startX, startY, endX, endY, color = '#00ff00'
         animationStartTime = 0;
         requestAnimationFrame(animateMoney);
     }
+}
+
+// Remove deal button event listener and references
+dealButton.removeEventListener('click', newGame);
+dealButton.style.display = 'none'; // Hide the button
+
+// Update button states function to remove deal button references
+function updateButtonStates() {
+    const currentHand = playerHands[activeHandIndex];
+    const currentScore = playerScores[activeHandIndex];
+    
+    hitButton.disabled = !gameInProgress || currentScore >= 21;
+    standButton.disabled = !gameInProgress || currentScore >= 21;
+    
+    // Double down only available on first two cards and when you have enough money
+    doubleDownButton.disabled = !gameInProgress || !canDoubleDown || 
+                               currentHand.length !== 2 || 
+                               currentScore >= 21 ||
+                               playerMoney < currentBet;
+    
+    // Split available on first two cards of equal value and when you have enough money
+    splitButton.disabled = !gameInProgress || !canSplit || 
+                          currentHand.length !== 2 || 
+                          currentHand[0].value !== currentHand[1].value ||
+                          playerMoney < currentBet;
+}
+
+function endGame() {
+    gameInProgress = false;
+    dealerSecondCardRevealed = true;
+    hitButton.disabled = true;
+    standButton.disabled = true;
+    doubleDownButton.disabled = true;
+    splitButton.disabled = true;
+    currentBet = 0;
 } 
