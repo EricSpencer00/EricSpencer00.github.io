@@ -11,6 +11,6 @@
 My Portfolio Website, self explanitory.
 
 Enter here at: https://ericspencer00.github.io
-or https://www.espencer.me
+or https://espencer.me
 
 This commit was made by Linus Torvalds
