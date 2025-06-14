@@ -12,7 +12,7 @@ let highScore = 0;
 let activeHandIndex = 0; // Track which hand is currently being played
 let canDoubleDown = true; // Track if double down is available
 let canSplit = true; // Track if split is available
-let allTimeHighScore = 2500;
+let allTimeHighScore = 0;
 
 // Animation variables
 let animationInProgress = false;
@@ -72,12 +72,14 @@ const storage = {
     },
 
     async loadAllTimeHighScore() {
-        const savedAllTimeHigh = localStorage.getItem('blackjackAllTimeHigh');
-        return savedAllTimeHigh ? parseInt(savedAllTimeHigh) : 0;
-    },
-
-    async saveAllTimeHighScore(score) {
-        localStorage.setItem('blackjackAllTimeHigh', score.toString());
+        try {
+            const response = await fetch('https://raw.githubusercontent.com/EricSpencer00/EricSpencer00.github.io/main/static/data/blackjack_highscore.json');
+            const data = await response.json();
+            return data.highScore || 3500; // Default to 3500 if file doesn't exist
+        } catch (error) {
+            console.error('Error loading all-time high score:', error);
+            return 3500; // Default to 3500 if there's an error
+        }
     },
 
     async notifyAllTimeHighScore(score) {
@@ -91,7 +93,8 @@ const storage = {
             `BEGIN VERIFICATION KEY --- ${verificationKey} --- END VERIFICATION KEY\n\n` +
             `This verification key is cryptographically signed and stored in our secure database. ` +
             `It can be used to verify the authenticity of this score. Any attempt to submit a fake score ` +
-            `will be detected and may result in permanent ban from the leaderboard.`
+            `will be detected and may result in permanent ban from the leaderboard.\n\n` +
+            `Please update the high score in static/data/blackjack_highscore.json to: ${score}`
         );
         const mailtoLink = `mailto:ericspencer00@gmail.com?subject=${subject}&body=${body}`;
         
@@ -118,8 +121,6 @@ async function saveGameState() {
         // Check for all-time high score
         if (playerMoney > allTimeHighScore) {
             allTimeHighScore = playerMoney;
-            await storage.saveAllTimeHighScore(allTimeHighScore);
-            // Generate and send verification key with the notification
             await storage.notifyAllTimeHighScore(allTimeHighScore);
         }
     }
@@ -217,8 +218,47 @@ function pushBet(handIndex = 0) {
     checkGameOver();
 }
 
+function doubleDown() {
+    if (!gameInProgress || !canDoubleDown) return;
+
+    if (doubleDownBet()) {
+        const targetX = canvas.width/2 - (playerHands[activeHandIndex].length * (CARD_WIDTH + CARD_SPACING))/2 + 
+                       playerHands[activeHandIndex].length * (CARD_WIDTH + CARD_SPACING);
+        const targetY = PLAYER_HAND_Y + (activeHandIndex * HAND_SPACING);
+        
+        // Deal new card with animation
+        const newCard = dealCardWithAnimation(targetX, targetY);
+        playerHands[activeHandIndex].push(newCard);
+        playerScores[activeHandIndex] = calculateScore(playerHands[activeHandIndex]);
+        canDoubleDown = false;
+        canSplit = false;
+
+        // Update UI immediately
+        drawGame();
+
+        // Wait for animation to complete before moving to next hand or dealer
+        setTimeout(() => {
+            if (activeHandIndex < playerHands.length - 1) {
+                activeHandIndex++;
+                updateButtonStates();
+            } else {
+                dealerPlay();
+            }
+            drawGame();
+        }, ANIMATION_DURATION + 100);
+    }
+}
+
 function doubleDownBet() {
     if (playerMoney >= currentBet) {
+        addMoneyAnimation(
+            currentBet,
+            canvas.width - 20,
+            30,
+            canvas.width/2,
+            canvas.height/2,
+            '#ff0000'
+        );
         playerMoney -= currentBet;
         currentBet *= 2;
         saveGameState();
@@ -573,26 +613,6 @@ function stand() {
     } else {
         // All hands are done, dealer's turn
         dealerPlay();
-    }
-
-    drawGame();
-}
-
-function doubleDown() {
-    if (!gameInProgress || !canDoubleDown) return;
-
-    if (doubleDownBet()) {
-        playerHands[activeHandIndex].push(dealCard());
-        playerScores[activeHandIndex] = calculateScore(playerHands[activeHandIndex]);
-        canDoubleDown = false;
-        canSplit = false;
-
-        if (activeHandIndex < playerHands.length - 1) {
-            activeHandIndex++;
-            updateButtonStates();
-        } else {
-            dealerPlay();
-        }
     }
 
     drawGame();
