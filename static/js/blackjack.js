@@ -25,6 +25,10 @@ let flipCardIndex = -1;
 let dealerCardsToDeal = 0;
 let pendingCardReveals = [];
 
+// Money animation variables
+let moneyAnimations = [];
+const MONEY_ANIMATION_DURATION = 1000; // milliseconds
+
 // Canvas Elements
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -92,6 +96,14 @@ let gameMessage = 'Click "Deal New Hand" to start!';
 // Betting functions
 function placeBet(amount) {
     if (!gameInProgress && amount <= playerMoney) {
+        addMoneyAnimation(
+            amount,
+            canvas.width - 20,
+            30,
+            canvas.width/2,
+            canvas.height/2,
+            '#ff0000'
+        );
         currentBet = amount;
         playerMoney -= amount;
         saveGameState();
@@ -112,19 +124,47 @@ function checkGameOver() {
 }
 
 function winBet(handIndex = 0) {
-    playerMoney += currentBet * 2; // Regular win pays 1:1
+    const winAmount = currentBet * 2;
+    const handY = PLAYER_HAND_Y + (handIndex * HAND_SPACING);
+    addMoneyAnimation(
+        winAmount,
+        canvas.width/2,
+        canvas.height/2,
+        canvas.width - 20,
+        30,
+        '#00ff00'
+    );
+    playerMoney += winAmount;
     saveGameState();
     checkGameOver();
 }
 
 function blackjackWin(handIndex = 0) {
-    playerMoney += currentBet * 2.5; // Blackjack pays 3:2
+    const winAmount = currentBet * 2.5;
+    const handY = PLAYER_HAND_Y + (handIndex * HAND_SPACING);
+    addMoneyAnimation(
+        winAmount,
+        canvas.width/2,
+        canvas.height/2,
+        canvas.width - 20,
+        30,
+        '#00ff00'
+    );
+    playerMoney += winAmount;
     saveGameState();
     checkGameOver();
 }
 
 function pushBet(handIndex = 0) {
-    playerMoney += currentBet; // Push returns the bet
+    addMoneyAnimation(
+        currentBet,
+        canvas.width/2,
+        canvas.height/2,
+        canvas.width - 20,
+        30,
+        '#ffff00'
+    );
+    playerMoney += currentBet;
     saveGameState();
     checkGameOver();
 }
@@ -144,7 +184,8 @@ function splitHand() {
         const card1 = playerHands[activeHandIndex][0];
         const card2 = playerHands[activeHandIndex][1];
         
-        if (card1.rank === card2.rank) {
+        // Check if cards have the same value (allowing 10, J, Q, K to be split)
+        if (card1.value === card2.value) {
             playerMoney -= currentBet;
             playerHands[activeHandIndex] = [card1];
             playerHands.push([card2]);
@@ -197,17 +238,26 @@ function calculateScore(hand) {
     let score = 0;
     let numAces = 0;
 
+    // First pass: count aces and add up non-ace cards
     for (const card of hand) {
-        score += card.value;
         if (card.rank === 'A') {
             numAces++;
+        } else {
+            score += card.value;
         }
     }
 
-    while (score > 21 && numAces > 0) {
-        score -= 10;
-        numAces--;
+    // Second pass: add aces, trying to maximize score without busting
+    for (let i = 0; i < numAces; i++) {
+        // If adding 11 would keep us under 21, do it
+        if (score + 11 <= 21) {
+            score += 11;
+        } else {
+            // Otherwise add 1
+            score += 1;
+        }
     }
+
     return score;
 }
 
@@ -232,8 +282,8 @@ function animateCards(timestamp) {
             drawCard(card, x, DEALER_HAND_Y, progress > 0.5);
             ctx.restore();
         } else {
-            // Only show cards that have been officially dealt
-            const isCardVisible = index === 0 || (dealerSecondCardRevealed && index < dealerHand.length - dealerCardsToDeal);
+            // Only show first dealer card face up, second card stays face down until revealed
+            const isCardVisible = index === 0 || dealerSecondCardRevealed;
             drawCard(card, x, DEALER_HAND_Y, isCardVisible);
         }
     });
@@ -245,6 +295,7 @@ function animateCards(timestamp) {
         
         hand.forEach((card, index) => {
             const x = canvas.width/2 - (hand.length * (CARD_WIDTH + CARD_SPACING))/2 + index * (CARD_WIDTH + CARD_SPACING);
+            // Player cards are always face up after being dealt
             drawCard(card, x, handY, true);
         });
         
@@ -268,7 +319,7 @@ function animateCards(timestamp) {
         drawCard(card, currentX, currentY, false);
     });
     
-    // Draw other UI elements
+    // Draw UI elements
     drawUI();
     
     if (progress < 1) {
@@ -337,12 +388,19 @@ function processNextDealerAction() {
 
 function dealCardWithAnimation(targetX, targetY, isDealerCard = false, cardIndex = -1) {
     const card = dealCard();
-    animationCards.push(card);
-    animationTargets.push({ x: targetX, y: targetY });
     
-    if (!animationInProgress) {
-        animationInProgress = true;
-        requestAnimationFrame(animateCards);
+    // Only add to animation if we're not in the middle of a game
+    if (!gameInProgress || animationCards.length > 0) {
+        animationCards.push(card);
+        animationTargets.push({ x: targetX, y: targetY });
+        
+        if (!animationInProgress) {
+            animationInProgress = true;
+            requestAnimationFrame(animateCards);
+        }
+    } else {
+        // If we're in the middle of a game, just place the card directly
+        drawCard(card, targetX, targetY, !isDealerCard || cardIndex === 0);
     }
     
     // If this is a dealer card, add it to pending reveals
@@ -377,21 +435,30 @@ function newGame() {
     gameMessage = 'Dealing cards...';
 
     // Deal initial cards with animation
+    // First card to player
     const playerCard1 = dealCardWithAnimation(
         canvas.width/2 - CARD_WIDTH - CARD_SPACING/2,
         PLAYER_HAND_Y
     );
+    
+    // First card to dealer
     const dealerCard1 = dealCardWithAnimation(
         canvas.width/2 - CARD_WIDTH - CARD_SPACING/2,
         DEALER_HAND_Y
     );
+    
+    // Second card to player
     const playerCard2 = dealCardWithAnimation(
         canvas.width/2 + CARD_SPACING/2,
         PLAYER_HAND_Y
     );
+    
+    // Second card to dealer (face down)
     const dealerCard2 = dealCardWithAnimation(
         canvas.width/2 + CARD_SPACING/2,
-        DEALER_HAND_Y
+        DEALER_HAND_Y,
+        true,
+        1
     );
 
     playerHands[0] = [playerCard1, playerCard2];
@@ -423,11 +490,15 @@ function hit() {
                    playerHands[activeHandIndex].length * (CARD_WIDTH + CARD_SPACING);
     const targetY = PLAYER_HAND_Y + (activeHandIndex * HAND_SPACING);
     
+    // Deal new card face down, then flip it
     const newCard = dealCardWithAnimation(targetX, targetY);
     playerHands[activeHandIndex].push(newCard);
     playerScores[activeHandIndex] = calculateScore(playerHands[activeHandIndex]);
     canDoubleDown = false;
     canSplit = false;
+
+    // Update UI immediately after hit
+    drawGame();
 
     if (playerScores[activeHandIndex] > 21) {
         if (activeHandIndex < playerHands.length - 1) {
@@ -532,10 +603,10 @@ function updateButtonStates() {
                                currentScore >= 21 ||
                                playerMoney < currentBet;
     
-    // Split only available on first two cards of same rank and when you have enough money
+    // Split available on first two cards of equal value and when you have enough money
     splitButton.disabled = !gameInProgress || !canSplit || 
                           currentHand.length !== 2 || 
-                          currentHand[0].rank !== currentHand[1].rank ||
+                          currentHand[0].value !== currentHand[1].value ||
                           playerMoney < currentBet;
 }
 
@@ -555,9 +626,9 @@ function drawCard(card, x, y, faceUp = true) {
         // Set text color based on suit
         ctx.fillStyle = ['Hearts', 'Diamonds'].includes(card.suit) ? '#f00' : '#000';
         
-        // Draw rank and suit
+        // Draw rank and suit with adjusted position
         ctx.font = 'bold 20px Arial';
-        ctx.fillText(card.rank, x + 5, y + 25);
+        ctx.fillText(card.rank, x + 9, y + 25); // Added 4px to x position
         
         // Draw suit symbol
         const suitSymbol = {
@@ -629,11 +700,12 @@ function drawGame() {
             drawCard(card, x, handY, true);
         });
         
-        // Draw score
+        // Draw score with updated position
         ctx.fillStyle = isActiveHand ? '#FFD700' : '#fff';
         ctx.font = 'bold 20px Arial';
         ctx.textAlign = 'left';
-        ctx.fillText(`Hand ${handIndex + 1}: ${playerScores[handIndex]}`, 20, handY - 20);
+        const scoreText = `Hand ${handIndex + 1}: ${playerScores[handIndex]}`;
+        ctx.fillText(scoreText, 20, handY - 20);
     });
     
     // Draw UI elements
@@ -725,4 +797,54 @@ function resetGame() {
     
     // Update UI
     drawGame();
+}
+
+function animateMoney(timestamp) {
+    if (!animationStartTime) animationStartTime = timestamp;
+    const progress = Math.min((timestamp - animationStartTime) / MONEY_ANIMATION_DURATION, 1);
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw the game state
+    drawGame();
+    
+    // Draw money animations
+    moneyAnimations.forEach((anim, index) => {
+        const currentX = anim.startX + (anim.endX - anim.startX) * progress;
+        const currentY = anim.startY + (anim.endY - anim.startY) * progress;
+        
+        // Draw money denomination
+        ctx.save();
+        ctx.fillStyle = anim.color;
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(anim.amount, currentX, currentY);
+        ctx.restore();
+    });
+    
+    if (progress < 1) {
+        requestAnimationFrame(animateMoney);
+    } else {
+        animationStartTime = 0;
+        moneyAnimations = [];
+        drawGame();
+    }
+}
+
+function addMoneyAnimation(amount, startX, startY, endX, endY, color = '#00ff00') {
+    moneyAnimations.push({
+        amount: `$${amount}`,
+        startX,
+        startY,
+        endX,
+        endY,
+        color
+    });
+    
+    if (!animationInProgress) {
+        animationInProgress = true;
+        animationStartTime = 0;
+        requestAnimationFrame(animateMoney);
+    }
 } 
