@@ -136,6 +136,20 @@
       <description>My oldest website</description>
     </item>
     <item>
+      <title>AI Chatbot Experiment</title>
+      <link>http://localhost:1313/miscellaneous/ai/chatbot-experiment/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/miscellaneous/ai/chatbot-experiment/</guid>
+      <description>Building and testing a conversational AI system</description>
+    </item>
+    <item>
+      <title>Neural Network Image Recognition Project</title>
+      <link>http://localhost:1313/miscellaneous/ai/neural-network-project/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/miscellaneous/ai/neural-network-project/</guid>
+      <description>Exploring computer vision with custom neural networks</description>
+    </item>
+    <item>
       <title>Free Time Calculator in Java</title>
       <link>http://localhost:1313/projects/2022/freetime-calc/</link>
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
