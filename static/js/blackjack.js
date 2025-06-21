@@ -41,14 +41,21 @@ const standButton = document.getElementById('stand-btn');
 const doubleDownButton = document.getElementById('double-down-btn');
 const splitButton = document.getElementById('split-btn');
 
-// Add verification key generation function
-function generateVerificationKey() {
-    const characters = '0123456789abcdef';
-    let key = '';
-    for (let i = 0; i < 64; i++) {
-        key += characters.charAt(Math.floor(Math.random() * characters.length));
+// Add hash-based verification key generation function
+function generateVerificationKey(score) {
+    // Simple hash function - you could make this more complex
+    const data = `blackjack-score-${score}-${Date.now()}`;
+    let hash = 0;
+    for (let i = 0; i < data.length; i++) {
+        const char = data.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32-bit integer
     }
-    return key;
+    // Convert to hex and pad to 64 characters
+    return Math.abs(hash).toString(16).padStart(16, '0') + 
+           Date.now().toString(16).padStart(16, '0') +
+           score.toString(16).padStart(16, '0') +
+           '0000000000000000'.substring(0, 16);
 }
 
 // Create and show the high score modal
@@ -220,8 +227,12 @@ const storage = {
     },
 
     async notifyAllTimeHighScore(score) {
+        console.log('High score triggered with score:', score);
+        console.log('Current playerMoney:', playerMoney);
+        console.log('Current allTimeHighScore:', allTimeHighScore);
+        
         // Generate verification key
-        const verificationKey = generateVerificationKey();
+        const verificationKey = generateVerificationKey(score);
         showHighScoreModal(score, verificationKey);
     }
 };
