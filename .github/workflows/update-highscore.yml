@@ -1,0 +1,29 @@
+name: Update Blackjack High Score
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [update-highscore]
+
+jobs:
+  update-highscore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Update high score
+        run: |
+          node .github/scripts/updateHighScore.js "${{ github.event.client_payload.username }}" "${{ github.event.client_payload.score }}"
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add static/data/blackjack_highscore.json
+          git diff --cached --quiet || git commit -m "Update blackjack high score"
+          git push 
