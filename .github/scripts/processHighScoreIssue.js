@@ -11,12 +11,22 @@ if (!issueBody || !issueNumber) {
 
 // Parse the issue body to extract information
 function parseIssueBody(body) {
-  const usernameMatch = body.match(/\*\*Username:\*\* (.+)/);
-  const scoreMatch = body.match(/\*\*Score:\*\* \$(\d+)/);
-  const keyMatch = body.match(/\*\*Verification Key:\*\* ([a-f0-9]{64})/);
+  console.log('Parsing issue body:', body);
+  
+  // More flexible regex patterns that handle different line endings and spacing
+  const usernameMatch = body.match(/\*\*Username:\*\*\s*(.+?)(?:\n|$)/);
+  const scoreMatch = body.match(/\*\*Score:\*\*\s*\$(\d+)/);
+  const keyMatch = body.match(/\*\*Verification Key:\*\*\s*([a-f0-9]{64})/);
+  
+  console.log('Username match:', usernameMatch);
+  console.log('Score match:', scoreMatch);
+  console.log('Key match:', keyMatch);
   
   if (!usernameMatch || !scoreMatch || !keyMatch) {
     console.error('Invalid issue format - missing required fields');
+    console.error('Username found:', !!usernameMatch);
+    console.error('Score found:', !!scoreMatch);
+    console.error('Key found:', !!keyMatch);
     return null;
   }
   
