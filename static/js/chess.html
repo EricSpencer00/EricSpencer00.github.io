@@ -127,10 +127,6 @@ let validMoves = [];
 let gameHistory = [];
 let isGameOver = false;
 let enPassantTarget = null; // Track en passant target square
-let castlingRights = {
-    white: { kingside: true, queenside: true },
-    black: { kingside: true, queenside: true }
-};
 function isWhitePiece(piece) {
     return piece && '♔♕♖♗♘♙'.includes(piece);
 }
@@ -155,10 +151,6 @@ function initializeBoard() {
     gameHistory = [];
     isGameOver = false;
     enPassantTarget = null;
-    castlingRights = {
-        white: { kingside: true, queenside: true },
-        black: { kingside: true, queenside: true }
-    };
     updateStatus("White's turn to move.");
     renderBoard();
 }
@@ -268,49 +260,6 @@ function makeMove(fromRow, fromCol, toRow, toCol, promotionPiece = null) {
     } else {
         boardState[toRow][toCol] = boardState[fromRow][fromCol];
         boardState[fromRow][fromCol] = null;
-    }
-    
-    // Handle castling
-    if (piece === '♔' && Math.abs(fromCol - toCol) === 2) {
-        if (toCol > fromCol) { // Kingside
-            boardState[fromRow][fromCol + 1] = boardState[fromRow][7];
-            boardState[fromRow][7] = null;
-        } else { // Queenside
-            boardState[fromRow][fromCol - 1] = boardState[fromRow][0];
-            boardState[fromRow][0] = null;
-        }
-        // Remove castling rights for this player
-        castlingRights[currentPlayer].kingside = false;
-        castlingRights[currentPlayer].queenside = false;
-    }
-    if (piece === '♚' && Math.abs(fromCol - toCol) === 2) {
-        if (toCol > fromCol) { // Kingside
-            boardState[fromRow][fromCol + 1] = boardState[fromRow][7];
-            boardState[fromRow][7] = null;
-        } else { // Queenside
-            boardState[fromRow][fromCol - 1] = boardState[fromRow][0];
-            boardState[fromRow][0] = null;
-        }
-        // Remove castling rights for this player
-        castlingRights[currentPlayer].kingside = false;
-        castlingRights[currentPlayer].queenside = false;
-    }
-    
-    // Update castling rights when king or rooks move
-    if (piece === '♔') {
-        castlingRights[currentPlayer].kingside = false;
-        castlingRights[currentPlayer].queenside = false;
-    } else if (piece === '♚') {
-        castlingRights[currentPlayer].kingside = false;
-        castlingRights[currentPlayer].queenside = false;
-    } else if (piece === '♖' && fromCol === 7) {
-        castlingRights[currentPlayer].kingside = false;
-    } else if (piece === '♖' && fromCol === 0) {
-        castlingRights[currentPlayer].queenside = false;
-    } else if (piece === '♜' && fromCol === 7) {
-        castlingRights[currentPlayer].kingside = false;
-    } else if (piece === '♜' && fromCol === 0) {
-        castlingRights[currentPlayer].queenside = false;
     }
     
     // Set en passant target for pawn moves
@@ -462,23 +411,6 @@ function getValidMovesForPiece(row, col, board, checkKingSafety) {
                     }
                 }
             });
-            if (checkKingSafety) {
-                 const kingMoved = gameHistory.some(m => m.piece === piece);
-                 if (!kingMoved && !isKingInCheck(player, board)) {
-                     // Kingside castling
-                     if (castlingRights[player].kingside && !board[row][5] && !board[row][6]) {
-                         if (!isSquareAttacked(row, 5, player, board) && !isSquareAttacked(row, 6, player, board)) {
-                             moves.push({row, col: 6, castling: 'kingside'});
-                         }
-                     }
-                     // Queenside castling
-                     if (castlingRights[player].queenside && !board[row][1] && !board[row][2] && !board[row][3]) {
-                         if (!isSquareAttacked(row, 2, player, board) && !isSquareAttacked(row, 3, player, board)) {
-                             moves.push({row, col: 2, castling: 'queenside'});
-                         }
-                     }
-                 }
-            }
             break;
     }
     
@@ -488,7 +420,8 @@ function getValidMovesForPiece(row, col, board, checkKingSafety) {
             const tempBoard = JSON.parse(JSON.stringify(board));
             tempBoard[move.row][move.col] = tempBoard[row][col];
             tempBoard[row][col] = null;
-            return !isKingInCheck(player, tempBoard);
+            const leavesKingInCheck = isKingInCheck(player, tempBoard);
+            return !leavesKingInCheck;
         });
         return filteredMoves;
     }
@@ -748,8 +681,7 @@ function getAllMoves(player, board) {
                         from: { row: r, col: c }, 
                         to, 
                         piece,
-                        enPassant: to.enPassant,
-                        castling: to.castling
+                        enPassant: to.enPassant
                     };
                     
                     // Score moves for ordering (captures first, then other moves)
@@ -761,8 +693,6 @@ function getAllMoves(player, board) {
                         score = capturedValue * 10 - movingValue; // MVV-LVA ordering
                     } else if (to.enPassant) {
                         score = 50; // En passant is good
-                    } else if (to.castling) {
-                        score = 30; // Castling is good
                     } else {
                         // Regular move - bonus for center control
                         if (to.row >= 2 && to.row <= 5 && to.col >= 2 && to.col <= 5) {
@@ -802,31 +732,23 @@ function makeAIMove() {
             const capturedPawnCol = bestMove.to.col;
             boardState[capturedPawnRow][capturedPawnCol] = null;
         }
-        if (bestMove.castling) {
-            if (bestMove.castling === 'kingside') {
-                boardState[bestMove.from.row][bestMove.from.col + 1] = boardState[bestMove.from.row][7];
-                boardState[bestMove.from.row][7] = null;
-            } else { // queenside
-                boardState[bestMove.from.row][bestMove.from.col - 1] = boardState[bestMove.from.row][0];
-                boardState[bestMove.from.row][0] = null;
-            }
-            // Remove castling rights for AI
-            castlingRights['black'].kingside = false;
-            castlingRights['black'].queenside = false;
-        }
-        
-        // Update castling rights for AI moves
-        if (bestMove.piece === '♚') {
-            castlingRights['black'].kingside = false;
-            castlingRights['black'].queenside = false;
-        } else if (bestMove.piece === '♜' && bestMove.from.col === 7) {
-            castlingRights['black'].kingside = false;
-        } else if (bestMove.piece === '♜' && bestMove.from.col === 0) {
-            castlingRights['black'].queenside = false;
-        }
         
         makeMove(bestMove.from.row, bestMove.from.col, bestMove.to.row, bestMove.to.col);
     }
+}
+function printBoard(board) {
+    console.log('Current board state:');
+    for (let r = 0; r < 8; r++) {
+        let rowStr = '';
+        for (let c = 0; c < 8; c++) {
+            const piece = board[r][c];
+            rowStr += piece || '.';
+        }
+        console.log(`Row ${r}: ${rowStr}`);
+    }
+    console.log('Coordinate system: rows 0-7 (top to bottom), cols 0-7 (left to right)');
+    console.log('White king should be at row 7, col 4 (e1)');
+    console.log('Black king should be at row 0, col 4 (e8)');
 }
 newGameBtn.addEventListener('click', initializeBoard);
 window.onload = initializeBoard;
