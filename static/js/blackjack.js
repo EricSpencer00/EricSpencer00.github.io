@@ -51,6 +51,143 @@ function generateVerificationKey() {
     return key;
 }
 
+// Create and show the high score modal
+function showHighScoreModal(score, verificationKey) {
+    // Remove existing modal if present
+    const existing = document.getElementById('highscore-modal');
+    if (existing) existing.remove();
+
+    // Create modal elements
+    const modal = document.createElement('div');
+    modal.id = 'highscore-modal';
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.background = 'rgba(0,0,0,0.7)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = '9999';
+
+    const box = document.createElement('div');
+    box.style.background = '#fff';
+    box.style.padding = '2rem';
+    box.style.borderRadius = '12px';
+    box.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
+    box.style.maxWidth = '400px';
+    box.style.width = '100%';
+    box.style.textAlign = 'center';
+
+    const title = document.createElement('h2');
+    title.textContent = '🎉 New All-Time High Score!';
+    title.style.marginBottom = '1rem';
+    box.appendChild(title);
+
+    const scoreText = document.createElement('div');
+    scoreText.textContent = `Score: $${score}`;
+    scoreText.style.fontWeight = 'bold';
+    scoreText.style.marginBottom = '1rem';
+    box.appendChild(scoreText);
+
+    const label = document.createElement('label');
+    label.textContent = 'Enter your username (3-16 letters, numbers, or _):';
+    label.style.display = 'block';
+    label.style.marginBottom = '0.5rem';
+    label.style.textAlign = 'left';
+    box.appendChild(label);
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.maxLength = 16;
+    input.style.width = '100%';
+    input.style.padding = '0.5rem';
+    input.style.marginBottom = '1rem';
+    input.style.border = '1px solid #ccc';
+    input.style.borderRadius = '6px';
+    input.placeholder = 'Your username';
+    box.appendChild(input);
+
+    const keyLabel = document.createElement('div');
+    keyLabel.textContent = 'Verification Key:';
+    keyLabel.style.fontWeight = 'bold';
+    keyLabel.style.marginBottom = '0.25rem';
+    keyLabel.style.textAlign = 'left';
+    box.appendChild(keyLabel);
+
+    const keyBox = document.createElement('div');
+    keyBox.textContent = verificationKey;
+    keyBox.style.fontFamily = 'monospace';
+    keyBox.style.background = '#f4f4f4';
+    keyBox.style.padding = '0.5rem';
+    keyBox.style.borderRadius = '6px';
+    keyBox.style.marginBottom = '1rem';
+    keyBox.style.wordBreak = 'break-all';
+    box.appendChild(keyBox);
+
+    const errorMsg = document.createElement('div');
+    errorMsg.style.color = 'red';
+    errorMsg.style.marginBottom = '1rem';
+    errorMsg.style.display = 'none';
+    box.appendChild(errorMsg);
+
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = 'Submit High Score';
+    submitBtn.style.background = '#2563eb';
+    submitBtn.style.color = '#fff';
+    submitBtn.style.padding = '0.75rem 1.5rem';
+    submitBtn.style.border = 'none';
+    submitBtn.style.borderRadius = '6px';
+    submitBtn.style.fontWeight = 'bold';
+    submitBtn.style.cursor = 'pointer';
+    submitBtn.style.fontSize = '1rem';
+    submitBtn.style.marginBottom = '0.5rem';
+    box.appendChild(submitBtn);
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.style.background = '#eee';
+    cancelBtn.style.color = '#333';
+    cancelBtn.style.padding = '0.5rem 1rem';
+    cancelBtn.style.border = 'none';
+    cancelBtn.style.borderRadius = '6px';
+    cancelBtn.style.marginLeft = '1rem';
+    cancelBtn.style.cursor = 'pointer';
+    box.appendChild(cancelBtn);
+
+    modal.appendChild(box);
+    document.body.appendChild(modal);
+
+    cancelBtn.onclick = () => {
+        modal.remove();
+    };
+
+    submitBtn.onclick = () => {
+        const username = input.value.replace(/[^a-zA-Z0-9_]/g, '').substring(0, 16);
+        if (username.length < 3) {
+            errorMsg.textContent = 'Username must be at least 3 characters and contain only letters, numbers, and underscores.';
+            errorMsg.style.display = 'block';
+            return;
+        }
+        errorMsg.style.display = 'none';
+        // Prefill GitHub issue
+        const issueTitle = encodeURIComponent('New Blackjack High Score Submission');
+        const issueBody = encodeURIComponent(
+            `## New Blackjack High Score\n\n` +
+            `**Username:** ${username}\n` +
+            `**Score:** $${score}\n` +
+            `**Verification Key:** ${verificationKey}\n\n` +
+            `---\n` +
+            `This issue will be automatically processed and merged if the verification key is valid.`
+        );
+        const issueUrl = `https://github.com/EricSpencer00/EricSpencer00.github.io/issues/new?title=${issueTitle}&body=${issueBody}`;
+        window.open(issueUrl, '_blank');
+        modal.remove();
+        alert('High score submission page opened! Please submit the issue to complete your high score submission.');
+    };
+}
+
 // Storage interface
 const storage = {
     async loadHighScore() {
@@ -83,41 +220,9 @@ const storage = {
     },
 
     async notifyAllTimeHighScore(score) {
-        // Prompt user for username
-        const username = prompt(`New All-Time High Score of $${score}! Enter your username:`);
-        if (!username) return;
-        
-        // Sanitize username: only allow alphanumeric and underscores, 3-16 chars
-        const sanitizedUsername = username.replace(/[^a-zA-Z0-9_]/g, '').substring(0, 16);
-        if (sanitizedUsername.length < 3) {
-            alert("Username must be at least 3 characters and contain only letters, numbers, and underscores.");
-            return;
-        }
-        
         // Generate verification key
         const verificationKey = generateVerificationKey();
-        
-        // Show verification key to user
-        const keyMessage = `VERIFICATION KEY: ${verificationKey}\n\nPlease copy this key and create a GitHub issue to submit your high score.`;
-        alert(keyMessage);
-        
-        // Create GitHub issue URL with prefilled description
-        const issueTitle = encodeURIComponent('New Blackjack High Score Submission');
-        const issueBody = encodeURIComponent(
-            `## New Blackjack High Score\n\n` +
-            `**Username:** ${sanitizedUsername}\n` +
-            `**Score:** $${score}\n` +
-            `**Verification Key:** ${verificationKey}\n\n` +
-            `---\n` +
-            `This issue will be automatically processed and merged if the verification key is valid.`
-        );
-        
-        const issueUrl = `https://github.com/EricSpencer00/EricSpencer00.github.io/issues/new?title=${issueTitle}&body=${issueBody}`;
-        
-        // Open GitHub issue creation page
-        window.open(issueUrl, '_blank');
-        
-        alert(`High score submission page opened! Please submit the issue to complete your high score submission.`);
+        showHighScoreModal(score, verificationKey);
     }
 };
 
