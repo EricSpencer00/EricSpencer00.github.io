@@ -51,11 +51,13 @@ function generateVerificationKey(score) {
         hash = ((hash << 5) - hash) + char;
         hash = hash & hash; // Convert to 32-bit integer
     }
-    // Convert to hex and pad to 64 characters
-    return Math.abs(hash).toString(16).padStart(16, '0') + 
-           Date.now().toString(16).padStart(16, '0') +
-           score.toString(16).padStart(16, '0') +
-           '0000000000000000'.substring(0, 16);
+    
+    const hashPart = Math.abs(hash).toString(16).padStart(16, '0');
+    const timestampPart = Date.now().toString(16).padStart(16, '0');
+    const scorePart = score.toString(16).padStart(16, '0');
+    const paddingPart = '0000000000000000'.substring(0, 16);
+    
+    return hashPart + timestampPart + scorePart + paddingPart;
 }
 
 // Create and show the high score modal
@@ -255,7 +257,7 @@ async function saveGameState() {
         // Check for all-time high score
         if (playerMoney > allTimeHighScore) {
             allTimeHighScore = playerMoney;
-            await storage.notifyAllTimeHighScore(allTimeHighScore);
+            await storage.notifyAllTimeHighScore(playerMoney); // Pass playerMoney, not allTimeHighScore
         }
     }
     drawGame();

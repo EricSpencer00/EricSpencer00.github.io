@@ -49,9 +49,6 @@ function validateVerificationKey(key, expectedScore) {
     const scoreHex = key.substring(32, 48);
     const extractedScore = parseInt(scoreHex, 16);
     
-    console.log('Extracted score from hash:', extractedScore);
-    console.log('Expected score:', expectedScore);
-    
     // Verify the extracted score matches the expected score
     return extractedScore === expectedScore;
   } catch (error) {
