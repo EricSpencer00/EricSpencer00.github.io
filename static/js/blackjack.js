@@ -94,34 +94,30 @@ const storage = {
             return;
         }
         
-        // Submit high score to GitHub Actions workflow
-        try {
-            const response = await fetch('https://api.github.com/repos/EricSpencer00/EricSpencer00.github.io/dispatches', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Authorization': 'token ' + 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // This should be a GitHub token with repo scope
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    event_type: 'update-highscore',
-                    client_payload: {
-                        username: sanitizedUsername,
-                        score: score
-                    }
-                })
-            });
-            
-            if (response.ok) {
-                alert(`High score submitted successfully! Username: ${sanitizedUsername}, Score: $${score}`);
-            } else {
-                console.error('Failed to submit high score:', response.statusText);
-                alert('Failed to submit high score. Please try again later.');
-            }
-        } catch (error) {
-            console.error('Error submitting high score:', error);
-            alert('Error submitting high score. Please try again later.');
-        }
+        // Generate verification key
+        const verificationKey = generateVerificationKey();
+        
+        // Show verification key to user
+        const keyMessage = `VERIFICATION KEY: ${verificationKey}\n\nPlease copy this key and create a GitHub issue to submit your high score.`;
+        alert(keyMessage);
+        
+        // Create GitHub issue URL with prefilled description
+        const issueTitle = encodeURIComponent('New Blackjack High Score Submission');
+        const issueBody = encodeURIComponent(
+            `## New Blackjack High Score\n\n` +
+            `**Username:** ${sanitizedUsername}\n` +
+            `**Score:** $${score}\n` +
+            `**Verification Key:** ${verificationKey}\n\n` +
+            `---\n` +
+            `This issue will be automatically processed and merged if the verification key is valid.`
+        );
+        
+        const issueUrl = `https://github.com/EricSpencer00/EricSpencer00.github.io/issues/new?title=${issueTitle}&body=${issueBody}`;
+        
+        // Open GitHub issue creation page
+        window.open(issueUrl, '_blank');
+        
+        alert(`High score submission page opened! Please submit the issue to complete your high score submission.`);
     }
 };
 
