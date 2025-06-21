@@ -6,8 +6,15 @@
     <description>Recent content on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chess Game</title>
+      <link>http://localhost:1313/miscellaneous/chess/</link>
+      <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/miscellaneous/chess/</guid>
+      <description>Interactive chess game with AI opponent</description>
+    </item>
     <item>
       <title>BlackJack Game</title>
       <link>http://localhost:1313/miscellaneous/blackjack/</link>
