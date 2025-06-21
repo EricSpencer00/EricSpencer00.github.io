@@ -128,7 +128,6 @@ function isBlackPiece(piece) {
     return piece && '♚♛♜♝♞♟'.includes(piece);
 }
 function initializeBoard() {
-    console.log('Initializing board...');
     boardState = [
         ['♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜'],
         ['♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟'],
@@ -148,7 +147,6 @@ function initializeBoard() {
     enPassantTarget = null;
     updateStatus("White's turn to move.");
     renderBoard();
-    console.log('Board initialized, current player:', currentPlayer);
 }
 function renderBoard() {
     boardElement.innerHTML = '';
@@ -597,11 +595,7 @@ function evaluateBoard(board) {
         }
     }
     
-    // Mobility bonus - encourage more moves
-    const whiteMoves = getAllMoves('white', board).length;
-    const blackMoves = getAllMoves('black', board).length;
-    score += (whiteMoves - blackMoves) * 2;
-    
+    // Removed mobility calculation for performance
     // King safety - but not too much to encourage aggressive play
     const whiteKingPos = findKing('white', board);
     const blackKingPos = findKing('black', board);
@@ -710,15 +704,6 @@ function getAllMoves(player, board) {
                         // Regular move - bonus for center control
                         if (to.row >= 2 && to.row <= 5 && to.col >= 2 && to.col <= 5) {
                             score = 5;
-                        }
-                        
-                        // Bonus for moves that attack opponent's king area
-                        const opponentKing = findKing(player === 'white' ? 'black' : 'white', board);
-                        if (opponentKing) {
-                            const distanceToKing = Math.abs(to.row - opponentKing.row) + Math.abs(to.col - opponentKing.col);
-                            if (distanceToKing <= 2) {
-                                score += 10; // Bonus for attacking near the king
-                            }
                         }
                     }
                     
