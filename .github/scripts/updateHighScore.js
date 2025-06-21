@@ -26,6 +26,17 @@ if (fs.existsSync(filePath)) {
 if (score > data.score) {
   data = { username, score, lastUpdated: new Date().toISOString().slice(0, 10) };
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  
+  // Also update badge JSON for shields.io
+  const badgePath = path.join(__dirname, '../../static/data/blackjack_highscore_badge.json');
+  const badgeJson = {
+    schemaVersion: 1,
+    label: "Blackjack High Score",
+    message: `${data.score} by ${data.username}`,
+    color: "blue"
+  };
+  fs.writeFileSync(badgePath, JSON.stringify(badgeJson, null, 2));
+  
   console.log('High score updated!');
 } else {
   console.log('Score not high enough to update.');

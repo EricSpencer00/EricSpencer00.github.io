@@ -6,7 +6,7 @@
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue?logo=github)](https://ericspencer00.github.io)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/ericspencer00/ericspencer00.github.io)](https://github.com/ericspencer00/ericspencer00.github.io/commits/main)
-[![Blackjack High Score](https://img.shields.io/badge/Blackjack%20High%20Score-%242500-green)](https://ericspencer00.github.io/miscellaneous/blackjack)
+[![Blackjack High Score](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/EricSpencer00/EricSpencer00.github.io/main/static/data/blackjack_highscore_badge.json)](https://ericspencer00.github.io/miscellaneous/blackjack)
 
 My Portfolio Website, self explanitory.
 

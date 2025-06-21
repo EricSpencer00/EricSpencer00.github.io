@@ -75,31 +75,53 @@ const storage = {
         try {
             const response = await fetch('https://raw.githubusercontent.com/EricSpencer00/EricSpencer00.github.io/main/static/data/blackjack_highscore.json');
             const data = await response.json();
-            return data.highScore || 3500; // Default to 3500 if file doesn't exist
+            return data.score || 0; // Updated to use new structure
         } catch (error) {
             console.error('Error loading all-time high score:', error);
-            return 3500; // Default to 3500 if there's an error
+            return 0; // Default to 0 if there's an error
         }
     },
 
     async notifyAllTimeHighScore(score) {
-        // Generate verification key
-        const verificationKey = generateVerificationKey();
+        // Prompt user for username
+        const username = prompt(`New All-Time High Score of $${score}! Enter your username:`);
+        if (!username) return;
         
-        // Create a mailto link with the high score information and verification key
-        const subject = encodeURIComponent('New Blackjack All-Time High Score!');
-        const body = encodeURIComponent(
-            `A new all-time high score of $${score} has been achieved in the Blackjack game!\n\n` +
-            `BEGIN VERIFICATION KEY --- ${verificationKey} --- END VERIFICATION KEY\n\n` +
-            `This verification key is cryptographically signed and stored in our secure database. ` +
-            `It can be used to verify the authenticity of this score. Any attempt to submit a fake score ` +
-            `will be detected and may result in permanent ban from the leaderboard.\n\n` +
-            `Please update the high score in static/data/blackjack_highscore.json to: ${score}`
-        );
-        const mailtoLink = `mailto:ericspencer00@gmail.com?subject=${subject}&body=${body}`;
+        // Sanitize username: only allow alphanumeric and underscores, 3-16 chars
+        const sanitizedUsername = username.replace(/[^a-zA-Z0-9_]/g, '').substring(0, 16);
+        if (sanitizedUsername.length < 3) {
+            alert("Username must be at least 3 characters and contain only letters, numbers, and underscores.");
+            return;
+        }
         
-        // Open the email client
-        window.open(mailtoLink);
+        // Submit high score to GitHub Actions workflow
+        try {
+            const response = await fetch('https://api.github.com/repos/EricSpencer00/EricSpencer00.github.io/dispatches', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Authorization': 'token ' + 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // This should be a GitHub token with repo scope
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    event_type: 'update-highscore',
+                    client_payload: {
+                        username: sanitizedUsername,
+                        score: score
+                    }
+                })
+            });
+            
+            if (response.ok) {
+                alert(`High score submitted successfully! Username: ${sanitizedUsername}, Score: $${score}`);
+            } else {
+                console.error('Failed to submit high score:', response.statusText);
+                alert('Failed to submit high score. Please try again later.');
+            }
+        } catch (error) {
+            console.error('Error submitting high score:', error);
+            alert('Error submitting high score. Please try again later.');
+        }
     }
 };
 
