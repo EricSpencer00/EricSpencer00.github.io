@@ -259,10 +259,13 @@ async function saveGameState() {
         highScore = playerMoney;
         await storage.saveHighScore(highScore);
         
+        // Ensure allTimeHighScore is up to date before checking
+        const currentAllTimeHighScore = await storage.loadAllTimeHighScore();
+        
         // Check for all-time high score
-        if (playerMoney > allTimeHighScore) {
+        if (playerMoney > currentAllTimeHighScore) {
             allTimeHighScore = playerMoney;
-            await storage.notifyAllTimeHighScore(playerMoney); // Pass playerMoney, not allTimeHighScore
+            await storage.notifyAllTimeHighScore(playerMoney);
         }
     }
     drawGame();
