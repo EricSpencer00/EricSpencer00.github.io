@@ -37,10 +37,27 @@ function parseIssueBody(body) {
   };
 }
 
-// Validate verification key (simple format check for now)
-function validateVerificationKey(key) {
+// Validate verification key by extracting score from hash
+function validateVerificationKey(key, expectedScore) {
   // Check if it's a 64-character hex string
-  return /^[a-f0-9]{64}$/.test(key);
+  if (!/^[a-f0-9]{64}$/.test(key)) {
+    return false;
+  }
+  
+  try {
+    // Extract score from the hash (positions 32-48)
+    const scoreHex = key.substring(32, 48);
+    const extractedScore = parseInt(scoreHex, 16);
+    
+    console.log('Extracted score from hash:', extractedScore);
+    console.log('Expected score:', expectedScore);
+    
+    // Verify the extracted score matches the expected score
+    return extractedScore === expectedScore;
+  } catch (error) {
+    console.error('Error extracting score from hash:', error);
+    return false;
+  }
 }
 
 // Validate username
@@ -79,7 +96,7 @@ function processHighScoreSubmission() {
     process.exit(1);
   }
   
-  if (!validateVerificationKey(submission.verificationKey)) {
+  if (!validateVerificationKey(submission.verificationKey, submission.score)) {
     console.error('Invalid verification key format');
     process.exit(1);
   }
