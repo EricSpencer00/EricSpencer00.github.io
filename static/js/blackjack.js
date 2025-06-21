@@ -62,6 +62,10 @@ function generateVerificationKey(score) {
 
 // Create and show the high score modal
 function showHighScoreModal(score, verificationKey) {
+    // Capture parameters to prevent any race conditions
+    const capturedScore = score;
+    const capturedKey = verificationKey;
+    
     // Remove existing modal if present
     const existing = document.getElementById('highscore-modal');
     if (existing) existing.remove();
@@ -95,7 +99,7 @@ function showHighScoreModal(score, verificationKey) {
     box.appendChild(title);
 
     const scoreText = document.createElement('div');
-    scoreText.textContent = `Score: $${score}`;
+    scoreText.textContent = `Score: $${capturedScore}`;
     scoreText.style.fontWeight = 'bold';
     scoreText.style.marginBottom = '1rem';
     box.appendChild(scoreText);
@@ -126,7 +130,7 @@ function showHighScoreModal(score, verificationKey) {
     box.appendChild(keyLabel);
 
     const keyBox = document.createElement('div');
-    keyBox.textContent = verificationKey;
+    keyBox.textContent = capturedKey;
     keyBox.style.fontFamily = 'monospace';
     keyBox.style.background = '#f4f4f4';
     keyBox.style.padding = '0.5rem';
@@ -180,16 +184,18 @@ function showHighScoreModal(score, verificationKey) {
             return;
         }
         errorMsg.style.display = 'none';
+        
         // Prefill GitHub issue
         const issueTitle = encodeURIComponent('New Blackjack High Score Submission');
         const issueBody = encodeURIComponent(
             `## New Blackjack High Score\n\n` +
             `**Username:** ${username}\n` +
-            `**Score:** $${score}\n` +
-            `**Verification Key:** ${verificationKey}\n\n` +
+            `**Score:** $${capturedScore}\n` +
+            `**Verification Key:** ${capturedKey}\n\n` +
             `---\n` +
             `This issue will be automatically processed and merged if the verification key is valid.`
         );
+        
         const issueUrl = `https://github.com/EricSpencer00/EricSpencer00.github.io/issues/new?title=${issueTitle}&body=${issueBody}`;
         window.open(issueUrl, '_blank');
         modal.remove();
@@ -229,13 +235,12 @@ const storage = {
     },
 
     async notifyAllTimeHighScore(score) {
-        console.log('High score triggered with score:', score);
-        console.log('Current playerMoney:', playerMoney);
-        console.log('Current allTimeHighScore:', allTimeHighScore);
+        // Capture the score immediately to prevent any race conditions
+        const capturedScore = score;
         
         // Generate verification key
-        const verificationKey = generateVerificationKey(score);
-        showHighScoreModal(score, verificationKey);
+        const verificationKey = generateVerificationKey(capturedScore);
+        showHighScoreModal(capturedScore, verificationKey);
     }
 };
 
