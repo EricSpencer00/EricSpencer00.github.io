@@ -85,6 +85,12 @@
         <div id="game-info" class="text-center mb-4 p-3 rounded-lg bg-white shadow-md">
             <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Chess Game</h1>
             <p id="status" class="text-lg text-gray-600 mt-1">White's turn</p>
+            <div id="evaluation-bar" class="mt-2 flex items-center justify-center">
+                <div class="bg-gray-200 rounded-full h-2 w-32 relative">
+                    <div id="evaluation-fill" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 50%"></div>
+                </div>
+                <span id="evaluation-text" class="ml-2 text-sm text-gray-600">0.0</span>
+            </div>
         </div>
         <div id="chess-board" class="chess-board"></div>
         <div class="mt-4 text-center">
@@ -121,6 +127,10 @@ let validMoves = [];
 let gameHistory = [];
 let isGameOver = false;
 let enPassantTarget = null; // Track en passant target square
+let castlingRights = {
+    white: { kingside: true, queenside: true },
+    black: { kingside: true, queenside: true }
+};
 function isWhitePiece(piece) {
     return piece && '♔♕♖♗♘♙'.includes(piece);
 }
@@ -145,6 +155,10 @@ function initializeBoard() {
     gameHistory = [];
     isGameOver = false;
     enPassantTarget = null;
+    castlingRights = {
+        white: { kingside: true, queenside: true },
+        black: { kingside: true, queenside: true }
+    };
     updateStatus("White's turn to move.");
     renderBoard();
 }
@@ -176,6 +190,7 @@ function renderBoard() {
         }
     }
     highlightValidMoves();
+    updateEvaluationBar();
 }
 function onSquareClick(row, col) {
     if (isGameOver) return;
@@ -264,6 +279,9 @@ function makeMove(fromRow, fromCol, toRow, toCol, promotionPiece = null) {
             boardState[fromRow][fromCol - 1] = boardState[fromRow][0];
             boardState[fromRow][0] = null;
         }
+        // Remove castling rights for this player
+        castlingRights[currentPlayer].kingside = false;
+        castlingRights[currentPlayer].queenside = false;
     }
     if (piece === '♚' && Math.abs(fromCol - toCol) === 2) {
         if (toCol > fromCol) { // Kingside
@@ -273,6 +291,26 @@ function makeMove(fromRow, fromCol, toRow, toCol, promotionPiece = null) {
             boardState[fromRow][fromCol - 1] = boardState[fromRow][0];
             boardState[fromRow][0] = null;
         }
+        // Remove castling rights for this player
+        castlingRights[currentPlayer].kingside = false;
+        castlingRights[currentPlayer].queenside = false;
+    }
+    
+    // Update castling rights when king or rooks move
+    if (piece === '♔') {
+        castlingRights[currentPlayer].kingside = false;
+        castlingRights[currentPlayer].queenside = false;
+    } else if (piece === '♚') {
+        castlingRights[currentPlayer].kingside = false;
+        castlingRights[currentPlayer].queenside = false;
+    } else if (piece === '♖' && fromCol === 7) {
+        castlingRights[currentPlayer].kingside = false;
+    } else if (piece === '♖' && fromCol === 0) {
+        castlingRights[currentPlayer].queenside = false;
+    } else if (piece === '♜' && fromCol === 7) {
+        castlingRights[currentPlayer].kingside = false;
+    } else if (piece === '♜' && fromCol === 0) {
+        castlingRights[currentPlayer].queenside = false;
     }
     
     // Set en passant target for pawn moves
@@ -428,15 +466,13 @@ function getValidMovesForPiece(row, col, board, checkKingSafety) {
                  const kingMoved = gameHistory.some(m => m.piece === piece);
                  if (!kingMoved && !isKingInCheck(player, board)) {
                      // Kingside castling
-                     const rookKingsideMoved = gameHistory.some(m => m.piece === (player === 'white' ? '♖' : '♜') && m.from.col === 7);
-                     if (!rookKingsideMoved && !board[row][5] && !board[row][6]) {
+                     if (castlingRights[player].kingside && !board[row][5] && !board[row][6]) {
                          if (!isSquareAttacked(row, 5, player, board) && !isSquareAttacked(row, 6, player, board)) {
                              moves.push({row, col: 6, castling: 'kingside'});
                          }
                      }
                      // Queenside castling
-                     const rookQueensideMoved = gameHistory.some(m => m.piece === (player === 'white' ? '♖' : '♜') && m.from.col === 0);
-                     if (!rookQueensideMoved && !board[row][1] && !board[row][2] && !board[row][3]) {
+                     if (castlingRights[player].queenside && !board[row][1] && !board[row][2] && !board[row][3]) {
                          if (!isSquareAttacked(row, 2, player, board) && !isSquareAttacked(row, 3, player, board)) {
                              moves.push({row, col: 2, castling: 'queenside'});
                          }
@@ -522,6 +558,33 @@ function getSquareElement(row, col) {
 }
 function updateStatus(message) {
     statusElement.textContent = message;
+}
+
+function updateEvaluationBar() {
+    const evaluation = evaluateBoard(boardState);
+    const evaluationText = document.getElementById('evaluation-text');
+    const evaluationFill = document.getElementById('evaluation-fill');
+    
+    // Convert evaluation to a percentage (0-100)
+    // Assuming max evaluation is around 1000, map -1000 to 0% and +1000 to 100%
+    const maxEval = 1000;
+    const percentage = Math.max(0, Math.min(100, 50 + (evaluation / maxEval) * 50));
+    
+    // Update the bar
+    evaluationFill.style.width = percentage + '%';
+    
+    // Update the text
+    const evalText = evaluation > 0 ? '+' + (evaluation / 10).toFixed(1) : (evaluation / 10).toFixed(1);
+    evaluationText.textContent = evalText;
+    
+    // Change color based on advantage
+    if (evaluation > 50) {
+        evaluationFill.className = 'bg-green-600 h-2 rounded-full transition-all duration-300';
+    } else if (evaluation < -50) {
+        evaluationFill.className = 'bg-red-600 h-2 rounded-full transition-all duration-300';
+    } else {
+        evaluationFill.className = 'bg-blue-600 h-2 rounded-full transition-all duration-300';
+    }
 }
 function evaluateBoard(board) {
     let score = 0;
@@ -747,7 +810,21 @@ function makeAIMove() {
                 boardState[bestMove.from.row][bestMove.from.col - 1] = boardState[bestMove.from.row][0];
                 boardState[bestMove.from.row][0] = null;
             }
+            // Remove castling rights for AI
+            castlingRights['black'].kingside = false;
+            castlingRights['black'].queenside = false;
         }
+        
+        // Update castling rights for AI moves
+        if (bestMove.piece === '♚') {
+            castlingRights['black'].kingside = false;
+            castlingRights['black'].queenside = false;
+        } else if (bestMove.piece === '♜' && bestMove.from.col === 7) {
+            castlingRights['black'].kingside = false;
+        } else if (bestMove.piece === '♜' && bestMove.from.col === 0) {
+            castlingRights['black'].queenside = false;
+        }
+        
         makeMove(bestMove.from.row, bestMove.from.col, bestMove.to.row, bestMove.to.col);
     }
 }
