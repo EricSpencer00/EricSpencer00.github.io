@@ -15,7 +15,7 @@ function parseIssueBody(body) {
   
   // More flexible regex patterns that handle different line endings and spacing
   const usernameMatch = body.match(/\*\*Username:\*\*\s*(.+?)(?:\n|$)/);
-  const scoreMatch = body.match(/\*\*Score:\*\*\s*\$(\d+)/);
+  const scoreMatch = body.match(/\*\*Score:\*\*\s*\$?(\d+)/);
   const keyMatch = body.match(/\*\*Verification Key:\*\*\s*([a-f0-9]{64})/);
   
   console.log('Username match:', usernameMatch);
