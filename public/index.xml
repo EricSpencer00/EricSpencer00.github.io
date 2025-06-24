@@ -157,6 +157,20 @@
       <description>Exploring computer vision with custom neural networks</description>
     </item>
     <item>
+      <title>Anagram Solver V2</title>
+      <link>http://localhost:1313/projects/2023/anagram_v2/</link>
+      <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2023/anagram_v2/</guid>
+      <description>Scrabble Inspired Anagram Solver</description>
+    </item>
+    <item>
+      <title>Anagram Solver</title>
+      <link>http://localhost:1313/projects/2023/anagram/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2023/anagram/</guid>
+      <description>Scrabble Inspired Anagram Solver</description>
+    </item>
+    <item>
       <title>Free Time Calculator in Java</title>
       <link>http://localhost:1313/projects/2022/freetime-calc/</link>
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
