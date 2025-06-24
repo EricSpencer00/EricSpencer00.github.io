@@ -3,3 +3,4 @@
 /private
 .env
 /flattened
+.hugo_build.lock
