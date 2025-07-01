@@ -156,3 +156,5 @@ def preprocess_hand_image(hand_img):
 ```
 
 Regardless, it was a very fun top to bottom project working with data processing and a little bit of machine learning. 
+
+Also, very fun fact about my website is that it's exactly copied from the Loyola AI Club's website. See [here](https://loyolaaiclub.github.io/projects/movierec/)
