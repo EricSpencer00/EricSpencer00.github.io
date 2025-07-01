@@ -1,0 +1,9 @@
+/* Wiki Race Game Styles */
+.wiki-race-wrapper { max-width: 900px; margin: 0 auto; padding: 2em; background: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.game-controls { margin-bottom: 1em; display: flex; gap: 1em; align-items: center; }
+#timer { font-size: 1.5em; font-weight: bold; color: #2a7ae2; }
+#wiki-frame { border: 1px solid #ccc; border-radius: 6px; margin-top: 1em; background: #fff; }
+#current-path { margin: 1em 0; font-size: 1em; color: #444; }
+.network-analysis { margin-top: 1.5em; }
+#network-result { margin-top: 0.5em; font-size: 0.95em; color: #333; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
