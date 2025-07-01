@@ -44,6 +44,13 @@
       <description>A barebones Google search experience</description>
     </item>
     <item>
+      <title>AI Sign Language Interpreter</title>
+      <link>http://localhost:1313/projects/2025/sign-language/</link>
+      <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/sign-language/</guid>
+      <description>A Simple Sign Language Recognition App using OpenCV</description>
+    </item>
+    <item>
       <title>flatten-repo VSC Extension</title>
       <link>http://localhost:1313/projects/2025/flatten-repo/</link>
       <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
