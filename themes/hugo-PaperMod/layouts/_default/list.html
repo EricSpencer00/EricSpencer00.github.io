@@ -1,7 +1,25 @@
 {{- define "main" }}
 
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
-{{- partial "index_profile.html" . }}
+<div style="text-align: center;">
+  <pre id="ascii-art" style="font-family: monospace; font-size: 1.1em; margin: 0px; line-height: 1;"></pre>
+  <script src="/js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const art = getRandomAsciiArt();
+      const artContainer = document.getElementById("ascii-art");
+      
+      if (artContainer) {
+        if (typeof typeText === 'function') {
+          typeText(art, "ascii-art", 10, false);
+        } else {
+          artContainer.textContent = art;
+        }
+      }
+    });
+  </script>
+  {{- partial "index_profile.html" . }}
+</div>
 {{- else }} {{/* if not profileMode */}}
 
 {{- if not .IsHome | and .Title }}
