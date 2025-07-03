@@ -5,7 +5,7 @@ description: "An interactive microwave in the browser to learn TLA+"
 tags: ["tla", "formal methods", "spring-boot"]
 categories: ["Projects"]
 images: ["/images/avatar.jpeg"]
-draft: true
+draft: false
 ---
 
 [GitHub Repo](https://github.com/EricSpencer00/interactive-microwave-tla)
