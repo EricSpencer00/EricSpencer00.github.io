@@ -1,0 +1,22 @@
+{{- if gt .Paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if .Paginator.HasPrev }}
+    <a class="prev" href="{{ .Paginator.Prev.URL | absURL }}">
+      «&nbsp;Prev&nbsp;
+      {{- if (.Param "ShowPageNums") }}
+      {{- sub .Paginator.PageNumber 1 }}/{{ .Paginator.TotalPages }}
+      {{- end }}
+    </a>
+    {{- end }}
+    {{- if .Paginator.HasNext }}
+    <a class="next" href="{{ .Paginator.Next.URL | absURL }}">
+      Next&nbsp;
+      {{- if (.Param "ShowPageNums") }}
+      {{- add 1 .Paginator.PageNumber }}/{{ .Paginator.TotalPages }}
+      {{- end }}&nbsp;»
+    </a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}

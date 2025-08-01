@@ -1,0 +1,84 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>
+    {{ .Title }}
+    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+<div class="projects-grid">
+  {{- $allProjects := slice }}
+  {{- range (where .Site.RegularPages "Section" "projects") }}
+    {{- if ne .Kind "section" }}
+      {{- $allProjects = $allProjects | append . }}
+    {{- end }}
+  {{- end }}
+  
+  {{- $sortedProjects := sort $allProjects "Date" "asc" }}
+  {{- $oldProjects := first 24 $sortedProjects }}
+  
+  {{- range $oldProjects }}
+  <div class="project-card">
+    <a href="{{ .RelPermalink }}" class="project-link">
+      {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+      {{- if (not $isHidden) }}
+        {{- with .Params.image }}
+        <div class="project-image">
+          <img src="{{ . | absURL }}" alt="{{ $.Title }}">
+        </div>
+        {{- else }}
+        <div class="project-image">
+          <img src="/images/projects/default-project.svg" alt="{{ $.Title }}">
+        </div>
+        {{- end }}
+      {{- end }}
+      <div class="project-content">
+        <h2 class="project-title">{{ .Title }}</h2>
+        {{- if (ne (.Param "hideSummary") true) }}
+        <div class="project-summary">
+          {{ .Summary | plainify | htmlUnescape }}
+        </div>
+        {{- end }}
+        <div class="project-meta">
+          <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
+          {{- with .Params.tags }}
+          <div class="project-tags">
+            {{- range first 2 . }}
+            <span class="project-tag">#{{ . }}</span>
+            {{- end }}
+          </div>
+          {{- end }}
+        </div>
+      </div>
+    </a>
+  </div>
+  {{- end }}
+</div>
+
+{{- end }}{{/* end main */}}

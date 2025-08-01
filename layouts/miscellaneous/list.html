@@ -1,0 +1,107 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>
+    {{ .Title }}
+    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+<!-- Generate list of unique tags across all miscellaneous items -->
+{{- $tags := slice }}
+{{- range (where .Site.RegularPages "Section" "miscellaneous") }}
+  {{- if ne .Kind "section" }}
+    {{- range .Params.tags }}
+      {{- $tags = $tags | append . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- $uniqueTags := $tags | uniq | sort }}
+
+<!-- Display filter tags if we have any -->
+{{- if gt (len $uniqueTags) 0 }}
+<div class="project-filters">
+  <span class="filter-label">Filter by:</span>
+  <div class="filter-tags">
+    {{- range $uniqueTags }}
+    <span class="filter-tag" data-tag="{{ . }}">{{ . }}</span>
+    {{- end }}
+  </div>
+  <button class="show-all-btn">Show All</button>
+</div>
+{{- end }}
+
+<div class="projects-grid">
+  {{- $pages := union .RegularPages .Sections }}
+  {{- $paginator := .Paginate $pages }}
+  
+  {{- range $index, $page := $paginator.Pages }}
+  <div class="project-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+    <a href="{{ .RelPermalink }}" class="project-link">
+      {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+      {{- if (not $isHidden) }}
+        {{- with .Params.image }}
+        <div class="project-image">
+          <img src="{{ . | absURL }}" alt="{{ $page.Title }}">
+        </div>
+        {{- else }}
+        <div class="project-image">
+          <img src="/images/projects/default-project.svg" alt="{{ $page.Title }}">
+        </div>
+        {{- end }}
+      {{- end }}
+      <div class="project-content">
+        <h2 class="project-title">{{ .Title }}</h2>
+        {{- if (ne (.Param "hideSummary") true) }}
+        <div class="project-summary">
+          {{ .Summary | plainify | htmlUnescape }}
+        </div>
+        {{- end }}
+        <div class="project-meta">
+          <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
+          {{- with .Params.tags }}
+          <div class="project-tags">
+            {{- range . }}
+            <span class="project-tag">#{{ . }}</span>
+            {{- end }}
+          </div>
+          {{- end }}
+        </div>
+      </div>
+    </a>
+  </div>
+  {{- end }}
+</div>
+
+<div class="no-results">No items match your selected filters. Try selecting different tags or clear all filters.</div>
+
+<script src="/js/project-filters.js"></script>
+
+{{- partial "pagination.html" . }}
+
+{{- end }}{{/* end main */}}
