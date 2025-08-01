@@ -16,6 +16,13 @@
       <description>Obfuscator for public Python code to confuse LLMs</description>
     </item>
     <item>
+      <title>Connect 4 Game Engine</title>
+      <link>http://localhost:53759/projects/2025/connect-4/</link>
+      <pubDate>Sun, 29 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:53759/projects/2025/connect-4/</guid>
+      <description>A Chess engine-esque Connect 4 analyzer</description>
+    </item>
+    <item>
       <title>Chess Game</title>
       <link>http://localhost:53759/miscellaneous/chess/</link>
       <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>

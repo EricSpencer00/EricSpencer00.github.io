@@ -37,5 +37,5 @@ Time in Range (70-150 mg/dL): 58.33%
 ---
 
 ### 🔗 Useful Links:
-- 💻 [GitHub Repository](https://github.com/EricSpencer00/Dexcom-Statistics)  
+- 💻 [GitHub Repository](https://github.com/EricSpencer00/Dexcom-Statistics)
 
