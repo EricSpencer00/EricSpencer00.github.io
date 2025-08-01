@@ -5,6 +5,7 @@ authors:
   - "Eric Spencer"
   - "Matthew Caballero"
 draft: false
+image: "/previews/healthup!.png"
 ---
 
 _Eric Spencer + Matthew Caballero_  

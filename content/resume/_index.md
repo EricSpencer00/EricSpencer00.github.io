@@ -4,4 +4,4 @@ draft = false
 title = 'Resume'
 +++
 
-<iframe src="/images/EricSpencerResume.pdf" width="100%" height="930px"></iframe>
+<embed src="/images/EricSpencerResume.pdf" width="100%" height="930px" type="application/pdf">
