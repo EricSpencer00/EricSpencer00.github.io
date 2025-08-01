@@ -4,7 +4,6 @@ date: 2025-04-07
 description: "A Simple Sign Language Recognition App using OpenCV"
 tags: ["python", "sign language", "machine learning"]
 categories: ["Projects"]
-image: "../Images/logo.png"
 draft: false
 ---
 

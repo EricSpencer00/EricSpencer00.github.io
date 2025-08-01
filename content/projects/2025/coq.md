@@ -4,9 +4,11 @@ date: 2025-05-01
 description: "The formal methods language"
 tags: ["coq", "formal methods"]
 categories: ["Projects"]
-images: ["/images/avatar.jpeg"]
+image: "/previews/coq.png"
 draft: false
 ---
+
+A Presentation about the [Coq](https://coq.inria.fr/) formal methods language.
 
 <iframe src="/images/projects/coq.pdf" width="90%" height="600px" style="border: none;">
     This browser does not support PDFs. Please download the PDF to view it: 

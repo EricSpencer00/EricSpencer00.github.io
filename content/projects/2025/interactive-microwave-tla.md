@@ -1,10 +1,10 @@
 ---
-title: "Web Based TLA Microwave"
+title: "Web Based TLA+ Microwave"
 date: 2025-05-10
 description: "An interactive microwave in the browser to learn TLA+"
 tags: ["tla", "formal methods", "spring-boot"]
 categories: ["Projects"]
-images: ["/images/avatar.jpeg"]
+image: "/previews/interactive-microwave-tla.png"
 draft: false
 ---
 

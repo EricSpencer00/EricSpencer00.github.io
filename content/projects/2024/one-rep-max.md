@@ -4,7 +4,6 @@ date: 2024-04-15
 description: "Calculate your One Rep Max"
 tags: ["calculator", "web development", "wellness"]
 categories: ["Projects"]
-image: "../Images/logo.png"
 draft: false
 ---
 

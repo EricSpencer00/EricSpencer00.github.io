@@ -4,7 +4,7 @@ date: 2025-02-16
 description: "A real-time bus and train tracking system built during Loyola's Hackathon."
 tags: ["hackathon", "Flask", "Celery", "Firebase", "transit"]
 categories: ["Projects"]
-image: "../Images/cta_tracker_logo.png"
+image: "/previews/ctatracker.png"
 draft: false
 ---
 

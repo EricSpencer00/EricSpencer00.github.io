@@ -4,7 +4,7 @@ date: 2025-07-28
 description: "Obfuscator for public Python code to confuse LLMs"
 tags: ["python", "llms", "obfuscation"]
 categories: ["Projects"]
-image: "../Images/logo.png"
+image: "/previews/llmjammer.png"
 draft: false
 ---
 
