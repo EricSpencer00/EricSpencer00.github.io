@@ -24,9 +24,9 @@ draft = true
       - Developed a control system that processed 400+ file permissions via email parsing and cut request response time from hours to seconds.
   - Loyola University Chicago
     - ITS Service Desk Technician (July 2024 -- May 2025)
-      - Resolve over 50 support tickets weekly, ensuring prompt and effective resolutions to user issues.
-      - Utilize Azure and BI tools to verify identity and grant secure access.
-      - Collaborate with backend teams to address complex customer challenges.
+      - Resolved over 50 support tickets weekly, ensuring prompt and effective resolutions to user issues.
+      - Utilized Azure and BI tools to verify identity and grant secure access.
+      - Collaborated with backend teams to address complex customer challenges.
     - Undergraduate Research Assistant (April 2023 -- August 2023)
       - Investigated AI interpretability through a research study analyzing ChatGPT's handling of advanced Java concepts.
       - Collaborated with professors and peers to document findings and refine methodologies.
@@ -59,10 +59,13 @@ draft = true
 - extracurriculars:
   - Loyola AI Club
     - Vice President of Technology (Fall 2024 – Spring 2025)
-      - Manage and coordinate semester-long projects, enhancing members' technical and collaborative skills.
+      - Managed and coordinate semester-long projects, enhancing members' technical and collaborative skills.
+  - Alpha Kappa Psi (Loyola University Chicago)
+    - IT Chair (Fall 2024)
+      - Managed the chapter's website 
 
 - technical skills:
   - Languages: Java, Python, JavaScript, TypeScript, Swift
   - Technologies: MySQL, Azure, Heroku, Google Cloud
-  - Frameworks: React Native, Angular
+  - Frameworks: React Native, Vue.js, Spring Boot
   - Tools: Git, Excel, Tableau, UNIX

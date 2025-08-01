@@ -6,8 +6,15 @@
     <description>Recent content in Home on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>llmjammer</title>
+      <link>http://localhost:1313/projects/2025/llmjammer/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/llmjammer/</guid>
+      <description>Obfuscator for public Python code to confuse LLMs</description>
+    </item>
     <item>
       <title>Chess Game</title>
       <link>http://localhost:1313/miscellaneous/chess/</link>
