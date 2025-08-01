@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on Eric Spencer</title>
-    <link>http://localhost:52344/projects/</link>
+    <link>http://localhost:53759/projects/</link>
     <description>Recent content in Projects on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:52344/projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:53759/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Old Projects</title>
-      <link>http://localhost:52344/projects/old/</link>
+      <link>http://localhost:53759/projects/old/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/old/</guid>
+      <guid>http://localhost:53759/projects/old/</guid>
       <description>Browse my older projects</description>
     </item>
     <item>
       <title>Recent Projects</title>
-      <link>http://localhost:52344/projects/recent/</link>
+      <link>http://localhost:53759/projects/recent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/recent/</guid>
+      <guid>http://localhost:53759/projects/recent/</guid>
       <description>View my most recent projects</description>
     </item>
   </channel>

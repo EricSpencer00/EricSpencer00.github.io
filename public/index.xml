@@ -2,115 +2,115 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Home on Eric Spencer</title>
-    <link>http://localhost:52344/</link>
+    <link>http://localhost:53759/</link>
     <description>Recent content in Home on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:52344/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:53759/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>llmjammer</title>
-      <link>http://localhost:52344/projects/2025/llmjammer/</link>
+      <link>http://localhost:53759/projects/2025/llmjammer/</link>
       <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/llmjammer/</guid>
+      <guid>http://localhost:53759/projects/2025/llmjammer/</guid>
       <description>Obfuscator for public Python code to confuse LLMs</description>
     </item>
     <item>
       <title>Chess Game</title>
-      <link>http://localhost:52344/miscellaneous/chess/</link>
+      <link>http://localhost:53759/miscellaneous/chess/</link>
       <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/chess/</guid>
+      <guid>http://localhost:53759/miscellaneous/chess/</guid>
       <description>Interactive chess game with AI opponent</description>
     </item>
     <item>
       <title>BlackJack Game</title>
-      <link>http://localhost:52344/miscellaneous/blackjack/</link>
+      <link>http://localhost:53759/miscellaneous/blackjack/</link>
       <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/blackjack/</guid>
+      <guid>http://localhost:53759/miscellaneous/blackjack/</guid>
       <description>Play BlackJack with fake money</description>
     </item>
     <item>
       <title>GitHub pfp Generator</title>
-      <link>http://localhost:52344/miscellaneous/pixel-profile/</link>
+      <link>http://localhost:53759/miscellaneous/pixel-profile/</link>
       <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/pixel-profile/</guid>
+      <guid>http://localhost:53759/miscellaneous/pixel-profile/</guid>
       <description>Generate a default GitHub profile picture</description>
     </item>
     <item>
       <title>Web Based TLA Microwave</title>
-      <link>http://localhost:52344/projects/2025/interactive-microwave-tla/</link>
+      <link>http://localhost:53759/projects/2025/interactive-microwave-tla/</link>
       <pubDate>Sat, 10 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/interactive-microwave-tla/</guid>
+      <guid>http://localhost:53759/projects/2025/interactive-microwave-tla/</guid>
       <description>An interactive microwave in the browser to learn TLA&#43;</description>
     </item>
     <item>
       <title>coq Presentation</title>
-      <link>http://localhost:52344/projects/2025/coq/</link>
+      <link>http://localhost:53759/projects/2025/coq/</link>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/coq/</guid>
+      <guid>http://localhost:53759/projects/2025/coq/</guid>
       <description>The formal methods language</description>
     </item>
     <item>
       <title>Search Engine</title>
-      <link>http://localhost:52344/miscellaneous/search-engine/</link>
+      <link>http://localhost:53759/miscellaneous/search-engine/</link>
       <pubDate>Sun, 27 Apr 2025 00:00:00 -0700</pubDate>
-      <guid>http://localhost:52344/miscellaneous/search-engine/</guid>
+      <guid>http://localhost:53759/miscellaneous/search-engine/</guid>
       <description>A barebones Google search experience</description>
     </item>
     <item>
       <title>AI Sign Language Interpreter</title>
-      <link>http://localhost:52344/projects/2025/sign-language/</link>
+      <link>http://localhost:53759/projects/2025/sign-language/</link>
       <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/sign-language/</guid>
+      <guid>http://localhost:53759/projects/2025/sign-language/</guid>
       <description>A Simple Sign Language Recognition App using OpenCV</description>
     </item>
     <item>
       <title>flatten-repo VSC Extension</title>
-      <link>http://localhost:52344/projects/2025/flatten-repo/</link>
+      <link>http://localhost:53759/projects/2025/flatten-repo/</link>
       <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/flatten-repo/</guid>
+      <guid>http://localhost:53759/projects/2025/flatten-repo/</guid>
       <description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description>
     </item>
     <item>
       <title>Dexcom Navbar Icon Mac OS</title>
-      <link>http://localhost:52344/projects/2025/dexcom-navbar-macos/</link>
+      <link>http://localhost:53759/projects/2025/dexcom-navbar-macos/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/dexcom-navbar-macos/</guid>
+      <guid>http://localhost:53759/projects/2025/dexcom-navbar-macos/</guid>
       <description>View your Dexcom number in your Mac OS Navigation Bar</description>
     </item>
     <item>
       <title>My ~/.zshrc file</title>
-      <link>http://localhost:52344/miscellaneous/my-zshrc/</link>
+      <link>http://localhost:53759/miscellaneous/my-zshrc/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/my-zshrc/</guid>
+      <guid>http://localhost:53759/miscellaneous/my-zshrc/</guid>
       <description>Ran every time I open a terminal</description>
     </item>
     <item>
       <title>Old Website</title>
-      <link>http://localhost:52344/miscellaneous/old-website/</link>
+      <link>http://localhost:53759/miscellaneous/old-website/</link>
       <pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate>
-      <guid>http://localhost:52344/miscellaneous/old-website/</guid>
+      <guid>http://localhost:53759/miscellaneous/old-website/</guid>
       <description>My older website</description>
     </item>
     <item>
       <title>CTA Transit Tracker</title>
-      <link>http://localhost:52344/projects/2025/loyolahack/</link>
+      <link>http://localhost:53759/projects/2025/loyolahack/</link>
       <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/loyolahack/</guid>
+      <guid>http://localhost:53759/projects/2025/loyolahack/</guid>
       <description>A real-time bus and train tracking system built during Loyola&amp;#39;s Hackathon.</description>
     </item>
     <item>
       <title>Terminal GPT</title>
-      <link>http://localhost:52344/projects/2025/terminalgpt/</link>
+      <link>http://localhost:53759/projects/2025/terminalgpt/</link>
       <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2025/terminalgpt/</guid>
+      <guid>http://localhost:53759/projects/2025/terminalgpt/</guid>
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
       <title>COMP322 Final Project Reflection</title>
-      <link>http://localhost:52344/projects/2024/healthup/</link>
+      <link>http://localhost:53759/projects/2024/healthup/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2024/healthup/</guid>
+      <guid>http://localhost:53759/projects/2024/healthup/</guid>
       <description>&lt;p&gt;&lt;em&gt;Eric Spencer + Matthew Caballero&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;December 14, 2024&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;COMP 322/422 Reflection&lt;/em&gt;&lt;/p&gt;
@@ -123,93 +123,93 @@
     </item>
     <item>
       <title>Islamic Influences in Timbuktu</title>
-      <link>http://localhost:52344/miscellaneous/timbuktu/</link>
+      <link>http://localhost:53759/miscellaneous/timbuktu/</link>
       <pubDate>Wed, 30 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/timbuktu/</guid>
+      <guid>http://localhost:53759/miscellaneous/timbuktu/</guid>
       <description>LITR 238 Fall 2024</description>
     </item>
     <item>
       <title>DailyTask iOS App</title>
-      <link>http://localhost:52344/projects/2024/dailytask/</link>
+      <link>http://localhost:53759/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2024/dailytask/</guid>
+      <guid>http://localhost:53759/projects/2024/dailytask/</guid>
       <description>An iOS app to help track daily tasks, including medication reminders.</description>
     </item>
     <item>
       <title>DexVal</title>
-      <link>http://localhost:52344/projects/2024/dexval/</link>
+      <link>http://localhost:53759/projects/2024/dexval/</link>
       <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2024/dexval/</guid>
+      <guid>http://localhost:53759/projects/2024/dexval/</guid>
       <description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description>
     </item>
     <item>
       <title>One Rep Max Calculator</title>
-      <link>http://localhost:52344/projects/2024/one-rep-max/</link>
+      <link>http://localhost:53759/projects/2024/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2024/one-rep-max/</guid>
+      <guid>http://localhost:53759/projects/2024/one-rep-max/</guid>
       <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Serenity</title>
-      <link>http://localhost:52344/projects/2024/serenity/</link>
+      <link>http://localhost:53759/projects/2024/serenity/</link>
       <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2024/serenity/</guid>
+      <guid>http://localhost:53759/projects/2024/serenity/</guid>
       <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
     </item>
     <item>
       <title>Oldest Website</title>
-      <link>http://localhost:52344/miscellaneous/oldest-site/</link>
+      <link>http://localhost:53759/miscellaneous/oldest-site/</link>
       <pubDate>Mon, 01 Apr 2024 16:13:32 -0600</pubDate>
-      <guid>http://localhost:52344/miscellaneous/oldest-site/</guid>
+      <guid>http://localhost:53759/miscellaneous/oldest-site/</guid>
       <description>My oldest website</description>
     </item>
     <item>
       <title>AI Chatbot Experiment</title>
-      <link>http://localhost:52344/miscellaneous/ai/chatbot-experiment/</link>
+      <link>http://localhost:53759/miscellaneous/ai/chatbot-experiment/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/ai/chatbot-experiment/</guid>
+      <guid>http://localhost:53759/miscellaneous/ai/chatbot-experiment/</guid>
       <description>Building and testing a conversational AI system</description>
     </item>
     <item>
       <title>Neural Network Image Recognition Project</title>
-      <link>http://localhost:52344/miscellaneous/ai/neural-network-project/</link>
+      <link>http://localhost:53759/miscellaneous/ai/neural-network-project/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/miscellaneous/ai/neural-network-project/</guid>
+      <guid>http://localhost:53759/miscellaneous/ai/neural-network-project/</guid>
       <description>Exploring computer vision with custom neural networks</description>
     </item>
     <item>
       <title>Anagram Solver V2</title>
-      <link>http://localhost:52344/projects/2023/anagram_v2/</link>
+      <link>http://localhost:53759/projects/2023/anagram_v2/</link>
       <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2023/anagram_v2/</guid>
+      <guid>http://localhost:53759/projects/2023/anagram_v2/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
     </item>
     <item>
       <title>Anagram Solver</title>
-      <link>http://localhost:52344/projects/2023/anagram/</link>
+      <link>http://localhost:53759/projects/2023/anagram/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2023/anagram/</guid>
+      <guid>http://localhost:53759/projects/2023/anagram/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
-      <link>http://localhost:52344/projects/2022/freetime-calc/</link>
+      <link>http://localhost:53759/projects/2022/freetime-calc/</link>
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2022/freetime-calc/</guid>
+      <guid>http://localhost:53759/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
     <item>
       <title>Old Projects</title>
-      <link>http://localhost:52344/projects/old/</link>
+      <link>http://localhost:53759/projects/old/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/old/</guid>
+      <guid>http://localhost:53759/projects/old/</guid>
       <description>Browse my older projects</description>
     </item>
     <item>
       <title>Recent Projects</title>
-      <link>http://localhost:52344/projects/recent/</link>
+      <link>http://localhost:53759/projects/recent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/recent/</guid>
+      <guid>http://localhost:53759/projects/recent/</guid>
       <description>View my most recent projects</description>
     </item>
   </channel>
