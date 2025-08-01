@@ -75,5 +75,4 @@ document.addEventListener('DOMContentLoaded', function() {
         noResults.style.display = 'none';
       }
     }
-  }
-});
+  };

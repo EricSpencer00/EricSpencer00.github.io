@@ -183,7 +183,8 @@
     <button class="show-all-btn">Show All</button>
   </div>
 
-  <div class="projects-grid">
+  <div class="projects-container">
+    <div class="projects-grid">
     <div class="project-card" data-tags="python,llms,obfuscation">
       <a href="/projects/2025/llmjammer/" class="project-link">
           <div class="project-image">
@@ -608,12 +609,15 @@ However, a sample run of the program was recorded:
       </a>
     </div>
   </div>
+
   
-  <div class="no-results">No projects match your selected filters. Try selecting different tags or clear all filters.</div>
+  <div class="no-results" style="display: none; text-align: center; margin-top: 2rem;">
+    <p>No projects match the selected filters. Try selecting different filters or <button class="show-all-btn">show all projects</button>.</p>
+  </div>
+  </div> 
+
   
   <script src="/js/project-filters.js"></script>
-
-
     </main>
     
 <footer class="footer">

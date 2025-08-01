@@ -1,8 +1,8 @@
 /* Project Grid Styles */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr); /* Fixed 5 columns for desktop */
+  gap: 0.8rem; /* Slightly smaller gap for more efficient space usage */
   margin-top: 1.5rem;
 }
 
@@ -31,7 +31,7 @@
 
 .project-image {
   position: relative;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 60%; /* Slightly less tall aspect ratio for 5-column layout */
   overflow: hidden;
 }
 
@@ -102,14 +102,26 @@
 }
 
 /* Responsive adjustments */
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for medium desktop */
+  }
+}
+
+@media (max-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for small desktop/tablet */
+  }
+}
+
 @media (max-width: 768px) {
   .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet */
   }
 }
 
 @media (max-width: 480px) {
   .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: 1fr; /* Single column for mobile */
   }
 }

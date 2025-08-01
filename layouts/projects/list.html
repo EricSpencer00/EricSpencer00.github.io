@@ -58,7 +58,8 @@
   </div>
   {{- end }}
 
-  <div class="projects-grid">
+  <div class="projects-container">
+    <div class="projects-grid">
     {{- $allProjects := slice }}
     {{- range (where .Site.RegularPages "Section" "projects") }}
       {{- if ne .Kind "section" }}
@@ -67,7 +68,7 @@
     {{- end }}
     
     {{- range sort $allProjects "Date" "desc" }}
-    <div class="project-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+    <div class="project-card" data-tags="{{ if .Params.tags }}{{ delimit .Params.tags "," }}{{ end }}">
       <a href="{{ .RelPermalink }}" class="project-link">
         {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
         {{- if (not $isHidden) }}
@@ -103,28 +104,32 @@
     </div>
     {{- end }}
   </div>
-  
-  <div class="no-results">No projects match your selected filters. Try selecting different tags or clear all filters.</div>
-  
+
+  <!-- Add no results message for filtering -->
+  <div class="no-results" style="display: none; text-align: center; margin-top: 2rem;">
+    <p>No projects match the selected filters. Try selecting different filters or <button class="show-all-btn">show all projects</button>.</p>
+  </div>
+  </div> <!-- Close projects-container -->
+
+  <!-- Load project filter script -->
   <script src="/js/project-filters.js"></script>
-<!-- If we're in a year section, show only that year's projects -->
 {{- else }}
-  {{- $pages := union .RegularPages .Sections }}
-  {{- $paginator := .Paginate $pages }}
-  
+  <!-- Handle section pages (years) -->
+  <div class="projects-container">
   <div class="projects-grid">
-    {{- range $index, $page := $paginator.Pages }}
-    <div class="project-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+  {{- $paginator := .Paginate (where .Pages "Kind" "page") }}
+  {{- range $paginator.Pages }}
+    <div class="project-card" data-tags="{{ if .Params.tags }}{{ delimit .Params.tags "," }}{{ end }}">
       <a href="{{ .RelPermalink }}" class="project-link">
         {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
         {{- if (not $isHidden) }}
           {{- with .Params.image }}
           <div class="project-image">
-            <img src="{{ . | absURL }}" alt="{{ $page.Title }}">
+            <img src="{{ . | absURL }}" alt="{{ $.Title }}">
           </div>
           {{- else }}
           <div class="project-image">
-            <img src="/images/projects/default-project.svg" alt="{{ $page.Title }}">
+            <img src="/images/projects/default-project.svg" alt="{{ $.Title }}">
           </div>
           {{- end }}
         {{- end }}
@@ -139,7 +144,7 @@
             <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
             {{- with .Params.tags }}
             <div class="project-tags">
-              {{- range . }}
+              {{- range first 2 . }}
               <span class="project-tag">#{{ . }}</span>
               {{- end }}
             </div>
@@ -148,10 +153,10 @@
         </div>
       </a>
     </div>
-    {{- end }}
+  {{- end }}
   </div>
+  </div> <!-- Close projects-container -->
+  {{- partial "pagination.html" . }}
 {{- end }}
 
-{{- partial "pagination.html" . }}
-
-{{- end }}{{/* end main */}}
+{{- end }}
