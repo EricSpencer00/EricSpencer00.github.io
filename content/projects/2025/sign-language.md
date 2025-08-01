@@ -7,8 +7,6 @@ categories: ["Projects"]
 draft: false
 ---
 
-[GitHub Repo](https://github.com/loyolaaiclub/Sign-Language-Recognition)
-
 Over the course of the early Spring Semester, I lead the Loyola AI Club's project to create a sign language 
 interpreter. The original goal of the project was to download a ton of sign language videos from a dataset and see if we could create a working sign language interpreter using OpenCV and Python. 
 
@@ -157,3 +155,6 @@ def preprocess_hand_image(hand_img):
 Regardless, it was a very fun top to bottom project working with data processing and a little bit of machine learning. 
 
 Also, very fun fact about my website is that it's exactly copied from the Loyola AI Club's website. See [here](https://loyolaaiclub.github.io/projects/movierec/)
+
+
+[GitHub Repo](https://github.com/loyolaaiclub/Sign-Language-Recognition)

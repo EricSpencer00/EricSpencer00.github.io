@@ -16,13 +16,6 @@
       <description>Obfuscator for public Python code to confuse LLMs</description>
     </item>
     <item>
-      <title>Palindrome Paragraph Generator</title>
-      <link>http://localhost:53759/projects/2025/palindrome/</link>
-      <pubDate>Fri, 25 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:53759/projects/2025/palindrome/</guid>
-      <description>Generate grammatically correct sentences and paragraphs that are palindromes</description>
-    </item>
-    <item>
       <title>Connect 4 Game Engine</title>
       <link>http://localhost:53759/projects/2025/connect-4/</link>
       <pubDate>Sun, 29 Jun 2025 00:00:00 +0000</pubDate>
@@ -218,6 +211,13 @@
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
       <guid>http://localhost:53759/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:53759/miscellaneous/tell-ai/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:53759/miscellaneous/tell-ai/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

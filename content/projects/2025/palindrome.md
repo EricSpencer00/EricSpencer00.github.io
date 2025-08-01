@@ -5,7 +5,7 @@ description: "Generate grammatically correct sentences and paragraphs that are p
 tags: ["python", "palindrome"]
 categories: ["Projects"]
 image: "/previews/palindrome.png"
-draft: false
+draft: True
 ---
 
 WIP
