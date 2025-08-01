@@ -58,6 +58,13 @@
       <description>A barebones Google search experience</description>
     </item>
     <item>
+      <title>YouTube Downloader</title>
+      <link>http://localhost:53759/projects/2025/youtube-dl/</link>
+      <pubDate>Mon, 14 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:53759/projects/2025/youtube-dl/</guid>
+      <description>Locally hosted youtube downloader for mp3 and mp4s</description>
+    </item>
+    <item>
       <title>AI Sign Language Interpreter</title>
       <link>http://localhost:53759/projects/2025/sign-language/</link>
       <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
