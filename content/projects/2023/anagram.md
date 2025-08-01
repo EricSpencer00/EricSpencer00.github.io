@@ -5,9 +5,8 @@ description: "Scrabble Inspired Anagram Solver"
 tags: ["java", "algorithms", "game"]
 categories: ["Projects"]
 draft: false
+image: "previews/anagram.png"
 ---
-
-[GitHub Repo](https://github.com/EricSpencer00/AnagramSolverV1)
 
 Give a set of letters to the program and it will output a 
 set of possible words you can make according to the English 
@@ -41,3 +40,5 @@ Notes:
 Contributing
 
 - Feel free to contribute by adding new features or changing algorithms
+
+[GitHub Repo](https://github.com/EricSpencer00/AnagramSolverV1)

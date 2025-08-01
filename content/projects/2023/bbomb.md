@@ -2,13 +2,12 @@
 title = "Binary Bomb Puzzle"
 date = 2023-11-01
 description = "Solving the infamous Binary Bomb Lab for extra credit."
-draft = true
+draft = false
 images = ["/images/bomb/bbomb.gif"]
+image = "/previews/bbomb.png"
 +++
 
 ![Bomb GIF](/images/bomb/bbomb.gif)
-
-## Overview
 
 During my Fall 2023 semester, I had an extra credit assignment for my Introduction to Computer Systems class that had me solve a Binary Bomb Puzzle. This led me to gain skills such as debugging assembly, converting it into high-level code, and tracking data in registers.
 

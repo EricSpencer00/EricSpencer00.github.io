@@ -4,7 +4,7 @@ date: 2024-04-18
 description: "A project analyzing Dexcom CGM data beyond the standard Clarity app."
 tags: ["diabetes", "CGM", "data analysis"]
 categories: ["Projects"]
-draft: false
+draft: true
 ---
 
 <hr>

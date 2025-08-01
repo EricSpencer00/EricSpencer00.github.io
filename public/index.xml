@@ -16,6 +16,13 @@
       <description>Obfuscator for public Python code to confuse LLMs</description>
     </item>
     <item>
+      <title>Palindrome Paragraph Generator</title>
+      <link>http://localhost:53759/projects/2025/palindrome/</link>
+      <pubDate>Fri, 25 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:53759/projects/2025/palindrome/</guid>
+      <description>Generate grammatically correct sentences and paragraphs that are palindromes</description>
+    </item>
+    <item>
       <title>Connect 4 Game Engine</title>
       <link>http://localhost:53759/projects/2025/connect-4/</link>
       <pubDate>Sun, 29 Jun 2025 00:00:00 +0000</pubDate>
@@ -150,13 +157,6 @@
       <description>An iOS app to help track daily tasks, including medication reminders.</description>
     </item>
     <item>
-      <title>DexVal</title>
-      <link>http://localhost:53759/projects/2024/dexval/</link>
-      <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:53759/projects/2024/dexval/</guid>
-      <description>A project analyzing Dexcom CGM data beyond the standard Clarity app.</description>
-    </item>
-    <item>
       <title>One Rep Max Calculator</title>
       <link>http://localhost:53759/projects/2024/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
@@ -194,7 +194,7 @@
     <item>
       <title>Anagram Solver V2</title>
       <link>http://localhost:53759/projects/2023/anagram_v2/</link>
-      <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:53759/projects/2023/anagram_v2/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
     </item>
@@ -204,6 +204,13 @@
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:53759/projects/2023/anagram/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
+    </item>
+    <item>
+      <title>Binary Bomb Puzzle</title>
+      <link>http://localhost:53759/projects/2023/bbomb/</link>
+      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:53759/projects/2023/bbomb/</guid>
+      <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
