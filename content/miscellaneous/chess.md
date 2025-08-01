@@ -3,6 +3,7 @@ title: "Chess Game"
 date: 2025-06-20
 description: "Interactive chess game with AI opponent"
 tags: ["chess", "game", "interactive"]
+image: "/previews/chess.png"
 ---
 
 # Chess Game

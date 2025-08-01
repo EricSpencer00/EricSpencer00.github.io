@@ -5,7 +5,7 @@ description: "Easily tell if something is AI using these obvious giveaways"
 tags: ["AI", "LLM"]
 categories: ["Miscellaneous"]
 draft: false
-iamge: "/previews/tell-ai.png"
+image: "/previews/tell-ai.png"
 ---
 
 As AI makes our lives easier, we see more and more of it. This is not to shame anyone who uses AI. These are just a few tells that you can use to know if something is AI, so you can say, "Hey, this is probably AI!" and then do nothing else. Know that I often use AI-generated READMEs and summarizations for my own ease. These are some observations I've noticed more and more within the past year.

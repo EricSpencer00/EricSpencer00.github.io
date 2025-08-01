@@ -6,12 +6,12 @@
     <description>Recent content in Algorithms on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 02 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:52344/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Anagram Solver V2</title>
       <link>http://localhost:52344/projects/2023/anagram_v2/</link>
-      <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:52344/projects/2023/anagram_v2/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
     </item>

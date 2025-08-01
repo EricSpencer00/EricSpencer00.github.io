@@ -82,7 +82,7 @@ Spec == Init /\ [][Next]_<>
 ====
 ```
 
-Once you have defined your .tla and .cfg file you can run a TLC checker against it which will look something like below. This example is from our interactive microwave, so it won't be exactly like running an TLC checker.
+Once you have defined your .tla and .cfg file you can run a TLC checker against it which will look something like below. This example is from our interactive microwave, so it won't be exactly like running a TLC checker.
 
 ```
 \* <Initial line 10, col 3 to line 13, col 36 of module Microwave>
