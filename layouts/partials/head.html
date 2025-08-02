@@ -39,7 +39,7 @@
 {{ if .IsHome }}<meta property="linkedin:image" content="{{ site.Params.avatar | default "images/avatar.jpeg" | absURL }}">{{ end }}
 <link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
 <!-- Alternate domain reference -->
-<link rel="alternate" href="{{ if eq (printf "%s" .Permalink) (printf "%s" (replace .Permalink "espencer.me" "ericspencer00.github.io")) }}{{ replace .Permalink "espencer.me" "ericspencer00.github.io" }}{{ else }}{{ replace .Permalink "ericspencer00.github.io" "espencer.me" }}{{ end }}"
+<link rel="alternate" href="{{ if eq (printf "%s" .Permalink) (printf "%s" (replace .Permalink "espencer.me" "ericspencer00.github.io")) }}{{ replace .Permalink "espencer.me" "ericspencer00.github.io" }}{{ else }}{{ replace .Permalink "ericspencer00.github.io" "espencer.me" }}{{ end }}" />
 
 {{- /* Basic CSS from PaperMod theme */}}
 {{- $theme_vars := resources.Get "css/core/theme-vars.css" }}
