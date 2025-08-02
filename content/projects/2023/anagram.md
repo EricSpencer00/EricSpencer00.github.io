@@ -2,7 +2,7 @@
 title: "Anagram Solver"
 date: 2023-12-01
 description: "Scrabble Inspired Anagram Solver"
-tags: ["java", "algorithms", "game"]
+tags: ["Words", "Java"]
 categories: ["Projects"]
 draft: false
 image: "previews/anagram.png"

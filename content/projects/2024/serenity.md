@@ -2,7 +2,7 @@
 title: "Serenity"
 date: 2024-04-07
 description: "A mental wellness application developed at Northwestern's Wildhacks Hackathon."
-tags: ["hackathon", "wellness", "web development"]
+tags: ["Hackathon"]
 categories: ["Projects"]
 image: "/previews/serenity.png"
 draft: false

@@ -2,8 +2,8 @@
 title: "Anagram Solver V2"
 date: 2024-02-02
 description: "Scrabble Inspired Anagram Solver"
-tags: ["java", "algorithms", "game"]
-categories: ["Projects"]
+tags: ["Words"]
+categories: ["Projects", "Java"]
 draft: false
 image: "/previews/anagram2.png"
 ---

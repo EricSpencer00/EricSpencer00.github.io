@@ -2,7 +2,7 @@
 title: "Terminal GPT"
 date: 2025-01-10
 description: "Your AI assistant in the terminal"
-tags: ["python", "LLM", "terminal"]
+tags: ["Python", "LLM", "AI"]
 categories: ["Projects"]
 image: "/previews/terminal-gpt.png"
 draft: false

@@ -48,7 +48,139 @@
       <link>http://localhost:52344/miscellaneous/pixel-profile/</link>
       <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:52344/miscellaneous/pixel-profile/</guid>
-      <description>Generate a default GitHub profile picture</description>
+      <description>&lt;p&gt;Generate a default GitHub profile picture below, Generate a new profile as much as you please.&lt;/p&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;UTF-8&#34;&gt;
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+    &lt;title&gt;Generate a Default GitHub Profile Picture&lt;/title&gt;
+    &lt;!-- Tailwind CSS CDN --&gt;
+    &lt;script src=&#34;https://cdn.tailwindcss.com&#34;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        /* Custom font for better aesthetics */
+        @import url(&#39;https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap&#39;);
+        canvas {
+            border: 2px solid #e5e7eb; /* Light border for the canvas */
+            background-color: #ffffff; /* White background for pixels */
+            image-rendering: pixelated; /* Ensures crisp pixel rendering */
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            border-radius: 0.75rem; /* Rounded corners for the canvas */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&#34;bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl mx-auto text-center&#34;&gt;
+        &lt;h1 class=&#34;text-3xl font-bold text-gray-800 mb-6&#34;&gt;Generate a Default GitHub Profile Picture&lt;/h1&gt;
+
+        &lt;!-- Canvas for drawing the pixel art --&gt;
+        &lt;canvas id=&#34;pixelCanvas&#34; class=&#34;w-64 h-64 mx-auto mb-6&#34;&gt;&lt;/canvas&gt;
+
+        &lt;div class=&#34;flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4&#34;&gt;
+            &lt;!-- Generate New Button --&gt;
+            &lt;button id=&#34;generateBtn&#34; class=&#34;bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75&#34;&gt;
+                Generate New
+            &lt;/button&gt;
+
+            &lt;!-- Download Button --&gt;
+            &lt;button id=&#34;downloadBtn&#34; class=&#34;bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75&#34;&gt;
+                Download Image
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // Get references to the canvas and buttons
+        const canvas = document.getElementById(&#39;pixelCanvas&#39;);
+        const ctx = canvas.getContext(&#39;2d&#39;);
+        const generateBtn = document.getElementById(&#39;generateBtn&#39;);
+        const downloadBtn = document.getElementById(&#39;downloadBtn&#39;);
+
+        // Configuration for the pixel art
+        const PIXEL_GRID_SIZE = 7;
+        const TARGET_CANVAS_DIMENSION = 280;
+        const PIXEL_BLOCK_SIZE = TARGET_CANVAS_DIMENSION / PIXEL_GRID_SIZE;
+
+        // Set canvas dimensions
+        canvas.width = TARGET_CANVAS_DIMENSION;
+        canvas.height = TARGET_CANVAS_DIMENSION;
+
+        // Global variable to store the density map
+        let densityMap;
+
+        function getRandomColor() {
+            const letters = &#39;0123456789ABCDEF&#39;;
+            let color = &#39;#&#39;;
+            for (let i = 0; i &lt; 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createDensityMap() {
+            const map = Array(PIXEL_GRID_SIZE).fill(0).map(() =&gt; Array(PIXEL_GRID_SIZE).fill(0));
+            const centerX = (PIXEL_GRID_SIZE - 1) / 2;
+            const centerY = (PIXEL_GRID_SIZE - 1) / 2;
+            const maxDistance = Math.sqrt(Math.pow(0 - centerX, 2) + Math.pow(0 - centerY, 2));
+            const halfGridSize = Math.ceil(PIXEL_GRID_SIZE / 2);
+
+            for (let y = 0; y &lt; PIXEL_GRID_SIZE; y++) {
+                for (let x = 0; x &lt; halfGridSize; x++) {
+                    const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                    const normalizedDistance = distance / maxDistance;
+                    let probability = 1 - Math.pow(normalizedDistance, 1.5);
+                    probability = Math.max(0, Math.min(1, probability));
+                    map[y][x] = probability;
+                    const mirroredX = PIXEL_GRID_SIZE - 1 - x;
+                    map[y][mirroredX] = probability;
+                }
+            }
+            return map;
+        }
+
+        function generatePixelArt() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const halfGridSize = Math.ceil(PIXEL_GRID_SIZE / 2);
+            const mainColor = getRandomColor();
+            const pixelData = Array(PIXEL_GRID_SIZE).fill(0).map(() =&gt; Array(PIXEL_GRID_SIZE).fill(&#39;#FFFFFF&#39;)); // Initialize all pixels as white
+
+            for (let y = 0; y &lt; PIXEL_GRID_SIZE; y++) {
+                for (let x = 0; x &lt; halfGridSize; x++) {
+                    if (Math.random() &lt; densityMap[y][x]) {
+                        pixelData[y][x] = mainColor;
+                        const mirroredX = PIXEL_GRID_SIZE - 1 - x;
+                        pixelData[y][mirroredX] = mainColor;
+                    }
+                }
+            }
+
+            for (let y = 0; y &lt; PIXEL_GRID_SIZE; y++) {
+                for (let x = 0; x &lt; PIXEL_GRID_SIZE; x++) {
+                    ctx.fillStyle = pixelData[y][x];
+                    ctx.fillRect(x * PIXEL_BLOCK_SIZE, y * PIXEL_BLOCK_SIZE, PIXEL_BLOCK_SIZE, PIXEL_BLOCK_SIZE);
+                }
+            }
+        }
+
+        function downloadImage() {
+            const image = canvas.toDataURL(&#39;image/png&#39;);
+            const link = document.createElement(&#39;a&#39;);
+            link.href = image;
+            link.download = &#39;pixel-profile.png&#39;;
+            link.click();
+        }
+
+        // Initialize
+        densityMap = createDensityMap();
+        generateBtn.addEventListener(&#39;click&#39;, generatePixelArt);
+        downloadBtn.addEventListener(&#39;click&#39;, downloadImage);
+        window.onload = generatePixelArt;
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</description>
     </item>
     <item>
       <title>Web Based TLA&#43; Microwave</title>
@@ -112,6 +244,13 @@
       <pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate>
       <guid>http://localhost:52344/miscellaneous/old-website/</guid>
       <description>My older website</description>
+    </item>
+    <item>
+      <title>TDX Window Blocker</title>
+      <link>http://localhost:52344/projects/2025/tdx-window-blocker/</link>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:52344/projects/2025/tdx-window-blocker/</guid>
+      <description>Custom Safari Script for TDX Popups</description>
     </item>
     <item>
       <title>CTA Transit Tracker</title>

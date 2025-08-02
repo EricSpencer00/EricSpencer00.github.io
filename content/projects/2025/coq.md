@@ -2,7 +2,7 @@
 title: "coq Presentation"
 date: 2025-05-01
 description: "The formal methods language"
-tags: ["coq", "formal methods"]
+tags: ["Formal Methods"]
 categories: ["Projects"]
 image: "/previews/coq.png"
 draft: false

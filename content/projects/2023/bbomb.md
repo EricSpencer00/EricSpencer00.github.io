@@ -5,6 +5,7 @@ description = "Solving the infamous Binary Bomb Lab for extra credit."
 draft = false
 images = ["/images/bomb/bbomb.gif"]
 image = "/previews/bbomb.png"
+tags = ["x86 Assembly"]
 +++
 
 ![Bomb GIF](/images/bomb/bbomb.gif)

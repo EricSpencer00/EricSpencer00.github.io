@@ -48,11 +48,19 @@
 <div class="project-filters">
   <span class="filter-label">Filter by:</span>
   <div class="filter-tags">
+    {{- $previewTags := slice }}
+    {{- with .Site.Params.previewTags }}
+      {{- $previewTags = . }}
+    {{- else }}
+      {{- $previewTags = first 5 $uniqueTags }}
+    {{- end }}
+    
     {{- range $uniqueTags }}
     <span class="filter-tag" data-tag="{{ . }}">{{ . }}</span>
     {{- end }}
   </div>
-  <button class="show-all-btn">Show All</button>
+  <button class="toggle-filters-btn">Show All Filters</button>
+  <button class="show-all-btn">Show All Projects</button>
 </div>
 {{- end }}
 

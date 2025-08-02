@@ -2,7 +2,7 @@
 title: "Web Based TLA+ Microwave"
 date: 2025-05-10
 description: "An interactive microwave in the browser to learn TLA+"
-tags: ["tla", "formal methods", "spring-boot"]
+tags: ["TLA+", "Formal Methods", "Java"]
 categories: ["Projects"]
 image: "/previews/interactive-microwave-tla.png"
 draft: false

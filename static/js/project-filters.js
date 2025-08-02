@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectCards = document.querySelectorAll('.project-card');
   // Get no results message
   const noResults = document.querySelector('.no-results');
+  // Get filter tags container
+  const filterTagsContainer = document.querySelector('.filter-tags');
   
   // Initialize active filters
   let activeFilters = [];
@@ -30,6 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
       filterProjects(activeFilters);
     });
   });
+  
+  // Toggle filter tags display
+  const toggleFiltersBtn = document.querySelector('.toggle-filters-btn');
+  if (toggleFiltersBtn && filterTagsContainer) {
+    toggleFiltersBtn.addEventListener('click', function() {
+      filterTagsContainer.classList.toggle('expanded');
+      this.textContent = filterTagsContainer.classList.contains('expanded') ? 'Show Less' : 'Show All Filters';
+    });
+  }
   
   // Show all projects button
   const showAllBtn = document.querySelector('.show-all-btn');

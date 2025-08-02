@@ -2,7 +2,7 @@
 title: "Connect 4 Game Engine"
 date: 2025-06-29
 description: "A Chess engine-esque Connect 4 analyzer"
-tags: ["TLA+", "python", "game"]
+tags: ["TLA+", "Python", "Flask"]
 categories: ["Projects"]
 image: "/previews/connect-4.png"
 draft: false

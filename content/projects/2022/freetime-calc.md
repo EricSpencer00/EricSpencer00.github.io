@@ -2,7 +2,7 @@
 title: "Free Time Calculator in Java"
 date: 2022-12-10
 description: "A Java program to find overlapping free time for up to four people."
-tags: ["Java", "calculator", "algorithms"]
+tags: ["Calculator"]
 categories: ["Projects"]
 image: "/previews/freetime-calculator.png"
 draft: false

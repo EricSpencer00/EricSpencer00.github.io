@@ -2,7 +2,7 @@
 title: "llmjammer"
 date: 2025-07-28
 description: "Obfuscator for public Python code to confuse LLMs"
-tags: ["python", "llms", "obfuscation"]
+tags: ["Python", "LLM"]
 categories: ["Projects"]
 image: "/previews/llmjammer.png"
 draft: false

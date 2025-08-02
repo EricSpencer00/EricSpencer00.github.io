@@ -2,7 +2,7 @@
 title: "YouTube Downloader"
 date: 2025-04-14
 description: "Locally hosted youtube downloader for mp3 and mp4s"
-tags: ["localhost", "python", "youtube"]
+tags: ["Flask", "Python"]
 categories: ["Projects"]
 image: "/previews/youtube-dl.png"
 draft: false
@@ -10,7 +10,7 @@ draft: false
 
 Sometimes there's a really great song or video that's not available on iTunes. So, this localhost webapp lets you download mp3 and mp4s from YouTube locally.
 
-Here's a photo if you hosted the script locally and served it via Flask:
+Here's a photo that shows what would happen if you hosted the script locally and served it via Flask:
 ![youtube-dl](/previews/youtube-dl.png)
 
 If a webapp is too cumbersome to load, try this script instead:

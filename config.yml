@@ -8,6 +8,8 @@ params:  # for post thumbnails and general settings
   ShowImageInList: true
   ShowImageInPost: true
   mainSections: ["projects"]
+  # Tags to show in the first line of filters (you can customize this list)
+  previewTags: ["web", "react", "java", "python", "javascript"]
 
 Params:  # capital P needed for profileMode to work properly in some themes
   avatar: "images/avatar.jpeg"

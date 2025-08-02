@@ -2,7 +2,7 @@
 title: "CTA Transit Tracker"
 date: 2025-02-16
 description: "A real-time bus and train tracking system built during Loyola's Hackathon."
-tags: ["hackathon", "Flask", "Firebase", "transit"]
+tags: ["Hackathon", "Flask"]
 categories: ["Projects"]
 image: "/previews/ctatracker.png"
 draft: false

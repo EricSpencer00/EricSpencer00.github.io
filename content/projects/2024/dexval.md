@@ -2,7 +2,7 @@
 title: "DexVal"
 date: 2024-04-18
 description: "A project analyzing Dexcom CGM data beyond the standard Clarity app."
-tags: ["diabetes", "CGM", "data analysis"]
+tags: ["Flask", "Python"]
 categories: ["Projects"]
 draft: true
 ---

@@ -2,7 +2,7 @@
 title: "Dexcom Navbar Icon Mac OS"
 date: 2025-03-20
 description: "View your Dexcom number in your Mac OS Navigation Bar"
-tags: ["python", "Dexcom", "extension"]
+tags: ["Python", "iOS"]
 categories: ["Projects"]
 image: "/previews/dexcom-navbar-macos.png"
 draft: false
