@@ -5,6 +5,7 @@ description: "Generate a default GitHub profile picture"
 tags: ["web development", "javascript", "canvas"]
 categories: ["Miscellaneous"]
 draft: false
+image: "/previews/github-pfp.png"
 ---
 
 {{< rawhtml >}}

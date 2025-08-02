@@ -3,6 +3,7 @@ title: "Islamic Influences in Timbuktu"
 date: 2024-10-30T00:00:00Z
 draft: false
 description: "LITR 238 Fall 2024"
+image: "/previews/timbuktu.png"
 ---
 
 <iframe src="/images/projects/Timbuctu.pdf" width="100%" height="10000px" style="border: none;">

@@ -5,6 +5,7 @@ description: "Play BlackJack with fake money"
 tags: ["web development", "javascript", "canvas"]
 categories: ["Miscellaneous"]
 draft: false
+image: "/previews/blackjack.png"
 ---
 
 {{< rawhtml >}}

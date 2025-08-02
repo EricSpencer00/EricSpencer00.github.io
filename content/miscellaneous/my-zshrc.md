@@ -3,7 +3,7 @@ title: "My ~/.zshrc file"
 date: 2025-03-20T00:00:00Z
 draft: false
 description: "Ran every time I open a terminal"
-thumbnail: "images/avatar.jpeg"
+image: "/previews/zshrc.png"
 ---
 
 ```sh
