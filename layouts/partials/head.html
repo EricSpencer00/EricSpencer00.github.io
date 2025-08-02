@@ -8,7 +8,7 @@
 {{- end }}
 
 {{- /* Title */}}
-<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
+<title>Eric Spencer | Developer, Researcher, Creator</title>
 
 {{- /* Meta */}}
 {{- if .IsHome }}
@@ -18,15 +18,11 @@
     {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
     {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
 {{- end }}
-<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
-    {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
-    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta name="description" content="Personal website of Eric Spencer – software developer, AI researcher, and creative technologist.">
 <meta name="author" content="Eric Spencer">
 <!-- Additional SEO meta tags -->
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}{{ end }}">
-<meta property="og:description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
-    {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
-    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta property="og:title" content="Eric Spencer">
+<meta property="og:description" content="Personal website of Eric Spencer.">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
@@ -37,7 +33,11 @@
     {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
     {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
 {{ if .IsHome }}<meta property="linkedin:image" content="{{ site.Params.avatar | default "images/avatar.jpeg" | absURL }}">{{ end }}
-<link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+<link rel="canonical" href="https://ericspencer00.github.io">
+
+<!-- Remove ASCII art references -->
+{{- /* Remove ASCII art */}}
+
 <!-- Alternate domain reference -->
 <link rel="alternate" href="{{ if eq (printf "%s" .Permalink) (printf "%s" (replace .Permalink "espencer.me" "ericspencer00.github.io")) }}{{ replace .Permalink "espencer.me" "ericspencer00.github.io" }}{{ else }}{{ replace .Permalink "ericspencer00.github.io" "espencer.me" }}{{ end }}" />
 
