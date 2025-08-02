@@ -1,0 +1,8 @@
+# Configure sitemap settings for better SEO
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
+
+# Enable Google Analytics if you have a tracking ID
+# googleAnalytics: UA-XXXXXXXX-X or G-XXXXXXXXXX
