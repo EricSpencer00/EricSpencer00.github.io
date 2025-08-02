@@ -51,6 +51,9 @@ Params:  # capital P needed for profileMode to work properly in some themes
     - name: "CV"
       url: "resume/"
 
+  env: production
+  robotsNoIndex: false
+
 markup:
   goldmark:
     renderer:
