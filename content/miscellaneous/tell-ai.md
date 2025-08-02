@@ -22,8 +22,7 @@ As I've read more and more content online I've noticed this sentence structure m
 
 ### 📝 Emojis
 
-Asking ChatGPT to generate a markdown file with a list of topics is an easy way to prove this one. It will often give you a title
-I don't think anybody would go out of their way to mark EVERY topic with a custom emoji for something such as a summary of what you think about B2B SaaS tools, like I often see on LinkedIn. Honestly, I enjoy the emojis on most lists of topics. It provides a visual cue of what the topic is in your peripheral vision, something that does a better job than a word or two about the topic. The only problem is having the correct emoji for your topic. 
+Asking ChatGPT to generate a markdown file with a list of topics is an easy way to prove this one. It will often give you a title with an emoji next to it. I don't think anybody would go out of their way to mark EVERY topic with a custom emoji for something such as a summary of what you think about B2B SaaS tools, like I often see on LinkedIn. Honestly, I enjoy the emojis on most lists of topics. It provides a visual cue of what the topic is in your peripheral vision, something that does a better job than a word or two about the topic. The only problem is having the correct emoji for your topic. 
 
 <br>
 
