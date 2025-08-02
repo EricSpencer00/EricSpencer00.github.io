@@ -2,9 +2,9 @@
 title: "Dexcom Navbar Icon Mac OS"
 date: 2025-03-20
 description: "View your Dexcom number in your Mac OS Navigation Bar"
-tags: ["python", "Dexcom", "extension"]
+tags: ["Python", "iOS"]
 categories: ["Projects"]
-image: "../Images/logo.png"
+image: "/previews/dexcom-navbar-macos.png"
 draft: false
 ---
 
@@ -13,7 +13,7 @@ draft: false
 
 ![Build macOS DMG](https://github.com/EricSpencer00/DexcomNavBarIcon-macos/actions/workflows/main.yml/badge.svg)
 
-![Icon](https://github.com/EricSpencer00/DexcomNavBarIcon-macos/raw/main/icon.png)
+![Icon](https://github.com/EricSpencer00/DexcomNavBarIcon-macos/blob/main/resources/icon.png?raw=true)
 
 Dexcom Navigation Bar Icon on MacOS
 
@@ -30,4 +30,4 @@ For more information on how to allow apps from unidentified developers, visit [t
 
 - Then, sign in with your Dexcom username and password along with your region
 
-![Screenshot 2025-03-05 at 12 59 37 PM](https://github.com/user-attachments/assets/f547bb49-6a3d-4d2d-a4f2-07099d0cc680) 
+![Screenshot 2025-03-05 at 12 59 37 PM](https://github.com/user-attachments/assets/f547bb49-6a3d-4d2d-a4f2-07099d0cc680)

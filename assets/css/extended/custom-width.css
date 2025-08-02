@@ -1,0 +1,45 @@
+/* Custom width overrides for project grid layout */
+:root {
+  --main-width: 1280px; /* Increase from default 720px to accommodate 5-column grid */
+}
+
+/* Ensure project grid container uses the full available width */
+.projects-grid {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Adjust project card styling for better fit in 5-column layout */
+.project-card {
+  min-width: 0; /* Prevent overflow in flex/grid layouts */
+}
+
+/* Make project title slightly smaller on desktop to fit better in 5-column layout */
+@media (min-width: 992px) {
+  .project-title {
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+  
+  .project-summary {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2; /* Show only 2 lines in 5-column layout */
+    line-clamp: 2;
+  }
+  
+  .project-meta {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ensure projects section uses the full width */
+.main {
+  padding: var(--gap) calc(var(--gap) / 2);
+  max-width: calc(var(--main-width) + var(--gap) * 2) !important;
+}
+
+/* Adjust container width for projects page specifically */
+.projects-container {
+  max-width: 100%;
+}

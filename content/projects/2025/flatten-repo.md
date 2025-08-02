@@ -2,9 +2,9 @@
 title: "flatten-repo VSC Extension"
 date: 2025-03-28
 description: "Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini"
-tags: ["vibe coding", "LLM", "extension"]
+tags: ["LLM", "AI"]
 categories: ["Projects"]
-image: "../Images/logo.png"
+image: "/previews/flatten-repo.png"
 draft: false
 ---
 

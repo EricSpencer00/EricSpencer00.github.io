@@ -5,7 +5,10 @@ description: "Play BlackJack with fake money"
 tags: ["web development", "javascript", "canvas"]
 categories: ["Miscellaneous"]
 draft: false
+image: "/previews/blackjack.png"
 ---
+
+Play BlackJack with fake money in this interactive JavaScript game! Maybe if this does well enough I'll hook up the Coinbase API.
 
 {{< rawhtml >}}
 <!DOCTYPE html>

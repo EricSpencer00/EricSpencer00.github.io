@@ -3,6 +3,7 @@ title = "Search Engine"
 description = "A barebones Google search experience"
 date = "2025-04-27T00:00:00-07:00"
 draft = false
+image = '/previews/google-search.png'
 +++
 
 Here's my custom search engine from Google, tuned to be as basic as possible:

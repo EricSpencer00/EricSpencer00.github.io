@@ -2,9 +2,9 @@
 title: "DailyTask iOS App"
 date: 2024-06-17
 description: "An iOS app to help track daily tasks, including medication reminders."
-tags: ["iOS", "productivity", "Swift"]
+tags: ["iOS"]
 categories: ["Projects"]
-image: "../Images/logo.png"
+image: "/previews/dailytask.png"
 draft: false
 ---
 

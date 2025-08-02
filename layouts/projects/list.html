@@ -1,0 +1,178 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>
+    {{ .Title }}
+    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+<!-- If we're on the main projects page, get all projects from all years -->
+{{- if eq .RelPermalink "/projects/" }}
+  <!-- Generate list of unique tags across all projects -->
+  {{- $tags := slice }}
+  {{- range (where .Site.RegularPages "Section" "projects") }}
+    {{- if ne .Kind "section" }}
+      {{- range .Params.tags }}
+        {{- $tags = $tags | append . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- $uniqueTags := $tags | uniq | sort }}
+  
+  <!-- Display filter tags if we have any -->
+  {{- if gt (len $uniqueTags) 0 }}
+  <div class="project-filters">
+    <span class="filter-label">Filter by:</span>
+    <div class="filter-tags">
+      {{- $previewTags := slice }}
+      {{- with .Site.Params.previewTags }}
+        {{- $previewTags = . }}
+      {{- else }}
+        {{- $previewTags = first 5 $uniqueTags }}
+      {{- end }}
+      
+      {{- range $uniqueTags }}
+      <span class="filter-tag" data-tag="{{ . }}">{{ . }}</span>
+      {{- end }}
+    </div>
+    <button class="toggle-filters-btn">Show All Filters</button>
+    <button class="show-all-btn">Show All Projects</button>
+  </div>
+  {{- end }}
+
+  <div class="projects-container">
+    <div class="projects-grid">
+    {{- $allProjects := slice }}
+    {{- range (where .Site.RegularPages "Section" "projects") }}
+      {{- if ne .Kind "section" }}
+        {{- $allProjects = $allProjects | append . }}
+      {{- end }}
+    {{- end }}
+    
+    {{- range sort $allProjects "Date" "desc" }}
+    <div class="project-card" data-tags="{{ if .Params.tags }}{{ delimit .Params.tags "," }}{{ end }}">
+      <a href="{{ .RelPermalink }}" class="project-link">
+        {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+        {{- if (not $isHidden) }}
+          {{- with .Params.image }}
+          <div class="project-image">
+            {{- $imgPath := . }}
+            {{- if (hasPrefix . "../previews/") }}
+              {{- $imgPath = replace . "../previews/" "/previews/" }}
+            {{- end }}
+            <img src="{{ $imgPath | relURL }}" alt="{{ $.Title }}">
+          </div>
+          {{- else }}
+          <div class="project-image">
+            <img src="/previews/default-project.png" alt="{{ $.Title }}">
+          </div>
+          {{- end }}
+        {{- end }}
+        <div class="project-content">
+          <h2 class="project-title">{{ .Title }}</h2>
+          {{- if (ne (.Param "hideSummary") true) }}
+          <div class="project-summary">
+            {{ .Summary | plainify | htmlUnescape }}
+          </div>
+          {{- end }}
+          <div class="project-meta">
+            <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
+            {{- with .Params.tags }}
+            <div class="project-tags">
+              {{- range first 2 . }}
+              <span class="project-tag">#{{ . }}</span>
+              {{- end }}
+            </div>
+            {{- end }}
+          </div>
+        </div>
+      </a>
+    </div>
+    {{- end }}
+  </div>
+
+  <!-- Add no results message for filtering -->
+  <div class="no-results" style="display: none; text-align: center; margin-top: 2rem;">
+    <p>No projects match the selected filters. Try selecting different filters or <button class="show-all-btn">show all projects</button>.</p>
+  </div>
+  </div> <!-- Close projects-container -->
+
+  <!-- Load project filter script -->
+  <script src="/js/project-filters.js"></script>
+{{- else }}
+  <!-- Handle section pages (years) -->
+  <div class="projects-container">
+  <div class="projects-grid">
+  {{- $paginator := .Paginate (where .Pages "Kind" "page") }}
+  {{- range $paginator.Pages }}
+    <div class="project-card" data-tags="{{ if .Params.tags }}{{ delimit .Params.tags "," }}{{ end }}">
+      <a href="{{ .RelPermalink }}" class="project-link">
+        {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+        {{- if (not $isHidden) }}
+          {{- with .Params.image }}
+          <div class="project-image">
+            {{- $imgPath := . }}
+            {{- if (hasPrefix . "/previews/") }}
+              {{- $imgPath = replace . "../previews/" "/previews/" }}
+            {{- end }}
+            <img src="{{ $imgPath | relURL }}" alt="{{ $.Title }}">
+          </div>
+          {{- else }}
+          <div class="project-image">
+            <img src="/previews/default-project.png" alt="{{ $.Title }}">
+          </div>
+          {{- end }}
+        {{- end }}
+        <div class="project-content">
+          <h2 class="project-title">{{ .Title }}</h2>
+          {{- if (ne (.Param "hideSummary") true) }}
+          <div class="project-summary">
+            {{ .Summary | plainify | htmlUnescape }}
+          </div>
+          {{- end }}
+          <div class="project-meta">
+            <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
+            {{- with .Params.tags }}
+            <div class="project-tags">
+              {{- range first 2 . }}
+              <span class="project-tag">#{{ . }}</span>
+              {{- end }}
+            </div>
+            {{- end }}
+          </div>
+        </div>
+      </a>
+    </div>
+  {{- end }}
+  </div>
+  </div> <!-- Close projects-container -->
+  {{- partial "pagination.html" . }}
+{{- end }}
+
+{{- end }}

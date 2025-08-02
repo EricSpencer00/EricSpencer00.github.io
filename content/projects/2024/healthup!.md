@@ -5,6 +5,8 @@ authors:
   - "Eric Spencer"
   - "Matthew Caballero"
 draft: false
+image: "/previews/healthup!.png"
+tags: ["React Native"]
 ---
 
 _Eric Spencer + Matthew Caballero_  

@@ -1,11 +1,13 @@
 ---
 title: "GitHub pfp Generator"
 date: 2025-06-04
-description: "Generate a default GitHub profile picture"
 tags: ["web development", "javascript", "canvas"]
 categories: ["Miscellaneous"]
 draft: false
+image: "/previews/github-pfp.png"
 ---
+
+Generate a default GitHub profile picture below, Generate a new profile as much as you please.
 
 {{< rawhtml >}}
 <!DOCTYPE html>

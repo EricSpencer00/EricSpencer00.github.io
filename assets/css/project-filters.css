@@ -1,0 +1,98 @@
+/* Project filters */
+.project-filters {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* Filter tags container */
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 2.5rem; /* Height of one line */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.filter-tags.expanded {
+  max-height: 20rem; /* Arbitrary large height to fit all tags */
+}
+
+.filter-tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+
+.filter-tag.active {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+
+.toggle-filters-btn,
+.show-all-btn {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  background-color: var(--entry);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-filters-btn {
+  margin-left: 0.5rem;
+}
+
+.show-all-btn {
+  margin-left: auto;
+}
+
+.toggle-filters-btn:hover,
+.show-all-btn:hover {
+  background-color: var(--tertiary);
+  color: var(--theme);
+}
+
+/* Fade animation for filtering */
+.projects-grid {
+  transition: opacity 0.3s ease;
+}
+
+.project-card {
+  transition: opacity 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card.hidden {
+  display: none;
+}
+
+/* No results message */
+.no-results {
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  color: var(--secondary);
+  display: none;
+}

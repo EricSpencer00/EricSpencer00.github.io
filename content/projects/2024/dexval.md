@@ -2,10 +2,9 @@
 title: "DexVal"
 date: 2024-04-18
 description: "A project analyzing Dexcom CGM data beyond the standard Clarity app."
-tags: ["diabetes", "CGM", "data analysis"]
+tags: ["Flask", "Python"]
 categories: ["Projects"]
-image: "../Images/logo.png"
-draft: false
+draft: true
 ---
 
 <hr>
@@ -38,5 +37,5 @@ Time in Range (70-150 mg/dL): 58.33%
 ---
 
 ### 🔗 Useful Links:
-- 💻 [GitHub Repository](https://github.com/EricSpencer00/Dexcom-Statistics)  
+- 💻 [GitHub Repository](https://github.com/EricSpencer00/Dexcom-Statistics)
 
