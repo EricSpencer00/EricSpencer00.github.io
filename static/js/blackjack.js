@@ -284,7 +284,7 @@ const DEALER_HAND_Y = canvas.height * 0.15;
 const HAND_SPACING = 150; // Space between split hands
 
 // Text display
-let gameMessage = 'Click "Deal New Hand" to start!';
+let gameMessage = 'Click any amount below to start!';
 
 // Betting functions
 function placeBet(amount) {
