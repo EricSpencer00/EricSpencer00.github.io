@@ -2,7 +2,7 @@
 title: "How to tell if written work is AI"
 date: 2025-07-31
 description: "Easily tell if something is AI using these obvious giveaways"
-tags: ["AI", "LLM"]
+tags: ["AI"]
 categories: ["Miscellaneous"]
 draft: false
 image: "/previews/tell-ai.png"
