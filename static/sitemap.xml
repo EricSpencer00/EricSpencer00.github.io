@@ -6,9 +6,79 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ericspencer00.github.io/aboutme/</loc>
+    <loc>https://ericspencer00.github.io/aboutMe/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/ai/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/blackjack.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/chess.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/cybersecurity.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/my-zshrc.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/old-website.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/oldest-site.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/pixel-profile.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/search-engine.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/song-recommender.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/tell-ai.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/timbuktu.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/miscellaneous/wiki-race.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ericspencer00.github.io/projects/</loc>
@@ -16,7 +86,32 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ericspencer00.github.io/miscellaneous/</loc>
+    <loc>https://ericspencer00.github.io/projects/2022/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/projects/2023/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/projects/2024/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/projects/2025/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/resume/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ericspencer00.github.io/resume/cv.md</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
