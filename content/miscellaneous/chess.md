@@ -2,7 +2,7 @@
 title: "Chess Game"
 date: 2025-06-20
 description: "Interactive chess game with AI opponent"
-tags: ["chess", "game", "interactive"]
+tags: ["Game"]
 image: "/previews/chess.png"
 ---
 

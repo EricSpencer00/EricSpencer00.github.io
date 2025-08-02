@@ -4,7 +4,7 @@ date: 2025-03-20T00:00:00Z
 draft: false
 description: "Ran every time I open a terminal"
 image: "/previews/zshrc.png"
-tags: ["zshrc", "terminal", "bash"]
+tags: ["Terminal"]
 ---
 
 Ran every time that I open a terminal on my Macbook Pro.

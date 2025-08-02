@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Calculator on Eric Spencer</title>
-    <link>http://localhost:52344/tags/calculator/</link>
+    <link>http://localhost:1313/tags/calculator/</link>
     <description>Recent content in Calculator on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:52344/tags/calculator/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/calculator/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>One Rep Max Calculator</title>
-      <link>http://localhost:52344/projects/2024/one-rep-max/</link>
+      <link>http://localhost:1313/projects/2024/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2024/one-rep-max/</guid>
+      <guid>http://localhost:1313/projects/2024/one-rep-max/</guid>
       <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
-      <link>http://localhost:52344/projects/2022/freetime-calc/</link>
+      <link>http://localhost:1313/projects/2022/freetime-calc/</link>
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:52344/projects/2022/freetime-calc/</guid>
+      <guid>http://localhost:1313/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
   </channel>

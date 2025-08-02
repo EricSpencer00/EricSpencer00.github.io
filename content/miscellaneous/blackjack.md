@@ -2,7 +2,7 @@
 title: "BlackJack Game"
 date: 2025-06-13
 description: "Play BlackJack with fake money"
-tags: ["web development", "javascript", "canvas"]
+tags: ["Game"]
 categories: ["Miscellaneous"]
 draft: false
 image: "/previews/blackjack.png"

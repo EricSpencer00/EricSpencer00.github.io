@@ -2,7 +2,7 @@
 title: "Neural Network Image Recognition Project"
 date: 2024-03-31
 description: "Exploring computer vision with custom neural networks"
-tags: ["AI", "Neural Networks", "Computer Vision"]
+tags: []
 ---
 
 # Neural Network Image Recognition Project

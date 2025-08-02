@@ -1,7 +1,7 @@
 ---
 title: "GitHub pfp Generator"
 date: 2025-06-04
-tags: ["web development", "javascript", "canvas"]
+tags: []
 categories: ["Miscellaneous"]
 draft: false
 image: "/previews/github-pfp.png"

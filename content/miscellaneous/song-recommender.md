@@ -2,9 +2,9 @@
 title: "Song Recommender"
 date: 2025-01-15
 description: "AI-powered song recommendations using Gemini API"
-tags: ["AI", "Music", "Recommendations", "Web App"]
+tags: []
 categories: ["Miscellaneous"]
-draft: true
+draft: false
 ---
 
 {{< rawhtml >}}
