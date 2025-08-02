@@ -1,5 +1,7 @@
 +++
-title = "About Me"
+title = "About Eric Spencer"
+description = "Learn more about Eric Spencer, a Computer Science student at Loyola University Chicago with experience in Java, Spring Boot, Python, and more."
+keywords = ["Eric Spencer", "About Me", "Computer Science", "Loyola University Chicago", "Programming", "Software Development"]
 url = "/aboutme/"
 draft = false
 layout = "aboutme/single"
