@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upscaler + Compressor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Image Upscaler + Compressor</h1>
+            <p>Upload, scale, and compress images entirely in your browser - no backend required!</p>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-content">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7,10 12,15 17,10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <p>Drag & drop an image here or <span class="upload-link">browse files</span></p>
+                    <p class="file-info">Supports: JPG, PNG, GIF, WebP</p>
+                </div>
+            </div>
+            <input type="file" id="upload" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="controls-section" id="controlsSection" style="display: none;">
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="scale">🔍 Upscale Factor:</label>
+                    <select id="scale">
+                        <option value="1">1x (Original)</option>
+                        <option value="2" selected>2x</option>
+                        <option value="4">4x</option>
+                        <option value="8">8x</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="interpolation">🎯 Scaling Method:</label>
+                    <select id="interpolation">
+                        <option value="smooth">Smooth (Bilinear)</option>
+                        <option value="pixelated">Pixelated (Nearest)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="compress">🗜️ Compression Quality:</label>
+                    <div class="slider-container">
+                        <input type="range" id="compress" min="10" max="100" value="80">
+                        <span id="qualityValue">80</span>%
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="format">📄 Output Format:</label>
+                    <select id="format">
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/png">PNG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="processBtn" class="btn btn-primary">🚀 Process Image</button>
+                <button id="resetBtn" class="btn btn-secondary">🔄 Reset</button>
+            </div>
+        </div>
+
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <div class="preview-grid">
+                <div class="preview-item">
+                    <h3>📷 Original</h3>
+                    <div class="canvas-container">
+                        <canvas id="originalCanvas"></canvas>
+                    </div>
+                    <div class="image-info" id="originalInfo"></div>
+                </div>
+                
+                <div class="preview-item">
+                    <h3>✨ Processed</h3>
+                    <div class="canvas-container">
+                        <canvas id="processedCanvas"></canvas>
+                    </div>
+                    <div class="image-info" id="processedInfo"></div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a id="downloadBtn" href="#" download="processed-image" class="btn btn-success" style="display: none;">
+                    💾 Download Processed Image
+                </a>
+                <button id="downloadAllBtn" class="btn btn-info" style="display: none;">
+                    📦 Download All Versions (ZIP)
+                </button>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>ℹ️ How it works</h2>
+            <ul>
+                <li><strong>Upscaling:</strong> Choose between smooth (bilinear) or pixelated (nearest-neighbor) scaling</li>
+                <li><strong>Compression:</strong> Adjust quality to reduce file size while maintaining visual quality</li>
+                <li><strong>Formats:</strong> Export as JPEG (smallest), PNG (lossless), or WebP (modern)</li>
+                <li><strong>Privacy:</strong> All processing happens in your browser - no data is sent to any server</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
