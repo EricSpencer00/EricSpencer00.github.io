@@ -17,9 +17,7 @@ I was given the task of evaluating responses from ChatGPT and
 
 Inspired by my CS2 class about maze searching algorithms, I explored different approaches to maze solving. For reference, see the following files:
 
-- [Iterative Maze Solver Example (txt)](/files/Iterative_hasNext%20Maze%20Solver.txt)
-- [Iterative Maze Solver Example (markdown)](/files/Iterative_hasNext%20Maze%20Solver.md)
-- [Recursive Maze Solver Example (txt)](/files/Recursive%20Maze%20Solver..txt)
-- [Recursive Maze Solver Example (markdown)](/files/Recursive%20Maze%20Solver.md)
+- [Iterative Maze Solver Example](../iterative-maze-solver)
+- [Recursive Maze Solver Example](../recursive-maze-solver)
 
 https://curricula.cs.luc.edu/15-cs2/content.html
