@@ -354,33 +354,9 @@
     <item>
       <title>ChatGPT Research</title>
       <link>http://localhost:1313/projects/2023/chatgpt_research/</link>
-      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2023/chatgpt_research/</guid>
       <description>Research with v3.5 and how it could possibly teach those new to Java Data Structures</description>
-    </item>
-    <item>
-      <title>Iterative Maze Solver Example</title>
-      <link>http://localhost:1313/projects/2023/iterative-maze-solver/</link>
-      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/iterative-maze-solver/</guid>
-      <description>&lt;p&gt;Iterative/hasNext Maze Solver&lt;/p&gt;
-&lt;p&gt;#########################################&lt;/p&gt;
-&lt;h2 id=&#34;user&#34;&gt;User:&lt;/h2&gt;
-&lt;div&gt;A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, give me some coding examples of an iterative maze solver. Assume this maze has a border marked with *&#39;s, walls marked with *&#39;s, unvisited squares marked with blank spaces &#39; &#39;s, and visited spaces marked with &#39;x&#39;s. Explain each step as you go. &lt;/div&gt;
-&lt;h2 id=&#34;chatgpt&#34;&gt;ChatGPT:&lt;/h2&gt;
-&lt;p&gt;Certainly! Here&amp;rsquo;s an example of an iterative maze solver in Java, following the guidelines you provided:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Recursive Maze Solver Example</title>
-      <link>http://localhost:1313/projects/2023/recursive-maze-solver/</link>
-      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/recursive-maze-solver/</guid>
-      <description>&lt;p&gt;Recursive Maze Solver.&lt;/p&gt;
-&lt;p&gt;#########################################&lt;/p&gt;
-&lt;h2 id=&#34;user&#34;&gt;User:&lt;/h2&gt;
-&lt;div&gt;A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, give me some coding examples of a recursive maze solver. Assume this maze has walls marked with *&#39;s, unvisited squares marked with &#39;.&#39;s, dead-ends marked with &#39;-&#39;, the starting point marked with &#39;0&#39;, and visited spaces marked with &#39;+&#39;s. Explain each step as you go. &lt;/div&gt;
-&lt;h2 id=&#34;chatgpt&#34;&gt;ChatGPT:&lt;/h2&gt;
-&lt;p&gt;Sure! I&amp;rsquo;ll provide you with a coding example of a recursive maze solver in Java, following the ACM 2020 curricular guidelines. Here&amp;rsquo;s the code:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>

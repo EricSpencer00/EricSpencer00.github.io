@@ -1,7 +1,7 @@
 ---
 title: Iterative Maze Solver Example
-date: 2023-09-01
-draft: false
+date: 2023-06-01
+draft: true
 ---
 Iterative/hasNext Maze Solver
 
