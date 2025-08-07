@@ -4,7 +4,7 @@ date: 2024-12-14
 description: "A movie recommendation website developed as part of the Loyola AI Club's Fall 2024 project."
 tags: ["AI"]
 categories: ["Projects"]
-image: "../Images/logo.png"
+image: "/images/movierec/MovieScreen.png"
 draft: false
 ---
 

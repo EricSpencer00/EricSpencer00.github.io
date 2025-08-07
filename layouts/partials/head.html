@@ -98,6 +98,11 @@
 <link rel="stylesheet" href="{{ ($projectFiltersCSS | minify).RelPermalink }}">
 {{- end }}
 
+{{- $homeCSS := resources.Get "css/home.css" }}
+{{- if $homeCSS }}
+<link rel="stylesheet" href="{{ ($homeCSS | minify).RelPermalink }}">
+{{- end }}
+
 {{- /* Favicons */}}
 <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">

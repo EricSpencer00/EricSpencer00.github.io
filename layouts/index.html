@@ -1,0 +1,175 @@
+{{- define "main" }}
+
+<div class="home-container">
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="profile">
+      <div class="profile_inner">
+          <img draggable="false" src="/images/avatar.jpeg" alt="Profile Picture" title="Profile Picture"
+              height="240" width="240" />
+          <h1>Eric Spencer</h1>
+          <span>
+            <em>Computer Science Major &amp; Software Developer</em><br>
+            Loyola University Chicago, Class of 2026<br>
+            <a href="mailto:espencer2@luc.edu">espencer2@luc.edu</a> · <a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a>
+          </span>
+          <div class="social-icons">
+            <a href="https://github.com/EricSpencer00" target="_blank" rel="noopener noreferrer" title="Github">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/EricSpencer00" target="_blank" rel="noopener noreferrer" title="Linkedin">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="mailto:ericspencer1450@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+            <a href="/resume/" target="_blank" rel="noopener noreferrer" title="CV">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.342a2 2 0 0 0-.602-1.43l-4.44-4.342A2 2 0 0 0 13.56 2H6a2 2 0 0 0-2 2z" />
+                <path d="M9 13h6" />
+                <path d="M9 17h3" />
+                <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+              </svg>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Projects Section -->
+  <section class="home-section">
+    <div class="section-header">
+      <h2 class="section-title">Recent Projects</h2>
+      <a href="/projects/" class="view-all-link">View All →</a>
+    </div>
+    <div class="projects-grid home-grid">
+      {{- $projectPages := where (where .Site.RegularPages "Section" "projects") "Kind" "page" }}
+      {{- $sortedProjects := slice }}
+      {{- range $projectPages }}
+        {{- $sortedProjects = $sortedProjects | append . }}
+      {{- end }}
+      {{- $recentProjects := first 3 $sortedProjects }}
+      {{- range $recentProjects }}
+      <div class="project-card">
+        <a href="{{ .RelPermalink }}" class="project-link">
+          {{- if or .Params.image .Params.preview }}
+          <div class="project-image">
+            <img src="{{ or .Params.image .Params.preview | absURL }}" alt="{{ .Title }}">
+          </div>
+          {{- else }}
+          <div class="project-image">
+            <img src="/images/projects/default-project.svg" alt="{{ .Title }}">
+          </div>
+          {{- end }}
+          <div class="project-content">
+            <h3 class="project-title">{{ .Title }}</h3>
+            <div class="project-summary">
+              {{ with .Description }}{{ . | markdownify }}{{ else }}{{ .Summary | plainify | htmlUnescape | truncate 120 }}{{ end }}
+            </div>
+            <div class="project-meta">
+              <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
+              {{- with .Params.tags }}
+              <div class="project-tags">
+                {{- range first 2 . }}
+                <span class="project-tag">#{{ . }}</span>
+                {{- end }}
+              </div>
+              {{- end }}
+            </div>
+          </div>
+        </a>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+
+  <!-- Miscellaneous Section -->
+  <section class="home-section">
+    <div class="section-header">
+      <h2 class="section-title">Miscellaneous</h2>
+      <a href="/miscellaneous/" class="view-all-link">View All →</a>
+    </div>
+    <div class="projects-grid home-grid">
+      {{- $miscPages := where (where .Site.RegularPages "Section" "miscellaneous") "Kind" "page" }}
+      {{- $sortedMisc := slice }}
+      {{- range $miscPages }}
+        {{- $sortedMisc = $sortedMisc | append . }}
+      {{- end }}
+      {{- $miscPosts := first 3 $sortedMisc }}
+      {{- range $miscPosts }}
+      <div class="project-card">
+        <a href="{{ .RelPermalink }}" class="project-link">
+          {{- if or .Params.image .Params.preview }}
+          <div class="project-image">
+            <img src="{{ or .Params.image .Params.preview | absURL }}" alt="{{ .Title }}">
+          </div>
+          {{- else }}
+          <div class="project-image">
+            <img src="/images/miscellaneous/default-misc.svg" alt="{{ .Title }}">
+          </div>
+          {{- end }}
+          <div class="project-content">
+            <h3 class="project-title">{{ .Title }}</h3>
+            <div class="project-summary">
+              {{ with .Description }}{{ . | markdownify }}{{ else }}{{ .Summary | plainify | htmlUnescape | truncate 120 }}{{ end }}
+            </div>
+            <div class="project-meta">
+              <span class="project-date">{{ .Date.Format "Jan 2006" }}</span>
+              {{- with .Params.tags }}
+              <div class="project-tags">
+                {{- range first 2 . }}
+                <span class="project-tag">#{{ . }}</span>
+                {{- end }}
+              </div>
+              {{- end }}
+            </div>
+          </div>
+        </a>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="home-section about-section">
+    <div class="section-header">
+      <h2 class="section-title">About Me</h2>
+      <a href="/aboutme/" class="view-all-link">More About Me →</a>
+    </div>
+    <div class="about-content">
+      <p>I'm Eric, a Computer Science major at Loyola University Chicago</p>
+      
+      <ul>
+        <li>🔭 I'm interning for the summer and my contribution page will reflect that</li>
+        <li>🤔 Take a look at my repos and see if you find anything interesting</li>
+        <li>🌱 I'm currently learning SaaS Apps, TLA+, and Fullstack methods</li>
+        <li>🏋️‍♂️ I'm rated 1500 in Chess and can bench 225</li>
+      </ul>
+      
+      <div class="tech-icons">
+        <h4>Proficient Technologies & Tools</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png" alt="Java" />
+          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png" alt="Spring Boot" />
+          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png" alt="Postgresql" />
+          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png" alt="Python" />
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{{- end }}{{/* end main */}}

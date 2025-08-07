@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#3A5684"/>
+  <text x="200" y="113" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" alignment-baseline="middle">Project Image</text>
+  <path d="M160 90C160 87.7909 161.791 86 164 86H236C238.209 86 240 87.7909 240 90V135C240 137.209 238.209 139 236 139H164C161.791 139 160 137.209 160 135V90Z" stroke="white" stroke-width="2"/>
+  <path d="M175 105L185 115M185 105L175 115" stroke="white" stroke-width="2"/>
+  <path d="M215 105L225 115M225 105L215 115" stroke="white" stroke-width="2"/>
+  <path d="M190 125H210" stroke="white" stroke-width="2"/>
+</svg>

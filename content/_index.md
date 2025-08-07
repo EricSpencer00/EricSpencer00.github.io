@@ -2,6 +2,7 @@
 title: "Eric Spencer - Computer Science Portfolio"
 description: "Personal website of Eric Spencer, Computer Science major at Loyola University Chicago. View my projects, resume, and technical skills."
 keywords: ["Eric Spencer", "Computer Science", "Portfolio", "Resume", "Software Developer", "Loyola University Chicago"]
+layout: "index"
 ---
 
 {{< rawhtml >}}
