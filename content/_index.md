@@ -41,13 +41,4 @@ keywords: ["Eric Spencer", "Computer Science", "Portfolio", "Resume", "Software 
 <meta name="author" content="Eric Spencer">
 <meta name="description" content="Personal website of Eric Spencer, Computer Science student at Loyola University Chicago specializing in software development and programming.">
 <meta name="keywords" content="Eric Spencer, Eric Spencer Portfolio, Eric Spencer Developer, Eric Spencer Software Engineer, Eric Spencer Loyola, Computer Science, Portfolio">
-<div id="ascii-art"></div>
-<script src="/js/script.js"></script>
-<script>
-  // Example usage: display a random ASCII art from asciiNameArray
-  document.addEventListener("DOMContentLoaded", function() {
-    const art = getRandomAsciiArt();
-    typeText2dArray([art], "ascii-art", 10); // Adjust speed as desired
-  });
-</script>
 {{< /rawhtml >}}
