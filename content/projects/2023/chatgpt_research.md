@@ -46,13 +46,13 @@ The maze has an isolated wall in the middle, blocking any path to the exit.
 
 Here's the maze for reference:
 
-*******
-*     *
-* *** *
-* *   *
-* ***** 
-*     *
-*******
+* * * * * * *
+*           *
+*   * * *   *
+*   *       *
+*   * * * * * 
+*           *
+* * * * * * *
 
 ```
-This maze has no exits nor entrances.
+This maze has no exits nor entrances, and its funny for the AI to point out the wall in the middle as it would not obstruct any path in the middle.

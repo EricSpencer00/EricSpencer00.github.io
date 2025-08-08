@@ -11,9 +11,9 @@ draft = true
 
 - experience:
   - CCC Intelligent Solutions 
-    - Software Engineering Intern (May 2025 - Present)
-      - Provide fullstack implementations for defects on the company's B2B SaaS website.
-      - Created an analytical dashboard for insurance claims using Vue.js and Java Spring Boot for internal use.
+    - Software Engineering Intern (May 2025 - August 2025)
+      - Provided fullstack implementations for defects on the company's B2B SaaS portal.
+      - Created an interactive dashboard for insurance claims using Vue.js and Java Spring Boot for analytical use.
   - Loyola University Chicago Computer Science Department
     - Software Engineer (May 2025)
       - Created a web-based microwave with Java Spring Boot and Vaadin to show state changes and syntax examples of the TLA+ formal methods programming language.
