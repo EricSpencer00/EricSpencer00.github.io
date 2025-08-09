@@ -1,7 +1,7 @@
 ---
 title: ChatGPT Research
 date: 2023-06-01
-description: "Research with v3.5 and how it could possibly teach those new to Java Data Structures"
+description: "Research with v3.0 and how it could possibly teach those new to Java Data Structures"
 draft: true
 tags: ["LLM", "Java"]
 categories: ["Projects"]
@@ -20,7 +20,7 @@ Bi-weekly (obviously meaning once every [fortnight](https://en.wikipedia.org/wik
 
 Credit to [seanperfecto](https://github.com/seanperfecto) on GitHub for the above gifs.
 
-I've compiled my chats with v3.5 into convenient markdown format:
+I've compiled my chats with v3.0 into convenient markdown format:
 
 - [Iterative Maze Solver Example](../iterative-maze-solver)
   - BFS, DFS, and A* algorithms among others
@@ -29,12 +29,12 @@ I've compiled my chats with v3.5 into convenient markdown format:
 - [Meta Researching ChatGPT](../meta_research)
   - A meta-level analysis where I ask the AI how it would research itself
 - [Family Ancestry Tree in Java](../ancestry_tree)
-  - Asking v3.5 how it would design an ancestry tree to find relatives
+  - Asking v3.0 how it would design an ancestry tree to find relatives
 
 
 I believe they were listed on the Google Search index at one time in July 2025 due to them being shared with my reserach cohort as a public link, but OpenAI has since fixed that issue. Regardless, nothing sensitive was ever shared.
 
-You can see how v3.5 was hallucinating (or just incompetant) back in 2023:
+You can see how v3.0 was hallucinating (or just incompetant) back in 2023:
 
 ```
 User:
