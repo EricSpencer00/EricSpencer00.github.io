@@ -258,6 +258,29 @@ Built using Spring Boot (Java) and the very advanced framework Vaadin (also Java
         </div>
       </a>
     </div>
+    <div class="project-card" data-tags="AI,Python">
+      <a href="/projects/2025/fraud-predictor/" class="project-link">
+          <div class="project-image">
+            <img src="/previews/" alt="Projects">
+          </div>
+        <div class="project-content">
+          <h2 class="project-title">Machine Learning Fraud Identifier</h2>
+          <div class="project-summary">
+            My group project for COMP 379: Machine Learning analyzed different ML algorithms for detecting fraud within a dataset that was anonymized and PCA’ed.
+https://colab.research.google.com/drive/1dP9ev-j5ZRE3_MmWzLhHxXAbEtG5qKbT?usp=sharing
+Imports import os import subprocess import numpy as np import pandas as pd from sklearn.model_selection import StratifiedKFold, cross_validate from sklearn.preprocessing import StandardScaler from imblearn.pipeline import Pipeline from imblearn.over_sampling import SMOTE from sklearn.linear_model import LogisticRegression from sklearn.ensemble import RandomForestClassifier from sklearn.svm import SVC from xgboost import XGBClassifier from lightgbm import LGBMClassifier from sklearn.neighbors import KNeighborsClassifier Download the Dataset def download_dataset(): &#34;&#34;&#34;Download the Kaggle creditcardfraud dataset if not present.&#34;&#34;&#34; if not os.path.exists(&#39;creditcard.csv&#39;): print(&#34;→ Downloading dataset via Kaggle CLI...&#34;) subprocess.run([ &#39;kaggle&#39;, &#39;datasets&#39;, &#39;download&#39;, &#39;-d&#39;, &#39;mlg-ulb/creditcardfraud&#39;, &#39;-p&#39;, &#39;.&#39;, &#39;--unzip&#39; ], check=True) else: print(&#34;→ creditcard.csv already exists, skipping download.&#34;) # Run the download download_dataset() Load and Preview the Data def load_data(): &#34;&#34;&#34;Load the CSV into a pandas DataFrame.&#34;&#34;&#34; return pd.read_csv(&#39;creditcard.csv&#39;) # Load and preview df = load_data() df.head() Model Comparison Function def compare_models(df): # 1) Features &amp; target features = [f&#39;V{i}&#39; for i in range(1,29)] &#43; [&#39;Amount&#39;, &#39;Time&#39;] X = df[features].values y = df[&#39;Class&#39;].values # 2) Classifiers to compare models = { &#34;LogisticRegression&#34;: LogisticRegression(max_iter=1000, class_weight=&#39;balanced&#39;), &#34;RandomForest&#34; : RandomForestClassifier(n_estimators=100, class_weight=&#39;balanced&#39;), &#34;XGBoost&#34; : XGBClassifier(use_label_encoder=False, eval_metric=&#39;logloss&#39;), &#34;LightGBM&#34; : LGBMClassifier(), &#34;SVM (RBF)&#34; : SVC(kernel=&#39;rbf&#39;, probability=True, class_weight=&#39;balanced&#39;), &#34;KNN&#34; : KNeighborsClassifier(n_neighbors=5) } # 3) Pipeline builder def make_pipeline(clf): return Pipeline([ (&#34;smote&#34;, SMOTE(random_state=42)), (&#34;scaler&#34;, StandardScaler()), (&#34;classifier&#34;, clf) ]) # 4) Scoring metrics scoring = { &#34;accuracy&#34; : &#34;accuracy&#34;, &#34;precision&#34;: &#34;precision&#34;, &#34;recall&#34; : &#34;recall&#34;, &#34;f1&#34; : &#34;f1&#34;, &#34;roc_auc&#34; : &#34;roc_auc&#34;, &#34;pr_auc&#34; : &#34;average_precision&#34; } # 5) Stratified 5-fold CV cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42) results = [] for name, clf in models.items(): print(f&#34;Evaluating {name}...&#34;) pipe = make_pipeline(clf) cv_res = cross_validate(pipe, X, y, cv=cv, scoring=scoring, return_train_score=False, n_jobs=-1) # Aggregate mean scores row = {metric: np.mean(cv_res[f&#34;test_{metric}&#34;]) for metric in scoring} row[&#34;model&#34;] = name results.append(row) # 6) Results DataFrame df_res = pd.DataFrame(results).set_index(&#34;model&#34;) df_res = df_res.sort_values(&#34;roc_auc&#34;, ascending=False) return df_res Run Model Comparison # Run comparison and display results results_df = compare_models(df) print(&#34;=== Model Comparison Results ===&#34;) results_df Example Output Table Model Accuracy Precision Recall F1 ROC AUC PR AUC LogisticRegression 0.990948 0.148254 0.89025 0.25403 0.978925 0.75097 XGBoost 0.999466 0.850421 0.83944 0.84474 0.977823 0.85753 RandomForest 0.999530 0.892663 0.82723 0.85865 0.968977 0.85102 SVM (RBF) 0.997630 0.409137 0.82117 0.54560 0.964244 0.70854 LightGBM 0.999038 0.684689 0.83129 0.74998 0.962026 0.81331 KNN 0.998318 0.509715 0.81709 0.62733 0.914223 0.62561 The above Jupyter notebook was my individual contribution to the group project along with creating dataset visualizations in the notebook report
+
+          </div>
+          <div class="project-meta">
+            <span class="project-date">May 2025</span>
+            <div class="project-tags">
+              <span class="project-tag">#AI</span>
+              <span class="project-tag">#Python</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
     <div class="project-card" data-tags="Formal Methods">
       <a href="/projects/2025/coq/" class="project-link">
           <div class="project-image">
@@ -658,6 +681,24 @@ However, a sample run of the program was recorded:
             <div class="project-tags">
               <span class="project-tag">#Calculator</span>
             </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="project-card" data-tags="">
+      <a href="/projects/2025/fraud-predictor-full/" class="project-link">
+          <div class="project-image">
+            <img src="/previews/default-project.png" alt="Projects">
+          </div>
+        <div class="project-content">
+          <h2 class="project-title"></h2>
+          <div class="project-summary">
+            Credit Card Fraud Detection Project - COMP 379/479 Machine Learning Ololade Akinsanola, Oliver Schramm, Eric Spencer, Tigist Tefera, and Avery Walker# Data Download
+[#1] import pandas as pd import numpy as np import matplotlib.pyplot as plt import seaborn as sns from sklearn.preprocessing import StandardScaler from sklearn.model_selection import train_test_split import os from imblearn.over_sampling import SMOTE from collections import Counter import xgboost [#2] # 1. Install Kaggle CLI !pip install kaggle # 2. Write your credentials to ~/.kaggle/kaggle.json import os, json # Ensure the directory exists os.makedirs(os.path.expanduser(&#34;~/.kaggle&#34;), exist_ok=True) creds = { &#34;username&#34;: &#34;ericspencer00&#34;, &#34;key&#34;: &#34;xxxxxxxxxxxxxxxxx&#34; } # Write and secure the file with open(os.path.expanduser(&#34;~/.kaggle/kaggle.json&#34;), &#34;w&#34;) as f: json.dump(creds, f) os.chmod(os.path.expanduser(&#34;~/.kaggle/kaggle.json&#34;), 0o600) # 3. Point Kaggle CLI at that folder os.environ[&#34;KAGGLE_CONFIG_DIR&#34;] = os.path.expanduser(&#34;~/.kaggle&#34;) # 4. Download &amp; unzip the dataset !kaggle datasets download -d mlg-ulb/creditcardfraud -p . --unzip # 5. Load into pandas import pandas as pd data = pd.read_csv(&#34;creditcard.csv&#34;) print(&#34;Data downloaded successfully.&#34;) print(data.head()) Output:
+
+          </div>
+          <div class="project-meta">
+            <span class="project-date">Jan 0001</span>
           </div>
         </div>
       </a>
