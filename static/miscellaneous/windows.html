@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" dir="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+  <title>Eric Spencer | Developer, Researcher, Creator</title>
+  <meta name="description" content="Personal website of Eric Spencer – software developer, AI researcher, and creative technologist." />
+  <meta name="author" content="Eric Spencer" />
+  <link rel="canonical" href="https://ericspencer00.github.io/">
+  <!-- 7.css -->
+  <link rel="stylesheet" href="https://unpkg.com/7.css">
+
+  <style>
+    /* small layout helpers (kept minimal) */
+    :root {
+      --page-max: 1100px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      background: #e6e6e6;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    .container {
+      width: 100%;
+      max-width: var(--page-max);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    header.site-header {
+      grid-column: 1 / -1;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom: 10px;
+    }
+
+    nav#main-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display:flex;
+      gap: 8px;
+      align-items:center;
+    }
+
+    nav#main-nav a {
+      text-decoration:none;
+      padding:6px 10px;
+      display:inline-block;
+    }
+
+    .profile-window img {
+      border-radius: 4px;
+      display:block;
+      width:100%;
+      height:auto;
+    }
+
+    .projects-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+
+    footer.site-footer {
+      grid-column: 1 / -1;
+      margin-top: 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    @media (max-width: 900px){
+      .container{
+        grid-template-columns: 1fr;
+      }
+      header.site-header{flex-direction:column;align-items:flex-start;gap:8px}
+    }
+  </style>
+</head>
+<body>
+  <main class="win7 container" id="top" aria-label="Eric Spencer homepage">
+    <!-- Header / Navigation -->
+    <header class="site-header">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="title-bar" style="min-width:220px">
+          <div class="title-bar-text"><a href="https://ericspencer00.github.io/" title="Eric Spencer">Eric Spencer</a></div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div>
+          <small>Computer Science • Loyola University Chicago • Class of 2026</small>
+        </div>
+      </div>
+
+      <nav id="main-nav" aria-label="Primary">
+        <ul id="menu" role="menubar">
+          <li role="none"><a role="menuitem" href="https://ericspencer00.github.io/aboutme/" title="About Me">About Me</a></li>
+          <li role="none"><a role="menuitem" href="https://ericspencer00.github.io/projects/" title="Projects">Projects</a></li>
+          <li role="none"><a role="menuitem" href="https://ericspencer00.github.io/miscellaneous/" title="Miscellaneous">Misc</a></li>
+          <li role="none"><a role="menuitem" href="https://ericspencer00.github.io/resume" title="Resume">Resume</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Left column: Profile -->
+    <section class="window profile-window" aria-labelledby="profile-title" style="padding:0">
+      <div class="title-bar">
+        <div class="title-bar-text" id="profile-title">Profile</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body" style="padding:12px">
+        <div style="text-align:center">
+          <img src="https://ericspencer00.github.io/images/avatar.jpeg" alt="Eric Spencer avatar" width="240" height="240" draggable="false">
+          <h1 style="margin:8px 0 0;">Eric Spencer</h1>
+          <div>
+            <em>Computer Science Major & Software Developer</em>
+            <p style="margin:6px 0 0">Loyola University Chicago, Class of 2026</p>
+            <p style="margin:6px 0 0">
+              <a href="mailto:espencer2@luc.edu">espencer2@luc.edu</a> ·
+              <a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a>
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:8px; justify-content:center; align-items:center;">
+          <a class="toolbutton" href="https://github.com/EricSpencer00" target="_blank" rel="noopener noreferrer" title="GitHub">
+            <!-- small inline SVG icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48c-1.9 1-4.4 1-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            GitHub
+          </a>
+          <a class="toolbutton" href="https://www.linkedin.com/in/EricSpencer00" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a class="toolbutton" href="/resume/" target="_blank" rel="noopener noreferrer" title="CV">CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right column (main content) -->
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <!-- Recent Projects -->
+      <section class="window" aria-labelledby="projects-title">
+        <div class="title-bar">
+          <div class="title-bar-text" id="projects-title">Recent Projects</div>
+          <div class="title-bar-controls"><button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button></div>
+        </div>
+        <div class="window-body" style="padding:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <strong>Highlighted work</strong>
+            <a href="/projects/" class="button">View All →</a>
+          </div>
+
+          <div class="projects-grid" role="list">
+            <article class="project-card" role="listitem" style="border:1px solid rgba(0,0,0,0.08); padding:8px; border-radius:4px">
+              <a class="link" href="/projects/2025/llmjammer/">
+                <img src="https://ericspencer00.github.io/previews/llmjammer.png" alt="llmjammer preview">
+                <h3 style="margin:8px 0 4px">llmjammer</h3>
+                <p style="margin:0 0 6px">Obfuscator for public Python code to confuse LLMs</p>
+                <div style="font-size:12px;color:#333">
+                  <span>Jul 2025</span> · <span>#Python</span> <span>#LLM</span>
+                </div>
+              </a>
+            </article>
+
+            <article class="project-card" role="listitem" style="border:1px solid rgba(0,0,0,0.08); padding:8px; border-radius:4px">
+              <a class="link" href="/projects/2025/connect-4/">
+                <img src="https://ericspencer00.github.io/previews/connect-4.png" alt="Connect 4 preview">
+                <h3 style="margin:8px 0 4px">Connect 4 Game Engine</h3>
+                <p style="margin:0 0 6px">A Chess engine-esque Connect 4 analyzer</p>
+                <div style="font-size:12px;color:#333"><span>Jun 2025</span> · <span>#TLA+</span></div>
+              </a>
+            </article>
+
+            <article class="project-card" role="listitem" style="border:1px solid rgba(0,0,0,0.08); padding:8px; border-radius:4px">
+              <a class="link" href="/projects/2025/interactive-microwave-tla/">
+                <img src="https://ericspencer00.github.io/previews/interactive-microwave-tla.png" alt="Microwave TLA preview">
+                <h3 style="margin:8px 0 4px">Web Based TLA+ Microwave</h3>
+                <p style="margin:0 0 6px">Interactive microwave in the browser to learn TLA+</p>
+                <div style="font-size:12px;color:#333"><span>May 2025</span> · <span>#Formal Methods</span></div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Miscellaneous -->
+      <section class="window" aria-labelledby="misc-title">
+        <div class="title-bar">
+          <div class="title-bar-text" id="misc-title">Miscellaneous</div>
+          <div class="title-bar-controls"><button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button></div>
+        </div>
+        <div class="window-body" style="padding:12px">
+          <div class="projects-grid" role="list">
+            <article class="project-card" role="listitem" style="border:1px solid rgba(0,0,0,0.08); padding:8px; border-radius:4px">
+              <a class="link" href="/miscellaneous/tell-ai/">
+                <img src="https://ericspencer00.github.io/previews/tell-ai.png" alt="How to tell if written work is AI">
+                <h4 style="margin:8px 0 4px">How to tell if written work is AI</h4>
+                <div style="font-size:12px;color:#333"><span>Jul 2025</span> · <span>#AI</span></div>
+              </a>
+            </article>
+
+            <article class="project-card" role="listitem" style="border:1px solid rgba(0,0,0,0.08); padding:8px; border-radius:4px">
+              <a class="link" href="/miscellaneous/chess/">
+                <img src="https://ericspencer00.github.io/previews/chess.png" alt="Chess preview">
+                <h4 style="margin:8px 0 4px">Chess Game</h4>
+                <div style="font-size:12px;color:#333"><span>Jun 2025</span> · <span>#Game</span></div>
+              </a>
+            </article>
+
+            <article class="project-card" role="listitem" style="border:1px solid rgba(0,0,0,0.08); padding:8px; border-radius:4px">
+              <a class="link" href="/miscellaneous/blackjack/">
+                <img src="https://ericspencer00.github.io/previews/blackjack.png" alt="Blackjack preview">
+                <h4 style="margin:8px 0 4px">BlackJack Game</h4>
+                <div style="font-size:12px;color:#333"><span>Jun 2025</span> · <span>#Game</span></div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="window" aria-labelledby="about-title">
+        <div class="title-bar">
+          <div class="title-bar-text" id="about-title">About Me</div>
+          <div class="title-bar-controls"><button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button></div>
+        </div>
+        <div class="window-body" style="padding:12px">
+          <p>I'm Eric, a Computer Science major at Loyola University Chicago.</p>
+          <ul>
+            <li>I'm in my senior year and beginning to research formal methods in TLA+ and other languages in combination with LLMs.</li>
+            <li>I try to make at least 1 large project a month and contribute to open source every day on GitHub.</li>
+            <li>Take a look at my repositories and see if you find anything interesting.</li>
+          </ul>
+
+          <div style="margin-top:8px">
+            <h4>Proficient Technologies & Tools</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px">
+              <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png" alt="Java">
+              <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png" alt="Spring Boot">
+              <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png" alt="Postgresql">
+              <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png" alt="Python">
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div>
+        &copy;2025 <a href="https://ericspencer00.github.io/">Eric Spencer</a>
+      </div>
+      <div>
+        Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp;
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" target="_blank" rel="noopener noreferrer">PaperMod</a>
+      </div>
+    </footer>
+
+    <!-- "go to top" sticky button -->
+    <a href="#top" class="button" style="position:fixed;right:18px;bottom:18px;z-index:100" aria-label="Go to Top">Top</a>
+  </main>
+
+  <script>
+    // smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(!href || href === '#') return;
+        e.preventDefault();
+        const id = href.slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth'});
+        else window.scrollTo({top:0, behavior:'smooth'});
+      });
+    });
+  </script>
+</body>
+</html>

@@ -6,8 +6,17 @@
     <description>Recent content in Eric Spencer - Computer Science Portfolio on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows Design Website</title>
+      <link>http://localhost:1313/miscellaneous/windows/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/miscellaneous/windows/</guid>
+      <description>&lt;p&gt;Homepage of the website as imagined it would look like as a Windows 7 homepage.&lt;/p&gt;
+&lt;p&gt;Website loading&amp;hellip;&lt;/p&gt;
+&lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=http://localhost:1313/miscellaneous/windows.html&#34;&gt;</description>
+    </item>
     <item>
       <title>How to tell if written work is AI</title>
       <link>http://localhost:1313/miscellaneous/tell-ai/</link>
@@ -409,10 +418,9 @@ import os, json
 # Ensure the directory exists
 os.makedirs(os.path.expanduser(&amp;#34;~/.kaggle&amp;#34;), exist_ok=True)
 
-# Hard‑coded credentials, overloading this key only hurts kaggle, no skin off my back
 creds = {
     &amp;#34;username&amp;#34;: &amp;#34;ericspencer00&amp;#34;,
-    &amp;#34;key&amp;#34;: &amp;#34;1599fe6adf987aa5f403f97df7be75e7&amp;#34;
+    &amp;#34;key&amp;#34;: &amp;#34;xxxxxxxxxxxxxxxxx&amp;#34;
 }
 
 # Write and secure the file
