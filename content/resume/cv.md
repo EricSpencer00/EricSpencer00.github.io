@@ -45,27 +45,43 @@ draft = true
       - Skills: E-Commerce, Market Analysis
 
 - projects:
-  - Health-Up App
-    - Built a fitness app leveraging nutrition and workout data using public APIs in collaboration with another programmer.
+  - flatten-repo VSC Extension
+    - Developed a Visual Studio Code extension in TypeScript and JavaScript to flatten codebases for LLMs, using glob patterns for file selection and advanced configuration via a `.flatten_ignore` file. Automated CI/CD with GitHub Actions and ensured compatibility with ChatGPT, Claude, and Gemini.
+  - Fraud Predictor
+    - Built a machine learning pipeline in Python using scikit-learn, imbalanced-learn, XGBoost, and LightGBM to detect credit card fraud, employing SMOTE for class balancing and cross-validation for model comparison. Automated dataset download with the Kaggle CLI and visualized results in Jupyter Notebooks.
+  - Interactive Microwave TLA+
+    - Created a web-based interactive microwave simulation using Java Spring Boot and Vaadin, demonstrating state changes and syntax for TLA+ formal methods. Delivered a complete application in two weeks, showcasing rapid prototyping and full-stack Java development.
+  - Dexcom Navbar macOS
+    - Designed a macOS-style navigation bar for Dexcom data visualization using JavaScript and CSS, focusing on user interface design and responsive layouts.
+  - Connect-4 AI Engine
+    - Implemented a Connect-4 game engine in Python, featuring an AI opponent using the minimax algorithm and a graphical interface with Tkinter.
+  - HealthUp! App
+    - Built a cross-platform fitness app in React Native, integrating nutrition and workout APIs, and managed complex state with Redux. Implemented barcode scanning with react-native-vision-camera and overcame mobile build challenges.
+  - DexVal
+    - Developed a data analysis tool in Python and Flask to process Dexcom CGM data, providing advanced metrics and visualizations beyond the standard Clarity app. Utilized Pandas for data manipulation and Matplotlib for charting.
   - Movie Recommendation Model
-    - Hosted a recommendation model using Heroku, integrating data from Letterboxd.
-    - Optimized API calls to ensure performance within a 30-second limit for user-facing interactions.
-  - Dexcom Alerts System
-    - Developed an alert system for critical glucose levels, ensuring timely notifications.
-    - Designed data integration pipelines for long-term statistical analysis beyond 24-hour CGM data.
-  - Google AI Cloud Computing Hackathon
-    - Developed a machine learning prediction model to classify whether a current Major League Baseball player would be inducted to the Hall of Fame.
+    - Deployed a movie recommendation system on Heroku using Python and integrated with the Letterboxd API. Optimized API calls for performance and used Flask for the backend.
+  - One-Rep Max Calculator
+    - Created a web calculator for estimating one-rep max values using JavaScript and HTML/CSS, focusing on user experience and responsive design.
+  - ChatGPT Research
+    - Conducted research on ChatGPT’s understanding of Java data structures, compiling findings and visualizations using Markdown and static site generation. Explored BFS, DFS, and A* algorithms for maze solving.
+  - Iterative Maze Solver
+    - Implemented iterative maze solving algorithms in Java, including BFS and DFS, and documented the process with step-by-step explanations.
+  - Recursive Maze Solver
+    - Developed recursive maze solvers in Java, incorporating memoization and multi-threaded approaches, and provided detailed algorithmic analysis.
+  - Anagram Solvers
+    - Built anagram solvers in Java, optimizing for performance and accuracy, and explored different algorithmic strategies.
 
 - extracurriculars:
   - Loyola AI Club
     - Vice President of Technology (Fall 2024 – Spring 2025)
-      - Managed and coordinate semester-long projects, enhancing members' technical and collaborative skills.
+      - Managed and coordinated semester-long projects, enhancing members' technical and collaborative skills.
   - Alpha Kappa Psi (Loyola University Chicago)
     - IT Chair (Fall 2024)
       - Managed the chapter's website 
 
 - technical skills:
   - Languages: Java, Python, JavaScript, TypeScript, Swift
-  - Technologies: MySQL, Azure, Heroku, Google Cloud
-  - Frameworks: React Native, Vue.js, Spring Boot
-  - Tools: Git, Excel, Tableau, UNIX
+  - Technologies: MySQL, Azure, Heroku, Google Cloud, Flask, Pandas, Matplotlib, Redux, GitHub Actions, Jupyter, Docker
+  - Frameworks: React Native, Vue.js, Spring Boot, Vaadin, Flask, Tkinter, scikit-learn, XGBoost, LightGBM, imbalanced-learn
+  - Tools: Git, Excel, Tableau, UNIX, Heroku CLI, Kaggle CLI, VS Code
