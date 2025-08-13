@@ -4,6 +4,6 @@ draft: false
 title: 'Resume'
 ---
 
-Last Accurate: May 2025
+Last Accurate: August 2025
 
 <a href="/EricSpencerResume.pdf" target="_blank" >Click to View Resume (PDF)</a>
