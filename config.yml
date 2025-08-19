@@ -62,7 +62,7 @@ markup:
 menu:
   main:
     - name: "Resume"
-      url: "/Resume"
+      url: "/resume/"
       weight: 10
     - name: "Projects"
       url: "/projects/"
