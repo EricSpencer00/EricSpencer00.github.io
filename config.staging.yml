@@ -1,0 +1,88 @@
+baseURL: "https://ericspencer00.github.io/dev"
+publicDir: "public"
+languageCode: "en-us"
+title: "Eric Spencer"
+theme: "hugo-PaperMod"
+
+# Enable RSS, sitemap and other important features
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+# Sitemap configuration
+sitemap:
+  changefreq: weekly
+  priority: 0.5
+  filename: sitemap.xml
+
+params:  # for post thumbnails and general settings
+  ShowImageInList: true
+  ShowImageInPost: true
+  mainSections: ["projects"]
+  # Tags to show in the first line of filters (you can customize this list)
+  previewTags: ["web", "react", "java", "python", "javascript"]
+
+Params:  # capital P needed for profileMode to work properly in some themes
+  avatar: "images/avatar.jpeg"
+  description: "Personal website of Eric Spencer - Computer Science student at Loyola University Chicago. Portfolio showcasing projects, resume, and technical skills."
+  keywords: ["Eric Spencer", "Eric Spencer Portfolio", "Eric Spencer Developer", "Eric Spencer Software Engineer", "Eric Spencer Loyola", "Loyola University Chicago", "Computer Science", "Developer", "Software Engineer", "Portfolio", "Resume"]
+  profileMode:
+    enabled: true
+    title: "<Eric Spencer>"
+    subtitle: |
+      <em>Computer Science Major & Software Developer</em><br>
+      Loyola University Chicago, Class of 2026<br>
+      espencer2@luc.edu · ericspencer1450@gmail.com
+
+    imageUrl: "images/avatar.jpeg"
+    imageTitle: "Profile Picture"
+    imageWidth: 240
+    imageHeight: 240
+  ShowSearch: true
+
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/EricSpencer00"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/EricSpencer00"
+    - name: "Email"
+      url: "mailto:ericspencer1450@gmail.com"
+    - name: "CV"
+      url: "resume/"
+
+  env: production
+  robotsNoIndex: false
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+menu:
+  main:
+    - name: "Resume"
+      url: "/resume/"
+      weight: 10
+    - name: "Projects"
+      url: "/projects/"
+      weight: 2
+    - name: "All Projects"
+      url: "/projects/"
+      parent: "Projects"
+      weight: 1
+    - name: "Recent"
+      url: "/projects/recent/"
+      parent: "Projects"
+      weight: 4
+    - name: "Old"
+      url: "/projects/old/"
+      parent: "Projects"
+      weight: 3
+    - name: "About Me"
+      url: "/aboutme/"
+      weight: 1
+    - name: "Miscellaneous"
+      url: "/miscellaneous/"
+      weight: 3
+

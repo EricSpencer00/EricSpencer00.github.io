@@ -1,0 +1,46 @@
+name: Build and deploy staging site
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'dev'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build site (staging)
+        run: hugo --minify --environment staging -v
+
+      - name: Upload artifact (for GitHub Pages)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to 'staging' branch
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./public
+          publish_branch: staging
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: "chore: deploy staging site from ${{ github.ref }} (${{ github.sha }})"
