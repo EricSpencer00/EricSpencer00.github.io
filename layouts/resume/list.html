@@ -50,7 +50,15 @@
             <div class="timeline-location">{{ .Params.location }}</div>
             {{- end }}
           </div>
-          
+
+          {{- if .Params.logo }}
+            {{- $logo := .Params.logo }}
+            {{- $size := default 48 .Params.logo_size }}
+            <img src='{{ printf "/resume/%s" $logo | relURL }}'
+                 alt='{{ default "logo" .Params.logo_alt }}'
+                 class='timeline-logo{{ if ne $size 48 }} logo-sz-{{ $size }}{{ end }}' />
+          {{- end }}
+
           <div class="timeline-date">
             {{ .Date.Format "Jan 2006" }}
             {{- if .Params.endDate }}

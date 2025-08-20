@@ -11,5 +11,4 @@ draft: false
 ---
 
 - High School Diploma, May 2022
-- Activities: (add extracurriculars if desired)
 

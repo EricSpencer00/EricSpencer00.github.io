@@ -10,6 +10,6 @@ categories: ["Extracurriculars"]
 draft: false
 ---
 
-- Managed the chapter's website and supported event/communication technology needs
-- Coordinated with officers to ensure smooth chapter operations
+- Managed the chapter's squarespace website
+- Designed the member list pages and frontpage content
 
