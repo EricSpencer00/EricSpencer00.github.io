@@ -3,7 +3,7 @@ title: "Software Engineering Intern"
 date: 2025-01-01
 endDate: 2025-05-01
 organization: "EpiFinder Medical Solutions"
-location: "Remote / Chicago, IL"
+location: "Chicago, IL"
 description: "Backend automation and workflow optimization using Google Apps Script."
 tags: ["Automation", "Google Apps Script", "Backend"]
 categories: ["Experience"]
