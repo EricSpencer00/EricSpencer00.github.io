@@ -8,6 +8,9 @@ description: "Provided frontline technical support and access management."
 tags: ["Support", "Azure", "Identity Management"]
 categories: ["Experience"]
 draft: false
+logo: "loyola.png"
+logo_alt: "Loyola University Chicago logo"
+logo_size: 56
 ---
 
 - Resolved over 50 support tickets weekly, ensuring prompt and effective resolutions to user issues

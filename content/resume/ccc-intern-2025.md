@@ -8,6 +8,9 @@ description: "Full-stack implementations and interactive claims dashboard for B2
 tags: ["Vue.js", "Spring Boot", "PostgreSQL", "Full-stack"]
 categories: ["Experience"]
 draft: false
+logo: "ccc.png"
+logo_alt: "CCC Intelligent Solutions logo"
+logo_size: 56
 ---
 
 - Provided full-stack implementations for defects on the company's B2B SaaS portal

@@ -8,6 +8,9 @@ description: "Created and refined prompts for ChatGPT-4 to meet specific criteri
 tags: ["Prompt Engineering", "AI", "NLP"]
 categories: ["Experience"]
 draft: false
+logo: "unchained.png"
+logo_alt: "Unchained AI logo"
+logo_size: 56
 ---
 
 - Created and evolved prompts to make ChatGPT v4 produce outputs that satisfied specified criteria

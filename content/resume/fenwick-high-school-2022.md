@@ -8,6 +8,9 @@ description: "High School Diploma"
 tags: ["Education", "High School"]
 categories: ["Education"]
 draft: false
+logo: "fenwick.png"
+logo_alt: "Fenwick High School logo"
+logo_size: 56
 ---
 
 - High School Diploma, May 2022

@@ -8,6 +8,9 @@ description: "E-commerce seller handling sourcing, listings, and customer servic
 tags: ["E-commerce", "Sales"]
 categories: ["Experience"]
 draft: false
+logo: "grailed.png"
+logo_alt: "Grailed logo"
+logo_size: 56
 ---
 
 - Sold over 50 items above retail value by sourcing goods from online stores and marketplaces

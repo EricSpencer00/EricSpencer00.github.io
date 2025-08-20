@@ -8,6 +8,9 @@ description: "Bachelor of Science in Computer Science, Expected May 2026"
 tags: ["Computer Science", "University", "Research"]
 categories: ["Education"]
 draft: false
+logo: "loyola.png"
+logo_alt: "Loyola University Chicago logo"
+logo_size: 56
 ---
 
 - **Major:** Bachelor of Science in Computer Science

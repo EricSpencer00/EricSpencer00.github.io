@@ -8,6 +8,9 @@ description: "Research on AI interpretability and experimental studies involving
 tags: ["Research", "AI Interpretability", "ChatGPT"]
 categories: ["Research"]
 draft: false
+logo: "loyola.png"
+logo_alt: "Loyola University Chicago logo"
+logo_size: 56
 ---
 
 - Investigated AI interpretability through a study analyzing ChatGPT's handling of advanced Java concepts

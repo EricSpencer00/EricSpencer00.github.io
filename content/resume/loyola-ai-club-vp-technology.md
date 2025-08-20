@@ -8,6 +8,9 @@ description: "Managed and coordinated semester-long technical projects for the c
 tags: ["Leadership", "AI Club"]
 categories: ["Extracurriculars"]
 draft: false
+logo: "laic.png"
+logo_alt: "Loyola AI Club logo"
+logo_size: 56
 ---
 
 - Served as Vice President of Technology and coordinated semester-long projects to build members' technical and collaborative skills

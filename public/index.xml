@@ -2,68 +2,68 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Eric Spencer - Computer Science Portfolio on Eric Spencer</title>
-    <link>http://localhost:3000/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content in Eric Spencer - Computer Science Portfolio on Eric Spencer</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:3000/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows Design Website</title>
-      <link>http://localhost:3000/miscellaneous/windows/</link>
+      <link>http://localhost:1313/miscellaneous/windows/</link>
       <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/windows/</guid>
+      <guid>http://localhost:1313/miscellaneous/windows/</guid>
       <description>&lt;p&gt;Homepage of the website as imagined it would look like as a Windows 7 homepage.&lt;/p&gt;
 &lt;p&gt;Website loading&amp;hellip;&lt;/p&gt;
-&lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=http://localhost:3000/miscellaneous/windows.html&#34;&gt;</description>
+&lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=http://localhost:1313/miscellaneous/windows.html&#34;&gt;</description>
     </item>
     <item>
       <title>ITS Service Desk Technician</title>
-      <link>http://localhost:3000/resume/loyola-its-service-desk-2025/</link>
+      <link>http://localhost:1313/resume/loyola-its-service-desk-2025/</link>
       <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/loyola-its-service-desk-2025/</guid>
-      <description>Provided frontline technical support and access management.</description>
+      <guid>http://localhost:1313/resume/loyola-its-service-desk-2025/</guid>
+      <description>Provide frontline technical support and access management.</description>
     </item>
     <item>
       <title>How to tell if written work is AI</title>
-      <link>http://localhost:3000/miscellaneous/tell-ai/</link>
+      <link>http://localhost:1313/miscellaneous/tell-ai/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/tell-ai/</guid>
+      <guid>http://localhost:1313/miscellaneous/tell-ai/</guid>
       <description>Easily tell if something is AI using these obvious giveaways</description>
     </item>
     <item>
       <title>llmjammer</title>
-      <link>http://localhost:3000/projects/2025/llmjammer/</link>
+      <link>http://localhost:1313/projects/2025/llmjammer/</link>
       <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/llmjammer/</guid>
+      <guid>http://localhost:1313/projects/2025/llmjammer/</guid>
       <description>Obfuscator for public Python code to confuse LLMs</description>
     </item>
     <item>
       <title>Connect 4 Game Engine</title>
-      <link>http://localhost:3000/projects/2025/connect-4/</link>
+      <link>http://localhost:1313/projects/2025/connect-4/</link>
       <pubDate>Sun, 29 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/connect-4/</guid>
+      <guid>http://localhost:1313/projects/2025/connect-4/</guid>
       <description>A Chess engine-esque Connect 4 analyzer</description>
     </item>
     <item>
       <title>Chess Game</title>
-      <link>http://localhost:3000/miscellaneous/chess/</link>
+      <link>http://localhost:1313/miscellaneous/chess/</link>
       <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/chess/</guid>
+      <guid>http://localhost:1313/miscellaneous/chess/</guid>
       <description>Interactive chess game with AI opponent</description>
     </item>
     <item>
       <title>BlackJack Game</title>
-      <link>http://localhost:3000/miscellaneous/blackjack/</link>
+      <link>http://localhost:1313/miscellaneous/blackjack/</link>
       <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/blackjack/</guid>
+      <guid>http://localhost:1313/miscellaneous/blackjack/</guid>
       <description>Play BlackJack with fake money</description>
     </item>
     <item>
       <title>GitHub pfp Generator</title>
-      <link>http://localhost:3000/miscellaneous/pixel-profile/</link>
+      <link>http://localhost:1313/miscellaneous/pixel-profile/</link>
       <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/pixel-profile/</guid>
+      <guid>http://localhost:1313/miscellaneous/pixel-profile/</guid>
       <description>&lt;p&gt;Generate a default GitHub profile picture below, Generate a new profile as much as you please.&lt;/p&gt;
 
 &lt;!DOCTYPE html&gt;
@@ -200,114 +200,114 @@
     </item>
     <item>
       <title>Software Engineering Intern</title>
-      <link>http://localhost:3000/resume/ccc-intern-2025/</link>
+      <link>http://localhost:1313/resume/ccc-intern-2025/</link>
       <pubDate>Mon, 19 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/ccc-intern-2025/</guid>
+      <guid>http://localhost:1313/resume/ccc-intern-2025/</guid>
       <description>Full-stack implementations and interactive claims dashboard for B2B SaaS portal.</description>
     </item>
     <item>
       <title>Web Based TLA&#43; Microwave</title>
-      <link>http://localhost:3000/projects/2025/interactive-microwave-tla/</link>
+      <link>http://localhost:1313/projects/2025/interactive-microwave-tla/</link>
       <pubDate>Sat, 10 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/interactive-microwave-tla/</guid>
+      <guid>http://localhost:1313/projects/2025/interactive-microwave-tla/</guid>
       <description>An interactive microwave in the browser to learn TLA&#43;</description>
     </item>
     <item>
       <title>coq Presentation</title>
-      <link>http://localhost:3000/projects/2025/coq/</link>
+      <link>http://localhost:1313/projects/2025/coq/</link>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/coq/</guid>
+      <guid>http://localhost:1313/projects/2025/coq/</guid>
       <description>The formal methods language</description>
     </item>
     <item>
       <title>Software Engineer</title>
-      <link>http://localhost:3000/resume/loyola-cs-software-engineer-2025/</link>
+      <link>http://localhost:1313/resume/loyola-cs-software-engineer-2025/</link>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/loyola-cs-software-engineer-2025/</guid>
+      <guid>http://localhost:1313/resume/loyola-cs-software-engineer-2025/</guid>
       <description>Implemented a web-based visualization and demo application for TLA&#43; using Spring Boot and Vaadin.</description>
     </item>
     <item>
       <title>Search Engine</title>
-      <link>http://localhost:3000/miscellaneous/search-engine/</link>
+      <link>http://localhost:1313/miscellaneous/search-engine/</link>
       <pubDate>Sun, 27 Apr 2025 00:00:00 -0700</pubDate>
-      <guid>http://localhost:3000/miscellaneous/search-engine/</guid>
+      <guid>http://localhost:1313/miscellaneous/search-engine/</guid>
       <description>A barebones Google search experience</description>
     </item>
     <item>
       <title>YouTube Downloader</title>
-      <link>http://localhost:3000/projects/2025/youtube-dl/</link>
+      <link>http://localhost:1313/projects/2025/youtube-dl/</link>
       <pubDate>Mon, 14 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/youtube-dl/</guid>
+      <guid>http://localhost:1313/projects/2025/youtube-dl/</guid>
       <description>Locally hosted youtube downloader for mp3 and mp4s</description>
     </item>
     <item>
       <title>AI Sign Language Interpreter</title>
-      <link>http://localhost:3000/projects/2025/sign-language/</link>
+      <link>http://localhost:1313/projects/2025/sign-language/</link>
       <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/sign-language/</guid>
+      <guid>http://localhost:1313/projects/2025/sign-language/</guid>
       <description>A Simple Sign Language Recognition App using OpenCV</description>
     </item>
     <item>
       <title>flatten-repo VSC Extension</title>
-      <link>http://localhost:3000/projects/2025/flatten-repo/</link>
+      <link>http://localhost:1313/projects/2025/flatten-repo/</link>
       <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/flatten-repo/</guid>
+      <guid>http://localhost:1313/projects/2025/flatten-repo/</guid>
       <description>Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini</description>
     </item>
     <item>
       <title>Dexcom Navbar Icon Mac OS</title>
-      <link>http://localhost:3000/projects/2025/dexcom-navbar-macos/</link>
+      <link>http://localhost:1313/projects/2025/dexcom-navbar-macos/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/dexcom-navbar-macos/</guid>
+      <guid>http://localhost:1313/projects/2025/dexcom-navbar-macos/</guid>
       <description>View your Dexcom number in your Mac OS Navigation Bar</description>
     </item>
     <item>
       <title>My ~/.zshrc file</title>
-      <link>http://localhost:3000/miscellaneous/my-zshrc/</link>
+      <link>http://localhost:1313/miscellaneous/my-zshrc/</link>
       <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/my-zshrc/</guid>
+      <guid>http://localhost:1313/miscellaneous/my-zshrc/</guid>
       <description>Ran every time I open a terminal</description>
     </item>
     <item>
       <title>Old Website</title>
-      <link>http://localhost:3000/miscellaneous/old-website/</link>
+      <link>http://localhost:1313/miscellaneous/old-website/</link>
       <pubDate>Tue, 18 Mar 2025 16:13:32 -0600</pubDate>
-      <guid>http://localhost:3000/miscellaneous/old-website/</guid>
+      <guid>http://localhost:1313/miscellaneous/old-website/</guid>
       <description>My older website</description>
     </item>
     <item>
       <title>TDX Window Blocker</title>
-      <link>http://localhost:3000/projects/2025/tdx-window-blocker/</link>
+      <link>http://localhost:1313/projects/2025/tdx-window-blocker/</link>
       <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/tdx-window-blocker/</guid>
+      <guid>http://localhost:1313/projects/2025/tdx-window-blocker/</guid>
       <description>Custom Safari Script for TDX Popups</description>
     </item>
     <item>
       <title>CTA Transit Tracker</title>
-      <link>http://localhost:3000/projects/2025/loyolahack/</link>
+      <link>http://localhost:1313/projects/2025/loyolahack/</link>
       <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/loyolahack/</guid>
+      <guid>http://localhost:1313/projects/2025/loyolahack/</guid>
       <description>A real-time bus and train tracking system built during Loyola&amp;#39;s Hackathon.</description>
     </item>
     <item>
       <title>Terminal GPT</title>
-      <link>http://localhost:3000/projects/2025/terminalgpt/</link>
+      <link>http://localhost:1313/projects/2025/terminalgpt/</link>
       <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/terminalgpt/</guid>
+      <guid>http://localhost:1313/projects/2025/terminalgpt/</guid>
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
       <title>Software Engineering Intern</title>
-      <link>http://localhost:3000/resume/epifinder-intern-2025/</link>
+      <link>http://localhost:1313/resume/epifinder-intern-2025/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/epifinder-intern-2025/</guid>
+      <guid>http://localhost:1313/resume/epifinder-intern-2025/</guid>
       <description>Backend automation and workflow optimization using Google Apps Script.</description>
     </item>
     <item>
       <title>COMP322 Final Project Reflection</title>
-      <link>http://localhost:3000/projects/2024/healthup/</link>
+      <link>http://localhost:1313/projects/2024/healthup/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2024/healthup/</guid>
+      <guid>http://localhost:1313/projects/2024/healthup/</guid>
       <description>&lt;p&gt;&lt;em&gt;Eric Spencer + Matthew Caballero&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;December 14, 2024&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;COMP 322/422 Reflection&lt;/em&gt;&lt;/p&gt;
@@ -320,163 +320,163 @@
     </item>
     <item>
       <title>Movie Recommendation Website</title>
-      <link>http://localhost:3000/projects/2024/movierec/</link>
+      <link>http://localhost:1313/projects/2024/movierec/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2024/movierec/</guid>
+      <guid>http://localhost:1313/projects/2024/movierec/</guid>
       <description>A movie recommendation website developed as part of the Loyola AI Club&amp;#39;s Fall 2024 project.</description>
     </item>
     <item>
       <title>Islamic Influences in Timbuktu</title>
-      <link>http://localhost:3000/miscellaneous/timbuktu/</link>
+      <link>http://localhost:1313/miscellaneous/timbuktu/</link>
       <pubDate>Wed, 30 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/timbuktu/</guid>
+      <guid>http://localhost:1313/miscellaneous/timbuktu/</guid>
       <description>LITR 238 Fall 2024</description>
     </item>
     <item>
       <title>Vice President of Technology</title>
-      <link>http://localhost:3000/resume/loyola-ai-club-vp-technology/</link>
+      <link>http://localhost:1313/resume/loyola-ai-club-vp-technology/</link>
       <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/loyola-ai-club-vp-technology/</guid>
+      <guid>http://localhost:1313/resume/loyola-ai-club-vp-technology/</guid>
       <description>Managed and coordinated semester-long technical projects for the club.</description>
     </item>
     <item>
       <title>ITS Service Desk Technician</title>
-      <link>http://localhost:3000/resume/loyola-its-service-desk-2024/</link>
+      <link>http://localhost:1313/resume/loyola-its-service-desk-2024/</link>
       <pubDate>Mon, 01 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/loyola-its-service-desk-2024/</guid>
+      <guid>http://localhost:1313/resume/loyola-its-service-desk-2024/</guid>
       <description>Provided frontline technical support and access management.</description>
     </item>
     <item>
       <title>DailyTask iOS App</title>
-      <link>http://localhost:3000/projects/2024/dailytask/</link>
+      <link>http://localhost:1313/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2024/dailytask/</guid>
+      <guid>http://localhost:1313/projects/2024/dailytask/</guid>
       <description>An iOS app to help track daily tasks, including medication reminders.</description>
     </item>
     <item>
       <title>IT Chair</title>
-      <link>http://localhost:3000/resume/alpha-kappa-psi-it-chair/</link>
+      <link>http://localhost:1313/resume/alpha-kappa-psi-it-chair/</link>
       <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/alpha-kappa-psi-it-chair/</guid>
-      <description>Managed the chapter website and IT needs.</description>
+      <guid>http://localhost:1313/resume/alpha-kappa-psi-it-chair/</guid>
+      <description>Managed the organization&amp;#39;s online presence</description>
     </item>
     <item>
       <title>One Rep Max Calculator</title>
-      <link>http://localhost:3000/projects/2024/one-rep-max/</link>
+      <link>http://localhost:1313/projects/2024/one-rep-max/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2024/one-rep-max/</guid>
+      <guid>http://localhost:1313/projects/2024/one-rep-max/</guid>
       <description>Calculate your One Rep Max</description>
     </item>
     <item>
       <title>Serenity</title>
-      <link>http://localhost:3000/projects/2024/serenity/</link>
+      <link>http://localhost:1313/projects/2024/serenity/</link>
       <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2024/serenity/</guid>
+      <guid>http://localhost:1313/projects/2024/serenity/</guid>
       <description>A mental wellness application developed at Northwestern&amp;#39;s Wildhacks Hackathon.</description>
     </item>
     <item>
       <title>Oldest Website</title>
-      <link>http://localhost:3000/miscellaneous/oldest-site/</link>
+      <link>http://localhost:1313/miscellaneous/oldest-site/</link>
       <pubDate>Mon, 01 Apr 2024 16:13:32 -0600</pubDate>
-      <guid>http://localhost:3000/miscellaneous/oldest-site/</guid>
+      <guid>http://localhost:1313/miscellaneous/oldest-site/</guid>
       <description>My oldest website</description>
     </item>
     <item>
       <title>AI Chatbot Experiment</title>
-      <link>http://localhost:3000/miscellaneous/ai/chatbot-experiment/</link>
+      <link>http://localhost:1313/miscellaneous/ai/chatbot-experiment/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/ai/chatbot-experiment/</guid>
+      <guid>http://localhost:1313/miscellaneous/ai/chatbot-experiment/</guid>
       <description>Building and testing a conversational AI system</description>
     </item>
     <item>
       <title>Neural Network Image Recognition Project</title>
-      <link>http://localhost:3000/miscellaneous/ai/neural-network-project/</link>
+      <link>http://localhost:1313/miscellaneous/ai/neural-network-project/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/miscellaneous/ai/neural-network-project/</guid>
+      <guid>http://localhost:1313/miscellaneous/ai/neural-network-project/</guid>
       <description>Exploring computer vision with custom neural networks</description>
     </item>
     <item>
       <title>Jr. AI Prompt Engineer</title>
-      <link>http://localhost:3000/resume/unchained-ai-jr-prompt-engineer-2024/</link>
+      <link>http://localhost:1313/resume/unchained-ai-jr-prompt-engineer-2024/</link>
       <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/unchained-ai-jr-prompt-engineer-2024/</guid>
+      <guid>http://localhost:1313/resume/unchained-ai-jr-prompt-engineer-2024/</guid>
       <description>Created and refined prompts for ChatGPT-4 to meet specific criteria and improve output quality.</description>
     </item>
     <item>
       <title>Anagram Solver V2</title>
-      <link>http://localhost:3000/projects/2023/anagram_v2/</link>
+      <link>http://localhost:1313/projects/2023/anagram_v2/</link>
       <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2023/anagram_v2/</guid>
+      <guid>http://localhost:1313/projects/2023/anagram_v2/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
     </item>
     <item>
       <title>Anagram Solver</title>
-      <link>http://localhost:3000/projects/2023/anagram/</link>
+      <link>http://localhost:1313/projects/2023/anagram/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2023/anagram/</guid>
+      <guid>http://localhost:1313/projects/2023/anagram/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
     </item>
     <item>
       <title>Binary Bomb Puzzle</title>
-      <link>http://localhost:3000/projects/2023/bbomb/</link>
+      <link>http://localhost:1313/projects/2023/bbomb/</link>
       <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2023/bbomb/</guid>
+      <guid>http://localhost:1313/projects/2023/bbomb/</guid>
       <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
     </item>
     <item>
       <title>ChatGPT Research</title>
-      <link>http://localhost:3000/projects/2023/chatgpt_research/</link>
+      <link>http://localhost:1313/projects/2023/chatgpt_research/</link>
       <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2023/chatgpt_research/</guid>
+      <guid>http://localhost:1313/projects/2023/chatgpt_research/</guid>
       <description>Research with v3.0 and how it could possibly teach those new to Java Data Structures</description>
     </item>
     <item>
       <title>Undergraduate Research Assistant</title>
-      <link>http://localhost:3000/resume/undergraduate-research-assistant-2023/</link>
+      <link>http://localhost:1313/resume/undergraduate-research-assistant-2023/</link>
       <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/undergraduate-research-assistant-2023/</guid>
+      <guid>http://localhost:1313/resume/undergraduate-research-assistant-2023/</guid>
       <description>Research on AI interpretability and experimental studies involving ChatGPT and advanced Java concepts.</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
-      <link>http://localhost:3000/projects/2022/freetime-calc/</link>
+      <link>http://localhost:1313/projects/2022/freetime-calc/</link>
       <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2022/freetime-calc/</guid>
+      <guid>http://localhost:1313/projects/2022/freetime-calc/</guid>
       <description>A Java program to find overlapping free time for up to four people.</description>
     </item>
     <item>
       <title>Computer Science Student</title>
-      <link>http://localhost:3000/resume/loyola-education/</link>
+      <link>http://localhost:1313/resume/loyola-education/</link>
       <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/loyola-education/</guid>
+      <guid>http://localhost:1313/resume/loyola-education/</guid>
       <description>Bachelor of Science in Computer Science, Expected May 2026</description>
     </item>
     <item>
       <title>Seller</title>
-      <link>http://localhost:3000/resume/grailed-seller-2020-2021/</link>
+      <link>http://localhost:1313/resume/grailed-seller-2020-2021/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/grailed-seller-2020-2021/</guid>
+      <guid>http://localhost:1313/resume/grailed-seller-2020-2021/</guid>
       <description>E-commerce seller handling sourcing, listings, and customer service.</description>
     </item>
     <item>
       <title>Fenwick High School</title>
-      <link>http://localhost:3000/resume/fenwick-high-school-2022/</link>
+      <link>http://localhost:1313/resume/fenwick-high-school-2022/</link>
       <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/fenwick-high-school-2022/</guid>
+      <guid>http://localhost:1313/resume/fenwick-high-school-2022/</guid>
       <description>High School Diploma</description>
     </item>
     <item>
       <title>Honor Caddie</title>
-      <link>http://localhost:3000/resume/oak-park-country-club-caddie-2017-2024/</link>
+      <link>http://localhost:1313/resume/oak-park-country-club-caddie-2017-2024/</link>
       <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/resume/oak-park-country-club-caddie-2017-2024/</guid>
+      <guid>http://localhost:1313/resume/oak-park-country-club-caddie-2017-2024/</guid>
       <description>Seasonal hospitality and customer service role.</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:3000/projects/2025/fraud-predictor-full/</link>
+      <link>http://localhost:1313/projects/2025/fraud-predictor-full/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:3000/projects/2025/fraud-predictor-full/</guid>
+      <guid>http://localhost:1313/projects/2025/fraud-predictor-full/</guid>
       <description>&lt;h2 id=&#34;credit-card-fraud-detection-project---comp-379479-machine-learning&#34;&gt;Credit Card Fraud Detection Project - COMP 379/479 Machine Learning&lt;/h2&gt;
 &lt;p&gt;Ololade Akinsanola, Oliver Schramm, Eric Spencer, Tigist Tefera, and Avery Walker# Data Download&lt;/p&gt;
 &lt;hr&gt;

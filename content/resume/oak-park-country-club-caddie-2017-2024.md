@@ -8,6 +8,9 @@ description: "Seasonal hospitality and customer service role."
 tags: ["Customer Service", "Hospitality"]
 categories: ["Experience"]
 draft: false
+logo: "opcc.png"
+logo_alt: "Oak Park Country Club logo"
+logo_size: 56
 ---
 
 - Provided a customer-focused experience while supporting players with on-course decision-making

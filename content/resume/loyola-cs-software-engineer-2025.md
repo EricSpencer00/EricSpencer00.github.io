@@ -8,6 +8,9 @@ description: "Implemented a web-based visualization and demo application for TLA
 tags: ["Java", "Spring Boot", "Vaadin", "TLA+"]
 categories: ["Experience", "Research"]
 draft: false
+logo: "loyola.png"
+logo_alt: "Loyola University Chicago logo"
+logo_size: 56
 ---
 
 - Created a web-based "microwave" demonstration using Java Spring Boot and Vaadin to visualize state changes and syntax examples of the TLA+ formal methods language
