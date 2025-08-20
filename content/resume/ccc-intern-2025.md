@@ -1,16 +1,16 @@
 ---
 title: "Software Engineering Intern"
-date: 2025-05-01
-endDate: 2025-08-01
+date: 2025-05-19
+endDate: 2025-08-08
 organization: "CCC Intelligent Solutions"
 location: "Chicago, IL"
-description: "Delivered full-stack implementations and built an interactive claims dashboard."
-tags: ["Vue.js", "Spring Boot", "B2B SaaS"]
+description: "Full-stack implementations and interactive claims dashboard for B2B SaaS portal."
+tags: ["Vue.js", "Spring Boot", "B2B SaaS", "Full-stack"]
 categories: ["Experience"]
 draft: false
 ---
 
-- Developed responsive web components using Vue.js framework for a B2B SaaS platform
-- Implemented RESTful APIs with Spring Boot to support dashboard functionality
-- Collaborated with cross-functional teams to deliver features that improved user experience
+- Provided full-stack implementations for defects on the company's B2B SaaS portal
+- Created an interactive dashboard for insurance claims using Vue.js and Java Spring Boot for analytical use
+- Implemented RESTful APIs and collaborated with product and QA to deliver production-ready features
 - Participated in code reviews and followed agile development practices

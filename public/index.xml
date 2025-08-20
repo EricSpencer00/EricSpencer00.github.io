@@ -206,11 +206,18 @@
       <description>The formal methods language</description>
     </item>
     <item>
+      <title>Software Engineer</title>
+      <link>http://localhost:1313/resume/loyola-cs-software-engineer-2025/</link>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/loyola-cs-software-engineer-2025/</guid>
+      <description>Implemented a web-based visualization and demo application for TLA&#43; using Spring Boot and Vaadin.</description>
+    </item>
+    <item>
       <title>Software Engineering Intern</title>
       <link>http://localhost:1313/resume/ccc-intern-2025/</link>
       <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/resume/ccc-intern-2025/</guid>
-      <description>Delivered full-stack implementations and built an interactive claims dashboard.</description>
+      <description>Full-stack implementations and interactive claims dashboard for B2B SaaS portal.</description>
     </item>
     <item>
       <title>Search Engine</title>
@@ -283,6 +290,13 @@
       <description>Your AI assistant in the terminal</description>
     </item>
     <item>
+      <title>Software Engineering Intern</title>
+      <link>http://localhost:1313/resume/epifinder-intern-2025/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/epifinder-intern-2025/</guid>
+      <description>Backend automation and workflow optimization using Google Apps Script.</description>
+    </item>
+    <item>
       <title>COMP322 Final Project Reflection</title>
       <link>http://localhost:1313/projects/2024/healthup/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
@@ -310,6 +324,13 @@
       <pubDate>Wed, 30 Oct 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/miscellaneous/timbuktu/</guid>
       <description>LITR 238 Fall 2024</description>
+    </item>
+    <item>
+      <title>ITS Service Desk Technician</title>
+      <link>http://localhost:1313/resume/loyola-its-service-desk-2024-2025/</link>
+      <pubDate>Mon, 01 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/loyola-its-service-desk-2024-2025/</guid>
+      <description>Provided frontline technical support and access management.</description>
     </item>
     <item>
       <title>DailyTask iOS App</title>
@@ -354,11 +375,25 @@
       <description>Exploring computer vision with custom neural networks</description>
     </item>
     <item>
+      <title>Jr. AI Prompt Engineer</title>
+      <link>http://localhost:1313/resume/unchained-ai-jr-prompt-engineer-2024/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/unchained-ai-jr-prompt-engineer-2024/</guid>
+      <description>Created and refined prompts for ChatGPT-4 to meet specific criteria and improve output quality.</description>
+    </item>
+    <item>
       <title>Anagram Solver V2</title>
       <link>http://localhost:1313/projects/2023/anagram_v2/</link>
       <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2023/anagram_v2/</guid>
       <description>Scrabble Inspired Anagram Solver</description>
+    </item>
+    <item>
+      <title>Health-Up App</title>
+      <link>http://localhost:1313/resume/health-up-app/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/health-up-app/</guid>
+      <description>Fitness app combining nutrition and workout data using public APIs.</description>
     </item>
     <item>
       <title>Multiple Roles Period</title>
@@ -403,11 +438,32 @@
       <description>Research with v3.0 and how it could possibly teach those new to Java Data Structures</description>
     </item>
     <item>
+      <title>Dexcom Alerts System</title>
+      <link>http://localhost:1313/resume/dexcom-alerts-system/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/dexcom-alerts-system/</guid>
+      <description>Alert system for critical glucose levels using CGM data.</description>
+    </item>
+    <item>
       <title>Web Developer</title>
       <link>http://localhost:1313/resume/web-developer-2023/</link>
       <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/resume/web-developer-2023/</guid>
       <description>Front-end development and UI/UX design for e-commerce platform</description>
+    </item>
+    <item>
+      <title>Undergraduate Research Assistant</title>
+      <link>http://localhost:1313/resume/undergraduate-research-assistant-2023/</link>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/undergraduate-research-assistant-2023/</guid>
+      <description>Research on AI interpretability and experimental studies involving ChatGPT and advanced Java concepts.</description>
+    </item>
+    <item>
+      <title>Movie Recommendation Model</title>
+      <link>http://localhost:1313/resume/movie-recommendation-model/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/movie-recommendation-model/</guid>
+      <description>Hosted a recommendation model and integrated Letterboxd data for recommendations.</description>
     </item>
     <item>
       <title>Free Time Calculator in Java</title>
@@ -421,7 +477,28 @@
       <link>http://localhost:1313/resume/loyola-education/</link>
       <pubDate>Mon, 01 Aug 2022 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/resume/loyola-education/</guid>
-      <description>Bachelor of Science in Computer Science, Class of 2026</description>
+      <description>Bachelor of Science in Computer Science, Expected May 2026</description>
+    </item>
+    <item>
+      <title>Fenwick High School</title>
+      <link>http://localhost:1313/resume/fenwick-high-school-2022/</link>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/fenwick-high-school-2022/</guid>
+      <description>High School Diploma</description>
+    </item>
+    <item>
+      <title>Seller</title>
+      <link>http://localhost:1313/resume/grailed-seller-2020-2021/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/grailed-seller-2020-2021/</guid>
+      <description>E-commerce seller handling sourcing, listings, and customer service.</description>
+    </item>
+    <item>
+      <title>Honor Caddie</title>
+      <link>http://localhost:1313/resume/oak-park-country-club-caddie-2017-2024/</link>
+      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/resume/oak-park-country-club-caddie-2017-2024/</guid>
+      <description>Seasonal hospitality and customer service role.</description>
     </item>
     <item>
       <title></title>
