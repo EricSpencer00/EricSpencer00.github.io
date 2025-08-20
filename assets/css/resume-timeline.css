@@ -8,7 +8,9 @@
 
 .timeline-container {
   position: relative;
-  padding: 2rem 0;
+  /* Add a dynamic top padding so negative offsets cannot push items into the page header.
+     The second value remains 0 for left/right padding and bottom keeps the original 2rem. */
+  padding: calc(2rem + var(--timeline-overlap-offset, 0)) 0 2rem;
 }
 
 /* Central timeline line */
@@ -89,7 +91,9 @@
 .timeline-left .timeline-card::after {
   content: '';
   position: absolute;
-  top: 20px;
+  /* align arrow vertically with the timeline dot */
+  top: 50%;
+  transform: translateY(-50%);
   right: -10px;
   width: 0;
   height: 0;
@@ -101,7 +105,9 @@
 .timeline-right .timeline-card::after {
   content: '';
   position: absolute;
-  top: 20px;
+  /* align arrow vertically with the timeline dot */
+  top: 50%;
+  transform: translateY(-50%);
   left: -10px;
   width: 0;
   height: 0;
@@ -131,7 +137,7 @@
 
 .timeline-location {
   font-size: 0.9rem;
-  color: var(--tertiary);
+  color: var(--secondary);
   font-style: italic;
 }
 
@@ -193,6 +199,38 @@
   color: var(--theme);
 }
 
+/* Staggered vertical overlap for large screens
+   Pulls alternating items upward so the right/left columns overlap vertically
+   and the next item begins earlier (adjust --timeline-overlap-offset to change amount).
+*/
+@media (min-width: 769px) {
+  :root {
+    /* Set a modest default overlap; tweak as needed. */
+    --timeline-overlap-offset: 20rem;
+  }
+
+  .timeline-item {
+    position: relative; /* ensure visual offset doesn't affect layout positioning rules */
+  }
+
+  /* Pull every even item upward so it starts earlier and overlaps the previous item.
+     Ensure the very first item is never pulled up so content can't enter the header. */
+  .timeline-item:nth-child(even) {
+    margin-top: calc(-1 * var(--timeline-overlap-offset));
+    z-index: 1;
+  }
+
+  /* Hard cutoff: never allow the first item to move upward */
+  .timeline-item:first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Bring hovered item above neighbors to avoid visual clipping */
+  .timeline-item:hover {
+    z-index: 3;
+  }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .timeline-container {
@@ -227,7 +265,8 @@
   .timeline-right .timeline-card::after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     left: -10px;
     width: 0;
     height: 0;
