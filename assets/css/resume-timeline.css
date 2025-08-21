@@ -8,7 +8,9 @@
 
 .timeline-container {
   position: relative;
-  padding: 2rem 0;
+  /* Add a dynamic top padding so negative offsets cannot push items into the page header.
+     The second value remains 0 for left/right padding and bottom keeps the original 2rem. */
+  padding: calc(2rem + var(--timeline-overlap-offset, 0)) 0 2rem;
 }
 
 /* Central timeline line */
@@ -78,18 +80,37 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
+  padding-right: 72px; /* leave room for the logo */
 }
 
-.timeline-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+/* Logo in the top-right */
+.timeline-card .timeline-logo {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  background: white;
+  width: 48px;
+  height: 48px;
 }
+
+/* quick size helpers (generate more if you need other sizes) */
+.timeline-card .timeline-logo.logo-sz-32 { width: 32px; height: 32px; }
+.timeline-card .timeline-logo.logo-sz-40 { width: 40px; height: 40px; }
+.timeline-card .timeline-logo.logo-sz-48 { width: 48px; height: 48px; }
+.timeline-card .timeline-logo.logo-sz-56 { width: 56px; height: 56px; }
+.timeline-card .timeline-logo.logo-sz-64 { width: 64px; height: 64px; }
+.timeline-card .timeline-logo.logo-sz-96 { width: 96px; height: 96px; }
 
 /* Arrow pointing to timeline */
 .timeline-left .timeline-card::after {
   content: '';
   position: absolute;
-  top: 20px;
+  /* align arrow vertically with the timeline dot */
+  top: 50%;
+  transform: translateY(-50%);
   right: -10px;
   width: 0;
   height: 0;
@@ -101,7 +122,9 @@
 .timeline-right .timeline-card::after {
   content: '';
   position: absolute;
-  top: 20px;
+  /* align arrow vertically with the timeline dot */
+  top: 50%;
+  transform: translateY(-50%);
   left: -10px;
   width: 0;
   height: 0;
@@ -131,7 +154,7 @@
 
 .timeline-location {
   font-size: 0.9rem;
-  color: var(--tertiary);
+  color: var(--secondary);
   font-style: italic;
 }
 
@@ -193,6 +216,38 @@
   color: var(--theme);
 }
 
+/* Staggered vertical overlap for large screens
+   Pulls alternating items upward so the right/left columns overlap vertically
+   and the next item begins earlier (adjust --timeline-overlap-offset to change amount).
+*/
+@media (min-width: 769px) {
+  :root {
+    /* Set a modest default overlap; tweak as needed. */
+    --timeline-overlap-offset: 20rem;
+  }
+
+  .timeline-item {
+    position: relative; /* ensure visual offset doesn't affect layout positioning rules */
+  }
+
+  /* Pull every even item upward so it starts earlier and overlaps the previous item.
+     Ensure the very first item is never pulled up so content can't enter the header. */
+  .timeline-item:nth-child(even) {
+    margin-top: calc(-1 * var(--timeline-overlap-offset));
+    z-index: 1;
+  }
+
+  /* Hard cutoff: never allow the first item to move upward */
+  .timeline-item:first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Bring hovered item above neighbors to avoid visual clipping */
+  .timeline-item:hover {
+    z-index: 3;
+  }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .timeline-container {
@@ -227,7 +282,8 @@
   .timeline-right .timeline-card::after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     left: -10px;
     width: 0;
     height: 0;
@@ -235,6 +291,11 @@
     border-right-color: var(--entry);
     border-left: none;
   }
+
+  .timeline-card {
+    padding-right: 1.5rem;
+  }
+  .timeline-card .timeline-logo { right: 12px; top: 12px; }
 }
 
 @media (max-width: 480px) {

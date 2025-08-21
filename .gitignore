@@ -4,3 +4,5 @@
 .env
 /flattened
 .hugo_build.lock
+
+/public
