@@ -144,29 +144,52 @@
   </section>
 
   <!-- About Me Section -->
+  <!-- Resume Section (embedded on homepage) -->
+  <section class="home-section resume-section">
+    <div class="section-header">
+      <h2 class="section-title">Resume</h2>
+      <a href="/resume/" class="view-all-link">View Full Resume </a>
+    </div>
+    <div class="resume-embed">
+      {{ partial "resume-timeline.html" . }}
+    </div>
+  </section>
+
   <section class="home-section about-section">
     <div class="section-header">
       <h2 class="section-title">About Me</h2>
       <a href="/aboutme/" class="view-all-link">More About Me →</a>
     </div>
-    <div class="about-content">
-      <p>I'm Eric, a Computer Science major at Loyola University Chicago</p>
-      
-    <ul>
-        <li>I'm in my senior year and beginning to research formal methods in TLA+ and other languages in combination with LLMs.</li>
-        <li>I try to make at least 1 large project a month and contribute to open source every day on GitHub.</li>
-        <li>Take a look at my repositories and see if you find anything interesting.</li>
-    </ul>
+    <div class="about-content" id="about-content">
+      <div class="about-excerpt">
+        <p>I'm Eric, a Computer Science major at Loyola University Chicago</p>
+        <ul>
+          <li>I'm in my senior year and beginning to research formal methods in TLA+ and other languages in combination with LLMs.</li>
+          <li>I try to make at least 1 large project a month and contribute to open source every day on GitHub.</li>
+          <li>Take a look at my repositories and see if you find anything interesting.</li>
+        </ul>
+      </div>
 
-<div class="tech-icons">
-  <h4>Proficient Technologies & Tools</h4>
-  <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-    <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png" alt="Java" />
-          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png" alt="Spring Boot" />
-          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png" alt="Postgresql" />
-          <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png" alt="Python" />
+      <div class="about-full" id="about-full" aria-hidden="true">
+        {{- $about := site.GetPage "aboutMe" }}
+        {{- if $about }}
+          {{ $about.Content }}
+        {{- else }}
+          <p>More about me will appear here.</p>
+        {{- end }}
+
+        <div class="tech-icons">
+          <h4>Proficient Technologies & Tools</h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+            <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png" alt="Java" />
+            <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png" alt="Spring Boot" />
+            <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png" alt="Postgresql" />
+            <img height="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/python.png" alt="Python" />
+          </div>
         </div>
       </div>
+
+      <button id="about-toggle" class="about-toggle" aria-expanded="false" aria-controls="about-full">Show more ↓</button>
     </div>
   </section>
 </div>
