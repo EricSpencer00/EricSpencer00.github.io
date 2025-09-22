@@ -1,5 +1,5 @@
 +++
-title = "The Man The Myth The Legend"
+title = "00"
 description = "Eric Spencer"
 keywords = ["Eric Spencer", "About Me", "Computer Science", "Loyola University Chicago", "Software Engineering", "Professional Development"]
 url = "/aboutme/"
