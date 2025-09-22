@@ -10,8 +10,6 @@
 
 My Portfolio Website, self explanitory.
 
-Enter here at: https://ericspencer00.github.io 
-
-https://espencer.me works half of the time
+Enter here at: https://ericspencer00.github.io
 
 This commit was made by Linus Torvalds
