@@ -61,9 +61,6 @@ markup:
 
 menu:
   main:
-    - name: "Resume"
-      url: "/resume/"
-      weight: 10
     - name: "Projects"
       url: "/projects/"
       weight: 2
@@ -79,9 +76,6 @@ menu:
       url: "/projects/old/"
       parent: "Projects"
       weight: 3
-    - name: "About Me"
-      url: "/aboutme/"
-      weight: 1
     - name: "Miscellaneous"
       url: "/miscellaneous/"
       weight: 3
