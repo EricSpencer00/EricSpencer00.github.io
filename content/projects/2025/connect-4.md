@@ -25,7 +25,7 @@ Connect 4 is a solved game, meaning that if you play first and play optimally, y
 
 ## Formal Methods
 
-Additionally, there's a TLA+ specification for Connect 4 but shrunk for reasonability. Since 7 x 6 is way to large for my Mac Mini, I'll probably explore this in full once Apple adopts Quantum Computing.
+Additionally, there's a TLA+ specification for Connect 4 but shrunk for reasonability. Since 7 x 6 is way too large for my Mac Mini, I'll probably explore this in full once Apple adopts Quantum Computing.
 
 ```
 SPECIFICATION Spec
