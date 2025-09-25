@@ -1,4 +1,10 @@
 ---
+title: "Machine Learning Fraud Identifier"
+date: 2025-05-05
+description: "Analyze different Machine Learning algorithms to identify fraud within a classified dataset"
+tags: ["AI", "Python"]
+categories: ["Projects"]
+image: "/previews/fraud-ml.png"
 draft: true
 ---
 
