@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 ## Credit Card Fraud Detection Project - COMP 379/479 Machine Learning
 Ololade Akinsanola, Oliver Schramm, Eric Spencer, Tigist Tefera, and Avery Walker# Data Download
 
