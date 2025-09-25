@@ -5,7 +5,7 @@ description: "A Chess engine-esque Connect 4 analyzer"
 tags: ["TLA+", "Python", "Flask"]
 categories: ["Projects"]
 image: "/previews/glucopilot.png"
-draft: false
+draft: true
 ---
 
 
