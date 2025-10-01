@@ -28,6 +28,8 @@ jobs:
           extended: true
 
       - name: Build Hugo Site
+        env:
+          HUGO_BASEURL: ${{ github.repository == 'EricSpencer00/dev.EricSpencer00.github.io' && 'https://ericspencer00.github.io/dev.EricSpencer00.github.io/' || 'https://ericspencer00.github.io' }}
         run: |
           hugo --minify
           ls -la public  # Debugging: Check if public folder exists
