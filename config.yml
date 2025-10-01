@@ -1,4 +1,4 @@
-baseURL: "{{ env \"HUGO_BASEURL\" | default \"https://ericspencer00.github.io\" }}"
+baseURL: "{{ env \"HUGO_BASEURL\" | default \"https://ericspencer00.github.io\" }}" 
 publicDir: "public"
 languageCode: "en-us"
 title: "Eric Spencer"
