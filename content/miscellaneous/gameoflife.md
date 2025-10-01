@@ -27,7 +27,7 @@ Experience Conway's Game of Life - a cellular automaton that demonstrates how co
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #0a0a0a;
-            color: #ffffff;
+            color: #ffffff !important;
             overflow: hidden;
         }
         
