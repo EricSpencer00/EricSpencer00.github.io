@@ -23,6 +23,13 @@
       <description>Interactive implementation of Conway&amp;#39;s Game of Life with preset patterns</description>
     </item>
     <item>
+      <title>Git Key Guardian</title>
+      <link>http://localhost:1313/projects/2025/gitkey/</link>
+      <pubDate>Sun, 14 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/gitkey/</guid>
+      <description>Protect sensitive keys from accidentally being uploaded to your git history at any point.</description>
+    </item>
+    <item>
       <title>Windows Design Website</title>
       <link>http://localhost:1313/miscellaneous/windows/</link>
       <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
