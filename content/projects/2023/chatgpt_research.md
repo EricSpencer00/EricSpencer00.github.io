@@ -5,7 +5,6 @@ description: "Research with v3.0 and how it could possibly teach those new to Ja
 draft: true
 tags: ["LLM", "Java"]
 categories: ["Projects"]
-draft: false
 image: "previews/chatgpt_research.png"
 ---
 

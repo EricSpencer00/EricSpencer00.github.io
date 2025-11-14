@@ -1,0 +1,72 @@
+name: Process High Score Issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-highscore:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.title, 'Blackjack High Score Submission')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Process high score submission
+        run: |
+          node .github/scripts/processHighScoreIssue.js "${{ github.event.issue.body }}" "${{ github.event.issue.number }}"
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add static/data/blackjack_highscore.json
+          git add static/data/blackjack_highscore_badge.json
+          git diff --cached --quiet || git commit -m "Update blackjack high score from issue #${{ github.event.issue.number }}"
+          git push
+
+      - name: Close issue and add comment
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = ${{ github.event.issue.number }};
+            const issue = context.payload.issue;
+            
+            // Extract username and score from issue body
+            const body = issue.body;
+            const usernameMatch = body.match(/\*\*Username:\*\* (.+)/);
+            const scoreMatch = body.match(/\*\*Score:\*\* \$(\d+)/);
+            
+            if (usernameMatch && scoreMatch) {
+              const username = usernameMatch[1];
+              const score = scoreMatch[1];
+              
+              await github.rest.issues.createComment({
+                issue_number: issue_number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `✅ **High score successfully updated!**\n\n` +
+                      `**Username:** ${username}\n` +
+                      `**Score:** $${score}\n\n` +
+                      `The high score has been automatically updated and the README badge will reflect the new score.`
+              });
+              
+              await github.rest.issues.update({
+                issue_number: issue_number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'closed',
+                labels: ['high-score', 'auto-processed']
+              });
+            } 

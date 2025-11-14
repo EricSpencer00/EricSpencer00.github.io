@@ -4,16 +4,30 @@
     <title>Eric Spencer - Computer Science Portfolio on Eric Spencer</title>
     <link>http://localhost:1313/</link>
     <description>Recent content in Eric Spencer - Computer Science Portfolio on Eric Spencer</description>
-    <generator>Hugo -- 0.145.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UDP server (binary)</title>
+      <link>http://localhost:1313/projects/2025/udp-server-binary/</link>
+      <pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/udp-server-binary/</guid>
+      <description>UDP send/receive utilities for binary payloads.</description>
+    </item>
     <item>
       <title>Conway&#39;s Game of Life</title>
       <link>http://localhost:1313/miscellaneous/gameoflife/</link>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/miscellaneous/gameoflife/</guid>
       <description>Interactive implementation of Conway&amp;#39;s Game of Life with preset patterns</description>
+    </item>
+    <item>
+      <title>Git Key Guardian</title>
+      <link>http://localhost:1313/projects/2025/gitkey/</link>
+      <pubDate>Sun, 14 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/gitkey/</guid>
+      <description>Protect sensitive keys from accidentally being uploaded to your git history at any point.</description>
     </item>
     <item>
       <title>Windows Design Website</title>
@@ -354,11 +368,11 @@
       <description>Provided frontline technical support and access management.</description>
     </item>
     <item>
-      <title>DailyTask iOS App</title>
+      <title>Daily Task - Wellness Tracker</title>
       <link>http://localhost:1313/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2024/dailytask/</guid>
-      <description>An iOS app to help track daily tasks, including medication reminders.</description>
+      <description>A habit manager for daily consistency.</description>
     </item>
     <item>
       <title>IT Chair</title>
@@ -429,13 +443,6 @@
       <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2023/bbomb/</guid>
       <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
-    </item>
-    <item>
-      <title>ChatGPT Research</title>
-      <link>http://localhost:1313/projects/2023/chatgpt_research/</link>
-      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/chatgpt_research/</guid>
-      <description>Research with v3.0 and how it could possibly teach those new to Java Data Structures</description>
     </item>
     <item>
       <title>Undergraduate Research Assistant</title>
