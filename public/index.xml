@@ -4,7 +4,7 @@
     <title>Eric Spencer - Computer Science Portfolio on Eric Spencer</title>
     <link>http://localhost:1313/</link>
     <description>Recent content in Eric Spencer - Computer Science Portfolio on Eric Spencer</description>
-    <generator>Hugo -- 0.145.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
@@ -429,13 +429,6 @@
       <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2023/bbomb/</guid>
       <description>Solving the infamous Binary Bomb Lab for extra credit.</description>
-    </item>
-    <item>
-      <title>ChatGPT Research</title>
-      <link>http://localhost:1313/projects/2023/chatgpt_research/</link>
-      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/2023/chatgpt_research/</guid>
-      <description>Research with v3.0 and how it could possibly teach those new to Java Data Structures</description>
     </item>
     <item>
       <title>Undergraduate Research Assistant</title>
