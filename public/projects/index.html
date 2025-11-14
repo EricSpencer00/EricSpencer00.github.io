@@ -156,17 +156,22 @@
     <span class="filter-label">Filter by:</span>
     <div class="filter-tags">
       <span class="filter-tag" data-tag="AI">AI</span>
+      <span class="filter-tag" data-tag="C&#43;&#43;">C&#43;&#43;</span>
       <span class="filter-tag" data-tag="Calculator">Calculator</span>
       <span class="filter-tag" data-tag="Flask">Flask</span>
       <span class="filter-tag" data-tag="Formal Methods">Formal Methods</span>
       <span class="filter-tag" data-tag="Hackathon">Hackathon</span>
+      <span class="filter-tag" data-tag="Health">Health</span>
       <span class="filter-tag" data-tag="iOS">iOS</span>
       <span class="filter-tag" data-tag="Java">Java</span>
       <span class="filter-tag" data-tag="JavaScript">JavaScript</span>
       <span class="filter-tag" data-tag="LLM">LLM</span>
+      <span class="filter-tag" data-tag="Networking">Networking</span>
+      <span class="filter-tag" data-tag="Projects">Projects</span>
       <span class="filter-tag" data-tag="Python">Python</span>
       <span class="filter-tag" data-tag="React Native">React Native</span>
       <span class="filter-tag" data-tag="TLA&#43;">TLA&#43;</span>
+      <span class="filter-tag" data-tag="UDP">UDP</span>
       <span class="filter-tag" data-tag="Words">Words</span>
       <span class="filter-tag" data-tag="x86 Assembly">x86 Assembly</span>
     </div>
@@ -176,6 +181,28 @@
 
   <div class="projects-container">
     <div class="projects-grid">
+    <div class="project-card" data-tags="C&#43;&#43;,UDP,Networking,Projects">
+      <a href="/projects/2025/udp-server-binary/" class="project-link">
+          <div class="project-image">
+            <img src="/previews/default-project.png" alt="Projects">
+          </div>
+        <div class="project-content">
+          <h2 class="project-title">UDP server (binary)</h2>
+          <div class="project-summary">
+            
+Repository https://github.com/EricSpencer00/UDP-server-binary
+Tools udprecv: Binds to a UDP port, receives one packet, prints sender and payload. udpsend_stream_file: Sends a file as UDP packets. Commands make ./bin/udprecv 9000 ./bin/udpsend_stream_file 127.0.0.1 9000 test.bin nc -u -l 9000 &gt; received.bin shasum -a 256 test.bin received.bin Build make produces binaries in bin/. Notes UDP is lossy. Extendable for sequence numbers or timestamps. Related NASDAQ ITCH parser: https://github.com/EricSpencer00/itch-parser-eric 
+          </div>
+          <div class="project-meta">
+            <span class="project-date">Nov 2025</span>
+            <div class="project-tags">
+              <span class="project-tag">#C&#43;&#43;</span>
+              <span class="project-tag">#UDP</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
     <div class="project-card" data-tags="Python,LLM">
       <a href="/projects/2025/llmjammer/" class="project-link">
           <div class="project-image">
@@ -476,13 +503,13 @@ Implementing hosting services Connecting a backend model to a UI Creating a user
         </div>
       </a>
     </div>
-    <div class="project-card" data-tags="iOS">
+    <div class="project-card" data-tags="iOS,Health">
       <a href="/projects/2024/dailytask/" class="project-link">
           <div class="project-image">
             <img src="/previews/dailytask.png" alt="Projects">
           </div>
         <div class="project-content">
-          <h2 class="project-title">DailyTask iOS App</h2>
+          <h2 class="project-title">Daily Task - Wellness Tracker</h2>
           <div class="project-summary">
              Sometimes I forget whether or not I’ve taken medicine throughout the day. This app solves that problem.
 📸 Screenshots: 📌 Features: 🔔 Task notifications to remind yourself 🏥 Sort tasks based on urgency (e.g., Medicine vs. Quality of Life) 🎉 Confetti effect when all tasks are completed 😁 Custom emojis for a personalized experience 
@@ -491,6 +518,7 @@ Implementing hosting services Connecting a backend model to a UI Creating a user
             <span class="project-date">Jun 2024</span>
             <div class="project-tags">
               <span class="project-tag">#iOS</span>
+              <span class="project-tag">#Health</span>
             </div>
           </div>
         </div>

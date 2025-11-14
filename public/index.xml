@@ -6,8 +6,15 @@
     <description>Recent content in Eric Spencer - Computer Science Portfolio on Eric Spencer</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UDP server (binary)</title>
+      <link>http://localhost:1313/projects/2025/udp-server-binary/</link>
+      <pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/2025/udp-server-binary/</guid>
+      <description>UDP send/receive utilities for binary payloads.</description>
+    </item>
     <item>
       <title>Conway&#39;s Game of Life</title>
       <link>http://localhost:1313/miscellaneous/gameoflife/</link>
@@ -354,11 +361,11 @@
       <description>Provided frontline technical support and access management.</description>
     </item>
     <item>
-      <title>DailyTask iOS App</title>
+      <title>Daily Task - Wellness Tracker</title>
       <link>http://localhost:1313/projects/2024/dailytask/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/projects/2024/dailytask/</guid>
-      <description>An iOS app to help track daily tasks, including medication reminders.</description>
+      <description>A habit manager for daily consistency.</description>
     </item>
     <item>
       <title>IT Chair</title>
