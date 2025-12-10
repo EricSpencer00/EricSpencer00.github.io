@@ -5,6 +5,7 @@ description: "Protect sensitive keys from accidentally being uploaded to your gi
 tags: ["git", "security", "devtools"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 Git Key Guardian is a lightweight pre-commit hook and helper toolkit that scans staged changes for common secret patterns and your own personal keys, helping you catch accidental commits of API keys, tokens, and credentials before they land in your git history.
