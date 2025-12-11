@@ -33,7 +33,7 @@
 {{- end }}
 
 <!-- If we're on the main projects page, get all projects from all years -->
-{{- if and (eq .Kind "section") (eq .Section "projects") (not .File.Dir) }}
+{{- if and (eq .Kind "section") (eq .Section "projects") }}
   <!-- Generate list of unique tags across all projects -->
   {{- $tags := slice }}
   {{- range (where .Site.RegularPages "Section" "projects") }}
