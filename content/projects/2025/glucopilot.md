@@ -4,7 +4,7 @@ date: 2025-09-11
 description: "AI Glucose Insights App"
 tags: ["Swift", "Dexcom", "iOS"]
 categories: ["Projects"]
-draft: false
+draft: true
 ---
 
 During the September 2025 OpenAI Hackathon for GPT-OSS:120b, they opened up inference to the model on HuggingFace for free. The hackathon had the intention of producing fine-tuned use cases for the oss model. I, along with many other contestants, just treated the hackathon as an opportunity to make an AI wrapper project. The only fine tuning I did with 120b was some prompt engineering.
