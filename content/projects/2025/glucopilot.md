@@ -4,7 +4,8 @@ date: 2025-09-11
 description: "AI Glucose Insights App"
 tags: ["Swift", "Dexcom", "iOS"]
 categories: ["Projects"]
-draft: true
+draft: false
+image: /previews/glucopilot.png
 ---
 
 During the September 2025 OpenAI Hackathon for GPT-OSS:120b, they opened up inference to the model on HuggingFace for free. The hackathon had the intention of producing fine-tuned use cases for the oss model. I, along with many other contestants, just treated the hackathon as an opportunity to make an AI wrapper project. The only fine tuning I did with 120b was some prompt engineering.
@@ -15,4 +16,6 @@ Now, in practice the app would have flaws due to the entire architecture not bei
 
 To get further into the architecture. The App started off as a React Native project with a Python backend (utilizing my favorite Dexcom library, pydexcom). However, I wanted Apple Health integration among other things, so I switched to Swift and lighter Python backend. 
 In a nutshell, the frontend Swift would authenticate using Dexcom OAuth and the backend would use rate limited API calls to the HuggingFace inference servers. All Apple Health, Dexcom, and MyFitnessPal data would aggregate itself on the frontend after adding those services. Then, a single JSON prompt with about 100k tokens of context would be sent to the AI for analysis. I would rate the accuracy of the AI at about 65%. It was too general in some cases. Since I forced it to always return 5 results, it gave 1 or 2 good insights and then the same boilerplate suggestions afterwards.
+
+See my Devpost submission here: https://devpost.com/software/glucopilot
 
