@@ -123,16 +123,17 @@ showToc: false
         height: 100%;
     }
     .clickable-area {
-        fill: rgba(255, 255, 255, 0);
-        stroke: rgba(0, 255, 0, 0);
+        fill: rgba(0, 255, 0, 0.05);
+        stroke: rgba(0, 255, 0, 0.3);
         stroke-width: 2;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
     }
     .clickable-area:hover {
-        fill: rgba(0, 255, 0, 0.1);
-        stroke: rgba(0, 255, 0, 0.5);
-        filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5));
+        fill: rgba(0, 255, 0, 0.15);
+        stroke: rgba(0, 255, 0, 0.8);
+        stroke-width: 3;
+        filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8));
     }
     .project-label {
         position: absolute;
