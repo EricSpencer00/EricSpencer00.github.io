@@ -54,18 +54,19 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git clone https://github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
-          git -C /tmp/devsite remote set-url origin https://$DEV_DEPLOY_TOKEN@github.com/EricSpencer00/dev.ericspencer00.github.io.git
+          # Clone with authentication embedded in URL (URL-encoded)
+          git clone "https://oauth2:${DEV_DEPLOY_TOKEN}@github.com/EricSpencer00/dev.ericspencer00.github.io.git" /tmp/devsite
 
           rm -rf /tmp/devsite/*
           cp -a "$GITHUB_WORKSPACE/public/." /tmp/devsite/
 
-          git -C /tmp/devsite add -A
+          cd /tmp/devsite
+          git add -A
 
-          if git -C /tmp/devsite diff --quiet --cached; then
+          if git diff --quiet --cached; then
             echo "No changes to deploy"
             exit 0
           fi
 
-          git -C /tmp/devsite commit -m "Deploy dev site from $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
-          git -C /tmp/devsite push origin main
+          git commit -m "Deploy dev site from $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
+          git push origin main
