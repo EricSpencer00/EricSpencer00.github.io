@@ -1,0 +1,64 @@
+name: Deploy to Dev Server
+
+on:
+  push:
+    branches:
+      - dev
+
+permissions:
+  contents: read
+
+env:
+  # Hugo expects the baseURL to match where the site will be served.
+  HUGO_BASEURL: "https://dev.ericspencer00.github.io/"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.145.0'
+          extended: true
+
+      - name: Build Hugo site
+        run: |
+          rm -rf public
+          hugo --minify --baseURL "$HUGO_BASEURL"
+
+      - name: Install GitHub CLI
+        uses: cli/cli@v3
+
+      - name: Authenticate GitHub CLI
+        env:
+          GH_TOKEN: ${{ secrets.DEV_DEPLOY_KEY }}
+        run: |
+          echo "$GH_TOKEN" | gh auth login --with-token
+
+      - name: Deploy to dev site repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Clone the destination repo and replace its contents with the newly built site.
+          gh repo clone EricSpencer00/dev.EricSpencer00.github.io /tmp/devsite -- --depth 1
+          rm -rf /tmp/devsite/*
+          cp -a public/. /tmp/devsite/
+
+          cd /tmp/devsite
+          git add -A
+
+          if git diff --quiet; then
+            echo "No changes to deploy"
+            exit 0
+          fi
+
+          git commit -m "Deploy dev site from $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
+          git push origin main
