@@ -31,6 +31,14 @@
   margin-bottom: 0.5rem;
 }
 
+.profile_inner .headline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-transform: none;
+}
+
 .profile_inner span {
   margin-bottom: 1.5rem;
   line-height: 1.6;
