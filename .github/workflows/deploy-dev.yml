@@ -35,21 +35,13 @@ jobs:
 
       - name: Deploy to dev site repo
         env:
-          DEPLOY_TOKEN: ${{ secrets.DEV_DEPLOY_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Create a non-interactive password provider script for git
-          mkdir -p ~/.ssh
-          cat > ~/.ssh/pass.sh << 'EOF'
-          #!/bin/bash
-          echo "$DEPLOY_TOKEN"
-          EOF
-          chmod +x ~/.ssh/pass.sh
-
           # Clone the destination repo and replace its contents with the newly built site
-          GIT_ASKPASS=~/.ssh/pass.sh GIT_ASKPASS_ALWAYS=true git clone https://x-access-token@github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
+          git clone https://github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
           rm -rf /tmp/devsite/*
           cp -a public/. /tmp/devsite/
 
@@ -62,4 +54,4 @@ jobs:
           fi
 
           git commit -m "Deploy dev site from $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
-          GIT_ASKPASS=~/.ssh/pass.sh GIT_ASKPASS_ALWAYS=true git push origin main
+          git push origin main
