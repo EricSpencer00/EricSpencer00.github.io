@@ -34,7 +34,9 @@ jobs:
           hugo --minify --baseURL "$HUGO_BASEURL"
 
       - name: Install GitHub CLI
-        uses: cli/cli@v3
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
 
       - name: Authenticate GitHub CLI
         env:
