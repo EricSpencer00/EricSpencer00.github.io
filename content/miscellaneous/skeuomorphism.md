@@ -1,7 +1,7 @@
 ---
 title: "Skeuomorphic Project Desk"
 date: 2025-12-31
-draft: false
+draft: true
 showToc: false
 ---
 
