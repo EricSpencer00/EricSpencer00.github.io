@@ -33,31 +33,22 @@ jobs:
           rm -rf public
           hugo --minify --baseURL "$HUGO_BASEURL"
 
-      - name: Install GitHub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gh
-
-      - name: Authenticate GitHub CLI
-        env:
-          GH_TOKEN: ${{ secrets.DEV_DEPLOY_KEY }}
-        run: |
-          echo "$GH_TOKEN" | gh auth login --with-token --hostname github.com --insecure-storage
-
       - name: Deploy to dev site repo
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEV_DEPLOY_KEY }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Clone the destination repo and replace its contents with the newly built site.
-          gh repo clone EricSpencer00/dev.EricSpencer00.github.io /tmp/devsite -- --depth 1
+          # Clone the destination repo and replace its contents with the newly built site
+          git clone https://github-actions[bot]:${DEPLOY_TOKEN}@github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
           rm -rf /tmp/devsite/*
           cp -a public/. /tmp/devsite/
 
           cd /tmp/devsite
           git add -A
 
-          if git diff --quiet; then
+          if git diff --quiet --cached; then
             echo "No changes to deploy"
             exit 0
           fi
