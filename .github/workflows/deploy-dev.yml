@@ -42,10 +42,12 @@ jobs:
 
           # Clone the destination repo and replace its contents with the newly built site
           git clone https://github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
+          cd /tmp/devsite
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/EricSpencer00/dev.ericspencer00.github.io.git
+
           rm -rf /tmp/devsite/*
           cp -a public/. /tmp/devsite/
 
-          cd /tmp/devsite
           git add -A
 
           if git diff --quiet --cached; then
