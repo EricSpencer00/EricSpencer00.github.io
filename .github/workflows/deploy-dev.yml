@@ -40,8 +40,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Configure git credentials
+          git config --global credential.helper store
+          echo "https://x-access-token:${DEPLOY_TOKEN}@github.com" > ~/.git-credentials
+
           # Clone the destination repo and replace its contents with the newly built site
-          git clone https://github-actions[bot]:${DEPLOY_TOKEN}@github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
+          git clone https://github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
           rm -rf /tmp/devsite/*
           cp -a public/. /tmp/devsite/
 
