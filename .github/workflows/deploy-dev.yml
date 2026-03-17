@@ -41,13 +41,13 @@ jobs:
 
       - name: Deploy to dev site repo
         env:
-          DEV_DEPLOY_TOKEN: ${{ secrets.DEV_DEPLOY_TOKEN }}   # <-- PAT, not GITHUB_TOKEN
+          DEV_DEPLOY_KEY: ${{ secrets.DEV_DEPLOY_KEY }}   # <-- PAT, not GITHUB_TOKEN
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           git clone https://github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
-          git -C /tmp/devsite remote set-url origin https://$DEV_DEPLOY_TOKEN@github.com/EricSpencer00/dev.ericspencer00.github.io.git
+          git -C /tmp/devsite remote set-url origin https://$DEV_DEPLOY_KEY@github.com/EricSpencer00/dev.ericspencer00.github.io.git
 
           rm -rf /tmp/devsite/*
           cp -a "$GITHUB_WORKSPACE/public/." /tmp/devsite/
