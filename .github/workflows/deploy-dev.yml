@@ -44,6 +44,13 @@ jobs:
         env:
           DEV_DEPLOY_TOKEN: ${{ secrets.DEV_DEPLOY_TOKEN }}   # <-- PAT, not GITHUB_TOKEN
         run: |
+          set -x
+          
+          if [ -z "$DEV_DEPLOY_TOKEN" ]; then
+            echo "ERROR: DEV_DEPLOY_TOKEN secret is not set!"
+            exit 1
+          fi
+          
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
