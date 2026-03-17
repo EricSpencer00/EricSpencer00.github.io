@@ -33,6 +33,13 @@ jobs:
           rm -rf public
           hugo --minify --baseURL "$HUGO_BASEURL"
 
+      - name: Verify Hugo build output
+        run: |
+          if [ ! -d "public" ]; then
+            echo "Error: Hugo build did not generate the public/ directory."
+            exit 1
+          fi
+
       - name: Deploy to dev site repo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
