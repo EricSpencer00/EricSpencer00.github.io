@@ -42,7 +42,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.DEV_DEPLOY_KEY }}
         run: |
-          echo "$GH_TOKEN" | gh auth login --with-token --hostname github.com --no-write-keyring
+          echo "$GH_TOKEN" | gh auth login --with-token --hostname github.com --insecure-storage
 
       - name: Deploy to dev site repo
         run: |
