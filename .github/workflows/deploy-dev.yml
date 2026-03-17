@@ -9,7 +9,6 @@ permissions:
   contents: read
 
 env:
-  # Hugo expects the baseURL to match where the site will be served.
   HUGO_BASEURL: "https://dev.ericspencer00.github.io/"
 
 jobs:
@@ -47,20 +46,18 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Clone the destination repo and replace its contents with the newly built site
           git clone https://github.com/EricSpencer00/dev.ericspencer00.github.io.git /tmp/devsite
-          cd /tmp/devsite
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/EricSpencer00/dev.ericspencer00.github.io.git
+          git -C /tmp/devsite remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/EricSpencer00/dev.ericspencer00.github.io.git
 
           rm -rf /tmp/devsite/*
-          cp -a public/. /tmp/devsite/
+          cp -a "$GITHUB_WORKSPACE/public/." /tmp/devsite/   # <-- fix: absolute path
 
-          git add -A
+          git -C /tmp/devsite add -A
 
-          if git diff --quiet --cached; then
+          if git -C /tmp/devsite diff --quiet --cached; then
             echo "No changes to deploy"
             exit 0
           fi
 
-          git commit -m "Deploy dev site from $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
-          git push origin main
+          git -C /tmp/devsite commit -m "Deploy dev site from $GITHUB_REPOSITORY@${GITHUB_SHA::7}"
+          git -C /tmp/devsite push origin main
