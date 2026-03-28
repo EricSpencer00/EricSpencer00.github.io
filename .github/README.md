@@ -2,4 +2,4 @@
 
 [ericspencer00.github.io](ericspencer00.github.io)
 
-[https://ericspencer00.github.io/dev.ericspencer00.github.io](https://ericspencer00.github.io/dev.ericspencer00.github.io)
+[dev.ericspencer00.github.io](dev.ericspencer00.github.io)
