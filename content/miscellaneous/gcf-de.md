@@ -1,6 +1,6 @@
 ---
 title: "GCF DE"
-date: 2022-01-15
+date: 2025-11-09
 description: "A miscellaneous project."
 tags: ["web"]
 categories: ["Miscellaneous"]

@@ -1,6 +1,6 @@
 ---
 title: "Sneaker Run"
-date: 2023-04-15
+date: 2025-11-04
 description: "A web-based game, Sneaker Run."
 tags: ["game", "web"]
 categories: ["Miscellaneous"]

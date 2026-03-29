@@ -1,6 +1,6 @@
 ---
 title: "BrightBet.tech"
-date: 2024-02-18
+date: 2026-03-18
 description: "A platform for making bright bets on future events. Built for HackIllinois 2026."
 tags: ["web", "hackathon"]
 categories: ["Projects"]

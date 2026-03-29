@@ -1,6 +1,6 @@
 ---
 title: "TLA+ Model of Dexcom G7"
-date: 2024-04-01
+date: 2026-03-22
 description: "A formal model of the Dexcom G7 continuous glucose monitor using TLA+."
 tags: ["formal methods", "TLA+", "medical device"]
 categories: ["Projects"]

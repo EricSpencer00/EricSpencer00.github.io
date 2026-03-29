@@ -1,6 +1,6 @@
 ---
 title: "Reverse Engineering Xoroshiro128++"
-date: 2023-08-08
+date: 2025-11-11
 description: "A project to reverse engineer the xoroshiro128++ pseudo-random number generator."
 tags: ["reverse engineering", "security", "rng"]
 categories: ["Projects"]

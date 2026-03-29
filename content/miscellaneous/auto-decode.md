@@ -1,6 +1,6 @@
 ---
 title: "Auto Decode"
-date: 2022-03-10
+date: 2025-11-07
 description: "A tool for automatic decoding."
 tags: ["tools"]
 categories: ["Miscellaneous"]

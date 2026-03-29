@@ -1,6 +1,6 @@
 ---
 title: "Cubed Pack Solver"
-date: 2023-01-20
+date: 2025-11-12
 description: "A solver for the Cubed Pack puzzle."
 tags: ["puzzle", "solver"]
 categories: ["Projects"]

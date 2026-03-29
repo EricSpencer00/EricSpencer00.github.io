@@ -1,6 +1,6 @@
 ---
 title: "Facebook Clone"
-date: 2023-12-05
+date: 2025-12-25
 description: "A clone of the Facebook UI for a class project."
 tags: ["web", "frontend", "class project"]
 categories: ["Projects"]

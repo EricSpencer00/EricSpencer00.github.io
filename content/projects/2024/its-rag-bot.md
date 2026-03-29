@@ -1,6 +1,6 @@
 ---
 title: "Loyola ITS RAG Bot"
-date: 2024-04-22
+date: 2026-03-20
 description: "A Retrieval-Augmented Generation (RAG) bot for Loyola's ITS department to answer student and faculty questions."
 tags: ["AI", "chatbot", "RAG"]
 categories: ["Projects"]

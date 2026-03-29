@@ -1,6 +1,6 @@
 ---
 title: "AI OS"
-date: 2024-05-21
+date: 2026-03-23
 description: "An exploration into building an AI-centric operating system."
 tags: ["AI", "OS", "systems"]
 categories: ["Projects"]

@@ -1,6 +1,6 @@
 ---
 title: "OneShot HM2016"
-date: 2022-07-30
+date: 2025-11-05
 description: "A project related to OneShot HM2016."
 tags: ["game"]
 categories: ["Miscellaneous"]

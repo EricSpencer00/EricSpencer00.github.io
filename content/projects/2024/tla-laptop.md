@@ -1,6 +1,6 @@
 ---
 title: "TLA+ Model of a Laptop"
-date: 2024-03-28
+date: 2026-03-24
 description: "A formal specification of a laptop's power states using TLA+."
 tags: ["formal methods", "TLA+"]
 categories: ["Projects"]

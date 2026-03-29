@@ -1,6 +1,6 @@
 ---
 title: "TLA+ Model of a Walk-In Oven"
-date: 2024-03-12
+date: 2026-03-19
 description: "A formal specification of a walk-in oven using TLA+."
 tags: ["formal methods", "TLA+", "safety"]
 categories: ["Projects"]

@@ -1,6 +1,6 @@
 ---
 title: "Bio Ops Web"
-date: 2022-04-20
+date: 2025-11-06
 description: "A web project for bio operations."
 tags: ["web", "biology"]
 categories: ["Miscellaneous"]

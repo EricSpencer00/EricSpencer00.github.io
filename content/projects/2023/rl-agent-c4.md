@@ -1,6 +1,6 @@
 ---
 title: "Reinforcement Learning Connect 4 Bot"
-date: 2023-11-12
+date: 2025-12-23
 description: "A bot that learns to play Connect 4 using reinforcement learning."
 tags: ["AI", "reinforcement learning", "game"]
 categories: ["Projects"]

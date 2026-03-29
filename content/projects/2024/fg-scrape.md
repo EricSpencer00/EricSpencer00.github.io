@@ -1,6 +1,6 @@
 ---
 title: "Family Guy Gag Scraper"
-date: 2024-05-01
+date: 2026-03-21
 description: "A tool to scrape cutaway gags from Family Guy episodes."
 tags: ["web scraping", "data"]
 categories: ["Projects"]

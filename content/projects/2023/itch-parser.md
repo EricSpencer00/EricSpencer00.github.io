@@ -1,6 +1,6 @@
 ---
 title: "ITCH Protocol Parser"
-date: 2023-07-25
+date: 2025-11-13
 description: "A parser for the NASDAQ ITCH protocol, including a UDP server for binary data."
 tags: ["finance", "networking", "parser"]
 categories: ["Projects"]

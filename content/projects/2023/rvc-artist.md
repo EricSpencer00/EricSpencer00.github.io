@@ -1,6 +1,6 @@
 ---
 title: "RVC Artist Model"
-date: 2023-09-15
+date: 2025-12-24
 description: "Using Retrieval-based Voice Conversion (RVC) to create models of artists' voices."
 tags: ["AI", "audio", "RVC"]
 categories: ["Projects"]

@@ -1,6 +1,6 @@
 ---
 title: "Goldbach Conjecture"
-date: 2021-11-20
+date: 2025-11-10
 description: "A project exploring the Goldbach Conjecture."
 tags: ["math", "number theory"]
 categories: ["Projects"]
