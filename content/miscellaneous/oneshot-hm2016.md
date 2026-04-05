@@ -5,7 +5,7 @@ description: "A browser-based HITMAN-style first-person shooter built with HTML5
 tags: ["Game"]
 categories: ["Miscellaneous"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/oneshot-hm2016.png"
 ---
 
 A browser-based Hitman 2016 clone built with HTML, CSS, and JavaScript. Features first-person shooter mechanics with a custom crosshair system and real-time rendering on Canvas.

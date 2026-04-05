@@ -5,7 +5,7 @@ description: "A voice-first RAG chatbot for Loyola ITS support, using local LLMs
 tags: ["AI", "LLM"]
 categories: ["Projects"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/its-rag-bot.png"
 ---
 
 A voice-first Retrieval-Augmented Generation (RAG) chatbot for Loyola University Chicago's ITS department. Built with Python/FastAPI, using Vosk for speech-to-text, FAISS for vector search, and Ollama for local LLMs, with optional HuggingFace and OpenAI API support. Deployable via Docker.

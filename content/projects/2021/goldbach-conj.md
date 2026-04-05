@@ -5,7 +5,7 @@ description: "A Rust implementation verifying the Goldbach Conjecture for even n
 tags: []
 categories: ["Projects"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/goldbach-conj.png"
 ---
 
 A proof-of-concept verifying the Goldbach Conjecture — that every even integer greater than 2 is the sum of two primes — for all even numbers from 4 through 1 billion. Implemented in Rust with Python utilities for verification.

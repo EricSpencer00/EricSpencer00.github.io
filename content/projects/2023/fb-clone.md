@@ -5,7 +5,7 @@ description: "A clone of the Facebook UI built as a web development class projec
 tags: ["web"]
 categories: ["Projects"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/fb-clone.png"
 ---
 
 A clone of the Facebook user interface, created as a project for a web development class. Replicates core UI components and layout patterns of the Facebook platform.

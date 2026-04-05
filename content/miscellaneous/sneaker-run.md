@@ -5,7 +5,7 @@ description: "An endless runner game with a sneaker theme, built with vanilla Ja
 tags: ["Game", "web"]
 categories: ["Miscellaneous"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/sneaker-run.png"
 ---
 
 An endless runner game with a theme built with vanilla JavaScript on HTML5 Canvas. Features a HUD displaying distance and coins collected, background music, asset-based animations, and keyboard controls.

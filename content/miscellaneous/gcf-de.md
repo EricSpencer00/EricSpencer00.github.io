@@ -5,7 +5,7 @@ description: "An interactive digital exhibit about the Great Chicago Fire, built
 tags: ["web"]
 categories: ["Miscellaneous"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/gcf-de.png"
 ---
 
 An interactive digital exhibit exploring the Great Chicago Fire for my history class. Built with SvelteKit and Tailwind CSS, featuring D3.js data visualizations and Leaflet/Maplibre mapping with responsive design.

@@ -5,7 +5,7 @@ description: "An AI-powered trade and prediction analysis platform built for Hac
 tags: ["web", "Hackathon"]
 categories: ["Projects"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/brightbet.png"
 ---
 
 An AI-powered trade and prediction analysis platform built for HackIllinois 2026. Scrapes real-time market data from Finnhub, Polymarket, and Wikipedia, feeds it to Groq's Llama 3.3 70B, and returns confidence scores with reasoning. Features a React/Vite frontend, Cloudflare Workers backend, AI-generated visuals, and Stripe payment integration.
