@@ -1,13 +1,13 @@
 ---
 title: "OneShot HM2016"
-date: 2025-11-05
-description: "A project related to OneShot HM2016."
-tags: ["game"]
+date: 2025-12-26
+description: "A browser-based HITMAN-style first-person shooter built with HTML5 Canvas."
+tags: ["Game"]
 categories: ["Miscellaneous"]
 draft: false
-image: "/previews/default-project.png"
+image: "/previews/oneshot-hm2016.png"
 ---
 
-A project related to OneShot HM2016.
+A browser-based Hitman 2016 clone built with HTML, CSS, and JavaScript. Features first-person shooter mechanics with a custom crosshair system and real-time rendering on Canvas.
 
-More information can be found at the project's page: [https://ericspencer00.github.io/oneshot-hm2016/](https://ericspencer00.github.io/oneshot-hm2016/)
+Play it here: [https://ericspencer00.github.io/oneshot-hm2016/](https://ericspencer00.github.io/oneshot-hm2016/)

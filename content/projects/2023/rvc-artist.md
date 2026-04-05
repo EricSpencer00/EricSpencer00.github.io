@@ -1,13 +1,13 @@
 ---
 title: "RVC Artist Model"
-date: 2025-12-24
-description: "Using Retrieval-based Voice Conversion (RVC) to create models of artists' voices."
-tags: ["AI", "audio", "RVC"]
+date: 2026-01-09
+description: "Voice conversion models for different artists using Retrieval-based Voice Conversion (RVC)."
+tags: ["AI"]
 categories: ["Projects"]
 draft: false
 image: "/previews/default-project.png"
 ---
 
-This project explores the use of Retrieval-based Voice Conversion (RVC) to create voice models for different artists. This can be used for various audio generation tasks.
+Voice models for different artists built with Retrieval-based Voice Conversion (RVC). Enables voice-style transfer for audio generation tasks by training on artist vocal data.
 
 The project can be found on GitHub: [https://github.com/EricSpencer00/rvc-artist](https://github.com/EricSpencer00/rvc-artist)
