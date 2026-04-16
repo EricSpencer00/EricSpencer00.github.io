@@ -58,7 +58,9 @@ jobs:
           # Clone with authentication embedded in URL (URL-encoded)
           git clone "https://oauth2:${DEV_DEPLOY_TOKEN}@github.com/EricSpencer00/dev.ericspencer00.github.io.git" /tmp/devsite
 
-          rm -rf /tmp/devsite/*
+          # Wipe everything except .git/ (glob * misses dotfiles; use find so
+          # stale .github/ workflows etc. don't persist across deploys).
+          find /tmp/devsite -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
           cp -a "$GITHUB_WORKSPACE/public/." /tmp/devsite/
 
           # Custom domain for GitHub Pages
