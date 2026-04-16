@@ -10,7 +10,8 @@ permissions:
 
 env:
   # Hugo expects the baseURL to match where the site will be served.
-  HUGO_BASEURL: "https://dev.ericspencer00.github.io/"
+  HUGO_BASEURL: "https://dev.ericspencer.us/"
+  DEV_CUSTOM_DOMAIN: "dev.ericspencer.us"
 
 jobs:
   build-and-deploy:
@@ -59,6 +60,9 @@ jobs:
 
           rm -rf /tmp/devsite/*
           cp -a "$GITHUB_WORKSPACE/public/." /tmp/devsite/
+
+          # Custom domain for GitHub Pages
+          echo "$DEV_CUSTOM_DOMAIN" > /tmp/devsite/CNAME
 
           cd /tmp/devsite
           git add -A
