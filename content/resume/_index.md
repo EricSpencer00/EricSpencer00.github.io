@@ -5,6 +5,6 @@ title = 'Curriculum Vitae'
 description = 'My professional journey through education, experience, research, and leadership roles. Organized by date started.'
 +++
 
-- **[Download PDF Resume](/images/EricSpencerResume.pdf)**
+- **[Download PDF Resume](/resume/EricSpencerResume.pdf)**
 
 ---
