@@ -5,12 +5,13 @@
   canvas.height = SIZE;
   const ctx = canvas.getContext('2d');
 
-  let link = document.querySelector("link[rel~='icon']");
-  if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.head.appendChild(link);
-  }
+  // Remove every static <link rel="icon"> so the browser can't prefer a
+  // different size over the one we draw. Keep a single dynamic link.
+  document.querySelectorAll("link[rel~='icon'], link[rel='shortcut icon'], link[rel='apple-touch-icon']").forEach(el => el.remove());
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png';
+  document.head.appendChild(link);
 
   const getAccent = () => {
     const styles = getComputedStyle(document.documentElement);

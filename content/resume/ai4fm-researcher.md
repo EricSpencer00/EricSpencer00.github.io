@@ -7,7 +7,7 @@ description: "Research on TLA+ and fine-tuning open-source LLMs for formal metho
 tags: ["Research", "TLA+", "LLMs", "Formal Methods"]
 categories: ["Research"]
 draft: false
-logo: "ai4fm_transparent.png"
+logo: "ai4fm_transparent.jpg"
 logo_alt: "ai4fm Loyola logo"
 logo_size: 56
 ---
