@@ -14,5 +14,5 @@ logo_size: 56
 
 - Built Picaius after being unsatisfied with the photo editing apps available on the App Store
 - Own the product from concept to ship: UX, image pipeline, and distribution
-- Released under FROM AMERICA LLC at [picai.us](https://picai.us)
+- Released under [FROM AMERICA LLC](https://fromamerica-llc.com/) at [picai.us](https://picai.us)
 

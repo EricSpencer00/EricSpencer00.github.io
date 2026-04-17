@@ -12,7 +12,7 @@ logo_alt: "FROM AMERICA LLC logo"
 logo_size: 56
 ---
 
-- Founded and operate FROM AMERICA LLC, the parent studio behind instxnt.xyz, Stock Genie, and Picaius
+- Founded and operate [FROM AMERICA LLC](https://fromamerica-llc.com/), the parent studio behind [instxnt.xyz](https://instxnt.xyz), [Stock Genie](https://stockgenie.app), and [Picaius](https://picai.us)
 - Handle product direction, engineering, design, deployment, and customer support across every app in the portfolio
 - Run the whole stack on commodity infrastructure so apps can stay free or subscription-free for users
 

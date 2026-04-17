@@ -12,7 +12,7 @@ logo_alt: "instxnt.xyz logo"
 logo_size: 56
 ---
 
-- Building no-code eCommerce storefronts for creators and small businesses without the usual monthly subscription gate
+- Building no-code eCommerce storefronts for creators and small businesses without the usual monthly subscription gate at [instxnt.xyz](https://instxnt.xyz)
 - Designed and shipped the end-to-end product: visual builder, storefront rendering, and deployment pipeline
-- Released under FROM AMERICA LLC and positioned as a free alternative to existing storebuilder platforms
+- Released under [FROM AMERICA LLC](https://fromamerica-llc.com/) and positioned as a free alternative to existing storebuilder platforms
 

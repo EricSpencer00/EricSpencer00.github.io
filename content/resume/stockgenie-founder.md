@@ -14,5 +14,5 @@ logo_size: 56
 
 - Built Stock Genie as a lightweight, AI-assisted stock analysis and portfolio companion aimed at hobby traders
 - Shipped both the iOS client and the marketing site at [stockgenie.app](https://stockgenie.app)
-- Released under FROM AMERICA LLC
+- Released under [FROM AMERICA LLC](https://fromamerica-llc.com/)
 
