@@ -1,9 +1,10 @@
 ---
 title: "ChatTLA+"
-date: 2025-04-17
+date: 2026-04-17
 description: "Presentation on using LLMs for TLA+ formal specification generation and verification."
 tags: ["AI", "TLA+"]
 categories: ["Miscellaneous"]
+image: "/previews/chattla.png"
 draft: false
 ---
 
