@@ -6,8 +6,15 @@
   "name": {{ site.Title }},
   "url": {{ site.Home.Permalink }},
   "description": {{ site.Params.description | plainify | truncate 180 | safeHTML }},
-  {{- if (eq site.Params.schema.publisherType "Person") }}
-  "image": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
+  {{- if (eq (site.Params.schema.publisherType | lower) "person") }}
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ site.Params.avatar | default "images/avatar.jpeg" | absURL }},
+    "width": 240,
+    "height": 240
+  },
+  "jobTitle": "Software Developer",
+  "email": "ericspencer1450@gmail.com",
   {{- else }}
   "logo": {{ site.Params.assets.favicon | default "favicon.ico" | absURL }},
   {{- end }}

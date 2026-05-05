@@ -53,6 +53,12 @@ Params:  # capital P needed for profileMode to work properly in some themes
     - name: "CV"
       url: "resume/"
 
+  schema:
+    publisherType: "person"
+    sameAs:
+      - "https://www.linkedin.com/in/EricSpencer00"
+      - "https://github.com/EricSpencer00"
+
   env: production
   robotsNoIndex: false
 
