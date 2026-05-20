@@ -1,6 +1,6 @@
 ---
 title: "Eric Spencer - AI & Technology"
-description: "Eric Spencer - Building AI projects and open source tools. Computer Science student at Loyola University Chicago focused on machine learning, web development, and innovation."
+description: "Eric Spencer - Building AI projects and open source tools. Loyola University Chicago alum (BS Computer Science, 2026) focused on machine learning, web development, and innovation."
 keywords: ["Eric Spencer", "eric-spencer.us", "AI builder", "software developer"]
 layout: "single"
 ---
@@ -37,7 +37,7 @@ layout: "single"
 - 🤖 **AI Enthusiast** - Building with LLMs, ML, and AI-enabled systems
 - 💻 **Full-Stack Developer** - Frontend to backend, dev to deployment  
 - 🚀 **Shipped 50+ Projects** - Available on GitHub
-- 📚 **CS Student** - Loyola University Chicago, Class of 2026
+- 🎓 **CS Graduate** - BS Computer Science, Loyola University Chicago (2026)
 - 🏆 **Hackathon Winner** - LoyolaHACK and other competitions
 
 ## What Makes Him Stand Out
@@ -50,7 +50,7 @@ layout: "single"
 
 ## Current Work
 
-- 🎓 Finishing degree at Loyola (2026)
+- 🎓 Recently graduated from Loyola (BS Computer Science, 2026)
 - 🛠️ Building AI-powered applications
 - 📝 Creating developer tools & utilities
 - 🤝 Open to collaborations & opportunities

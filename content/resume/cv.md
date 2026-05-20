@@ -4,7 +4,7 @@ draft = true
 
 - education:
   - Loyola University Chicago
-    - Bachelor of Science in Computer Science, Minor in Information Systems (Expected May 2026)
+    - Bachelor of Science in Computer Science, Minor in Information Systems (May 2026)
     - Dean's List: Fall 2023, Spring 2024, Fall 2024
   - Fenwick High School
     - High School Diploma May 2022

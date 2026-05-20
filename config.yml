@@ -27,14 +27,14 @@ params:  # for post thumbnails and general settings
 
 Params:  # capital P needed for profileMode to work properly in some themes
   avatar: "images/avatar.jpeg"
-  description: "Personal website of Eric Spencer - Computer Science student at Loyola University Chicago. Portfolio showcasing projects, resume, and technical skills."
+  description: "Personal website of Eric Spencer - Software Engineer & AI Builder. BS Computer Science, Loyola University Chicago (2026). Portfolio showcasing projects, resume, and technical skills."
   keywords: ["Eric Spencer", "Eric Spencer Portfolio", "Eric Spencer Developer", "Eric Spencer Software Engineer", "Eric Spencer Loyola", "Loyola University Chicago", "Computer Science", "Developer", "Software Engineer", "Portfolio", "Resume"]
   profileMode:
     enabled: true
     title: "<Eric Spencer>"
     subtitle: |
-      <em>Computer Science Major & Software Developer</em><br>
-      Loyola University Chicago, Class of 2026<br>
+      <em>Software Engineer & AI Builder</em><br>
+      BS Computer Science, Loyola University Chicago (2026)<br>
       espencer2@luc.edu · ericspencer1450@gmail.com
 
     imageUrl: "images/avatar.jpeg"

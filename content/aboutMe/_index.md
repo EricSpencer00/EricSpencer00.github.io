@@ -11,6 +11,6 @@ This website showcases my web-dev skills in action. Using Hugo pages, I easily c
 
 Some professional information about me includes my experience working in Software Engineering, Information Technology, and Research. I enjoy problem solving, so working in tech allows me to do what I love ❤️. 
 
-I'm a Computer Science and Information Systems student at Loyola University Chicago, graduating May 2026. 
+I'm a software engineer with a BS in Computer Science (minor in Information Systems) from Loyola University Chicago, graduated May 2026. 
 
 Some of my favorite projects of mine include my formal methods [interactive microwave](https://ericspencer00.github.io/projects/2025/interactive-microwave-tla/) using TLA+ and a JVM, my [VSC extension](https://ericspencer00.github.io/projects/2025/flatten-repo/) that allows you to paste your smallish codebase into a web-based LLM if you ran out of Cursor or Copilot credits, and my [terminal ChatGPT wrapper](https://ericspencer00.github.io/projects/2025/terminalgpt/).
