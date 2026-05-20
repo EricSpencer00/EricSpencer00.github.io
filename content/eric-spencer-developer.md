@@ -43,7 +43,7 @@ layout: "single"
 
 ## Eric Spencer - Developer
 
-**Eric Spencer** is a full-stack developer and AI builder from Chicago (BS Computer Science, Loyola University Chicago, 2026) with expertise in:
+**Eric Spencer** is a full-stack developer and AI builder based in Chicago. He recently completed his BS in Computer Science at Loyola University Chicago (May 2026) and brings expertise in:
 
 ### Tech Stack
 
@@ -75,7 +75,7 @@ layout: "single"
 
 ### Education & Experience
 
-- **Loyola University Chicago** - BS Computer Science (2026)
+- **Loyola University Chicago** - BS Computer Science, May 2026
 - **Internships**: 
   - AI Prompt Engineer at Unchained AI (2024)
   - Software Engineer internship (2025)

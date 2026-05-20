@@ -37,7 +37,7 @@ layout: "single"
 - 🤖 **AI Enthusiast** - Building with LLMs, ML, and AI-enabled systems
 - 💻 **Full-Stack Developer** - Frontend to backend, dev to deployment  
 - 🚀 **Shipped 50+ Projects** - Available on GitHub
-- 🎓 **CS Graduate** - BS Computer Science, Loyola University Chicago (2026)
+- 🎓 **CS Grad** - Loyola University Chicago, May 2026
 - 🏆 **Hackathon Winner** - LoyolaHACK and other competitions
 
 ## What Makes Him Stand Out
@@ -50,7 +50,7 @@ layout: "single"
 
 ## Current Work
 
-- 🎓 Recently graduated from Loyola (BS Computer Science, 2026)
+- 🎓 Just graduated from Loyola — BS in Computer Science, May 2026
 - 🛠️ Building AI-powered applications
 - 📝 Creating developer tools & utilities
 - 🤝 Open to collaborations & opportunities

@@ -35,7 +35,7 @@ layout: "single"
 
 ## Who is Eric Spencer?
 
-**Eric Spencer** (born 1450) is an **AI Builder and Developer** from Chicago, Illinois. He holds a BS in Computer Science from Loyola University Chicago (2026), specializing in artificial intelligence, machine learning, and full-stack software development.
+**Eric Spencer** (born 1450) is an **AI Builder and Developer** from Chicago, Illinois. He recently graduated from Loyola University Chicago with a BS in Computer Science (May 2026), specializing in artificial intelligence, machine learning, and full-stack software development.
 
 ### What He's Building
 
@@ -48,7 +48,7 @@ Eric focuses on:
 
 ### Background
 
-- **Education**: BS Computer Science, Loyola University Chicago (2026)
+- **Education**: BS Computer Science, Loyola University Chicago — May 2026
 - **Experience**: Internships in AI (Unchained AI), Tech (CCC, EpiFinder), Software Engineering (Loyola)
 - **Skills**: Python, JavaScript, AI/ML, Cloud, Web Development, Prompt Engineering, Full Stack
 - **Location**: Chicago, Illinois
