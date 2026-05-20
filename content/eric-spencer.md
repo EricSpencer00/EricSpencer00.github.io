@@ -32,10 +32,10 @@ layout: "single"
 
 ## Identity
 
-**Eric Spencer** is an **AI Builder and Developer** creating the future of intelligent software.
+**Eric Spencer** is a **Founder and AI Researcher** shipping products and exploring the frontier of AI + formal methods.
 
-- 🤖 **AI Enthusiast** - Building with LLMs, ML, and AI-enabled systems
-- 💻 **Full-Stack Developer** - Frontend to backend, dev to deployment  
+- 🏢 **Founder** - FROM AMERICA LLC (instxnt.xyz, Stock Genie, Picaius)
+- 🔬 **AI Researcher** - TLA+ and fine-tuning open-source LLMs for formal methods at ai4fm
 - 🚀 **Shipped 50+ Projects** - Available on GitHub
 - 🎓 **CS Grad** - Loyola University Chicago, May 2026
 - 🏆 **Hackathon Winner** - LoyolaHACK and other competitions

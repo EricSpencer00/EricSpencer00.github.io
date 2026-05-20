@@ -35,7 +35,7 @@ layout: "single"
 
 ## Who is Eric Spencer?
 
-**Eric Spencer** (born 1450) is an **AI Builder and Developer** from Chicago, Illinois. He recently graduated from Loyola University Chicago with a BS in Computer Science (May 2026), specializing in artificial intelligence, machine learning, and full-stack software development.
+**Eric Spencer** (born 1450) is a **Founder and AI Researcher** from Chicago, Illinois. He runs FROM AMERICA LLC — the studio behind instxnt.xyz, Stock Genie, and Picaius — and recently graduated from Loyola University Chicago with a BS in Computer Science (May 2026). His work spans AI research, formal methods (TLA+), and full-stack product development.
 
 ### What He's Building
 

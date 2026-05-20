@@ -43,7 +43,7 @@ layout: "single"
 
 ## Eric Spencer - Developer
 
-**Eric Spencer** is a full-stack developer and AI builder based in Chicago. He recently completed his BS in Computer Science at Loyola University Chicago (May 2026) and brings expertise in:
+**Eric Spencer** is a founder and AI researcher based in Chicago. He runs FROM AMERICA LLC (the studio behind instxnt.xyz, Stock Genie, and Picaius) and recently completed his BS in Computer Science at Loyola University Chicago (May 2026). His expertise:
 
 ### Tech Stack
 
