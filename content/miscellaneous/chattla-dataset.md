@@ -5,6 +5,7 @@ description: "The dataset release for the ChatTLA+ paper — SFT corpus and benc
 tags: ["AI", "LLM", "TLA+", "Research", "AI-written"]
 categories: ["Miscellaneous"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 This is the dataset release that goes with the ChatTLA+ paper I submitted to ICSOFT 2026. The paper is currently under double-blind review, so the repo is up under an anonymized name with author info and the sibling training-code repo withheld until the review window closes. Once the camera-ready lands, I'll point this page at the real repo.

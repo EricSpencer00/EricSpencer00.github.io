@@ -5,6 +5,7 @@ description: "A toy where two local Ollama models loop on consciousness until on
 tags: ["AI", "LLM", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 This is a toy. I wanted to see what would happen if I sat two local LLMs across from each other and made them talk about philosophy, so I wrote about 100 lines of Python that does exactly that. No agent framework, no fancy orchestration — just `ollama.chat` in a for loop.

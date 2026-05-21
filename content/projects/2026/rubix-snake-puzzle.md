@@ -5,6 +5,7 @@ description: "Coq (Rocq) and TLA+ specifications of the Rubik's Snake state spac
 tags: ["Formal Methods", "Coq", "TLA+", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 [GitHub Repo](https://github.com/EricSpencer00/rubix-snake-puzzle)

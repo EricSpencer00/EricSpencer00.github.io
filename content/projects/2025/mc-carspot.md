@@ -5,6 +5,7 @@ description: "A tiny Rust simulator for the online parking-spot problem with swi
 tags: ["Rust", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 [GitHub Repo](https://github.com/EricSpencer00/mc-carspot)

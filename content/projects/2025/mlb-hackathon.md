@@ -5,6 +5,7 @@ description: "A scikit-learn decision tree that guesses whether a current MLB pl
 tags: ["AI", "Python", "Hackathon", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 This was my entry for the Google Cloud x MLB hackathon back in December. The prompt was open-ended around baseball data, and I picked the Hall of Fame angle because the question is fun to argue about and the dataset is actually clean enough to model without spending the whole weekend on data prep.

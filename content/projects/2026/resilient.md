@@ -5,6 +5,7 @@ description: "A statically-typed compiled language for safety-critical embedded 
 tags: ["Rust", "Formal Methods", "Embedded", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/resilient.jpg"
 ---
 
 [GitHub Repo](https://github.com/EricSpencer00/Resilient) · [Examples Repo](https://github.com/EricSpencer00/Resilient-examples) · [Docs](https://ericspencer.us/Resilient/)

@@ -5,6 +5,7 @@ description: "Two homeworks from Loyola's special-topics LLMs class: prompting G
 tags: ["AI", "LLM", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 COMP 388 at Loyola is the special-topics CS course — whatever the professor wants to teach that semester. The Spring 2026 version was on large language models, which lined up nicely with the TLA+ and fine-tuning work I've been doing at ai4fm. So most of the homework felt less like homework and more like a structured excuse to poke at things I was already curious about. This repo holds the two assignments I actually saved.

@@ -5,6 +5,7 @@ description: "Early exploratory repo for generating TLA+ specs from natural-lang
 tags: ["TLA+", "AI", "LLM", "Formal Methods", "Research", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 This is the first thing I built when I started poking at "can an LLM write TLA+ for you" inside the ai4fm research thread at Loyola. It's small, scrappy, and very much a scaffold — the point was to get an end-to-end loop running (English requirement -> generated `.tla` module -> TLC actually checks it) before worrying about whether the generations were any good. The polished version of this idea is the [ChatTLA+ dataset and paper](/miscellaneous/chattla-dataset/) I shipped later. This repo is what came first.

@@ -5,6 +5,7 @@ description: "A proof of concept Jarvis-style macOS controller that takes voice 
 tags: ["Python", "macOS", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 This was me trying to see how far I could get with a Jarvis-style controller for my Mac in a single sitting. The idea was: webcam watches your hands, microphone listens for commands, and the two threads run side by side so you can either say "open Safari" or wave at the screen to trigger an action. Proof of concept — emphasis on proof of concept.

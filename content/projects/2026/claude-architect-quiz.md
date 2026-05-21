@@ -5,6 +5,7 @@ description: "Free flashcards and practice quiz for the Anthropic Claude Certifi
 tags: ["Web", "JavaScript", "AI", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 Anthropic put out the Claude Certified Architect — Foundations (CCA-F) exam, and the official study material is a Skilljar course plus scattered docs. There were a few community study repos floating around, mostly raw markdown lists of questions. I wanted something I could actually drill on between meetings, on my phone, without signing up for anything — so I built one.

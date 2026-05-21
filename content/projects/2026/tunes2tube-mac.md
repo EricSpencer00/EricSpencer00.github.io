@@ -5,6 +5,7 @@ description: "A local macOS app that drops a cover image and audio files in, and
 tags: ["Swift", "macOS", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 [GitHub Repo](https://github.com/EricSpencer00/tunes2tube-mac)

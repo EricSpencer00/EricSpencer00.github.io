@@ -5,6 +5,7 @@ description: "A SwiftUI soundboard app I built in an afternoon to get more comfo
 tags: ["Swift", "iOS", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 This is the smallest possible thing I could build to keep poking at SwiftUI: a grid of buttons that each play an .mp3 when you tap one. Applause, bell, boing, pop, whoosh, click, beep, ding, buzz, chime, horn, tick, swoosh, ping, thud — fifteen sounds bundled into the app, plus a "premium" one (snap) sitting behind a lock icon I never actually wired up to StoreKit. The whole thing was a one-shot, written in a single sitting in mid-August.

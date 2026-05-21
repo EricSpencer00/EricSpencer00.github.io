@@ -5,6 +5,7 @@ description: "A small Flask app that pulls Chess.com's public API and graphs you
 tags: ["Python", "Chess", "AI-written"]
 categories: ["Miscellaneous"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 I play a fair amount of Chess.com and wanted a stats page that wasn't buried three clicks deep in their site. Chess.com has a free public API, so I threw together a small Flask app that takes a username, hits `/pub/player/{user}`, `/pub/player/{user}/stats`, and `/pub/player/{user}/games/archives`, and dumps everything onto one page.

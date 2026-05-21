@@ -5,6 +5,7 @@ description: "A toy transformer that reads pyfiglet ASCII art and tries to spit 
 tags: ["AI", "LLM", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
+image: "/previews/default-project.png"
 ---
 
 I wanted to see what would happen if I trained a small transformer on ASCII art. Not generating it — reading it. You give the model a chunk of `pyfiglet`'s blocky text rendering of some random word, and it has to recover the word. So less of an LLM and more of a text-only OCR experiment with a transformer encoder bolted on. But "training an LLM on ASCII" sounds way cooler than "training a character classifier on pyfiglet output," so that's what I called the repo.
