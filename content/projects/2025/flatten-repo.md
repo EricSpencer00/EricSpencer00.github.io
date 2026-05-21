@@ -1,82 +1,20 @@
 ---
 title: "flatten-repo VSC Extension"
 date: 2025-03-28
-description: "Flatten your entire codebase into clean, readable .txt files — optimized for LLMs like ChatGPT, Claude, and Gemini"
+description: "A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM."
 tags: ["LLM", "AI"]
 categories: ["Projects"]
 image: "/previews/flatten-repo.png"
 draft: false
 ---
 
-If you've ever needed to give an LLM context for multiple files as you code, then you know how tedious it is
-to copy and paste all of the files into the LLM window.
+I made this when I kept burning through my monthly Copilot allotment and wanted to drop a whole project into a free Gemini or Claude session without copy-pasting twenty files one by one.
 
-This Visual Studio Code extension lets you compile all of your files into a single .txt file.
+It's a VS Code extension. You point it at your workspace, run `Flatten Project to TXT` from the command palette, and it dumps the whole codebase into a single `.txt` file under `/flattened/`. If the repo is too big for one LLM's context window, it splits into chunks based on a configurable token limit (~4 chars per token, rough but fine). Each chunk starts with a directory tree, then the files in `=== FILE: path/to/file.ext ===` blocks. It also auto-adds `/flattened` to your `.gitignore` so you don't accidentally commit the dumps.
 
-Using glob patterns you can include or exclude files that wouldn't be helpful for an LLM context (such as
-build files and libraries).
+The actually-useful part is the filtering. You don't want `node_modules` in there. You probably don't want test files or `.env` either. Everything gets configured through a single `.flatten_ignore` at the project root, which the extension generates for you on first run. Glob-based, with three sections — `global` for things you always want out, `whitelist` for narrowing down to specific paths, and `blacklist` for specific exceptions. There's also a `settings:` section for per-project token caps.
 
-[GitHub Repo](https://github.com/EricSpencer00/flatten-repo)
-
-# 📄 flatten-repo
-
-[![Publish Extension](https://github.com/EricSpencer00/flatten-repo/actions/workflows/publish.yml/badge.svg)](https://github.com/EricSpencer00/flatten-repo/actions/workflows/publish.yml)
-
-**Flatten your entire codebase into clean, readable `.txt` files — optimized for LLMs like ChatGPT, Claude, and Gemini.**
-
----
-
-## ✨ Features (v0.0.12)
-
-- 🔁 Auto-flattens your workspace into plain `.txt` chunks
-- 🧠 Built for LLM parsing, prompt engineering, and static code analysis
-- 📂 Each chunk includes a **directory tree** overview of included files
-- ✂️ Auto-chunks content using a configurable **token limit** (~4 characters per token)
-- 🔍 Powerful support for glob-based **ignore**, **whitelist**, and **blacklist**
-- 🧾 All configs live in a single `.flatten_ignore` file (generated automatically)
-- ⚙️ Customize file extensions, folders to ignore, and token size limits
-- 📁 Output saved in timestamped files under `/flattened`
-- 🚫 Auto-adds `/flattened` to your `.gitignore`
-
-> Each chunk starts with a tree-like outline of included files, followed by:
->  
-> `=== FILE: path/to/file.ext ===`
-
----
-
-## ⚙️ How to Use
-
-1. Open a folder in VS Code
-2. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
-3. Run: `Flatten Project to TXT`
-4. View flattened files inside the `/flattened` folder
-
----
-
-## 🛠️ Configuration
-
-You can configure behavior in your `.vscode/settings.json`:
-
-```json
-"flattenRepo.includeExtensions": [".ts", ".tsx", ".js", ".jsx", ".py", ".html", ".css"],
-"flattenRepo.ignoreDirs": ["node_modules", ".git", "dist"],
-"flattenRepo.maxChunkSize": 200000
-```
-
-Or configure per-project settings via `.flatten_ignore`.
-
----
-
-## 📄 .flatten_ignore
-
-This single file controls:
-- ✅ Glob-based `global` ignore rules
-- ➕ Optional `whitelist` or `blacklist`
-- 📐 Token limits via a `settings:` section
-
-Auto-generated in `/flattened` if missing.
-
-### 🔁 Sample `.flatten_ignore`
+A sample `.flatten_ignore` looks like this:
 
 ```txt
 # Ignore rules
@@ -98,79 +36,16 @@ blacklist:
 settings:
 maxTokenLimit: 50000
 maxTokensPerFile: 25000
-
-# Suggestions:
-#   Claude 3.7: 128k tokens
-#   ChatGPT 4o: 128k tokens
-#   ChatGPT o3-mini-high: 200k tokens
-#   Claude 2: 100k tokens
-#   Anthropic Claude 3 Opus: 200k tokens
-#   Cohere Command: 32k tokens
-#   Google PaLM 2: 8k tokens
-#   Meta LLaMA 2: 4k tokens
 ```
 
----
+You can also stick the same kind of config in `.vscode/settings.json` if you'd rather keep it with the rest of your VS Code stuff:
 
-## 📐 Output Format
-
-Each `.txt` output file looks like this:
-
-```
-=== Directory Tree ===
-├─ App.tsx
-├─ index.js
-└─ components
-   ├─ Header.tsx
-   └─ Footer.tsx
-
-=== FILE: App.tsx ===
-import React from 'react';
-...
+```json
+"flattenRepo.includeExtensions": [".ts", ".tsx", ".js", ".jsx", ".py", ".html", ".css"],
+"flattenRepo.ignoreDirs": ["node_modules", ".git", "dist"],
+"flattenRepo.maxChunkSize": 200000
 ```
 
----
+That's basically it. It's command-only — no UI for picking files interactively, which I'd like to add at some point — and it doesn't try to flatten binaries or images. Honestly, what I use it for most is dropping a flattened repo into a free model when I've already spent my paid credits for the month on something dumb.
 
-## ✅ Use Cases
-
-- Preparing source code for LLM input
-- Clean context formatting for ChatGPT, Claude, Gemini, etc.
-- Snapshotting your repo for AI audits or static reviews
-- Prompt engineering pipelines
-- Code flattening for full-project memory with agents
-
----
-
-## 🐞 Known Limitations
-
-- No graphical UI (yet) — command-only
-- Does not flatten binary or image files
-- Some advanced glob edge cases may need refinement
-
----
-
-## 🧪 Contributing
-
-Want to help improve this tool?
-
-- Star the repo ⭐
-- Submit a [feature request](https://github.com/EricSpencer00/flatten-repo/issues)
-- Open a pull request 💪
-
-Ideas to explore:
-- File token counts
-- Markdown formatting
-- Multi-model export formats
-- UI interface for selecting flatten options
-
----
-
-## 🔗 Resources
-
-- [VS Code Extension Docs](https://code.visualstudio.com/api)
-- [Glob Patterns (minimatch)](https://github.com/isaacs/minimatch)
-- [Token Estimator Tool](https://platform.openai.com/tokenizer)
-
----
-
-Made with ❤️ to help devs and LLMs speak the same language.
+[GitHub Repo](https://github.com/EricSpencer00/flatten-repo) — feel free to open issues or send a PR if you want to take a swing at the file-picker UI.
