@@ -2,7 +2,7 @@
 title: "tunes2tube"
 date: 2026-05-15
 description: "A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload."
-tags: ["Swift", "macOS"]
+tags: ["Swift", "macOS", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -30,3 +30,7 @@ This is a small project but it sits next to a habit I've been more deliberate ab
 ## What's not done
 
 It's MVP. The roadmap in the README is the honest list — per-track title editing (right now it uses the filename), a bitrate toggle for re-encoded inputs, an optional video output for the YouTube workflow (without the GCP piece), a universal binary release in GitHub Releases, and Sparkle auto-update if I ever care enough to set it up. PRs welcome — the codebase is small enough that you can read the whole thing in one sitting.
+
+---
+
+*Written with AI.*

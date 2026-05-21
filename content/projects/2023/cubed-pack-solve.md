@@ -2,7 +2,7 @@
 title: "Cubed Pack Solver"
 date: 2025-12-26
 description: "A solver for packing 54 T-tetracubes into a 6x6x6 cube using Knuth's Dancing Links algorithm."
-tags: ["Python", "Three.js", "Algorithms"]
+tags: ["Python", "Three.js", "Algorithms", "AI-written"]
 categories: ["Projects"]
 draft: false
 image: "/previews/default-project.png"
@@ -23,3 +23,7 @@ On my machine it churns out something like 40 solutions per second before dedup,
 The other half of the project is a Three.js viewer that loads the precomputed solutions and lets you orbit around the cube, explode the pieces apart, toggle wireframe, and walk through solutions one at a time. It's the part that's actually fun to look at. You can try it here: [ericspencer00.github.io/cubed-pack-solve](https://ericspencer00.github.io/cubed-pack-solve/).
 
 Source is on GitHub: [https://github.com/EricSpencer00/cubed-pack-solve](https://github.com/EricSpencer00/cubed-pack-solve). If you've got a free weekend and want to let it run to completion, please tell me how many solutions there actually are.
+
+---
+
+*Written with AI.*

@@ -2,7 +2,7 @@
 title: "Goldbach Conjecture"
 date: 2025-11-28
 description: "Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion."
-tags: ["Python", "Math"]
+tags: ["Python", "Math", "AI-written"]
 categories: ["Projects"]
 draft: false
 image: "/previews/goldbach-conj.png"
@@ -33,3 +33,7 @@ At 1,000,000 the verifier finishes in about 0.224 seconds and prints the first t
 No counterexamples. Which is the boring expected outcome, because the conjecture has been computationally verified well past 4×10^18 by people with actual compute budgets. This is the point I want to be honest about: this is not a proof. It's a verification, and verification is not proof in number theory. The conjecture is still open. All I've done is confirm, on my own machine, that the first billion even integers all behave. Goldbach himself wrote about this in 1742 in a letter to Euler and nobody has closed it since. I'm not closing it either.
 
 Why Python instead of something faster? Honestly, because I wanted to write it in one sitting and didn't want to fight a compiler. The sieve is the hot path and `bytearray` makes it cheap enough that the bottleneck for the 1B run is mostly disk I/O writing the output file. If I cared about pushing past 1B I'd skip writing the decompositions to disk and probably reach for Rust with parallelized segmented sieving. If anyone wants to fork this and grind it up to 10^10 or 10^11 — please do, the [repo is here](https://github.com/EricSpencer00/goldbach-conj) and the code is short enough to be its own spec.
+
+---
+
+*Written with AI.*

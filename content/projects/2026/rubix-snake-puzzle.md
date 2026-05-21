@@ -2,7 +2,7 @@
 title: "Rubik's Snake — Formally Verified"
 date: 2026-05-20
 description: "Coq (Rocq) and TLA+ specifications of the Rubik's Snake state space — 4^23 configurations, formally"
-tags: ["Formal Methods", "Coq", "TLA+"]
+tags: ["Formal Methods", "Coq", "TLA+", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -45,3 +45,7 @@ I also have not fully worked out the symmetry quotient (mirror + cyclic) that Ay
 It's a hobby-scale formal verification project. Small enough to actually finish, weird enough to be the first of its kind, and connected to the AI-for-formal-methods (ai4fm) work I've been doing on the side. If you wanted a project to learn Coq on that is not yet another "verify insertion sort," the geometry of a physical puzzle is a nice change of pace. The state space is huge but every individual piece of reasoning is concrete — you can hold the puzzle in your hand and check the math.
 
 If you want to play with it, the README has build instructions for Coq 8.18+ / Rocq and the TLA+ Toolbox. PRs welcome, especially on the symmetry reduction or if you have an idea for how to prove the count without exhaustive search.
+
+---
+
+*Written with AI.*

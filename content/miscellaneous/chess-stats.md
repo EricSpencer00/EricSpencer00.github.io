@@ -2,7 +2,7 @@
 title: "Chess.com Stats Display"
 date: 2025-08-01
 description: "A small Flask app that pulls Chess.com's public API and graphs your rating history."
-tags: ["Python", "Chess"]
+tags: ["Python", "Chess", "AI-written"]
 categories: ["Miscellaneous"]
 draft: false
 ---
@@ -16,3 +16,7 @@ The graph part was the only piece that took any real work. Chess.com doesn't giv
 I never deployed it. It just runs on `localhost:5000` when I want to look at someone's stats — usually after I've lost a game and want to feel better by checking that my opponent is, in fact, much higher rated than me. The four categories it tracks are daily, rapid, blitz, and bullet.
 
 Source: [github.com/EricSpencer00/ChessStats](https://github.com/EricSpencer00/ChessStats). It's tiny — if you want to fork it and actually host it somewhere, you'd want to add some caching so you're not hammering the archives endpoint on every request.
+
+---
+
+*Written with AI.*

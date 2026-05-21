@@ -35,7 +35,7 @@ Params:  # capital P needed for profileMode to work properly in some themes
     subtitle: |
       <em>Software Engineer & AI Builder</em><br>
       BS Computer Science, Loyola University Chicago (2026)<br>
-      espencer2@luc.edu · ericspencer1450@gmail.com
+      eric@ericspencer.us · ericspencer1450@gmail.com · espencer2@luc.edu
 
     imageUrl: "images/avatar.jpeg"
     imageTitle: "Profile Picture"
@@ -49,7 +49,7 @@ Params:  # capital P needed for profileMode to work properly in some themes
     - name: "linkedin"
       url: "https://www.linkedin.com/in/EricSpencer00"
     - name: "Email"
-      url: "mailto:ericspencer1450@gmail.com"
+      url: "mailto:eric@ericspencer.us"
     - name: "CV"
       url: "resume/"
 

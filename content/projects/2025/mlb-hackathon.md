@@ -2,7 +2,7 @@
 title: "MLB Hall of Fame Predictor"
 date: 2025-01-17
 description: "A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon."
-tags: ["AI", "Python", "Hackathon"]
+tags: ["AI", "Python", "Hackathon", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -41,3 +41,7 @@ The cloud half of the project is in `interact.py` and a Vertex AI endpoint — `
 Things I'd do with another weekend on this: real per-season time-series instead of career totals (the dataset is called `_Timeseries` for a reason but I collapsed it), position-aware features, era adjustments so a 1920s slugger doesn't get penalized for not having modern counting stats, and an actual frontend where you pick a current player and get a probability back. Also, evaluating against players who recently became eligible but aren't inducted yet would be a more honest test than a random split.
 
 [GitHub Repo](https://github.com/EricSpencer00/MLB-Hackathon)
+
+---
+
+*Written with AI.*

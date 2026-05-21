@@ -2,7 +2,7 @@
 title: "iOS Soundboard"
 date: 2025-08-14
 description: "A SwiftUI soundboard app I built in an afternoon to get more comfortable with iOS."
-tags: ["Swift", "iOS"]
+tags: ["Swift", "iOS", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -30,3 +30,7 @@ I had been doing more iOS work for [fair-share](https://github.com/EricSpencer00
 There are two commits on the repo: "Initial Commit" and "oneshot". That's the whole history. I never shipped it to the App Store, the premium tier is fake, and the lock icon doesn't unlock anything. The mp3s are in `Soundboard/Sounds/`, the views are in `Soundboard/Views/`, and if you want to fork it and turn it into something real — go ahead. It's a perfectly fine starting point for a soundboard you actually care about.
 
 [GitHub Repo](https://github.com/EricSpencer00/iOS-soundboard)
+
+---
+
+*Written with AI.*

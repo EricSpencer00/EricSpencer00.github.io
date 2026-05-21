@@ -2,7 +2,7 @@
 title: "TLA+ Formal Generation"
 date: 2025-09-21
 description: "Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+."
-tags: ["TLA+", "AI", "LLM", "Formal Methods", "Research"]
+tags: ["TLA+", "AI", "LLM", "Formal Methods", "Research", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -31,3 +31,7 @@ It was tractable. Which is why a few months later I rebuilt the whole thing prop
 Looking at this older repo, the things it got right and the things it got wrong are both useful. Right: separating "render TLA from a template" from "call the LLM" from "run TLC and parse output," so you can swap any one of those without touching the other two. Right: shelling out to a real `tla2tools.jar` instead of trying to fake TLC's behavior — TLC's verdicts are the whole point, you don't want to mock the oracle. Wrong: a 3-row benchmark with hand-written ground-truth invariants encourages you to test on the same problems you'd solve by lookup, and the deterministic stub will happily exploit that. Wrong: matching invariant strings instead of checking semantic equivalence under TLC — `counter >= 0` and `counter \in Nat` are the same property but `==` says no. The ChatTLA+ work fixed both of those by validating against TLC directly and scoring by behavioral metrics rather than string match.
 
 If you want to see the pipeline, it's at [EricSpencer00/tla-formal-generation](https://github.com/EricSpencer00/tla-formal-generation). It's a useful starting point if you're building something similar — the structure of `generate -> template -> TLC -> parse` is the right one — but the benchmark and the eval need to be much heavier before you can say anything real with it.
+
+---
+
+*Written with AI.*

@@ -2,7 +2,7 @@
 title: "AIs Talking Philosophy"
 date: 2025-07-31
 description: "A toy where two local Ollama models loop on consciousness until one of them gives up"
-tags: ["AI", "LLM", "Python"]
+tags: ["AI", "LLM", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -18,3 +18,7 @@ The output is pretty much what you'd expect from a 2-billion-parameter model tal
 There's also a half-built pipeline in `chat.py` that was supposed to commit each day's transcript back to this repo at 3 AM UTC using PyGithub — so eventually the repo itself would be a slow-growing archive of two gemmas talking to themselves about qualia. I never actually deployed it anywhere with a `GITHUB_TOKEN` set, so the cron half is more aspiration than feature. If you want to run it on a Raspberry Pi for a week and PR the resulting transcripts, I would not stop you.
 
 [GitHub Repo](https://github.com/EricSpencer00/ai-conversation)
+
+---
+
+*Written with AI.*

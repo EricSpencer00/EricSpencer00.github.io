@@ -2,7 +2,7 @@
 title: "Terminal GPT"
 date: 2025-01-10
 description: "A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model."
-tags: ["Python", "LLM", "AI"]
+tags: ["Python", "LLM", "AI", "AI-written"]
 categories: ["Projects"]
 image: "/previews/terminal-gpt.png"
 draft: false
@@ -25,3 +25,7 @@ This one runs against OpenRouter's free `deepseek/deepseek-chat:free` model inst
 In hindsight `exe.py` is the kind of thing GitHub Copilot's terminal mode and Claude Code now do natively and better — they have actual context about your shell history and your project. But back when I wrote this, neither of those existed in a form I could use, and the bar was "translate English to a shell command without nuking my home directory," which a free Deepseek model gets right plenty often.
 
 [Source is on GitHub.](https://github.com/EricSpencer00/TerminalGPT/) It's two files, an `install.sh`, and a `requirements.txt`. If you want to use it the same way I do, set `OPENAI_API_KEY_ENV` in a `.env` next to `gpt.py`, set `OPENROUTER_API_KEY` for `exe.py`, and alias whichever one you actually want to call.
+
+---
+
+*Written with AI.*

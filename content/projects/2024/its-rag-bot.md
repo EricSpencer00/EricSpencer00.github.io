@@ -2,7 +2,7 @@
 title: "Loyola ITS RAG Bot"
 date: 2026-01-24
 description: "A voice-first RAG chatbot trained on Loyola's ITS knowledge base, built after two years of answering the same tickets."
-tags: ["AI", "LLM", "RAG", "Python"]
+tags: ["AI", "LLM", "RAG", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
 image: "/previews/its-rag-bot.png"
@@ -31,3 +31,7 @@ It did not get adopted by ITS. I didn't actually pitch it — by the time I had 
 What's next, if I come back to it: scoping the retrieval to a single school (e.g. only return Sakai articles when the question is clearly about Sakai), better handling of the "I need a human" escape hatch, and possibly a hosted demo so people can try it without `pip install`-ing 15 GB of torch wheels.
 
 [GitHub Repo](https://github.com/EricSpencer00/ITS-RAG-bot)
+
+---
+
+*Written with AI.*

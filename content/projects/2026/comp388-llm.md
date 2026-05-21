@@ -2,7 +2,7 @@
 title: "COMP 388 LLM Homework"
 date: 2026-04-23
 description: "Two homeworks from Loyola's special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen."
-tags: ["AI", "LLM", "Python"]
+tags: ["AI", "LLM", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -41,3 +41,7 @@ The base model beating the chat model zero-shot was not the expected outcome. An
 It's coursework, not a product. But the HW2 result — small instruction-tuned model getting beaten by its base on a classification task — has stuck with me and is the kind of thing I think about when picking models for the ai4fm fine-tuning work. The whole repo is honest about the constraints: pinned to Python 3.11, macOS M1, CPU-only, hardcoded paths because the assignment template wanted it that way.
 
 [GitHub Repo](https://github.com/EricSpencer00/comp388-llm)
+
+---
+
+*Written with AI.*

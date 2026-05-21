@@ -2,7 +2,7 @@
 title: "Claude Architect Quiz"
 date: 2026-05-14
 description: "Free flashcards and practice quiz for the Anthropic Claude Certified Architect exam."
-tags: ["Web", "JavaScript", "AI"]
+tags: ["Web", "JavaScript", "AI", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -35,3 +35,7 @@ The one design choice I cared about was making it keyboard-first. If I'm grindin
 Content was compiled from publicly available sources — the two community repos linked in the README, the Anthropic Academy program overview, the actual platform docs for prompt caching / tool use / batches / MCP, and a few longer write-ups on Dev.to and Medium. Not affiliated with Anthropic in any way, and I make a point of saying so on the site. Always cross-check against the official exam guide before you take the thing.
 
 If you spot a wrong answer or a domain that's underweighted, the source is right there — open a PR on [the repo](https://github.com/EricSpencer00/Claude-architect-quiz) or just file an issue. I'll keep updating the cards as Anthropic updates the exam.
+
+---
+
+*Written with AI.*

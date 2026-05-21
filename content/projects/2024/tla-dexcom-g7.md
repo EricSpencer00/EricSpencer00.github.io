@@ -2,7 +2,7 @@
 title: "TLA+ Model of Dexcom G7"
 date: 2025-11-12
 description: "A formal TLA+ specification of the Dexcom G7 continuous glucose monitor's behavior and safety properties."
-tags: ["formal methods", "TLA+"]
+tags: ["formal methods", "TLA+", "AI-written"]
 categories: ["Projects"]
 draft: false
 image: "/previews/default-project.png"
@@ -53,3 +53,7 @@ Running TLC against the debug config actually catches this — the model surface
 A lot. The spec doesn't model calibration (the G7 mostly doesn't need it, but the API surface still exists). It doesn't model the "signal loss" state when the transmitter and receiver are out of range for too long. It doesn't model the difference between the sensor producing a sample and the *transmitter* actually packaging it for BLE. Alerts are a single high/low flag instead of the actual hysteresis the device uses — Dexcom won't refire the low alert if you're already in low territory and haven't climbed back out. And there's no model of the predictive "you'll be low in 20 minutes" alerts, which are the most clinically useful thing the device does.
 
 If you've worked with TLA+ and want to take a swing at any of those, the spec is small enough to fork and extend in an afternoon. PRs welcome — it's the kind of project that's more useful the more eyes are on it, especially eyes that also wear one of these things.
+
+---
+
+*Written with AI.*

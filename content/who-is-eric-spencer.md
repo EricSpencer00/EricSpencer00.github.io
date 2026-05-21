@@ -24,7 +24,7 @@ layout: "single"
     "https://fromamerica-llc.com/"
   ],
   "description": "AI Builder and Developer creating AI projects and open source tools",
-  "email": "ericspencer1450@gmail.com",
+  "email": "eric@ericspencer.us",
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "Loyola University Chicago"
@@ -62,7 +62,7 @@ Building AI-powered applications and developer tools. Always exploring the inter
 - **GitHub**: [github.com/EricSpencer00](https://github.com/EricSpencer00) (~50+ projects)
 - **LinkedIn**: [linkedin.com/in/EricSpencer00](https://www.linkedin.com/in/EricSpencer00)
 - **Twitter/X**: @EricSpencer00
-- **Email**: ericspencer1450@gmail.com
+- **Email**: eric@ericspencer.us · ericspencer1450@gmail.com · espencer2@luc.edu
 
 ### See Also
 

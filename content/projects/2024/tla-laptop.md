@@ -2,7 +2,7 @@
 title: "TLA+ Model of a Laptop"
 date: 2025-11-27
 description: "A formal TLA+ specification modeling a laptop's power states, battery, lid, thermals, and auto-suspend."
-tags: ["formal methods", "TLA+"]
+tags: ["formal methods", "TLA+", "AI-written"]
 categories: ["Projects"]
 draft: false
 image: "/previews/default-project.png"
@@ -46,3 +46,7 @@ i.e. eventually the laptop ends up in the "actually being used" state. Useful as
 This is a personal study spec, not class work and not part of any research. After doing the walk-in oven I wanted to try something with more variables and a non-trivial ambient process (the battery and thermal dynamics) instead of just safety interlocks. I left two configs in the repo: `laptop.cfg` is the full one and `laptop_small.cfg` cuts every constant down (`BatteryMax = 4`, `MaxBrightness = 3`, `FanMax = 2`) so TLC actually finishes in a reasonable time on a laptop modeling a laptop. The state space blows up fast once you start parameterizing brightness and fan speed as integers.
 
 If you run it and get a counterexample I haven't seen, open an issue — half of why I keep doing these is to find the dumb action I forgot to constrain.
+
+---
+
+*Written with AI.*

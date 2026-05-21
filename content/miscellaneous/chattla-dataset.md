@@ -2,7 +2,7 @@
 title: "ChatTLA+ Dataset"
 date: 2026-05-13
 description: "The dataset release for the ChatTLA+ paper — SFT corpus and benchmark for TLA+ spec generation, posted anonymized for blind review."
-tags: ["AI", "LLM", "TLA+", "Research"]
+tags: ["AI", "LLM", "TLA+", "Research", "AI-written"]
 categories: ["Miscellaneous"]
 draft: false
 ---
@@ -18,3 +18,7 @@ There's also a small `eval.jsonl` (four prompts) used as a generation eval durin
 If you want context on what ChatTLA+ actually does, I have a [short presentation up](/miscellaneous/chattlaplus/) from the earlier version of this work. The dataset is the artifact that makes the paper reproducible — without it, the RL/SFT pipeline numbers are just claims. The companion repo with the TLC validator harness, reward-shaping config, and the GRPO/SFT scripts will go public alongside the camera-ready.
 
 Anonymized repo: [chattla-dataset-anon](https://github.com/EricSpencer00/chattla-dataset-anon).
+
+---
+
+*Written with AI.*

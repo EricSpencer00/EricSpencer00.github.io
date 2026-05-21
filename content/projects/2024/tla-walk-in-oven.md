@@ -2,7 +2,7 @@
 title: "TLA+ Model of a Walk-In Oven"
 date: 2025-12-12
 description: "A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks."
-tags: ["formal methods", "TLA+"]
+tags: ["formal methods", "TLA+", "AI-written"]
 categories: ["Projects"]
 draft: false
 image: "/previews/default-project.png"
@@ -44,3 +44,7 @@ The real-world bad story this is modeling is the obvious one: tech walks in to c
 This is a study spec, not a verified industrial controller. The temperature is a single integer ticking up and down by one, there's no notion of multiple people, no ventilation, no emergency stop, no temperature sensor failure, no door-stuck-open behavior. The config (`TargetTemp = 20`, `MaxTemp = 100`, `MinTemp = 0`) is dimensionless — the point is to give TLC a finite state space to actually explore, not to model real Celsius. The whole module is under 90 lines and the README is one sentence long. I wrote it as part of the same arc of work that led into my [ai4fm research](https://ai4fm.cs.luc.edu) on getting LLMs to generate TLA+, and it doubles as one of the example systems I keep in my back pocket when explaining to someone what TLA+ actually buys you on a system they can picture.
 
 The repo is at [EricSpencer00/tla-walk-in-oven](https://github.com/EricSpencer00/tla-walk-in-oven) — the spec is [Oven.tla](https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.tla) and the config that feeds it to TLC is [Oven.cfg](https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.cfg). If you have the TLA+ Toolbox or `tla2tools.jar` installed, it runs in seconds.
+
+---
+
+*Written with AI.*

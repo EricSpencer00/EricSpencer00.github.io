@@ -2,7 +2,7 @@
 title: "flatten-repo VSC Extension"
 date: 2025-03-28
 description: "A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM."
-tags: ["LLM", "AI"]
+tags: ["LLM", "AI", "AI-written"]
 categories: ["Projects"]
 image: "/previews/flatten-repo.png"
 draft: false
@@ -49,3 +49,7 @@ You can also stick the same kind of config in `.vscode/settings.json` if you'd r
 That's basically it. It's command-only — no UI for picking files interactively, which I'd like to add at some point — and it doesn't try to flatten binaries or images. Honestly, what I use it for most is dropping a flattened repo into a free model when I've already spent my paid credits for the month on something dumb.
 
 [GitHub Repo](https://github.com/EricSpencer00/flatten-repo) — feel free to open issues or send a PR if you want to take a swing at the file-picker UI.
+
+---
+
+*Written with AI.*

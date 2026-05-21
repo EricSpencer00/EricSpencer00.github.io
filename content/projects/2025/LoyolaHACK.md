@@ -2,7 +2,7 @@
 title: "CTA Transit Tracker"
 date: 2025-02-16
 description: "A real-time bus and train tracking system built during Loyola's Hackathon."
-tags: ["Hackathon", "Flask"]
+tags: ["Hackathon", "Flask", "AI-written"]
 categories: ["Projects"]
 image: "/previews/ctatracker.png"
 draft: false
@@ -25,3 +25,7 @@ The texting part is the dumb-but-fun trick of the project. Instead of paying for
 To actually run all of this in one place I had a Procfile with the Flask app under Gunicorn, the Celery worker, and the Celery beat scheduler — Heroku-style, though I was running it locally on a laptop in a Loyola classroom and praying nothing crashed during the judging round. Nothing crashed during the judging round.
 
 It's still buggy. I'd love for it to not be. If you want to poke at the code or fix any of it, the [GitHub repo](https://github.com/EricSpencer00/LoyolaHACK) is up, and there's a [demo video](https://youtu.be/u8ivcj2fhrk) if you'd rather just watch the thing limp through a working flow.
+
+---
+
+*Written with AI.*

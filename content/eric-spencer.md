@@ -77,7 +77,7 @@ layout: "single"
 - **GitHub** - [github.com/EricSpencer00](https://github.com/EricSpencer00) (50+ projects)
 - **LinkedIn** - [linkedin.com/in/EricSpencer00](https://www.linkedin.com/in/EricSpencer00)
 - **Twitter/X** - @EricSpencer00
-- **Email** - ericspencer1450@gmail.com
+- **Email** - eric@ericspencer.us · ericspencer1450@gmail.com · espencer2@luc.edu
 
 ---
 

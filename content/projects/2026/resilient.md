@@ -2,7 +2,7 @@
 title: "Resilient"
 date: 2026-05-20
 description: "A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks"
-tags: ["Rust", "Formal Methods", "Embedded"]
+tags: ["Rust", "Formal Methods", "Embedded", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -72,3 +72,7 @@ rz --version
 Or from source, if you have Rust: `cargo install --path resilient` from the cloned repo (add `--features z3` if you've got `libz3` and want SMT proofs). Then either point it at `resilient/examples/sensor_monitor.rz` for the smallest interesting thing, or clone [Resilient-examples](https://github.com/EricSpencer00/Resilient-examples) and run `./run_all.sh` for the full mission-critical sweep.
 
 Contributions are welcome — there are open tickets across the goalpost ladder in [ROADMAP.md](https://github.com/EricSpencer00/Resilient/blob/main/ROADMAP.md) and most of them are "pick a small thing and own it." If you've worked on a real safety-critical system and the language gets something wrong about your domain, please file an issue. That feedback is the one thing I can't get from reading specs.
+
+---
+
+*Written with AI.*

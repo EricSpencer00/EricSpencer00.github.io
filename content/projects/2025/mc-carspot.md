@@ -2,7 +2,7 @@
 title: "mc-carspot: Online Parking Simulation in Rust"
 date: 2025-08-22
 description: "A tiny Rust simulator for the online parking-spot problem with switching costs."
-tags: ["Rust"]
+tags: ["Rust", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -16,3 +16,7 @@ The whole thing is about 70 lines in `src/main.rs`. There's an `Env` struct that
 Only dependency is `rand`. The whole `Cargo.toml` is six lines. It prints a little table to stdout showing the spot, the action, the per-step cost, and the running total. That's it — no plotting, no CSV export, no fancy policies. Configuration is "edit `src/main.rs` and recompile," which is honest about what this is.
 
 If I came back to it I'd probably add a couple more policies (dynamic programming for the offline optimum, maybe a small RL agent for comparison) and dump runs to CSV so I could plot regret curves in Python. Right now it's really just a sandbox — one commit, one file, no tests — but it does what it says on the tin. If you want to drop in your own policy and see how it stacks up, the `should_move` function is the obvious place to start.
+
+---
+
+*Written with AI.*

@@ -25,7 +25,7 @@ layout: "index"
   "image": "https://ericspencer.us/images/avatar.jpeg",
   "jobTitle": "AI Builder & Developer",
   "description": "AI Builder, Developer, and Loyola University Chicago alum (BS Computer Science, 2026) building AI projects and open source tools.",
-  "email": "ericspencer1450@gmail.com",
+  "email": "eric@ericspencer.us",
   "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Python", "Web Development", "Software Engineering", "LLMs", "Open Source", "Full Stack Development"],
   "workLocation": {
     "@type": "Place",

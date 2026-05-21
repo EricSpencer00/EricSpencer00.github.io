@@ -96,7 +96,7 @@ Looking to:
 - Tech consulting
 - Project development
 
-**Get in touch**: ericspencer1450@gmail.com
+**Get in touch**: eric@ericspencer.us · ericspencer1450@gmail.com · espencer2@luc.edu
 
 ### Learn More
 

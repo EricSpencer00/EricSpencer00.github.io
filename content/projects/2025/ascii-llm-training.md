@@ -2,7 +2,7 @@
 title: "Training an LLM on ASCII"
 date: 2025-09-03
 description: "A toy transformer that reads pyfiglet ASCII art and tries to spit the original word back out. Calling it an LLM is generous."
-tags: ["AI", "LLM", "Python"]
+tags: ["AI", "LLM", "Python", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -27,3 +27,7 @@ Where it falls apart is multi-font. Once you mix `doh` and `isometric1` and `ban
 This was a one-weekend curiosity project. It does not produce a usable model and it does not generate ASCII art (the inverse direction is much harder and much more interesting — maybe next time, when I have extra Claude credits to burn). But it was a fun excuse to write a small transformer from scratch with PyTorch and remember how `TransformerEncoderLayer` works.
 
 [GitHub Repo](https://github.com/EricSpencer00/ascii-llm-training) — fork it if you want to try the seq2seq version.
+
+---
+
+*Written with AI.*

@@ -2,7 +2,7 @@
 title: "Gesture"
 date: 2025-08-01
 description: "A proof of concept Jarvis-style macOS controller that takes voice commands and hand gestures from the webcam."
-tags: ["Python", "macOS"]
+tags: ["Python", "macOS", "AI-written"]
 categories: ["Projects"]
 draft: false
 ---
@@ -26,3 +26,7 @@ There's also a `stubs.py` that exists for the sole purpose of forcing `modulegra
 The honest list of what doesn't work: there's no real command grammar (just two hardcoded `if` branches), no gesture vocabulary beyond "finger up = space," no error recovery if the webcam isn't accessible, and if you actually want it to feel like Jarvis you'd want some kind of wake word so it isn't transcribing every word you say all day. I'd want to swap Google's recognizer for something local like Vosk too — sending every utterance to Google's API is not the move.
 
 It was a fun afternoon of seeing how few moving parts you actually need to do the basic version of this. If you want to fork it and add a real gesture set, [GitHub Repo](https://github.com/EricSpencer00/Gesture).
+
+---
+
+*Written with AI.*
