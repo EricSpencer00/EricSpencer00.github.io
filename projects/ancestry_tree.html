@@ -1,0 +1,354 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ancestry Tree Java Example | Eric Spencer</title>
+<meta name="description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="Ancestry Tree Java Example, Eric Spencer, project">
+<link rel="canonical" href="https://ericspencer.us/projects/ancestry_tree.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ancestry Tree Java Example | Eric Spencer">
+<meta property="og:description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta property="og:url" content="https://ericspencer.us/projects/ancestry_tree.html">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ancestry Tree Java Example | Eric Spencer">
+<meta name="twitter:description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta name="twitter:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
+<meta property="linkedin:title" content="Ancestry Tree Java Example | Eric Spencer">
+<meta property="linkedin:description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta property="linkedin:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Ancestry Tree Java Example",
+"description":"Ancestry Tree Java Example \u2014 project by Eric Spencer.",
+"url":"https://ericspencer.us/projects/ancestry_tree.html",
+"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2023-06-19",
+"mainEntityOfPage":"https://ericspencer.us/projects/ancestry_tree.html"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;·&nbsp; <a href="/research.html">research</a> &nbsp;·&nbsp; <a href="/projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h2>Ancestry Tree Java Example<span class="ln"></span></h2>
+<p class="meta">Ancestry Tree Java Example — project by Eric Spencer.</p>
+<hr class="dash">
+<h2>ChatGPT & Anonymous Conversation<span class="ln"></span></h2>
+<hr class="dash">
+<h3>You said:</h3>
+<p>Given a map, or tree, of persons; how can we tell if two people are related? IE, do their ancestors trace back? And if so, how far back? Install an implementation in java.</p>
+<hr class="dash">
+<h3>ChatGPT said:</h3>
+<p>To determine if two people are related and to find the depth of their ancestral connection in a given map or tree structure, you can use the concept of graph traversal. Here's a high-level approach to solving this problem using Java:</p>
+<ul>
+<li>Define a <code>Person</code> class that represents each person in the tree. The <code>Person</code> class should contain fields for the person's name, parent(s), and any other relevant information.</li>
+</ul>
+<ul>
+<li>Build the tree structure using the <code>Person</code> class, ensuring that each person has a reference to their parent(s) or any other necessary relationships.</li>
+</ul>
+<ul>
+<li>Implement a method, let's call it <code>areRelated</code>, that takes two <code>Person</code> objects as input. This method will use graph traversal algorithms to check if there is a path connecting the two individuals.</li>
+</ul>
+<ul>
+<li>Within the <code>areRelated</code> method, use a breadth-first search (BFS) or depth-first search (DFS) algorithm to traverse the tree structure and look for a path connecting the two individuals.</li>
+</ul>
+<ul>
+<li>In BFS, you can use a queue to keep track of the nodes to visit, and mark visited nodes to avoid cycles.</li>
+</ul>
+<ul>
+<li>In DFS, you can use recursion or a stack to keep track of the nodes to visit, and also mark visited nodes.</li>
+</ul>
+<ul>
+<li>While traversing the tree, check if you encounter either of the two individuals. If both individuals are found, it means they are related, and you can stop the traversal.</li>
+</ul>
+<ul>
+<li>Additionally, you can keep track of the depth or level at which the two individuals are found. This will provide you with the distance between them in terms of generations.</li>
+</ul>
+<p>Here's a basic implementation example to get you started:</p>
+<pre class="code"><code>
+import java.util.*;
+
+class Person {
+    String name;
+    List&lt;Person&gt; parents;
+
+    public Person(String name) {
+        this.name = name;
+        this.parents = new ArrayList&lt;&gt;();
+    }
+}
+
+public class AncestryChecker {
+    public boolean areRelated(Person person1, Person person2) {
+        if (person1 == person2) {
+            return true; // Same person, so they are related
+        }
+
+        // BFS traversal
+        Queue&lt;Person&gt; queue = new LinkedList&lt;&gt;();
+        Set&lt;Person&gt; visited = new HashSet&lt;&gt;();
+        queue.offer(person1);
+        visited.add(person1);
+
+        while (!queue.isEmpty()) {
+            Person current = queue.poll();
+
+            for (Person parent : current.parents) {
+                if (!visited.contains(parent)) {
+                    if (parent == person2) {
+                        return true; // Found a path connecting the two individuals
+                    }
+                    queue.offer(parent);
+                    visited.add(parent);
+                }
+            }
+        }
+
+        return false; // No path connecting the two individuals
+    }
+
+    public static void main(String[] args) {
+        // Build the tree structure with Person objects
+
+        // Example usage
+        Person john = new Person(&quot;John&quot;);
+        Person jane = new Person(&quot;Jane&quot;);
+        Person alice = new Person(&quot;Alice&quot;);
+        Person bob = new Person(&quot;Bob&quot;);
+        Person charlie = new Person(&quot;Charlie&quot;);
+
+        john.parents.add(alice);
+        john.parents.add(bob);
+        jane.parents.add(alice);
+        jane.parents.add(bob);
+        charlie.parents.add(john);
+        charlie.parents.add(jane);
+
+        AncestryChecker checker = new AncestryChecker();
+        boolean related = checker.areRelated(alice, charlie);
+        System.out.println(&quot;Are Alice and Charlie related? &quot; + related);
+    }
+}
+</code></pre>
+<p>This is a basic implementation to give you an idea of how you can approach the problem. Depending on your specific requirements and the complexity of your tree structure, you may need to modify or optimize the code accordingly.</p>
+<hr class="dash">
+<h3>You said:</h3>
+<p>Explain further how the algorithm traverses the map, and also how it can track how closely related two people are.</p>
+<hr class="dash">
+<h3>ChatGPT said:</h3>
+<p>Certainly! Let's delve into more details on how the algorithm traverses the map and tracks the degree of relatedness between two people.</p>
+<p>The algorithm I described earlier performs a breadth-first search (BFS) traversal to explore the tree structure and find a path connecting the two individuals. Here's a step-by-step explanation:</p>
+<ol>
+<li>Start by initializing a queue to store the nodes (people) to visit. Additionally, use a set to keep track of visited nodes, so we don't process them multiple times or fall into cycles.</li>
+</ol>
+<ol>
+<li>Enqueue the starting person (<code>person1</code>) into the queue and mark it as visited.</li>
+</ol>
+<ol>
+<li>Begin the traversal loop. While the queue is not empty, repeat the following steps:</li>
+</ol>
+<p>a. Dequeue a person (let's call it <code>current</code>) from the front of the queue.</p>
+<p>b. Iterate over the parents of <code>current</code> (stored in the <code>parents</code> list of the <code>Person</code> class).</p>
+<p>c. For each parent, check if they have been visited. If they haven't, mark them as visited and enqueue them into the queue.</p>
+<p>d. Additionally, you can keep track of the depth or level of each person as you enqueue them. This will help determine the number of generations or how closely related they are.</p>
+<p>e. While enqueueing the parents, if you encounter the second person (<code>person2</code>) in the process, it means that a path exists between the two individuals. You can then terminate the traversal and return <code>true</code> to indicate that they are related.</p>
+<ol>
+<li>If the traversal completes without finding a path connecting the two individuals, return <code>false</code> to indicate that they are not related.</li>
+</ol>
+<p>By using BFS, the algorithm explores the tree structure level by level, ensuring that it examines all possible paths before moving to the next level. This approach helps in finding the shortest path between the two individuals, which corresponds to the closest degree of relatedness.</p>
+<p>To track the degree of relatedness between <code>person1</code> and <code>person2</code>, you can modify the algorithm to store the depth or level of each person during the traversal. When <code>person2</code> is encountered, you have the levels of both individuals, and the difference between those levels represents the number of generations separating them. This provides a measure of how closely related they are in terms of ancestry.</p>
+<p>You can extend the <code>Person</code> class to include a field for the level or depth and update it as you enqueue each person's parents. Once you find <code>person2</code> during the traversal, you can calculate the generation gap by subtracting the levels of <code>person1</code> and <code>person2</code>.</p>
+<p>In the code example below, I've added the level tracking to the <code>Person</code> class and modified the <code>areRelated</code> method to return the generation gap as well:</p>
+<pre class="code"><code>
+class Person {
+    String name;
+    List&lt;Person&gt; parents;
+    int level;
+
+    public Person(String name) {
+        this.name = name;
+        this.parents = new ArrayList&lt;&gt;();
+        this.level = 0;
+    }
+}
+
+public class AncestryChecker {
+    public int areRelated(Person person1, Person person2) {
+        if (person1 == person2) {
+            return 0; // Same person, so generation gap is 0
+        }
+
+        Queue&lt;Person&gt; queue = new LinkedList&lt;&gt;();
+        Set&lt;Person&gt; visited = new HashSet&lt;&gt;();
+        queue.offer(person1);
+        visited.add(person1);
+
+        while (!queue.isEmpty()) {
+            Person current = queue.poll();
+
+            for (Person parent : current.parents) {
+                if (!visited.contains(parent)) {
+                    parent.level = current.level + 1;
+
+                    if (parent == person2) {
+                        return parent.level - person1.level; // Generation gap
+                    }
+                    queue.offer(parent);
+                    visited.add(parent);
+                }
+            }
+        }
+
+        return -1; // No path connecting the two individuals
+    }
+
+    // ... Rest of the code remains the same ...
+}
+</code></pre>
+<p>With this modification, the <code>areRelated</code> method now returns the generation gap (number of generations) between <code>person1</code> and <code>person2</code>. A return value of <code>-1</code> indicates that there is no path connecting them.</p>
+<hr class="dash">
+<h3>You said:</h3>
+<p>What are some data structures that are necessary to solve this problem?</p>
+<hr class="dash">
+<h3>ChatGPT said:</h3>
+<p>To solve the problem of determining if two people are related and finding the degree of relatedness, several data structures are useful. Here are the main ones:</p>
+<ul>
+<li><b>Person Class/Node:</b> A class or node structure to represent each person in the tree or map. It typically contains fields for the person's name, parent(s), and any other relevant information.</li>
+</ul>
+<ul>
+<li><b>Tree or Graph Structure:</b> A tree or graph data structure to represent the relationships between individuals. Each person node can have references to their parent nodes or any other necessary relationships. This structure allows you to navigate the ancestry easily.</li>
+</ul>
+<ul>
+<li><b>Queue:</b> A queue data structure is used in breadth-first search (BFS) traversal to keep track of the nodes to visit. It follows the First-In-First-Out (FIFO) principle, making it suitable for exploring nodes at each level.</li>
+</ul>
+<ul>
+<li><b>Set/HashSet:</b> A set or hash set data structure is useful for marking visited nodes during traversal to avoid revisiting them and to check for membership efficiently.</li>
+</ul>
+<p>Using these data structures, you can build the tree or graph representation of the ancestry and perform graph traversal algorithms like BFS or DFS to determine relatedness and track the degree of relationship.</p>
+<p>Additionally, you may require other supporting data structures or variables depending on the specific implementation details, such as:</p>
+<ul>
+<li><b>Stack:</b> A stack data structure can be used in depth-first search (DFS) traversal if you choose to implement the algorithm iteratively instead of recursively.</li>
+</ul>
+<ul>
+<li><b>Variables:</b> You may use variables to store intermediate results, such as the level or depth of each person during traversal, or to calculate the generation gap between two individuals.</li>
+</ul>
+<p>These data structures provide the foundation for organizing and manipulating the data needed to solve the problem efficiently. The choice of data structures may vary depending on the specific requirements and constraints of your implementation.</p>
+<hr class="dash">
+<h3>You said:</h3>
+<p>How do you ensure you have found the shortest path?</p>
+<hr class="dash">
+<h3>ChatGPT said:</h3>
+<p>To ensure that you have found the shortest path between two individuals in a tree or graph structure, you can employ a graph traversal algorithm that guarantees the shortest path property. Breadth-first search (BFS) is one such algorithm that satisfies this property.</p>
+<p>Here's how BFS ensures the shortest path:</p>
+<ul>
+<li>BFS explores the nodes of a graph in a breadth-first manner, meaning it visits all the neighbors (adjacent nodes) of a given node before moving to the next level of nodes.</li>
+</ul>
+<ul>
+<li>When using BFS, you typically maintain a queue to keep track of the nodes to visit. Nodes are enqueued in the order they are discovered.</li>
+</ul>
+<ul>
+<li>As BFS visits the nodes, it systematically explores all nodes at each level before moving to the next level. This ensures that you process nodes in a level-by-level manner, starting from the source node.</li>
+</ul>
+<ul>
+<li>Since BFS visits nodes level by level, the first time you encounter the target node (the destination person in this case), it is guaranteed to be the shortest path to reach that node. This is because all shorter paths would have been explored and processed at previous levels.</li>
+</ul>
+<p>By following the BFS approach, you explore the graph in breadth-first order, which guarantees that the first occurrence of the target node is the shortest path from the source node.</p>
+<p>Therefore, by implementing BFS to traverse the tree or graph structure representing the relationships between individuals, you can be confident that the path found between two individuals is the shortest path. This approach ensures that you identify the closest degree of relatedness or the minimum number of generations separating the two individuals.</p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
+</footer>
+</div></body></html>

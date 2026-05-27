@@ -2,23 +2,23 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>404 — Page Not Found | Eric Spencer</title>
+<title>404 — Not Found | Eric Spencer</title>
 <meta name="description" content="Page not found.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ericspencer.us/404.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="404 — Page Not Found | Eric Spencer">
+<meta property="og:title" content="404 — Not Found | Eric Spencer">
 <meta property="og:description" content="Page not found.">
 <meta property="og:url" content="https://ericspencer.us/404.html">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404 — Page Not Found | Eric Spencer">
+<meta name="twitter:title" content="404 — Not Found | Eric Spencer">
 <meta name="twitter:description" content="Page not found.">
 <meta name="twitter:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
-<meta property="linkedin:title" content="404 — Page Not Found | Eric Spencer">
+<meta property="linkedin:title" content="404 — Not Found | Eric Spencer">
 <meta property="linkedin:description" content="Page not found.">
 <meta property="linkedin:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
 <script type="application/ld+json">
@@ -63,7 +63,8 @@ hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
 .dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
 h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
   text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
-  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
 h2::before{content:"§";color:var(--gold);font-weight:400}
 h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
 h3{font-size:18px;margin:20px 0 4px}
@@ -120,11 +121,24 @@ li{margin:4px 0}
 <div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
 <nav class="top">~/index &nbsp; <a href="/">[index]</a> &nbsp;·&nbsp; <a href="/research.html">research</a> &nbsp;·&nbsp; <a href="/projects.html">projects</a></nav>
 <hr>
-<h2>404 &mdash; not found<span class="ln"></span></h2>
-<p>This page doesn't exist on the new site. Try the <a href="/">index</a>, <a href="/projects.html">projects</a>, <a href="/research.html">research</a>, or the <a href="/ericspencer-site-backup/">archive</a> of the old Hugo site.</p>
+<h2>Looking for something?<span class="ln"></span></h2>
+<p>This page doesn't exist on the current site. If you followed an older link, try the <a id="archive-link" href="/ericspencer-site-backup/">archive of the old site</a> &mdash; the same path is likely there.</p>
+<p>Or jump to: <a href="/">index</a> &middot; <a href="/projects.html">projects</a> &middot; <a href="/research.html">research</a>.</p>
+<script>
+(function(){
+  var p = window.location.pathname;
+  // strip trailing index.html, normalize leading slash
+  p = p.replace(/index\.html$/,'').replace(/^\/+/,'/');
+  var target = 'https://ericspencer.us/ericspencer-site-backup' + p;
+  var link = document.getElementById('archive-link');
+  if(link) link.href = target;
+  // auto-redirect after a short pause so the user sees context
+  setTimeout(function(){ window.location.replace(target); }, 1500);
+})();
+</script>
 
 <footer>
-<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
-<span><a href="/ericspencer-site-backup/">archive</a></span>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
 </footer>
 </div></body></html>

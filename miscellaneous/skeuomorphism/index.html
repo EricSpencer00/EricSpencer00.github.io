@@ -64,7 +64,8 @@ hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
 .dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
 h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
   text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
-  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
 h2::before{content:"§";color:var(--gold);font-weight:400}
 h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
 h3{font-size:18px;margin:20px 0 4px}
@@ -121,7 +122,7 @@ li{margin:4px 0}
 <div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
 <nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;·&nbsp; <a href="/research.html">research</a> &nbsp;·&nbsp; <a href="/projects.html">[projects]</a></nav>
 <hr>
-<p class="back">&larr; <a href="/projects.html">back to projects</a></p>
+<p class="back">&larr; <a href="/">back to index</a></p>
 <h2>Skeuomorphic Project Desk<span class="ln"></span></h2>
 <p class="meta">Skeuomorphic Project Desk — project by Eric Spencer.</p>
 <hr class="dash">
@@ -134,7 +135,7 @@ li{margin:4px 0}
 <p><style> .skeuomorphic-wrapper { background: #1a1a1a; padding: 20px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: 'Courier New', Courier, monospace; } .skeuomorphic-container { position: relative; width: 100%; max-width: 1024px; margin: 0 auto; overflow: hidden; border: 4px solid #333; border-radius: 4px; } .skeuomorphic-image { width: 100%; height: auto; display: block; filter: contrast(1.1) brightness(0.9); } .skeuomorphic-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } .clickable-area { fill: rgba(0, 255, 0, 0.05); stroke: rgba(0, 255, 0, 0.3); stroke-width: 2; cursor: pointer; transition: all 0.2s ease-in-out; } .clickable-area:hover { fill: rgba(0, 255, 0, 0.15); stroke: rgba(0, 255, 0, 0.8); stroke-width: 3; filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8)); } .project-label { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.8); color: #0f0; padding: 5px 15px; border: 1px solid #0f0; border-radius: 4px; pointer-events: none; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; z-index: 10; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } </style></p>
 <p><script> document.querySelectorAll('.clickable-area').forEach(area => { area.addEventListener('mouseenter', (e) => { const title = e.target.parentElement.getAttribute('title'); document.getElementById('project-label').textContent = title; }); area.addEventListener('mouseleave', () => { document.getElementById('project-label').textContent = 'Hover over an item...'; }); }); </script></p>
 <footer>
-<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
-<span><a href="/ericspencer-site-backup/">archive</a></span>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
 </footer>
 </div></body></html>
