@@ -1,0 +1,80 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Eric Spencer | Developer, Researcher, Creator</title><meta name=keywords content="TLA+,Python,Flask"><meta name=description content="Personal website of Eric Spencer – software developer, AI researcher, and creative technologist."><meta name=author content="Eric Spencer"><meta property="og:title" content="Eric Spencer"><meta property="og:description" content="Personal website of Eric Spencer."><meta property="og:type" content="article"><meta property="og:url" content="https://ericspencer.us/backup-site/projects/2025/connect-4/"><meta property="og:site_name" content="Eric Spencer"><meta property="linkedin:title" content="Connect 4 Game Engine | Eric Spencer"><meta property="linkedin:description" content="A Chess engine-esque Connect 4 analyzer"><link rel=canonical href=https://ericspencer00.github.io><link rel=alternate href=https://ericspencer.us/backup-site/projects/2025/connect-4/><link rel=stylesheet href=/backup-site/css/core/theme-vars.min.css><link rel=stylesheet href=/backup-site/css/core/reset.min.css><link rel=stylesheet href=/backup-site/assets/css/common.min.css><link rel=stylesheet href=/backup-site/css/includes/scroll-bar.min.css><link rel=stylesheet href=/backup-site/css/core/zmedia.min.css><link rel=stylesheet href=/backup-site/assets/css/extended.min.css><link rel=stylesheet href=/backup-site/css/projects-grid.min.css><link rel=stylesheet href=/backup-site/css/project-filters.min.css><link rel=stylesheet href=/backup-site/css/home.min.css><link rel=stylesheet href=/backup-site/css/resume-timeline.min.css><link rel=icon href=https://ericspencer.us/backup-site/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://ericspencer.us/backup-site/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://ericspencer.us/backup-site/favicon-32x32.png><link rel=apple-touch-icon href=https://ericspencer.us/backup-site/apple-touch-icon.png><link rel=mask-icon href=https://ericspencer.us/backup-site/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><script defer src=https://ericspencer.us/backup-site/js/favicon-scroll-ring.js></script><meta name=generator content="Hugo 0.152.2"><link rel=alternate hreflang=en href=https://ericspencer.us/backup-site/projects/2025/connect-4/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://ericspencer.us/backup-site/ accesskey=h title="Eric Spencer (Alt + H)">Eric Spencer</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://ericspencer.us/backup-site/projects/ title=Projects><span>Projects</span></a></li><li><a href=https://ericspencer.us/backup-site/miscellaneous/ title=Miscellaneous><span>Miscellaneous</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Connect 4 Game Engine</h1><div class=post-description>A Chess engine-esque Connect 4 analyzer</div><div class=post-meta><span title='2025-06-29 00:00:00 +0000 UTC'>June 29, 2025</span></div></header><div class=post-content><p><img alt="Photo of the Connect 4 game engine" loading=lazy src=/previews/connect-4.png></p><p>Inspired by <a href=https://en.wikipedia.org/wiki/Chess_engine>Chess Engines</a> that mathematically predict how long it will take for a player to win a game (or the liklihood of a player winning a game), I created the same thing for Connect 4.</p><p><a href=https://github.com/EricSpencer00/connect-4>GitHub Repo</a></p><h2 id=solved-mode>Solved Mode<a hidden class=anchor aria-hidden=true href=#solved-mode>#</a></h2><p>The AI was trained on 67,557 unique and legal positions by move 4 (both players have just played 4 moves each) of the game. Each position is labeled with the game-theoretic outcome of win/loss/tie. Also, these positions require no player to have won nor have a forcing move on the next play (3 in a row and similar positions). The dataset was acquired from work by John Tromp <a href=https://tromp.github.io>tromp.github.io</a>.</p><p><em>Sidenote, I absolutely love simple html pages like the one above.
+They&rsquo;re extremely optimized for browsers that expect thousands of lines of JavaScript.</em></p><p>Connect 4 is a solved game, meaning that if you play first and play optimally, you will win 100% of the time (Most people do not).</p><h2 id=formal-methods>Formal Methods<a hidden class=anchor aria-hidden=true href=#formal-methods>#</a></h2><p>Additionally, there&rsquo;s a TLA+ specification for Connect 4 but shrunk for reasonability. Since 7 x 6 is way too large for my Mac Mini, I&rsquo;ll probably explore this in full once Apple adopts Quantum Computing.</p><pre tabindex=0><code>SPECIFICATION Spec
+
+CONSTANTS
+    BoardWidth = 4
+    BoardHeight = 4
+    WinningLength = 3
+
+PROPERTY Termination
+
+INVARIANT TypeOK
+
+% To check the CorrectWinner invariant:
+% INVARIANT CorrectWinner
+</code></pre><hr><pre tabindex=0><code>------------------- MODULE Connect4 -------------------
+EXTENDS Integers, FiniteSets, Sequences, TLC
+
+CONSTANTS BoardWidth, BoardHeight, WinningLength
+ASSUME BoardWidth \in Nat \land BoardHeight \in Nat \land WinningLength \in Nat
+
+Players == {&#34;red&#34;, &#34;yellow&#34;}
+Board == 1..(BoardWidth*BoardHeight)
+Empty == &#34;empty&#34;
+
+(* --fair means that if a move is continuously enabled, it will eventually be taken *)
+Fairness == \A col \in 1..BoardWidth : WF_vars(board, player, \A row \in 1..BoardHeight : board[row][col] /= Empty)
+
+VARIABLES
+    board,      (* The game board *)
+    player,     (* The current player *)
+    winner      (* The winner of the game, or &#34;none&#34; *)
+
+vars == &lt;&lt;board, player, winner&gt;&gt;
+
+-----------------------------------------------------------------------------
+Init ==
+    /\ board = [row \in 1..BoardHeight |-&gt; [col \in 1..BoardWidth |-&gt; Empty]]
+    /\ player \in Players
+    /\ winner = &#34;none&#34;
+
+-----------------------------------------------------------------------------
+(* Helper function to check for a win *)
+HasWinningLine(b, p, r, c) ==
+    LET
+        HorizontalCheck == \E i \in 0..(WinningLength-1) : c+i &lt;= BoardWidth /\ (\forall j \in 0..(WinningLength-1) : b[r][c+i-j] = p)
+        VerticalCheck == \E i \in 0..(WinningLength-1) : r+i &lt;= BoardHeight /\ (\forall j \in 0..(WinningLength-1) : b[r+i-j][c] = p)
+        DiagDescCheck == \E i \in 0..(WinningLength-1) : r+i &lt;= BoardHeight /\ c+i &lt;= BoardWidth /\ (\forall j \in 0..(WinningLength-1) : b[r+i-j][c+i-j] = p)
+        DiagAscCheck == \E i \in 0..(WinningLength-1) : r-i &gt;= 1 /\ c+i &lt;= BoardWidth /\ (\forall j \in 0..(WinningLength-1) : b[r-i+j][c+i-j] = p)
+    IN HorizontalCheck \/ VerticalCheck \/ DiagDescCheck \/ DiagAscCheck
+
+Winner(b) ==
+    CHOOSE p \in Players : \E r \in 1..BoardHeight, c \in 1..BoardWidth : HasWinningLine(b, p, r, c)
+
+-----------------------------------------------------------------------------
+(* An action that represents a player making a move *)
+Move(col) ==
+    /\ winner = &#34;none&#34;
+    /\ \E row \in 1..BoardHeight : board[row][col] = Empty
+    /\ LET rowToFill == CHOOSE r \in 1..BoardHeight : board[r][col] = Empty /\ (r = BoardHeight \/ board[r+1][col] /= Empty)
+       IN  board&#39; = [board EXCEPT ![rowToFill][col] = player]
+    /\ player&#39; = IF player = &#34;red&#34; THEN &#34;yellow&#34; ELSE &#34;red&#34;
+    /\ winner&#39; = IF \E p \in Players: \E r \in 1..BoardHeight, c \in 1..BoardWidth : HasWinningLine(board&#39;, p, r, c)
+                 THEN Winner(board&#39;)
+                 ELSE &#34;none&#34;
+
+-----------------------------------------------------------------------------
+Next == \E col \in 1..BoardWidth : Move(col)
+
+Spec == Init /\ [][Next]_vars
+
+Termination == &lt;&gt;(winner /= &#34;none&#34;) \/ \A r \in 1..BoardHeight, c \in 1..BoardWidth : board[r][c] /= Empty
+
+=============================================================================
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://ericspencer.us/backup-site/tags/tla+/>TLA+</a></li><li><a href=https://ericspencer.us/backup-site/tags/python/>Python</a></li><li><a href=https://ericspencer.us/backup-site/tags/flask/>Flask</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://ericspencer.us/backup-site/>Eric Spencer</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

@@ -1,0 +1,121 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Eric Spencer | Developer, Researcher, Creator</title><meta name=keywords content="Python,Words,AI"><meta name=description content="Personal website of Eric Spencer – software developer, AI researcher, and creative technologist."><meta name=author content="Eric Spencer"><meta property="og:title" content="Eric Spencer"><meta property="og:description" content="Personal website of Eric Spencer."><meta property="og:type" content="article"><meta property="og:url" content="https://ericspencer.us/backup-site/projects/2025/sign-language/"><meta property="og:site_name" content="Eric Spencer"><meta property="linkedin:title" content="AI Sign Language Interpreter | Eric Spencer"><meta property="linkedin:description" content="A Simple Sign Language Recognition App using OpenCV"><link rel=canonical href=https://ericspencer00.github.io><link rel=alternate href=https://ericspencer.us/backup-site/projects/2025/sign-language/><link rel=stylesheet href=/backup-site/css/core/theme-vars.min.css><link rel=stylesheet href=/backup-site/css/core/reset.min.css><link rel=stylesheet href=/backup-site/assets/css/common.min.css><link rel=stylesheet href=/backup-site/css/includes/scroll-bar.min.css><link rel=stylesheet href=/backup-site/css/core/zmedia.min.css><link rel=stylesheet href=/backup-site/assets/css/extended.min.css><link rel=stylesheet href=/backup-site/css/projects-grid.min.css><link rel=stylesheet href=/backup-site/css/project-filters.min.css><link rel=stylesheet href=/backup-site/css/home.min.css><link rel=stylesheet href=/backup-site/css/resume-timeline.min.css><link rel=icon href=https://ericspencer.us/backup-site/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://ericspencer.us/backup-site/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://ericspencer.us/backup-site/favicon-32x32.png><link rel=apple-touch-icon href=https://ericspencer.us/backup-site/apple-touch-icon.png><link rel=mask-icon href=https://ericspencer.us/backup-site/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><script defer src=https://ericspencer.us/backup-site/js/favicon-scroll-ring.js></script><meta name=generator content="Hugo 0.152.2"><link rel=alternate hreflang=en href=https://ericspencer.us/backup-site/projects/2025/sign-language/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://ericspencer.us/backup-site/ accesskey=h title="Eric Spencer (Alt + H)">Eric Spencer</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://ericspencer.us/backup-site/projects/ title=Projects><span>Projects</span></a></li><li><a href=https://ericspencer.us/backup-site/miscellaneous/ title=Miscellaneous><span>Miscellaneous</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">AI Sign Language Interpreter</h1><div class=post-description>A Simple Sign Language Recognition App using OpenCV</div><div class=post-meta><span title='2025-04-07 00:00:00 +0000 UTC'>April 7, 2025</span></div></header><div class=post-content><p>Over the course of the early Spring Semester, I lead the Loyola AI Club&rsquo;s project to create a sign language
+interpreter. The original goal of the project was to download a ton of sign language videos from a dataset and see if we could create a working sign language interpreter using OpenCV and Python.</p><p>The process was as follows:</p><ol><li>Use a <a href=https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL_val.json>list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was split for us already.</li><li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href=https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_process.py>this script</a>.</li></ol><pre tabindex=0><code>def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
+    &#34;&#34;&#34;Download a YouTube video using yt-dlp and return the local file path.&#34;&#34;&#34;
+    video_id = get_video_id(url)
+    filename = f&#34;{video_id}.mp4&#34;
+    video_path = os.path.join(videos_folder, filename)
+    if os.path.exists(video_path):
+        print(f&#34;[INFO] Video already exists: {video_path}&#34;)
+        return video_path
+    try:
+        print(f&#34;[INFO] Downloading video {url} ...&#34;)
+        command = [
+            &#34;yt-dlp&#34;,
+            &#34;--no-check-certificate&#34;,
+            &#34;-f&#34;, &#34;mp4&#34;,
+            &#34;-o&#34;, video_path,
+            url
+        ]
+        result = subprocess.run(command, check=False, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f&#34;[ERROR] yt-dlp failed: {result.stderr}&#34;)
+            return None
+        print(f&#34;[INFO] Video saved as {video_path}&#34;)
+        return video_path
+    except Exception as e:
+        print(f&#34;[ERROR] Failed to download {url}: {e}&#34;)
+        return None
+</code></pre><ol start=3><li>From our new dataset, we could train the similarities between the images and labels. <a href=https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_training.py>link</a></li></ol><pre tabindex=0><code>def main():
+    # Load data from processed NPZ files
+    X, y = load_npz_data(DATA_FOLDER)
+    print(f&#34;[INFO] Loaded {len(X)} samples.&#34;)
+
+    if len(X) == 0:
+        print(&#34;[ERROR] No data loaded. Exiting.&#34;)
+        return
+
+    # Build a label-to-index mapping based on the gesture folder names
+    unique_labels = sorted(list(set(y)))
+    label_to_index = {label: idx for idx, label in enumerate(unique_labels)}
+    print(f&#34;[INFO] Found {len(unique_labels)} unique gesture classes: {unique_labels}&#34;)
+
+    # Convert string labels to integer indices and then to one-hot vectors
+    y_indices = np.array([label_to_index[label] for label in y])
+    num_classes = len(unique_labels)
+    y_cat = to_categorical(y_indices, num_classes)
+
+    # Build a simple Conv3D model
+    model = Sequential([
+        Conv3D(32, (3, 3, 3), activation=&#34;relu&#34;, input_shape=(NUM_FRAMES, IMG_SIZE[0], IMG_SIZE[1], 1)),
+        MaxPooling3D(pool_size=(1, 2, 2)),
+        Conv3D(64, (3, 3, 3), activation=&#34;relu&#34;),
+        MaxPooling3D(pool_size=(1, 2, 2)),
+        Dropout(0.3),
+        Flatten(),
+        Dense(128, activation=&#34;relu&#34;),
+        Dropout(0.5),
+        Dense(num_classes, activation=&#34;softmax&#34;)
+    ])
+    model.compile(optimizer=&#34;adam&#34;, loss=&#34;categorical_crossentropy&#34;, metrics=[&#34;accuracy&#34;])
+    model.summary()
+
+    steps_per_epoch = max(1, len(X) // BATCH_SIZE)
+
+    # Set up callbacks: checkpointing and early stopping
+    checkpoint_callback = ModelCheckpoint(
+        filepath=&#34;model_checkpoint.h5&#34;,
+        monitor=&#34;loss&#34;,
+        save_best_only=True,
+        verbose=1
+    )
+    early_stopping_callback = EarlyStopping(
+        monitor=&#34;loss&#34;,
+        patience=5,
+        verbose=1
+    )
+
+    # Train the model using the data generator (with augmentation)
+    model.fit(
+        data_generator(X, y_cat, batch_size=BATCH_SIZE, augment=True),
+        steps_per_epoch=steps_per_epoch,
+        epochs=EPOCHS,
+        callbacks=[checkpoint_callback, early_stopping_callback]
+    )
+
+    model.save(&#34;asl_model.h5&#34;)
+    print(&#34;[INFO] Model saved as asl_model.h5&#34;)
+</code></pre><ol start=4><li>Finally, our model would be tested with a live camera. <a href=https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app_json.py#L24>link</a></li></ol><pre tabindex=0><code># Process the frame with MediaPipe for hand detection
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = hands_detector.process(frame_rgb)
+            if results.multi_hand_landmarks:
+                for hand_landmarks in results.multi_hand_landmarks:
+                    mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            else:
+                cv2.putText(frame, &#34;No hand detected&#34;, (10, 90),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+</code></pre><ol start=5><li>Once the model could consistently recognize a piece from the dataset, I would use this approach and phase-2 it into pairing an LLM to interpret the sign language as a sentence. Thereby, providing live translation of sign language in the form of text.</li></ol><p>Now, we had some issues with this approach. Our data was set in .npz format which was great for storage but not great for training. Additionally, the videos being downloaded put a strain on my local wifi network&ndash;which before I took on this project was assumed to be unlimited&ndash;I did not know you could run out of wifi. So, I thank Loyola&rsquo;s wifi network for handling the rest of the data transfer.</p><p>The second approach was to use mediapipe to overlay on our original videos and transform them into csv dot arrays. I thought this approach was smart but it ultimately did not end up working. And, due to the time to train and download, I resorted to a simpler approach for the app.</p><p>As a cop out, I used an existing model of a single letter ASL interpreter. This could handle 26 letters and one hand.</p><pre tabindex=0><code>def preprocess_hand_image(hand_img):
+    &#34;&#34;&#34;Preprocess the hand image for the model&#34;&#34;&#34;
+    if hand_img.size == 0:
+        return None
+        
+    # Convert to grayscale and resize
+    hand_gray = cv2.cvtColor(hand_img, cv2.COLOR_BGR2GRAY)
+    
+    # Apply adaptive histogram equalization for better contrast
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+    hand_eq = clahe.apply(hand_gray)
+    
+    # Resize to model input size
+    hand_resized = cv2.resize(hand_eq, (28, 28))
+    
+    # Normalize and reshape for model input
+    processed = hand_resized.astype(&#39;float32&#39;) / 255.0
+    processed = np.expand_dims(processed, axis=(0, -1))
+    return processed, hand_resized
+</code></pre><p>Regardless, it was a very fun top to bottom project working with data processing and a little bit of machine learning.</p><p>Also, very fun fact about my website is that it&rsquo;s exactly copied from the Loyola AI Club&rsquo;s website. See <a href=https://loyolaaiclub.github.io/projects/movierec/>here</a></p><p><a href=https://github.com/loyolaaiclub/Sign-Language-Recognition>GitHub Repo</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://ericspencer.us/backup-site/tags/python/>Python</a></li><li><a href=https://ericspencer.us/backup-site/tags/words/>Words</a></li><li><a href=https://ericspencer.us/backup-site/tags/ai/>AI</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://ericspencer.us/backup-site/>Eric Spencer</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

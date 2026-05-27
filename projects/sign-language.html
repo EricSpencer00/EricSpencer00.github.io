@@ -1,0 +1,246 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Sign Language Interpreter — Eric Spencer</title>
+<meta name="description" content="A Simple Sign Language Recognition App using OpenCV">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>AI Sign Language Interpreter<span class="ln"></span></h2>
+<p class="meta">A Simple Sign Language Recognition App using OpenCV</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/Sign-Language-Recognition" target="_blank" rel="noopener">https://github.com/EricSpencer00/Sign-Language-Recognition</a></p>
+<hr class="dash">
+<p>Over the course of the early Spring Semester, I lead the Loyola AI Club's project to create a sign language interpreter. The original goal of the project was to download a ton of sign language videos from a dataset and see if we could create a working sign language interpreter using OpenCV and Python.</p>
+<p>The process was as follows:</p>
+<ol>
+<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL<i>val.json" target="</i>blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was split for us already.</li>
+<li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json<i>process.py" target="</i>blank" rel="noopener">this script</a>.</li>
+</ol>
+<pre class="code"><code>
+def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
+    &quot;&quot;&quot;Download a YouTube video using yt-dlp and return the local file path.&quot;&quot;&quot;
+    video_id = get_video_id(url)
+    filename = f&quot;{video_id}.mp4&quot;
+    video_path = os.path.join(videos_folder, filename)
+    if os.path.exists(video_path):
+        print(f&quot;[INFO] Video already exists: {video_path}&quot;)
+        return video_path
+    try:
+        print(f&quot;[INFO] Downloading video {url} ...&quot;)
+        command = [
+            &quot;yt-dlp&quot;,
+            &quot;--no-check-certificate&quot;,
+            &quot;-f&quot;, &quot;mp4&quot;,
+            &quot;-o&quot;, video_path,
+            url
+        ]
+        result = subprocess.run(command, check=False, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f&quot;[ERROR] yt-dlp failed: {result.stderr}&quot;)
+            return None
+        print(f&quot;[INFO] Video saved as {video_path}&quot;)
+        return video_path
+    except Exception as e:
+        print(f&quot;[ERROR] Failed to download {url}: {e}&quot;)
+        return None
+</code></pre>
+<ol>
+<li>From our new dataset, we could train the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json<i>training.py" target="</i>blank" rel="noopener">link</a></li>
+</ol>
+<pre class="code"><code>
+def main():
+    # Load data from processed NPZ files
+    X, y = load_npz_data(DATA_FOLDER)
+    print(f&quot;[INFO] Loaded {len(X)} samples.&quot;)
+
+    if len(X) == 0:
+        print(&quot;[ERROR] No data loaded. Exiting.&quot;)
+        return
+
+    # Build a label-to-index mapping based on the gesture folder names
+    unique_labels = sorted(list(set(y)))
+    label_to_index = {label: idx for idx, label in enumerate(unique_labels)}
+    print(f&quot;[INFO] Found {len(unique_labels)} unique gesture classes: {unique_labels}&quot;)
+
+    # Convert string labels to integer indices and then to one-hot vectors
+    y_indices = np.array([label_to_index[label] for label in y])
+    num_classes = len(unique_labels)
+    y_cat = to_categorical(y_indices, num_classes)
+
+    # Build a simple Conv3D model
+    model = Sequential([
+        Conv3D(32, (3, 3, 3), activation=&quot;relu&quot;, input_shape=(NUM_FRAMES, IMG_SIZE[0], IMG_SIZE[1], 1)),
+        MaxPooling3D(pool_size=(1, 2, 2)),
+        Conv3D(64, (3, 3, 3), activation=&quot;relu&quot;),
+        MaxPooling3D(pool_size=(1, 2, 2)),
+        Dropout(0.3),
+        Flatten(),
+        Dense(128, activation=&quot;relu&quot;),
+        Dropout(0.5),
+        Dense(num_classes, activation=&quot;softmax&quot;)
+    ])
+    model.compile(optimizer=&quot;adam&quot;, loss=&quot;categorical_crossentropy&quot;, metrics=[&quot;accuracy&quot;])
+    model.summary()
+
+    steps_per_epoch = max(1, len(X) // BATCH_SIZE)
+
+    # Set up callbacks: checkpointing and early stopping
+    checkpoint_callback = ModelCheckpoint(
+        filepath=&quot;model_checkpoint.h5&quot;,
+        monitor=&quot;loss&quot;,
+        save_best_only=True,
+        verbose=1
+    )
+    early_stopping_callback = EarlyStopping(
+        monitor=&quot;loss&quot;,
+        patience=5,
+        verbose=1
+    )
+
+    # Train the model using the data generator (with augmentation)
+    model.fit(
+        data_generator(X, y_cat, batch_size=BATCH_SIZE, augment=True),
+        steps_per_epoch=steps_per_epoch,
+        epochs=EPOCHS,
+        callbacks=[checkpoint_callback, early_stopping_callback]
+    )
+
+    model.save(&quot;asl_model.h5&quot;)
+    print(&quot;[INFO] Model saved as asl_model.h5&quot;)
+</code></pre>
+<ol>
+<li>Finally, our model would be tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app<i>json.py#L24" target="</i>blank" rel="noopener">link</a></li>
+</ol>
+<pre class="code"><code>
+# Process the frame with MediaPipe for hand detection
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = hands_detector.process(frame_rgb)
+            if results.multi_hand_landmarks:
+                for hand_landmarks in results.multi_hand_landmarks:
+                    mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            else:
+                cv2.putText(frame, &quot;No hand detected&quot;, (10, 90),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+</code></pre>
+<ol>
+<li>Once the model could consistently recognize a piece from the dataset, I would use this approach and phase-2 it into pairing an LLM to interpret the sign language as a sentence. Thereby, providing live translation of sign language in the form of text.</li>
+</ol>
+<p>Now, we had some issues with this approach. Our data was set in .npz format which was great for storage but not great for training. Additionally, the videos being downloaded put a strain on my local wifi network--which before I took on this project was assumed to be unlimited--I did not know you could run out of wifi. So, I thank Loyola's wifi network for handling the rest of the data transfer.</p>
+<p>The second approach was to use mediapipe to overlay on our original videos and transform them into csv dot arrays. I thought this approach was smart but it ultimately did not end up working. And, due to the time to train and download, I resorted to a simpler approach for the app.</p>
+<p>As a cop out, I used an existing model of a single letter ASL interpreter. This could handle 26 letters and one hand.</p>
+<pre class="code"><code>
+def preprocess_hand_image(hand_img):
+    &quot;&quot;&quot;Preprocess the hand image for the model&quot;&quot;&quot;
+    if hand_img.size == 0:
+        return None
+        
+    # Convert to grayscale and resize
+    hand_gray = cv2.cvtColor(hand_img, cv2.COLOR_BGR2GRAY)
+    
+    # Apply adaptive histogram equalization for better contrast
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+    hand_eq = clahe.apply(hand_gray)
+    
+    # Resize to model input size
+    hand_resized = cv2.resize(hand_eq, (28, 28))
+    
+    # Normalize and reshape for model input
+    processed = hand_resized.astype(&#x27;float32&#x27;) / 255.0
+    processed = np.expand_dims(processed, axis=(0, -1))
+    return processed, hand_resized
+</code></pre>
+<p>Regardless, it was a very fun top to bottom project working with data processing and a little bit of machine learning.</p>
+<p>Also, very fun fact about my website is that it's exactly copied from the Loyola AI Club's website. See <a href="https://loyolaaiclub.github.io/projects/movierec/" target="_blank" rel="noopener">here</a></p>
+<p><a href="https://github.com/loyolaaiclub/Sign-Language-Recognition" target="_blank" rel="noopener">GitHub Repo</a></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

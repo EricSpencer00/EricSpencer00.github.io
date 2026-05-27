@@ -1,4 +1,4 @@
-name: Deploy Hugo to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -13,31 +13,14 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Remove existing public folder (if exists)
-        run: rm -rf public
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.145.0'
-          extended: true
-
-      - name: Build Hugo Site
-        run: |
-          HUGO_BASEURL="${{ github.repository == 'EricSpencer00/dev.EricSpencer00.github.io' && 'https://ericspencer00.github.io/dev.EricSpencer00.github.io/' || 'https://ericspencer00.github.io' }}"
-          hugo --minify --baseURL "$HUGO_BASEURL"
-          ls -la public  # Debugging: Check if public folder exists
-
       - name: Upload Artifact for Deployment
-        if: success()
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: .
 
   deploy-to-gh-pages:
     needs: deploy
@@ -45,14 +28,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Download Built Site
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: public
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

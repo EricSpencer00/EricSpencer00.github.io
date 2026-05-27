@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rubik&#x27;s Snake — Formally Verified — Eric Spencer</title>
+<meta name="description" content="Coq (Rocq) and TLA+ specifications of the Rubik&#x27;s Snake state space — 4^23 configurations, formally">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>Rubik&#x27;s Snake — Formally Verified<span class="ln"></span></h2>
+<p class="meta">Coq (Rocq) and TLA+ specifications of the Rubik&#x27;s Snake state space — 4^23 configurations, formally</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/rubix-snake-puzzle" target="_blank" rel="noopener">https://github.com/EricSpencer00/rubix-snake-puzzle</a></p>
+<hr class="dash">
+<p><a href="https://github.com/EricSpencer00/rubix-snake-puzzle" target="_blank" rel="noopener">GitHub Repo</a></p>
+<p>I bought a Rubik's Snake at some point and spent way too long folding it into a ball, a dog, and then back into a stick. It is 24 right-triangular prisms strung together on a chain, with 23 joints between them, and each joint clicks into one of four positions (0°, 90°, 180°, 270°). That gives you 4^23 = 70,368,744,177,664 possible configurations if you ignore physics, and somewhere around 13.4 trillion if you actually require that the wedges not pass through each other. Peter Aylett did the exhaustive backtracking search in C in 2011 (and patched it in 2022). I wanted to ask the same question with formal methods instead of brute force, partly because I've been pulling on the AI-for-formal-methods thread for a while and partly because nobody had done it.</p>
+<p>This repo is the first formal verification of the Rubik's Snake puzzle in any proof assistant — Coq, Lean, Isabelle, Alloy, TLA+, none of them. That was honestly the most surprising thing I found while writing the related-work section. The puzzle has a Wikipedia page and a small academic literature (Hou/Chen/Li wrote a couple of papers on it in <i>J. Mechanisms and Robotics</i>, and the Luxembourg group has a nice characterization of which Eulerian paths give you planar configurations), but the formal-methods community had not touched it.</p>
+<h2>What's in the repo<span class="ln"></span></h2>
+<p>Two specifications and a Python reference enumerator:</p>
+<ul>
+<li><b><code>coq/</code></b> — Coq (now Rocq) formalization. Defines wedges as triangular prisms in a 3D integer grid, joints as one of four rotations, and the validity predicate (<code>no<i>collision</code>) that says no two wedges occupy overlapping voxels. Proves structural properties — decidability of equality on rotations, completeness of the rotation enumeration, well-formedness of the snake-construction function. The interesting work is the geometry: an <code>apply</i>rotation</code> that takes a <code>Direction</code> (one of six axis-aligned 3D directions) and a <code>Rotation</code> and gives you the next wedge's position and orientation.</li>
+<li><b><code>tla/</code></b> — TLA+ spec that models the snake as a state machine. Each action is "pick a joint and rotate it." The invariant is <code>NoSelfIntersection</code>. You can run TLC on small instances (8-wedge snakes finish in seconds; the full 24 is way past what TLC can model-check, which is part of the point — you need Coq for the general claim and TLA+ for the small concrete confidence-building).</li>
+<li><b><code>python/</code></b> — A reference enumerator I used to sanity-check the formal specs against Aylett's numbers. For 8 wedges I get the same valid-configuration count he does, which made me feel less likely to have a bug in the wedge geometry.</li>
+</ul>
+<p>The Coq file opens with this, which I think is the cleanest summary of what's going on:</p>
+<pre class="code"><code>
+(* Each joint has 4 possible rotations: 0°, 90°, 180°, 270° around the shared edge. *)
+Inductive Rotation : Type :=
+  | R0   (* 0°   — straight *)
+  | R90  (* 90°  — right angle *)
+  | R180 (* 180° — folded back *)
+  | R270 (* 270° — left angle *).
+</code></pre>
+<p>The whole thing is built on a 3D integer grid with 6 axis-aligned directions, which means I do not have to deal with floating-point rotation matrices in the proof — everything is <code>Z</code>-arithmetic, and Lia can close most of the arithmetic obligations.</p>
+<h2>What I did not do (yet)<span class="ln"></span></h2>
+<p>I have not proved the count. Aylett's number (13,446,591,920,995 valid configurations) is established by exhaustive search, and proving it formally in Coq would require either reflecting the enumerator into Gallina and computing it (impractical — the search took weeks of CPU time in C) or finding a clever combinatorial argument that nobody has found yet. What I have is the formal <i>specification</i> of what a valid configuration is. The bridge from spec to count is still empirical.</p>
+<p>I also have not fully worked out the symmetry quotient (mirror + cyclic) that Aylett applies to drop the count from 13.4T to 6.7T. The TLA+ spec does not have it at all; the Coq side has a stub.</p>
+<h2>Why this exists<span class="ln"></span></h2>
+<p>It's a hobby-scale formal verification project. Small enough to actually finish, weird enough to be the first of its kind, and connected to the AI-for-formal-methods (ai4fm) work I've been doing on the side. If you wanted a project to learn Coq on that is not yet another "verify insertion sort," the geometry of a physical puzzle is a nice change of pace. The state space is huge but every individual piece of reasoning is concrete — you can hold the puzzle in your hand and check the math.</p>
+<p>If you want to play with it, the README has build instructions for Coq 8.18+ / Rocq and the TLA+ Toolbox. PRs welcome, especially on the symmetry reduction or if you have an idea for how to prove the count without exhaustive search.</p>
+<hr class="dash">
+<p><i>Written with AI.</i></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

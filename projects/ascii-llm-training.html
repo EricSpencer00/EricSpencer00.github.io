@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training an LLM on ASCII — Eric Spencer</title>
+<meta name="description" content="A toy transformer that reads pyfiglet ASCII art and tries to spit the original word back out. Calling it an LLM is generous.">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>Training an LLM on ASCII<span class="ln"></span></h2>
+<p class="meta">A toy transformer that reads pyfiglet ASCII art and tries to spit the original word back out. Calling it an LLM is generous.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/ascii-llm-training" target="_blank" rel="noopener">https://github.com/EricSpencer00/ascii-llm-training</a></p>
+<hr class="dash">
+<p>I wanted to see what would happen if I trained a small transformer on ASCII art. Not generating it — reading it. You give the model a chunk of <code>pyfiglet</code>'s blocky text rendering of some random word, and it has to recover the word. So less of an LLM and more of a text-only OCR experiment with a transformer encoder bolted on. But "training an LLM on ASCII" sounds way cooler than "training a character classifier on pyfiglet output," so that's what I called the repo.</p>
+<p>The pipeline is four scripts. <code>ascii<i>generator.py</code> picks a random lowercase word between 3 and 12 characters long, runs it through <code>pyfiglet</code> in a chosen FIGlet font (default <code>standard</code>, or sample from a curated list of fonts like <code>slant</code>, <code>3-d</code>, <code>doh</code>, <code>isometric1</code>, <code>bubble</code> if you pass <code>--multi-font</code>), and dumps the (word, art, font) triples into a JSONL file. <code>data</i>prep.py</code> builds two tiny vocabularies — one for the characters that show up in the rendered art, one for the 26 lowercase letters plus a <code><pad></code> token — and converts everything into padded numpy arrays. <code>train.py</code> runs the transformer. <code>evaluate.py</code> loads a checkpoint and prints predictions.</p>
+<p>The model itself is small. PyTorch's <code>nn.TransformerEncoder</code> over the flattened ASCII art token sequence, default 4 layers, <code>d<i>model=192–256</code>, 8 heads, 512-dim feedforward. The flattened sequence can be ~1200 tokens long because ASCII art is wide. The encoder outputs get mean-pooled into one vector, which gets projected to <code>target</i>vocab<i>size * MAX</i>WORD<i>LEN</code> and reshaped — so it predicts all 12 character positions at once instead of decoding autoregressively. Cross-entropy with <code>ignore</i>index=PAD</code> on the target side. Mostly because I wanted to keep the model simple and not deal with a decoder loop for what should be an easy task.</p>
+<pre class="code"><code>
+self.classifier = nn.Linear(d_model, target_vocab_size * max_word_len)
+# ...
+pooled = enc_out.mean(dim=1)
+logits = self.classifier(pooled).view(-1, self.max_word_len, self.target_vocab_size)
+</code></pre>
+<p>For the <code>standard</code> font on single-font data, this works pretty well — the model converges in a handful of epochs and gets high per-character accuracy on held-out words it has never seen. Which makes sense, because the standard FIGlet font is a deterministic letter-by-letter rendering, so the model is basically learning to segment the art into per-letter columns and then classify each column. It's not really doing language modeling, it's doing very fancy template matching.</p>
+<p>Where it falls apart is multi-font. Once you mix <code>doh</code> and <code>isometric1</code> and <code>banner3-D</code> into the same dataset, the model has to learn each font's quirks (variable letter width, ASCII characters that bleed across positions, fonts that draw the same letter completely differently) and a 4-layer encoder with a few thousand samples just isn't enough. Exact-match accuracy drops hard. The right move would be a proper sequence-to-sequence decoder, or CTC loss so the model doesn't need to know where each letter starts and ends, or just way more data and a bigger model. I noted all of that in the README's "Future Ideas" section and then didn't do any of it.</p>
+<p>This was a one-weekend curiosity project. It does not produce a usable model and it does not generate ASCII art (the inverse direction is much harder and much more interesting — maybe next time, when I have extra Claude credits to burn). But it was a fun excuse to write a small transformer from scratch with PyTorch and remember how <code>TransformerEncoderLayer</code> works.</p>
+<p><a href="https://github.com/EricSpencer00/ascii-llm-training" target="_blank" rel="noopener">GitHub Repo</a> — fork it if you want to try the seq2seq version.</p>
+<hr class="dash">
+<p><i>Written with AI.</i></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

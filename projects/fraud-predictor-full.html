@@ -1,0 +1,652 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Machine Learning Fraud Identifier — Eric Spencer</title>
+<meta name="description" content="Analyze different Machine Learning algorithms to identify fraud within a classified dataset">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>Machine Learning Fraud Identifier<span class="ln"></span></h2>
+<p class="meta">Analyze different Machine Learning algorithms to identify fraud within a classified dataset</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/fraud-predictor" target="_blank" rel="noopener">https://github.com/EricSpencer00/fraud-predictor</a></p>
+<hr class="dash">
+<h2>Credit Card Fraud Detection Project - COMP 379/479 Machine Learning<span class="ln"></span></h2>
+<p>Ololade Akinsanola, Oliver Schramm, Eric Spencer, Tigist Tefera, and Avery Walker# Data Download</p>
+<hr class="dash">
+<h3>[#1]</h3>
+<pre class="code"><code>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import os
+from imblearn.over_sampling import SMOTE
+from collections import Counter
+import xgboost
+</code></pre>
+<hr class="dash">
+<h3>[#2]</h3>
+<pre class="code"><code>
+# 1. Install Kaggle CLI
+!pip install kaggle
+
+# 2. Write your credentials to ~/.kaggle/kaggle.json
+import os, json
+
+# Ensure the directory exists
+os.makedirs(os.path.expanduser(&quot;~/.kaggle&quot;), exist_ok=True)
+
+creds = {
+    &quot;username&quot;: &quot;ericspencer00&quot;,
+    &quot;key&quot;: &quot;xxxxxxxxxxxxxxxxx&quot;
+}
+
+# Write and secure the file
+with open(os.path.expanduser(&quot;~/.kaggle/kaggle.json&quot;), &quot;w&quot;) as f:
+    json.dump(creds, f)
+os.chmod(os.path.expanduser(&quot;~/.kaggle/kaggle.json&quot;), 0o600)
+
+# 3. Point Kaggle CLI at that folder
+os.environ[&quot;KAGGLE_CONFIG_DIR&quot;] = os.path.expanduser(&quot;~/.kaggle&quot;)
+
+# 4. Download &amp; unzip the dataset
+!kaggle datasets download -d mlg-ulb/creditcardfraud -p . --unzip
+
+# 5. Load into pandas
+import pandas as pd
+data = pd.read_csv(&quot;creditcard.csv&quot;)
+print(&quot;Data downloaded successfully.&quot;)
+print(data.head())
+
+</code></pre>
+<p>Output:</p>
+<h2>Basic Info + Data Visualizations<span class="ln"></span></h2>
+<hr class="dash">
+<h3>[#3]</h3>
+<pre class="code"><code>
+print(data.info())
+print(data.head())
+# Check the class distribution
+print(data[&quot;Class&quot;].value_counts())  # 0 = Non-fraud, 1 = Fraud
+</code></pre>
+<p>Output: Basic info:</p>
+<ul>
+<li>There are some null values we account for later</li>
+<li>SMOTE will be useful for classification</li>
+<li>V1-V28 are anonymized PCA components, we can use feature importance to see which ones matter most</li>
+</ul>
+<hr class="dash">
+<h3>[#4]</h3>
+<pre class="code"><code>
+sns.countplot(x=&#x27;Class&#x27;, data=data)
+print(data[&quot;Class&quot;].value_counts())
+plt.title(&quot;Fraud vs Non-Fraud Distribution&quot;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#5]</h3>
+<pre class="code"><code>
+sns.boxplot(x=&#x27;Class&#x27;, y=&#x27;Amount&#x27;, data=data)
+plt.title(&quot;Transaction Amount by Fraud Class&quot;)
+plt.show()
+</code></pre>
+<p>Output: This shows we can potentially eliminate any classifications for fraud past ~2000 transactions</p>
+<hr class="dash">
+<h3>[#6]</h3>
+<pre class="code"><code>
+# Create a heatmap to visualize the distribution
+plt.figure(figsize=(10, 6))
+sns.heatmap(pd.crosstab(data[&#x27;Class&#x27;], pd.cut(data[&#x27;Amount&#x27;], bins=10)), annot=True, fmt=&#x27;d&#x27;, cmap=&#x27;Blues&#x27;)
+plt.title(&#x27;Distribution of Fraud vs. Non-Fraud by Transaction Amount&#x27;)
+plt.xlabel(&#x27;Transaction Amount Bins&#x27;)
+plt.ylabel(&#x27;Fraud Class (0: Non-Fraud, 1: Fraud)&#x27;)
+plt.show()
+</code></pre>
+<p>Output: Distribution of transaction amount</p>
+<hr class="dash">
+<h3>[#7]</h3>
+<pre class="code"><code>
+plt.figure(figsize=(10,5))
+sns.histplot(data[&quot;Amount&quot;], bins=50, kde=True)
+plt.title(&quot;Distribution of Transaction Amounts&quot;)
+plt.xlabel(&quot;Transaction Amount ($)&quot;)
+plt.ylabel(&quot;Frequency&quot;)
+plt.show()
+</code></pre>
+<p>Output: A majority of the transactions are very low (close to zero) There are very few high-value transactions. Fraudulent transactions usually involve very high-values or unusual amounts of purchases.Features Correlation plot</p>
+<hr class="dash">
+<h3>[#8]</h3>
+<pre class="code"><code>
+plt.figure(figsize=(12,6))
+sns.heatmap(data.corr(), cmap=&quot;coolwarm&quot;, annot=False)
+plt.title(&quot;Feature Correlation Heatmap&quot;)
+plt.show()
+</code></pre>
+<p>Output: This graph represents features that have a higher correlation marked red, lower correlation marked light blue and negative correlation marked blue</p>
+<hr class="dash">
+<h3>[#9]</h3>
+<pre class="code"><code>
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+features = [f&#x27;V{i}&#x27; for i in range(1, 29)]
+X = data[features]
+y = data[&#x27;Class&#x27;]
+
+# drop all NaN values
+X = X.dropna()
+y = y.dropna()
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=y, alpha=0.5)
+plt.title(&#x27;PCA Projection of V1–V28&#x27;)
+plt.xlabel(&#x27;PCA Component 1&#x27;)
+plt.ylabel(&#x27;PCA Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#10]</h3>
+<pre class="code"><code>
+# Visualize how this PCA matches up with our $ values
+amount_values = data.loc[X.index, &#x27;Amount&#x27;]
+
+# Create a scatter plot
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=amount_values, alpha=0.5)
+plt.title(&#x27;PCA Projection of V1–V28&#x27;)
+plt.xlabel(&#x27;PCA Component 1&#x27;)
+plt.ylabel(&#x27;PCA Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output: Consider using t-SNE or UMAP...</p>
+<hr class="dash">
+<h3>[#11]</h3>
+<pre class="code"><code>
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sample to speed up t-SNE (adjust size as needed)
+sampled_data = data.sample(n=5000, random_state=42)
+features = [f&#x27;V{i}&#x27; for i in range(1, 29)]
+X = sampled_data[features]
+y = sampled_data[&#x27;Class&#x27;]
+
+# Run t-SNE
+tsne = TSNE(n_components=2, perplexity=30, n_iter=1000, random_state=42)
+X_tsne = tsne.fit_transform(X)
+
+# Visualize
+tsne_df = pd.DataFrame({&#x27;TSNE1&#x27;: X_tsne[:, 0], &#x27;TSNE2&#x27;: X_tsne[:, 1], &#x27;Class&#x27;: y.values})
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=tsne_df, x=&#x27;TSNE1&#x27;, y=&#x27;TSNE2&#x27;, hue=&#x27;Class&#x27;, alpha=0.6)
+plt.title(&#x27;t-SNE Projection of V1–V28&#x27;)
+plt.xlabel(&#x27;t-SNE Component 1&#x27;)
+plt.ylabel(&#x27;t-SNE Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#12]</h3>
+<pre class="code"><code>
+import umap.umap_ as umap
+
+# Use the same sampled data
+reducer = umap.UMAP(n_components=2, random_state=42)
+X_umap = reducer.fit_transform(X)
+
+# Visualize
+umap_df = pd.DataFrame({&#x27;UMAP1&#x27;: X_umap[:, 0], &#x27;UMAP2&#x27;: X_umap[:, 1], &#x27;Class&#x27;: y.values})
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=umap_df, x=&#x27;UMAP1&#x27;, y=&#x27;UMAP2&#x27;, hue=&#x27;Class&#x27;, alpha=0.6)
+plt.title(&#x27;UMAP Projection of V1–V28&#x27;)
+plt.xlabel(&#x27;UMAP Component 1&#x27;)
+plt.ylabel(&#x27;UMAP Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output: I don't believe either of these will be as helpful.# Split data</p>
+<hr class="dash">
+<h3>[#13]</h3>
+<pre class="code"><code>
+# split the data between test and train, drop all NaN values
+X = data.drop(&#x27;Class&#x27;, axis=1)
+y = data[&#x27;Class&#x27;]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# X = data.drop(&#x27;Class&#x27;, axis=1)
+# y = data[&#x27;Class&#x27;]
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print(X.isna().sum())
+print(y.isna().sum())
+</code></pre>
+<p>Output:</p>
+<h2>Oversampling the imbalanced fraud data using SMOTE<span class="ln"></span></h2>
+<hr class="dash">
+<h3>[#14]</h3>
+<pre class="code"><code>
+smote = SMOTE(random_state=42)
+
+# Drop all NaN values
+X_train = X_train.dropna()
+y_train = y_train.dropna()
+
+X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
+
+# Print class distribution
+print(&quot;Class distribution before SMOTE:&quot;, Counter(y_train))
+print(&quot;Class distribution after SMOTE:&quot;, Counter(y_train_smote))
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#15]</h3>
+<pre class="code"><code>
+# create a graph to visualize the new data spread
+plt.figure(figsize=(10,5))
+sns.countplot(x=y_train_smote)
+plt.title(&quot;Fraud vs Non-Fraud Distribution &quot;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#16]</h3>
+<pre class="code"><code>
+# Create a new graph to visualize the PCA components V1-V28
+features = [f&#x27;V{i}&#x27; for i in range(1, 29)]
+X = X_train_smote[features]
+y = y_train_smote
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=y, alpha=0.5)
+plt.title(&#x27;PCA Projection of V1–V28&#x27;)
+plt.xlabel(&#x27;PCA Component 1&#x27;)
+plt.ylabel(&#x27;PCA Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<h2>Normalization<span class="ln"></span></h2>
+<hr class="dash">
+<h3>[#17]</h3>
+<pre class="code"><code>
+# data Standardization
+scaler = StandardScaler()
+X_train_smote_scaled = scaler.fit_transform(X_train_smote)
+X_test_scaled = scaler.transform(X_test)
+</code></pre>
+<hr class="dash">
+<h3>[#18]</h3>
+<pre class="code"><code>
+# Create a new graph after normalizing
+features = [f&#x27;V{i}&#x27; for i in range(1, 29)]
+X = X_train_smote_scaled
+y = y_train_smote
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=y, alpha=0.5)
+plt.title(&#x27;PCA Projection of V1–V28&#x27;)
+plt.xlabel(&#x27;PCA Component 1&#x27;)
+plt.ylabel(&#x27;PCA Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#19]</h3>
+<pre class="code"><code>
+# Create new graphs that show individual data
+features = [f&#x27;V{i}&#x27; for i in range(1, 29)]
+X = X_train_smote_scaled
+y = y_train_smote
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+# --- Graph for Class 0 ---
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=X_pca[y == 0, 0], y=X_pca[y == 0, 1], alpha=0.5) # Filter data for class 0
+plt.title(&#x27;PCA Projection of V1–V28 (Class 0)&#x27;)
+plt.xlabel(&#x27;PCA Component 1&#x27;)
+plt.ylabel(&#x27;PCA Component 2&#x27;)
+plt.show()
+
+# --- Graph for Class 1 ---
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=X_pca[y == 1, 0], y=X_pca[y == 1, 1], alpha=0.5, color=&#x27;orange&#x27;) # Filter data for class 1
+plt.title(&#x27;PCA Projection of V1–V28 (Class 1)&#x27;)
+plt.xlabel(&#x27;PCA Component 1&#x27;)
+plt.ylabel(&#x27;PCA Component 2&#x27;)
+plt.show()
+</code></pre>
+<p>Output:</p>
+<h2>Training Models<span class="ln"></span></h2>
+<p>Logistic Regression</p>
+<p>Random Forest</p>
+<p>XGBoost</p>
+<p>SVM (RBF kernel)</p>
+<p>KNN## Logistic Regression</p>
+<hr class="dash">
+<h3>[#20]</h3>
+<pre class="code"><code>
+# Using a Logistic Regression model we will train the data points for classificaiton
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_auc_score, roc_curve, ConfusionMatrixDisplay, precision_recall_curve, auc
+
+# train
+model = LogisticRegression()
+model.fit(X_train_smote_scaled, y_train_smote)
+
+# predict
+y_pred = model.predict(X_test_scaled)
+
+# print results
+print(&quot;Accuracy:&quot;, accuracy_score(y_test, y_pred))
+print(&quot;Confusion Matrix:\n&quot;, confusion_matrix(y_test, y_pred))
+cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+disp.plot()
+plt.show()
+print(&quot;Classification Report:\n&quot;, classification_report(y_test, y_pred))
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#21]</h3>
+<pre class="code"><code>
+# ROC and PR auc
+print(&quot;ROC AUC:&quot;, roc_auc_score(y_test, y_pred))
+precision, recall, thresholds = precision_recall_curve(y_test, y_pred)
+pr_auc = auc(recall, precision)
+print(&quot;PR AUC:&quot;, pr_auc)
+</code></pre>
+<p>Output: The logistic regression model is pretty accurate, with an accuracy score of 0.99 and a recall accuracy of 0.86. There are only 22 improper classifications with this model, as opposed to 8315 proper classifications.## Random Forest</p>
+<hr class="dash">
+<h3>[#22]</h3>
+<pre class="code"><code>
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# train
+model = RandomForestClassifier()
+model.fit(X_train_smote_scaled, y_train_smote)
+</code></pre>
+<p>Output:</p>
+<pre class="code"><code>
+RandomForestClassifier()
+</code></pre>
+<hr class="dash">
+<h3>[#23]</h3>
+<pre class="code"><code>
+# predict
+y_pred_rf = model.predict(X_test_scaled)
+
+# print results
+print(&quot;Accuracy:&quot;, accuracy_score(y_test, y_pred_rf))
+print(&quot;Confusion Matrix:\n&quot;, confusion_matrix(y_test, y_pred_rf))
+cm = confusion_matrix(y_test, y_pred_rf, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+disp.plot()
+plt.show()
+print(&quot;Classification Report:\n&quot;, classification_report(y_test, y_pred_rf))
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#24]</h3>
+<pre class="code"><code>
+# ROC and PR auc
+print(&quot;ROC AUC:&quot;, roc_auc_score(y_test, y_pred_rf))
+precision, recall, thresholds = precision_recall_curve(y_test, y_pred_rf)
+pr_auc = auc(recall, precision)
+print(&quot;PR AUC:&quot;, pr_auc)
+</code></pre>
+<p>Output: The Random Forest model is even more accurate than the logistic regression model, with an accuracy score of 0.998## Support Vector Machine</p>
+<hr class="dash">
+<h3>[#25]</h3>
+<pre class="code"><code>
+# Use an SVM to predict fraud in addition to SMOTE
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# train
+model = SVC(class_weight=&#x27;balanced&#x27;)
+model.fit(X_train_smote_scaled, y_train_smote)
+</code></pre>
+<p>Output:</p>
+<pre class="code"><code>
+SVC(class_weight=&#x27;balanced&#x27;)
+</code></pre>
+<hr class="dash">
+<h3>[#26]</h3>
+<pre class="code"><code>
+# predict
+y_pred_svm = model.predict(X_test_scaled)
+
+# results
+print(&quot;Accuracy:&quot;, accuracy_score(y_test, y_pred_svm))
+print(&quot;Confusion Matrix:\n&quot;, confusion_matrix(y_test, y_pred_svm))
+cm = confusion_matrix(y_test, y_pred_svm, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+disp.plot()
+plt.show()
+print(&quot;Classification Report:\n&quot;, classification_report(y_test, y_pred_svm))
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#27]</h3>
+<pre class="code"><code>
+# ROC and PR auc
+print(&quot;ROC AUC:&quot;, roc_auc_score(y_test, y_pred_svm))
+precision, recall, thresholds = precision_recall_curve(y_test, y_pred_svm)
+pr_auc = auc(recall, precision)
+print(&quot;PR AUC:&quot;, pr_auc)
+</code></pre>
+<p>Output:</p>
+<h2>KNN<span class="ln"></span></h2>
+<hr class="dash">
+<h3>[#28]</h3>
+<pre class="code"><code>
+# Train using a KNN on the standardized, SMOTE data
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+
+# Split data
+X = data.drop(&#x27;Class&#x27;, axis=1)
+y = data[&#x27;Class&#x27;]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Imputation using SimpleImputer for features (X)
+imputer = SimpleImputer(strategy=&#x27;mean&#x27;)  # Or other strategies like &#x27;median&#x27;, &#x27;most_frequent&#x27;
+X_train_imputed = imputer.fit_transform(X_train)
+X_test_imputed = imputer.transform(X_test)
+
+# Since &#x27;Class&#x27; is categorical, we might impute with the most frequent value
+from sklearn.impute import SimpleImputer
+imputer_y = SimpleImputer(strategy=&#x27;most_frequent&#x27;)
+y_train = imputer_y.fit_transform(y_train.values.reshape(-1, 1))
+y_test = imputer_y.transform(y_test.values.reshape(-1, 1))
+
+# Now use X_train_imputed and X_test_imputed in the KNN model:
+knn_model = KNeighborsClassifier(n_neighbors=5)
+knn_model.fit(X_train_imputed, y_train.ravel()) # use ravel() to avoid warning
+
+# Make Predictions
+y_pred_knn = knn_model.predict(X_test_imputed)
+</code></pre>
+<hr class="dash">
+<h3>[#29]</h3>
+<pre class="code"><code>
+# Evaluate the model
+print(&quot;Accuracy:&quot;, accuracy_score(y_test, y_pred_knn))
+
+# print results
+print(&quot;Confusion Matrix:\n&quot;, confusion_matrix(y_test, y_pred_knn))
+cm = confusion_matrix(y_test, y_pred_knn, labels=knn_model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=knn_model.classes_)
+disp.plot()
+plt.show()
+print(&quot;Classification Report:\n&quot;, classification_report(y_test, y_pred_knn))
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#30]</h3>
+<pre class="code"><code>
+# ROC and PR auc
+print(&quot;ROC AUC:&quot;, roc_auc_score(y_test, y_pred_knn))
+precision, recall, thresholds = precision_recall_curve(y_test, y_pred_knn)
+pr_auc = auc(recall, precision)
+print(&quot;PR AUC:&quot;, pr_auc)
+</code></pre>
+<p>Output:</p>
+<h2>XGBoost<span class="ln"></span></h2>
+<hr class="dash">
+<h3>[#31]</h3>
+<pre class="code"><code>
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from xgboost import XGBClassifier
+# train
+xg_model = XGBClassifier(use_label_encoder=False, eval_metric=&#x27;logloss&#x27;)
+xg_model.fit(X_train_smote_scaled, y_train_smote)
+</code></pre>
+<p>Output:</p>
+<pre class="code"><code>
+XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=&#x27;logloss&#x27;,
+              feature_types=None, gamma=None, grow_policy=None,
+              importance_type=None, interaction_constraints=None,
+              learning_rate=None, max_bin=None, max_cat_threshold=None,
+              max_cat_to_onehot=None, max_delta_step=None, max_depth=None,
+              max_leaves=None, min_child_weight=None, missing=nan,
+              monotone_constraints=None, multi_strategy=None, n_estimators=None,
+              n_jobs=None, num_parallel_tree=None, random_state=None, ...)
+</code></pre>
+<hr class="dash">
+<h3>[#32]</h3>
+<pre class="code"><code>
+# predict
+y_pred_xg = xg_model.predict(X_test_scaled)
+
+# print results
+print(&quot;Accuracy:&quot;, accuracy_score(y_test, y_pred_xg))
+print(&quot;Confusion Matrix:\n&quot;, confusion_matrix(y_test, y_pred_xg))
+cm = confusion_matrix(y_test, y_pred_xg, labels=xg_model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=xg_model.classes_)
+disp.plot()
+plt.show()
+print(&quot;Classification Report:\n&quot;, classification_report(y_test, y_pred_xg))
+</code></pre>
+<p>Output:</p>
+<hr class="dash">
+<h3>[#33]</h3>
+<pre class="code"><code>
+# ROC and PR auc
+print(&quot;ROC AUC:&quot;, roc_auc_score(y_test, y_pred_xg))
+precision, recall, thresholds = precision_recall_curve(y_test, y_pred_xg)
+pr_auc = auc(recall, precision)
+print(&quot;PR AUC:&quot;, pr_auc)
+</code></pre>
+<p>Output:</p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

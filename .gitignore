@@ -1,8 +1,2 @@
-/public
-*.env
-/private
-.env
-/flattened
-.hugo_build.lock
-
-/public
+.DS_Store
+.claude/

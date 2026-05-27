@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MLB Hall of Fame Predictor — Eric Spencer</title>
+<meta name="description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>MLB Hall of Fame Predictor<span class="ln"></span></h2>
+<p class="meta">A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/MLB-Hackathon" target="_blank" rel="noopener">https://github.com/EricSpencer00/MLB-Hackathon</a></p>
+<hr class="dash">
+<p>This was my entry for the Google Cloud x MLB hackathon back in December. The prompt was open-ended around baseball data, and I picked the Hall of Fame angle because the question is fun to argue about and the dataset is actually clean enough to model without spending the whole weekend on data prep.</p>
+<p>The data is the Lahman Baseball Database (1871-2023) — every player, every season, batting/pitching/fielding splits, awards, and the Hall of Fame ballot history. The pitch was: take a current player's career-to-date stats, feed them into a model trained on the historical record of who got inducted and who didn't, and get a probability back. Are we looking at a future Hall of Famer or a regular?</p>
+<p>Most of the actual hackathon time was spent in <code>merging.py</code>. Lahman ships as a dozen separate CSVs that you have to aggregate per-player and then join — sum every season of batting into a career line, do the same for pitching and fielding, count awards per player, then left-join the Hall of Fame ballot table to get the <code>inducted</code> label. There's a lot of room here to be clever (era adjustments, advanced metrics, position weighting) and I did none of it. Hackathon scope.</p>
+<p>The features I ended up training on are mostly the obvious counting stats — games, at-bats, runs, hits, doubles, triples, home runs, RBIs, walks, strikeouts on the batting side; wins, losses, ERA, saves, K's on the pitching side; putouts, assists, errors on the fielding side; plus an <code>AwardsCount</code> column I built by aggregating <code>AwardsPlayers.csv</code>. Twenty-three features total, all numeric.</p>
+<pre class="code"><code>
+feature_columns = [
+    &#x27;BattingGames&#x27;, &#x27;AtBats&#x27;, &#x27;Runs&#x27;, &#x27;Hits&#x27;, &#x27;Doubles&#x27;, &#x27;Triples&#x27;, &#x27;HomeRuns&#x27;, &#x27;RBIs&#x27;, &#x27;Walks&#x27;, &#x27;Strikeouts&#x27;,
+    &#x27;Wins&#x27;, &#x27;Losses&#x27;, &#x27;PitchingGames&#x27;, &#x27;GamesStarted&#x27;, &#x27;CompleteGames&#x27;, &#x27;Saves&#x27;, &#x27;PitchingStrikeouts&#x27;, &#x27;EarnedRunAverage&#x27;,
+    &#x27;FieldingGames&#x27;, &#x27;Putouts&#x27;, &#x27;Assists&#x27;, &#x27;Errors&#x27;, &#x27;AwardsCount&#x27;
+]
+
+features = data[feature_columns]
+labels = data[&#x27;inducted&#x27;]
+
+train_features, test_features, train_labels, test_labels = train_test_split(
+    features, labels, test_size=0.2, random_state=42
+)
+
+skmodel = DecisionTreeClassifier()
+skmodel.fit(train_features, train_labels)
+print(&#x27;accuracy is:&#x27;, skmodel.score(test_features, test_labels))
+</code></pre>
+<p>The model is a vanilla scikit-learn <code>DecisionTreeClassifier</code> — no tuning, no ensemble, no cross-validation beyond a single 80/20 split. The class imbalance is real: a tiny fraction of MLB players ever make the Hall, so raw accuracy is a misleading number to chase. A "predict not inducted for everyone" baseline already gets you into the high 90s. I'd want to look at precision/recall on the inducted class before claiming the model is actually doing anything, and a fair-weekend version of this would swap in a random forest or gradient boosting with proper stratified CV.</p>
+<p>The cloud half of the project is in <code>interact.py</code> and a Vertex AI endpoint — <code>train.py</code> has the commented-out GCS upload, the idea being you'd push <code>model.joblib</code> to a bucket, deploy it to Vertex, and hit it from anywhere with a prediction call. I had the wiring in place but ran out of time to actually deploy the endpoint before the deadline, so the production-y version is more of a sketch.</p>
+<p>Things I'd do with another weekend on this: real per-season time-series instead of career totals (the dataset is called <code>_Timeseries</code> for a reason but I collapsed it), position-aware features, era adjustments so a 1920s slugger doesn't get penalized for not having modern counting stats, and an actual frontend where you pick a current player and get a probability back. Also, evaluating against players who recently became eligible but aren't inducted yet would be a more honest test than a random split.</p>
+<p><a href="https://github.com/EricSpencer00/MLB-Hackathon" target="_blank" rel="noopener">GitHub Repo</a></p>
+<hr class="dash">
+<p><i>Written with AI.</i></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

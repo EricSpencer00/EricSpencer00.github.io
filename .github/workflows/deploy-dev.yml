@@ -1,4 +1,4 @@
-name: Deploy to Dev Server
+name: Deploy Backup to Dev Server
 
 on:
   push:
@@ -9,61 +9,35 @@ permissions:
   contents: read
 
 env:
-  # Hugo expects the baseURL to match where the site will be served.
-  HUGO_BASEURL: "https://dev.ericspencer.us/"
   DEV_CUSTOM_DOMAIN: "dev.ericspencer.us"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.145.0'
-          extended: true
-
-      - name: Build Hugo site
-        run: |
-          rm -rf public
-          hugo --minify --baseURL "$HUGO_BASEURL"
-
-      - name: Verify Hugo build output
-        run: |
-          if [ ! -d "public" ]; then
-            echo "Error: Hugo build did not generate the public/ directory."
-            exit 1
-          fi
-
-      - name: Deploy to dev site repo
+      - name: Deploy backup-site to dev repo
         env:
-          DEV_DEPLOY_TOKEN: ${{ secrets.DEV_DEPLOY_TOKEN }}   # <-- PAT, not GITHUB_TOKEN
+          DEV_DEPLOY_TOKEN: ${{ secrets.DEV_DEPLOY_TOKEN }}
         run: |
           set -x
-          
           if [ -z "$DEV_DEPLOY_TOKEN" ]; then
             echo "ERROR: DEV_DEPLOY_TOKEN secret is not set!"
             exit 1
           fi
-          
+
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Clone with authentication embedded in URL (URL-encoded)
           git clone "https://oauth2:${DEV_DEPLOY_TOKEN}@github.com/EricSpencer00/dev.ericspencer00.github.io.git" /tmp/devsite
 
-          # Wipe everything except .git/ (glob * misses dotfiles; use find so
-          # stale .github/ workflows etc. don't persist across deploys).
           find /tmp/devsite -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-          cp -a "$GITHUB_WORKSPACE/public/." /tmp/devsite/
+          cp -a "$GITHUB_WORKSPACE/backup-site/." /tmp/devsite/
 
-          # Custom domain for GitHub Pages
           echo "$DEV_CUSTOM_DOMAIN" > /tmp/devsite/CNAME
 
           cd /tmp/devsite

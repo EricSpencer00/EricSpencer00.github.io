@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Suno for iPad &mdash; Eric Spencer</title>
+<meta name="description" content="iPad-native Suno concept by Eric Spencer.">
+</head>
+<body>
+
+<h1>Suno for iPad</h1>
+
+<p><em>An iPad-native rebuild of <a href="https://suno.com">suno.com</a>. Three columns, real API, streaming playback. Built in one hour with Claude Code.</em></p>
+
+<hr>
+
+<figure>
+<img src="screenshot.png" alt="Suno for iPad running in the iPad simulator" width="900">
+<figcaption><small>Sidebar, Create form, Workspace songs panel, persistent transport. Streaming a real clip from <code>studio-api-prod.suno.com</code>.</small></figcaption>
+</figure>
+
+<hr>
+
+<h2>What</h2>
+
+<p>Suno&rsquo;s iOS app on iPad is the iPhone app at 2x. This isn&rsquo;t. It is a SwiftUI iPad application modeled after the desktop webapp at <a href="https://suno.com/create">suno.com/create</a>: sidebar, center workspace, song list, persistent transport.</p>
+
+<dl>
+<dt>Layout</dt><dd>Three-column <code>NavigationSplitView</code>. Sidebar mirrors the webapp left rail. Center switches by selection. Right pane is always the <em>Workspaces</em> song list.</dd>
+<dt>Transport</dt><dd>Persistent across the entire window with a buffered-region indicator under the playhead.</dd>
+<dt>Stack</dt><dd>SwiftUI, AVFoundation, iPadOS 17+. No third-party packages.</dd>
+<dt>Auth</dt><dd>Bearer JWT against <code>studio-api-prod.suno.com</code>. Real model identifiers (<code>chirp-fenix</code>, <code>chirp-crow</code>, <code>chirp-bluejay</code>, <code>chirp-auk</code>, <code>chirp-auk-turbo</code>, <code>chirp-v4</code>).</dd>
+</dl>
+
+<h2>Why</h2>
+
+<p>Apple device ownership, 2026:</p>
+
+<dl>
+<dt>iPhone</dt><dd>88% of Apple users.</dd>
+<dt>iPad</dt><dd>73%.</dd>
+<dt>Mac</dt><dd>50%.</dd>
+</dl>
+
+<p>The iPad audience is bigger than the Mac market. Shipping a phone-shaped app there leaves value on the table.</p>
+
+<h2>Streaming</h2>
+
+<p>Suno populates <code>audio_url</code> the moment a clip enters <code>streaming</code> status, roughly one second after submit. The MP3 is served from S3 with <code>Accept-Ranges: bytes</code>. The player attaches an <code>AVPlayer</code> against that URL during polling and starts playback as bytes arrive.</p>
+
+<p>Time from <em>Create</em> tap to first audible note: about three to five seconds.</p>
+
+<h2>Endpoints</h2>
+
+<pre>
+POST /api/generate/v2/                submit
+GET  /api/feed/?ids=&lt;id1&gt;,&lt;id2&gt;,...   poll
+POST /api/feed/v3                     library
+POST /api/unified/homepage/explore    discover
+GET  /api/billing/info/               credits, model gating
+</pre>
+
+<p><small>Source is private. Available on request.</small></p>
+
+<hr>
+
+<h2>Other work</h2>
+
+<dl>
+<dt><a href="https://stockgenie.app">stockgenie.app</a></dt>
+<dd>SwiftUI iOS app, daily AI-picked stock list. Cloudflare Workers backend, StoreKit subscriptions, ASO-ready. Currently in App Store review. <a href="https://github.com/EricSpencer00/StockGenie">github</a>.</dd>
+
+<dt><a href="https://github.com/EricSpencer00/rvc-artist">rvc-artist</a></dt>
+<dd>Earlier exploration in audio synthesis and lyric generation. Genius API ingestion, model fine-tuning, Flask service, end-to-end pipeline. Archived as the legal landscape around training on commercial catalogues evolved &mdash; the work that informed the Suno project above.</dd>
+</dl>
+
+<hr>
+
+<h2>About</h2>
+
+<p>Eric Spencer. Computer Science &amp; Information Systems, Loyola University Chicago, May 2026. Based in Chicago. Builds AI tools, native apps, and small useful things.</p>
+
+<p>Recent work: a formal-methods <a href="https://ericspencer.us/projects/2025/interactive-microwave-tla/">interactive microwave</a> in TLA<sup>+</sup> on a JVM, a <a href="https://ericspencer.us/projects/2025/flatten-repo/">VS&nbsp;Code extension</a> for pasting a small codebase into a web LLM when Cursor credits run out, a <a href="https://ericspencer.us/projects/2025/terminalgpt/">terminal ChatGPT wrapper</a>, and the iPad concept above.</p>
+
+<p>Recording as <em>Famous Moji</em> on the major streaming services and on <a href="https://suno.com">suno.com</a> as <a href="https://suno.com/@famousmoji">@famousmoji</a>.</p>
+
+<hr>
+
+<address>
+<a href="https://ericspencer.us">ericspencer.us</a> &middot;
+<a href="https://github.com/EricSpencer00">github</a> &middot;
+<a href="https://www.linkedin.com/in/EricSpencer00">linkedin</a> &middot;
+<a href="https://x.com/EricSpencer00">x</a> &middot;
+<a href="https://huggingface.co/EricSpencer00">hugging&nbsp;face</a> &middot;
+<a href="mailto:ericspencer1450@gmail.com">ericspencer1450@gmail.com</a>
+<br>
+<small>Last modified 27 April 2026.</small>
+</address>
+
+</body>
+</html>

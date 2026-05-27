@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>tunes2tube — Eric Spencer</title>
+<meta name="description" content="A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>tunes2tube<span class="ln"></span></h2>
+<p class="meta">A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/tunes2tube-mac" target="_blank" rel="noopener">https://github.com/EricSpencer00/tunes2tube-mac</a></p>
+<hr class="dash">
+<p><a href="https://github.com/EricSpencer00/tunes2tube-mac" target="_blank" rel="noopener">GitHub Repo</a></p>
+<p>I wanted to attach a cover image to a handful of MP3s and could not find a way to do it that didn't involve uploading the files to some random web service, signing in with a Google account, or watching an ad for a "DRM-free converter." The thing I actually needed was about four lines of <code>ffmpeg</code>. So I wrapped it in a SwiftUI window and called it a day.</p>
+<p><code>tunes2tube-mac</code> is a macOS app (13+) that does exactly one thing: you drop a cover image into one slot, drop one or more audio files into another, optionally fill in album / artist / year, hit <code>⌘↩</code>, and it writes out <code>.mp3</code> files with the cover embedded as an ID3v2 APIC frame. The cover image itself is also copied into the output folder so you have a clean album-art file ready to use somewhere else. Output goes to <code>~/Music/Tunes2Tube/<Album-or-Artist>/</code> by default. If the input is already an MP3 the audio stream is copied with no re-encode; anything else gets <code>libmp3lame</code> at 320 kbps.</p>
+<p>The name is a nod to <a href="https://www.tunes2tube.com/" target="_blank" rel="noopener">tunes2tube.com</a>, which is the web tool I would have otherwise used. The original publishes the resulting video to YouTube, which is a nice feature but requires a Google OAuth client and a registered GCP project. Per my own project brief — anything that needs GCP gets dropped — I cut the YouTube piece entirely. The app's contract is "make tagged files; you decide where they go." If you want to publish, the README has the one-line <code>ffmpeg</code> command to turn the MP3 plus cover into a still-image video, and you upload that yourself.</p>
+<h2>How it actually works<span class="ln"></span></h2>
+<p>There is not much to it. The UI is a SwiftUI window with two drop zones and a small metadata form. A <code>@MainActor</code> view model (<code>ProcessingSession</code>) holds the state and drives <code>AudioProcessor</code>, which is a thin wrapper around <code>Foundation.Process</code> that shells out to <code>ffmpeg</code>. <code>ffmpeg</code> does the real work — read the audio, attach the cover as an APIC frame, write the MP3. The app looks for the binary at <code>/opt/homebrew/bin/ffmpeg</code>, <code>/usr/local/bin/ffmpeg</code>, or via <code>which ffmpeg</code>, and if it can't find one it surfaces a clear error instead of pretending the run succeeded.</p>
+<p>Supported audio formats in, MP3 out: <code>mp3 wav flac m4a aac aiff ogg opus</code>. Supported cover formats: <code>.png</code>, <code>.jpg</code>, <code>.webp</code>. Per-file failures don't kill the batch — each track gets its own result and the UI shows you which ones made it.</p>
+<p>There is also a <code>Makefile</code> that wraps <code>swift build</code> to produce a real <code>.app</code> bundle (Info.plist, ad-hoc codesigned). It won't be notarized, because that costs $99/year and this is a thing I built for myself in an evening.</p>
+<h2>The local-first thing<span class="ln"></span></h2>
+<p>This is a small project but it sits next to a habit I've been more deliberate about lately — see the <a href="/backup-site/private-whisper-privacy.html">Private Whisper privacy work</a> for the longer version. The pattern I keep running into is some entirely-mechanical task (transcribe audio, embed cover art, convert a file) that has perfectly capable local tooling on macOS, but the easiest discoverable option on Google is a website that wants your files on someone else's disk. There is no good reason an MP3 tagger should ever leave your machine. So when I need one and the existing local options are unfriendly or abandoned, I'm increasingly willing to write the SwiftUI shell myself.</p>
+<h2>What's not done<span class="ln"></span></h2>
+<p>It's MVP. The roadmap in the README is the honest list — per-track title editing (right now it uses the filename), a bitrate toggle for re-encoded inputs, an optional video output for the YouTube workflow (without the GCP piece), a universal binary release in GitHub Releases, and Sparkle auto-update if I ever care enough to set it up. PRs welcome — the codebase is small enough that you can read the whole thing in one sitting.</p>
+<hr class="dash">
+<p><i>Written with AI.</i></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

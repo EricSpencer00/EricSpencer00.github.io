@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COMP 388 LLM Homework — Eric Spencer</title>
+<meta name="description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>COMP 388 LLM Homework<span class="ln"></span></h2>
+<p class="meta">Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">https://github.com/EricSpencer00/comp388-llm</a></p>
+<hr class="dash">
+<p>COMP 388 at Loyola is the special-topics CS course — whatever the professor wants to teach that semester. The Spring 2026 version was on large language models, which lined up nicely with the TLA+ and fine-tuning work I've been doing at ai4fm. So most of the homework felt less like homework and more like a structured excuse to poke at things I was already curious about. This repo holds the two assignments I actually saved.</p>
+<h3>HW1 — prompting GPT-2 and a tiny evaluation</h3>
+<p>The first assignment was the "hello world" of loading a Hugging Face model and running it. The script (<code>llm<i>prompt.py</code>) loads <code>gpt2</code> via <code>transformers</code>, takes a prompt off the command line, and does manual token-by-token generation instead of calling <code>.generate()</code>. The reason for that is annoying: on my M1 Mac, calling <code>.generate()</code> would crash with a bus error half the time, and so would single-word prompts. I ended up forcing CPU-only, setting <code>PYTORCH</i>ENABLE<i>MPS</i>FALLBACK=1</code>, and writing my own sampling loop just to get reliable runs.</p>
+<p>Then the assignment asked for a "simple evaluation," which I did two ways:</p>
+<ul>
+<li>A hand-rolled True/False dataset of 10 Wikipedia-style facts (<code>evaluate<i>wiki</i>tf.py</code>). GPT-2 got 6/10. Every one it got wrong was a false statement that it confidently called true.</li>
+<li>BoolQ from Hugging Face datasets, 20 examples, run twice — once with the supporting passage and once without (<code>evaluate_boolq.py</code>). Both runs got 45.0%. Identical. Looking at the outputs, GPT-2 was basically answering "yes" to everything, so the passage didn't matter.</li>
+</ul>
+<p>Not a deep result, but it was the first time I'd watched a small model fail in a clearly characterizable way rather than just "be bad."</p>
+<h3>HW2 — base vs instruction-tuned, and few-shot</h3>
+<p>The second assignment was the more interesting one. The task was to pick a small open model that ships both a base and an instruction-tuned variant, compare them, and then try few-shot prompting on the base model. I used Qwen2.5-0.5B and Qwen2.5-0.5B-Instruct — same architecture, same tokenizer, only difference is the instruction-tuning step.</p>
+<p>The base-vs-chat comparison was textbook: the base model treats your prompt like a document to continue ("What is the capital of France?" → it generates more questions or bullet points), and the chat model just answers "The capital of France is Paris." Fine.</p>
+<p>The evaluation was on SNLI (natural language inference), 100 examples, greedy decoding:</p>
+<p>| Configuration            | Accuracy | |--------------------------|----------| | Chat model (zero-shot)   | 61%      | | Base model (zero-shot)   | 64%      | | Base model (few-shot)    | 61%      |</p>
+<p>The base model beating the chat model zero-shot was not the expected outcome. And few-shot made it <i>worse</i>, not better. My read is that at 0.5B the instruction tuning is overfitting to chatty response shapes that hurt on a constrained-label task like NLI, and the few-shot prompts inflate the context enough that the small model loses the plot. I also hit CPU/memory ceilings on the few-shot run because the in-context examples triple the prompt length — a GPU or a quantized model would've finished cleanly.</p>
+<h3>What it's good for</h3>
+<p>It's coursework, not a product. But the HW2 result — small instruction-tuned model getting beaten by its base on a classification task — has stuck with me and is the kind of thing I think about when picking models for the ai4fm fine-tuning work. The whole repo is honest about the constraints: pinned to Python 3.11, macOS M1, CPU-only, hardcoded paths because the assignment template wanted it that way.</p>
+<p><a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">GitHub Repo</a></p>
+<hr class="dash">
+<p><i>Written with AI.</i></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

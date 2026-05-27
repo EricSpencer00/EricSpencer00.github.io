@@ -1,0 +1,220 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Machine Learning Fraud Identifier — Eric Spencer</title>
+<meta name="description" content="Analyze different Machine Learning algorithms to identify fraud within a classified dataset">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>Machine Learning Fraud Identifier<span class="ln"></span></h2>
+<p class="meta">Analyze different Machine Learning algorithms to identify fraud within a classified dataset</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/fraud-predictor" target="_blank" rel="noopener">https://github.com/EricSpencer00/fraud-predictor</a></p>
+<hr class="dash">
+<p>My group project for COMP 379: Machine Learning analyzed different ML algorithms for detecting fraud within a dataset that was anonymized and PCA'ed.</p>
+<p><a href="https://colab.research.google.com/drive/1dP9ev-j5ZRE3_MmWzLhHxXAbEtG5qKbT?usp=sharing" target="_blank" rel="noopener">https://colab.research.google.com/drive/1dP9ev-j5ZRE3_MmWzLhHxXAbEtG5qKbT?usp=sharing</a></p>
+<h2>Imports<span class="ln"></span></h2>
+<pre class="code"><code>
+import os
+import subprocess
+
+import numpy as np
+import pandas as pd
+
+from sklearn.model_selection import StratifiedKFold, cross_validate
+from sklearn.preprocessing import StandardScaler
+
+from imblearn.pipeline import Pipeline
+from imblearn.over_sampling import SMOTE
+
+from sklearn.linear_model    import LogisticRegression
+from sklearn.ensemble        import RandomForestClassifier
+from sklearn.svm             import SVC
+from xgboost                 import XGBClassifier
+from lightgbm                import LGBMClassifier
+from sklearn.neighbors       import KNeighborsClassifier
+</code></pre>
+<h2>Download the Dataset<span class="ln"></span></h2>
+<pre class="code"><code>
+def download_dataset():
+    &quot;&quot;&quot;Download the Kaggle creditcardfraud dataset if not present.&quot;&quot;&quot;
+    if not os.path.exists(&#x27;creditcard.csv&#x27;):
+        print(&quot;→ Downloading dataset via Kaggle CLI...&quot;)
+        subprocess.run([
+            &#x27;kaggle&#x27;, &#x27;datasets&#x27;, &#x27;download&#x27;,
+            &#x27;-d&#x27;, &#x27;mlg-ulb/creditcardfraud&#x27;,
+            &#x27;-p&#x27;, &#x27;.&#x27;, &#x27;--unzip&#x27;
+        ], check=True)
+    else:
+        print(&quot;→ creditcard.csv already exists, skipping download.&quot;)
+
+# Run the download
+download_dataset()
+</code></pre>
+<h2>Load and Preview the Data<span class="ln"></span></h2>
+<pre class="code"><code>
+def load_data():
+    &quot;&quot;&quot;Load the CSV into a pandas DataFrame.&quot;&quot;&quot;
+    return pd.read_csv(&#x27;creditcard.csv&#x27;)
+
+# Load and preview
+df = load_data()
+df.head()
+</code></pre>
+<h2>Model Comparison Function<span class="ln"></span></h2>
+<pre class="code"><code>
+def compare_models(df):
+    # 1) Features &amp; target
+    features = [f&#x27;V{i}&#x27; for i in range(1,29)] + [&#x27;Amount&#x27;, &#x27;Time&#x27;]
+    X = df[features].values
+    y = df[&#x27;Class&#x27;].values
+
+    # 2) Classifiers to compare
+    models = {
+        &quot;LogisticRegression&quot;: LogisticRegression(max_iter=1000, class_weight=&#x27;balanced&#x27;),
+        &quot;RandomForest&quot;      : RandomForestClassifier(n_estimators=100, class_weight=&#x27;balanced&#x27;),
+        &quot;XGBoost&quot;           : XGBClassifier(use_label_encoder=False, eval_metric=&#x27;logloss&#x27;),
+        &quot;LightGBM&quot;          : LGBMClassifier(),
+        &quot;SVM (RBF)&quot;         : SVC(kernel=&#x27;rbf&#x27;, probability=True, class_weight=&#x27;balanced&#x27;),
+        &quot;KNN&quot;               : KNeighborsClassifier(n_neighbors=5)
+    }
+
+    # 3) Pipeline builder
+    def make_pipeline(clf):
+        return Pipeline([
+            (&quot;smote&quot;,      SMOTE(random_state=42)),
+            (&quot;scaler&quot;,     StandardScaler()),
+            (&quot;classifier&quot;, clf)
+        ])
+
+    # 4) Scoring metrics
+    scoring = {
+        &quot;accuracy&quot; : &quot;accuracy&quot;,
+        &quot;precision&quot;: &quot;precision&quot;,
+        &quot;recall&quot;   : &quot;recall&quot;,
+        &quot;f1&quot;       : &quot;f1&quot;,
+        &quot;roc_auc&quot;  : &quot;roc_auc&quot;,
+        &quot;pr_auc&quot;   : &quot;average_precision&quot;
+    }
+
+    # 5) Stratified 5-fold CV
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    results = []
+
+    for name, clf in models.items():
+        print(f&quot;Evaluating {name}...&quot;)
+        pipe = make_pipeline(clf)
+        cv_res = cross_validate(pipe, X, y,
+                                cv=cv, scoring=scoring,
+                                return_train_score=False, n_jobs=-1)
+        # Aggregate mean scores
+        row = {metric: np.mean(cv_res[f&quot;test_{metric}&quot;]) for metric in scoring}
+        row[&quot;model&quot;] = name
+        results.append(row)
+
+    # 6) Results DataFrame
+    df_res = pd.DataFrame(results).set_index(&quot;model&quot;)
+    df_res = df_res.sort_values(&quot;roc_auc&quot;, ascending=False)
+    return df_res
+</code></pre>
+<h2>Run Model Comparison<span class="ln"></span></h2>
+<pre class="code"><code>
+# Run comparison and display results
+results_df = compare_models(df)
+print(&quot;=== Model Comparison Results ===&quot;)
+results_df
+</code></pre>
+<h3>Example Output Table</h3>
+<p>| Model              | Accuracy | Precision | Recall  | F1      | ROC AUC  | PR AUC  | |--------------------|----------|-----------|---------|---------|----------|---------| | LogisticRegression | 0.990948 | 0.148254  | 0.89025 | 0.25403 | 0.978925 | 0.75097 | | XGBoost            | 0.999466 | 0.850421  | 0.83944 | 0.84474 | 0.977823 | 0.85753 | | RandomForest       | 0.999530 | 0.892663  | 0.82723 | 0.85865 | 0.968977 | 0.85102 | | SVM (RBF)          | 0.997630 | 0.409137  | 0.82117 | 0.54560 | 0.964244 | 0.70854 | | LightGBM           | 0.999038 | 0.684689  | 0.83129 | 0.74998 | 0.962026 | 0.81331 | | KNN                | 0.998318 | 0.509715  | 0.81709 | 0.62733 | 0.914223 | 0.62561 |</p>
+<p>The above Jupyter notebook was my individual contribution to the group project along with creating dataset visualizations in the <a href="../fraud-predictor-full">notebook report</a></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>

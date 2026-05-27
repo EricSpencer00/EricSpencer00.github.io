@@ -1,0 +1,111 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skeuomorphic Project Desk — Eric Spencer</title>
+<meta name="description" content="">
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.counter{border:1px solid var(--rule);background:#0d0b09;color:#39ff7a;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:1px 6px;letter-spacing:.18em}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
+<nav class="top">~/projects &nbsp; <a href="../index.html">index</a> &nbsp;·&nbsp; <a href="../research.html">research</a> &nbsp;·&nbsp; <a href="../projects.html">[projects]</a></nav>
+<hr>
+<p class="back">&larr; <a href="../projects.html">back to projects</a></p>
+<h2>Skeuomorphic Project Desk<span class="ln"></span></h2>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/EricSpencer00.github.io" target="_blank" rel="noopener">https://github.com/EricSpencer00/EricSpencer00.github.io</a></p>
+<hr class="dash">
+<p><div class="skeuomorphic-wrapper"> <div class="skeuomorphic-container"> <img src="/skeuomorphism/desk.jpg" alt="Skeuomorphic Project Desk" class="skeuomorphic-image"> <svg viewBox="0 0 1024 559" class="skeuomorphic-overlay"> <!-- AI & LLM Tools --> <a href="/projects/2025/terminalgpt/" title="Terminal GPT"> <rect x="20" y="45" width="160" height="260" class="clickable-area" /> </a> <a href="/projects/2025/llmjammer/" title="llmjammer"> <rect x="320" y="375" width="70" height="110" class="clickable-area" /> </a> <a href="/projects/2025/flatten-repo/" title="flatten-repo"> <rect x="265" y="195" width="100" height="160" class="clickable-area" /> </a> <a href="/miscellaneous/tell-ai/" title="How to Tell if AI"> <rect x="435" y="450" width="100" height="60" class="clickable-area" /> </a> <a href="/projects/2025/sign-language/" title="Sign Language Interpreter"> <rect x="480" y="480" width="200" height="60" class="clickable-area" /> </a></p>
+<p><!-- Networking & Security --> <a href="/projects/2025/udp-server-binary/" title="UDP Server (Binary)"> <rect x="265" y="450" width="160" height="80" class="clickable-area" /> </a> <a href="/projects/2025/gitkey/" title="Git Key Guardian"> <rect x="10" y="315" width="190" height="110" class="clickable-area" /> </a> <a href="/projects/2023/bbomb/" title="Binary Bomb Puzzle"> <rect x="135" y="485" width="130" height="70" class="clickable-area" /> </a></p>
+<p><!-- Health & Bio-Tech --> <a href="/projects/2025/glucopilot/" title="GluCoPilot (Dexcom)"> <rect x="200" y="365" width="120" height="160" class="clickable-area" /> </a> <a href="/projects/2024/dailytask/" title="Daily Task Tracker"> <rect x="385" y="435" width="50" height="90" class="clickable-area" /> </a> <a href="/projects/2024/one-rep-max/" title="One Rep Max Calc"> <rect x="10" y="480" width="190" height="70" class="clickable-area" /> </a></p>
+<p><!-- Games & Sim --> <a href="/miscellaneous/gameoflife/" title="Conway's Game of Life"> <rect x="535" y="450" width="110" height="60" class="clickable-area" /> </a> <a href="/projects/2025/connect-4/" title="Connect 4 Engine"> <rect x="645" y="345" width="140" height="210" class="clickable-area" /> </a> <a href="/miscellaneous/chess/" title="Chess & Blackjack"> <rect x="635" y="450" width="130" height="60" class="clickable-area" /> </a></p>
+<p><!-- Web & Software --> <a href="/projects/2025/interactive-microwave-tla/" title="TLA+ Microwave"> <rect x="745" y="25" width="210" height="160" class="clickable-area" /> </a> <a href="/miscellaneous/windows/" title="Windows Design Site"> <rect x="795" y="345" width="110" height="60" class="clickable-area" /> </a> <a href="/projects/2025/youtube-dl/" title="YouTube Downloader"> <rect x="905" y="325" width="90" height="90" class="clickable-area" /> </a> <a href="/miscellaneous/search-engine/" title="Search Engine"> <rect x="775" y="415" width="210" height="160" class="clickable-area" /> </a></p>
+<p><!-- Personal / Retro --> <a href="/resume/" title="CV / Resume"> <rect x="675" y="450" width="190" height="80" class="clickable-area" /> </a> <a href="/miscellaneous/my-zshrc/" title="~/.zshrc file"> <rect x="575" y="125" width="80" height="110" class="clickable-area" /> </a> <a href="/projects/2023/anagram/" title="Anagram Solver"> <rect x="655" y="520" width="140" height="30" class="clickable-area" /> </a> <a href="/miscellaneous/pixel-profile/" title="GitHub pfp Gen"> <rect x="835" y="450" width="160" height="100" class="clickable-area" /> </a> </svg> <div id="project-label" class="project-label">Hover over an item...</div> </div> </div></p>
+<p><style> .skeuomorphic-wrapper { background: #1a1a1a; padding: 20px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: 'Courier New', Courier, monospace; } .skeuomorphic-container { position: relative; width: 100%; max-width: 1024px; margin: 0 auto; overflow: hidden; border: 4px solid #333; border-radius: 4px; } .skeuomorphic-image { width: 100%; height: auto; display: block; filter: contrast(1.1) brightness(0.9); } .skeuomorphic-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } .clickable-area { fill: rgba(0, 255, 0, 0.05); stroke: rgba(0, 255, 0, 0.3); stroke-width: 2; cursor: pointer; transition: all 0.2s ease-in-out; } .clickable-area:hover { fill: rgba(0, 255, 0, 0.15); stroke: rgba(0, 255, 0, 0.8); stroke-width: 3; filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8)); } .project-label { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.8); color: #0f0; padding: 5px 15px; border: 1px solid #0f0; border-radius: 4px; pointer-events: none; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; z-index: 10; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); } </style></p>
+<p><script> document.querySelectorAll('.clickable-area').forEach(area => { area.addEventListener('mouseenter', (e) => { const title = e.target.parentElement.getAttribute('title'); document.getElementById('project-label').textContent = title; }); area.addEventListener('mouseleave', () => { document.getElementById('project-label').textContent = 'Hover over an item...'; }); }); </script></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL &middot; hand-written HTML, no frameworks</span>
+<span><a href="/backup-site/">old site</a></span>
+</footer>
+</div></body></html>
