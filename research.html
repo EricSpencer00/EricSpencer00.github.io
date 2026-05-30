@@ -33,94 +33,123 @@
 "affiliation":{"@type":"CollegeOrUniversity","name":"Loyola University Chicago"},
 "email":"eric@ericspencer.us"}
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
-  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
-  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+  --paper:oklch(0.978 0.006 80);
+  --ink:oklch(0.11 0.015 60);
+  --accent:oklch(0.30 0.13 22);
+  --dim:oklch(0.52 0.01 70);
+  --rule:oklch(0.87 0.005 80);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0; background:var(--paper);
-  background-image:radial-gradient(#00000005 1px,transparent 1px);
-  background-size:3px 3px;
-  color:var(--ink);
-  font-family:"Charter","Georgia","Times New Roman",serif;
-  font-size:17px; line-height:1.6;
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
 }
-.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
-a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
-a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
-code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
-pre.banner{
-  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
-  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+.wrap{max-width:720px;margin:0 auto;padding:56px 24px 100px}
+.name-hero{
+  font-size:clamp(34px,5.5vw,52px);font-weight:700;
+  letter-spacing:-0.025em;line-height:1.05;margin:0 0 10px;
 }
-.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
-  letter-spacing:.04em;margin:0 0 4px}
-.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+.sub{
+  font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:0.02em;margin:0 0 6px;
+}
+.cursor::after{content:"_";color:var(--accent);animation:bl 1.2s steps(1) infinite}
 @keyframes bl{50%{opacity:0}}
-hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+nav.top{
+  font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;
+  letter-spacing:0;color:var(--dim);margin:16px 0 0;
+}
+nav.top a{color:inherit;text-decoration:none;border:0;padding:0 2px}
+nav.top a:hover{color:var(--ink)}
+nav.top a.active{color:var(--ink);font-weight:600}
+hr{border:0;border-top:1px solid var(--rule);margin:28px 0}
 .dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
-h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
-  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
-  scroll-margin-top:20px}
-h2::before{content:"§";color:var(--gold);font-weight:400}
-h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
-h3{font-size:18px;margin:20px 0 4px}
-p{margin:10px 0}
-nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
-nav.top a{border:0;padding:1px 3px}
-nav.top a:hover{background:var(--maroon);color:#fff}
-.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
-.lead{font-size:17px}
+a{color:var(--accent);text-decoration:none;border:0}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono",ui-monospace,monospace}
+h2{
+  font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);
+  margin:48px 0 14px;scroll-margin-top:20px;
+}
+h2::before{content:none}
+h2 .ln{display:none}
+h2 .pill{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  text-transform:none;letter-spacing:0;font-weight:400;
+  vertical-align:middle;margin-left:6px;
+}
+h3{font-size:18px;font-weight:600;letter-spacing:-0.01em;margin:20px 0 4px}
+p{margin:12px 0}
+.lead{font-size:17px;line-height:1.65;letter-spacing:-0.01em}
 ul.bare{list-style:none;margin:8px 0;padding:0}
-.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
-  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
-  overflow:hidden}
-.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
-.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
-.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
-  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
-.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
-.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
-  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
-  background:#fff8;margin-left:4px}
-.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
-  align-items:baseline;padding:3px 0}
-.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
-.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.proj{
+  font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;line-height:1.8;
+  display:flex;gap:10px;align-items:baseline;padding:2px 0;white-space:nowrap;overflow:hidden;
+}
+.proj a.nm{flex:0 0 auto;font-weight:600;color:var(--ink);border:0}
+.proj a.nm:hover{color:var(--accent);text-decoration:none}
+.proj .dt{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:14px}
+.proj .ds{
+  flex:0 1 auto;color:var(--dim);overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;font-size:13px;
+}
+.proj .lg{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim);opacity:0.65}
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  border:1px solid var(--rule);border-radius:3px;padding:0 5px;
+  color:var(--dim);background:transparent;margin-left:4px;
+}
+.news{
+  font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;
+  display:flex;gap:16px;align-items:baseline;padding:4px 0;
+}
+.news .d{
+  flex:0 0 88px;font-family:"IBM Plex Mono",monospace;font-size:12px;
+  color:var(--dim);font-variant-numeric:tabular-nums;
+}
+.news .t{flex:1;font-size:15px;color:var(--ink)}
 .pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
-footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
-  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
-.linkrow a{margin-right:2px}
-blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
-  color:#352f27;font-style:italic;background:#fff6}
+footer{
+  margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;
+  font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.linkrow{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;margin:12px 0 0}
+.linkrow a{margin-right:6px;color:var(--dim);border:0}
+.linkrow a:hover{color:var(--ink);text-decoration:none}
+blockquote{margin:16px 0;padding:8px 18px;border-left:2px solid var(--rule);color:var(--dim);font-style:italic}
 .small{font-size:13px;color:var(--dim)}
-pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
-  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code{
+  background:oklch(0.12 0.01 240);color:oklch(0.85 0.02 80);
+  padding:14px 18px;border-radius:6px;overflow-x:auto;font-size:13px;line-height:1.6;margin:12px 0;
+}
 pre.code code{background:none;padding:0;color:inherit}
-code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
-img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
-.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
-.back a{border:0}
-ol,ul{margin:8px 0;padding-left:24px}
-li{margin:4px 0}
+code{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}
+img{max-width:100%;height:auto;border-radius:6px;margin:12px 0}
+.back{font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;margin:0 0 14px}
+.back a{border:0;color:var(--dim)}
+.back a:hover{color:var(--ink)}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}
+ol,ul{margin:10px 0;padding-left:24px}
+li{margin:5px 0}
 @media(max-width:560px){
+  .wrap{padding:36px 18px 80px}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
-| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
-|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
-| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
-|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
-                          |_|                             </pre>
-<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
-<nav class="top">~/research &nbsp; <a href="/">index</a> &nbsp;·&nbsp; <a href="/research.html">[research]</a> &nbsp;·&nbsp; <a href="/projects.html">projects</a></nav>
+</style></head><body><div class="wrap">
+<h1 class="name-hero">Eric Spencer</h1>
+<div class="sub cursor">formal methods &nbsp;·&nbsp; large language models &nbsp;·&nbsp; systems</div>
+<nav class="top"><a href="/">index</a> &nbsp;·&nbsp; <a href="/research.html" class="active">research</a> &nbsp;·&nbsp; <a href="/projects.html">projects</a></nav>
 <hr>
 <p class="lead">Papers, talks, and tools from my work at the <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">AI4FM / FMitF group</a> at Loyola University Chicago, under Prof. Konstantin L&auml;ufer.</p>
 <h2 id="papers">Papers<span class="ln"></span></h2>
