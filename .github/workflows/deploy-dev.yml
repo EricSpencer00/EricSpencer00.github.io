@@ -1,0 +1,20 @@
+name: Deploy to dev.ericspencer.us
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Push to dev.EricSpencer00.github.io
+        env:
+          TOKEN: ${{ secrets.DEV_DEPLOY_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add dev-site https://x-access-token:${TOKEN}@github.com/EricSpencer00/dev.EricSpencer00.github.io.git
+          git push dev-site HEAD:main --force
