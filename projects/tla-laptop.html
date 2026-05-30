@@ -154,7 +154,7 @@ PROPERTY == &lt;&gt; (power = &quot;on&quot; /\ lid = &quot;open&quot; /\ displa
 <p>This is a personal study spec, not class work and not part of any research. After doing the walk-in oven I wanted to try something with more variables and a non-trivial ambient process (the battery and thermal dynamics) instead of just safety interlocks. I left two configs in the repo: <code>laptop.cfg</code> is the full one and <code>laptop_small.cfg</code> cuts every constant down (<code>BatteryMax = 4</code>, <code>MaxBrightness = 3</code>, <code>FanMax = 2</code>) so TLC actually finishes in a reasonable time on a laptop modeling a laptop. The state space blows up fast once you start parameterizing brightness and fan speed as integers.</p>
 <p>If you run it and get a counterexample I haven't seen, open an issue — half of why I keep doing these is to find the dumb action I forgot to constrain.</p>
 <hr class="dash">
-<p><i>Written with AI.</i></p>
+<p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

@@ -133,7 +133,7 @@ li{margin:4px 0}
 <p>Only dependency is <code>rand</code>. The whole <code>Cargo.toml</code> is six lines. It prints a little table to stdout showing the spot, the action, the per-step cost, and the running total. That's it — no plotting, no CSV export, no fancy policies. Configuration is "edit <code>src/main.rs</code> and recompile," which is honest about what this is.</p>
 <p>If I came back to it I'd probably add a couple more policies (dynamic programming for the offline optimum, maybe a small RL agent for comparison) and dump runs to CSV so I could plot regret curves in Python. Right now it's really just a sandbox — one commit, one file, no tests — but it does what it says on the tin. If you want to drop in your own policy and see how it stacks up, the <code>should_move</code> function is the obvious place to start.</p>
 <hr class="dash">
-<p><i>Written with AI.</i></p>
+<p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

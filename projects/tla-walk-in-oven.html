@@ -150,7 +150,7 @@ Inv4 == inside =&gt; temp = MinTemp
 <p>This is a study spec, not a verified industrial controller. The temperature is a single integer ticking up and down by one, there's no notion of multiple people, no ventilation, no emergency stop, no temperature sensor failure, no door-stuck-open behavior. The config (<code>TargetTemp = 20</code>, <code>MaxTemp = 100</code>, <code>MinTemp = 0</code>) is dimensionless — the point is to give TLC a finite state space to actually explore, not to model real Celsius. The whole module is under 90 lines and the README is one sentence long. I wrote it as part of the same arc of work that led into my <a href="https://ai4fm.cs.luc.edu" target="_blank" rel="noopener">ai4fm research</a> on getting LLMs to generate TLA+, and it doubles as one of the example systems I keep in my back pocket when explaining to someone what TLA+ actually buys you on a system they can picture.</p>
 <p>The repo is at <a href="https://github.com/EricSpencer00/tla-walk-in-oven" target="<i>blank" rel="noopener">EricSpencer00/tla-walk-in-oven</a> — the spec is <a href="https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.tla" target="</i>blank" rel="noopener">Oven.tla</a> and the config that feeds it to TLC is <a href="https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.cfg" target="_blank" rel="noopener">Oven.cfg</a>. If you have the TLA+ Toolbox or <code>tla2tools.jar</code> installed, it runs in seconds.</p>
 <hr class="dash">
-<p><i>Written with AI.</i></p>
+<p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

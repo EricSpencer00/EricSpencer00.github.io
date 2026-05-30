@@ -145,7 +145,7 @@ def stub_generate(item):
 <p>Looking at this older repo, the things it got right and the things it got wrong are both useful. Right: separating "render TLA from a template" from "call the LLM" from "run TLC and parse output," so you can swap any one of those without touching the other two. Right: shelling out to a real <code>tla2tools.jar</code> instead of trying to fake TLC's behavior — TLC's verdicts are the whole point, you don't want to mock the oracle. Wrong: a 3-row benchmark with hand-written ground-truth invariants encourages you to test on the same problems you'd solve by lookup, and the deterministic stub will happily exploit that. Wrong: matching invariant strings instead of checking semantic equivalence under TLC — <code>counter >= 0</code> and <code>counter \in Nat</code> are the same property but <code>==</code> says no. The ChatTLA+ work fixed both of those by validating against TLC directly and scoring by behavioral metrics rather than string match.</p>
 <p>If you want to see the pipeline, it's at <a href="https://github.com/EricSpencer00/tla-formal-generation" target="_blank" rel="noopener">EricSpencer00/tla-formal-generation</a>. It's a useful starting point if you're building something similar — the structure of <code>generate -> template -> TLC -> parse</code> is the right one — but the benchmark and the eval need to be much heavier before you can say anything real with it.</p>
 <hr class="dash">
-<p><i>Written with AI.</i></p>
+<p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
