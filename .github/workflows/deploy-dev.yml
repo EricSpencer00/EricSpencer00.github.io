@@ -17,6 +17,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          echo "dev.ericspencer.us" > CNAME
+          git add CNAME
+          git commit --allow-empty -m "chore: set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git
           git push dev-site HEAD:main --force
