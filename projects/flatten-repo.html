@@ -3,29 +3,29 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>flatten-repo VSC Extension | Eric Spencer</title>
-<meta name="description" content="A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM.">
+<meta name="description" content="A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="flatten-repo VSC Extension, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/flatten-repo.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flatten-repo VSC Extension | Eric Spencer">
-<meta property="og:description" content="A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM.">
+<meta property="og:description" content="A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.">
 <meta property="og:url" content="https://ericspencer.us/projects/flatten-repo.html">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flatten-repo VSC Extension | Eric Spencer">
-<meta name="twitter:description" content="A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM.">
+<meta name="twitter:description" content="A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.">
 <meta name="twitter:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
 <meta property="linkedin:title" content="flatten-repo VSC Extension | Eric Spencer">
-<meta property="linkedin:description" content="A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM.">
+<meta property="linkedin:description" content="A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.">
 <meta property="linkedin:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"flatten-repo VSC Extension",
-"description":"A VS Code extension I made when I kept running out of Copilot credits \u2014 flattens a repo into one .txt file you can paste into a free LLM.",
+"description":"A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.",
 "url":"https://ericspencer.us/projects/flatten-repo.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -119,15 +119,14 @@ li{margin:4px 0}
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>
 <nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;·&nbsp; <a href="/research.html">research</a> &nbsp;·&nbsp; <a href="/projects.html">[projects]</a> &nbsp;·&nbsp; <a href="/blog/">blog</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>flatten-repo VSC Extension<span class="ln"></span></h2>
-<p class="meta">A VS Code extension I made when I kept running out of Copilot credits — flattens a repo into one .txt file you can paste into a free LLM.</p>
+<p class="meta">A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/flatten-repo" target="_blank" rel="noopener">https://github.com/EricSpencer00/flatten-repo</a></p>
 <hr class="dash">
-<p>I made this when I kept burning through my monthly Copilot allotment and wanted to drop a whole project into a free Gemini or Claude session without copy-pasting twenty files one by one.</p>
+<p>Built to solve a real annoyance: burning through monthly Copilot credits and needing to drop a whole project into a free Gemini or Claude session without copy-pasting twenty files one by one.</p>
 <p>It's a VS Code extension. You point it at your workspace, run <code>Flatten Project to TXT</code> from the command palette, and it dumps the whole codebase into a single <code>.txt</code> file under <code>/flattened/</code>. If the repo is too big for one LLM's context window, it splits into chunks based on a configurable token limit (~4 chars per token, rough but fine). Each chunk starts with a directory tree, then the files in <code>=== FILE: path/to/file.ext ===</code> blocks. It also auto-adds <code>/flattened</code> to your <code>.gitignore</code> so you don't accidentally commit the dumps.</p>
 <p>The actually-useful part is the filtering. You don't want <code>node<i>modules</code> in there. You probably don't want test files or <code>.env</code> either. Everything gets configured through a single <code>.flatten</i>ignore</code> at the project root, which the extension generates for you on first run. Glob-based, with three sections — <code>global</code> for things you always want out, <code>whitelist</code> for narrowing down to specific paths, and <code>blacklist</code> for specific exceptions. There's also a <code>settings:</code> section for per-project token caps.</p>
 <p>A sample <code>.flatten_ignore</code> looks like this:</p>
@@ -158,7 +157,7 @@ maxTokensPerFile: 25000
 &quot;flattenRepo.ignoreDirs&quot;: [&quot;node_modules&quot;, &quot;.git&quot;, &quot;dist&quot;],
 &quot;flattenRepo.maxChunkSize&quot;: 200000
 </code></pre>
-<p>That's basically it. It's command-only — no UI for picking files interactively, which I'd like to add at some point — and it doesn't try to flatten binaries or images. Honestly, what I use it for most is dropping a flattened repo into a free model when I've already spent my paid credits for the month on something dumb.</p>
+<p>Command-only — no UI for picking files interactively — and it doesn't flatten binaries or images. Most useful for dropping a flattened repo into a free model when paid credits run out.</p>
 <p><a href="https://github.com/EricSpencer00/flatten-repo" target="_blank" rel="noopener">GitHub Repo</a> — feel free to open issues or send a PR if you want to take a swing at the file-picker UI.</p>
 <hr class="dash">
 <p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>

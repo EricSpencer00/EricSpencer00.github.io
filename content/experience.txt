@@ -3,7 +3,7 @@
 # end: "present" or month/year
 # Reverse chronological order.
 
-Chief Executive Officer|From America|https://fromamerica-llc.com|May 2026|present|from-america.jpg
+Chief Executive Officer|From America|https://fromamerica-llc.com|May 2026|present|from-america-gh.jpg
 Founder|instxnt.xyz|https://instxnt.xyz|Dec 2025|present|instxnt-xyz.jpg
 Researcher|AI4FM · Loyola University Chicago|https://ai4fm.cs.luc.edu|Aug 2025|present|ai4fm_transparent.jpg
 Software Engineer|CCC Intelligent Solutions|https://www.cccis.com|May 2025|Aug 2025|ccc.png

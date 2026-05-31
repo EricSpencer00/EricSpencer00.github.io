@@ -107,14 +107,14 @@ def build_page(news, about, selected, blog, experience):
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eric Spencer</title>
-<meta name="description" content="Eric Spencer, graduate researcher at Loyola University Chicago. Formal methods, large language models, systems.">
+<meta name="description" content="Eric Spencer — researcher, founder, and software engineer based in Chicago.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="Eric Spencer, EricSpencer00, formal methods, TLA+, LLM, ChatTLA+, Loyola University Chicago, AI4FM">
 <link rel="canonical" href="https://ericspencer.us/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Eric Spencer">
-<meta property="og:description" content="Graduate researcher at Loyola University Chicago. Formal methods, LLMs, systems.">
+<meta property="og:description" content="Researcher, founder, and software engineer based in Chicago.">
 <meta property="og:url" content="https://ericspencer.us/">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
