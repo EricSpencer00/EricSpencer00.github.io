@@ -149,38 +149,67 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
     { type: 'org',  name: 'LUC-AI4FM',    label: 'LUC-AI4FM' },
   ];
 
+  // Repos to skip entirely (noise, profile READMEs, this site's own repo)
+  const SKIP = new Set([
+    'EricSpencer00.github.io', 'dev.EricSpencer00.github.io',
+    'EricSpencer00',          // profile README
+    'Hello-World',            // first-ever GitHub repo
+    'scala-hello-world',      // trivial starter
+    'echotest-scala',         // trivial starter
+    'shapes-oo-scala',        // trivial starter
+    'copilot-cli-test',       // sandbox, no content
+    'argon-design-system-angular', // upstream fork, unrelated
+  ]);
+
+  // Prefer org-canonical repos over personal forks of the same name.
+  // After fetching, we deduplicate by repo name keeping the org version.
+  function dedup(all) {
+    const byName = new Map();
+    for (const r of all) {
+      const key = r.name.toLowerCase();
+      if (!byName.has(key)) { byName.set(key, r); continue; }
+      const existing = byName.get(key);
+      // prefer non-fork over fork; prefer org over personal
+      const existingIsOrg = existing._source != null;
+      const rIsOrg = r._source != null;
+      if (!existing.fork && r.fork) continue;          // keep existing non-fork
+      if (existing.fork && !r.fork) { byName.set(key, r); continue; } // swap to non-fork
+      if (rIsOrg && !existingIsOrg) { byName.set(key, r); }          // prefer org
+    }
+    return [...byName.values()];
+  }
+
+  // AI topics that are specific enough to override the name-based check
+  const AI_TOPICS = new Set(['llm','machine-learning','deep-learning','artificial-intelligence',
+    'natural-language-processing','nlp','reinforcement-learning','pytorch','tensorflow',
+    'huggingface','fine-tuning','rag','transformers','gpt','openai']);
+
   // Categories: [ [heading, match_fn], ... ]
-  // match_fn receives the repo object; return true to include in this category.
-  // Repos matched earlier categories are excluded from later ones.
+  // Repos matched earlier are excluded from later categories.
   const CATEGORIES = [
     ['Formal Methods & Verification', r =>
-      /tla|formal|coq|rocq|alloy|resilient|goldbach|verification|fm-cb|TLAJVM/i.test(r.name) ||
-      (r.topics||[]).some(t => /tla|formal|coq/i.test(t))
+      /tla|formal|coq|rocq|alloy|resilient|goldbach|fm-cb|TLAJVM|ralph-tla|FormaLLM/i.test(r.name) ||
+      (r.topics||[]).some(t => /^(tla|tla-plus|formal-methods|coq|alloy|model-checking)$/i.test(t))
     ],
     ['AI, LLMs & Machine Learning', r =>
-      /llm|gpt|ollama|ai-|picai|sign-language|rvc|tts|handwriting|als-sig|reelforge|rl-agent|connect-4|fortnite|oneshot|audio|yeat/i.test(r.name) ||
-      (r.topics||[]).some(t => /llm|ai|ml|gpt/i.test(t))
+      /(llm|gpt|ollama|picai|sign-language|rvc-|reelforge|rl-agent|als-sig|yeat-llm|ITS-RAG|llmjammer|terminalgpt|ai-os|ascii-llm|glucopilot|comp388-llm|connect-4)/i.test(r.name) ||
+      (r.topics||[]).some(t => AI_TOPICS.has(t.toLowerCase()))
     ],
     ['macOS, iOS & Desktop', r =>
-      /mac|ios|swift|tunes2tube|dexcom|chess-?stats|youtube-dl|soundboard|apple-music|library-?room|tdx|dexval|t-square/i.test(r.name)
+      /mac|ios|swift|tunes2tube|dexcom|ChessStats|youtube-dl|soundboard|apple-music|ReserveLibrary|tdx|DexVal|T-square/i.test(r.name)
     ],
     ['Systems, Languages & Tools', r =>
-      /udp|itch|xoroshiro|parking|cube|palindrome|grader|roman|etl|fg-|email-?extract|scala|copilot-cli|gitkey|flatten|notify-agent|reverse-/i.test(r.name)
+      /UDP-server|itch-parser|xoroshiro|mc-carspot|palindrome|grade-public|roman-numeral|etl-demo|fg-scrape|EmailExtract|scala|gitkey|flatten-repo|notify-agent|reverse-xoro|auto-decode/i.test(r.name)
     ],
     ['Web & Front-End', r =>
-      /github[.]io$|web|front|site|pitch|fb-clone|design-skill|ai4fm|dev[.]|caterpillar|gcf|margaux|daily|bio-ops|sneaker|slot|spa-|cone-|uzz/i.test(r.name)
+      /github[.]io$|[-]web$|front|fb-clone|design-skill|caterpillar|gcf-de|margaux|DailyTask|bio-ops|sneaker-run|slot-machine|spa-web|cone-site|uzz|pitch|archaic-radio|stockgenie-web|FreeLock-web|splithound-web|chambr-web|from-america[.]|webpage/i.test(r.name) ||
+      (r.homepage||'').includes('github.io')
     ],
     ['Hackathons & Coursework', r =>
-      /hack|comp[0-9]|cs50|csapp|health|aoc|march-mad|movie-?rec|blackjack|anagram|chat(?!tla)|serenity/i.test(r.name)
+      /hack|Serenity|LoyolaHACK|comp[0-9]|COMP[0-9]|cs50|csapp|HealthUp|AoC|march-mad|MovieRec|BlackJack|AnagramSolver|Chat(?!TLA)|BrightBet|claude-architect-exam/i.test(r.name)
     ],
     ['Contributions & Forks', r => r.fork === true],
   ];
-
-  // Repos to skip entirely
-  const SKIP = new Set([
-    'EricSpencer00.github.io', 'dev.EricSpencer00.github.io',
-    'EricSpencer00', // profile README
-  ]);
 
   async function fetchAll(source) {
     const base = source.type === 'user'
@@ -211,8 +240,8 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
     const container = document.getElementById('gh-repos');
     const loading = document.getElementById('gh-loading');
     try {
-      const all = (await Promise.all(SOURCES.map(fetchAll))).flat();
-      const repos = all.filter(r => !SKIP.has(r.name));
+      const raw = (await Promise.all(SOURCES.map(fetchAll))).flat();
+      const repos = dedup(raw).filter(r => !SKIP.has(r.name));
 
       const placed = new Set();
       let html = '';
