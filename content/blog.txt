@@ -1,0 +1,3 @@
+# Blog posts — date|title|url|description
+# Add entries here when publishing a new post.
+# The blog/index.html is auto-linked from the nav.

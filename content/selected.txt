@@ -1,0 +1,8 @@
+# Selected work — name|url|description
+# These appear in the "Selected Work" section on the homepage.
+
+chattla-20b|https://huggingface.co/EricSpencer00/chattla-20b|Fine-tuned 20B model (SFT+GRPO on gpt-oss-20b) for TLA+ generation.
+Resilient|/projects/resilient.html|Statically-typed compiled language for safety-critical embedded systems.
+ChatTLA+ paper|https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/|First systematic evaluation of LLM-generated TLA+ — accepted to ICSOFT 2026.
+AuraOS|/projects/ai-os.html|Experimental LLM-driven operating-shell concept.
+FormaLLM|https://github.com/LUC-AI4FM/FormaLLM|Toolkit for evaluating LLMs on formal-specification synthesis.

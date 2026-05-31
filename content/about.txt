@@ -1,0 +1,7 @@
+# About section — two paragraphs of HTML, separated by a blank line.
+# Keep it third-person or at least non-first-person (no "I").
+# Links and <b>/<i> allowed.
+
+Graduate researcher at <b>Loyola University Chicago</b>, working at the intersection of formal methods and large language models.
+
+At the <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">AI4FM / FMitF group</a> under Prof. Konstantin Läufer: first systematic evaluation of LLM-generated <code>TLA+</code>, the <a href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a> model, and a paper at <b>ICSOFT 2026</b>. Outside the lab: the <a href="/projects/resilient.html">Resilient compiler</a>, macOS and iOS apps, and <a href="https://fromamerica-llc.com" target="_blank" rel="noopener">FROM AMERICA LLC</a>.
