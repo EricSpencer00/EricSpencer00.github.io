@@ -3,9 +3,10 @@
 # html_text: HTML allowed (bold, links etc)
 # optional_link_url + label: appended as a pill link
 
-2026-06-19|<b>tla-prover</b> accepted at <b>ICSOFT 2026</b>.|https://arxiv.org/html/2606.06133v1|[link]
+2026-06-05|Co-author on a paper accepted to <b>ICSOFT 2026</b>.|https://arxiv.org/abs/2606.05792|[link]
+2026-06-05|<b>tla-prover</b> accepted at <b>ICSOFT 2026</b>.|https://arxiv.org/html/2606.06133v1|[link]
 2026-04-17|Presented <b>ChatTLA+</b> at Loyola's Undergraduate Research &amp; Engagement Symposium.|https://ai4fm.cs.luc.edu/posts/chattla-presentation-2026/|[link]
 2026-04-11|Co-author on the GSIRS 2026 poster — first systematic eval of LLM→TLA+ synthesis.|https://ai4fm.cs.luc.edu/posts/gsirs-llm-tla-poster-2026/|[link]
-2026-04|Paper <i>Can LLMs Write Correct TLA+ Specifications?</i> accepted to <b>ICSOFT 2026</b> (Porto).|https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/|[link]
+2026-04-30|Paper <i>Can LLMs Write Correct TLA+ Specifications?</i> accepted to <b>ICSOFT 2026</b> (Porto).|https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/|[link]
 2026-03|Released <b>chattla-20b</b> on Hugging Face — 4,000+ downloads.|https://huggingface.co/EricSpencer00/chattla-20b|[link]
 2025|Awarded the <b>Mulcahy Scholar</b> stipend for LLM-based TLA+ research.|https://ai4fm.cs.luc.edu/posts/eric-spencer-mulcahy-scholar-2025/|[link]
