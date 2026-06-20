@@ -6,3 +6,4 @@ Resilient|/projects/resilient.html|Statically-typed compiled language for safety
 ChatTLA+ paper|https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/|First systematic evaluation of LLM-generated TLA+ — accepted to ICSOFT 2026.
 AuraOS|/projects/ai-os.html|Experimental LLM-driven operating-shell concept.
 FormaLLM|https://github.com/LUC-AI4FM/FormaLLM|Toolkit for evaluating LLMs on formal-specification synthesis.
+stem-player|https://ericspencer.us/stem-player/|Browser-based DONDA stem player.
