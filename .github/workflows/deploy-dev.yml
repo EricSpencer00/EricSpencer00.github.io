@@ -15,6 +15,8 @@ jobs:
           python-version: "3.12"
       - name: Build index.html from content/*.txt
         run: python3 scripts/build.py
+      - name: Build blog HTML from Markdown
+        run: python3 scripts/build_blog.py
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
@@ -23,7 +25,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
-          git add CNAME index.html
+          git add CNAME index.html blog
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git

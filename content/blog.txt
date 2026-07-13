@@ -1,3 +1,6 @@
 # Blog posts — date|title|url|description
 # Add entries here when publishing a new post.
 # The blog/index.html is auto-linked from the nav.
+
+# DRAFT — ready to publish. Remove the leading "# " on the next line when the post is finished:
+# 2026-07-09|Where LLM pricing is going|/blog/llm-pricing.html|The floor is collapsing toward the cost of electricity while the ceiling quietly gets more expensive — notes from someone who keeps hitting the caps.

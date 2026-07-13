@@ -8,3 +8,4 @@ AuraOS|/projects/ai-os.html|Experimental LLM-driven operating-shell concept.
 FormaLLM|https://github.com/LUC-AI4FM/FormaLLM|Toolkit for evaluating LLMs on formal-specification synthesis.
 stem-player|https://ericspencer.us/stem-player/|Browser-based DONDA stem player.
 stemacle.com|https://stemacle.com|Stemacle releases: web app, macOS downloads, iOS status, and source.
+paper-digest|https://paper-digest.ericspencer.us|Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.
