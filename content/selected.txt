@@ -7,4 +7,8 @@ ChatTLA+ paper|https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/|First systema
 AuraOS|/projects/ai-os.html|Experimental LLM-driven operating-shell concept.
 FormaLLM|https://github.com/LUC-AI4FM/FormaLLM|Toolkit for evaluating LLMs on formal-specification synthesis.
 stem-player|https://ericspencer.us/stem-player/|Browser-based DONDA stem player.
+<<<<<<< HEAD
 stemacle.com|https://stemacle.com|Stemacle releases: web app, macOS downloads, iOS status, and source.
+=======
+stemacle.com|https://stemacle.com|
+>>>>>>> 7b9686e (Add stemacle.com to selected work)
