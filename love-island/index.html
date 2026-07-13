@@ -128,7 +128,7 @@ const scene=new THREE.Scene();
 scene.background=new THREE.Color(0x0b1a33);
 scene.fog=new THREE.Fog(0x0b1a33,120,600);
 const camera=new THREE.PerspectiveCamera(55,1,0.1,3000);
-camera.position.set(0,26,95);camera.lookAt(0,8,0);
+camera.position.set(0,42,140);camera.lookAt(0,8,0);
 function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
 resize();addEventListener('resize',resize);
 
@@ -344,7 +344,7 @@ function animate(){
   oceanPos.needsUpdate=true;
   fire.intensity=1.6+Math.sin(t*11)*.7;
   palms.forEach((p,i)=>p.rotation.z=Math.sin(t*1.5+i)*.04);
-  if(phase==='idle'){camera.position.x=Math.sin(t*.12)*14;camera.lookAt(0,10,0)}
+  if(phase==='idle'){camera.position.set(Math.sin(t*.12)*20,42,140);camera.lookAt(0,10,0)}
   if(phase==='missile'){
     const e=(clock.getElapsedTime()-t0)/3.2;           // 3.2s inbound
     const p0=new THREE.Vector3(-500,700,-300),p1=new THREE.Vector3(0,8,0);
