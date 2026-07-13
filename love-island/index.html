@@ -40,7 +40,8 @@
   #btnwrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;
     border:3px dashed var(--amber);animation:spin 14s linear infinite;opacity:.8}
   @keyframes spin{to{transform:rotate(360deg)}}
-  #launch{width:100%;height:100%;border-radius:50%;border:none;cursor:pointer;
+  #btnwrap::before{z-index:0}
+  #launch{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;border:none;cursor:pointer;
     background:radial-gradient(circle at 35% 30%,#ff7a7a,#e01010 45%,#7a0000 100%);
     box-shadow:0 14px 0 #4d0000,0 22px 40px rgba(0,0,0,.8),
       inset 0 -12px 30px rgba(0,0,0,.5),0 0 60px rgba(255,43,43,.55);
@@ -323,7 +324,7 @@ function detonate(){
   cloud.visible=true;
   for(let i=0;i<N;i++){
     cpos[i*3]= (Math.random()-.5)*8;cpos[i*3+1]=6;cpos[i*3+2]=(Math.random()-.5)*8;
-    cvel[i].set((Math.random()-.5)*6,18+Math.random()*26,(Math.random()-.5)*6);
+    cvel[i].set((Math.random()-.5)*6,9+Math.random()*13,(Math.random()-.5)*6);
   }
   cloudGeo.attributes.position.needsUpdate=true;
   spawnDebris();
@@ -369,10 +370,10 @@ function animate(){
       const s=cseed[i];
       let x=cpos[i*3],y=cpos[i*3+1],z=cpos[i*3+2];
       const v=cvel[i];
-      if(y>40+s*35){ // cap spreads outward
+      if(y>22+s*16){ // cap spreads outward
         const ang=Math.atan2(z,x)+dt*.4;
         const r=Math.sqrt(x*x+z*z)+dt*(9+s*10);
-        x=Math.cos(ang)*r;z=Math.sin(ang)*r;y+=dt*(3+s*4);
+        x=Math.cos(ang)*r;z=Math.sin(ang)*r;y+=dt*(1.5+s*2);
       }else{x+=v.x*dt;y+=v.y*dt;z+=v.z*dt}
       cpos[i*3]=x;cpos[i*3+1]=y;cpos[i*3+2]=z;
     }
@@ -391,8 +392,8 @@ function animate(){
     scene.background.lerp(new THREE.Color(0x3a0a1e),dt*.3);
     scene.fog.color.copy(scene.background);
     // camera pulls back dramatically
-    camera.position.lerp(new THREE.Vector3(0,70,190),dt*.5);
-    camera.lookAt(0,35,0);
+    camera.position.lerp(new THREE.Vector3(0,55,170),dt*.5);
+    camera.lookAt(0,22,0);
   }
   renderer.render(scene,camera);
 }
