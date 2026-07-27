@@ -104,7 +104,7 @@ BANNER = """ _____      _        ____
 
 
 def seo_head(title, desc, canonical_path, og_type="website",
-             keywords="", article_meta=None):
+             keywords="", article_meta=None, robots="index, follow"):
     canonical = f"{PROD}{canonical_path}"
     full_title = title if "Eric Spencer" in title else f"{title} | Eric Spencer"
     safe_title = html_mod.escape(full_title)
@@ -118,7 +118,7 @@ def seo_head(title, desc, canonical_path, og_type="website",
 <title>{safe_title}</title>
 <meta name="description" content="{safe_desc}">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="{robots}">
 """
     if safe_kw:
         head += f'<meta name="keywords" content="{safe_kw}">\n'
@@ -770,6 +770,18 @@ def gen_projects_page():
     for name, desc, lang in FORKS:
         h += proj_line(name, f"https://github.com/EricSpencer00/{name}", desc, lang, target="_blank")
 
+    # Catch-all: any writeup page that no section above happened to link to is
+    # an orphan — reachable only from sitemap.xml, which is why Search Console
+    # parks them under "Discovered - currently not indexed". Link them all.
+    orphans = sorted(s for s in FULL_PAGE_SLUGS if f'href="/projects/{s}.html"' not in h)
+    if orphans:
+        h += f'<h2 id="writeups">Writeups &amp; Archive <span class="pill">({len(orphans)})</span><span class="ln"></span></h2>\n'
+        h += '<p class="small">Older projects and coursework that have a writeup here but no active repo listing above.</p>\n'
+        for slug in orphans:
+            data = all_writeups[slug]
+            h += proj_line(data["title"], f"/projects/{slug}.html",
+                           data["description"] or "", "", target="")
+
     h += page_foot()
     return h
 
@@ -820,29 +832,17 @@ with open(f"{OUT}/research.html","w") as f: f.write(gen_research_page())
 # ── 404.html: smart JS router for any old Hugo URL ─────────────────
 # Catches paths that aren't real files and redirects to backup-site.
 def gen_404():
-    h = seo_head("404 — Not Found", "Page not found.", "/404.html")
+    # A 404 must never be indexable, or Google files it under "Not found (404)"
+    # as a real page and reports it as an indexing error.
+    h = seo_head("404 — Not Found", "Page not found.", "/404.html",
+                 robots="noindex, follow")
     h += f'<pre class="banner">{BANNER}</pre>\n'
     h += '<div class="sub cursor">eric&nbsp;spencer &nbsp;//&nbsp; formal methods &middot; large language models &middot; systems</div>\n'
     h += f'<nav class="top">{nav("index")}</nav>\n'
     h += '<hr>\n'
     h += '<h2>Looking for something?<span class="ln"></span></h2>\n'
-    h += '<p>This page doesn\'t exist on the current site. If you followed an older link, try the <a id="archive-link" href="/ericspencer-site-backup/">archive of the old site</a> &mdash; the same path is likely there.</p>\n'
-    h += '<p>Or jump to: <a href="/">index</a> &middot; <a href="/projects.html">projects</a> &middot; <a href="/research.html">research</a>.</p>\n'
-    # JS: rewrite archive link to mirror the requested path so the user
-    # lands on the same content one hop away
-    h += """<script>
-(function(){
-  var p = window.location.pathname;
-  // strip trailing index.html, normalize leading slash
-  p = p.replace(/index\\.html$/,'').replace(/^\\/+/,'/');
-  var target = 'https://ericspencer.us/ericspencer-site-backup' + p;
-  var link = document.getElementById('archive-link');
-  if(link) link.href = target;
-  // auto-redirect after a short pause so the user sees context
-  setTimeout(function(){ window.location.replace(target); }, 1500);
-})();
-</script>
-"""
+    h += '<p>This page doesn\'t exist on the current site.</p>\n'
+    h += '<p>Try the <a href="/">index</a>, <a href="/projects.html">projects</a>, <a href="/research.html">research</a>, or <a href="/blog/">blog</a>.</p>\n'
     h += page_foot()
     return h
 
@@ -856,17 +856,21 @@ urls = [
     (f"{PROD}/", "1.0", "weekly"),
     (f"{PROD}/projects.html", "0.9", "weekly"),
     (f"{PROD}/research.html", "0.9", "weekly"),
+    (f"{PROD}/blog/", "0.7", "weekly"),
 ]
 for slug in sorted(FULL_PAGE_SLUGS):
     urls.append((f"{PROD}/projects/{slug}.html", "0.8", "monthly"))
+
+# Year-mirror and /miscellaneous/ paths still exist so old Hugo links keep
+# working, but they canonicalise to /projects/{slug}.html. A sitemap must only
+# list canonical URLs — listing the mirrors burns crawl budget and lands them
+# in Search Console as "Discovered - currently not indexed".
 mirrored_paths = set()
 for slug in FULL_PAGE_SLUGS:
     if slug in SLUG_TO_YEAR:
         mirrored_paths.add(f"projects/{SLUG_TO_YEAR[slug]}/{slug.lower()}/")
     elif slug in misc_content:
         mirrored_paths.add(f"miscellaneous/{slug.lower()}/")
-for old_path in sorted(mirrored_paths):
-    urls.append((f"{PROD}/{old_path}", "0.6", "monthly"))
 
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for url, prio, freq in urls:

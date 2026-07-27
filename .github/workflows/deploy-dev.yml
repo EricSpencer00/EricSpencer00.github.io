@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -25,7 +27,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
-          git add CNAME index.html blog
+          # dev.ericspencer.us serves a full copy of the site. Left crawlable it
+          # is a duplicate of production competing in search, and its robots.txt
+          # was even pointing crawlers at the production sitemap.
+          printf 'User-agent: *\nDisallow: /\n' > robots.txt
+          git add CNAME index.html blog robots.txt
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git
