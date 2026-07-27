@@ -17,6 +17,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # backup-site/ is an archive of the old Hugo site kept in git for
+      # reference. Shipping it published ~30 duplicate pages — including a
+      # second copy of the homepage at /backup-site/ — which competed with the
+      # real site in search. Keep it in the repo, keep it off the web.
+      - name: Strip non-published directories from the artifact
+        run: rm -rf backup-site
+
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3
         with:
