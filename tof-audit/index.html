@@ -1,0 +1,266 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Time-of-Flight Audit — Eric Spencer</title>
+<meta name="description" content="Light in fiber travels ~200 km per millisecond. Probe eight cities from your browser and see the hard physical floor on where you can possibly be.">
+<link rel="canonical" href="https://ericspencer.us/tof-audit/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time-of-Flight Audit">
+<meta property="og:description" content="A round trip cannot be faked in software. Probe eight cities and see what the wire says.">
+<meta property="og:url" content="https://ericspencer.us/tof-audit/">
+<meta property="og:site_name" content="Eric Spencer">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80);--wash:oklch(0.94 0.005 80);--floor:oklch(0.62 0.10 250)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.wrap{max-width:720px;margin:0 auto;padding:56px 24px 100px}
+h1{font-size:clamp(30px,5vw,44px);font-weight:700;letter-spacing:-0.025em;line-height:1.05;margin:0 0 10px}
+nav.top{font-size:14px;font-weight:500;color:var(--dim);margin:0 0 16px}
+nav.top a{color:inherit;text-decoration:none}
+nav.top a:hover{color:var(--ink)}
+hr{border:0;border-top:1px solid var(--rule);margin:28px 0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+h2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:48px 0 14px}
+p{margin:12px 0}
+.lead{font-size:17px;line-height:1.65;letter-spacing:-0.01em;max-width:58ch}
+.small{font-size:13px;color:var(--dim)}
+
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:26px 0 0}
+label{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+select{background:#fff;color:var(--ink);border:1px solid var(--rule);border-radius:5px;padding:10px 12px;font-family:"Plus Jakarta Sans",sans-serif;font-size:14px}
+button{background:var(--ink);color:var(--paper);border:0;border-radius:5px;padding:11px 20px;font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:background .15s}
+button:hover:not(:disabled){background:var(--accent)}
+button:disabled{background:var(--dim);cursor:progress}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.verdict{border:1px solid var(--rule);border-left:3px solid var(--dim);border-radius:5px;background:#fff;padding:16px 18px;margin:26px 0 0;display:none}
+.verdict.show{display:block}
+.verdict.clear{border-left-color:oklch(0.55 0.10 150)}
+.verdict.flag{border-left-color:var(--accent)}
+.vtitle{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;color:var(--dim)}
+.verdict.clear .vtitle{color:oklch(0.45 0.10 150)}
+.verdict.flag .vtitle{color:var(--accent)}
+.vbody{font-size:15px}
+.vbody b{font-weight:600}
+
+.colhead{display:grid;grid-template-columns:1fr 88px 84px;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.colhead span:not(:first-child){text-align:right}
+.row{padding:13px 0;border-bottom:1px solid var(--rule)}
+.rtop{display:grid;grid-template-columns:1fr 88px 84px;gap:10px;align-items:baseline}
+.name{font-size:15px;font-weight:600;letter-spacing:-0.01em}
+.name small{color:var(--dim);font-weight:400;font-family:"IBM Plex Mono",monospace;font-size:11px;margin-left:8px}
+.num{font-family:"IBM Plex Mono",monospace;font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.num.km{color:var(--dim)}
+.track{position:relative;height:6px;background:var(--wash);margin-top:10px;border-radius:3px;overflow:hidden}
+.bar{position:absolute;left:0;top:0;height:100%;background:var(--accent);opacity:.55;width:0;border-radius:3px;transition:width .5s cubic-bezier(.2,.8,.3,1)}
+.fl{position:absolute;top:-3px;width:2px;height:12px;background:var(--floor);left:0;transition:left .5s cubic-bezier(.2,.8,.3,1)}
+.row.pending .num{color:var(--rule)}
+
+.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:12.5px;color:var(--dim);margin-top:16px}
+.key{display:inline-block;width:16px;height:6px;border-radius:3px;vertical-align:middle;margin-right:7px}
+footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-size:13px;color:var(--dim)}
+footer b{color:var(--ink);font-weight:600}
+@media(max-width:560px){.wrap{padding:36px 18px 80px}.colhead,.rtop{grid-template-columns:1fr 74px 74px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div class="wrap">
+
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a></nav>
+<h1>Time-of-Flight Audit</h1>
+<p class="lead">Light in fiber travels about 200 km per millisecond. That sets a hard floor on how fast this browser can reach any given city — and no VPN, proxy, or edited location setting can move that floor. Run the probe and see what the wire says.</p>
+
+<div class="controls">
+  <div>
+    <label for="declared">Location on file</label>
+    <select id="declared"></select>
+  </div>
+  <button id="run">Run probe</button>
+</div>
+
+<div class="verdict" id="verdict">
+  <div class="vtitle" id="vtitle"></div>
+  <div class="vbody" id="vbody"></div>
+</div>
+
+<h2>Probe results</h2>
+<div class="colhead"><span>Target</span><span>Round trip</span><span>Max range</span></div>
+<div id="rows"></div>
+
+<div class="legend">
+  <span><i class="key" style="background:var(--accent);opacity:.55"></i>measured round trip</span>
+  <span><i class="key" style="background:var(--floor);width:3px;height:11px;border-radius:1px"></i>physical floor from estimated position</span>
+</div>
+
+<h2>Notes</h2>
+<p><b>How it reads.</b> Each probe opens a connection to a server in a known city and times the round trip. Divide by two, multiply by 200 km/ms, and you get the furthest that server could possibly be. Do it against eight cities at once and the overlap of those ranges is a circle you are standing inside. Congestion and server delay only ever make a link look <i>longer</i> — so a short round trip is proof of nearness that cannot be faked in software.</p>
+<p><b>What it can't do.</b> Estimates land within a few hundred kilometres at best, and routing that detours (satellite links, corporate tunnels, congested peering) inflates every reading and pushes the guess outward. Treat a mismatch as a question, never an answer.</p>
+
+<footer>Runs entirely in your browser — nothing is sent anywhere or stored. <a href="/">Eric Spencer</a></footer>
+</div>
+
+<script>
+const ANCHORS = [
+  {host:'s3.us-east-1.amazonaws.com',      city:'N. Virginia', cc:'US', lat:38.9,  lon:-77.4},
+  {host:'s3.us-west-1.amazonaws.com',      city:'N. California',cc:'US', lat:37.4, lon:-121.9},
+  {host:'s3.sa-east-1.amazonaws.com',      city:'São Paulo',   cc:'BR', lat:-23.5, lon:-46.6},
+  {host:'s3.eu-west-1.amazonaws.com',      city:'Dublin',      cc:'IE', lat:53.3,  lon:-6.2},
+  {host:'s3.eu-central-1.amazonaws.com',   city:'Frankfurt',   cc:'DE', lat:50.1,  lon:8.7},
+  {host:'s3.ap-south-1.amazonaws.com',     city:'Mumbai',      cc:'IN', lat:19.1,  lon:72.9},
+  {host:'s3.ap-northeast-1.amazonaws.com', city:'Tokyo',       cc:'JP', lat:35.7,  lon:139.7},
+  {host:'s3.ap-southeast-2.amazonaws.com', city:'Sydney',      cc:'AU', lat:-33.9, lon:151.2},
+];
+
+const CITIES = [
+  ['Chicago',41.9,-87.6],['New York',40.7,-74.0],['Toronto',43.7,-79.4],['Miami',25.8,-80.2],
+  ['Denver',39.7,-105.0],['Los Angeles',34.1,-118.2],['Seattle',47.6,-122.3],['Mexico City',19.4,-99.1],
+  ['Bogotá',4.7,-74.1],['São Paulo',-23.5,-46.6],['Buenos Aires',-34.6,-58.4],['Lisbon',38.7,-9.1],
+  ['London',51.5,-0.1],['Dublin',53.3,-6.2],['Paris',48.9,2.4],['Madrid',40.4,-3.7],
+  ['Barcelona',41.4,2.2],['Amsterdam',52.4,4.9],['Berlin',52.5,13.4],['Warsaw',52.2,21.0],
+  ['Rome',41.9,12.5],['Athens',38.0,23.7],['Istanbul',41.0,29.0],['Kyiv',50.5,30.5],
+  ['Stockholm',59.3,18.1],['Reykjavík',64.1,-21.9],['Moscow',55.8,37.6],['Dubai',25.2,55.3],
+  ['Tel Aviv',32.1,34.8],['Cairo',30.0,31.2],['Lagos',6.5,3.4],['Nairobi',-1.3,36.8],
+  ['Cape Town',-33.9,18.4],['Mumbai',19.1,72.9],['Bengaluru',13.0,77.6],['Bangkok',13.8,100.5],
+  ['Singapore',1.35,103.8],['Bali',-8.4,115.2],['Ho Chi Minh City',10.8,106.7],['Hong Kong',22.3,114.2],
+  ['Seoul',37.6,127.0],['Tokyo',35.7,139.7],['Sydney',-33.9,151.2],['Auckland',-36.8,174.8],
+  ['Honolulu',21.3,-157.9],['Medellín',6.2,-75.6],['Tbilisi',41.7,44.8],['Cape Verde',14.9,-23.5],
+];
+
+const KM_PER_MS = 200;   // ~2/3 c in fibre
+const DETOUR = 1.35;     // real routes are longer than great-circle
+
+const $ = s => document.querySelector(s);
+const sel = $('#declared'), rowsEl = $('#rows');
+
+CITIES.slice().sort((a,b)=>a[0].localeCompare(b[0])).forEach(c=>{
+  const o=document.createElement('option');
+  o.value=c[0]; o.textContent=c[0]; sel.appendChild(o);
+});
+sel.value='Chicago';
+
+function haversine(a,b,c,d){
+  const R=6371,r=Math.PI/180;
+  const dLat=(c-a)*r,dLon=(d-b)*r;
+  const h=Math.sin(dLat/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));
+}
+
+const nodes = ANCHORS.map(a=>{
+  const el=document.createElement('div');
+  el.className='row pending';
+  el.innerHTML=`<div class="rtop">
+      <div class="name">${a.city}<small>${a.cc}</small></div>
+      <div class="num rtt">—</div>
+      <div class="num km">—</div>
+    </div>
+    <div class="track"><div class="bar"></div><div class="fl" style="display:none"></div></div>`;
+  rowsEl.appendChild(el);
+  return {a, el, rtt:null,
+    rttEl:el.querySelector('.rtt'), kmEl:el.querySelector('.km'),
+    bar:el.querySelector('.bar'), fl:el.querySelector('.fl')};
+});
+
+// probe: time an image request (no CORS needed; 404 still round-trips)
+function probe(host, timeout=4000){
+  return new Promise(res=>{
+    const img=new Image(), t0=performance.now();
+    let done=false;
+    const fin=()=>{ if(done)return; done=true; res(performance.now()-t0); };
+    img.onload=img.onerror=fin;
+    setTimeout(()=>{ if(!done){done=true;res(null);} }, timeout);
+    img.src=`https://${host}/favicon.ico?cb=${Math.random()}`;
+  });
+}
+
+async function measure(node, samples=4){
+  await probe(node.a.host);              // warm DNS/TCP/TLS, discard
+  let best=Infinity;
+  for(let i=0;i<samples;i++){
+    const t=await probe(node.a.host);
+    if(t!==null) best=Math.min(best,t);
+    node.rttEl.textContent = best===Infinity ? '…' : Math.round(best)+' ms';
+    node.el.classList.remove('pending');
+  }
+  node.rtt = best===Infinity ? null : best;
+  if(node.rtt===null){ node.rttEl.textContent='no route'; node.kmEl.textContent='—'; return; }
+  node.rttEl.textContent = Math.round(node.rtt)+' ms';
+  node.kmEl.textContent  = Math.round(node.rtt/2*KM_PER_MS).toLocaleString()+' km';
+}
+
+// coarse grid search for the position that best fits all round trips
+function locate(live){
+  let best=null;
+  for(let lat=-56;lat<=72;lat+=2){
+    for(let lon=-180;lon<180;lon+=2){
+      let err=0;
+      for(const n of live){
+        const predicted = haversine(lat,lon,n.a.lat,n.a.lon)*DETOUR/KM_PER_MS*2;
+        const d = predicted - n.rtt;
+        err += d*d * (d>0 ? 4 : 1);   // penalise "closer than physics allows" hard
+      }
+      if(!best||err<best.err) best={lat,lon,err};
+    }
+  }
+  return best;
+}
+
+function nearestCity(lat,lon){
+  return CITIES.map(c=>({name:c[0],d:haversine(lat,lon,c[1],c[2])}))
+               .sort((a,b)=>a.d-b.d)[0];
+}
+
+$('#run').addEventListener('click', async ()=>{
+  const btn=$('#run'); btn.disabled=true; btn.textContent='Probing…';
+  $('#verdict').classList.remove('show');
+  nodes.forEach(n=>{ n.el.classList.add('pending'); n.rtt=null;
+    n.rttEl.textContent='—'; n.kmEl.textContent='—';
+    n.bar.style.width='0'; n.fl.style.display='none'; });
+
+  for(const n of nodes) await measure(n);
+
+  const live=nodes.filter(n=>n.rtt!==null);
+  const max=Math.max(...live.map(n=>n.rtt));
+  live.forEach(n=> n.bar.style.width=(n.rtt/max*100)+'%');
+
+  btn.disabled=false; btn.textContent='Run again';
+  if(live.length<3){
+    $('#vtitle').textContent='Inconclusive';
+    $('#vbody').textContent='Too few probes returned. A blocker or extension is likely eating the requests.';
+    $('#verdict').className='verdict show flag';
+    return;
+  }
+
+  const fix=locate(live);
+  live.forEach(n=>{
+    const floorMs = haversine(fix.lat,fix.lon,n.a.lat,n.a.lon)*DETOUR/KM_PER_MS*2;
+    n.fl.style.display='block';
+    n.fl.style.left=Math.min(100,floorMs/max*100)+'%';
+  });
+
+  const near=nearestCity(fix.lat,fix.lon);
+  const dec=CITIES.find(c=>c[0]===sel.value);
+  const gap=haversine(fix.lat,fix.lon,dec[1],dec[2]);
+  const closest=live.slice().sort((a,b)=>a.rtt-b.rtt)[0];
+  const radius=Math.round(closest.rtt/2*KM_PER_MS);
+
+  const coord = `${Math.abs(fix.lat).toFixed(0)}°${fix.lat<0?'S':'N'} ${Math.abs(fix.lon).toFixed(0)}°${fix.lon<0?'W':'E'}`;
+  const flagged = gap>1200;
+  $('#vtitle').textContent = flagged ? 'Mismatch — flagged for review' : 'Consistent with file';
+  $('#vbody').innerHTML = flagged
+    ? `Fastest link is <b>${closest.a.city}</b> at <b>${Math.round(closest.rtt)} ms</b>, which places this
+       browser within <b>${radius.toLocaleString()} km</b> of it. Best fit across all probes is
+       <b>${coord}</b> — nearest major city <b>${near.name}</b>, about
+       <b>${Math.round(gap).toLocaleString()} km</b> from <b>${dec[0]}</b> on file.
+       No software setting can shorten a round trip, so the gap needs an explanation.`
+    : `Best fit across all probes is <b>${coord}</b> — nearest major city <b>${near.name}</b>,
+       about <b>${Math.round(gap).toLocaleString()} km</b> from <b>${dec[0]}</b> on file.
+       That's inside normal error for this method. Nothing to action.`;
+  $('#verdict').className = 'verdict show '+(flagged?'flag':'clear');
+});
+</script>
+</body></html>
