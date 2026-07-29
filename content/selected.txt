@@ -1,11 +1,10 @@
 # Selected work — name|url|description
 # These appear in the "Selected Work" section on the homepage.
 
-chattla-20b|https://huggingface.co/EricSpencer00/chattla-20b|Fine-tuned 20B model (SFT+GRPO on gpt-oss-20b) for TLA+ generation.
+tla-w4-diamond-gold|https://huggingface.co/datasets/EricSpencer00/tla-w4-diamond-gold|Verifier-gated TLA+ SFT corpus — 5,010 examples that survived the W4 diamond-gold filter.
 Resilient|/projects/resilient.html|Statically-typed compiled language for safety-critical embedded systems.
-ChatTLA+ paper|https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/|First systematic evaluation of LLM-generated TLA+ — accepted to ICSOFT 2026.
+TLA-Prover|https://arxiv.org/abs/2606.06133|Verifiable TLA+ specification synthesis via preference-optimized low-rank adaptation.
 AuraOS|/projects/ai-os.html|Experimental LLM-driven operating-shell concept.
 FormaLLM|https://github.com/LUC-AI4FM/FormaLLM|Toolkit for evaluating LLMs on formal-specification synthesis.
-stem-player|https://ericspencer.us/stem-player/|Browser-based DONDA stem player.
 stemacle.com|https://stemacle.com|Stemacle releases: web app, macOS downloads, iOS status, and source.
 paper-digest|https://paper-digest.ericspencer.us|Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.
