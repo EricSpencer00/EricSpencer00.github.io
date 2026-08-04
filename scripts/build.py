@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-build.py — reads content/*.txt, writes index.html.
+build.py — reads content/*.txt and content/blog/*.md, writes index.html.
 Run by GitHub Actions on every push; do not edit index.html directly.
 """
 
 from pathlib import Path
 import html as htmllib
+
+from build_blog import load_posts
 
 ROOT = Path(__file__).parent.parent
 CONTENT = ROOT / "content"
@@ -50,18 +52,17 @@ def build_selected():
     return "\n".join(rows)
 
 def build_blog():
-    posts = list(lines("blog.txt"))
+    posts = load_posts()
     if not posts:
         return '<p class="dim-note">No posts yet.</p>'
     rows = []
-    for line in posts:
-        date, title, url, desc = parse(line, 4)
+    for post in posts:
         rows.append(
             f'<div class="post-row">'
-            f'<span class="post-d">{date}</span>'
+            f'<span class="post-d">{post.date}</span>'
             f'<div class="post-body">'
-            f'<div class="post-title"><a href="{url}">{title}</a></div>'
-            f'{"<p class=post-desc>" + desc + "</p>" if desc else ""}'
+            f'<div class="post-title"><a href="/blog/{post.slug}.html">{htmllib.escape(post.title)}</a></div>'
+            f'<p class="post-desc">{htmllib.escape(post.description)}</p>'
             f'</div></div>'
         )
     return "\n".join(rows)

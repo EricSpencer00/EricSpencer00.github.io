@@ -130,8 +130,8 @@ li{margin:4px 0}
 <p>Over the course of the early Spring Semester, I lead the Loyola AI Club's project to create a sign language interpreter. The original goal of the project was to download a ton of sign language videos from a dataset and see if we could create a working sign language interpreter using OpenCV and Python.</p>
 <p>The process was as follows:</p>
 <ol>
-<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL<i>val.json" target="</i>blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was split for us already.</li>
-<li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json<i>process.py" target="</i>blank" rel="noopener">this script</a>.</li>
+<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL_val.json" target="</i>blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was split for us already.</li>
+<li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_process.py" target="</i>blank" rel="noopener">this script</a>.</li>
 </ol>
 <pre class="code"><code>
 def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
@@ -162,7 +162,7 @@ def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
         return None
 </code></pre>
 <ol>
-<li>From our new dataset, we could train the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json<i>training.py" target="</i>blank" rel="noopener">link</a></li>
+<li>From our new dataset, we could train the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_training.py" target="</i>blank" rel="noopener">link</a></li>
 </ol>
 <pre class="code"><code>
 def main():
@@ -226,7 +226,7 @@ def main():
     print(&quot;[INFO] Model saved as asl_model.h5&quot;)
 </code></pre>
 <ol>
-<li>Finally, our model would be tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app<i>json.py#L24" target="</i>blank" rel="noopener">link</a></li>
+<li>Finally, our model would be tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app_json.py#L24" target="</i>blank" rel="noopener">link</a></li>
 </ol>
 <pre class="code"><code>
 # Process the frame with MediaPipe for hand detection
