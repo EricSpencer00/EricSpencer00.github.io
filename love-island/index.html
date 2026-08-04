@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operation Final Recoupling | Eric Spencer</title>
+<meta name="description" content="A three.js joke page by Eric Spencer.">
+<link rel="canonical" href="https://ericspencer.us/love-island/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#ff2b2b; --deep:#8f0000; --amber:#ffb000; --green:#33ff66;
+    --pink:#ff5fa2; --bg:#050607;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:var(--bg)}
+  body{font-family:'VT323',monospace;color:var(--green)}
+  #scene{position:fixed;inset:0;z-index:0}
+  .scanlines{position:fixed;inset:0;z-index:50;pointer-events:none;
+    background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.18) 2px 4px);
+    mix-blend-mode:multiply}
+  .vignette{position:fixed;inset:0;z-index:49;pointer-events:none;
+    background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.75) 100%)}
+  #hud{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;
+    align-items:center;justify-content:flex-end;padding:4vh 2vw;pointer-events:none}
+  .topbar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;
+    padding:14px 22px;font-size:clamp(14px,1.6vw,22px);color:var(--amber);
+    text-shadow:0 0 8px rgba(255,176,0,.7);z-index:11}
+  .topbar .blink{animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  h1{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+    font-size:clamp(34px,6vw,84px);letter-spacing:.04em;color:#fff;
+    text-align:center;line-height:.95;
+    text-shadow:0 0 24px rgba(255,43,43,.8),0 0 60px rgba(255,43,43,.4)}
+  h1 .pink{color:var(--pink);text-shadow:0 0 24px rgba(255,95,162,.9)}
+  .sub{margin-top:10px;font-size:clamp(15px,1.8vw,24px);color:var(--green);
+    text-shadow:0 0 10px rgba(51,255,102,.7);text-align:center}
+  #panel{pointer-events:auto;margin-top:3vh;display:flex;flex-direction:column;align-items:center;gap:18px}
+  /* THE BUTTON */
+  #btnwrap{position:relative;width:min(260px,60vw);aspect-ratio:1;display:grid;place-items:center}
+  #btnwrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;
+    border:3px dashed var(--amber);animation:spin 14s linear infinite;opacity:.8}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #btnwrap::before{z-index:0}
+  #launch{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;border:none;cursor:pointer;
+    background:radial-gradient(circle at 35% 30%,#ff7a7a,#e01010 45%,#7a0000 100%);
+    box-shadow:0 14px 0 #4d0000,0 22px 40px rgba(0,0,0,.8),
+      inset 0 -12px 30px rgba(0,0,0,.5),0 0 60px rgba(255,43,43,.55);
+    color:#fff;font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+    font-size:clamp(26px,3.4vw,44px);letter-spacing:.08em;
+    text-shadow:0 2px 0 rgba(0,0,0,.6);transition:transform .08s,box-shadow .08s;
+    animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 14px 0 #4d0000,0 22px 40px rgba(0,0,0,.8),
+      inset 0 -12px 30px rgba(0,0,0,.5),0 0 110px rgba(255,43,43,.95)}}
+  #launch:active{transform:translateY(10px);box-shadow:0 4px 0 #4d0000,0 8px 20px rgba(0,0,0,.8),
+      inset 0 -6px 20px rgba(0,0,0,.6)}
+  #launch:disabled{filter:grayscale(.6) brightness(.6);cursor:not-allowed;animation:none}
+  .disclaimer{font-size:clamp(13px,1.4vw,18px);color:#9aa;opacity:.85;text-align:center;max-width:640px}
+  /* console feed */
+  #feed{position:fixed;left:22px;bottom:18px;z-index:12;font-size:clamp(13px,1.5vw,19px);
+    color:var(--green);text-shadow:0 0 8px rgba(51,255,102,.6);max-width:44ch;pointer-events:none}
+  #feed div{opacity:0;animation:feedin .3s forwards}
+  @keyframes feedin{to{opacity:1}}
+  /* countdown */
+  #count{position:fixed;inset:0;z-index:20;display:none;place-items:center;pointer-events:none}
+  #count span{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+    font-size:clamp(120px,30vw,420px);color:var(--red);
+    text-shadow:0 0 60px rgba(255,43,43,.9),0 0 160px rgba(255,43,43,.5)}
+  /* alarm flash */
+  #alarm{position:fixed;inset:0;z-index:8;pointer-events:none;background:var(--red);opacity:0}
+  /* white flash */
+  #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
+  /* end card */
+  #endcard{position:fixed;inset:0;z-index:30;display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:16px;padding:5vw}
+  #endcard h2{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+    font-size:clamp(40px,8vw,120px);color:var(--pink);line-height:.95;
+    text-shadow:0 0 40px rgba(255,95,162,.8)}
+  #endcard p{font-size:clamp(16px,2vw,26px);color:var(--amber);max-width:60ch}
+  #endcard button{pointer-events:auto;margin-top:10px;font-family:'VT323',monospace;
+    font-size:clamp(18px,2vw,26px);padding:12px 28px;background:transparent;
+    color:var(--green);border:2px solid var(--green);cursor:pointer}
+  #endcard button:hover{background:var(--green);color:#000}
+  .shake{animation:shake .45s linear infinite}
+  @keyframes shake{
+    0%{transform:translate(0,0)}20%{transform:translate(-9px,6px)}
+    40%{transform:translate(8px,-7px)}60%{transform:translate(-6px,-8px)}
+    80%{transform:translate(7px,8px)}100%{transform:translate(0,0)}}
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="alarm"></div>
+<div class="vignette"></div><div class="scanlines"></div>
+
+<div class="topbar">
+  <span>STRATEGIC ROMANCE COMMAND // DEFCON <b id="defcon">5</b></span>
+  <span class="blink">● LIVE FEED: CASA AMOR SECTOR</span>
+</div>
+
+<div id="hud">
+  <h1>OPERATION<br><span class="pink">FINAL RECOUPLING</span></h1>
+  <div class="sub">TARGET ACQUIRED: "LOVE ISLAND" (USA EDITION) — FICTIONAL VILLA, FIJI-ISH COORDINATES</div>
+  <div id="panel">
+    <div id="btnwrap"><button id="launch">LAUNCH</button></div>
+    <div class="disclaimer">⚠ 100% fictional &amp; a joke. No islands, islanders, bombshells, or fire pits were harmed. This page has zero affiliation with any actual TV show.</div>
+  </div>
+</div>
+
+<div id="feed"></div>
+<div id="count"><span id="countnum">5</span></div>
+<div id="flash"></div>
+
+<div id="endcard">
+  <h2>THE VILLA HAS BEEN<br>DUMPED FROM THE ISLAND</h2>
+  <p>The public has voted. America has spoken. The island is now single and ready to mingle... with the sea floor. Text "RECOUPLE" to no one.</p>
+  <button id="again">RE-ARM WARHEAD (WATCH AGAIN)</button>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const canvas=document.getElementById('scene');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x0b1a33);
+scene.fog=new THREE.Fog(0x0b1a33,120,600);
+const camera=new THREE.PerspectiveCamera(55,1,0.1,3000);
+camera.position.set(0,42,140);camera.lookAt(0,8,0);
+function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
+resize();addEventListener('resize',resize);
+
+// ---------- lights ----------
+const sun=new THREE.DirectionalLight(0xffe0b0,2.2);sun.position.set(60,90,40);scene.add(sun);
+scene.add(new THREE.AmbientLight(0x6688bb,.9));
+const moonGlow=new THREE.PointLight(0xff5fa2,0,600); // explosion light
+moonGlow.position.set(0,30,0);scene.add(moonGlow);
+
+// ---------- ocean ----------
+const oceanGeo=new THREE.PlaneGeometry(2400,2400,80,80);
+const ocean=new THREE.Mesh(oceanGeo,new THREE.MeshPhongMaterial({color:0x0e4f7a,shininess:120,specular:0x88ccff}));
+ocean.rotation.x=-Math.PI/2;ocean.position.y=-1.5;scene.add(ocean);
+const oceanPos=oceanGeo.attributes.position;
+const oceanBase=oceanPos.array.slice();
+
+// ---------- island ----------
+const island=new THREE.Group();scene.add(island);
+const sand=new THREE.Mesh(new THREE.CylinderGeometry(58,72,6,48),
+  new THREE.MeshLambertMaterial({color:0xe8d5a3}));
+sand.position.y=1.5;island.add(sand);
+
+// villa: pink boxes + pool + fire pit
+const villa=new THREE.Group();island.add(villa);
+function box(w,h,d,c,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),
+  new THREE.MeshLambertMaterial({color:c}));m.position.set(x,y,z);villa.add(m);return m}
+box(30,10,18,0xffc7dd,0,9.5,0);            // main villa
+box(14,8,12,0xffffff,-24,8.5,6);           // hideaway
+box(12,7,10,0xffe08a,22,8,-4);             // casa amor annex
+box(34,1,22,0xff5fa2,0,15,0);              // hot pink roof
+// pool
+const pool=new THREE.Mesh(new THREE.BoxGeometry(20,1.4,12),
+  new THREE.MeshPhongMaterial({color:0x35d0ff,shininess:200}));
+pool.position.set(2,5.2,16);villa.add(pool);
+// fire pit
+const pit=new THREE.Mesh(new THREE.CylinderGeometry(3,3.6,1.6,16),
+  new THREE.MeshLambertMaterial({color:0x555055}));
+pit.position.set(-14,5.3,18);villa.add(pit);
+const fire=new THREE.PointLight(0xff7722,2,40);fire.position.set(-14,8,18);villa.add(fire);
+// giant neon LOVE sign (hearts)
+function heartShape(){const s=new THREE.Shape(),x=0,y=0;
+  s.moveTo(x,y+1.2);s.bezierCurveTo(x,y+1.9,x-1.4,y+1.9,x-1.4,y+1.0);
+  s.bezierCurveTo(x-1.4,y+.2,x,y-.2,x,y-1.1);
+  s.bezierCurveTo(x,y-.2,x+1.4,y+.2,x+1.4,y+1.0);
+  s.bezierCurveTo(x+1.4,y+1.9,x,y+1.9,x,y+1.2);return s}
+const heartGeo=new THREE.ExtrudeGeometry(heartShape(),{depth:.5,bevelEnabled:false});
+const heartMat=new THREE.MeshBasicMaterial({color:0xff2b6d});
+for(let i=0;i<3;i++){const h=new THREE.Mesh(heartGeo,heartMat);
+  h.scale.setScalar(2.2);h.position.set(-6+i*6,20,1);h.rotation.z=Math.PI;villa.add(h)}
+// palms
+const palmMatT=new THREE.MeshLambertMaterial({color:0x8a5a2b});
+const palmMatL=new THREE.MeshLambertMaterial({color:0x2e9e4f});
+const palms=[];
+for(let i=0;i<14;i++){
+  const p=new THREE.Group();
+  const trunk=new THREE.Mesh(new THREE.CylinderGeometry(.7,1.1,14,6),palmMatT);
+  trunk.position.y=7;p.add(trunk);
+  for(let j=0;j<6;j++){const leaf=new THREE.Mesh(new THREE.ConeGeometry(1.4,9,4),palmMatL);
+    leaf.position.y=14;leaf.rotation.z=Math.PI/2.6;leaf.rotation.y=j*Math.PI/3;
+    leaf.translateY(3.5);p.add(leaf)}
+  const a=Math.random()*Math.PI*2,r=38+Math.random()*22;
+  p.position.set(Math.cos(a)*r,3,Math.sin(a)*r);
+  island.add(p);palms.push(p);
+}
+
+// ---------- missile ----------
+const missile=new THREE.Group();
+const bodyM=new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.6,18,16),
+  new THREE.MeshPhongMaterial({color:0xdddddd,shininess:80}));
+missile.add(bodyM);
+const nose=new THREE.Mesh(new THREE.ConeGeometry(1.6,5,16),
+  new THREE.MeshPhongMaterial({color:0xff2b2b}));nose.position.y=11.5;missile.add(nose);
+for(let i=0;i<4;i++){const finM=new THREE.Mesh(new THREE.BoxGeometry(.4,5,3.4),
+  new THREE.MeshPhongMaterial({color:0xff2b2b}));
+  finM.position.y=-7.5;finM.rotation.y=i*Math.PI/2;finM.translateZ(2.2);missile.add(finM)}
+const exhaust=new THREE.PointLight(0xffaa33,0,80);exhaust.position.y=-11;missile.add(exhaust);
+const flame=new THREE.Mesh(new THREE.ConeGeometry(1.5,10,12),
+  new THREE.MeshBasicMaterial({color:0xffc244,transparent:true,opacity:.9}));
+flame.rotation.x=Math.PI;flame.position.y=-14;flame.visible=false;missile.add(flame);
+missile.position.set(-500,700,-300);missile.visible=false;scene.add(missile);
+
+// ---------- explosion assets ----------
+const fireball=new THREE.Mesh(new THREE.SphereGeometry(1,32,32),
+  new THREE.MeshBasicMaterial({color:0xffdd88,transparent:true,opacity:1}));
+fireball.visible=false;scene.add(fireball);
+const shock=new THREE.Mesh(new THREE.RingGeometry(1,1.6,64),
+  new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.9,side:THREE.DoubleSide}));
+shock.rotation.x=-Math.PI/2;shock.position.y=2;shock.visible=false;scene.add(shock);
+// mushroom cloud particles
+const N=1600;
+const cloudGeo=new THREE.BufferGeometry();
+const cpos=new Float32Array(N*3),cvel=[],cseed=[];
+for(let i=0;i<N;i++){cvel.push(new THREE.Vector3());cseed.push(Math.random())}
+cloudGeo.setAttribute('position',new THREE.BufferAttribute(cpos,3));
+const cloud=new THREE.Points(cloudGeo,new THREE.PointsMaterial({color:0xffaa66,size:6,
+  transparent:true,opacity:.95,depthWrite:false}));
+cloud.visible=false;scene.add(cloud);
+// debris (villa chunks + flying hearts)
+const debris=[];
+function spawnDebris(){
+  villa.children.forEach(m=>m.visible=false);
+  palms.forEach(p=>p.visible=false);
+  for(let i=0;i<90;i++){
+    const isHeart=i%5===0;
+    const m=isHeart
+      ? new THREE.Mesh(heartGeo,heartMat.clone())
+      : new THREE.Mesh(new THREE.BoxGeometry(2+Math.random()*3,2+Math.random()*3,2+Math.random()*3),
+          new THREE.MeshLambertMaterial({color:[0xffc7dd,0xffffff,0xffe08a,0xff5fa2,0x2e9e4f][i%5]}));
+    if(isHeart){m.rotation.z=Math.PI;m.scale.setScalar(1.5)}
+    m.position.set((Math.random()-.5)*40,6+Math.random()*10,(Math.random()-.5)*30);
+    const v=m.position.clone().normalize().multiplyScalar(20+Math.random()*45);
+    v.y=30+Math.random()*55;
+    debris.push({m,v,rot:new THREE.Vector3(Math.random()*6,Math.random()*6,Math.random()*6)});
+    scene.add(m);
+  }
+}
+
+// ---------- audio (synth, no assets) ----------
+let actx;
+function beep(f,t,dur=.12,type='square',gain=.15){
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=type;o.frequency.value=f;g.gain.value=gain;
+  o.connect(g);g.connect(actx.destination);
+  o.start(actx.currentTime+t);
+  g.gain.setValueAtTime(gain,actx.currentTime+t);
+  g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+t+dur);
+  o.stop(actx.currentTime+t+dur);
+}
+function siren(t,dur=3){
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type='sawtooth';g.gain.value=.08;o.connect(g);g.connect(actx.destination);
+  for(let i=0;i<dur*2;i++){o.frequency.setValueAtTime(500,actx.currentTime+t+i*.5);
+    o.frequency.linearRampToValueAtTime(900,actx.currentTime+t+i*.5+.5)}
+  o.start(actx.currentTime+t);o.stop(actx.currentTime+t+dur);
+  g.gain.setValueAtTime(.08,actx.currentTime+t+dur-.2);
+  g.gain.linearRampToValueAtTime(0,actx.currentTime+t+dur);
+}
+function boom(t){
+  const dur=3,buf=actx.createBuffer(1,actx.sampleRate*dur,actx.sampleRate);
+  const d=buf.getChannelData(0);
+  for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.5);
+  const s=actx.createBufferSource();s.buffer=buf;
+  const f=actx.createBiquadFilter();f.type='lowpass';f.frequency.value=220;
+  const g=actx.createGain();g.gain.value=1.2;
+  s.connect(f);f.connect(g);g.connect(actx.destination);s.start(actx.currentTime+t);
+}
+
+// ---------- sequence ----------
+const feed=document.getElementById('feed');
+const lines=[
+  '> AUTHENTICATING: PRODUCER OVERRIDE ......... OK',
+  '> UPLINK TO SATELLITE "CUPID-1" ............. OK',
+  '> LOCKING TARGET: FIRE PIT, HIDEAWAY, POOL .. OK',
+  '> EVACUATING ISLANDERS (they left for brand deals)',
+  '> WARHEAD PAYLOAD: 50 MEGATONS OF DRAMA',
+  '> FINAL TEXT RECEIVED: "I got a text!" — everyone',
+];
+function feedLine(s){const d=document.createElement('div');d.textContent=s;feed.appendChild(d)}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+let phase='idle',t0=0,clock=new THREE.Clock();
+const btn=document.getElementById('launch');
+
+btn.addEventListener('click',async()=>{
+  btn.disabled=true;
+  actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+  document.getElementById('defcon').textContent='1';
+  siren(0);document.getElementById('alarm').style.animation='blink .5s steps(1) 8';
+  for(const l of lines){feedLine(l);beep(1100,0,.06);await sleep(520)}
+  // countdown
+  const count=document.getElementById('count'),num=document.getElementById('countnum');
+  count.style.display='grid';
+  for(let i=5;i>=1;i--){num.textContent=i;beep(i===1?440:660,0,.25,'square',.25);await sleep(1000)}
+  num.textContent='💘';beep(1200,0,.5,'sawtooth',.3);
+  await sleep(500);count.style.display='none';
+  document.getElementById('hud').style.display='none';
+  // launch missile
+  missile.visible=true;flame.visible=true;exhaust.intensity=6;
+  phase='missile';t0=clock.getElapsedTime();
+  document.body.classList.add('shake');
+});
+
+function detonate(){
+  phase='boom';t0=clock.getElapsedTime();
+  missile.visible=false;
+  boom(0);
+  const fl=document.getElementById('flash');
+  fl.style.transition='none';fl.style.opacity='1';
+  setTimeout(()=>{fl.style.transition='opacity 2.5s';fl.style.opacity='0'},60);
+  fireball.visible=true;fireball.position.set(0,8,0);fireball.scale.setScalar(1);
+  shock.visible=true;shock.scale.setScalar(1);
+  moonGlow.intensity=30;moonGlow.color.set(0xffcc88);
+  cloud.visible=true;
+  for(let i=0;i<N;i++){
+    cpos[i*3]= (Math.random()-.5)*8;cpos[i*3+1]=6;cpos[i*3+2]=(Math.random()-.5)*8;
+    cvel[i].set((Math.random()-.5)*6,9+Math.random()*13,(Math.random()-.5)*6);
+  }
+  cloudGeo.attributes.position.needsUpdate=true;
+  spawnDebris();
+  setTimeout(()=>document.body.classList.remove('shake'),2600);
+  setTimeout(()=>{document.getElementById('endcard').style.display='flex'},6500);
+}
+document.getElementById('again').addEventListener('click',()=>location.reload());
+
+// ---------- animate ----------
+function animate(){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime(),dt=Math.min(clock.getDelta()+.016,.05);
+  // ocean waves
+  for(let i=0;i<oceanPos.count;i++){
+    const x=oceanBase[i*3],y=oceanBase[i*3+1];
+    oceanPos.setZ(i,Math.sin(x*.05+t*1.3)*1.4+Math.cos(y*.06+t)*1.1);
+  }
+  oceanPos.needsUpdate=true;
+  fire.intensity=1.6+Math.sin(t*11)*.7;
+  palms.forEach((p,i)=>p.rotation.z=Math.sin(t*1.5+i)*.04);
+  if(phase==='idle'){camera.position.set(Math.sin(t*.12)*20,42,140);camera.lookAt(0,10,0)}
+  if(phase==='missile'){
+    const e=(clock.getElapsedTime()-t0)/3.2;           // 3.2s inbound
+    const p0=new THREE.Vector3(-500,700,-300),p1=new THREE.Vector3(0,8,0);
+    missile.position.lerpVectors(p0,p1,Math.min(e,1));
+    missile.lookAt(p1);missile.rotateX(Math.PI/2);
+    camera.position.set(Math.sin(t*2)*2+40,40,110);camera.lookAt(missile.position);
+    if(e>=1)detonate();
+  }
+  if(phase==='boom'){
+    const e=clock.getElapsedTime()-t0;
+    // fireball grows then fades
+    fireball.scale.setScalar(1+e*e*28);
+    fireball.material.opacity=Math.max(0,1-e/3);
+    fireball.material.color.setHSL(.08,1,Math.max(.5,.9-e*.15));
+    if(e>3.2)fireball.visible=false;
+    // shockwave
+    shock.scale.setScalar(1+e*70);shock.material.opacity=Math.max(0,.9-e/2.2);
+    // glow decay
+    moonGlow.intensity=Math.max(0,30-e*7);
+    // mushroom cloud: rise then mushroom out
+    for(let i=0;i<N;i++){
+      const s=cseed[i];
+      let x=cpos[i*3],y=cpos[i*3+1],z=cpos[i*3+2];
+      const v=cvel[i];
+      if(y>22+s*16){ // cap spreads outward
+        const ang=Math.atan2(z,x)+dt*.4;
+        const r=Math.sqrt(x*x+z*z)+dt*(9+s*10);
+        x=Math.cos(ang)*r;z=Math.sin(ang)*r;y+=dt*(1.5+s*2);
+      }else{x+=v.x*dt;y+=v.y*dt;z+=v.z*dt}
+      cpos[i*3]=x;cpos[i*3+1]=y;cpos[i*3+2]=z;
+    }
+    cloudGeo.attributes.position.needsUpdate=true;
+    cloud.material.color.setHSL(.07,.9,Math.max(.25,.65-e*.06));
+    cloud.material.opacity=Math.max(0,.95-e*.07);
+    // debris ballistics
+    debris.forEach(d=>{
+      d.v.y-=60*dt;
+      d.m.position.addScaledVector(d.v,dt);
+      d.m.rotation.x+=d.rot.x*dt;d.m.rotation.y+=d.rot.y*dt;
+      if(d.m.position.y<2&&d.v.y<0){d.v.y*=-.35;d.v.x*=.7;d.v.z*=.7;d.m.position.y=2}
+    });
+    // island sinks a bit, sky goes doom-pink
+    island.position.y=Math.max(-5,-e*.6);
+    scene.background.lerp(new THREE.Color(0x3a0a1e),dt*.3);
+    scene.fog.color.copy(scene.background);
+    // camera pulls back dramatically
+    camera.position.lerp(new THREE.Vector3(0,55,170),dt*.5);
+    camera.lookAt(0,22,0);
+  }
+  renderer.render(scene,camera);
+}
+animate();
+</script>
+</body>
+</html>
