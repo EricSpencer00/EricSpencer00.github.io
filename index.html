@@ -71,6 +71,7 @@ p{margin:12px 0}
 .cv-role{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin:0 0 2px}
 .cv-org{font-size:14px;color:var(--ink)}
 .cv-when{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim);margin:2px 0 0}
+.cv-note{font-size:14px;color:var(--dim);margin:3px 0 0}
 .small{font-size:13px;color:var(--dim)}
 code{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}
 .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;border:1px solid var(--rule);border-radius:3px;padding:0 5px;color:var(--dim);background:transparent;margin-left:4px}
@@ -93,8 +94,6 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 
 <h2 id="news">News</h2>
 <div class="news"><span class="d">2026-08-03</span><span class="t">Deployed the <b>TLA+ Generator</b> — plain English in, SANY- and TLC-checked TLA+ out, via a loop that keeps correcting itself until the invariant holds. <a href="https://tla.ericspencer.us" target="_blank" rel="noopener" class="pill">[try it]</a></span></div>
-<div class="news"><span class="d">2026-07-30</span><span class="t">Released <b>The TLA+ Microwave</b> — an entire TLA+ state space made explorable by clicking buttons in the browser. <a href="https://ericspencer.us/tla-microwave/" target="_blank" rel="noopener" class="pill">[demo]</a></span></div>
-<div class="news"><span class="d">2026-07-29</span><span class="t">Released <b>tla-w4-diamond-gold</b> on Hugging Face — 5,010 TLA+ training examples, every one of them gated behind a model checker. <a href="https://huggingface.co/datasets/EricSpencer00/tla-w4-diamond-gold" target="_blank" rel="noopener" class="pill">[dataset]</a></span></div>
 <div class="news"><span class="d">2026-06-05</span><span class="t"><b>tla-prover</b> accepted at <b>ICSOFT 2026</b>. <a href="https://arxiv.org/html/2606.06133v1" target="_blank" rel="noopener" class="pill">[link]</a></span></div>
 <div class="news"><span class="d">2026-04-17</span><span class="t">Presented <b>ChatTLA+</b> at Loyola's Undergraduate Research &amp; Engagement Symposium. <a href="https://ai4fm.cs.luc.edu/posts/chattla-presentation-2026/" target="_blank" rel="noopener" class="pill">[link]</a></span></div>
 <div class="news"><span class="d">2026-04</span><span class="t"><a href="https://ai4fm.cs.luc.edu/posts/gsirs-llm-tla-poster-2026/">Co-author on the GSIRS 2026 poster</a> — first systematic eval of LLM→TLA+ synthesis. Paper <i>Can LLMs Write Correct TLA+ Specifications?</i> <a href="https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/">accepted to <b>ICSOFT 2026</b> (Porto)</a>. Released <a href="https://huggingface.co/EricSpencer00/chattla-20b"><b>chattla-20b</b> on Hugging Face</a> — 13,500+ downloads.</span></div>
@@ -120,7 +119,6 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 <div class="proj"><a class="nm" href="/projects/ai-os.html">AuraOS</a><span class="dt"></span><span class="ds">Experimental LLM-driven operating-shell concept.</span></div>
 <div class="proj"><a class="nm" href="https://github.com/LUC-AI4FM/FormaLLM">FormaLLM</a><span class="dt"></span><span class="ds">Toolkit for evaluating LLMs on formal-specification synthesis.</span></div>
 <div class="proj"><a class="nm" href="https://stemacle.com">stemacle.com</a><span class="dt"></span><span class="ds">Stemacle releases: web app, macOS downloads, iOS status, and source.</span></div>
-<div class="proj"><a class="nm" href="https://ericspencer.us/stem-player/">stem-player</a><span class="dt"></span><span class="ds">Browser-based DONDA stem player.</span></div>
 <div class="proj"><a class="nm" href="https://paper-digest.ericspencer.us">paper-digest</a><span class="dt"></span><span class="ds">Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.</span></div>
 
 <h2 id="blog">Blog</h2>
@@ -132,6 +130,7 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 </div>
 
 <h2 id="cv">Experience</h2>
+<div class="cv-row"><div class="cv-logo"><svg width="36" height="36" viewBox="0 0 36 36"><rect width="36" height="36" rx="6" fill="#ddd"/><text x="18" y="24" font-family="Plus Jakarta Sans,sans-serif" font-size="11" font-weight="700" fill="#555" text-anchor="middle">HS</text></svg></div><div class="cv-body"><div class="cv-role">Member of Technical Staff</div><div class="cv-org"><a href="https://hornesci.github.io" target="_blank" rel="noopener">HorneSci</a></div><div class="cv-when">Jun 2026 &mdash; present</div><div class="cv-note">Implementing hardware speedups inside kernels.</div></div></div>
 <div class="cv-row"><div class="cv-logo"><img src="/assets/logos/from-america-gh.jpg" alt="From America" width="36" height="36" style="border-radius:6px;object-fit:contain;background:#fff"></div><div class="cv-body"><div class="cv-role">Chief Executive Officer</div><div class="cv-org"><a href="https://fromamerica-llc.com" target="_blank" rel="noopener">From America</a></div><div class="cv-when">May 2026 &mdash; present</div></div></div>
 <div class="cv-row"><div class="cv-logo"><img src="/assets/logos/instxnt-xyz.jpg" alt="instxnt.xyz" width="36" height="36" style="border-radius:6px;object-fit:contain;background:#fff"></div><div class="cv-body"><div class="cv-role">Founder</div><div class="cv-org"><a href="https://instxnt.xyz" target="_blank" rel="noopener">instxnt.xyz</a></div><div class="cv-when">Dec 2025 &mdash; present</div></div></div>
 <div class="cv-row"><div class="cv-logo"><img src="/assets/logos/ai4fm_transparent.jpg" alt="AI4FM · Loyola University Chicago" width="36" height="36" style="border-radius:6px;object-fit:contain;background:#fff"></div><div class="cv-body"><div class="cv-role">Researcher</div><div class="cv-org"><a href="https://ai4fm.cs.luc.edu" target="_blank" rel="noopener">AI4FM · Loyola University Chicago</a></div><div class="cv-when">Aug 2025 &mdash; present</div></div></div>

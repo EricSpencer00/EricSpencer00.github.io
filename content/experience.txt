@@ -1,8 +1,10 @@
-# Experience / CV — role|org|org_url|start|end|logo_file
+# Experience / CV — role|org|org_url|start|end|logo_file|note
 # logo_file: filename in /assets/logos/ — use "" if no logo
+# note: optional one-line description of the work — omit or leave "" for none
 # end: "present" or month/year
 # Reverse chronological order.
 
+Member of Technical Staff|HorneSci|https://hornesci.github.io|Jun 2026|present||Implementing hardware speedups inside kernels.
 Chief Executive Officer|From America|https://fromamerica-llc.com|May 2026|present|from-america-gh.jpg
 Founder|instxnt.xyz|https://instxnt.xyz|Dec 2025|present|instxnt-xyz.jpg
 Researcher|AI4FM · Loyola University Chicago|https://ai4fm.cs.luc.edu|Aug 2025|present|ai4fm_transparent.jpg

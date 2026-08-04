@@ -70,7 +70,7 @@ def build_blog():
 def build_experience():
     rows = []
     for line in lines("experience.txt"):
-        role, org, org_url, start, end, logo = parse(line, 6)
+        role, org, org_url, start, end, logo, note = parse(line, 7)
         end_str = "present" if end.lower() == "present" else end
         date_str = f"{start} &mdash; {end_str}"
         if logo:
@@ -81,7 +81,14 @@ def build_experience():
                 f'</div>'
             )
         else:
-            initials = "".join(w[0] for w in org.split()[:2]).upper()
+            words = org.split()
+            if len(words) > 1:
+                initials = "".join(w[0] for w in words[:2]).upper()
+            else:
+                # Single-word orgs used to render one lonely letter. Prefer the
+                # word's own capitals ("HorneSci" -> "HS"), else its first two.
+                caps = [c for c in words[0] if c.isupper()]
+                initials = ("".join(caps[:2]) if len(caps) > 1 else words[0][:2]).upper()
             logo_html = (
                 f'<div class="cv-logo">'
                 f'<svg width="36" height="36" viewBox="0 0 36 36"><rect width="36" height="36" rx="6" fill="#ddd"/>'
@@ -89,6 +96,7 @@ def build_experience():
                 f'</div>'
             )
         org_link = f'<a href="{org_url}" target="_blank" rel="noopener">{org}</a>' if org_url else org
+        note_html = f'<div class="cv-note">{note}</div>' if note else ""
         rows.append(
             f'<div class="cv-row">'
             f'{logo_html}'
@@ -96,6 +104,7 @@ def build_experience():
             f'<div class="cv-role">{role}</div>'
             f'<div class="cv-org">{org_link}</div>'
             f'<div class="cv-when">{date_str}</div>'
+            f'{note_html}'
             f'</div></div>'
         )
     return "\n".join(rows)
@@ -176,6 +185,7 @@ p{{margin:12px 0}}
 .cv-role{{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin:0 0 2px}}
 .cv-org{{font-size:14px;color:var(--ink)}}
 .cv-when{{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim);margin:2px 0 0}}
+.cv-note{{font-size:14px;color:var(--dim);margin:3px 0 0}}
 .small{{font-size:13px;color:var(--dim)}}
 code{{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}}
 .tag{{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;border:1px solid var(--rule);border-radius:3px;padding:0 5px;color:var(--dim);background:transparent;margin-left:4px}}
