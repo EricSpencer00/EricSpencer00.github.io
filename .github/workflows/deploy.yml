@@ -26,6 +26,7 @@ jobs:
         run: |
           python3 scripts/build.py
           python3 scripts/build_blog.py
+          python3 scripts/build_resume_pages.py
 
       # backup-site/ is an archive of the old Hugo site kept in git for
       # reference. Shipping it published ~30 duplicate pages — including a

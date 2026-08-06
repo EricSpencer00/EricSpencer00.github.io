@@ -544,8 +544,6 @@ LUC_AI4FM = [
 ]
 
 FROM_AMERICA = [
-    ("instxnt.xyz", "Visual AI-powered storefront builder.", "TypeScript"),
-    ("instxnt-mcp", "MCP server for instxnt.xyz — create storefronts through Claude, ChatGPT, Gemini.", "TypeScript"),
     ("picai", "AI photo platform.", "TypeScript"),
     ("StockGenie", "Stock analysis iOS app.", "JavaScript"),
     ("stockgenie-web", "StockGenie static site: Privacy & Terms.", "HTML"),
@@ -574,7 +572,7 @@ FROM_AMERICA = [
     ("from-america.github.io", "FROM AMERICA LLC corporate site.", "HTML"),
 ]
 FA_PAGES = {
-    "instxnt.xyz":"https://instxnt.xyz","stockgenie-web":"https://stockgenie.app",
+    "stockgenie-web":"https://stockgenie.app",
     "picai":"https://picai.us","FreeLock":"https://fromamerica-llc.com/FreeLock/",
     "FreeLock-web":"https://fromamerica-llc.com/FreeLock-web/",
     "splithound-web":"https://fromamerica-llc.com/splithound-web/",
