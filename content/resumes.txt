@@ -1,8 +1,10 @@
 # Resume/CV landing pages — slug|pdf|title|blurb|index
-# slug:  URL path. "cv" -> /cv/ ; "resume/project44" -> /resume/project44/
+# slug:  URL path. "cv" -> /cv/ ; "resume/80626" -> /resume/80626/
+#        Variants are named by DATE WRITTEN, never by company or role: M+DD+YY
+#        (Aug 6 2026 = 80626). A second one the same day appends a counter.
 # pdf:   filename under /assets/pdf/ (built by github.com/EricSpencer00/resume)
 # index: "yes" to allow search engines, "no" to noindex (use "no" for tuned variants)
 # Source for all PDFs: https://github.com/EricSpencer00/resume
 
 cv|cv.pdf|Curriculum Vitae|Full CV — every role, publication, release, and project.|yes
-resume/project44|resume-project44.pdf|Resume — Forward Deployed Engineer|One-page resume tuned for a forward-deployed engineering role.|no
+resume/80626|resume-80626.pdf|Resume|Eric Spencer — one-page resume.|no
