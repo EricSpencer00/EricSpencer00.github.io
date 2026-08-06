@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 build_resume_pages.py — reads content/resumes.txt, writes a landing page per
-resume/CV variant (e.g. /cv/index.html, /resume/project44/index.html).
+resume/CV variant (e.g. /cv/index.html, /resume/80626/index.html), plus a
+/resume/ index that forwards to the most recent dated variant.
 
 The PDFs themselves live in /assets/pdf/ and are pushed here by CI in
 github.com/EricSpencer00/resume. This script only builds the wrappers.
@@ -63,6 +64,33 @@ footer{{margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-f
 """
 
 
+REDIRECT = """<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resume — Eric Spencer</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="refresh" content="0;url=/{target}/">
+</head><body>
+<p><a href="/{target}/">Resume &rarr;</a></p>
+<script>location.replace("/{target}/");</script>
+</body></html>
+"""
+
+
+def recency(slug):
+    """Sort key for a dated variant slug: resume/MDDYY, optionally -N.
+
+    Variants are named by date written, M+DD+YY (Aug 6 2026 = 80626), with a
+    counter appended for a second one the same day. Stripping the trailing DDYY
+    leaves the month, so this stays correct for two-digit months (121526).
+    """
+    code, _, counter = slug.split("/", 1)[1].partition("-")
+    if not code.isdigit():
+        return (0, 0, 0, 0)
+    n = int(code)
+    return (n % 100, n // 10000, (n // 100) % 100, int(counter) if counter.isdigit() else 1)
+
+
 def rows():
     path = CONTENT / "resumes.txt"
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -93,6 +121,18 @@ def main():
             encoding="utf-8",
         )
         built.append(f"/{slug}/")
+
+    # Bare /resume/ forwards to the newest dated variant, so the path stays
+    # valid as variants are added and never has to be hand-edited. noindex,
+    # matching the tuned variants it points at.
+    variants = [s for s in built if s.startswith("/resume/")]
+    if variants:
+        latest = max((s.strip("/") for s in variants), key=recency)
+        out = ROOT / "resume" / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(REDIRECT.format(target=latest), encoding="utf-8")
+        built.append(f"/resume/ -> /{latest}/")
+
     print("Built resume pages:", ", ".join(built))
 
 
