@@ -390,12 +390,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://ericspencer.us/love-island/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
   <url><loc>https://ericspencer.us/cv/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ericspencer.us/hotdog/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ericspencer.us/blog/tree.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
