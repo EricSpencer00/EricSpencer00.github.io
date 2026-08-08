@@ -21,6 +21,8 @@ jobs:
         run: python3 scripts/build_blog.py
       - name: Build resume/CV landing pages
         run: python3 scripts/build_resume_pages.py
+      - name: Point pages at their link-preview cards
+        run: python3 scripts/apply_og_tags.py
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
@@ -33,7 +35,7 @@ jobs:
           # is a duplicate of production competing in search, and its robots.txt
           # was even pointing crawlers at the production sitemap.
           printf 'User-agent: *\nDisallow: /\n' > robots.txt
-          git add CNAME index.html blog robots.txt cv resume assets/pdf
+          git add CNAME index.html blog robots.txt cv resume assets/pdf assets/og
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git

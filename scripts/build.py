@@ -127,12 +127,16 @@ def build_page(news, about, selected, blog, experience):
 <meta property="og:description" content="Researcher, founder, and software engineer based in Chicago.">
 <meta property="og:url" content="https://ericspencer.us/">
 <meta property="og:site_name" content="Eric Spencer">
-<meta property="og:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
+<meta property="og:image" content="https://ericspencer.us/assets/og/home.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Eric Spencer &mdash; ericspencer.us">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago">
 <meta name="twitter:description" content="Researcher, founder, and software engineer based in Chicago.">
-<meta name="twitter:image" content="https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/home.jpg">
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"Person","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago"}},"email":"eric@ericspencer.us"}}
 </script>

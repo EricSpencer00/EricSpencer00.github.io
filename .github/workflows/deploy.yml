@@ -28,6 +28,14 @@ jobs:
           python3 scripts/build_blog.py
           python3 scripts/build_resume_pages.py
 
+      # Runs last: the generators above rewrite whole <head> blocks, so the
+      # link-preview tags have to be reapplied after them or every rebuild
+      # silently drops each page back to a generic card. The card images
+      # themselves are committed -- regenerating those needs Chrome and is a
+      # local step (scripts/build_og_images.py).
+      - name: Point pages at their link-preview cards
+        run: python3 scripts/apply_og_tags.py
+
       # backup-site/ is an archive of the old Hugo site kept in git for
       # reference. Shipping it published ~30 duplicate pages — including a
       # second copy of the homepage at /backup-site/ — which competed with the

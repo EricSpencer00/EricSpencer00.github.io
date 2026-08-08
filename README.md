@@ -30,3 +30,20 @@ published: true
 
 Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug.html` and update `blog/index.html`. The deployment workflow runs this automatically. Set `published: false` while drafting.
 ```
+
+## Link previews
+
+Every page has its own 1200x630 card in `assets/og/`, so pasting a URL into
+Slack, iMessage, LinkedIn or Twitter shows that page rather than a shared
+thumbnail. Cards are screenshots of the live page, except where the page has
+real imagery of its own — then that image is used.
+
+```bash
+python3 scripts/build_og_images.py   # reshoot cards (needs Chrome, run locally)
+python3 scripts/apply_og_tags.py     # point pages at their cards
+```
+
+`apply_og_tags.py` runs on every deploy, after the other build scripts — they
+rewrite whole `<head>` blocks, so the preview tags have to be reapplied or each
+rebuild quietly drops pages back to a generic card. The card images themselves
+are committed; only reshoot them after a visual change.
