@@ -50,6 +50,16 @@ NOT_CONTENT = re.compile(
     r"(logo|badge|icon|avatar|shields\.io|actions/workflows|favicon)", re.I
 )
 
+# Pages on ericspencer.us that GitHub Pages serves out of their own repos, so
+# their HTML is not in this tree. Their cards still live in assets/og/ here --
+# the pages reference them by absolute URL -- so keep shooting them, or a title
+# change over in those repos would leave a stale card behind with no way to
+# refresh it from this side.
+EXTERNAL = [
+    f"{SITE}/{path}/"
+    for path in ("Claude-of-Duty", "ddia", "gta-v-gold-checklist", "hotdog")
+]
+
 
 def published_pages():
     """Every published HTML file, grouped by the canonical URL it points at.
@@ -71,6 +81,10 @@ def published_pages():
         if "YOUR-SLUG" in url:
             continue  # unfilled post template, not a real page
         by_canonical.setdefault(url, []).append(path)
+    for url in EXTERNAL:
+        # No local files, so there is nothing for apply_og_tags.py to rewrite --
+        # those pages carry their tags in their own repos.
+        by_canonical.setdefault(url, [])
     return by_canonical
 
 

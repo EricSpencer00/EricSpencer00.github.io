@@ -13,7 +13,30 @@ index.html          homepage
 projects.html       all 116+ repos + org work
 research.html       papers, talks, models
 projects/*.html     individual project writeups
-backup-site/        full Hugo site archive
+blog/               compiled from content/blog/*.md
+cv/, resume/        landing pages, built from content/resumes.txt
+assets/og/          link-preview cards, one per page
+backup-site/        full Hugo site archive (stripped at deploy)
+```
+
+## Pages served from other repos
+
+Some paths under ericspencer.us are GitHub Pages project sites, not files here.
+A repo named `foo` with Pages enabled takes over `ericspencer.us/foo/` and
+shadows any `foo/` directory in this repo — so if that repo's Pages build ever
+fails, the path 404s and this repo cannot cover for it.
+
+| Path | Repo |
+| --- | --- |
+| `/Claude-of-Duty/` | `Claude-of-Duty` (`gh-pages` branch; source on `main`) |
+| `/ddia/` | `ddia` |
+| `/gta-v-gold-checklist/` | `gta-v-gold-checklist` |
+| `/hotdog/` | `hotdog` |
+| `/ericspencer-site-backup/` | `ericspencer-site-backup` |
+
+Edit those pages in their own repos. Their preview cards still live in
+`assets/og/` here and are listed in `EXTERNAL` in `scripts/build_og_images.py`,
+so reshooting keeps working.
 
 ## Blog workflow
 
@@ -29,7 +52,6 @@ published: true
 ```
 
 Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug.html` and update `blog/index.html`. The deployment workflow runs this automatically. Set `published: false` while drafting.
-```
 
 ## Link previews
 
