@@ -3,7 +3,7 @@
 Hand-written HTML personal site with small Python build scripts. No frameworks.
 
 - **Live:** [ericspencer.us](https://ericspencer.us)
-- **Old site:** [ericspencer.us/backup-site/](https://ericspencer.us/backup-site/)
+- **Old site:** [ericspencer.us/ericspencer-site-backup/](https://ericspencer.us/ericspencer-site-backup/) — served from its own repo; the `backup-site/` copy here is kept for reference and stripped at deploy
 - **Backup repo:** [ericspencer-site-backup](https://github.com/EricSpencer00/ericspencer-site-backup)
 
 ## Structure
