@@ -1,12 +1,8 @@
 # Selected work — name|url|description
 # These appear in the "Selected Work" section on the homepage.
 
-TLA+ Generator|https://tla.ericspencer.us|Plain English in, model-checked TLA+ out — a self-correcting loop that runs until SANY and TLC pass and the invariant holds.
-tla-w4-diamond-gold|https://huggingface.co/datasets/EricSpencer00/tla-w4-diamond-gold|Verifier-gated TLA+ SFT corpus — 5,010 examples that survived the W4 diamond-gold filter.
-Not Hotdog|https://ericspencer.us/hotdog/|Hot dog or not hot dog — a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference.
-Resilient|/projects/resilient.html|Statically-typed compiled language for safety-critical embedded systems.
-TLA-Prover|https://arxiv.org/abs/2606.06133|Verifiable TLA+ specification synthesis via preference-optimized low-rank adaptation.
-AuraOS|/projects/ai-os.html|Experimental LLM-driven operating-shell concept.
-FormaLLM|https://github.com/LUC-AI4FM/FormaLLM|Toolkit for evaluating LLMs on formal-specification synthesis.
-stemacle.com|https://stemacle.com|Stemacle releases: web app, macOS downloads, iOS status, and source.
+Not Hotdog|https://ericspencer.us/hotdog/|Hot dog or not hot dog: a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference.
+Resilient|/projects/resilient.html|Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.
+HST-Studio|https://github.com/HorneSci/hst-studio|A delta-aware sparse linear algebra runtime, and the tooling around it.
+tlakit|https://tlakit.pages.dev|Python and notebook client for the TLA+ toolchain. Drives SANY, TLC, and TLAPS from a cell without reimplementing TLA+ semantics.
 paper-digest|https://paper-digest.ericspencer.us|Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.

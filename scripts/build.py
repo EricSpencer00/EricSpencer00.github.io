@@ -204,7 +204,21 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 #gh-repos .repo-row .ds{{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}}
 #gh-repos .repo-row .stars{{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim);opacity:0.65}}
 #gh-repos .loading{{font-size:14px;color:var(--dim);font-style:italic;margin:8px 0}}
-@media(max-width:560px){{.wrap{{padding:36px 18px 80px}}.proj .dt,.proj .ds{{display:none}}.post-d{{display:none}}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{{display:none}}}}
+/* Hugging Face section reuses the repo-row layout */
+#hf-list .gh-cat{{margin:48px 0 0}}
+#hf-list .gh-cat h2{{margin-bottom:14px}}
+#hf-list .repo-row{{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;line-height:1.8;display:flex;gap:10px;align-items:baseline;padding:2px 0;white-space:nowrap;overflow:hidden}}
+#hf-list .repo-row a{{flex:0 0 auto;font-weight:600;color:var(--ink);border:0;text-decoration:none}}
+#hf-list .repo-row a:hover{{color:var(--accent)}}
+#hf-list .repo-row .dt{{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:14px}}
+#hf-list .repo-row .ds{{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}}
+#hf-list .repo-row .stars{{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim);opacity:0.65}}
+#hf-list .loading{{font-size:14px;color:var(--dim);font-style:italic;margin:8px 0}}
+/* "Show more" disclosure: rows past the third are hidden until asked for */
+.gh-rest[hidden]{{display:none}}
+.gh-more{{font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);background:none;border:0;border-bottom:1px dotted var(--rule);padding:2px 0;margin-top:6px;cursor:pointer}}
+.gh-more:hover{{color:var(--accent);border-bottom-color:var(--accent)}}
+@media(max-width:560px){{.wrap{{padding:36px 18px 80px}}.proj .dt,.proj .ds{{display:none}}.post-d{{display:none}}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{{display:none}}#hf-list .repo-row .dt,#hf-list .repo-row .ds{{display:none}}}}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
 <nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
@@ -233,6 +247,10 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 
 <div id="gh-repos">
 <p class="loading" id="gh-loading">Loading repos&hellip;</p>
+</div>
+
+<div id="hf-list">
+<p class="loading" id="hf-loading">Loading Hugging Face models&hellip;</p>
 </div>
 
 <h2 id="cv">Experience</h2>
@@ -299,10 +317,10 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
       (r.topics||[]).some(t => AI_TOPICS.has(t.toLowerCase()))
     ],
     ['macOS, iOS & Desktop', r =>
-      /mac|ios|swift|tunes2tube|dexcom|ChessStats|youtube-dl|soundboard|apple-music|ReserveLibrary|tdx|DexVal|T-square/i.test(r.name)
+      /mac|ios|swift|tunes2tube|dexcom|ChessStats|youtube-dl|soundboard|apple-music|ReserveLibrary|tdx|DexVal|T-square|ripcord/i.test(r.name)
     ],
     ['Systems, Languages & Tools', r =>
-      /UDP-server|itch-parser|xoroshiro|mc-carspot|palindrome|grade-public|roman-numeral|etl-demo|fg-scrape|EmailExtract|scala|gitkey|flatten-repo|notify-agent|reverse-xoro|auto-decode/i.test(r.name)
+      /UDP-server|itch-parser|xoroshiro|mc-carspot|palindrome|grade-public|roman-numeral|etl-demo|fg-scrape|EmailExtract|scala|gitkey|flatten-repo|notify-agent|reverse-xoro|auto-decode|tlakit/i.test(r.name)
     ],
     ['Web & Front-End', r =>
       /github[.]io$|[-]web$|front|fb-clone|design-skill|caterpillar|gcf-de|margaux|DailyTask|bio-ops|sneaker-run|slot-machine|spa-web|cone-site|uzz|pitch|archaic-radio|stockgenie-web|FreeLock-web|splithound-web|chambr-web|from-america[.]|webpage/i.test(r.name) ||
@@ -311,32 +329,138 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     ['Hackathons & Coursework', r =>
       /hack|Serenity|LoyolaHACK|comp[0-9]|COMP[0-9]|cs50|csapp|HealthUp|AoC|march-mad|MovieRec|BlackJack|AnagramSolver|Chat(?!TLA)|BrightBet|claude-architect-exam/i.test(r.name)
     ],
-    ['Contributions & Forks', r => r.fork === true],
   ];
 
+  // The first three rows of each category are the ones worth leading with, so
+  // they are named here rather than left to whatever GitHub sorted most recent.
+  // `repo` pins an existing repo (optionally relabelled); `url` alone adds a
+  // site that has no public repo behind it. Anything not listed keeps its
+  // normal position after the pins, hidden behind "Show more".
+  const PINNED = {{
+    'Formal Methods & Verification': [
+      {{ repo: 'ralph-tla' }},
+      {{ repo: 'interactive-microwave-tla' }},
+      {{ repo: 'FormaLLM' }},
+    ],
+    'AI, LLMs & Machine Learning': [
+      {{ repo: 'TerminalGPT' }},
+      {{ repo: 'yeat-llm' }},
+      {{ repo: 'usage-badge' }},
+    ],
+    // T-square sits fourth on purpose: visible only after "Show more".
+    'macOS, iOS & Desktop': [
+      {{ repo: 'ripcord' }},
+      {{ repo: 'tunes2tube-mac' }},
+      {{ repo: 'iOS-soundboard' }},
+      {{ repo: 'T-square' }},
+    ],
+    'Systems, Languages & Tools': [
+      {{ repo: 'tlakit' }},
+      {{ repo: 'reverse-xoroshiro128plusplus' }},
+      {{ repo: 'grade-public-commits' }},
+    ],
+    'Web & Front-End': [
+      {{ name: 'fromamerica-llc.com', url: 'https://fromamerica-llc.com',
+        desc: 'FROM AMERICA LLC: independent software studio.' }},
+      {{ repo: 'gcf-de', url: 'https://ericspencer.us/gcf-de/' }},
+      {{ name: 'stockgenie.app', url: 'https://stockgenie.app',
+        desc: 'Daily AI stock pick, free tier plus options.' }},
+    ],
+    'Hackathons & Coursework': [
+      {{ name: 'sideswing.tech', url: 'https://sideswing.tech',
+        desc: 'Phone-as-club golf swing tracker.' }},
+      {{ repo: 'VoCal', name: 'vocal.best', url: 'https://vocal.best' }},
+      {{ name: 'brightbet.tech', url: 'https://brightbet.tech',
+        desc: 'Sports betting model and dashboard.' }},
+    ],
+    'Other': [
+      {{ repo: 'ddia' }},
+      {{ repo: 'Claude-architect-quiz' }},
+      {{ repo: 'pm-whale-tracker' }},
+    ],
+  }};
+
+  // The account is past 100 repos, so a single page silently drops the tail
+  // (and with it any pinned repo that happens to live there). Walk the pages.
+  const PER_PAGE = 100;
+  const MAX_PAGES = 5;
+
   async function fetchAll(source) {{
-    const base = source.type === 'user'
-      ? `https://api.github.com/users/${{source.name}}/repos?per_page=100&sort=updated&type=all`
-      : `https://api.github.com/orgs/${{source.name}}/repos?per_page=100&sort=updated`;
-    const res = await fetch(base, {{ headers: {{ Accept: 'application/vnd.github+json' }} }});
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.map(r => ({{ ...r, _source: source.label }}));
+    const root = source.type === 'user'
+      ? `https://api.github.com/users/${{source.name}}/repos?type=all&`
+      : `https://api.github.com/orgs/${{source.name}}/repos?`;
+    const out = [];
+    for (let page = 1; page <= MAX_PAGES; page++) {{
+      const res = await fetch(
+        `${{root}}per_page=${{PER_PAGE}}&sort=updated&page=${{page}}`,
+        {{ headers: {{ Accept: 'application/vnd.github+json' }} }});
+      if (!res.ok) break;
+      const data = await res.json();
+      if (!Array.isArray(data) || !data.length) break;
+      out.push(...data.map(r => ({{ ...r, _source: source.label }})));
+      if (data.length < PER_PAGE) break;
+    }}
+    return out;
   }}
 
-  function makeRow(repo) {{
-    const url = repo.homepage || repo.html_url;
-    const desc = repo.description || '';
-    const stars = repo.stargazers_count > 0
-      ? `<span class="stars">&#9733; ${{repo.stargazers_count}}</span>` : '';
-    const forkTag = repo.fork ? '<span class="tag">fork</span>' : '';
-    const sourceTag = repo._source ? `<span class="tag">${{repo._source}}</span>` : '';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g,
+    c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));
+
+  // One row, whether it came from a repo, a pin, or Hugging Face.
+  function row({{ url, name, desc, count, tags }}) {{
+    const tagHtml = (tags || []).map(t => `<span class="tag">${{esc(t)}}</span>`).join('');
+    const countHtml = count ? `<span class="stars">${{count}}</span>` : '';
     return `<div class="repo-row">
-      <a href="${{url}}" target="_blank" rel="noopener">${{repo.name}}</a>
+      <a href="${{esc(url)}}" target="_blank" rel="noopener">${{esc(name)}}</a>
       <span class="dt"></span>
-      <span class="ds">${{desc}}${{forkTag}}${{sourceTag}}</span>
-      ${{stars}}
+      <span class="ds">${{esc(desc)}}${{tagHtml}}</span>
+      ${{countHtml}}
     </div>`;
+  }}
+
+  function repoRow(repo, override) {{
+    const o = override || {{}};
+    return row({{
+      url: o.url || repo.homepage || repo.html_url,
+      name: o.name || repo.name,
+      desc: o.desc || repo.description || '',
+      count: repo.stargazers_count > 0 ? `&#9733; ${{repo.stargazers_count}}` : '',
+      tags: [repo.fork ? 'fork' : null, repo._source].filter(Boolean),
+    }});
+  }}
+
+  // A category renders its first three rows, then tucks the rest behind a
+  // button. Categories of three or fewer get no button at all.
+  const VISIBLE = 3;
+  let catSeq = 0;
+
+  function renderCat(heading, rows) {{
+    if (!rows.length) return '';
+    const id = `gh-rest-${{++catSeq}}`;
+    const head = rows.slice(0, VISIBLE).join('\\n');
+    const rest = rows.slice(VISIBLE);
+    const restHtml = rest.length
+      ? `<div class="gh-rest" id="${{id}}" hidden>${{rest.join('\\n')}}</div>
+         <button class="gh-more" type="button" aria-expanded="false" aria-controls="${{id}}"
+                 data-count="${{rest.length}}">Show ${{rest.length}} more</button>`
+      : '';
+    return `<div class="gh-cat">
+      <h2>${{esc(heading)}} <span class="pill">(${{rows.length}})</span></h2>
+      ${{head}}
+      ${{restHtml}}
+    </div>`;
+  }}
+
+  function wireDisclosures(container) {{
+    container.querySelectorAll('.gh-more').forEach(btn => {{
+      btn.addEventListener('click', () => {{
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
+        const open = !panel.hidden;
+        panel.hidden = open;
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.textContent = open ? `Show ${{btn.dataset.count}} more` : 'Show less';
+      }});
+    }});
   }}
 
   async function render() {{
@@ -345,35 +469,97 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     try {{
       const raw = (await Promise.all(SOURCES.map(fetchAll))).flat();
       const repos = dedup(raw).filter(r => !SKIP.has(r.name));
+      const byName = new Map(repos.map(r => [r.name.toLowerCase(), r]));
+
+      // A pin claims its repo for its own category, so the regexes below never
+      // steal it into an earlier one.
+      const claimed = new Set();
+      for (const pins of Object.values(PINNED)) {{
+        for (const p of pins) {{
+          const hit = p.repo && byName.get(p.repo.toLowerCase());
+          if (hit) claimed.add(hit.id);
+        }}
+      }}
+
+      function pinnedRows(heading) {{
+        return (PINNED[heading] || []).map(p => {{
+          const hit = p.repo && byName.get(p.repo.toLowerCase());
+          if (hit) return repoRow(hit, p);
+          // No repo behind it (private, or another org): a plain link, but only
+          // if the pin carries its own URL.
+          return p.url ? row({{ url: p.url, name: p.name || p.repo, desc: p.desc || '' }}) : '';
+        }}).filter(Boolean);
+      }}
 
       const placed = new Set();
       let html = '';
 
       for (const [heading, matchFn] of CATEGORIES) {{
-        const bucket = repos.filter(r => !placed.has(r.id) && matchFn(r));
-        if (!bucket.length) continue;
+        const bucket = repos.filter(r =>
+          !placed.has(r.id) && !claimed.has(r.id) && matchFn(r));
         bucket.forEach(r => placed.add(r.id));
-        html += `<div class="gh-cat">
-          <h2>${{heading}} <span class="pill">(${{bucket.length}})</span></h2>
-          ${{bucket.map(makeRow).join('\\n')}}
-        </div>`;
+        html += renderCat(heading, [...pinnedRows(heading), ...bucket.map(r => repoRow(r))]);
       }}
 
-      const rest = repos.filter(r => !placed.has(r.id));
-      if (rest.length) {{
-        html += `<div class="gh-cat">
-          <h2>Other <span class="pill">(${{rest.length}})</span></h2>
-          ${{rest.map(makeRow).join('\\n')}}
-        </div>`;
-      }}
+      const rest = repos.filter(r => !placed.has(r.id) && !claimed.has(r.id));
+      html += renderCat('Other', [...pinnedRows('Other'), ...rest.map(r => repoRow(r))]);
 
       container.innerHTML = html;
+      wireDisclosures(container);
     }} catch(e) {{
       if (loading) loading.textContent = 'Could not load repos.';
     }}
   }}
 
+  // ── Hugging Face ───────────────────────────────────────────────────────────
+  // Same layout as the repo list, sorted by downloads so the models that get
+  // used lead.
+  const HF_USER = 'EricSpencer00';
+
+  async function fetchHF(kind) {{
+    const res = await fetch(
+      `https://huggingface.co/api/${{kind}}?author=${{HF_USER}}&limit=100&full=false`,
+      {{ headers: {{ Accept: 'application/json' }} }});
+    if (!res.ok) return [];
+    return res.json();
+  }}
+
+  function hfRow(item, kind) {{
+    const short = item.id.includes('/') ? item.id.split('/')[1] : item.id;
+    const dl = item.downloads || 0;
+    const tags = (item.tags || [])
+      .filter(t => !t.includes(':') && !/^(region|license|arxiv)/.test(t))
+      .slice(0, 2);
+    return row({{
+      url: `https://huggingface.co/${{kind === 'datasets' ? 'datasets/' : ''}}${{item.id}}`,
+      name: short,
+      desc: item.pipeline_tag || tags.join(', ') || '',
+      count: dl > 0 ? `&#8595; ${{dl.toLocaleString()}}` : '',
+      tags: item.likes > 0 ? [`${{item.likes}} likes`] : [],
+    }});
+  }}
+
+  async function renderHF() {{
+    const container = document.getElementById('hf-list');
+    const loading = document.getElementById('hf-loading');
+    try {{
+      const [models, datasets] = await Promise.all([fetchHF('models'), fetchHF('datasets')]);
+      const bydl = (a, b) => (b.downloads || 0) - (a.downloads || 0);
+      let html = '';
+      html += renderCat('Hugging Face Models',
+        models.sort(bydl).map(m => hfRow(m, 'models')));
+      html += renderCat('Hugging Face Datasets',
+        datasets.sort(bydl).map(d => hfRow(d, 'datasets')));
+      if (!html) {{ loading.textContent = 'No Hugging Face artifacts found.'; return; }}
+      container.innerHTML = html;
+      wireDisclosures(container);
+    }} catch(e) {{
+      if (loading) loading.textContent = 'Could not load Hugging Face models.';
+    }}
+  }}
+
   render();
+  renderHF();
 }})();
 </script>
 </body></html>
