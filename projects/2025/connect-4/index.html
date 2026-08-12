@@ -133,14 +133,14 @@ li{margin:4px 0}
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/connect-4" target="_blank" rel="noopener">https://github.com/EricSpencer00/connect-4</a></p>
 <hr class="dash">
 <p><img src="https://ericspencer.us/ericspencer-site-backup/previews/connect-4.png" alt="Photo of the Connect 4 game engine"></p>
-<p>Inspired by <a href="https://en.wikipedia.org/wiki/Chess_engine" target="</i>blank" rel="noopener">Chess Engines</a> that mathematically predict how long it will take for a player to win a game (or the liklihood of a player winning a game), I created the same thing for Connect 4.</p>
+<p><a href="https://en.wikipedia.org/wiki/Chess_engine" target="</i>blank" rel="noopener">Chess Engines</a> mathematically predict how long it will take for a player to win a game, or the liklihood of a player winning a game. This project does the same thing for Connect 4.</p>
 <p><a href="https://github.com/EricSpencer00/connect-4" target="_blank" rel="noopener">GitHub Repo</a></p>
 <h2>Solved Mode<span class="ln"></span></h2>
 <p>The AI was trained on 67,557 unique and legal positions by move 4 (both players have just played 4 moves each) of the game. Each position is labeled with the game-theoretic outcome of win/loss/tie. Also, these positions require no player to have won nor have a forcing move on the next play (3 in a row and similar positions). The dataset was acquired from work by John Tromp <a href="https://tromp.github.io" target="_blank" rel="noopener">tromp.github.io</a>.</p>
-<p><i>Sidenote, I absolutely love simple html pages like the one above. They're extremely optimized for browsers that expect thousands of lines of JavaScript.</i></p>
+<p><i>Sidenote: simple html pages like the one linked above are extremely optimized for browsers that expect thousands of lines of JavaScript.</i></p>
 <p>Connect 4 is a solved game, meaning that if you play first and play optimally, you will win 100% of the time (Most people do not).</p>
 <h2>Formal Methods<span class="ln"></span></h2>
-<p>Additionally, there's a TLA+ specification for Connect 4 but shrunk for reasonability. Since 7 x 6 is way too large for my Mac Mini, I'll probably explore this in full once Apple adopts Quantum Computing.</p>
+<p>There is also a TLA+ specification for Connect 4, shrunk for reasonability. A full 7 x 6 board is way too large to check on a Mac Mini.</p>
 <pre class="code"><code>
 SPECIFICATION Spec
 

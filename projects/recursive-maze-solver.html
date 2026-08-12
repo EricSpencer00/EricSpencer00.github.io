@@ -3,14 +3,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Recursive Maze Solver Example | Eric Spencer</title>
-<meta name="description" content="Recursive Maze Solver Example — project by Eric Spencer.">
+<meta name="description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="Recursive Maze Solver Example, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/recursive-maze-solver.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Recursive Maze Solver Example | Eric Spencer">
-<meta property="og:description" content="Recursive Maze Solver Example — project by Eric Spencer.">
+<meta property="og:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
 <meta property="og:url" content="https://ericspencer.us/projects/recursive-maze-solver.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-recursive-maze-solver.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Recursive Maze Solver Example | Eric Spencer">
-<meta name="twitter:description" content="Recursive Maze Solver Example — project by Eric Spencer.">
+<meta name="twitter:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
 <meta property="linkedin:title" content="Recursive Maze Solver Example | Eric Spencer">
-<meta property="linkedin:description" content="Recursive Maze Solver Example — project by Eric Spencer.">
+<meta property="linkedin:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Recursive Maze Solver Example",
-"description":"Recursive Maze Solver Example \u2014 project by Eric Spencer.",
+"description":"Recursive Maze Solver Example, a project by Eric Spencer.",
 "url":"https://ericspencer.us/projects/recursive-maze-solver.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -128,14 +128,14 @@ li{margin:4px 0}
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>Recursive Maze Solver Example<span class="ln"></span></h2>
-<p class="meta">Recursive Maze Solver Example — project by Eric Spencer.</p>
+<p class="meta">Recursive Maze Solver Example, a project by Eric Spencer.</p>
 <hr class="dash">
 <p>Recursive Maze Solver.</p>
 <p>#########################################</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, give me some coding examples of a recursive maze solver. Assume this maze has walls marked with *'s, unvisited squares marked with '.'s, dead-ends marked with '-', the starting point marked with '0', and visited spaces marked with '+'s. Explain each step as you go. </div></p>
+<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, what are some coding examples of a recursive maze solver? Assume this maze has walls marked with *'s, unvisited squares marked with '.'s, dead-ends marked with '-', the starting point marked with '0', and visited spaces marked with '+'s. Explain each step as you go. </div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Sure! I'll provide you with a coding example of a recursive maze solver in Java, following the ACM 2020 curricular guidelines. Here's the code:</p>
+<p>Here is a coding example of a recursive maze solver in Java, following the ACM 2020 curricular guidelines:</p>
 <pre class="code"><code>
 public class MazeSolver {
     private char[][] maze;
@@ -201,7 +201,7 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>Let's go through the code step by step:</p>
+<p>The code step by step:</p>
 <ol>
 <li>The <code>MazeSolver</code> class is created to encapsulate the maze solving functionality. The class takes a 2D character array (<code>maze</code>) as input, which represents the maze structure with different symbols.</li>
 </ol>
@@ -238,9 +238,9 @@ public class MazeSolver {
 <p>You can create an instance of the <code>MazeSolver</code> class with your maze as the input and then call the <code>solve()</code> method to find the solution. The maze will be modified in place, with '+' symbols indicating the path to the exit and '-' symbols indicating dead-ends.</p>
 <p>Note that this recursive maze solver assumes that there is exactly one starting position ('0') and exactly one path to the exit. If your maze doesn't satisfy these assumptions, the solver may not work correctly.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Can you give me an example maze and what it would output?</div></p>
+<p><div>What does an example maze look like, and what would it output?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Certainly! Let's consider an example maze represented by a 2D character array. Here's the maze:</p>
+<p>Consider an example maze represented by a 2D character array. Here's the maze:</p>
 <pre class="code"><code>
 char[][] maze = {
     {&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;},
@@ -253,7 +253,7 @@ char[][] maze = {
     {&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;}
 };
 </code></pre>
-<p>In this maze, '*' represents walls, '.' represents unvisited squares, '0' represents the starting position, and the rest of the squares are initially empty. Let's solve this maze using the <code>MazeSolver</code> class:</p>
+<p>In this maze, '*' represents walls, '.' represents unvisited squares, '0' represents the starting position, and the rest of the squares are initially empty. Solving this maze with the <code>MazeSolver</code> class:</p>
 <pre class="code"><code>
 MazeSolver solver = new MazeSolver(maze);
 solver.solve();
@@ -275,7 +275,7 @@ solver.solve();
 <h2>User:<span class="ln"></span></h2>
 <p><div>Explain Dijkstra's algorithm with respect to this maze solver</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Dijkstra's algorithm is a popular graph search algorithm used to find the shortest path between a starting node and all other nodes in a weighted graph. In the context of the maze solver, we can adapt Dijkstra's algorithm to find the shortest path from the starting position ('0') to the exit.</p>
+<p>Dijkstra's algorithm is a popular graph search algorithm used to find the shortest path between a starting node and all other nodes in a weighted graph. In the context of the maze solver, Dijkstra's algorithm can be adapted to find the shortest path from the starting position ('0') to the exit.</p>
 <p>Here's how Dijkstra's algorithm can be incorporated into the maze solver:</p>
 <ol>
 <li>Initialize a priority queue to store the nodes to be visited. Each node in the priority queue is associated with a distance value, representing the shortest distance from the starting node. Initially, set the distance of the starting node to 0 and the distances of all other nodes to infinity.</li>
@@ -312,7 +312,7 @@ solver.solve();
 <li>Adjust the termination condition to stop when the</li>
 </ol>
 <h2>User:<span class="ln"></span></h2>
-<p><div>How can we visualize the maze-solving process step by step?</div></p>
+<p><div>How can the maze-solving process be visualized step by step?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>To visualize the maze-solving process step by step, you can introduce a delay between each step and display the current state of the maze after each modification. One way to achieve this in Java is by using the <code>Thread.sleep()</code> method to pause the execution for a certain duration.</p>
 <p>Here's an updated version of the <code>MazeSolver</code> class that includes a method <code>visualizeSolve()</code> to visualize the maze-solving process step by step:</p>
@@ -379,7 +379,7 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>In the <code>visualizeSolve()</code> method, I've introduced pauses of 500 milliseconds using <code>TimeUnit.MILLISECONDS.sleep(500)</code> before and after each recursive call in order to create a delay between steps. You can adjust the duration of the delay as per your preference.</p>
+<p>The <code>visualizeSolve()</code> method introduces pauses of 500 milliseconds using <code>TimeUnit.MILLISECONDS.sleep(500)</code> before and after each recursive call, creating a delay between steps. You can adjust the duration of the delay as per your preference.</p>
 <p>The <code>visualizeMaze()</code> method is responsible for displaying the current state of the maze after each modification. It iterates over the maze array and prints the symbols representing walls, visited spaces, and dead-ends.</p>
 <p>Now, when you call <code>visualizeSolve()</code> on your <code>MazeSolver</code> instance, the maze-solving process will be visualized step by step, with a delay between each step to observe the changes.</p>
 <h2>User:<span class="ln"></span></h2>
@@ -402,9 +402,9 @@ public class MazeSolver {
 <li>If you want to find all possible solutions to a maze, you can modify the maze-solving algorithm to continue searching even after finding one solution. Instead of terminating the algorithm when the exit is reached, you can keep track of all successful paths found so far. This can be done by storing the path from the starting position to the current position in each recursion and storing them in a list or another data structure.</li>
 <li>If you want to find the shortest path among multiple solutions, you can adapt Dijkstra's algorithm or another shortest path algorithm. Instead of terminating the algorithm when the exit is reached for the first time, you continue searching for all possible paths. However, you update the distance values only if a shorter path is found.</li>
 </ul>
-<p>It's important to note that the complexity and performance of the maze-solving algorithm may vary depending on the specific maze configuration and the chosen approach to handle loops or multiple solutions. Consider the characteristics of the maze and the requirements of your application to determine the most suitable approach for handling these scenarios.</p>
+<p>The complexity and performance of the maze-solving algorithm may vary depending on the specific maze configuration and the chosen approach to handle loops or multiple solutions. Consider the characteristics of the maze and the requirements of your application to determine the most suitable approach for handling these scenarios.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>What can we do to the maze solver to make it run better and faster? Is it already optimized? Are there certain tradeoffs for making one aspect of the maze better?</div></p>
+<p><div>What can be done to the maze solver to make it run better and faster? Is it already optimized? Are there certain tradeoffs for making one aspect of the maze better?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>The maze solver code provided earlier is a basic implementation that follows a recursive approach. While it can solve mazes correctly, there are certain optimizations that can be applied to improve its efficiency and speed. Here are some possible optimizations:</p>
 <ol>
@@ -433,7 +433,7 @@ public class MazeSolver {
 <h2>User:<span class="ln"></span></h2>
 <p><div>convert this maze to A* search</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>To convert the maze solver to use A<i> search, we need to incorporate a heuristic function that estimates the cost from each node to the goal. In the case of the maze, a common heuristic is the Manhattan distance or Euclidean distance between two points. The A</i> search algorithm evaluates nodes based on their combined cost and heuristic value to prioritize the most promising paths.</p>
+<p>Converting the maze solver to use A<i> search requires a heuristic function that estimates the cost from each node to the goal. In the case of the maze, a common heuristic is the Manhattan distance or Euclidean distance between two points. The A</i> search algorithm evaluates nodes based on their combined cost and heuristic value to prioritize the most promising paths.</p>
 <p>Here's an updated version of the <code>MazeSolver</code> class that incorporates A* search using the Manhattan distance heuristic:</p>
 <pre class="code"><code>
 import java.util.*;
@@ -555,7 +555,7 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>In this implementation, I've introduced a <code>Node</code> class to represent each position in the maze. The <code>Node</code> class contains information about its row, column, g-score (the cost from the start node), heuristic value, and parent node.</p>
+<p>This implementation introduces a <code>Node</code> class to represent each position in the maze. The <code>Node</code> class contains information about its row, column, g-score (the cost from the start node), heuristic value, and parent node.</p>
 <p>The <code>solveAStar()</code> method implements the A* search algorithm. It uses a <code>PriorityQueue</code> called <code>openList</code> to store the nodes to be explored, sorted based on their total cost (g-score + heuristic value). The <code>closedList</code> is a set that stores the already explored nodes.</p>
 <p>The <code>exploreNeighbors()</code> method is responsible for exploring the neighboring nodes of the current node. It calculates the tentative g-score, creates a new <code>Node</code> object for the neighbor, and checks whether it should be added to the <code>openList</code>.</p>
 <p>The <code>calculateHeuristic()</code> method calculates the Manhattan distance heuristic from a given position to the exit position.</p>
@@ -565,7 +565,7 @@ public class MazeSolver {
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you explain the cost system of the A* search algorithm?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Certainly! The cost system in the A* search algorithm involves two components: the "g-score" and the "heuristic".</p>
+<p>The cost system in the A* search algorithm involves two components: the "g-score" and the "heuristic".</p>
 <ol>
 <li>G-Score (Path Cost):</li>
 </ol>
@@ -580,7 +580,7 @@ public class MazeSolver {
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you provide a Memoization maze search method?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Certainly! Here's an example of a memoized maze search method that uses memoization to avoid redundant calculations and improve the efficiency of the maze solver:</p>
+<p>Here's an example of a memoized maze search method that uses memoization to avoid redundant calculations and improve the efficiency of the maze solver:</p>
 <pre class="code"><code>
 import java.util.*;
 
@@ -710,7 +710,7 @@ public class MazeSolver {
 <h2>User:<span class="ln"></span></h2>
 <p><div>Provide a method for multi-threading search</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Certainly! Here's an example of a multi-threaded maze search method using Java's ExecutorService and Callable interface:</p>
+<p>Here's an example of a multi-threaded maze search method using Java's ExecutorService and Callable interface:</p>
 <pre class="code"><code>
 import java.util.ArrayList;
 import java.util.List;
@@ -807,15 +807,15 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>In this implementation, I've introduced a <code>MazeSearchTask</code> class that implements the <code>Callable</code> interface. Each task represents the search for a specific position in the maze. The <code>solveMultiThreaded()</code> method submits the initial search task to the <code>ExecutorService</code> and waits for the result.</p>
+<p>This implementation introduces a <code>MazeSearchTask</code> class that implements the <code>Callable</code> interface. Each task represents the search for a specific position in the maze. The <code>solveMultiThreaded()</code> method submits the initial search task to the <code>ExecutorService</code> and waits for the result.</p>
 <p>The <code>MazeSearchTask</code> class performs the recursive exploration of the maze similar to the single-threaded approach. However, instead of directly invoking the method recursively, it submits new <code>MazeSearchTask</code> instances to the executor service for each neighboring position. This allows multiple search tasks to be executed concurrently in different threads.</p>
 <p>The <code>Future<Boolean></code> objects are used to store the results of each search task. The <code>get()</code> method is called on each <code>Future</code> to retrieve the results. As soon as a path to the exit is found, the method returns with the result.</p>
 <p>Note: The example uses the <code>Executors.newCachedThreadPool()</code> method to create an executor service with a thread pool that dynamically adjusts its size based on the number of submitted tasks. You can modify the executor service creation according to your specific requirements.</p>
-<p>By introducing multi-threading, the maze solver can parallelize the search process and potentially speed up the solution finding in large mazes. Multiple search tasks can be executed concurrently, taking advantage of available CPU cores. However, it's important to note that multi-threading introduces overhead due to thread creation and synchronization. The effectiveness of multi-threading depends on factors such as the size of the maze, the number of available cores, and the complexity of the search space.</p>
+<p>By introducing multi-threading, the maze solver can parallelize the search process and potentially speed up the solution finding in large mazes. Multiple search tasks can be executed concurrently, taking advantage of available CPU cores. Multi-threading does introduce overhead due to thread creation and synchronization. The effectiveness of multi-threading depends on factors such as the size of the maze, the number of available cores, and the complexity of the search space.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Can you explain in further detail how the algorithm works? What does singular threading mean in our original recursive function and what changes to make it multi-threading?</div></p>
+<p><div>Can you explain in further detail how the algorithm works? What does singular threading mean in the original recursive function and what changes to make it multi-threading?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Certainly! Let's start with the explanation of the original single-threaded recursive function, and then we'll discuss the changes required to make it multi-threaded.</p>
+<p>First, an explanation of the original single-threaded recursive function, then the changes required to make it multi-threaded.</p>
 <ol>
 <li>Single-Threaded Recursive Function:</li>
 </ol>
@@ -828,27 +828,27 @@ public class MazeSolver {
 <ol>
 <li>Multi-Threaded Approach:</li>
 </ol>
-<p>In the multi-threaded approach, we aim to leverage concurrent execution using multiple threads to speed up the maze solving process.Instead of relying on the call stack for recursion, we use the ExecutorService and Callable interface to divide the search into smaller tasks that can be executed concurrently.Each task represents the search for a specific position in the maze and is responsible for exploring its neighboring positions.The ExecutorService manages the execution of these tasks across multiple threads, distributing the workload and allowing for parallel execution.By dividing the search into multiple tasks and executing them concurrently, we can potentially reduce the overall time required to find a solution, especially for larger mazes.</p>
+<p>The multi-threaded approach uses concurrent execution across multiple threads to speed up the maze solving process.Instead of relying on the call stack for recursion, the ExecutorService and Callable interface divide the search into smaller tasks that can be executed concurrently.Each task represents the search for a specific position in the maze and is responsible for exploring its neighboring positions.The ExecutorService manages the execution of these tasks across multiple threads, distributing the workload and allowing for parallel execution.Dividing the search into multiple tasks and executing them concurrently can potentially reduce the overall time required to find a solution, especially for larger mazes.</p>
 <ul>
-<li>In the multi-threaded approach, we aim to leverage concurrent execution using multiple threads to speed up the maze solving process.</li>
-<li>Instead of relying on the call stack for recursion, we use the ExecutorService and Callable interface to divide the search into smaller tasks that can be executed concurrently.</li>
+<li>The multi-threaded approach uses concurrent execution across multiple threads to speed up the maze solving process.</li>
+<li>Instead of relying on the call stack for recursion, the ExecutorService and Callable interface divide the search into smaller tasks that can be executed concurrently.</li>
 <li>Each task represents the search for a specific position in the maze and is responsible for exploring its neighboring positions.</li>
 <li>The ExecutorService manages the execution of these tasks across multiple threads, distributing the workload and allowing for parallel execution.</li>
-<li>By dividing the search into multiple tasks and executing them concurrently, we can potentially reduce the overall time required to find a solution, especially for larger mazes.</li>
+<li>Dividing the search into multiple tasks and executing them concurrently can potentially reduce the overall time required to find a solution, especially for larger mazes.</li>
 </ul>
 <ol>
 <li>Changes for Multi-Threading:</li>
 </ol>
-<p>To modify the original single-threaded recursive function for multi-threading, we introduce a <code>MazeSearchTask</code> class that implements the Callable interface.Each <code>MazeSearchTask</code> instance represents the search for a specific position in the maze.Instead of making recursive calls directly, we submit new <code>MazeSearchTask</code> instances to the ExecutorService for each neighboring position from the current position.These submitted tasks are executed concurrently in separate threads, allowing for parallel exploration of different paths in the maze.The results of the search tasks are stored in <code>Future</code> objects, which can be used to retrieve the results and determine if a path to the exit has been found.As soon as a path to the exit is found, the algorithm can return with the result, effectively stopping the execution of other ongoing tasks.</p>
+<p>To modify the original single-threaded recursive function for multi-threading, a <code>MazeSearchTask</code> class implements the Callable interface.Each <code>MazeSearchTask</code> instance represents the search for a specific position in the maze.Instead of making recursive calls directly, new <code>MazeSearchTask</code> instances are submitted to the ExecutorService for each neighboring position from the current position.These submitted tasks are executed concurrently in separate threads, allowing for parallel exploration of different paths in the maze.The results of the search tasks are stored in <code>Future</code> objects, which can be used to retrieve the results and determine if a path to the exit has been found.As soon as a path to the exit is found, the algorithm can return with the result, effectively stopping the execution of other ongoing tasks.</p>
 <ul>
-<li>To modify the original single-threaded recursive function for multi-threading, we introduce a <code>MazeSearchTask</code> class that implements the Callable interface.</li>
+<li>To modify the original single-threaded recursive function for multi-threading, a <code>MazeSearchTask</code> class implements the Callable interface.</li>
 <li>Each <code>MazeSearchTask</code> instance represents the search for a specific position in the maze.</li>
-<li>Instead of making recursive calls directly, we submit new <code>MazeSearchTask</code> instances to the ExecutorService for each neighboring position from the current position.</li>
+<li>Instead of making recursive calls directly, new <code>MazeSearchTask</code> instances are submitted to the ExecutorService for each neighboring position from the current position.</li>
 <li>These submitted tasks are executed concurrently in separate threads, allowing for parallel exploration of different paths in the maze.</li>
 <li>The results of the search tasks are stored in <code>Future</code> objects, which can be used to retrieve the results and determine if a path to the exit has been found.</li>
 <li>As soon as a path to the exit is found, the algorithm can return with the result, effectively stopping the execution of other ongoing tasks.</li>
 </ul>
-<p>By introducing multi-threading, we can take advantage of parallel execution to potentially speed up the maze solving process. Each thread independently explores a portion of the search space, contributing to a faster convergence towards a solution. However, it's important to note that multi-threading introduces additional overhead due to thread creation, synchronization, and context switching. The effectiveness of multi-threading depends on factors such as the size of the maze, the number of available cores, and the complexity of the search space.</p>
+<p>Multi-threading takes advantage of parallel execution to potentially speed up the maze solving process. Each thread independently explores a portion of the search space, contributing to a faster convergence towards a solution. Multi-threading does introduce additional overhead due to thread creation, synchronization, and context switching. The effectiveness of multi-threading depends on factors such as the size of the maze, the number of available cores, and the complexity of the search space.</p>
 <p>Thread generated with ChatGPT [<a href="https://chat.openai.com" target="_blank" rel="noopener">https://chat.openai.com</a>] and downloaded with Botrush [<a href="https://botrush.io" target="_blank" rel="noopener">https://botrush.io</a>]</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

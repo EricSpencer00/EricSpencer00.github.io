@@ -131,10 +131,10 @@ li{margin:4px 0}
 <p class="meta">A Simple Sign Language Recognition App using OpenCV</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/Sign-Language-Recognition" target="_blank" rel="noopener">https://github.com/EricSpencer00/Sign-Language-Recognition</a></p>
 <hr class="dash">
-<p>Over the course of the early Spring Semester, I lead the Loyola AI Club's project to create a sign language interpreter. The original goal of the project was to download a ton of sign language videos from a dataset and see if we could create a working sign language interpreter using OpenCV and Python.</p>
+<p>This is the Loyola AI Club's early Spring Semester project, led by Eric Spencer: a sign language interpreter. The original goal was to download a ton of sign language videos from a dataset and see whether a working sign language interpreter could be built out of them with OpenCV and Python.</p>
 <p>The process was as follows:</p>
 <ol>
-<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL_val.json" target="</i>blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was split for us already.</li>
+<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL_val.json" target="</i>blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was already split.</li>
 <li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_process.py" target="</i>blank" rel="noopener">this script</a>.</li>
 </ol>
 <pre class="code"><code>
@@ -166,7 +166,7 @@ def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
         return None
 </code></pre>
 <ol>
-<li>From our new dataset, we could train the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_training.py" target="</i>blank" rel="noopener">link</a></li>
+<li>The new dataset is then used to train on the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_training.py" target="</i>blank" rel="noopener">link</a></li>
 </ol>
 <pre class="code"><code>
 def main():
@@ -230,7 +230,7 @@ def main():
     print(&quot;[INFO] Model saved as asl_model.h5&quot;)
 </code></pre>
 <ol>
-<li>Finally, our model would be tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app_json.py#L24" target="</i>blank" rel="noopener">link</a></li>
+<li>Finally, the model is tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app_json.py#L24" target="</i>blank" rel="noopener">link</a></li>
 </ol>
 <pre class="code"><code>
 # Process the frame with MediaPipe for hand detection
@@ -244,11 +244,11 @@ def main():
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 </code></pre>
 <ol>
-<li>Once the model could consistently recognize a piece from the dataset, I would use this approach and phase-2 it into pairing an LLM to interpret the sign language as a sentence. Thereby, providing live translation of sign language in the form of text.</li>
+<li>Once the model could consistently recognize a piece from the dataset, phase 2 would pair an LLM with it to interpret the sign language as a sentence, providing live translation of sign language in the form of text.</li>
 </ol>
-<p>Now, we had some issues with this approach. Our data was set in .npz format which was great for storage but not great for training. Additionally, the videos being downloaded put a strain on my local wifi network--which before I took on this project was assumed to be unlimited--I did not know you could run out of wifi. So, I thank Loyola's wifi network for handling the rest of the data transfer.</p>
-<p>The second approach was to use mediapipe to overlay on our original videos and transform them into csv dot arrays. I thought this approach was smart but it ultimately did not end up working. And, due to the time to train and download, I resorted to a simpler approach for the app.</p>
-<p>As a cop out, I used an existing model of a single letter ASL interpreter. This could handle 26 letters and one hand.</p>
+<p>This approach had some issues. The data was set in .npz format, which was great for storage but not great for training. The video downloads also put a strain on a home wifi network that had been assumed to be unlimited, and it turns out you can run out of wifi. Loyola's wifi network handled the rest of the data transfer.</p>
+<p>The second approach was to use mediapipe to overlay on the original videos and transform them into csv dot arrays. It looked promising but ultimately did not work, and given the time to train and download, the app fell back to something simpler.</p>
+<p>As a cop out, the app uses an existing model of a single letter ASL interpreter. It handles 26 letters and one hand.</p>
 <pre class="code"><code>
 def preprocess_hand_image(hand_img):
     &quot;&quot;&quot;Preprocess the hand image for the model&quot;&quot;&quot;
@@ -271,7 +271,7 @@ def preprocess_hand_image(hand_img):
     return processed, hand_resized
 </code></pre>
 <p>Regardless, it was a very fun top to bottom project working with data processing and a little bit of machine learning.</p>
-<p>Also, very fun fact about my website is that it's exactly copied from the Loyola AI Club's website. See <a href="https://loyolaaiclub.github.io/projects/movierec/" target="_blank" rel="noopener">here</a></p>
+<p>Also, a very fun fact about this website is that it's exactly copied from the Loyola AI Club's website. See <a href="https://loyolaaiclub.github.io/projects/movierec/" target="_blank" rel="noopener">here</a></p>
 <p><a href="https://github.com/loyolaaiclub/Sign-Language-Recognition" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

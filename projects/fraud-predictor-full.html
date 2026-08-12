@@ -194,9 +194,9 @@ print(data[&quot;Class&quot;].value_counts())  # 0 = Non-fraud, 1 = Fraud
 </code></pre>
 <p>Output: Basic info:</p>
 <ul>
-<li>There are some null values we account for later</li>
+<li>There are some null values, accounted for later</li>
 <li>SMOTE will be useful for classification</li>
-<li>V1-V28 are anonymized PCA components, we can use feature importance to see which ones matter most</li>
+<li>V1-V28 are anonymized PCA components, so feature importance can show which ones matter most</li>
 </ul>
 <hr class="dash">
 <h3>[#4]</h3>
@@ -214,7 +214,7 @@ sns.boxplot(x=&#x27;Class&#x27;, y=&#x27;Amount&#x27;, data=data)
 plt.title(&quot;Transaction Amount by Fraud Class&quot;)
 plt.show()
 </code></pre>
-<p>Output: This shows we can potentially eliminate any classifications for fraud past ~2000 transactions</p>
+<p>Output: This shows that classifications for fraud past ~2000 transactions can potentially be eliminated</p>
 <hr class="dash">
 <h3>[#6]</h3>
 <pre class="code"><code>
@@ -332,7 +332,7 @@ plt.xlabel(&#x27;UMAP Component 1&#x27;)
 plt.ylabel(&#x27;UMAP Component 2&#x27;)
 plt.show()
 </code></pre>
-<p>Output: I don't believe either of these will be as helpful.# Split data</p>
+<p>Output: Neither of these looks as helpful.# Split data</p>
 <hr class="dash">
 <h3>[#13]</h3>
 <pre class="code"><code>

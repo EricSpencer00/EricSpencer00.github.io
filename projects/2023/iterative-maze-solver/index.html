@@ -3,14 +3,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Iterative Maze Solver Example | Eric Spencer</title>
-<meta name="description" content="Iterative Maze Solver Example — project by Eric Spencer.">
+<meta name="description" content="Iterative Maze Solver Example, a project by Eric Spencer.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="Iterative Maze Solver Example, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/iterative-maze-solver.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Iterative Maze Solver Example | Eric Spencer">
-<meta property="og:description" content="Iterative Maze Solver Example — project by Eric Spencer.">
+<meta property="og:description" content="Iterative Maze Solver Example, a project by Eric Spencer.">
 <meta property="og:url" content="https://ericspencer.us/projects/iterative-maze-solver.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-iterative-maze-solver.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Iterative Maze Solver Example | Eric Spencer">
-<meta name="twitter:description" content="Iterative Maze Solver Example — project by Eric Spencer.">
+<meta name="twitter:description" content="Iterative Maze Solver Example, a project by Eric Spencer.">
 <meta property="linkedin:title" content="Iterative Maze Solver Example | Eric Spencer">
-<meta property="linkedin:description" content="Iterative Maze Solver Example — project by Eric Spencer.">
+<meta property="linkedin:description" content="Iterative Maze Solver Example, a project by Eric Spencer.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Iterative Maze Solver Example",
-"description":"Iterative Maze Solver Example \u2014 project by Eric Spencer.",
+"description":"Iterative Maze Solver Example, a project by Eric Spencer.",
 "url":"https://ericspencer.us/projects/iterative-maze-solver.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -129,12 +129,12 @@ li{margin:4px 0}
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>Iterative Maze Solver Example<span class="ln"></span></h2>
-<p class="meta">Iterative Maze Solver Example — project by Eric Spencer.</p>
+<p class="meta">Iterative Maze Solver Example, a project by Eric Spencer.</p>
 <hr class="dash">
 <p>Iterative/hasNext Maze Solver</p>
 <p>#########################################</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, give me some coding examples of an iterative maze solver. Assume this maze has a border marked with <i>'s, walls marked with </i>'s, unvisited squares marked with blank spaces ' 's, and visited spaces marked with 'x's. Explain each step as you go. </div></p>
+<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, provide some coding examples of an iterative maze solver. Assume this maze has a border marked with <i>'s, walls marked with </i>'s, unvisited squares marked with blank spaces ' 's, and visited spaces marked with 'x's. Explain each step as you go. </div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Certainly! Here's an example of an iterative maze solver in Java, following the guidelines you provided:</p>
 <pre class="code"><code>
@@ -207,31 +207,31 @@ public class MazeSolver {
 </code></pre>
 <p>Let's go through the code step by step:</p>
 <ol>
-<li>We define the constants <code>WALL</code>, <code>UNVISITED</code>, and <code>VISITED</code> to represent the characters used in the maze.</li>
+<li>The constants <code>WALL</code>, <code>UNVISITED</code>, and <code>VISITED</code> represent the characters used in the maze.</li>
 </ol>
 <ol>
 <li>The <code>solveMaze</code> method takes the maze represented as a 2D character array (<code>char[][]</code>) and the starting coordinates (<code>startX</code> and <code>startY</code>) as parameters. It initializes a queue to store the positions to visit.</li>
 </ol>
 <ol>
-<li>We use a <code>while</code> loop that continues until the queue is empty. Inside the loop, we remove the first position from the queue using <code>queue.poll()</code> and assign its coordinates to <code>x</code> and <code>y</code>.</li>
+<li>A <code>while</code> loop continues until the queue is empty. Inside the loop, the first position is removed from the queue using <code>queue.poll()</code> and its coordinates are assigned to <code>x</code> and <code>y</code>.</li>
 </ol>
 <ol>
-<li>We check if the current position is the maze exit by calling the <code>isExit</code> method. If it is, we print "Maze solved!" and return from the method.</li>
+<li>The <code>isExit</code> method checks whether the current position is the maze exit. If it is, the method prints "Maze solved!" and returns.</li>
 </ol>
 <ol>
-<li>Otherwise, we mark the current position as visited by updating <code>maze[x][y]</code> to <code>VISITED</code>.</li>
+<li>Otherwise, the current position is marked as visited by updating <code>maze[x][y]</code> to <code>VISITED</code>.</li>
 </ol>
 <ol>
-<li>We check the neighboring positions (up, down, left, and right) and enqueue them if they are valid and unvisited. The <code>enqueueIfValid</code> method takes care of this check.</li>
+<li>The neighboring positions (up, down, left, and right) are checked and enqueued if they are valid and unvisited. The <code>enqueueIfValid</code> method takes care of this check.</li>
 </ol>
 <ol>
-<li>If the queue becomes empty without finding the exit, we print "No solution found."</li>
+<li>If the queue becomes empty without finding the exit, the method prints "No solution found."</li>
 </ol>
 <ol>
-<li>In the <code>main</code> method, we create a sample maze represented as a 2D character array. The maze is a 7x7 grid surrounded by walls (<code>*</code>), with some open spaces (<code> </code>) and an entrance at (1, 1).</li>
+<li>In the <code>main</code> method, a sample maze is created as a 2D character array. The maze is a 7x7 grid surrounded by walls (<code>*</code>), with some open spaces (<code> </code>) and an entrance at (1, 1).</li>
 </ol>
 <ol>
-<li>We call the <code>solveMaze</code> method with the maze and the starting coordinates to begin solving the maze.</li>
+<li>The <code>solveMaze</code> method is called with the maze and the starting coordinates to begin solving the maze.</li>
 </ol>
 <p>When you run this code, it will attempt to solve the maze using an iterative approach, starting from the given starting position (1, 1). It will traverse the maze by exploring neighboring positions until it finds the exit or determines that there is no solution. The visited positions will be marked with 'x' in the maze.</p>
 <h2>User:<span class="ln"></span></h2>
@@ -244,7 +244,7 @@ public class MazeSolver {
 <h2>User:<span class="ln"></span></h2>
 <p><div>Is the maze in your example able to be solved?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Apologies for the confusion, but upon reviewing the example maze, I noticed that it is not solvable. The maze has an isolated wall in the middle, blocking any path to the exit.</p>
+<p>On review, the example maze is not solvable. The maze has an isolated wall in the middle, blocking any path to the exit.</p>
 <p>Here's the maze for reference:</p>
 <pre class="code"><code>
 *******
@@ -256,11 +256,11 @@ public class MazeSolver {
 *******
 </code></pre>
 <p>The wall in the middle of the maze (row 4, column 3) creates a barrier that disconnects the rest of the maze from the exit. Therefore, no path exists from the starting position to the exit.</p>
-<p>If you'd like, I can provide an alternative solvable maze example or modify the current maze to make it solvable. Let me know your preference!</p>
+<p>From here the options are an alternative solvable maze example, or a modification of the current maze to make it solvable.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Please, make it solvable. Also, can you allow the maze to have a starting point on the perimeter? As of right now I predict that your isExit function will prevent that from working.</div></p>
+<p><div>Please, make it solvable. Also, can you allow the maze to have a starting point on the perimeter? As of right now the isExit function looks like it will prevent that from working.</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Certainly! I can modify the maze to make it solvable and allow the starting point to be on the perimeter. Let's update the maze and modify the <code>isExit</code> function accordingly.</p>
+<p>The maze can be modified to make it solvable and to allow the starting point to be on the perimeter. The update covers the maze and the <code>isExit</code> function.</p>
 <p>Updated maze:</p>
 <pre class="code"><code>
 *********
@@ -343,9 +343,9 @@ public class MazeSolver {
 </code></pre>
 <p>With this modification, the maze is now solvable, and the starting position can be on the perimeter of the maze.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>I don't think you have made your maze solvable. Also, assuming we only move in the cardinal directions, having a solution on the perimeter but only being able to access it with a diagonal move will not work. </div></p>
+<p><div>That maze still does not look solvable. Also, assuming movement is restricted to the cardinal directions, having a solution on the perimeter but only being able to access it with a diagonal move will not work. </div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Apologies for the oversight. You are correct, simply allowing the starting position on the perimeter doesn't guarantee a solvable maze. I apologize for the confusion caused.</p>
+<p>Correct: simply allowing the starting position on the perimeter doesn't guarantee a solvable maze.</p>
 <p>Let's modify the maze to ensure it is solvable and adjust the starting position accordingly:</p>
 <p>Updated solvable maze:</p>
 <pre class="code"><code>
@@ -613,7 +613,7 @@ public class MazeSolver {
 </ol>
 <p>Overall, an iterative approach for maze solving offers better memory efficiency, avoids stack overflow issues, provides explicit control flow, and allows for greater flexibility and customization compared to recursive approaches.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>How can we represent a maze using data structures suitable for iterative maze solving?</div></p>
+<p><div>How can a maze be represented using data structures suitable for iterative maze solving?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>To represent a maze using data structures suitable for iterative maze solving, you can utilize a two-dimensional array or a grid-based data structure.</p>
 <p>Here's an example using a two-dimensional array:</p>
@@ -699,7 +699,7 @@ maze.add(Arrays.asList(&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27
 <p>Formally, the Manhattan distance between two points (x1, y1) and (x2, y2) is given by:</p>
 <p>Manhattan distance = |x2 - x1| + |y2 - y1|</p>
 <p>Here's an example to illustrate the calculation of Manhattan distance:</p>
-<p>Suppose we have two points A(3, 5) and B(8, 2). To find the Manhattan distance between these two points, we calculate the absolute differences in the x-coordinates and y-coordinates:</p>
+<p>Suppose there are two points A(3, 5) and B(8, 2). To find the Manhattan distance between these two points, take the absolute differences in the x-coordinates and y-coordinates:</p>
 <p>|8 - 3| + |2 - 5| = 5 + 3 = 8</p>
 <p>Therefore, the Manhattan distance between A(3, 5) and B(8, 2) is 8.</p>
 <p>Manhattan distance is often used as a heuristic in pathfinding algorithms, such as A* Search, to estimate the distance between a given cell and the destination. It provides a simple and efficient estimation of distance in grid-based environments where only horizontal and vertical movement is allowed.</p>
@@ -771,7 +771,7 @@ maze.add(Arrays.asList(&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27
 </ul>
 <p>These additional algorithms offer different approaches to maze solving and maze generation. They provide alternative methods for navigating mazes, creating mazes with specific characteristics, or exploring different search strategies. The choice of algorithm depends on the specific requirements and objectives of the maze-related problem at hand.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Tell me a few more</div></p>
+<p><div>List a few more</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Certainly! Here are a few more algorithms for maze solving:</p>
 <ol>
@@ -893,7 +893,7 @@ maze.add(Arrays.asList(&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27
 </ul>
 <p>These suggestions provide starting points for handling complex maze structures using an iterative approach. The choice of approach depends on the specific requirements, constraints, and desired characteristics of the maze you are dealing with. Adapting existing algorithms or designing new strategies may be necessary to address the complexity of the maze structure.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Is there a way to visualize every single step the algorithm takes besides doing nothing? IE show me each step the algorithm takes as it tries to complete the maze</div></p>
+<p><div>Is there a way to visualize every single step the algorithm takes besides doing nothing? IE show each step the algorithm takes as it tries to complete the maze</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Yes, there are ways to visualize each step of the algorithm as it tries to complete the maze. Visualization can help in understanding the algorithm's progress and the decision-making process. Here are a few approaches to achieve this:</p>
 <ol>
@@ -1100,7 +1100,7 @@ public class MazeSolver {
     // ...
 }
 </code></pre>
-<p>In this modified code, we introduce a <code>path</code> list to store the path taken during the traversal. Each element in the <code>path</code> list represents a move or location in the maze, specified as an array of two integers <code>[row, col]</code>.</p>
+<p>In this modified code, a <code>path</code> list stores the path taken during the traversal. Each element in the <code>path</code> list represents a move or location in the maze, specified as an array of two integers <code>[row, col]</code>.</p>
 <p>The <code>next()</code> function retrieves the next move/location in the traversal by accessing the element at the <code>currentStep</code> index in the <code>path</code> list. It increments the <code>currentStep</code> to indicate the next move to be returned.</p>
 <p>To use the <code>next()</code> function, you would call it iteratively until it returns <code>null</code> or handle the end of traversal condition according to your requirements.</p>
 <p>Note that you need to modify the <code>solve()</code> method to add the current move/location to the <code>path</code> list whenever the algorithm chooses a valid neighboring cell.</p>
@@ -1191,7 +1191,7 @@ public class MazeSolver {
 <p>In this example, the <code>next()</code> function uses a stack to perform an iterative Depth-First Search (DFS) traversal of the maze. It visits each cell and checks if it is the destination. If the current cell is the destination, it returns the current position as the next move. Otherwise, it explores neighboring cells and pushes them onto the stack if they are valid and unvisited.</p>
 <p>In the <code>main()</code> method, the <code>next()</code> function is called in a loop until it returns <code>null</code>, and each retrieved move is printed to the console.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>How can we handle complex maze structures or multiple solutions using the iterator-based approach?</div></p>
+<p><div>How can complex maze structures or multiple solutions be handled using the iterator-based approach?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Handling complex maze structures or multiple solutions using the iterator-based approach requires adapting the maze-solving algorithm to support these scenarios. Here are some techniques you can consider:</p>
 <ol>

@@ -131,16 +131,16 @@ li{margin:4px 0}
 <p class="meta">Protect sensitive keys from accidentally being uploaded to your git history at any point.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/git-key-guardian" target="_blank" rel="noopener">https://github.com/EricSpencer00/git-key-guardian</a></p>
 <hr class="dash">
-<p>Git Key Guardian is a lightweight pre-commit hook and helper toolkit that scans staged changes for common secret patterns and your own personal keys, helping you catch accidental commits of API keys, tokens, and credentials before they land in your git history.</p>
+<p>Git Key Guardian is a lightweight pre-commit hook and helper toolkit. It scans staged changes for common secret patterns and for your own personal keys, so you catch accidental commits of API keys, tokens, and credentials before they land in your git history.</p>
 <h2>Why this project<span class="ln"></span></h2>
-<p>Developers frequently commit secrets by accident — API keys, SSH keys, cloud credentials, and other sensitive strings can slip into commits or CI logs. Git Key Guardian provides a small, opt-in guardrail that runs locally (as a shared hook) and reports matches to a configurable set of regex patterns and a personal key list.</p>
+<p>Developers frequently commit secrets by accident. API keys, SSH keys, cloud credentials, and other sensitive strings can slip into commits or CI logs. Git Key Guardian is a small, opt-in guardrail that runs locally (as a shared hook) and reports matches to a configurable set of regex patterns and a personal key list.</p>
 <p>The tool is deliberately simple and conservative: it scans only staged changes, uses maintainable regex patterns, and supports exact-string matches for keys you care about tracking.</p>
 <h2>Features<span class="ln"></span></h2>
 <ul>
 <li>Scans only staged (cached) changes to avoid noisy results from the working tree.</li>
 <li>Configurable regex-based patterns stored in <code>patterns/common_patterns.txt</code> (one per line, inline comments allowed).</li>
 <li>Exact-string matching against a per-user personal key file at <code>$HOME/.git-key-guardian/personal_keys.txt</code>.</li>
-<li>Interactive prompt when matches are detected — inspect matches and choose to abort or proceed with the commit.</li>
+<li>Interactive prompt when matches are detected: inspect matches and choose to abort or proceed with the commit.</li>
 <li>Installer script to wire the hook globally via <code>core.hooksPath</code> so it can protect all your local repos.</li>
 </ul>
 <h2>How it works (short)<span class="ln"></span></h2>
@@ -171,7 +171,7 @@ git config --global --unset core.hooksPath
 <h2>Usage<span class="ln"></span></h2>
 <ul>
 <li>Stage changes as usual with <code>git add</code>.</li>
-<li>Run <code>git commit</code> — the hook will automatically scan staged changes.</li>
+<li>Run <code>git commit</code>. The hook automatically scans staged changes.</li>
 <li>If the hook finds potential secrets you'll be shown sample matches and prompted to continue or abort.</li>
 </ul>
 <h3>Test locally without installing</h3>
@@ -213,7 +213,7 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 <li>The hook only inspects added lines in the staged diff (<code>git diff --cached --unified=0</code> + awk filter for <code>^+[^+]</code>).</li>
 </ul>
 <h2>Contributing<span class="ln"></span></h2>
-<p>Contributions are welcome — follow the guidance in <code>CONTRIBUTING.md</code>:</p>
+<p>Contributions are welcome. Follow the guidance in <code>CONTRIBUTING.md</code>:</p>
 <ul>
 <li>Keep regexes focused and fast.</li>
 <li>Provide positive/negative examples in <code>examples/</code> when adding or changing patterns.</li>
@@ -223,7 +223,7 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 <ul>
 <li>This tool is a helper, not a substitute for secret management. Rotate keys, use environment variables and secret stores, and audit logs and CI outputs.</li>
 <li>False positives are possible; use the personal keys file to reduce noise for known values.</li>
-<li>The hook runs locally and doesn't scan remote or CI logs — consider adding complementary server-side scanning in CI if needed.</li>
+<li>The hook runs locally and doesn't scan remote or CI logs, so consider adding complementary server-side scanning in CI if needed.</li>
 </ul>
 <h2>Links<span class="ln"></span></h2>
 <ul>
@@ -234,7 +234,6 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 <li>Contribution guide: <code>CONTRIBUTING.md</code></li>
 </ul>
 <hr class="dash">
-<p>If you want any part shortened for a project page summary, or expanded with screenshots and example outputs from the hook, I can add them next.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

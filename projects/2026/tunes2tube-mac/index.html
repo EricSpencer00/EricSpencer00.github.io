@@ -3,14 +3,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>tunes2tube | Eric Spencer</title>
-<meta name="description" content="A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.">
+<meta name="description" content="A local macOS app that takes a cover image and audio files and gives you back MP3s with the cover embedded as ID3v2 artwork, with no account and no upload.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="tunes2tube, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/tunes2tube-mac.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tunes2tube | Eric Spencer">
-<meta property="og:description" content="A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.">
+<meta property="og:description" content="A local macOS app that takes a cover image and audio files and gives you back MP3s with the cover embedded as ID3v2 artwork, with no account and no upload.">
 <meta property="og:url" content="https://ericspencer.us/projects/tunes2tube-mac.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-tunes2tube-mac.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="tunes2tube | Eric Spencer">
-<meta name="twitter:description" content="A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.">
+<meta name="twitter:description" content="A local macOS app that takes a cover image and audio files and gives you back MP3s with the cover embedded as ID3v2 artwork, with no account and no upload.">
 <meta property="linkedin:title" content="tunes2tube | Eric Spencer">
-<meta property="linkedin:description" content="A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.">
+<meta property="linkedin:description" content="A local macOS app that takes a cover image and audio files and gives you back MP3s with the cover embedded as ID3v2 artwork, with no account and no upload.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"tunes2tube",
-"description":"A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork \u2014 no account, no upload.",
+"description":"A local macOS app that takes a cover image and audio files and gives you back MP3s with the cover embedded as ID3v2 artwork, with no account and no upload.",
 "url":"https://ericspencer.us/projects/tunes2tube-mac.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -129,21 +129,21 @@ li{margin:4px 0}
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>tunes2tube<span class="ln"></span></h2>
-<p class="meta">A local macOS app that drops a cover image and audio files in, and gives you back MP3s with the cover embedded as ID3v2 artwork — no account, no upload.</p>
+<p class="meta">A local macOS app that takes a cover image and audio files and gives you back MP3s with the cover embedded as ID3v2 artwork, with no account and no upload.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/tunes2tube-mac" target="_blank" rel="noopener">https://github.com/EricSpencer00/tunes2tube-mac</a></p>
 <hr class="dash">
 <p><a href="https://github.com/EricSpencer00/tunes2tube-mac" target="_blank" rel="noopener">GitHub Repo</a></p>
-<p>I wanted to attach a cover image to a handful of MP3s and could not find a way to do it that didn't involve uploading the files to some random web service, signing in with a Google account, or watching an ad for a "DRM-free converter." The thing I actually needed was about four lines of <code>ffmpeg</code>. So I wrapped it in a SwiftUI window and called it a day.</p>
+<p>Attaching a cover image to a handful of MP3s usually means uploading the files to some random web service, signing in with a Google account, or watching an ad for a "DRM-free converter." The work itself is about four lines of <code>ffmpeg</code>. This is those four lines wrapped in a SwiftUI window.</p>
 <p><code>tunes2tube-mac</code> is a macOS app (13+) that does exactly one thing: you drop a cover image into one slot, drop one or more audio files into another, optionally fill in album / artist / year, hit <code>⌘↩</code>, and it writes out <code>.mp3</code> files with the cover embedded as an ID3v2 APIC frame. The cover image itself is also copied into the output folder so you have a clean album-art file ready to use somewhere else. Output goes to <code>~/Music/Tunes2Tube/<Album-or-Artist>/</code> by default. If the input is already an MP3 the audio stream is copied with no re-encode; anything else gets <code>libmp3lame</code> at 320 kbps.</p>
-<p>The name is a nod to <a href="https://www.tunes2tube.com/" target="_blank" rel="noopener">tunes2tube.com</a>, which is the web tool I would have otherwise used. The original publishes the resulting video to YouTube, which is a nice feature but requires a Google OAuth client and a registered GCP project. Per my own project brief — anything that needs GCP gets dropped — I cut the YouTube piece entirely. The app's contract is "make tagged files; you decide where they go." If you want to publish, the README has the one-line <code>ffmpeg</code> command to turn the MP3 plus cover into a still-image video, and you upload that yourself.</p>
+<p>The name is a nod to <a href="https://www.tunes2tube.com/" target="_blank" rel="noopener">tunes2tube.com</a>, the web tool this replaces. The original publishes the resulting video to YouTube, which requires a Google OAuth client and a registered GCP project, and the project brief drops anything that needs GCP, so the YouTube piece is gone. The app's contract is "make tagged files; you decide where they go." To publish, the README has the one-line <code>ffmpeg</code> command that turns the MP3 plus cover into a still-image video, which you upload yourself.</p>
 <h2>How it actually works<span class="ln"></span></h2>
-<p>There is not much to it. The UI is a SwiftUI window with two drop zones and a small metadata form. A <code>@MainActor</code> view model (<code>ProcessingSession</code>) holds the state and drives <code>AudioProcessor</code>, which is a thin wrapper around <code>Foundation.Process</code> that shells out to <code>ffmpeg</code>. <code>ffmpeg</code> does the real work — read the audio, attach the cover as an APIC frame, write the MP3. The app looks for the binary at <code>/opt/homebrew/bin/ffmpeg</code>, <code>/usr/local/bin/ffmpeg</code>, or via <code>which ffmpeg</code>, and if it can't find one it surfaces a clear error instead of pretending the run succeeded.</p>
-<p>Supported audio formats in, MP3 out: <code>mp3 wav flac m4a aac aiff ogg opus</code>. Supported cover formats: <code>.png</code>, <code>.jpg</code>, <code>.webp</code>. Per-file failures don't kill the batch — each track gets its own result and the UI shows you which ones made it.</p>
-<p>There is also a <code>Makefile</code> that wraps <code>swift build</code> to produce a real <code>.app</code> bundle (Info.plist, ad-hoc codesigned). It won't be notarized, because that costs $99/year and this is a thing I built for myself in an evening.</p>
+<p>There is not much to it. The UI is a SwiftUI window with two drop zones and a small metadata form. A <code>@MainActor</code> view model (<code>ProcessingSession</code>) holds the state and drives <code>AudioProcessor</code>, which is a thin wrapper around <code>Foundation.Process</code> that shells out to <code>ffmpeg</code>. <code>ffmpeg</code> does the real work: read the audio, attach the cover as an APIC frame, write the MP3. The app looks for the binary at <code>/opt/homebrew/bin/ffmpeg</code>, <code>/usr/local/bin/ffmpeg</code>, or via <code>which ffmpeg</code>, and if it can't find one it surfaces a clear error instead of pretending the run succeeded.</p>
+<p>Supported audio formats in, MP3 out: <code>mp3 wav flac m4a aac aiff ogg opus</code>. Supported cover formats: <code>.png</code>, <code>.jpg</code>, <code>.webp</code>. Per-file failures don't kill the batch; each track gets its own result and the UI shows you which ones made it.</p>
+<p>There is also a <code>Makefile</code> that wraps <code>swift build</code> to produce a real <code>.app</code> bundle (Info.plist, ad-hoc codesigned). It is not notarized, because that costs $99/year.</p>
 <h2>The local-first thing<span class="ln"></span></h2>
-<p>This is a small project but it sits next to a habit I've been more deliberate about lately — see the <a href="https://ericspencer.us/ericspencer-site-backup/private-whisper-privacy.html">Private Whisper privacy work</a> for the longer version. The pattern I keep running into is some entirely-mechanical task (transcribe audio, embed cover art, convert a file) that has perfectly capable local tooling on macOS, but the easiest discoverable option on Google is a website that wants your files on someone else's disk. There is no good reason an MP3 tagger should ever leave your machine. So when I need one and the existing local options are unfriendly or abandoned, I'm increasingly willing to write the SwiftUI shell myself.</p>
+<p>Small project, same habit as the <a href="https://ericspencer.us/ericspencer-site-backup/private-whisper-privacy.html">Private Whisper privacy work</a>, which is the longer version of the argument. The recurring pattern is an entirely-mechanical task (transcribe audio, embed cover art, convert a file) that has perfectly capable local tooling on macOS, while the easiest discoverable option on Google is a website that wants your files on someone else's disk. There is no good reason an MP3 tagger should ever leave your machine, so when the local options are unfriendly or abandoned, the fix is to write the SwiftUI shell.</p>
 <h2>What's not done<span class="ln"></span></h2>
-<p>It's MVP. The roadmap in the README is the honest list — per-track title editing (right now it uses the filename), a bitrate toggle for re-encoded inputs, an optional video output for the YouTube workflow (without the GCP piece), a universal binary release in GitHub Releases, and Sparkle auto-update if I ever care enough to set it up. PRs welcome — the codebase is small enough that you can read the whole thing in one sitting.</p>
+<p>It's MVP. The roadmap in the README is the honest list: per-track title editing (right now it uses the filename), a bitrate toggle for re-encoded inputs, an optional video output for the YouTube workflow (without the GCP piece), a universal binary release in GitHub Releases, and possibly Sparkle auto-update. PRs welcome; the codebase is small enough that you can read the whole thing in one sitting.</p>
 <hr class="dash">
 <p><i>Written with AI.</i></p>
 <footer>

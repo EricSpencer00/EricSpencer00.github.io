@@ -3,14 +3,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Terminal GPT | Eric Spencer</title>
-<meta name="description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model.">
+<meta name="description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="Terminal GPT, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/terminalgpt.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Terminal GPT | Eric Spencer">
-<meta property="og:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model.">
+<meta property="og:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.">
 <meta property="og:url" content="https://ericspencer.us/projects/terminalgpt.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-terminalgpt.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Terminal GPT | Eric Spencer">
-<meta name="twitter:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model.">
+<meta name="twitter:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.">
 <meta property="linkedin:title" content="Terminal GPT | Eric Spencer">
-<meta property="linkedin:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model.">
+<meta property="linkedin:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Terminal GPT",
-"description":"A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model.",
+"description":"A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.",
 "url":"https://ericspencer.us/projects/terminalgpt.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -128,20 +128,20 @@ li{margin:4px 0}
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>Terminal GPT<span class="ln"></span></h2>
-<p class="meta">A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal. The thing I actually open when I want to talk to a model.</p>
+<p class="meta">A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/TerminalGPT" target="_blank" rel="noopener">https://github.com/EricSpencer00/TerminalGPT</a></p>
 <hr class="dash">
-<p>I built this back in early 2025 because every time I wanted to ask ChatGPT a quick question I'd context-switch to a browser tab, wait for the page to load, deal with the web UI freezing on long responses, and then copy whatever I needed back into the terminal anyway. At some point that started to feel dumb. I lived in the terminal already. It was easier to bring the model to me.</p>
-<p>There are two scripts in the repo. The first one, <code>gpt.py</code>, is a streaming chat REPL — you type, it streams a response back in cyan, you keep going, and it holds the conversation history for the session. It uses the OpenAI Python SDK directly with <code>gpt-4</code> as the default model (<code>gpt-3.5-turbo</code> and <code>gpt-4-turbo</code> are commented out in the source if I want to swap, which I sometimes do when I'm trying to keep token costs down). Streaming and Ctrl+C handling are the only fancy bits — the first interrupt stops the in-flight request, a second one quits.</p>
-<p>This is the script I aliased in my <a href="https://ericspencer.us/ericspencer-site-backup/miscellaneous/my-zshrc/">.zshrc</a> as <code>gpt</code>, so opening a chat is just typing two letters in whatever directory I happen to be in. That alias activates the venv and runs <code>gpt.py</code> for me. It is, honestly, the part of this project I use the most — way more than the second script — and the reason it's still on my machine almost a year later. Perfect if you're tired of the buggy web versions or just don't want to leave the terminal to ask a question.</p>
+<p>Terminal GPT was written in early 2025. Asking ChatGPT a quick question otherwise meant a context-switch to a browser tab, a wait for the page to load, a web UI that froze on long responses, and then copying whatever you needed back into the terminal anyway. If you already live in the terminal, it is easier to bring the model there.</p>
+<p>There are two scripts in the repo. The first one, <code>gpt.py</code>, is a streaming chat REPL: you type, it streams a response back in cyan, you keep going, and it holds the conversation history for the session. It uses the OpenAI Python SDK directly with <code>gpt-4</code> as the default model (<code>gpt-3.5-turbo</code> and <code>gpt-4-turbo</code> are commented out in the source and can be swapped in to keep token costs down). Streaming and Ctrl+C handling are the only fancy bits: the first interrupt stops the in-flight request, a second one quits.</p>
+<p>This is the script aliased in the <a href="https://ericspencer.us/ericspencer-site-backup/miscellaneous/my-zshrc/">.zshrc</a> as <code>gpt</code>, so opening a chat is just typing two letters in whatever directory you happen to be in. That alias activates the venv and runs <code>gpt.py</code>. It is the most-used part of the project, well ahead of the second script, and the reason it is still installed almost a year later. Good if you're tired of the buggy web versions or just don't want to leave the terminal to ask a question.</p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/terminalgpt.png" alt="Photo of program working"></p>
-<p>The second script, <code>exe.py</code>, is the English-to-Bash one. You type something like "create a folder called notes and cd into it" and it asks an LLM to give back the actual shell command, prints what it's about to run, and waits for you to confirm <code>y</code> before executing. It also has a sanitizer that strips anything with <code>..</code> in it, plus a dangerous-keyword check (<code>rm</code>, <code>sudo</code>, <code>chmod</code>, <code>chown</code>, <code>curl</code>, <code>wget</code>) that forces an extra <code>yes</code> confirmation. So don't worry about <code>rm -rf</code>'ing your directory — you'd have to type out the confirmations to actually do that to yourself.</p>
+<p>The second script, <code>exe.py</code>, is the English-to-Bash one. You type something like "create a folder called notes and cd into it" and it asks an LLM to give back the actual shell command, prints what it's about to run, and waits for you to confirm <code>y</code> before executing. It also has a sanitizer that strips anything with <code>..</code> in it, plus a dangerous-keyword check (<code>rm</code>, <code>sudo</code>, <code>chmod</code>, <code>chown</code>, <code>curl</code>, <code>wget</code>) that forces an extra <code>yes</code> confirmation. So don't worry about <code>rm -rf</code>'ing your directory; you'd have to type out the confirmations to actually do that to yourself.</p>
 <p>This one runs against OpenRouter's free <code>deepseek/deepseek-chat:free</code> model instead of OpenAI, since exe.py was less about getting the smartest possible answer and more about not spending real credits on every "what's the tar flag for that again" question. It also has a retry loop: if the generated command fails, the error message gets fed back to the model and it takes another swing, up to three times.</p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/terminalgpt_exe.png" alt="Photo of terminal with the program working"></p>
-<p>In hindsight <code>exe.py</code> is the kind of thing GitHub Copilot's terminal mode and Claude Code now do natively and better — they have actual context about your shell history and your project. But back when I wrote this, neither of those existed in a form I could use, and the bar was "translate English to a shell command without nuking my home directory," which a free Deepseek model gets right plenty often.</p>
-<p><a href="https://github.com/EricSpencer00/TerminalGPT/" target="<i>blank" rel="noopener">Source is on GitHub.</a> It's two files, an <code>install.sh</code>, and a <code>requirements.txt</code>. If you want to use it the same way I do, set <code>OPENAI</i>API<i>KEY</i>ENV</code> in a <code>.env</code> next to <code>gpt.py</code>, set <code>OPENROUTER<i>API</i>KEY</code> for <code>exe.py</code>, and alias whichever one you actually want to call.</p>
+<p>In hindsight <code>exe.py</code> is the kind of thing GitHub Copilot's terminal mode and Claude Code now do natively and better, since they have actual context about your shell history and your project. Neither of those existed in a usable form when this was written, and the bar was "translate English to a shell command without nuking the home directory," which a free Deepseek model gets right plenty often.</p>
+<p><a href="https://github.com/EricSpencer00/TerminalGPT/" target="<i>blank" rel="noopener">Source is on GitHub.</a> It's two files, an <code>install.sh</code>, and a <code>requirements.txt</code>. To use it the same way, set <code>OPENAI</i>API<i>KEY</i>ENV</code> in a <code>.env</code> next to <code>gpt.py</code>, set <code>OPENROUTER<i>API</i>KEY</code> for <code>exe.py</code>, and alias whichever one you actually want to call.</p>
 <hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>
+<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

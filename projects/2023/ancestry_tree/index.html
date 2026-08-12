@@ -3,14 +3,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ancestry Tree Java Example | Eric Spencer</title>
-<meta name="description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta name="description" content="Ancestry Tree Java Example: project by Eric Spencer.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="Ancestry Tree Java Example, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/ancestry_tree.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ancestry Tree Java Example | Eric Spencer">
-<meta property="og:description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta property="og:description" content="Ancestry Tree Java Example: project by Eric Spencer.">
 <meta property="og:url" content="https://ericspencer.us/projects/ancestry_tree.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-ancestry-tree.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Ancestry Tree Java Example | Eric Spencer">
-<meta name="twitter:description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta name="twitter:description" content="Ancestry Tree Java Example: project by Eric Spencer.">
 <meta property="linkedin:title" content="Ancestry Tree Java Example | Eric Spencer">
-<meta property="linkedin:description" content="Ancestry Tree Java Example — project by Eric Spencer.">
+<meta property="linkedin:description" content="Ancestry Tree Java Example: project by Eric Spencer.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Ancestry Tree Java Example",
-"description":"Ancestry Tree Java Example \u2014 project by Eric Spencer.",
+"description":"Ancestry Tree Java Example: project by Eric Spencer.",
 "url":"https://ericspencer.us/projects/ancestry_tree.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -129,12 +129,12 @@ li{margin:4px 0}
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>Ancestry Tree Java Example<span class="ln"></span></h2>
-<p class="meta">Ancestry Tree Java Example — project by Eric Spencer.</p>
+<p class="meta">Ancestry Tree Java Example: project by Eric Spencer.</p>
 <hr class="dash">
 <h2>ChatGPT & Anonymous Conversation<span class="ln"></span></h2>
 <hr class="dash">
 <h3>You said:</h3>
-<p>Given a map, or tree, of persons; how can we tell if two people are related? IE, do their ancestors trace back? And if so, how far back? Install an implementation in java.</p>
+<p>Given a map, or tree, of persons; how can you tell if two people are related? IE, do their ancestors trace back? And if so, how far back? Install an implementation in java.</p>
 <hr class="dash">
 <h3>ChatGPT said:</h3>
 <p>To determine if two people are related and to find the depth of their ancestral connection in a given map or tree structure, you can use the concept of graph traversal. Here's a high-level approach to solving this problem using Java:</p>
@@ -234,10 +234,10 @@ public class AncestryChecker {
 <p>Explain further how the algorithm traverses the map, and also how it can track how closely related two people are.</p>
 <hr class="dash">
 <h3>ChatGPT said:</h3>
-<p>Certainly! Let's delve into more details on how the algorithm traverses the map and tracks the degree of relatedness between two people.</p>
-<p>The algorithm I described earlier performs a breadth-first search (BFS) traversal to explore the tree structure and find a path connecting the two individuals. Here's a step-by-step explanation:</p>
+<p>Here is more detail on how the algorithm traverses the map and tracks the degree of relatedness between two people.</p>
+<p>The algorithm above performs a breadth-first search (BFS) traversal to explore the tree structure and find a path connecting the two individuals. Here's a step-by-step explanation:</p>
 <ol>
-<li>Start by initializing a queue to store the nodes (people) to visit. Additionally, use a set to keep track of visited nodes, so we don't process them multiple times or fall into cycles.</li>
+<li>Start by initializing a queue to store the nodes (people) to visit. Additionally, use a set to keep track of visited nodes, so they are not processed multiple times and the traversal does not fall into cycles.</li>
 </ol>
 <ol>
 <li>Enqueue the starting person (<code>person1</code>) into the queue and mark it as visited.</li>
@@ -256,7 +256,7 @@ public class AncestryChecker {
 <p>By using BFS, the algorithm explores the tree structure level by level, ensuring that it examines all possible paths before moving to the next level. This approach helps in finding the shortest path between the two individuals, which corresponds to the closest degree of relatedness.</p>
 <p>To track the degree of relatedness between <code>person1</code> and <code>person2</code>, you can modify the algorithm to store the depth or level of each person during the traversal. When <code>person2</code> is encountered, you have the levels of both individuals, and the difference between those levels represents the number of generations separating them. This provides a measure of how closely related they are in terms of ancestry.</p>
 <p>You can extend the <code>Person</code> class to include a field for the level or depth and update it as you enqueue each person's parents. Once you find <code>person2</code> during the traversal, you can calculate the generation gap by subtracting the levels of <code>person1</code> and <code>person2</code>.</p>
-<p>In the code example below, I've added the level tracking to the <code>Person</code> class and modified the <code>areRelated</code> method to return the generation gap as well:</p>
+<p>In the code example below, level tracking is added to the <code>Person</code> class and the <code>areRelated</code> method is modified to return the generation gap as well:</p>
 <pre class="code"><code>
 class Person {
     String name;

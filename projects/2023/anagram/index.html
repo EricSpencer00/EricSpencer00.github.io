@@ -132,7 +132,7 @@ li{margin:4px 0}
 <p class="meta">Scrabble Inspired Anagram Solver</p>
 <hr class="dash">
 <p>Give a set of letters to the program and it will output a set of possible words you can make according to the English Scrabble dictionary.</p>
-<p>Wildcards are supported, with a maximum of two. Please note that adding any more possibilities for wildcards adds a larger complexity (O(n^2) -> O(n^3)) due to the nature of the algorithm. I have hard set this at two for this reason.</p>
+<p>Wildcards are supported, with a maximum of two. Each extra wildcard raises the complexity (O(n^2) -> O(n^3)) because of the nature of the algorithm, so the limit is hard set at two.</p>
 <p>How to use:</p>
 <ol>
 <li>Enter letters you have (enter ? for a wildcard, max 2)</li>

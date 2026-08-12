@@ -3,14 +3,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Advent of Code 2025 | Eric Spencer</title>
-<meta name="description" content="My Advent of Code 2025 attempt in Python. Got six days in before life took over.">
+<meta name="description" content="Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="Advent of Code 2025, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/aoc2025.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Advent of Code 2025 | Eric Spencer">
-<meta property="og:description" content="My Advent of Code 2025 attempt in Python. Got six days in before life took over.">
+<meta property="og:description" content="Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.">
 <meta property="og:url" content="https://ericspencer.us/projects/aoc2025.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-aoc2025.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,13 +24,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Advent of Code 2025 | Eric Spencer">
-<meta name="twitter:description" content="My Advent of Code 2025 attempt in Python. Got six days in before life took over.">
+<meta name="twitter:description" content="Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.">
 <meta property="linkedin:title" content="Advent of Code 2025 | Eric Spencer">
-<meta property="linkedin:description" content="My Advent of Code 2025 attempt in Python. Got six days in before life took over.">
+<meta property="linkedin:description" content="Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Advent of Code 2025",
-"description":"My Advent of Code 2025 attempt in Python. Got six days in before life took over.",
+"description":"Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.",
 "url":"https://ericspencer.us/projects/aoc2025.html",
 "image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -128,16 +128,16 @@ li{margin:4px 0}
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h2>Advent of Code 2025<span class="ln"></span></h2>
-<p class="meta">My Advent of Code 2025 attempt in Python. Got six days in before life took over.</p>
+<p class="meta">Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">https://github.com/EricSpencer00/AoC2025</a></p>
 <hr class="dash">
-<p>Every December I tell myself I'm going to do all 25 days of <a href="https://adventofcode.com/2025" target="_blank" rel="noopener">Advent of Code</a>, and every December I make it about a week in before something else swallows the rest of the month. 2025 was no different — I got through days 1 through 6 (both parts each, so twelve stars), and then the commits just stop.</p>
+<p>A Python run at <a href="https://adventofcode.com/2025" target="_blank" rel="noopener">Advent of Code</a> 2025 that covers days 1 through 6, both parts each, for twelve stars. The commits stop after that.</p>
 <p>Python, no framework, one file per part. <code>d1.py</code>, <code>d1_p2.py</code>, and so on. Inputs live in <code>inputs/</code> and aren't committed. That's the whole setup.</p>
-<p>Day 3 is the one I'm least proud of. The problem was something like "find the largest 12-digit number you can form by picking digits in order from a string." My first instinct was to nest twelve <code>for</code> loops, which is exactly as horrifying as it sounds — you can still see it commented out at the top of <code>d3_p2.py</code> as a monument to bad ideas. I rewrote it as a greedy pass after I came to my senses.</p>
-<p>Day 6 was my favorite. It was a worksheet of "cephalopod math" where you had to parse numbers laid out vertically in columns, with the operator sitting at the bottom of each column block. Part 2 then told you the cephalopods read right-to-left within each problem, so the whole thing needed reshuffling. Transposing columns, finding the operator row, reversing order — it was the kind of fiddly parsing puzzle I actually enjoy.</p>
-<p>After day 6 the puzzles got harder and I had final projects, and that was that. Maybe I'll come back to it during winter break. Maybe I won't. The repo is small and self-contained, and if you want to compare solutions or laugh at the twelve nested for loops, here it is: <a href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">github.com/EricSpencer00/AoC2025</a>.</p>
+<p>Day 3 asks for something like "find the largest 12-digit number you can form by picking digits in order from a string." The first attempt nested twelve <code>for</code> loops, which is exactly as horrifying as it sounds. It is still there, commented out at the top of <code>d3_p2.py</code>. The committed solution is a greedy pass.</p>
+<p>Day 6 is a worksheet of "cephalopod math": numbers laid out vertically in columns, with the operator sitting at the bottom of each column block. Part 2 adds that the cephalopods read right-to-left within each problem, so the whole layout needs reshuffling. The solution transposes columns, finds the operator row, and reverses the order.</p>
+<p>The puzzles get harder after day 6 and the repo stops there. It is small and self-contained, so it is easy to compare solutions against or to read the twelve nested for loops: <a href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">github.com/EricSpencer00/AoC2025</a>.</p>
 <hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything — this description was written by an LLM.</i></p>
+<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
