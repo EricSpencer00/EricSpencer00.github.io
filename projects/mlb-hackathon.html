@@ -5,9 +5,13 @@
 <title>MLB Hall of Fame Predictor | Eric Spencer</title>
 <meta name="description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="MLB Hall of Fame Predictor, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/mlb-hackathon.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MLB Hall of Fame Predictor | Eric Spencer">
 <meta property="og:description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
@@ -32,7 +36,7 @@
 "headline":"MLB Hall of Fame Predictor",
 "description":"A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.",
 "url":"https://ericspencer.us/projects/mlb-hackathon.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-mlb-hackathon.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-01-17",
@@ -157,8 +161,6 @@ print(&#x27;accuracy is:&#x27;, skmodel.score(test_features, test_labels))
 <p>The cloud half of the project is in <code>interact.py</code> and a Vertex AI endpoint. <code>train.py</code> has the commented-out GCS upload, the idea being you'd push <code>model.joblib</code> to a bucket, deploy it to Vertex, and hit it from anywhere with a prediction call. The wiring is in place, but the endpoint never got deployed before the deadline, so the production-y version is more of a sketch.</p>
 <p>Things another weekend would buy: real per-season time-series instead of career totals (the dataset is called <code>_Timeseries</code> for a reason, but it gets collapsed here), position-aware features, era adjustments so a 1920s slugger doesn't get penalized for not having modern counting stats, and an actual frontend where you pick a current player and get a probability back. Evaluating against players who recently became eligible but aren't inducted yet would also be a more honest test than a random split.</p>
 <p><a href="https://github.com/EricSpencer00/MLB-Hackathon" target="_blank" rel="noopener">GitHub Repo</a></p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything; this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

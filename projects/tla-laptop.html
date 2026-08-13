@@ -5,9 +5,13 @@
 <title>TLA+ Model of a Laptop | Eric Spencer</title>
 <meta name="description" content="A formal TLA+ specification modeling a laptop&#x27;s power states, battery, lid, thermals, and auto-suspend.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="TLA+ Model of a Laptop, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/tla-laptop.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TLA+ Model of a Laptop | Eric Spencer">
 <meta property="og:description" content="A formal TLA+ specification modeling a laptop&#x27;s power states, battery, lid, thermals, and auto-suspend.">
@@ -32,7 +36,7 @@
 "headline":"TLA+ Model of a Laptop",
 "description":"A formal TLA+ specification modeling a laptop's power states, battery, lid, thermals, and auto-suspend.",
 "url":"https://ericspencer.us/projects/tla-laptop.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-tla-laptop.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-11-27",
@@ -130,7 +134,7 @@ li{margin:4px 0}
 <h2>TLA+ Model of a Laptop<span class="ln"></span></h2>
 <p class="meta">A formal TLA+ specification modeling a laptop&#x27;s power states, battery, lid, thermals, and auto-suspend.</p>
 <hr class="dash">
-<p>A small TLA+ spec in the same family as the <a href="https://ericspencer.us/ericspencer-site-backup/projects/2024/tla-walk-in-oven/">walk-in oven</a> and the <a href="https://ericspencer.us/ericspencer-site-backup/projects/2025/interactive-microwave-tla/">interactive microwave</a>. If you've never touched TLA+, the microwave page is the gentler introduction. This one models a laptop. Not a real laptop, but a small mechanical abstraction of one: power button, lid, charger, display, brightness, wifi, bluetooth, CPU mode, temperature, fan, sleep timer. The spec writes down everything that can change and the rules for how it changes, then asks TLC whether anything bad can happen.</p>
+<p>A small TLA+ spec in the same family as the <a href="/projects/tla-walk-in-oven.html">walk-in oven</a> and the <a href="/projects/interactive-microwave-tla.html">interactive microwave</a>. If you've never touched TLA+, the microwave page is the gentler introduction. This one models a laptop. Not a real laptop, but a small mechanical abstraction of one: power button, lid, charger, display, brightness, wifi, bluetooth, CPU mode, temperature, fan, sleep timer. The spec writes down everything that can change and the rules for how it changes, then asks TLC whether anything bad can happen.</p>
 <p>The repo is at <a href="https://github.com/EricSpencer00/tla-laptop" target="_blank" rel="noopener">https://github.com/EricSpencer00/tla-laptop</a>.</p>
 <h2>What's in the spec<span class="ln"></span></h2>
 <p>The state is twelve variables plus a <code>phase</code> flag that flips between <code>"user"</code> and <code>"tick"</code>. The phase split is a trick: user actions (pressing the power button, opening the lid, toggling wifi) only fire in the user phase, and the ambient ticks (battery draining, temperature rising, the auto-suspend countdown) only fire in the tick phase. Without it the model can do a user action and a thermal tick in the same step, which makes counterexamples annoying to read.</p>
@@ -157,8 +161,6 @@ PROPERTY == &lt;&gt; (power = &quot;on&quot; /\ lid = &quot;open&quot; /\ displa
 <h2>Honest scope<span class="ln"></span></h2>
 <p>This is a personal study spec, not class work and not part of any research. It follows the walk-in oven with more variables and a non-trivial ambient process (the battery and thermal dynamics) instead of just safety interlocks. The repo carries two configs: <code>laptop.cfg</code> is the full one and <code>laptop_small.cfg</code> cuts every constant down (<code>BatteryMax = 4</code>, <code>MaxBrightness = 3</code>, <code>FanMax = 2</code>) so TLC actually finishes in a reasonable time on a laptop modeling a laptop. The state space blows up fast once you start parameterizing brightness and fan speed as integers.</p>
 <p>If you run it and get an unreported counterexample, open an issue. Catching an action that was left unconstrained is much of the point.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

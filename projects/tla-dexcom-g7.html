@@ -5,9 +5,13 @@
 <title>TLA+ Model of Dexcom G7 | Eric Spencer</title>
 <meta name="description" content="A formal TLA+ specification of the Dexcom G7 continuous glucose monitor&#x27;s behavior and safety properties.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="TLA+ Model of Dexcom G7, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/tla-dexcom-g7.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TLA+ Model of Dexcom G7 | Eric Spencer">
 <meta property="og:description" content="A formal TLA+ specification of the Dexcom G7 continuous glucose monitor&#x27;s behavior and safety properties.">
@@ -32,7 +36,7 @@
 "headline":"TLA+ Model of Dexcom G7",
 "description":"A formal TLA+ specification of the Dexcom G7 continuous glucose monitor's behavior and safety properties.",
 "url":"https://ericspencer.us/projects/tla-dexcom-g7.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-tla-dexcom-g7.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-11-12",
@@ -159,8 +163,6 @@ NoReadingsAfterExpiry ==
 <h2>What's missing<span class="ln"></span></h2>
 <p>A lot. The spec doesn't model calibration (the G7 mostly doesn't need it, but the API surface still exists). It doesn't model the "signal loss" state when the transmitter and receiver are out of range for too long. It doesn't model the difference between the sensor producing a sample and the <i>transmitter</i> actually packaging it for BLE. Alerts are a single high/low flag instead of the actual hysteresis the device uses: Dexcom won't refire the low alert if you're already in low territory and haven't climbed back out. And there's no model of the predictive "you'll be low in 20 minutes" alerts, which are the most clinically useful thing the device does.</p>
 <p>If you've worked with TLA+ and want to take a swing at any of those, the spec is small enough to fork and extend in an afternoon. PRs welcome; it's the kind of project that's more useful the more eyes are on it, especially eyes that also wear one of these things.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

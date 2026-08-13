@@ -5,9 +5,13 @@
 <title>Iterative Maze Solver Example | Eric Spencer</title>
 <meta name="description" content="Iterative Maze Solver Example, a project by Eric Spencer.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 <meta name="keywords" content="Iterative Maze Solver Example, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/iterative-maze-solver.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Iterative Maze Solver Example | Eric Spencer">
 <meta property="og:description" content="Iterative Maze Solver Example, a project by Eric Spencer.">
@@ -32,7 +36,7 @@
 "headline":"Iterative Maze Solver Example",
 "description":"Iterative Maze Solver Example, a project by Eric Spencer.",
 "url":"https://ericspencer.us/projects/iterative-maze-solver.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-iterative-maze-solver.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2023-06-01",
@@ -133,7 +137,7 @@ li{margin:4px 0}
 <p>Iterative/hasNext Maze Solver</p>
 <p>#########################################</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, provide some coding examples of an iterative maze solver. Assume this maze has a border marked with <i>'s, walls marked with </i>'s, unvisited squares marked with blank spaces ' 's, and visited spaces marked with 'x's. Explain each step as you go. </div></p>
+<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, provide some coding examples of an iterative maze solver. Assume this maze has a border marked with *'s, walls marked with *'s, unvisited squares marked with blank spaces ' 's, and visited spaces marked with 'x's. Explain each step as you go. </div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Certainly! Here's an example of an iterative maze solver in Java, following the guidelines you provided:</p>
 <pre class="code"><code>
@@ -679,9 +683,9 @@ maze.add(Arrays.asList(&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27
 <li>IDDFS is typically implemented using a stack data structure and a depth counter.</li>
 </ul>
 <ol>
-<li>A Search*:</li>
+<li>A* Search:</li>
 </ol>
-<p>A<i> Search is an informed search algorithm that uses heuristic estimates to guide the search towards the goal. It evaluates each cell based on a combination of the cost to reach that cell and an estimated cost from that cell to the destination.A</i> Search utilizes a priority queue to store cells, where the priority is determined by the combined cost and heuristic estimate. The algorithm expands cells with the lowest priority (i.e., the cells with the lowest total estimated cost).A<i> Search provides an optimal solution (shortest path) if the heuristic estimate satisfies certain conditions, such as being admissible (never overestimating the actual cost) and consistent (monotonicity property).A</i> Search requires defining a heuristic function that estimates the cost from a given cell to the destination. Commonly used heuristics include Manhattan distance, Euclidean distance, or any other relevant distance measure.A* Search is typically implemented using a priority queue data structure.</p>
+<p>A* Search is an informed search algorithm that uses heuristic estimates to guide the search towards the goal. It evaluates each cell based on a combination of the cost to reach that cell and an estimated cost from that cell to the destination. A* Search utilizes a priority queue to store cells, where the priority is determined by the combined cost and heuristic estimate. The algorithm expands cells with the lowest priority (i.e., the cells with the lowest total estimated cost). A* Search provides an optimal solution (shortest path) if the heuristic estimate satisfies certain conditions, such as being admissible (never overestimating the actual cost) and consistent (monotonicity property). A* Search requires defining a heuristic function that estimates the cost from a given cell to the destination. Commonly used heuristics include Manhattan distance, Euclidean distance, or any other relevant distance measure.A* Search is typically implemented using a priority queue data structure.</p>
 <ul>
 <li>A* Search is an informed search algorithm that uses heuristic estimates to guide the search towards the goal. It evaluates each cell based on a combination of the cost to reach that cell and an estimated cost from that cell to the destination.</li>
 <li>A* Search utilizes a priority queue to store cells, where the priority is determined by the combined cost and heuristic estimate. The algorithm expands cells with the lowest priority (i.e., the cells with the lowest total estimated cost).</li>
@@ -1246,7 +1250,7 @@ public class MazeSolver {
 <ol>
 <li>A* Algorithm:</li>
 </ol>
-<p>The A<i> algorithm is an informed search algorithm that uses heuristics to efficiently find the optimal path between two points.It evaluates each potential move based on a combination of the cost to reach the current cell and an estimated cost to reach the destination.A</i> can be advantageous when you have additional information about the maze, such as distances or weights assigned to cells.To support the iterator-based approach, you can implement A* using a priority queue to prioritize cells based on their evaluation scores.</p>
+<p>The A* algorithm is an informed search algorithm that uses heuristics to efficiently find the optimal path between two points.It evaluates each potential move based on a combination of the cost to reach the current cell and an estimated cost to reach the destination. A* can be advantageous when you have additional information about the maze, such as distances or weights assigned to cells.To support the iterator-based approach, you can implement A* using a priority queue to prioritize cells based on their evaluation scores.</p>
 <ul>
 <li>The A* algorithm is an informed search algorithm that uses heuristics to efficiently find the optimal path between two points.</li>
 <li>It evaluates each potential move based on a combination of the cost to reach the current cell and an estimated cost to reach the destination.</li>

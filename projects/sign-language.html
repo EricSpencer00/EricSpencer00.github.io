@@ -5,9 +5,13 @@
 <title>AI Sign Language Interpreter | Eric Spencer</title>
 <meta name="description" content="A Simple Sign Language Recognition App using OpenCV">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="AI Sign Language Interpreter, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/sign-language.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AI Sign Language Interpreter | Eric Spencer">
 <meta property="og:description" content="A Simple Sign Language Recognition App using OpenCV">
@@ -32,7 +36,7 @@
 "headline":"AI Sign Language Interpreter",
 "description":"A Simple Sign Language Recognition App using OpenCV",
 "url":"https://ericspencer.us/projects/sign-language.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-sign-language.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-04-07",
@@ -134,8 +138,8 @@ li{margin:4px 0}
 <p>This is the Loyola AI Club's early Spring Semester project, led by Eric Spencer: a sign language interpreter. The original goal was to download a ton of sign language videos from a dataset and see whether a working sign language interpreter could be built out of them with OpenCV and Python.</p>
 <p>The process was as follows:</p>
 <ol>
-<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL_val.json" target="</i>blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was already split.</li>
-<li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_process.py" target="</i>blank" rel="noopener">this script</a>.</li>
+<li>Use a <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/MS-ASL/MSASL_val.json" target="_blank" rel="noopener">list of YouTube links from Microsoft</a> that would show ASL in action along with a label of the sign. In this case the training and testing data was already split.</li>
+<li>Download the videos and then convert those downloaded videos to a convenient format for machine learning using <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_process.py" target="_blank" rel="noopener">this script</a>.</li>
 </ol>
 <pre class="code"><code>
 def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
@@ -166,7 +170,7 @@ def download_youtube_video(url, videos_folder=VIDEOS_FOLDER):
         return None
 </code></pre>
 <ol>
-<li>The new dataset is then used to train on the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_training.py" target="</i>blank" rel="noopener">link</a></li>
+<li>The new dataset is then used to train on the similarities between the images and labels. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/json_training.py" target="_blank" rel="noopener">link</a></li>
 </ol>
 <pre class="code"><code>
 def main():
@@ -230,7 +234,7 @@ def main():
     print(&quot;[INFO] Model saved as asl_model.h5&quot;)
 </code></pre>
 <ol>
-<li>Finally, the model is tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app_json.py#L24" target="</i>blank" rel="noopener">link</a></li>
+<li>Finally, the model is tested with a live camera. <a href="https://github.com/loyolaaiclub/Sign-Language-Recognition/blob/8be753d802f3424ba300037bf7bb17334a498997/app_json.py#L24" target="_blank" rel="noopener">link</a></li>
 </ol>
 <pre class="code"><code>
 # Process the frame with MediaPipe for hand detection

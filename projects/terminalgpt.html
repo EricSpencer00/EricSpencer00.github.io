@@ -5,9 +5,13 @@
 <title>Terminal GPT | Eric Spencer</title>
 <meta name="description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Terminal GPT, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/terminalgpt.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Terminal GPT | Eric Spencer">
 <meta property="og:description" content="A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.">
@@ -32,7 +36,7 @@
 "headline":"Terminal GPT",
 "description":"A small Python CLI for chatting with OpenAI and running English-to-Bash commands from the terminal.",
 "url":"https://ericspencer.us/projects/terminalgpt.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-terminalgpt.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-01-10",
@@ -133,15 +137,13 @@ li{margin:4px 0}
 <hr class="dash">
 <p>Terminal GPT was written in early 2025. Asking ChatGPT a quick question otherwise meant a context-switch to a browser tab, a wait for the page to load, a web UI that froze on long responses, and then copying whatever you needed back into the terminal anyway. If you already live in the terminal, it is easier to bring the model there.</p>
 <p>There are two scripts in the repo. The first one, <code>gpt.py</code>, is a streaming chat REPL: you type, it streams a response back in cyan, you keep going, and it holds the conversation history for the session. It uses the OpenAI Python SDK directly with <code>gpt-4</code> as the default model (<code>gpt-3.5-turbo</code> and <code>gpt-4-turbo</code> are commented out in the source and can be swapped in to keep token costs down). Streaming and Ctrl+C handling are the only fancy bits: the first interrupt stops the in-flight request, a second one quits.</p>
-<p>This is the script aliased in the <a href="https://ericspencer.us/ericspencer-site-backup/miscellaneous/my-zshrc/">.zshrc</a> as <code>gpt</code>, so opening a chat is just typing two letters in whatever directory you happen to be in. That alias activates the venv and runs <code>gpt.py</code>. It is the most-used part of the project, well ahead of the second script, and the reason it is still installed almost a year later. Good if you're tired of the buggy web versions or just don't want to leave the terminal to ask a question.</p>
+<p>This is the script aliased in the <a href="/projects/my-zshrc.html">.zshrc</a> as <code>gpt</code>, so opening a chat is just typing two letters in whatever directory you happen to be in. That alias activates the venv and runs <code>gpt.py</code>. It is the most-used part of the project, well ahead of the second script, and the reason it is still installed almost a year later. Good if you're tired of the buggy web versions or just don't want to leave the terminal to ask a question.</p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/terminalgpt.png" alt="Photo of program working"></p>
 <p>The second script, <code>exe.py</code>, is the English-to-Bash one. You type something like "create a folder called notes and cd into it" and it asks an LLM to give back the actual shell command, prints what it's about to run, and waits for you to confirm <code>y</code> before executing. It also has a sanitizer that strips anything with <code>..</code> in it, plus a dangerous-keyword check (<code>rm</code>, <code>sudo</code>, <code>chmod</code>, <code>chown</code>, <code>curl</code>, <code>wget</code>) that forces an extra <code>yes</code> confirmation. So don't worry about <code>rm -rf</code>'ing your directory; you'd have to type out the confirmations to actually do that to yourself.</p>
 <p>This one runs against OpenRouter's free <code>deepseek/deepseek-chat:free</code> model instead of OpenAI, since exe.py was less about getting the smartest possible answer and more about not spending real credits on every "what's the tar flag for that again" question. It also has a retry loop: if the generated command fails, the error message gets fed back to the model and it takes another swing, up to three times.</p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/terminalgpt_exe.png" alt="Photo of terminal with the program working"></p>
 <p>In hindsight <code>exe.py</code> is the kind of thing GitHub Copilot's terminal mode and Claude Code now do natively and better, since they have actual context about your shell history and your project. Neither of those existed in a usable form when this was written, and the bar was "translate English to a shell command without nuking the home directory," which a free Deepseek model gets right plenty often.</p>
-<p><a href="https://github.com/EricSpencer00/TerminalGPT/" target="<i>blank" rel="noopener">Source is on GitHub.</a> It's two files, an <code>install.sh</code>, and a <code>requirements.txt</code>. To use it the same way, set <code>OPENAI</i>API<i>KEY</i>ENV</code> in a <code>.env</code> next to <code>gpt.py</code>, set <code>OPENROUTER<i>API</i>KEY</code> for <code>exe.py</code>, and alias whichever one you actually want to call.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
+<p><a href="https://github.com/EricSpencer00/TerminalGPT/" target="_blank" rel="noopener">Source is on GitHub.</a> It's two files, an <code>install.sh</code>, and a <code>requirements.txt</code>. To use it the same way, set <code>OPENAI_API_KEY_ENV</code> in a <code>.env</code> next to <code>gpt.py</code>, set <code>OPENROUTER_API_KEY</code> for <code>exe.py</code>, and alias whichever one you actually want to call.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

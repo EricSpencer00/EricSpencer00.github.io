@@ -5,9 +5,13 @@
 <title>Goldbach Conjecture | Eric Spencer</title>
 <meta name="description" content="Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Goldbach Conjecture, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/goldbach-conj.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Goldbach Conjecture | Eric Spencer">
 <meta property="og:description" content="Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.">
@@ -32,7 +36,7 @@
 "headline":"Goldbach Conjecture",
 "description":"Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.",
 "url":"https://ericspencer.us/projects/goldbach-conj.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-goldbach-conj.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-11-28",
@@ -146,11 +150,9 @@ for n in range(4, max_n + 1, 2):
         # counterexample — this never fires
         return False
 </code></pre>
-<p>At 1,000,000 the verifier finishes in about 0.224 seconds and prints the first ten decompositions as a sanity check. The second file, <code>generate<i>thru</i>n.py</code>, reuses the same sieve but instead of stopping at a "yes/no" answer it writes out every decomposition it finds to a text file. That's the one that goes to 1 billion. It took 470 seconds, just under eight minutes, and produced a 12.38 GB text file that VS Code politely refused to open. The screenshot in the repo is literally VS Code throwing up its hands at the file size while the progress log scrolls past in the terminal.</p>
+<p>At 1,000,000 the verifier finishes in about 0.224 seconds and prints the first ten decompositions as a sanity check. The second file, <code>generate_thru_n.py</code>, reuses the same sieve but instead of stopping at a "yes/no" answer it writes out every decomposition it finds to a text file. That's the one that goes to 1 billion. It took 470 seconds, just under eight minutes, and produced a 12.38 GB text file that VS Code politely refused to open. The screenshot in the repo is literally VS Code throwing up its hands at the file size while the progress log scrolls past in the terminal.</p>
 <p>No counterexamples. Which is the boring expected outcome, because the conjecture has been computationally verified well past 4×10^18 by people with actual compute budgets. Worth being blunt about: this is not a proof. It's a verification, and verification is not proof in number theory. The conjecture is still open. What the run confirms, on one machine, is that the first billion even integers all behave. Goldbach wrote about this in 1742 in a letter to Euler and nobody has closed it since. This does not close it either.</p>
 <p>Why Python instead of something faster? Because it was written in one sitting, with no compiler to fight. The sieve is the hot path and <code>bytearray</code> makes it cheap enough that the bottleneck for the 1B run is mostly writing the output file to disk. Pushing past 1B would mean skipping the decompositions on disk and probably reaching for Rust with parallelized segmented sieving. Forks that grind it up to 10^10 or 10^11 are welcome: the <a href="https://github.com/EricSpencer00/goldbach-conj" target="_blank" rel="noopener">repo is here</a> and the code is short enough to be its own spec.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything; this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

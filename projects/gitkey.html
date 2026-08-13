@@ -5,9 +5,13 @@
 <title>Git Key Guardian | Eric Spencer</title>
 <meta name="description" content="Protect sensitive keys from accidentally being uploaded to your git history at any point.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Git Key Guardian, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/gitkey.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git Key Guardian | Eric Spencer">
 <meta property="og:description" content="Protect sensitive keys from accidentally being uploaded to your git history at any point.">
@@ -32,7 +36,7 @@
 "headline":"Git Key Guardian",
 "description":"Protect sensitive keys from accidentally being uploaded to your git history at any point.",
 "url":"https://ericspencer.us/projects/gitkey.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-gitkey.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-09-14",
@@ -163,7 +167,7 @@ cd git-key-guardian
 chmod +x ./scripts/install.sh
 ./scripts/install.sh
 </code></pre>
-<p>The installer will copy patterns to <code>$HOME/.git-key-guardian/patterns/common<i>patterns.txt</code> and install the hook under <code>$HOME/.git-key-guardian/hooks/pre-commit</code>. It also creates an editable <code>personal</i>keys.txt</code> file for your own keys.</p>
+<p>The installer will copy patterns to <code>$HOME/.git-key-guardian/patterns/common_patterns.txt</code> and install the hook under <code>$HOME/.git-key-guardian/hooks/pre-commit</code>. It also creates an editable <code>personal_keys.txt</code> file for your own keys.</p>
 <p>To uninstall, remove the shared hooks directory or run:</p>
 <pre class="code"><code>
 git config --global --unset core.hooksPath
@@ -197,7 +201,7 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 </ul>
 <p>Example patterns included by default:</p>
 <ul>
-<li><code>sk<i>live</i>[0-9a-zA-Z]{24}</code> (Stripe live keys)</li>
+<li><code>sk_live_[0-9a-zA-Z]{24}</code> (Stripe live keys)</li>
 <li><code>sk-[A-Za-z0-9]{48}</code> (Older OpenAI key format)</li>
 <li><code>AKIA[0-9A-Z]{16}</code> (AWS Access Key ID)</li>
 <li><code>ssh-rsa\s+[A-Za-z0-9+/=]+</code> (SSH public keys)</li>
@@ -233,7 +237,6 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 <li>Default patterns: <code>patterns/common_patterns.txt</code></li>
 <li>Contribution guide: <code>CONTRIBUTING.md</code></li>
 </ul>
-<hr class="dash">
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

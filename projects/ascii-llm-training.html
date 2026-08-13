@@ -5,9 +5,13 @@
 <title>Training an LLM on ASCII | Eric Spencer</title>
 <meta name="description" content="A toy transformer that reads pyfiglet ASCII art and tries to spit the original word back out. Calling it an LLM is generous.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Training an LLM on ASCII, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/ascii-llm-training.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Training an LLM on ASCII | Eric Spencer">
 <meta property="og:description" content="A toy transformer that reads pyfiglet ASCII art and tries to spit the original word back out. Calling it an LLM is generous.">
@@ -32,7 +36,7 @@
 "headline":"Training an LLM on ASCII",
 "description":"A toy transformer that reads pyfiglet ASCII art and tries to spit the original word back out. Calling it an LLM is generous.",
 "url":"https://ericspencer.us/projects/ascii-llm-training.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-ascii-llm-training.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-09-03",
@@ -132,8 +136,8 @@ li{margin:4px 0}
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/ascii-llm-training" target="_blank" rel="noopener">https://github.com/EricSpencer00/ascii-llm-training</a></p>
 <hr class="dash">
 <p>A small transformer trained on ASCII art. Not generating it, reading it. You give the model a chunk of <code>pyfiglet</code>'s blocky text rendering of some random word, and it has to recover the word. So less of an LLM and more of a text-only OCR experiment with a transformer encoder bolted on. But "training an LLM on ASCII" sounds way cooler than "training a character classifier on pyfiglet output," so that is the repo name.</p>
-<p>The pipeline is four scripts. <code>ascii<i>generator.py</code> picks a random lowercase word between 3 and 12 characters long, runs it through <code>pyfiglet</code> in a chosen FIGlet font (default <code>standard</code>, or sample from a curated list of fonts like <code>slant</code>, <code>3-d</code>, <code>doh</code>, <code>isometric1</code>, <code>bubble</code> if you pass <code>--multi-font</code>), and dumps the (word, art, font) triples into a JSONL file. <code>data</i>prep.py</code> builds two tiny vocabularies (one for the characters that show up in the rendered art, one for the 26 lowercase letters plus a <code><pad></code> token) and converts everything into padded numpy arrays. <code>train.py</code> runs the transformer. <code>evaluate.py</code> loads a checkpoint and prints predictions.</p>
-<p>The model itself is small. PyTorch's <code>nn.TransformerEncoder</code> over the flattened ASCII art token sequence, default 4 layers, <code>d<i>model=192–256</code>, 8 heads, 512-dim feedforward. The flattened sequence can be ~1200 tokens long because ASCII art is wide. The encoder outputs get mean-pooled into one vector, which gets projected to <code>target</i>vocab<i>size * MAX</i>WORD<i>LEN</code> and reshaped, so it predicts all 12 character positions at once instead of decoding autoregressively. Cross-entropy with <code>ignore</i>index=PAD</code> on the target side. The flat head keeps the model simple and avoids a decoder loop for what should be an easy task.</p>
+<p>The pipeline is four scripts. <code>ascii_generator.py</code> picks a random lowercase word between 3 and 12 characters long, runs it through <code>pyfiglet</code> in a chosen FIGlet font (default <code>standard</code>, or sample from a curated list of fonts like <code>slant</code>, <code>3-d</code>, <code>doh</code>, <code>isometric1</code>, <code>bubble</code> if you pass <code>--multi-font</code>), and dumps the (word, art, font) triples into a JSONL file. <code>data_prep.py</code> builds two tiny vocabularies (one for the characters that show up in the rendered art, one for the 26 lowercase letters plus a <code><pad></code> token) and converts everything into padded numpy arrays. <code>train.py</code> runs the transformer. <code>evaluate.py</code> loads a checkpoint and prints predictions.</p>
+<p>The model itself is small. PyTorch's <code>nn.TransformerEncoder</code> over the flattened ASCII art token sequence, default 4 layers, <code>d_model=192–256</code>, 8 heads, 512-dim feedforward. The flattened sequence can be ~1200 tokens long because ASCII art is wide. The encoder outputs get mean-pooled into one vector, which gets projected to <code>target_vocab_size * MAX_WORD_LEN</code> and reshaped, so it predicts all 12 character positions at once instead of decoding autoregressively. Cross-entropy with <code>ignore_index=PAD</code> on the target side. The flat head keeps the model simple and avoids a decoder loop for what should be an easy task.</p>
 <pre class="code"><code>
 self.classifier = nn.Linear(d_model, target_vocab_size * max_word_len)
 # ...
@@ -144,8 +148,6 @@ logits = self.classifier(pooled).view(-1, self.max_word_len, self.target_vocab_s
 <p>Where it falls apart is multi-font. Once you mix <code>doh</code> and <code>isometric1</code> and <code>banner3-D</code> into the same dataset, the model has to learn each font's quirks (variable letter width, ASCII characters that bleed across positions, fonts that draw the same letter completely differently) and a 4-layer encoder with a few thousand samples just isn't enough. Exact-match accuracy drops hard. The right move would be a proper sequence-to-sequence decoder, or CTC loss so the model doesn't need to know where each letter starts and ends, or just way more data and a bigger model. All of that sits in the README's "Future Ideas" section, unimplemented.</p>
 <p>This is a one-weekend curiosity project. It does not produce a usable model, and it does not generate ASCII art (the inverse direction is much harder and much more interesting). What it is good for is a small transformer written from scratch with PyTorch, and a refresher on how <code>TransformerEncoderLayer</code> works.</p>
 <p><a href="https://github.com/EricSpencer00/ascii-llm-training" target="_blank" rel="noopener">GitHub Repo</a>. Fork it if you want to try the seq2seq version.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

@@ -117,14 +117,17 @@ def build_page(news, about, selected, blog, experience):
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago</title>
-<meta name="description" content="Eric Spencer — researcher, founder, and software engineer based in Chicago.">
+<meta name="description" content="Formal methods and LLM researcher at Loyola University Chicago (AI4FM), founder of FROM AMERICA LLC. ChatTLA+ models, TLA+ spec generation, the Resilient compiler.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
-<meta name="keywords" content="Eric Spencer, EricSpencer00, formal methods, TLA+, LLM, ChatTLA+, Loyola University Chicago, AI4FM">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/">
-<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="profile">
 <meta property="og:title" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago">
-<meta property="og:description" content="Researcher, founder, and software engineer based in Chicago.">
+<meta property="og:description" content="Formal methods and LLM researcher at Loyola University Chicago (AI4FM), founder of FROM AMERICA LLC.">
 <meta property="og:url" content="https://ericspencer.us/">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:image" content="https://ericspencer.us/assets/og/home.jpg">
@@ -135,10 +138,14 @@ def build_page(news, about, selected, blog, experience):
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago">
-<meta name="twitter:description" content="Researcher, founder, and software engineer based in Chicago.">
+<meta name="twitter:description" content="Formal methods and LLM researcher at Loyola University Chicago (AI4FM), founder of FROM AMERICA LLC.">
 <meta name="twitter:image" content="https://ericspencer.us/assets/og/home.jpg">
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Person","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago"}},"email":"eric@ericspencer.us"}}
+{{"@context":"https://schema.org","@graph":[
+{{"@type":"WebSite","@id":"https://ericspencer.us/#site","url":"https://ericspencer.us/","name":"Eric Spencer","inLanguage":"en-US","publisher":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"ProfilePage","@id":"https://ericspencer.us/#page","url":"https://ericspencer.us/","name":"Eric Spencer — Formal Methods & LLM Researcher, Chicago","isPartOf":{{"@id":"https://ericspencer.us/#site"}},"primaryImageOfPage":"https://ericspencer.us/assets/og/home.jpg","mainEntity":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/assets/og/home.jpg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}}
+]}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,6 +225,8 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 .gh-rest[hidden]{{display:none}}
 .gh-more{{font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);background:none;border:0;border-bottom:1px dotted var(--rule);padding:2px 0;margin-top:6px;cursor:pointer}}
 .gh-more:hover{{color:var(--accent);border-bottom-color:var(--accent)}}
+.cat-note{{font-size:14px;color:var(--dim);margin:-4px 0 10px;font-variant-numeric:tabular-nums}}
+.cat-note b{{color:var(--ink);font-weight:600}}
 @media(max-width:560px){{.wrap{{padding:36px 18px 80px}}.proj .dt,.proj .ds{{display:none}}.post-d{{display:none}}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{{display:none}}#hf-list .repo-row .dt,#hf-list .repo-row .ds{{display:none}}}}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
@@ -252,6 +261,17 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 <div id="hf-list">
 <p class="loading" id="hf-loading">Loading Hugging Face models&hellip;</p>
 </div>
+
+<!-- The two lists above are built from the GitHub and Hugging Face APIs at view
+     time. Crawlers that do not run scripts would otherwise see nothing here, so
+     the headline artifacts are also stated in plain HTML. -->
+<noscript>
+<h2>Open Source</h2>
+<div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a><span class="dt"></span><span class="ds">gpt-oss-20b fine-tuned to write verifiable TLA+ specifications.</span></div>
+<div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00" target="_blank" rel="noopener">huggingface.co/EricSpencer00</a><span class="dt"></span><span class="ds">The ChatTLA+ models and the datasets they were trained on.</span></div>
+<div class="proj"><a class="nm" href="https://github.com/EricSpencer00" target="_blank" rel="noopener">github.com/EricSpencer00</a><span class="dt"></span><span class="ds">Formal methods, LLM tooling, compilers, macOS and iOS apps.</span></div>
+<div class="proj"><a class="nm" href="/projects.html">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
+</noscript>
 
 <h2 id="cv">Experience</h2>
 {experience}
@@ -434,7 +454,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
   const VISIBLE = 3;
   let catSeq = 0;
 
-  function renderCat(heading, rows) {{
+  function renderCat(heading, rows, note) {{
     if (!rows.length) return '';
     const id = `gh-rest-${{++catSeq}}`;
     const head = rows.slice(0, VISIBLE).join('\\n');
@@ -444,8 +464,10 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
          <button class="gh-more" type="button" aria-expanded="false" aria-controls="${{id}}"
                  data-count="${{rest.length}}">Show ${{rest.length}} more</button>`
       : '';
+    const noteHtml = note ? `<p class="cat-note">${{note}}</p>` : '';
     return `<div class="gh-cat">
       <h2>${{esc(heading)}} <span class="pill">(${{rows.length}})</span></h2>
+      ${{noteHtml}}
       ${{head}}
       ${{restHtml}}
     </div>`;
@@ -513,29 +535,45 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 
   // ── Hugging Face ───────────────────────────────────────────────────────────
   // Same layout as the repo list, sorted by downloads so the models that get
-  // used lead.
+  // used lead. The default listing only carries `downloads`, which is the
+  // last-30-days figure -- the lifetime count needs an explicit expand, so both
+  // numbers are asked for and both are shown.
+  // `pipeline_tag` is a models-only field: asking for it on /api/datasets is a
+  // 400, which would silently empty the datasets list.
   const HF_USER = 'EricSpencer00';
+  const HF_FIELDS = {{
+    models:   ['downloads', 'downloadsAllTime', 'likes', 'pipeline_tag', 'tags'],
+    datasets: ['downloads', 'downloadsAllTime', 'likes', 'tags'],
+  }};
 
   async function fetchHF(kind) {{
+    const fields = HF_FIELDS[kind].map(f => `expand[]=${{f}}`).join('&');
     const res = await fetch(
-      `https://huggingface.co/api/${{kind}}?author=${{HF_USER}}&limit=100&full=false`,
+      `https://huggingface.co/api/${{kind}}?author=${{HF_USER}}&limit=100&${{fields}}`,
       {{ headers: {{ Accept: 'application/json' }} }});
     if (!res.ok) return [];
-    return res.json();
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
   }}
+
+  const allTime = x => x.downloadsAllTime || 0;
+  const monthly = x => x.downloads || 0;
+  const num = n => n.toLocaleString('en-US');
 
   function hfRow(item, kind) {{
     const short = item.id.includes('/') ? item.id.split('/')[1] : item.id;
-    const dl = item.downloads || 0;
     const tags = (item.tags || [])
       .filter(t => !t.includes(':') && !/^(region|license|arxiv)/.test(t))
       .slice(0, 2);
+    const parts = [];
+    if (allTime(item) > 0) parts.push(`&#8595; ${{num(allTime(item))}}`);
+    if (monthly(item) > 0) parts.push(`${{num(monthly(item))}}/mo`);
     return row({{
       url: `https://huggingface.co/${{kind === 'datasets' ? 'datasets/' : ''}}${{item.id}}`,
       name: short,
       desc: item.pipeline_tag || tags.join(', ') || '',
-      count: dl > 0 ? `&#8595; ${{dl.toLocaleString()}}` : '',
-      tags: item.likes > 0 ? [`${{item.likes}} likes`] : [],
+      count: parts.join(' &middot; '),
+      tags: item.likes > 0 ? [`${{item.likes}} like${{item.likes === 1 ? '' : 's'}}`] : [],
     }});
   }}
 
@@ -544,10 +582,21 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     const loading = document.getElementById('hf-loading');
     try {{
       const [models, datasets] = await Promise.all([fetchHF('models'), fetchHF('datasets')]);
-      const bydl = (a, b) => (b.downloads || 0) - (a.downloads || 0);
+      const all = [...models, ...datasets];
+      const sum = (xs, f) => xs.reduce((n, x) => n + f(x), 0);
+      const bydl = (a, b) => allTime(b) - allTime(a) || monthly(b) - monthly(a);
+
+      // The ChatTLA+ family is what the downloads are actually for, so it gets
+      // its own line rather than being left implicit in the per-row numbers.
+      const chattla = all.filter(x => /chattla|tla-/i.test(x.id));
+      const note = chattla.length
+        ? `ChatTLA+ models and datasets: <b>${{num(sum(chattla, allTime))}}</b> downloads all-time,
+           ${{num(sum(chattla, monthly))}} in the last 30 days.`
+        : '';
+
       let html = '';
       html += renderCat('Hugging Face Models',
-        models.sort(bydl).map(m => hfRow(m, 'models')));
+        models.sort(bydl).map(m => hfRow(m, 'models')), note);
       html += renderCat('Hugging Face Datasets',
         datasets.sort(bydl).map(d => hfRow(d, 'datasets')));
       if (!html) {{ loading.textContent = 'No Hugging Face artifacts found.'; return; }}

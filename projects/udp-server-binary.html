@@ -3,14 +3,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UDP server (binary) | Eric Spencer</title>
-<meta name="description" content="UDP send/receive utilities for binary payloads.">
+<meta name="description" content="Two C utilities for binary UDP payloads: udprecv binds a port and prints what arrives, udpsend streams a file to it.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="UDP server (binary), Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/udp-server-binary.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UDP server (binary) | Eric Spencer">
-<meta property="og:description" content="UDP send/receive utilities for binary payloads.">
+<meta property="og:description" content="Two C utilities for binary UDP payloads: udprecv binds a port and prints what arrives, udpsend streams a file to it.">
 <meta property="og:url" content="https://ericspencer.us/projects/udp-server-binary.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-udp-server-binary.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,15 +28,15 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="UDP server (binary) | Eric Spencer">
-<meta name="twitter:description" content="UDP send/receive utilities for binary payloads.">
+<meta name="twitter:description" content="Two C utilities for binary UDP payloads: udprecv binds a port and prints what arrives, udpsend streams a file to it.">
 <meta property="linkedin:title" content="UDP server (binary) | Eric Spencer">
-<meta property="linkedin:description" content="UDP send/receive utilities for binary payloads.">
+<meta property="linkedin:description" content="Two C utilities for binary UDP payloads: udprecv binds a port and prints what arrives, udpsend streams a file to it.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"UDP server (binary)",
 "description":"UDP send/receive utilities for binary payloads.",
 "url":"https://ericspencer.us/projects/udp-server-binary.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-udp-server-binary.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-11-06",
@@ -131,13 +135,12 @@ li{margin:4px 0}
 <p class="meta">UDP send/receive utilities for binary payloads.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/UDP-server-binary" target="_blank" rel="noopener">https://github.com/EricSpencer00/UDP-server-binary</a></p>
 <hr class="dash">
-<p><img src="https://ericspencer.us/ericspencer-site-backup/previews/udp-server-binary.png" alt="previews/udp-server-binary.png"></p>
 <h2>Repository<span class="ln"></span></h2>
-<p><<a href="https://github.com/EricSpencer00/UDP-server-binary" target="_blank" rel="noopener">https://github.com/EricSpencer00/UDP-server-binary></a></p>
+<p><a href="https://github.com/EricSpencer00/UDP-server-binary" target="_blank" rel="noopener">https://github.com/EricSpencer00/UDP-server-binary</a></p>
 <h2>Tools<span class="ln"></span></h2>
 <ul>
 <li><code>udprecv</code>: Binds to a UDP port, receives one packet, prints sender and payload.</li>
-<li><code>udpsend<i>stream</i>file</code>: Sends a file as UDP packets.</li>
+<li><code>udpsend_stream_file</code>: Sends a file as UDP packets.</li>
 </ul>
 <h2>Commands<span class="ln"></span></h2>
 <pre class="code"><code>
@@ -158,7 +161,7 @@ shasum -a 256 test.bin received.bin
 </ul>
 <h2>Related<span class="ln"></span></h2>
 <ul>
-<li>NASDAQ ITCH parser: <<a href="https://github.com/EricSpencer00/itch-parser-eric" target="_blank" rel="noopener">https://github.com/EricSpencer00/itch-parser-eric></a></li>
+<li>NASDAQ ITCH parser: <a href="https://github.com/EricSpencer00/itch-parser-eric" target="_blank" rel="noopener">https://github.com/EricSpencer00/itch-parser-eric</a></li>
 </ul>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

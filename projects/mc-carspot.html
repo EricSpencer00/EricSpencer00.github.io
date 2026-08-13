@@ -5,9 +5,13 @@
 <title>mc-carspot: Online Parking Simulation in Rust | Eric Spencer</title>
 <meta name="description" content="A tiny Rust simulator for the online parking-spot problem with switching costs.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="mc-carspot: Online Parking Simulation in Rust, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/mc-carspot.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mc-carspot: Online Parking Simulation in Rust | Eric Spencer">
 <meta property="og:description" content="A tiny Rust simulator for the online parking-spot problem with switching costs.">
@@ -32,7 +36,7 @@
 "headline":"mc-carspot: Online Parking Simulation in Rust",
 "description":"A tiny Rust simulator for the online parking-spot problem with switching costs.",
 "url":"https://ericspencer.us/projects/mc-carspot.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-mc-carspot.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-08-22",
@@ -133,11 +137,9 @@ li{margin:4px 0}
 <hr class="dash">
 <p><a href="https://github.com/EricSpencer00/mc-carspot" target="_blank" rel="noopener">GitHub Repo</a></p>
 <p>mc-carspot is a small Rust program, written in one sitting, that plays with the online parking-spot problem. You're parked somewhere on a street, closer spots open up as time goes on, and every time you decide to move the car you eat a switching cost. The question is whether the walk you save is worth the move, and over a sequence of events what policy minimizes total cost. It's a classic toy from the online algorithms / metrical task systems world, which is where the "mc" in the name comes from (metrical cost).</p>
-<p>The whole thing is about 70 lines in <code>src/main.rs</code>. There's an <code>Env</code> struct that holds the number of spots, the per-step walk cost, the move cost, and a vector of distances. Each tick, some spots randomly become available (<code>rng.gen<i>bool(0.3)</code>), and the policy decides whether to stay or move to the closest open one. The default policy is a threshold rule: move only if <code>(dist</i>cur - dist<i>new) <i> walk</i>cost </i> expected<i>uses > move</i>cost</code>. In other words, the expected walking savings has to clear the move cost. It also includes the trivial baselines (always stay, always move) so you can compare.</p>
+<p>The whole thing is about 70 lines in <code>src/main.rs</code>. There's an <code>Env</code> struct that holds the number of spots, the per-step walk cost, the move cost, and a vector of distances. Each tick, some spots randomly become available (<code>rng.gen_bool(0.3)</code>), and the policy decides whether to stay or move to the closest open one. The default policy is a threshold rule: move only if <code>(dist_cur - dist_new) * walk_cost * expected_uses > move_cost</code>. In other words, the expected walking savings has to clear the move cost. It also includes the trivial baselines (always stay, always move) so you can compare.</p>
 <p>Only dependency is <code>rand</code>. The whole <code>Cargo.toml</code> is six lines. It prints a little table to stdout showing the spot, the action, the per-step cost, and the running total. That's it: no plotting, no CSV export, no fancy policies. Configuration is "edit <code>src/main.rs</code> and recompile," which is honest about what this is.</p>
 <p>Possible additions: a couple more policies (dynamic programming for the offline optimum, maybe a small RL agent for comparison) and dumping runs to CSV to plot regret curves in Python. Right now it's really just a sandbox, one commit, one file, no tests, but it does what it says on the tin. To drop in your own policy and see how it stacks up, the <code>should_move</code> function is the obvious place to start.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything; this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

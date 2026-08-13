@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          # build_sitemap.py dates each entry from its last commit. A shallow
+          # clone would stamp every page with the same day and tell crawlers
+          # nothing about what actually changed.
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,6 +40,15 @@ jobs:
       # local step (scripts/build_og_images.py).
       - name: Point pages at their link-preview cards
         run: python3 scripts/apply_og_tags.py
+
+      # Also last, and for the same reason: favicon links, robots directives and
+      # the structured-data image live in the same <head> the generators rewrite.
+      - name: Apply search tags
+        run: python3 scripts/seo_tags.py
+
+      # Reads the finished pages, so it runs after everything that writes them.
+      - name: Build sitemap
+        run: python3 scripts/build_sitemap.py
 
       # backup-site/ is an archive of the old Hugo site kept in git for
       # reference. Shipping it published ~30 duplicate pages — including a

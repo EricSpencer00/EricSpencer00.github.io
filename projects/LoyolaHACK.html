@@ -5,9 +5,13 @@
 <title>CTA Transit Tracker | Eric Spencer</title>
 <meta name="description" content="A real-time bus and train tracking system built during Loyola&#x27;s Hackathon.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="CTA Transit Tracker, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/LoyolaHACK.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTA Transit Tracker | Eric Spencer">
 <meta property="og:description" content="A real-time bus and train tracking system built during Loyola&#x27;s Hackathon.">
@@ -32,7 +36,7 @@
 "headline":"CTA Transit Tracker",
 "description":"A real-time bus and train tracking system built during Loyola's Hackathon.",
 "url":"https://ericspencer.us/projects/LoyolaHACK.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-loyolahack.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-02-16",
@@ -139,9 +143,7 @@ li{margin:4px 0}
 <p>The backend is Flask with SQLite for storage and Flask-Migrate/Alembic for schema changes, which came up more times than expected for a weekend project. The map is Leaflet. You drop a draggable marker on your home location, pick the lines you care about, and that gets saved to your account. Authentication is OTP over SMS, so there are no passwords stored anywhere. The notification side runs on Celery with a beat scheduler that wakes up on an interval, polls the CTA prediction APIs for your favorite lines, and decides whether anything's close enough to your home to be worth bugging you about.</p>
 <p>The texting part is the dumb-but-fun trick of the project. Instead of paying for Twilio for a hackathon demo, texts go out through SMS-over-email gateways: every US carrier has an email-to-SMS bridge (<code>number@txt.att.net</code>, <code>@vtext.com</code>, etc.), so the app sends an email and the carrier turns it into a text on the other end. It is exactly as reliable as that sounds, which is to say "mostly." It worked for the demo.</p>
 <p>Running all of this in one place takes a Procfile with the Flask app under Gunicorn, the Celery worker, and the Celery beat scheduler, Heroku-style, though during the hackathon it ran locally on a laptop in a Loyola classroom. Nothing crashed during the judging round.</p>
-<p>It's still buggy. To poke at the code or fix any of it, the <a href="https://github.com/EricSpencer00/LoyolaHACK" target="<i>blank" rel="noopener">GitHub repo</a> is up, and there's a <a href="https://youtu.be/u8ivcj2fhrk" target="</i>blank" rel="noopener">demo video</a> that shows the thing limping through a working flow.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything; this description was written by an LLM.</i></p>
+<p>It's still buggy. To poke at the code or fix any of it, the <a href="https://github.com/EricSpencer00/LoyolaHACK" target="_blank" rel="noopener">GitHub repo</a> is up, and there's a <a href="https://youtu.be/u8ivcj2fhrk" target="_blank" rel="noopener">demo video</a> that shows the thing limping through a working flow.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

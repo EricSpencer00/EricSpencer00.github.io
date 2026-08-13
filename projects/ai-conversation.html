@@ -5,9 +5,13 @@
 <title>AIs Talking Philosophy | Eric Spencer</title>
 <meta name="description" content="A toy where two local Ollama models loop on consciousness until one of them gives up">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="AIs Talking Philosophy, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/ai-conversation.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AIs Talking Philosophy | Eric Spencer">
 <meta property="og:description" content="A toy where two local Ollama models loop on consciousness until one of them gives up">
@@ -32,7 +36,7 @@
 "headline":"AIs Talking Philosophy",
 "description":"A toy where two local Ollama models loop on consciousness until one of them gives up",
 "url":"https://ericspencer.us/projects/ai-conversation.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-ai-conversation.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-07-31",
@@ -137,8 +141,6 @@ li{margin:4px 0}
 <p>The output is pretty much what a 2-billion-parameter model talking to itself about consciousness produces: a lot of "that's a fascinating question" and gentle re-statements of the previous turn. Gemma 2b is not Wittgenstein. The loop is still funny to watch, because the model genuinely doesn't seem to know it's the same model on both sides.</p>
 <p><code>chat.py</code> holds a half-built pipeline that was supposed to commit each day's transcript back to this repo at 3 AM UTC using PyGithub, so that eventually the repo itself would be a slow-growing archive of two gemmas talking to themselves about qualia. It has never been deployed anywhere with a <code>GITHUB_TOKEN</code> set, so the cron half is more aspiration than feature. Pull requests with transcripts from a week of running it on a Raspberry Pi are welcome.</p>
 <p><a href="https://github.com/EricSpencer00/ai-conversation" target="_blank" rel="noopener">GitHub Repo</a></p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

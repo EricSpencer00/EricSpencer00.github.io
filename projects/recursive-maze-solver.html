@@ -5,9 +5,13 @@
 <title>Recursive Maze Solver Example | Eric Spencer</title>
 <meta name="description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 <meta name="keywords" content="Recursive Maze Solver Example, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/recursive-maze-solver.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Recursive Maze Solver Example | Eric Spencer">
 <meta property="og:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
@@ -32,7 +36,7 @@
 "headline":"Recursive Maze Solver Example",
 "description":"Recursive Maze Solver Example, a project by Eric Spencer.",
 "url":"https://ericspencer.us/projects/recursive-maze-solver.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-recursive-maze-solver.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2023-06-01",
@@ -414,7 +418,7 @@ public class MazeSolver {
 <li>Iterative Approach: Instead of using recursion, you can convert the maze solver to an iterative approach using a stack or queue to manage the traversal. This eliminates the overhead of function calls and allows for better control over the flow of the algorithm.</li>
 </ol>
 <ol>
-<li>A<i> Search or other Heuristics: Consider using informed search algorithms like A</i> Search, which incorporates heuristics to guide the search towards the goal. A* Search uses an estimation of the remaining distance to the goal, which can significantly improve the efficiency of finding the shortest path in certain maze configurations.</li>
+<li>A* Search or other Heuristics: Consider using informed search algorithms like A* Search, which incorporates heuristics to guide the search towards the goal. A* Search uses an estimation of the remaining distance to the goal, which can significantly improve the efficiency of finding the shortest path in certain maze configurations.</li>
 </ol>
 <ol>
 <li>Multi-threading: If your maze is large and complex, you can consider parallelizing the maze-solving algorithm using multi-threading. Splitting the workload across multiple threads can potentially speed up the process by utilizing multiple CPU cores.</li>
@@ -433,7 +437,7 @@ public class MazeSolver {
 <h2>User:<span class="ln"></span></h2>
 <p><div>convert this maze to A* search</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Converting the maze solver to use A<i> search requires a heuristic function that estimates the cost from each node to the goal. In the case of the maze, a common heuristic is the Manhattan distance or Euclidean distance between two points. The A</i> search algorithm evaluates nodes based on their combined cost and heuristic value to prioritize the most promising paths.</p>
+<p>Converting the maze solver to use A* search requires a heuristic function that estimates the cost from each node to the goal. In the case of the maze, a common heuristic is the Manhattan distance or Euclidean distance between two points. The A* search algorithm evaluates nodes based on their combined cost and heuristic value to prioritize the most promising paths.</p>
 <p>Here's an updated version of the <code>MazeSolver</code> class that incorporates A* search using the Manhattan distance heuristic:</p>
 <pre class="code"><code>
 import java.util.*;
@@ -576,7 +580,7 @@ public class MazeSolver {
 <p>The heuristic function provides an estimate of the cost from a given node to the goal or destination. It measures the desirability of a node based on the estimated cost to reach the goal. In the context of a maze, common heuristic functions include the Manhattan distance or Euclidean distance between two positions. The heuristic is used to guide the search algorithm towards the most promising paths by prioritizing nodes that appear closer to the goal.</p>
 <p>The total cost of a node in A* search is calculated as the sum of the g-score and the heuristic value. This total cost is used to determine the priority of nodes in the open list or priority queue. Nodes with lower total costs are considered more favorable and are explored earlier.</p>
 <p>During the search, the algorithm expands nodes by examining their neighbors and updating their g-scores and heuristic values accordingly. By combining the g-score (path cost) and the heuristic (estimated cost), A* search strikes a balance between exploring the most promising paths (based on the heuristic) and ensuring optimality (based on the g-score).</p>
-<p>The objective of the A<i> search algorithm is to find the path with the lowest total cost from the starting node to the goal node. By considering both the g-score and the heuristic, A</i> search can efficiently navigate through the search space and converge towards the optimal solution.</p>
+<p>The objective of the A* search algorithm is to find the path with the lowest total cost from the starting node to the goal node. By considering both the g-score and the heuristic, A* search can efficiently navigate through the search space and converge towards the optimal solution.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you provide a Memoization maze search method?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>

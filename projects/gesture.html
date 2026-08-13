@@ -5,9 +5,13 @@
 <title>Gesture | Eric Spencer</title>
 <meta name="description" content="A proof of concept Jarvis-style macOS controller that takes voice commands and hand gestures from the webcam.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Gesture, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/gesture.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gesture | Eric Spencer">
 <meta property="og:description" content="A proof of concept Jarvis-style macOS controller that takes voice commands and hand gestures from the webcam.">
@@ -32,7 +36,7 @@
 "headline":"Gesture",
 "description":"A proof of concept Jarvis-style macOS controller that takes voice commands and hand gestures from the webcam.",
 "url":"https://ericspencer.us/projects/gesture.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-gesture.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-08-01",
@@ -144,8 +148,6 @@ if index_tip.y &lt; wrist.y:
 <p>There's also a <code>stubs.py</code> that exists for the sole purpose of forcing <code>modulegraph</code> to detect <code>rubicon.objc</code> when bundling the app into a <code>.app</code> with <code>py2app</code>, which was its own little side quest. macOS does not love it when you try to ship a Python app that wants webcam and microphone access.</p>
 <p>The honest list of what doesn't work: there's no real command grammar (just two hardcoded <code>if</code> branches), no gesture vocabulary beyond "finger up = space," and no error recovery if the webcam isn't accessible. Feeling like Jarvis would take some kind of wake word, so it isn't transcribing every word you say all day. Swapping Google's recognizer for something local like Vosk would keep every utterance off Google's API.</p>
 <p>It shows how few moving parts the basic version of this actually needs. To fork it and add a real gesture set, <a href="https://github.com/EricSpencer00/Gesture" target="_blank" rel="noopener">GitHub Repo</a>.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything: this description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

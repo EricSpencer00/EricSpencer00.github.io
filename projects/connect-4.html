@@ -3,14 +3,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Connect 4 Game Engine | Eric Spencer</title>
-<meta name="description" content="A Chess engine-esque Connect 4 analyzer">
+<meta name="description" content="A Connect 4 analyzer built like a chess engine, trained on 67,557 legal positions labelled win, loss, or tie.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Connect 4 Game Engine, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/connect-4.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Connect 4 Game Engine | Eric Spencer">
-<meta property="og:description" content="A Chess engine-esque Connect 4 analyzer">
+<meta property="og:description" content="A Connect 4 analyzer built like a chess engine, trained on 67,557 legal positions labelled win, loss, or tie.">
 <meta property="og:url" content="https://ericspencer.us/projects/connect-4.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-connect-4.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,15 +28,15 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Connect 4 Game Engine | Eric Spencer">
-<meta name="twitter:description" content="A Chess engine-esque Connect 4 analyzer">
+<meta name="twitter:description" content="A Connect 4 analyzer built like a chess engine, trained on 67,557 legal positions labelled win, loss, or tie.">
 <meta property="linkedin:title" content="Connect 4 Game Engine | Eric Spencer">
-<meta property="linkedin:description" content="A Chess engine-esque Connect 4 analyzer">
+<meta property="linkedin:description" content="A Connect 4 analyzer built like a chess engine, trained on 67,557 legal positions labelled win, loss, or tie.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Connect 4 Game Engine",
 "description":"A Chess engine-esque Connect 4 analyzer",
 "url":"https://ericspencer.us/projects/connect-4.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-connect-4.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-06-29",
@@ -132,7 +136,7 @@ li{margin:4px 0}
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/connect-4" target="_blank" rel="noopener">https://github.com/EricSpencer00/connect-4</a></p>
 <hr class="dash">
 <p><img src="https://ericspencer.us/ericspencer-site-backup/previews/connect-4.png" alt="Photo of the Connect 4 game engine"></p>
-<p><a href="https://en.wikipedia.org/wiki/Chess_engine" target="</i>blank" rel="noopener">Chess Engines</a> mathematically predict how long it will take for a player to win a game, or the liklihood of a player winning a game. This project does the same thing for Connect 4.</p>
+<p><a href="https://en.wikipedia.org/wiki/Chess_engine" target="_blank" rel="noopener">Chess Engines</a> mathematically predict how long it will take for a player to win a game, or the liklihood of a player winning a game. This project does the same thing for Connect 4.</p>
 <p><a href="https://github.com/EricSpencer00/connect-4" target="_blank" rel="noopener">GitHub Repo</a></p>
 <h2>Solved Mode<span class="ln"></span></h2>
 <p>The AI was trained on 67,557 unique and legal positions by move 4 (both players have just played 4 moves each) of the game. Each position is labeled with the game-theoretic outcome of win/loss/tie. Also, these positions require no player to have won nor have a forcing move on the next play (3 in a row and similar positions). The dataset was acquired from work by John Tromp <a href="https://tromp.github.io" target="_blank" rel="noopener">tromp.github.io</a>.</p>

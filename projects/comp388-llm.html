@@ -5,9 +5,13 @@
 <title>COMP 388 LLM Homework | Eric Spencer</title>
 <meta name="description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="COMP 388 LLM Homework, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/comp388-llm.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="COMP 388 LLM Homework | Eric Spencer">
 <meta property="og:description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
@@ -32,7 +36,7 @@
 "headline":"COMP 388 LLM Homework",
 "description":"Two homeworks from Loyola's special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.",
 "url":"https://ericspencer.us/projects/comp388-llm.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-comp388-llm.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2026-04-23",
@@ -133,10 +137,10 @@ li{margin:4px 0}
 <hr class="dash">
 <p>COMP 388 at Loyola is the special-topics CS course, whatever the professor wants to teach that semester. The Spring 2026 version was on large language models, which lines up with the TLA+ and fine-tuning work at ai4fm. This repo holds two of its assignments.</p>
 <h3>HW1: prompting GPT-2 and a tiny evaluation</h3>
-<p>The first assignment was the "hello world" of loading a Hugging Face model and running it. The script (<code>llm<i>prompt.py</code>) loads <code>gpt2</code> via <code>transformers</code>, takes a prompt off the command line, and does manual token-by-token generation instead of calling <code>.generate()</code>. The reason for that is annoying: on an M1 Mac, calling <code>.generate()</code> would crash with a bus error half the time, and so would single-word prompts. The workaround is forcing CPU-only, setting <code>PYTORCH</i>ENABLE<i>MPS</i>FALLBACK=1</code>, and hand-rolling a sampling loop just to get reliable runs.</p>
+<p>The first assignment was the "hello world" of loading a Hugging Face model and running it. The script (<code>llm_prompt.py</code>) loads <code>gpt2</code> via <code>transformers</code>, takes a prompt off the command line, and does manual token-by-token generation instead of calling <code>.generate()</code>. The reason for that is annoying: on an M1 Mac, calling <code>.generate()</code> would crash with a bus error half the time, and so would single-word prompts. The workaround is forcing CPU-only, setting <code>PYTORCH_ENABLE_MPS_FALLBACK=1</code>, and hand-rolling a sampling loop just to get reliable runs.</p>
 <p>The assignment then asked for a "simple evaluation," done two ways:</p>
 <ul>
-<li>A hand-rolled True/False dataset of 10 Wikipedia-style facts (<code>evaluate<i>wiki</i>tf.py</code>). GPT-2 got 6/10. Every one it got wrong was a false statement that it confidently called true.</li>
+<li>A hand-rolled True/False dataset of 10 Wikipedia-style facts (<code>evaluate_wiki_tf.py</code>). GPT-2 got 6/10. Every one it got wrong was a false statement that it confidently called true.</li>
 <li>BoolQ from Hugging Face datasets, 20 examples, run twice, once with the supporting passage and once without (<code>evaluate_boolq.py</code>). Both runs got 45.0%. Identical. Looking at the outputs, GPT-2 was basically answering "yes" to everything, so the passage didn't matter.</li>
 </ul>
 <p>Not a deep result, but it is a small model failing in a clearly characterizable way rather than just being bad.</p>
@@ -149,8 +153,6 @@ li{margin:4px 0}
 <h3>What it's good for</h3>
 <p>It's coursework, not a product. But the HW2 result, a small instruction-tuned model getting beaten by its base on a classification task, is the kind of thing worth keeping in mind when picking models for the ai4fm fine-tuning work. The repo is honest about the constraints: pinned to Python 3.11, macOS M1, CPU-only, hardcoded paths because the assignment template wanted it that way.</p>
 <p><a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">GitHub Repo</a></p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

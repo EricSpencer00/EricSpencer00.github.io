@@ -5,9 +5,13 @@
 <title>TLA+ Model of a Walk-In Oven | Eric Spencer</title>
 <meta name="description" content="A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="TLA+ Model of a Walk-In Oven, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/tla-walk-in-oven.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TLA+ Model of a Walk-In Oven | Eric Spencer">
 <meta property="og:description" content="A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.">
@@ -32,7 +36,7 @@
 "headline":"TLA+ Model of a Walk-In Oven",
 "description":"A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.",
 "url":"https://ericspencer.us/projects/tla-walk-in-oven.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-tla-walk-in-oven.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-12-12",
@@ -130,8 +134,8 @@ li{margin:4px 0}
 <h2>TLA+ Model of a Walk-In Oven<span class="ln"></span></h2>
 <p class="meta">A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.</p>
 <hr class="dash">
-<p>One of a handful of small TLA+ specs that take a real-world industrial control system and ask "what's the minimum state machine that makes this thing not kill someone?" It sits next to the <a href="https://ericspencer.us/ericspencer-site-backup/projects/2024/tla-laptop/">laptop power-state spec</a> and the <a href="https://ericspencer.us/ericspencer-site-backup/projects/2024/tla-dexcom-g7/">Dexcom G7 spec</a>: same flavor, different system. The failure mode here is concrete. A person physically walks inside a room-sized oven, and then the oven heats up.</p>
-<p>If you've never seen TLA+ before, the <a href="https://ericspencer.us/ericspencer-site-backup/projects/2025/interactive-microwave-tla/">interactive microwave</a> page is a gentler introduction. The short version: you describe a system as a set of variables, a set of actions that change those variables, and an invariant that should hold in every reachable state. Then the TLC model checker explores every possible execution and tells you whether the invariant ever breaks. The win is that "every possible execution" includes the weird ones a human would never think to test, like the off-by-one ordering of events that turns out to be the bug.</p>
+<p>One of a handful of small TLA+ specs that take a real-world industrial control system and ask "what's the minimum state machine that makes this thing not kill someone?" It sits next to the <a href="/projects/tla-laptop.html">laptop power-state spec</a> and the <a href="/projects/tla-dexcom-g7.html">Dexcom G7 spec</a>: same flavor, different system. The failure mode here is concrete. A person physically walks inside a room-sized oven, and then the oven heats up.</p>
+<p>If you've never seen TLA+ before, the <a href="/projects/interactive-microwave-tla.html">interactive microwave</a> page is a gentler introduction. The short version: you describe a system as a set of variables, a set of actions that change those variables, and an invariant that should hold in every reachable state. Then the TLC model checker explores every possible execution and tells you whether the invariant ever breaks. The win is that "every possible execution" includes the weird ones a human would never think to test, like the off-by-one ordering of events that turns out to be the bug.</p>
 <h2>What the spec actually models<span class="ln"></span></h2>
 <p>A walk-in oven (the kind used for curing coatings, drying lumber, baking large food batches) is essentially a room with a heating element and a door. The dangerous configuration is straightforward: a human is inside, and the temperature is above ambient. The spec tracks three variables (<code>temp</code>, <code>door</code>, and <code>inside</code>) and six actions: <code>Heat</code>, <code>Cool</code>, <code>OpenDoor</code>, <code>CloseDoor</code>, <code>Enter</code>, <code>Exit</code>.</p>
 <p>The interlock that does the real work is on <code>Enter</code>:</p>
@@ -152,9 +156,7 @@ Inv4 == inside =&gt; temp = MinTemp
 <p>The real-world bad story this is modeling is the obvious one: tech walks in to check or clean the chamber, door swings shut, controller resumes its program, and the chamber heats while someone is inside. Walk-in ovens have actual physical interlocks and lockout-tagout procedures to prevent this. What the spec does is express those interlocks at the level of "no reachable state has <code>inside</code> true and <code>temp</code> above minimum" and let TLC prove it. If you weaken any of the guards (say, drop the <code>inside = FALSE</code> precondition on <code>Heat</code>), the checker will immediately produce a trace showing exactly how a person ends up cooked.</p>
 <h2>Scope, honestly<span class="ln"></span></h2>
 <p>This is a study spec, not a verified industrial controller. The temperature is a single integer ticking up and down by one, there's no notion of multiple people, no ventilation, no emergency stop, no temperature sensor failure, no door-stuck-open behavior. The config (<code>TargetTemp = 20</code>, <code>MaxTemp = 100</code>, <code>MinTemp = 0</code>) is dimensionless; the point is to give TLC a finite state space to actually explore, not to model real Celsius. The whole module is under 90 lines and the README is one sentence long. It came out of the same arc of work that led into Eric Spencer's <a href="https://ai4fm.cs.luc.edu" target="_blank" rel="noopener">ai4fm research</a> on getting LLMs to generate TLA+, and it doubles as an example system for explaining what TLA+ actually buys you on a system a person can picture.</p>
-<p>The repo is at <a href="https://github.com/EricSpencer00/tla-walk-in-oven" target="<i>blank" rel="noopener">EricSpencer00/tla-walk-in-oven</a>: the spec is <a href="https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.tla" target="</i>blank" rel="noopener">Oven.tla</a> and the config that feeds it to TLC is <a href="https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.cfg" target="_blank" rel="noopener">Oven.cfg</a>. If you have the TLA+ Toolbox or <code>tla2tools.jar</code> installed, it runs in seconds.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
+<p>The repo is at <a href="https://github.com/EricSpencer00/tla-walk-in-oven" target="_blank" rel="noopener">EricSpencer00/tla-walk-in-oven</a>: the spec is <a href="https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.tla" target="_blank" rel="noopener">Oven.tla</a> and the config that feeds it to TLC is <a href="https://github.com/EricSpencer00/tla-walk-in-oven/blob/main/Oven.cfg" target="_blank" rel="noopener">Oven.cfg</a>. If you have the TLA+ Toolbox or <code>tla2tools.jar</code> installed, it runs in seconds.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

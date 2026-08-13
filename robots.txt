@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# The post template, served only because everything in the repo is. It carries
+# placeholder text, so it is worth nothing to a crawler and worse than nothing
+# in a search result.
+Disallow: /blog/_template.html
+
 Sitemap: https://ericspencer.us/sitemap.xml

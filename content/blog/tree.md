@@ -3,7 +3,7 @@ title: The Tree Problem
 date: 2026-07-12
 description: Describing the 80% done fallacy
 slug: tree
-draft: true
+published: false
 ---
 
 "All the branches of a tree at every stage of its height when put together are equal in thickness to the trunk below them." -[Da Vinci's Rule of Trees](link).  

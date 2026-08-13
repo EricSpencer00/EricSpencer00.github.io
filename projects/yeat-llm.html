@@ -3,14 +3,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Yeat Large Language Model | Eric Spencer</title>
-<meta name="description" content="Fine tuning GPT-2 to talk like Yeat">
+<meta name="description" content="GPT-2 fine-tuned on Yeat&#x27;s public lyrics from Genius, generating new lyrics in the same voice.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Yeat Large Language Model, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/yeat-llm.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Yeat Large Language Model | Eric Spencer">
-<meta property="og:description" content="Fine tuning GPT-2 to talk like Yeat">
+<meta property="og:description" content="GPT-2 fine-tuned on Yeat&#x27;s public lyrics from Genius, generating new lyrics in the same voice.">
 <meta property="og:url" content="https://ericspencer.us/projects/yeat-llm.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-yeat-llm.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,15 +28,15 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Yeat Large Language Model | Eric Spencer">
-<meta name="twitter:description" content="Fine tuning GPT-2 to talk like Yeat">
+<meta name="twitter:description" content="GPT-2 fine-tuned on Yeat&#x27;s public lyrics from Genius, generating new lyrics in the same voice.">
 <meta property="linkedin:title" content="Yeat Large Language Model | Eric Spencer">
-<meta property="linkedin:description" content="Fine tuning GPT-2 to talk like Yeat">
+<meta property="linkedin:description" content="GPT-2 fine-tuned on Yeat&#x27;s public lyrics from Genius, generating new lyrics in the same voice.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Yeat Large Language Model",
 "description":"Fine tuning GPT-2 to talk like Yeat",
 "url":"https://ericspencer.us/projects/yeat-llm.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-yeat-llm.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2026-01-14",
@@ -149,7 +153,7 @@ Goin&#x27; down, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goi
 Goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin&#x27;, goin
 </code></pre>
 <p>Setup your Python environment as described <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/README.md" target="_blank" rel="noopener">here</a>.</p>
-<p>Get a Genius API key to allow easy scraping from the site. Then, make requests via <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/scrape_lyrics.py" target="</i>blank" rel="noopener">/scrape<i>lyrics.py</a>. Afterwards, all of your lyrics will be inside the /songs directory. Then, <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/train_model.py" target="<i>blank" rel="noopener">train your model</a>. Your model can then be interacted with via <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/yeat_bot.py" target="<i>blank" rel="noopener">yeat</i>bot.py</a>.</p>
+<p>Get a Genius API key to allow easy scraping from the site. Then, make requests via <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/scrape_lyrics.py" target="_blank" rel="noopener">scrape_lyrics.py</a>. Afterwards, all of your lyrics will be inside the /songs directory. Then, <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/train_model.py" target="_blank" rel="noopener">train your model</a>. Your model can then be interacted with via <a href="https://github.com/EricSpencer00/yeat-llm/blob/main/yeat_bot.py" target="_blank" rel="noopener">yeat_bot.py</a>.</p>
 <p>None of the original lyrics or the trained models are public, for copyright reasons. Create similar models for different artists by changing which artist you use.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

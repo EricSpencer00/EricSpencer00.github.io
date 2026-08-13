@@ -10,7 +10,10 @@ REPO = "/Users/eric/GitHub/EricSpencer00.github.io"
 OUT = REPO
 PROD = "https://ericspencer.us"
 BACKUP_URL = "https://ericspencer.us/ericspencer-site-backup"
-OG_IMAGE = f"{BACKUP_URL}/images/avatar.jpeg"
+# A default only. apply_og_tags.py runs after this and swaps in each page's own
+# link-preview card; this has to be a path this repo actually publishes, or the
+# pages it does not reach end up naming an image that 404s.
+OG_IMAGE = f"{PROD}/assets/og/home.jpg"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 BACKUP_SOURCE = "/tmp/ericspencer-backup"  # cloned backup repo with Hugo source
 
@@ -850,6 +853,11 @@ print("Wrote 404.html (smart router)")
 
 
 # ── SITEMAP ───────────────────────────────────────────────────────
+# scripts/build_sitemap.py writes the published sitemap now, from the pages that
+# actually exist and with real per-page lastmod dates. This block still runs, so
+# re-run build_sitemap.py after this script. The same goes for the year mirrors
+# below: this script writes them as full copies, and scripts/collapse_mirrors.py
+# turns them back into redirects.
 urls = [
     (f"{PROD}/", "1.0", "weekly"),
     (f"{PROD}/projects.html", "0.9", "weekly"),

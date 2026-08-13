@@ -3,14 +3,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>One Rep Max Calculator | Eric Spencer</title>
-<meta name="description" content="Calculate your One Rep Max">
+<meta name="description" content="A one-rep-max calculator in the browser, using Epley&#x27;s formula: enter the weight lifted, the reps, and the unit.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="One Rep Max Calculator, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/one-rep-max.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="One Rep Max Calculator | Eric Spencer">
-<meta property="og:description" content="Calculate your One Rep Max">
+<meta property="og:description" content="A one-rep-max calculator in the browser, using Epley&#x27;s formula: enter the weight lifted, the reps, and the unit.">
 <meta property="og:url" content="https://ericspencer.us/projects/one-rep-max.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-one-rep-max.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,15 +28,15 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="One Rep Max Calculator | Eric Spencer">
-<meta name="twitter:description" content="Calculate your One Rep Max">
+<meta name="twitter:description" content="A one-rep-max calculator in the browser, using Epley&#x27;s formula: enter the weight lifted, the reps, and the unit.">
 <meta property="linkedin:title" content="One Rep Max Calculator | Eric Spencer">
-<meta property="linkedin:description" content="Calculate your One Rep Max">
+<meta property="linkedin:description" content="A one-rep-max calculator in the browser, using Epley&#x27;s formula: enter the weight lifted, the reps, and the unit.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"One Rep Max Calculator",
 "description":"Calculate your One Rep Max",
 "url":"https://ericspencer.us/projects/one-rep-max.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-one-rep-max.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2024-04-15",
@@ -136,12 +140,25 @@ li{margin:4px 0}
 <p><label for="reps">Reps:</label> <input type="number" id="reps" name="reps" placeholder="Enter reps" style="margin:0 1em 0 0;"></p>
 <p><button id="calculateBtn">Calculate 1RM</button> </div></p>
 <p><div id="result" style="margin-top: 1em; font-weight: bold;"></div></p>
-<p><script> // Wait until the DOM is fully loaded document.addEventListener("DOMContentLoaded", function() { document.getElementById('calculateBtn').addEventListener('click', function(){ // Get input values var weight = parseFloat(document.getElementById('weight').value); var reps = parseFloat(document.getElementById('reps').value); var unit = document.getElementById('unit').value;</p>
-<p>// Validate inputs if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) { document.getElementById('result').innerHTML = "<p>Please enter valid numbers for weight and reps.</p>"; return; }</p>
-<p>// Epley's formula: 1RM = weight <i> (1 + reps/30) var oneRepMax = weight </i> (1 + reps / 30);</p>
-<p>// Display the result document.getElementById('result').innerHTML = "<p>Your estimated 1RM is " + oneRepMax.toFixed(2) + " " + unit + ".</p>"; }); }); </script></p>
-<hr class="dash">
-<p>This was converted from html/js to md, view the original here: <a href="https://ericspencer.us/projects/one-rep-max.html" target="_blank" rel="noopener">1RM Calculator</a></p>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("calculateBtn").addEventListener("click", function () {
+    var weight = parseFloat(document.getElementById("weight").value);
+    var reps = parseFloat(document.getElementById("reps").value);
+    var unit = document.getElementById("unit").value;
+    var result = document.getElementById("result");
+
+    if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
+      result.textContent = "Please enter valid numbers for weight and reps.";
+      return;
+    }
+
+    // Epley's formula: 1RM = weight * (1 + reps / 30)
+    var oneRepMax = weight * (1 + reps / 30);
+    result.textContent = "Your estimated 1RM is " + oneRepMax.toFixed(2) + " " + unit + ".";
+  });
+});
+</script></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

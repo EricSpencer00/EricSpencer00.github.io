@@ -3,14 +3,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TLA+ Formal Generation | Eric Spencer</title>
-<meta name="description" content="Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+.">
+<meta name="description" content="An early repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in.">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="TLA+ Formal Generation, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/tla-formal-generation.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TLA+ Formal Generation | Eric Spencer">
-<meta property="og:description" content="Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+.">
+<meta property="og:description" content="An early repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in.">
 <meta property="og:url" content="https://ericspencer.us/projects/tla-formal-generation.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-tla-formal-generation.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -24,15 +28,15 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="TLA+ Formal Generation | Eric Spencer">
-<meta name="twitter:description" content="Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+.">
+<meta name="twitter:description" content="An early repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in.">
 <meta property="linkedin:title" content="TLA+ Formal Generation | Eric Spencer">
-<meta property="linkedin:description" content="Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+.">
+<meta property="linkedin:description" content="An early repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"TLA+ Formal Generation",
 "description":"Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+.",
 "url":"https://ericspencer.us/projects/tla-formal-generation.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-tla-formal-generation.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2025-09-21",
@@ -131,9 +135,9 @@ li{margin:4px 0}
 <p class="meta">Early exploratory repo for generating TLA+ specs from natural-language requirements with an LLM, with a TLC harness wired in. The scaffold that eventually grew into ChatTLA+.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/tla-formal-generation" target="_blank" rel="noopener">https://github.com/EricSpencer00/tla-formal-generation</a></p>
 <hr class="dash">
-<p>This repo is the first pass at "can an LLM write TLA+ for you" inside the ai4fm research thread at Loyola. It's small, scrappy, and very much a scaffold. The point was to get an end-to-end loop running (English requirement -> generated <code>.tla</code> module -> TLC actually checks it) before worrying about whether the generations were any good. The polished version of this idea is the <a href="https://ericspencer.us/ericspencer-site-backup/miscellaneous/chattla-dataset/">ChatTLA+ dataset and paper</a> that came later. This repo is what came first.</p>
+<p>This repo is the first pass at "can an LLM write TLA+ for you" inside the ai4fm research thread at Loyola. It's small, scrappy, and very much a scaffold. The point was to get an end-to-end loop running (English requirement -> generated <code>.tla</code> module -> TLC actually checks it) before worrying about whether the generations were any good. The polished version of this idea is the <a href="/projects/chattla-dataset.html">ChatTLA+ dataset and paper</a> that came later. This repo is what came first.</p>
 <p>The shape of it: a tiny <a href="https://github.com/EricSpencer00/tla-formal-generation/blob/main/data/benchmark.jsonl" target="_blank" rel="noopener">benchmark</a> of three NL-to-invariant examples (semaphore non-negativity, boolean domain, upper-bound counter), a template <code>.tla</code> file with <code>{{module}}</code> / <code>{{vars}}</code> / <code>{{invariant}}</code> holes, a Python generator that fills those holes either with a real LLM call or a deterministic stub, and an evaluator that runs the resulting module through TLC and reports whether the invariant held, was violated, or the toolchain blew up. Plus a shell script that downloads <code>tla2tools.jar</code> so you can actually run TLC locally without fighting with Java for an afternoon.</p>
-<p>The generator is honest about its limits. If <code>OPENAI<i>API</i>KEY</code> is set, it calls GPT-4 with a one-shot prompt (<code>"Translate this English requirement into a TLA+ invariant expression only"</code>) and uses whatever comes back. If the key isn't set, it falls back to <code>stub_generate</code>, which just returns the ground-truth invariant from the benchmark row. That stub is not cheating, it's a feature: it lets the rest of the pipeline (template rendering, TLC invocation, eval) be tested deterministically without an API call. But it also makes the "evaluation" results not mean much when the stub is on, which is most of the time.</p>
+<p>The generator is honest about its limits. If <code>OPENAI_API_KEY</code> is set, it calls GPT-4 with a one-shot prompt (<code>"Translate this English requirement into a TLA+ invariant expression only"</code>) and uses whatever comes back. If the key isn't set, it falls back to <code>stub_generate</code>, which just returns the ground-truth invariant from the benchmark row. That stub is not cheating, it's a feature: it lets the rest of the pipeline (template rendering, TLC invocation, eval) be tested deterministically without an API call. But it also makes the "evaluation" results not mean much when the stub is on, which is most of the time.</p>
 <pre class="code"><code>
 def stub_generate(item):
     if &#x27;expected_invariant&#x27; in item:
@@ -145,11 +149,9 @@ def stub_generate(item):
     ...
 </code></pre>
 <p>The eval is similarly naive: string-equality between the generated invariant and the expected one, plus a "did TLC say <code>Invariant Inv is violated</code> or <code>No error has been found</code>" check. That works for three examples. It does not scale to anything you'd actually want to claim, and that was clear going in. The goal was only to establish that "generate a <code>.tla</code>, run TLC on it, parse the verdict" was a tractable feedback loop, because if it wasn't, the whole RL-on-spec-generation idea was dead.</p>
-<p>It was tractable. A few months later the whole thing was rebuilt properly: a real 209-row SFT corpus filtered by TLC-verified outputs, a 30-problem held-out benchmark across six domains, semantic reward shaping (state coverage, action coverage, mutation-kill rate), and the GRPO/SFT pipeline that became ChatTLA+. That work is under double-blind review at ICSOFT 2026; the <a href="https://ericspencer.us/ericspencer-site-backup/miscellaneous/chattla-dataset/">anonymized dataset repo</a> is up.</p>
+<p>It was tractable. A few months later the whole thing was rebuilt properly: a real 209-row SFT corpus filtered by TLC-verified outputs, a 30-problem held-out benchmark across six domains, semantic reward shaping (state coverage, action coverage, mutation-kill rate), and the GRPO/SFT pipeline that became ChatTLA+. That work is under double-blind review at ICSOFT 2026; the <a href="/projects/chattla-dataset.html">anonymized dataset repo</a> is up.</p>
 <p>Looking at this older repo, the things it got right and the things it got wrong are both useful. Right: separating "render TLA from a template" from "call the LLM" from "run TLC and parse output," so you can swap any one of those without touching the other two. Right: shelling out to a real <code>tla2tools.jar</code> instead of trying to fake TLC's behavior; TLC's verdicts are the whole point, you don't want to mock the oracle. Wrong: a 3-row benchmark with hand-written ground-truth invariants encourages you to test on the same problems you'd solve by lookup, and the deterministic stub will happily exploit that. Wrong: matching invariant strings instead of checking semantic equivalence under TLC: <code>counter >= 0</code> and <code>counter \in Nat</code> are the same property but <code>==</code> says no. The ChatTLA+ work fixed both of those by validating against TLC directly and scoring by behavioral metrics rather than string match.</p>
 <p>If you want to see the pipeline, it's at <a href="https://github.com/EricSpencer00/tla-formal-generation" target="_blank" rel="noopener">EricSpencer00/tla-formal-generation</a>. It's a useful starting point if you're building something similar (the structure of <code>generate -> template -> TLC -> parse</code> is the right one), but the benchmark and the eval need to be much heavier before you can say anything real with it.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

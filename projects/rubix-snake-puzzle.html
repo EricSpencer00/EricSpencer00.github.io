@@ -5,9 +5,13 @@
 <title>Rubik&#x27;s Snake — Formally Verified | Eric Spencer</title>
 <meta name="description" content="Coq (Rocq) and TLA+ specifications of the Rubik&#x27;s Snake state space: 4^23 configurations, formally">
 <meta name="author" content="Eric Spencer">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="keywords" content="Rubik&#x27;s Snake — Formally Verified, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/rubix-snake-puzzle.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rubik&#x27;s Snake — Formally Verified | Eric Spencer">
 <meta property="og:description" content="Coq (Rocq) and TLA+ specifications of the Rubik&#x27;s Snake state space: 4^23 configurations, formally">
@@ -32,7 +36,7 @@
 "headline":"Rubik's Snake \u2014 Formally Verified",
 "description":"Coq (Rocq) and TLA+ specifications of the Rubik's Snake state space: 4^23 configurations, formally",
 "url":"https://ericspencer.us/projects/rubix-snake-puzzle.html",
-"image":"https://ericspencer.us/ericspencer-site-backup/images/avatar.jpeg",
+"image":"https://ericspencer.us/assets/og/projects-rubix-snake-puzzle.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
 "datePublished":"2026-05-20",
@@ -137,7 +141,7 @@ li{margin:4px 0}
 <h2>What's in the repo<span class="ln"></span></h2>
 <p>Two specifications and a Python reference enumerator:</p>
 <ul>
-<li><b><code>coq/</code></b>: Coq (now Rocq) formalization. Defines wedges as triangular prisms in a 3D integer grid, joints as one of four rotations, and the validity predicate (<code>no<i>collision</code>) that says no two wedges occupy overlapping voxels. Proves structural properties: decidability of equality on rotations, completeness of the rotation enumeration, well-formedness of the snake-construction function. The interesting work is the geometry: an <code>apply</i>rotation</code> that takes a <code>Direction</code> (one of six axis-aligned 3D directions) and a <code>Rotation</code> and gives you the next wedge's position and orientation.</li>
+<li><b><code>coq/</code></b>: Coq (now Rocq) formalization. Defines wedges as triangular prisms in a 3D integer grid, joints as one of four rotations, and the validity predicate (<code>no_collision</code>) that says no two wedges occupy overlapping voxels. Proves structural properties: decidability of equality on rotations, completeness of the rotation enumeration, well-formedness of the snake-construction function. The interesting work is the geometry: an <code>apply_rotation</code> that takes a <code>Direction</code> (one of six axis-aligned 3D directions) and a <code>Rotation</code> and gives you the next wedge's position and orientation.</li>
 <li><b><code>tla/</code></b>: TLA+ spec that models the snake as a state machine. Each action is "pick a joint and rotate it." The invariant is <code>NoSelfIntersection</code>. You can run TLC on small instances (8-wedge snakes finish in seconds; the full 24 is way past what TLC can model-check, which is part of the point: you need Coq for the general claim and TLA+ for the small concrete confidence-building).</li>
 <li><b><code>python/</code></b>: a reference enumerator that sanity-checks the formal specs against Aylett's numbers. For 8 wedges it produces the same valid-configuration count Aylett does, which is evidence against a bug in the wedge geometry.</li>
 </ul>
@@ -157,8 +161,6 @@ Inductive Rotation : Type :=
 <h2>Why this exists<span class="ln"></span></h2>
 <p>It's a hobby-scale formal verification project. Small enough to actually finish, weird enough to be the first of its kind, and connected to the AI-for-formal-methods (ai4fm) work going on alongside it. As a project to learn Coq on that is not yet another "verify insertion sort," the geometry of a physical puzzle is a nice change of pace. The state space is huge but every individual piece of reasoning is concrete, and you can hold the puzzle in your hand and check the math.</p>
 <p>If you want to play with it, the README has build instructions for Coq 8.18+ / Rocq and the TLA+ Toolbox. PRs welcome, especially on the symmetry reduction or if you have an idea for how to prove the count without exhaustive search.</p>
-<hr class="dash">
-<p class="small"><i>No time to write a full breakdown for everything. This description was written by an LLM.</i></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
