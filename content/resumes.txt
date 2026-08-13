@@ -8,3 +8,4 @@
 
 cv|cv.pdf|Curriculum Vitae|Full CV — every role, publication, release, and project.|yes
 resume/80626|resume-80626.pdf|Resume|Eric Spencer — one-page resume.|no
+resume/81326|resume-81326.pdf|Resume|Eric Spencer — one-page resume.|no
