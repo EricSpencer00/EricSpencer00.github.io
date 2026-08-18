@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ericspencer.us/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-18</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/Claude-of-Duty/</loc>
@@ -31,6 +31,9 @@
   <url>
     <loc>https://ericspencer.us/projects/LoyolaHACK.html</loc>
     <lastmod>2026-08-12</lastmod>
+  </url>
+  <url>
+    <loc>https://ericspencer.us/projects/aeo-queries.html</loc>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/ai-conversation.html</loc>

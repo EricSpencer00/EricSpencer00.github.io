@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AEO Queries | Eric Spencer</title>
+<meta name="description" content="A Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue when answering a prompt">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="keywords" content="AEO Queries, answer engine optimisation, Eric Spencer, project">
+<link rel="canonical" href="https://ericspencer.us/projects/aeo-queries.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AEO Queries | Eric Spencer">
+<meta property="og:description" content="A Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue when answering a prompt">
+<meta property="og:url" content="https://ericspencer.us/projects/aeo-queries.html">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects-aeo-queries.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AEO Queries | Eric Spencer — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-aeo-queries.jpg">
+<meta name="twitter:image:alt" content="AEO Queries | Eric Spencer — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-aeo-queries.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="AEO Queries | Eric Spencer">
+<meta name="twitter:description" content="A Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue when answering a prompt">
+<meta property="linkedin:title" content="AEO Queries | Eric Spencer">
+<meta property="linkedin:description" content="A Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue when answering a prompt">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"AEO Queries",
+"description":"A Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue when answering a prompt",
+"url":"https://ericspencer.us/projects/aeo-queries.html",
+"image":"https://ericspencer.us/assets/og/projects-aeo-queries.jpg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2026-08-18",
+"mainEntityOfPage":"https://ericspencer.us/projects/aeo-queries.html"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;·&nbsp; <a href="/research.html">research</a> &nbsp;·&nbsp; <a href="/projects.html">[projects]</a> &nbsp;·&nbsp; <a href="/blog/">blog</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h2>AEO Queries<span class="ln"></span></h2>
+<p class="meta">A Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue when answering a prompt</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/aeo-extension" target="_blank" rel="noopener">https://github.com/EricSpencer00/aeo-extension</a></p>
+<hr class="dash">
+<p><a href="https://github.com/EricSpencer00/aeo-extension" target="_blank" rel="noopener">GitHub Repo</a> · <a href="https://github.com/EricSpencer00/aeo-extension/blob/main/PRIVACY.md" target="_blank" rel="noopener">Privacy Policy</a></p>
+
+<p>An assistant asked to compare two products does not search for the sentence it was given. It rewrites that sentence into several precise queries and searches those instead. The pages that rank for the rewritten queries are the pages the model reads, and therefore the brands it names in the answer. Those strings, not the original prompt, are the optimisation target. AEO Queries records them as they are issued.</p>
+
+<p>A single Perplexity prompt comparing headphone warranties produced nine distinct searches, including <code>site:</code>-scoped ones aimed at the manufacturers' own documentation and a price query with the current month pinned into it. None of the nine matched the wording of the prompt. Guessing at that set is the hard part of answer engine optimisation; reading it off the wire removes the guessing.</p>
+
+<h2>How it works<span class="ln"></span></h2>
+<p>The extension observes the responses those pages already receive and recovers the query text from them. On Perplexity that means every issued query, reformulations and operators included. On Claude it is each <code>web_search</code> tool call. On ChatGPT it is the browsing tool's queries, which are present only when signed in.</p>
+
+<p>Signed-out ChatGPT is a real gap and it is not one an extension can close. The anonymous web app reports only that it is "searching 7 websites" and never delivers the query text to the browser. What the server does not send cannot be recovered. Signed in, the queries come through.</p>
+
+<h2>Verification<span class="ln"></span></h2>
+<p>Each supported site was checked by loading the packaged extension into Chrome, asking the live site a real question while signed in, and reading what actually landed in storage: nine queries from one Perplexity prompt, three from Claude, eleven from ChatGPT. Gemini and Copilot are best-effort and were not verified that way.</p>
+
+<h2>Scope and permissions<span class="ln"></span></h2>
+<p>The manifest is version 3 and asks for <code>storage</code> and <code>sidePanel</code> plus eight named hosts. There is no <code>&lt;all_urls&gt;</code>, no <code>tabs</code>, no <code>scripting</code>, and no <code>activeTab</code>. The extension is inert everywhere outside those hosts. Nothing is uploaded: there is no analytics, no telemetry, and no error reporting, and the packaging script refuses to build if a localhost address survives into the shipped manifest. Reading the responses those eight sites return is the entire product, which is why the host list is the shape it is.</p>
+
+<h2>Output<span class="ln"></span></h2>
+<ul>
+<li>A timeline pairing every prompt with the queries it triggered</li>
+<li>The same queries ranked by frequency</li>
+<li>Filtering by text and by assistant</li>
+<li>CSV export of timestamp, source, prompt and query</li>
+<li>One-click copy of any single query or the whole visible set</li>
+</ul>
+
+<h2>Status<span class="ln"></span></h2>
+<p>Version 2.0.0 is packaged and passing its 69-check suite. The build comes from an explicit allow-list, so tests, fixtures and tooling cannot reach the upload. Until the Chrome Web Store listing is live, installation is through <code>chrome://extensions</code> with developer mode on and "Load unpacked" pointed at the repository.</p>
+
+<hr>
+<footer><span>ericspencer.us</span><span>2026</span></footer>
+</div></body></html>
