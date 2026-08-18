@@ -12,80 +12,80 @@ showToc: false
         <svg viewBox="0 0 1024 559" class="skeuomorphic-overlay">
             <!-- AI & LLM Tools -->
             <a href="/projects/2025/terminalgpt/" title="Terminal GPT">
-                <rect x="20" y="45" width="160" height="260" class="clickable-area" />
+                <rect x="15" y="25" width="160" height="175" class="clickable-area" />
             </a>
             <a href="/projects/2025/llmjammer/" title="llmjammer">
-                <rect x="320" y="375" width="70" height="110" class="clickable-area" />
+                <rect x="325" y="215" width="80" height="125" class="clickable-area" />
             </a>
             <a href="/projects/2025/flatten-repo/" title="flatten-repo">
-                <rect x="265" y="195" width="100" height="160" class="clickable-area" />
+                <rect x="275" y="110" width="110" height="155" class="clickable-area" />
             </a>
             <a href="/miscellaneous/tell-ai/" title="How to Tell if AI">
-                <rect x="435" y="450" width="100" height="60" class="clickable-area" />
+                <rect x="205" y="5" width="125" height="125" class="clickable-area" />
             </a>
             <a href="/projects/2025/sign-language/" title="Sign Language Interpreter">
-                <rect x="480" y="480" width="200" height="60" class="clickable-area" />
+                <rect x="435" y="375" width="155" height="135" class="clickable-area" />
             </a>
 
             <!-- Networking & Security -->
             <a href="/projects/2025/udp-server-binary/" title="UDP Server (Binary)">
-                <rect x="265" y="450" width="160" height="80" class="clickable-area" />
+                <rect x="190" y="300" width="240" height="140" class="clickable-area" />
             </a>
             <a href="/projects/2025/gitkey/" title="Git Key Guardian">
-                <rect x="10" y="315" width="190" height="110" class="clickable-area" />
+                <rect x="20" y="170" width="170" height="140" class="clickable-area" />
             </a>
             <a href="/projects/2023/bbomb/" title="Binary Bomb Puzzle">
-                <rect x="135" y="485" width="130" height="70" class="clickable-area" />
+                <rect x="170" y="290" width="90" height="65" class="clickable-area" />
             </a>
 
             <!-- Health & Bio-Tech -->
             <a href="/projects/2025/glucopilot/" title="GluCoPilot (Dexcom)">
-                <rect x="200" y="365" width="120" height="160" class="clickable-area" />
+                <rect x="175" y="180" width="90" height="115" class="clickable-area" />
             </a>
             <a href="/projects/2024/dailytask/" title="Daily Task Tracker">
-                <rect x="385" y="435" width="50" height="90" class="clickable-area" />
+                <rect x="400" y="215" width="45" height="95" class="clickable-area" />
             </a>
             <a href="/projects/2024/one-rep-max/" title="One Rep Max Calc">
-                <rect x="10" y="480" width="190" height="70" class="clickable-area" />
+                <rect x="15" y="380" width="155" height="165" class="clickable-area" />
             </a>
 
-            <!-- Games & Sim -->
-            <a href="/miscellaneous/gameoflife/" title="Conway's Game of Life">
-                <rect x="535" y="450" width="110" height="60" class="clickable-area" />
-            </a>
-            <a href="/projects/2025/connect-4/" title="Connect 4 Engine">
-                <rect x="645" y="345" width="140" height="210" class="clickable-area" />
-            </a>
-            <a href="/miscellaneous/chess/" title="Chess & Blackjack">
-                <rect x="635" y="450" width="130" height="60" class="clickable-area" />
-            </a>
-
-            <!-- Web & Software -->
+            <!-- Web & Software (drawn before Games so Chess overlays Search Engine) -->
             <a href="/projects/2025/interactive-microwave-tla/" title="TLA+ Microwave">
-                <rect x="745" y="25" width="210" height="160" class="clickable-area" />
+                <rect x="825" y="15" width="185" height="170" class="clickable-area" />
             </a>
             <a href="/miscellaneous/windows/" title="Windows Design Site">
-                <rect x="795" y="345" width="110" height="60" class="clickable-area" />
+                <rect x="415" y="15" width="240" height="295" class="clickable-area" />
             </a>
             <a href="/projects/2025/youtube-dl/" title="YouTube Downloader">
-                <rect x="905" y="325" width="90" height="90" class="clickable-area" />
+                <rect x="965" y="105" width="50" height="85" class="clickable-area" />
             </a>
             <a href="/miscellaneous/search-engine/" title="Search Engine">
-                <rect x="775" y="415" width="210" height="160" class="clickable-area" />
+                <rect x="775" y="195" width="230" height="230" class="clickable-area" />
             </a>
 
-            <!-- Personal / Retro -->
+            <!-- Games & Sim (after Web/Software so foreground items win on hover) -->
+            <a href="/projects/2025/connect-4/" title="Connect 4 Engine">
+                <rect x="605" y="175" width="170" height="215" class="clickable-area" />
+            </a>
+            <a href="/miscellaneous/gameoflife/" title="Conway's Game of Life">
+                <rect x="545" y="305" width="115" height="60" class="clickable-area" />
+            </a>
+            <a href="/miscellaneous/chess/" title="Chess & Blackjack">
+                <rect x="775" y="305" width="60" height="110" class="clickable-area" />
+            </a>
+
+            <!-- Personal / Retro (drawn last - foreground desk items) -->
             <a href="/resume/" title="CV / Resume">
-                <rect x="675" y="450" width="190" height="80" class="clickable-area" />
+                <rect x="585" y="380" width="135" height="110" class="clickable-area" />
             </a>
             <a href="/miscellaneous/my-zshrc/" title="~/.zshrc file">
-                <rect x="575" y="125" width="80" height="110" class="clickable-area" />
+                <rect x="625" y="80" width="115" height="75" class="clickable-area" />
             </a>
             <a href="/projects/2023/anagram/" title="Anagram Solver">
-                <rect x="655" y="520" width="140" height="30" class="clickable-area" />
+                <rect x="735" y="440" width="140" height="50" class="clickable-area" />
             </a>
             <a href="/miscellaneous/pixel-profile/" title="GitHub pfp Gen">
-                <rect x="835" y="450" width="160" height="100" class="clickable-area" />
+                <rect x="855" y="395" width="150" height="150" class="clickable-area" />
             </a>
         </svg>
         <div id="project-label" class="project-label">Hover over an item...</div>
