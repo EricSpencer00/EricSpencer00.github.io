@@ -144,7 +144,14 @@ def build_page(news, about, selected, blog, experience):
 {{"@context":"https://schema.org","@graph":[
 {{"@type":"WebSite","@id":"https://ericspencer.us/#site","url":"https://ericspencer.us/","name":"Eric Spencer","inLanguage":"en-US","publisher":{{"@id":"https://ericspencer.us/#eric"}}}},
 {{"@type":"ProfilePage","@id":"https://ericspencer.us/#page","url":"https://ericspencer.us/","name":"Eric Spencer — Formal Methods & LLM Researcher, Chicago","isPartOf":{{"@id":"https://ericspencer.us/#site"}},"primaryImageOfPage":"https://ericspencer.us/assets/og/home.jpg","mainEntity":{{"@id":"https://ericspencer.us/#eric"}}}},
-{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/assets/og/home.jpg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}}
+{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/assets/og/home.jpg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"owns":[{{"@id":"https://sideswing.tech/#app"}},{{"@id":"https://picai.us/#app"}},{{"@id":"https://vocal.best/#app"}},{{"@id":"https://stemacle.com/#app"}},{{"@id":"https://stockgenie.app/#app"}},{{"@id":"https://ipaidforthisshirt.com/#site"}},{{"@id":"https://famousmoji.com/#site"}}],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}},
+{{"@type":"MobileApplication","@id":"https://sideswing.tech/#app","name":"SideSwing","url":"https://sideswing.tech/","applicationCategory":"GameApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"WebApplication","@id":"https://picai.us/#app","name":"Picaius","url":"https://picai.us/","applicationCategory":"MultimediaApplication","operatingSystem":"Web, iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"MobileApplication","@id":"https://vocal.best/#app","name":"VoCal","url":"https://vocal.best/","applicationCategory":"HealthApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"SoftwareApplication","@id":"https://stemacle.com/#app","name":"Stemacle","url":"https://stemacle.com/","applicationCategory":"MultimediaApplication","operatingSystem":"macOS, Web","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"MobileApplication","@id":"https://stockgenie.app/#app","name":"StockGenie","url":"https://stockgenie.app/","applicationCategory":"FinanceApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"WebSite","@id":"https://ipaidforthisshirt.com/#site","name":"I Paid For This Shirt","url":"https://ipaidforthisshirt.com/","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"WebSite","@id":"https://famousmoji.com/#site","name":"Famous Moji","url":"https://famousmoji.com/","author":{{"@id":"https://ericspencer.us/#eric"}}}}
 ]}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -239,9 +246,9 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 <h2 id="about">About</h2>
 {about}
 <div class="linkrow">
-&#9656; <a href="https://github.com/EricSpencer00" target="_blank" rel="noopener">github</a> &middot;
-<a href="https://huggingface.co/EricSpencer00" target="_blank" rel="noopener">huggingface</a> &middot;
-<a href="https://www.linkedin.com/in/ericspencer00/" target="_blank" rel="noopener">linkedin</a> &middot;
+&#9656; <a href="https://github.com/EricSpencer00" target="_blank" rel="me noopener">github</a> &middot;
+<a href="https://huggingface.co/EricSpencer00" target="_blank" rel="me noopener">huggingface</a> &middot;
+<a href="https://www.linkedin.com/in/ericspencer00/" target="_blank" rel="me noopener">linkedin</a> &middot;
 <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">ai4fm.cs.luc.edu</a> &middot;
 <a href="/assets/resume.pdf" target="_blank" rel="noopener">r&eacute;sum&eacute;</a> &middot;
 <a href="mailto:eric@ericspencer.us">email</a>
