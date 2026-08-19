@@ -33,6 +33,15 @@ jobs:
           python3 scripts/build_blog.py
           python3 scripts/build_resume_pages.py
 
+      # One definition of the top nav for every page, so `cv` cannot reach only
+      # the homepage again and `blog` only appears once something is published.
+      - name: Apply the top nav
+        run: python3 scripts/apply_nav.py
+
+      # Before the sitemap: an unpublished blog should not be listed in it.
+      - name: Drop the blog when nothing is published
+        run: python3 scripts/prune_blog.py
+
       # Runs last: the generators above rewrite whole <head> blocks, so the
       # link-preview tags have to be reapplied after them or every rebuild
       # silently drops each page back to a generic card. The card images

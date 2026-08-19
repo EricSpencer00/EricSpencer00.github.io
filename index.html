@@ -15,17 +15,19 @@
 <meta property="og:title" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago">
 <meta property="og:description" content="Formal methods and LLM researcher at Loyola University Chicago (AI4FM), founder of FROM AMERICA LLC.">
 <meta property="og:url" content="https://ericspencer.us/">
-<meta property="og:site_name" content="Eric Spencer">
 <meta property="og:image" content="https://ericspencer.us/assets/og/home.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Eric Spencer &mdash; ericspencer.us">
-<meta property="og:locale" content="en_US">
+<meta property="og:image:alt" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago — ericspencer.us">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/home.jpg">
+<meta name="twitter:image:alt" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/home.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Eric Spencer — Formal Methods &amp; LLM Researcher, Chicago">
 <meta name="twitter:description" content="Formal methods and LLM researcher at Loyola University Chicago (AI4FM), founder of FROM AMERICA LLC.">
-<meta name="twitter:image" content="https://ericspencer.us/assets/og/home.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://ericspencer.us/#site","url":"https://ericspencer.us/","name":"Eric Spencer","inLanguage":"en-US","publisher":{"@id":"https://ericspencer.us/#eric"}},
@@ -123,7 +125,7 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 @media(max-width:560px){.wrap{padding:36px 18px 80px}.proj .dt,.proj .ds{display:none}.post-d{display:none}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{display:none}#hf-list .repo-row .dt,#hf-list .repo-row .ds{display:none}}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
-<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 
 <h2 id="news">News</h2>
@@ -153,9 +155,7 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 <div class="proj"><a class="nm" href="https://tlakit.pages.dev">tlakit</a><span class="dt"></span><span class="ds">Python and notebook client for the TLA+ toolchain. Drives SANY, TLC, and TLAPS from a cell without reimplementing TLA+ semantics.</span></div>
 <div class="proj"><a class="nm" href="https://paper-digest.ericspencer.us">paper-digest</a><span class="dt"></span><span class="ds">Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.</span></div>
 
-<h2 id="blog">Blog</h2>
-<p class="dim-note">No posts yet.</p>
-<p class="small" style="margin-top:6px"><a href="/blog/">&rarr; all posts</a></p>
+
 
 <div id="gh-repos">
 <p class="loading" id="gh-loading">Loading repos&hellip;</p>
@@ -348,13 +348,47 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
     </div>`;
   }
 
+  // ── attention, not applause ────────────────────────────────────────────────
+  // Stars are a lifetime total that never decays, so a repo starred once years
+  // ago outranked everything anyone is actually reading -- and only 17 repos
+  // here have any stars at all, against 54 with real traffic. Views come from
+  // /traffic/views, which needs push access, so a nightly job publishes them to
+  // signals.json and this just reads the file. If the file is missing or stale
+  // the rows fall back to stars rather than losing their count entirely.
+  let SIGNALS = {};
+
+  async function loadSignals() {
+    try {
+      const res = await fetch('/assets/data/signals.json', { cache: 'no-cache' });
+      if (!res.ok) return;
+      const data = await res.json();
+      SIGNALS = data.repos || {};
+    } catch (e) { /* stars remain the fallback */ }
+  }
+
+  const numf = n => n.toLocaleString('en-US');
+
+  function signalFor(repo) {
+    const s = SIGNALS[repo.full_name] || SIGNALS[`${repo.owner && repo.owner.login}/${repo.name}`];
+    // Unique visitors is the number that survives scrutiny: raw views count a
+    // reload, and one person refreshing their own repo should not read as reach.
+    if (s && s.d90u > 0) {
+      const total = `&#8599; ${numf(s.d90u)} reader${s.d90u === 1 ? '' : 's'}`;
+      // The 14-day figure is only worth a second number once there is older
+      // history to contrast it with; until then it just repeats the total.
+      const recent = s.d14u > 0 && s.d14u < s.d90u ? `${numf(s.d14u)} this fortnight` : '';
+      return [total, recent].filter(Boolean).join(' &middot; ');
+    }
+    return repo.stargazers_count > 0 ? `&#9733; ${repo.stargazers_count}` : '';
+  }
+
   function repoRow(repo, override) {
     const o = override || {};
     return row({
       url: o.url || repo.homepage || repo.html_url,
       name: o.name || repo.name,
       desc: o.desc || repo.description || '',
-      count: repo.stargazers_count > 0 ? `&#9733; ${repo.stargazers_count}` : '',
+      count: signalFor(repo),
       tags: [repo.fork ? 'fork' : null, repo._source].filter(Boolean),
     });
   }
@@ -399,7 +433,10 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
     const container = document.getElementById('gh-repos');
     const loading = document.getElementById('gh-loading');
     try {
-      const raw = (await Promise.all(SOURCES.map(fetchAll))).flat();
+      const [raw] = await Promise.all([
+        Promise.all(SOURCES.map(fetchAll)).then(xs => xs.flat()),
+        loadSignals(),
+      ]);
       const repos = dedup(raw).filter(r => !SKIP.has(r.name));
       const byName = new Map(repos.map(r => [r.name.toLowerCase(), r]));
 

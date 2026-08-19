@@ -36,6 +36,7 @@ p.sub{{color:var(--dim);margin:0 0 22px}}
 nav.top{{font-size:14px;font-weight:500;color:var(--dim);margin:0 0 24px}}
 nav.top a{{color:inherit;text-decoration:none}}
 nav.top a:hover{{color:var(--ink)}}
+nav.top a.active{{color:var(--ink);font-weight:600}}
 a{{color:var(--accent);text-decoration:none}}
 a:hover{{text-decoration:underline;text-underline-offset:3px}}
 .actions{{display:flex;gap:14px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 26px}}
@@ -46,7 +47,7 @@ footer{{margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-f
 @media (max-width:640px){{.doc{{height:70vh}}}}
 </style></head><body>
 <div class="wrap">
-<nav class="top"><a href="/">&larr; ericspencer.us</a></nav>
+<nav class="top"><a href="/">index</a></nav>
 <h1>{title}</h1>
 <p class="sub">{blurb}</p>
 <div class="actions">

@@ -52,9 +52,15 @@ def build_selected():
     return "\n".join(rows)
 
 def build_blog():
+    """The whole Blog section, or nothing at all when nothing is published.
+
+    An empty section advertised a blog and then showed "No posts yet.", so the
+    heading and the "all posts" link are part of what gets gated, not just the
+    list. Publishing any post in content/blog/ brings the section back.
+    """
     posts = load_posts()
     if not posts:
-        return '<p class="dim-note">No posts yet.</p>'
+        return ""
     rows = []
     for post in posts:
         rows.append(
@@ -65,7 +71,11 @@ def build_blog():
             f'<p class="post-desc">{htmllib.escape(post.description)}</p>'
             f'</div></div>'
         )
-    return "\n".join(rows)
+    return (
+        '<h2 id="blog">Blog</h2>\n'
+        + "\n".join(rows)
+        + '\n<p class="small" style="margin-top:6px"><a href="/blog/">&rarr; all posts</a></p>'
+    )
 
 def build_experience():
     rows = []
@@ -257,9 +267,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 <h2 id="selected">Selected Work</h2>
 {selected}
 
-<h2 id="blog">Blog</h2>
 {blog}
-<p class="small" style="margin-top:6px"><a href="/blog/">&rarr; all posts</a></p>
 
 <div id="gh-repos">
 <p class="loading" id="gh-loading">Loading repos&hellip;</p>
@@ -445,13 +453,47 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     </div>`;
   }}
 
+  // ── attention, not applause ────────────────────────────────────────────────
+  // Stars are a lifetime total that never decays, so a repo starred once years
+  // ago outranked everything anyone is actually reading -- and only 17 repos
+  // here have any stars at all, against 54 with real traffic. Views come from
+  // /traffic/views, which needs push access, so a nightly job publishes them to
+  // signals.json and this just reads the file. If the file is missing or stale
+  // the rows fall back to stars rather than losing their count entirely.
+  let SIGNALS = {{}};
+
+  async function loadSignals() {{
+    try {{
+      const res = await fetch('/assets/data/signals.json', {{ cache: 'no-cache' }});
+      if (!res.ok) return;
+      const data = await res.json();
+      SIGNALS = data.repos || {{}};
+    }} catch (e) {{ /* stars remain the fallback */ }}
+  }}
+
+  const numf = n => n.toLocaleString('en-US');
+
+  function signalFor(repo) {{
+    const s = SIGNALS[repo.full_name] || SIGNALS[`${{repo.owner && repo.owner.login}}/${{repo.name}}`];
+    // Unique visitors is the number that survives scrutiny: raw views count a
+    // reload, and one person refreshing their own repo should not read as reach.
+    if (s && s.d90u > 0) {{
+      const total = `&#8599; ${{numf(s.d90u)}} reader${{s.d90u === 1 ? '' : 's'}}`;
+      // The 14-day figure is only worth a second number once there is older
+      // history to contrast it with; until then it just repeats the total.
+      const recent = s.d14u > 0 && s.d14u < s.d90u ? `${{numf(s.d14u)}} this fortnight` : '';
+      return [total, recent].filter(Boolean).join(' &middot; ');
+    }}
+    return repo.stargazers_count > 0 ? `&#9733; ${{repo.stargazers_count}}` : '';
+  }}
+
   function repoRow(repo, override) {{
     const o = override || {{}};
     return row({{
       url: o.url || repo.homepage || repo.html_url,
       name: o.name || repo.name,
       desc: o.desc || repo.description || '',
-      count: repo.stargazers_count > 0 ? `&#9733; ${{repo.stargazers_count}}` : '',
+      count: signalFor(repo),
       tags: [repo.fork ? 'fork' : null, repo._source].filter(Boolean),
     }});
   }}
@@ -496,7 +538,10 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     const container = document.getElementById('gh-repos');
     const loading = document.getElementById('gh-loading');
     try {{
-      const raw = (await Promise.all(SOURCES.map(fetchAll))).flat();
+      const [raw] = await Promise.all([
+        Promise.all(SOURCES.map(fetchAll)).then(xs => xs.flat()),
+        loadSignals(),
+      ]);
       const repos = dedup(raw).filter(r => !SKIP.has(r.name));
       const byName = new Map(repos.map(r => [r.name.toLowerCase(), r]));
 
