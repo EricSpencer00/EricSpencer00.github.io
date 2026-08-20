@@ -52,9 +52,15 @@ def build_selected():
     return "\n".join(rows)
 
 def build_blog():
+    """The whole Blog section, or nothing at all when nothing is published.
+
+    An empty section advertised a blog and then showed "No posts yet.", so the
+    heading and the "all posts" link are part of what gets gated, not just the
+    list. Publishing any post in content/blog/ brings the section back.
+    """
     posts = load_posts()
     if not posts:
-        return '<p class="dim-note">No posts yet.</p>'
+        return ""
     rows = []
     for post in posts:
         rows.append(
@@ -65,7 +71,11 @@ def build_blog():
             f'<p class="post-desc">{htmllib.escape(post.description)}</p>'
             f'</div></div>'
         )
-    return "\n".join(rows)
+    return (
+        '<h2 id="blog">Blog</h2>\n'
+        + "\n".join(rows)
+        + '\n<p class="small" style="margin-top:6px"><a href="/blog/">&rarr; all posts</a></p>'
+    )
 
 def build_experience():
     rows = []
@@ -144,7 +154,14 @@ def build_page(news, about, selected, blog, experience):
 {{"@context":"https://schema.org","@graph":[
 {{"@type":"WebSite","@id":"https://ericspencer.us/#site","url":"https://ericspencer.us/","name":"Eric Spencer","inLanguage":"en-US","publisher":{{"@id":"https://ericspencer.us/#eric"}}}},
 {{"@type":"ProfilePage","@id":"https://ericspencer.us/#page","url":"https://ericspencer.us/","name":"Eric Spencer — Formal Methods & LLM Researcher, Chicago","isPartOf":{{"@id":"https://ericspencer.us/#site"}},"primaryImageOfPage":"https://ericspencer.us/assets/og/home.jpg","mainEntity":{{"@id":"https://ericspencer.us/#eric"}}}},
-{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/assets/og/home.jpg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}}
+{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":"https://ericspencer.us/assets/og/home.jpg","sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"owns":[{{"@id":"https://sideswing.tech/#app"}},{{"@id":"https://picai.us/#app"}},{{"@id":"https://vocal.best/#app"}},{{"@id":"https://stemacle.com/#app"}},{{"@id":"https://stockgenie.app/#app"}},{{"@id":"https://ipaidforthisshirt.com/#site"}},{{"@id":"https://famousmoji.com/#site"}}],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}},
+{{"@type":"MobileApplication","@id":"https://sideswing.tech/#app","name":"SideSwing","url":"https://sideswing.tech/","applicationCategory":"GameApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"WebApplication","@id":"https://picai.us/#app","name":"Picaius","url":"https://picai.us/","applicationCategory":"MultimediaApplication","operatingSystem":"Web, iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"MobileApplication","@id":"https://vocal.best/#app","name":"VoCal","url":"https://vocal.best/","applicationCategory":"HealthApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"SoftwareApplication","@id":"https://stemacle.com/#app","name":"Stemacle","url":"https://stemacle.com/","applicationCategory":"MultimediaApplication","operatingSystem":"macOS, Web","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"MobileApplication","@id":"https://stockgenie.app/#app","name":"StockGenie","url":"https://stockgenie.app/","applicationCategory":"FinanceApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"WebSite","@id":"https://ipaidforthisshirt.com/#site","name":"I Paid For This Shirt","url":"https://ipaidforthisshirt.com/","author":{{"@id":"https://ericspencer.us/#eric"}}}},
+{{"@type":"WebSite","@id":"https://famousmoji.com/#site","name":"Famous Moji","url":"https://famousmoji.com/","author":{{"@id":"https://ericspencer.us/#eric"}}}}
 ]}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -239,9 +256,9 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 <h2 id="about">About</h2>
 {about}
 <div class="linkrow">
-&#9656; <a href="https://github.com/EricSpencer00" target="_blank" rel="noopener">github</a> &middot;
-<a href="https://huggingface.co/EricSpencer00" target="_blank" rel="noopener">huggingface</a> &middot;
-<a href="https://www.linkedin.com/in/ericspencer00/" target="_blank" rel="noopener">linkedin</a> &middot;
+&#9656; <a href="https://github.com/EricSpencer00" target="_blank" rel="me noopener">github</a> &middot;
+<a href="https://huggingface.co/EricSpencer00" target="_blank" rel="me noopener">huggingface</a> &middot;
+<a href="https://www.linkedin.com/in/ericspencer00/" target="_blank" rel="me noopener">linkedin</a> &middot;
 <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">ai4fm.cs.luc.edu</a> &middot;
 <a href="/assets/resume.pdf" target="_blank" rel="noopener">r&eacute;sum&eacute;</a> &middot;
 <a href="mailto:eric@ericspencer.us">email</a>
@@ -250,9 +267,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 <h2 id="selected">Selected Work</h2>
 {selected}
 
-<h2 id="blog">Blog</h2>
 {blog}
-<p class="small" style="margin-top:6px"><a href="/blog/">&rarr; all posts</a></p>
 
 <div id="gh-repos">
 <p class="loading" id="gh-loading">Loading repos&hellip;</p>
@@ -438,13 +453,47 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     </div>`;
   }}
 
+  // ── attention, not applause ────────────────────────────────────────────────
+  // Stars are a lifetime total that never decays, so a repo starred once years
+  // ago outranked everything anyone is actually reading -- and only 17 repos
+  // here have any stars at all, against 54 with real traffic. Views come from
+  // /traffic/views, which needs push access, so a nightly job publishes them to
+  // signals.json and this just reads the file. If the file is missing or stale
+  // the rows fall back to stars rather than losing their count entirely.
+  let SIGNALS = {{}};
+
+  async function loadSignals() {{
+    try {{
+      const res = await fetch('/assets/data/signals.json', {{ cache: 'no-cache' }});
+      if (!res.ok) return;
+      const data = await res.json();
+      SIGNALS = data.repos || {{}};
+    }} catch (e) {{ /* stars remain the fallback */ }}
+  }}
+
+  const numf = n => n.toLocaleString('en-US');
+
+  function signalFor(repo) {{
+    const s = SIGNALS[repo.full_name] || SIGNALS[`${{repo.owner && repo.owner.login}}/${{repo.name}}`];
+    // Unique visitors is the number that survives scrutiny: raw views count a
+    // reload, and one person refreshing their own repo should not read as reach.
+    if (s && s.d90u > 0) {{
+      const total = `&#8599; ${{numf(s.d90u)}} reader${{s.d90u === 1 ? '' : 's'}}`;
+      // The 14-day figure is only worth a second number once there is older
+      // history to contrast it with; until then it just repeats the total.
+      const recent = s.d14u > 0 && s.d14u < s.d90u ? `${{numf(s.d14u)}} this fortnight` : '';
+      return [total, recent].filter(Boolean).join(' &middot; ');
+    }}
+    return repo.stargazers_count > 0 ? `&#9733; ${{repo.stargazers_count}}` : '';
+  }}
+
   function repoRow(repo, override) {{
     const o = override || {{}};
     return row({{
       url: o.url || repo.homepage || repo.html_url,
       name: o.name || repo.name,
       desc: o.desc || repo.description || '',
-      count: repo.stargazers_count > 0 ? `&#9733; ${{repo.stargazers_count}}` : '',
+      count: signalFor(repo),
       tags: [repo.fork ? 'fork' : null, repo._source].filter(Boolean),
     }});
   }}
@@ -489,7 +538,10 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     const container = document.getElementById('gh-repos');
     const loading = document.getElementById('gh-loading');
     try {{
-      const raw = (await Promise.all(SOURCES.map(fetchAll))).flat();
+      const [raw] = await Promise.all([
+        Promise.all(SOURCES.map(fetchAll)).then(xs => xs.flat()),
+        loadSignals(),
+      ]);
       const repos = dedup(raw).filter(r => !SKIP.has(r.name));
       const byName = new Map(repos.map(r => [r.name.toLowerCase(), r]));
 

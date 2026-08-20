@@ -203,13 +203,30 @@ def render_index(posts: list[Post]) -> str:
     return f"{before}{start}\n{rows}\n\n{end}{after}"
 
 
+def prune_orphans(posts: list[Post]) -> list[str]:
+    """Delete post pages whose source is gone or has gone back to draft.
+
+    Flipping a post to `published: false` used to leave its HTML behind, so an
+    unpublished draft stayed reachable by direct link and stayed in the sitemap.
+    """
+    keep = {f"{post.slug}.html" for post in posts} | {"index.html", "_template.html"}
+    removed = []
+    for path in sorted(OUTPUT.glob("*.html")):
+        if path.name not in keep:
+            path.unlink()
+            removed.append(path.name)
+    return removed
+
+
 def main() -> None:
     posts = load_posts()
     OUTPUT.mkdir(exist_ok=True)
     for post in posts:
         (OUTPUT / f"{post.slug}.html").write_text(render_post(post), encoding="utf-8")
     (OUTPUT / "index.html").write_text(render_index(posts), encoding="utf-8")
-    print(f"Built {len(posts)} blog post(s)")
+    removed = prune_orphans(posts)
+    print(f"Built {len(posts)} blog post(s)"
+          + (f"; removed {', '.join(removed)}" if removed else ""))
 
 
 if __name__ == "__main__":
