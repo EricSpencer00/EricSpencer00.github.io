@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -137,11 +137,11 @@ li{margin:4px 0}
 <hr class="dash">
 <p>Song Recommender takes one song title and asks Gemini for ten more in the same
 vein, with the original left out of the list. The model is asked for structured
-JSON rather than prose &mdash; a <code>responseSchema</code> pins each result to a
-title and an artist &mdash; so the page can render cards without parsing free text.</p>
-<p>It runs entirely in the browser against your own Gemini key; there is no server
-and nothing is stored. Clone the repo and open <code>index.html</code> with
-<code>GEMINI_API_KEY</code> set to try it.</p>
+JSON rather than prose. A <code>responseSchema</code> pins each result to a
+title and an artist, so the page renders cards without parsing free text.</p>
+<p>It runs entirely in the browser against a user-supplied Gemini key. There is no server
+and nothing is stored. To try it, clone the repository and open <code>index.html</code> with
+<code>GEMINI_API_KEY</code> set.</p>
 <p><a href="https://github.com/EricSpencer00/song-recommender" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

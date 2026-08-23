@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,10 +135,10 @@ li{margin:4px 0}
 <p class="meta">Free flashcards and practice quiz for the Anthropic Claude Certified Architect exam.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/Claude-architect-quiz" target="_blank" rel="noopener">https://github.com/EricSpencer00/Claude-architect-quiz</a></p>
 <hr class="dash">
-<p>Anthropic put out the Claude Certified Architect: Foundations (CCA-F) exam. The official study material is a Skilljar course plus scattered docs, and the community study repos that exist are mostly raw markdown lists of questions. This is a version you can actually drill on, on a phone, without signing up for anything.</p>
-<p>Live at <a href="https://ericspencer.us/Claude-architect-quiz/" target="_blank" rel="noopener">ericspencer.us/Claude-architect-quiz</a>. It's 115 flashcards across 7 weighted domains: agentic architecture, tool design and MCP, Claude Code workflows, prompt engineering, context management, cross-cutting topics, and a Q&A bank that mirrors <code>avidevelops/claude-architect-exam-prep</code> so the well-known practice questions are in there too. The domain weights match the exam guide, so if you cram you're cramming on roughly the right stuff.</p>
-<p>There are three modes. <b>Cards</b> is the standard flip-and-mark-known loop. <b>Quiz</b> is multiple choice with explanations and a per-domain score breakdown at the end, so you can see which area you should go back and read on the Anthropic docs site. <b>Cram</b> auto-cycles and weights toward the cards you marked for review.</p>
-<p>The whole thing is a static site: plain HTML, CSS, and JavaScript, no build step, no framework. <code>data/flashcards.json</code> is the single source of truth. Each card is just:</p>
+<p>Anthropic publishes the Claude Certified Architect: Foundations (CCA-F) exam. The official study material is a Skilljar course plus scattered docs, and the community study repos that exist are mostly raw markdown lists of questions. This is a version that can be drilled on a phone without signing up for anything.</p>
+<p>It is live at <a href="https://ericspencer.us/Claude-architect-quiz/" target="_blank" rel="noopener">ericspencer.us/Claude-architect-quiz</a>: 115 flashcards across 7 weighted domains, covering agentic architecture, tool design and MCP, Claude Code workflows, prompt engineering, context management, cross-cutting topics, and a Q&amp;A bank that mirrors <code>avidevelops/claude-architect-exam-prep</code> so the well-known practice questions are included. The domain weights match the exam guide.</p>
+<p>There are three modes. Cards is the standard flip-and-mark-known loop. Quiz is multiple choice with explanations and a per-domain score breakdown at the end, which points at the area to go back and read on the Anthropic docs site. Cram auto-cycles and weights toward the cards marked for review.</p>
+<p>The whole thing is a static site: plain HTML, CSS, and JavaScript, no build step, no framework. <code>data/flashcards.json</code> is the single source of truth. Each card is:</p>
 <pre class="code"><code>
 {
   &quot;id&quot;: &quot;unique-slug&quot;,
@@ -151,10 +151,9 @@ li{margin:4px 0}
   &quot;tags&quot;: [&quot;...&quot;]
 }
 </code></pre>
-<p>Progress lives in <code>localStorage</code>. Nothing gets sent anywhere; there is no backend to send it to. If you clear your browser data, your "known" pile resets. That is the right tradeoff for a thing you use for two weeks before an exam and then never again.</p>
-<p>The one design choice worth calling out is that it is keyboard-first. Grinding through 115 cards should not mean moving a mouse between every card. <code>C</code> jumps to cards, <code>Q</code> to quiz, <code>R</code> to cram, <code>S</code> to stats. <code>Space</code> reveals the answer, <code>J</code> marks for review, <code>K</code> marks as known, <code>1</code> through <code>9</code> picks a multiple-choice option, <code>?</code> opens the help overlay. A full study session runs without touching the trackpad, which the other study sites do not offer.</p>
-<p>Content was compiled from publicly available sources: the two community repos linked in the README, the Anthropic Academy program overview, the actual platform docs for prompt caching / tool use / batches / MCP, and a few longer write-ups on Dev.to and Medium. The project is not affiliated with Anthropic in any way, and the site says so. Always cross-check against the official exam guide before you take the thing.</p>
-<p>If you spot a wrong answer or a domain that's underweighted, the source is right there: open a PR on <a href="https://github.com/EricSpencer00/Claude-architect-quiz" target="_blank" rel="noopener">the repo</a> or just file an issue. The cards get updated as Anthropic updates the exam.</p>
+<p>Progress lives in <code>localStorage</code>. Nothing is sent anywhere; there is no backend to send it to. Clearing browser data resets the "known" pile, which is the right tradeoff for something used for two weeks before an exam and then never again.</p>
+<p>The one design choice worth calling out is that it is keyboard-first, on the grounds that grinding through 115 cards should not mean moving a mouse between every card. <code>C</code> jumps to cards, <code>Q</code> to quiz, <code>R</code> to cram, <code>S</code> to stats. <code>Space</code> reveals the answer, <code>J</code> marks for review, <code>K</code> marks as known, <code>1</code> through <code>9</code> picks a multiple-choice option, <code>?</code> opens the help overlay. A full study session runs without touching the trackpad, which the other study sites do not offer.</p>
+<p>Content was compiled from publicly available sources: the two community repos linked in the README, the Anthropic Academy program overview, the platform docs for prompt caching, tool use, batches, and MCP, and several longer write-ups on Dev.to and Medium. The project is not affiliated with Anthropic, and the site says so; the official exam guide remains the authority. The source is at <a href="https://github.com/EricSpencer00/Claude-architect-quiz" target="_blank" rel="noopener">the repo</a>.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,39 +135,34 @@ li{margin:4px 0}
 <p class="meta">Protect sensitive keys from accidentally being uploaded to your git history at any point.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/git-key-guardian" target="_blank" rel="noopener">https://github.com/EricSpencer00/git-key-guardian</a></p>
 <hr class="dash">
-<p>Git Key Guardian is a lightweight pre-commit hook and helper toolkit. It scans staged changes for common secret patterns and for your own personal keys, so you catch accidental commits of API keys, tokens, and credentials before they land in your git history.</p>
+<p>Git Key Guardian is a pre-commit hook and helper toolkit. It scans staged changes for common secret patterns and for a user-supplied list of personal keys, so that API keys, tokens, and credentials are caught before they enter git history.</p>
 <h2>Why this project<span class="ln"></span></h2>
-<p>Developers frequently commit secrets by accident. API keys, SSH keys, cloud credentials, and other sensitive strings can slip into commits or CI logs. Git Key Guardian is a small, opt-in guardrail that runs locally (as a shared hook) and reports matches to a configurable set of regex patterns and a personal key list.</p>
-<p>The tool is deliberately simple and conservative: it scans only staged changes, uses maintainable regex patterns, and supports exact-string matches for keys you care about tracking.</p>
+<p>Secrets get committed by accident. API keys, SSH keys, cloud credentials, and other sensitive strings can slip into commits or CI logs. Git Key Guardian is an opt-in check that runs locally as a shared hook and reports matches against a configurable set of regex patterns and a personal key list.</p>
+<p>The tool is deliberately simple and conservative. It scans only staged changes, uses maintainable regex patterns, and supports exact-string matches for specific keys.</p>
 <h2>Features<span class="ln"></span></h2>
 <ul>
-<li>Scans only staged (cached) changes to avoid noisy results from the working tree.</li>
-<li>Configurable regex-based patterns stored in <code>patterns/common_patterns.txt</code> (one per line, inline comments allowed).</li>
+<li>Scans only staged (cached) changes, which avoids noise from the working tree.</li>
+<li>Configurable regex patterns stored in <code>patterns/common_patterns.txt</code>, one per line, with inline comments allowed.</li>
 <li>Exact-string matching against a per-user personal key file at <code>$HOME/.git-key-guardian/personal_keys.txt</code>.</li>
-<li>Interactive prompt when matches are detected: inspect matches and choose to abort or proceed with the commit.</li>
-<li>Installer script to wire the hook globally via <code>core.hooksPath</code> so it can protect all your local repos.</li>
+<li>An interactive prompt when matches are detected, with the option to abort or proceed with the commit.</li>
+<li>An installer script that wires the hook globally via <code>core.hooksPath</code> so it covers all local repositories.</li>
 </ul>
-<h2>How it works (short)<span class="ln"></span></h2>
-<ul>
-<li>On <code>git commit</code>, the pre-commit hook captures the staged diff with zero context and extracts newly added lines (those starting with a single <code>+</code>).</li>
-<li>The hook runs two checks:</li>
-</ul>
+<h2>How it works<span class="ln"></span></h2>
+<p>On <code>git commit</code>, the pre-commit hook captures the staged diff with zero context and extracts newly added lines, meaning those starting with a single <code>+</code>. It then runs two checks:</p>
 <ol>
-<li>Grep-style regex checks using the patterns in <code>patterns/common_patterns.txt</code> (comments and blanks are ignored).</li>
-<li>Fixed string checks against your personal keys file (<code>$HOME/.git-key-guardian/personal_keys.txt</code>).</li>
+<li>Grep-style regex checks using the patterns in <code>patterns/common_patterns.txt</code>, with comments and blank lines ignored.</li>
+<li>Fixed string checks against the personal keys file at <code>$HOME/.git-key-guardian/personal_keys.txt</code>.</li>
 </ol>
-<ul>
-<li>If any matches are found the hook prints a sample of matching lines and prompts you to either abort the commit or continue.</li>
-</ul>
+<p>If either check matches, the hook prints a sample of the matching lines and prompts for abort or continue.</p>
 <h2>Install<span class="ln"></span></h2>
-<p>Clone the repo and run the installer script. The installer copies the <code>pre-commit</code> hook to a shared hooks directory and configures <code>git</code> to use it globally.</p>
+<p>Clone the repository and run the installer script. The installer copies the <code>pre-commit</code> hook to a shared hooks directory and configures <code>git</code> to use it globally.</p>
 <pre class="code"><code>
 git clone https://github.com/EricSpencer00/git-key-guardian.git
 cd git-key-guardian
 chmod +x ./scripts/install.sh
 ./scripts/install.sh
 </code></pre>
-<p>The installer will copy patterns to <code>$HOME/.git-key-guardian/patterns/common_patterns.txt</code> and install the hook under <code>$HOME/.git-key-guardian/hooks/pre-commit</code>. It also creates an editable <code>personal_keys.txt</code> file for your own keys.</p>
+<p>Patterns are copied to <code>$HOME/.git-key-guardian/patterns/common_patterns.txt</code> and the hook is installed at <code>$HOME/.git-key-guardian/hooks/pre-commit</code>. The installer also creates an editable <code>personal_keys.txt</code>.</p>
 <p>To uninstall, remove the shared hooks directory or run:</p>
 <pre class="code"><code>
 git config --global --unset core.hooksPath
@@ -175,11 +170,11 @@ git config --global --unset core.hooksPath
 <h2>Usage<span class="ln"></span></h2>
 <ul>
 <li>Stage changes as usual with <code>git add</code>.</li>
-<li>Run <code>git commit</code>. The hook automatically scans staged changes.</li>
-<li>If the hook finds potential secrets you'll be shown sample matches and prompted to continue or abort.</li>
+<li>Run <code>git commit</code>. The hook scans staged changes automatically.</li>
+<li>When potential secrets are found, sample matches are printed along with a prompt to continue or abort.</li>
 </ul>
 <h3>Test locally without installing</h3>
-<p>If you want to test the hook behavior without changing your global git configuration, create a temporary repo and run a commit as described in <code>CONTRIBUTING.md</code>:</p>
+<p>To exercise the hook without changing the global git configuration, create a temporary repository and run a commit, as described in <code>CONTRIBUTING.md</code>:</p>
 <pre class="code"><code>
 mkdir /tmp/gkg-test &amp;&amp; cd /tmp/gkg-test &amp;&amp; git init -q
 cat &gt; test.txt &lt;&lt;&#x27;EOS&#x27;
@@ -191,43 +186,29 @@ EOS
 git add test.txt
 GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 </code></pre>
-<p>You should see the hook report any matches and prompt to proceed.</p>
-<h2>Patterns and Personal Keys<span class="ln"></span></h2>
-<ul>
-<li>Update the shipped regex list at <code>patterns/common_patterns.txt</code>. Rules:</li>
-<li>One regex per line, no <code>/.../</code> delimiters.</li>
-<li>Inline comments after whitespace <code>#</code> are allowed.</li>
-<li>Avoid catastrophic backtracking (prefer anchored subpatterns and bounded repetition).</li>
-</ul>
-<p>Example patterns included by default:</p>
+<p>The hook reports any matches and prompts before the commit proceeds.</p>
+<h2>Patterns and personal keys<span class="ln"></span></h2>
+<p>The shipped regex list lives at <code>patterns/common_patterns.txt</code>. Entries follow three rules: one regex per line, with no <code>/.../</code> delimiters; inline comments after whitespace and a <code>#</code> are allowed; and patterns should avoid catastrophic backtracking, preferring anchored subpatterns and bounded repetition.</p>
+<p>Patterns included by default:</p>
 <ul>
 <li><code>sk_live_[0-9a-zA-Z]{24}</code> (Stripe live keys)</li>
-<li><code>sk-[A-Za-z0-9]{48}</code> (Older OpenAI key format)</li>
+<li><code>sk-[A-Za-z0-9]{48}</code> (older OpenAI key format)</li>
 <li><code>AKIA[0-9A-Z]{16}</code> (AWS Access Key ID)</li>
 <li><code>ssh-rsa\s+[A-Za-z0-9+/=]+</code> (SSH public keys)</li>
 </ul>
-<ul>
-<li>Add exact personal secrets to <code>$HOME/.git-key-guardian/personal_keys.txt</code>. Lines beginning with <code>#</code> are ignored.</li>
-</ul>
+<p>Exact personal secrets go in <code>$HOME/.git-key-guardian/personal_keys.txt</code>. Lines beginning with <code>#</code> are ignored.</p>
 <h2>Implementation notes<span class="ln"></span></h2>
 <ul>
-<li>The hook uses POSIX-compatible tools (bash, sed, grep, awk) and aims to be lightweight and portable.</li>
-<li>Patterns file is preprocessed by the hook to strip comments and blank lines before running <code>grep -En -f</code> to search staged additions.</li>
-<li>Personal keys are searched as fixed strings using <code>grep -Fn -f</code> after removing comment/blank lines.</li>
-<li>The hook only inspects added lines in the staged diff (<code>git diff --cached --unified=0</code> + awk filter for <code>^+[^+]</code>).</li>
+<li>The hook uses POSIX-compatible tools: bash, sed, grep, and awk.</li>
+<li>The patterns file is preprocessed to strip comments and blank lines before <code>grep -En -f</code> runs against staged additions.</li>
+<li>Personal keys are searched as fixed strings with <code>grep -Fn -f</code>, again after comment and blank lines are removed.</li>
+<li>Only added lines in the staged diff are inspected (<code>git diff --cached --unified=0</code> plus an awk filter for <code>^+[^+]</code>).</li>
 </ul>
-<h2>Contributing<span class="ln"></span></h2>
-<p>Contributions are welcome. Follow the guidance in <code>CONTRIBUTING.md</code>:</p>
+<h2>Caveats<span class="ln"></span></h2>
 <ul>
-<li>Keep regexes focused and fast.</li>
-<li>Provide positive/negative examples in <code>examples/</code> when adding or changing patterns.</li>
-<li>Test patterns locally before opening a PR.</li>
-</ul>
-<h2>Caveats & best practices<span class="ln"></span></h2>
-<ul>
-<li>This tool is a helper, not a substitute for secret management. Rotate keys, use environment variables and secret stores, and audit logs and CI outputs.</li>
-<li>False positives are possible; use the personal keys file to reduce noise for known values.</li>
-<li>The hook runs locally and doesn't scan remote or CI logs, so consider adding complementary server-side scanning in CI if needed.</li>
+<li>The tool is a helper, not a substitute for secret management. Keys still need rotation, environment variables or secret stores, and audits of logs and CI output.</li>
+<li>False positives are possible. The personal keys file reduces noise for known values.</li>
+<li>The hook runs locally and does not scan remote or CI logs, so server-side scanning in CI remains a separate concern.</li>
 </ul>
 <h2>Links<span class="ln"></span></h2>
 <ul>
@@ -235,7 +216,6 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 <li>Installer script: <code>scripts/install.sh</code></li>
 <li>Hook file: <code>hooks/pre-commit</code></li>
 <li>Default patterns: <code>patterns/common_patterns.txt</code></li>
-<li>Contribution guide: <code>CONTRIBUTING.md</code></li>
 </ul>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

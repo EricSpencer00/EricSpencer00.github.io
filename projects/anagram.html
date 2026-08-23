@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -134,13 +134,13 @@ li{margin:4px 0}
 <h2>Anagram Solver<span class="ln"></span></h2>
 <p class="meta">Scrabble Inspired Anagram Solver</p>
 <hr class="dash">
-<p>Give a set of letters to the program and it will output a set of possible words you can make according to the English Scrabble dictionary.</p>
-<p>Wildcards are supported, with a maximum of two. Each extra wildcard raises the complexity (O(n^2) -> O(n^3)) because of the nature of the algorithm, so the limit is hard set at two.</p>
+<p>The program takes a set of letters and outputs the words that can be made from them, checked against the English Scrabble dictionary.</p>
+<p>Wildcards are supported, to a maximum of two. Each extra wildcard raises the complexity of the algorithm (O(n^2) -> O(n^3)), so the limit is fixed at two.</p>
 <p>How to use:</p>
 <ol>
-<li>Enter letters you have (enter ? for a wildcard, max 2)</li>
-<li>See output, enter any more letters you have</li>
-<li>'<i>*</i>' to console to quit.</li>
+<li>Enter the letters available (enter ? for a wildcard, max 2)</li>
+<li>Read the output, then enter any further letters</li>
+<li>Enter '<i>*</i>' to quit.</li>
 </ol>
 <p>File Structure:</p>
 <p>Main.java</p>
@@ -154,12 +154,8 @@ li{margin:4px 0}
 </ul>
 <p>Notes:</p>
 <ul>
-<li>Make sure ScrabbleDictionary.txt path is correctly referenced in Main.java when running</li>
-<li>Dictionary can be swapped out for another set of words</li>
-</ul>
-<p>Contributing</p>
-<ul>
-<li>Feel free to contribute by adding new features or changing algorithms</li>
+<li>The path to ScrabbleDictionary.txt must be referenced correctly in Main.java when running</li>
+<li>The dictionary can be swapped out for another set of words</li>
 </ul>
 <p><a href="https://github.com/EricSpencer00/AnagramSolverV1" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>

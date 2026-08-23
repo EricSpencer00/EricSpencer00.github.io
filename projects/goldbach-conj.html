@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -134,9 +134,9 @@ li{margin:4px 0}
 <h2>Goldbach Conjecture<span class="ln"></span></h2>
 <p class="meta">Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.</p>
 <hr class="dash">
-<p>Goldbach's conjecture is the kind of math problem that's easy to state and apparently impossible to prove. Every even integer greater than 2 is the sum of two primes. 4 = 2 + 2. 100 = 3 + 97. 1,000,000,000 = 3 + 999,999,997. It's been open since 1742 and nobody has cracked it. This project points a computer at it and watches it fail to find a counterexample.</p>
-<p>The verifier was written from scratch over a long weekend in late November 2025. The plan was to start small, first a million, then raise the cap as far as a laptop would carry it. The final run stops at one billion.</p>
-<p>The whole thing is two short Python files. The first, <code>goldbach_check.py</code>, builds a sieve of Eratosthenes as a <code>bytearray</code> and then walks every even number <code>n</code> from 4 to the cap, looking for any prime <code>p ≤ n/2</code> such that <code>n - p</code> is also prime. As soon as it finds one, it moves on. If it ever fails to find one, it prints the counterexample and bails out. The sieve part is the obvious trick: once you have a fast primality lookup, the rest is just a tight loop:</p>
+<p>Goldbach's conjecture is easy to state and so far impossible to prove: every even integer greater than 2 is the sum of two primes. 4 = 2 + 2. 100 = 3 + 97. 1,000,000,000 = 3 + 999,999,997. It has been open since 1742. This project points a computer at it and records that no counterexample turns up.</p>
+<p>The verifier was written from scratch over a long weekend in late November 2025. The plan was to start at a cap of a million and raise it as far as a laptop would carry it. The final run stops at one billion.</p>
+<p>The whole thing is two short Python files. The first, <code>goldbach_check.py</code>, builds a sieve of Eratosthenes as a <code>bytearray</code> and then walks every even number <code>n</code> from 4 to the cap, looking for any prime <code>p ≤ n/2</code> such that <code>n - p</code> is also prime. It stops at the first one it finds. If it ever fails to find one, it prints the counterexample and bails out. The sieve is the trick: once primality lookup is fast, the rest is a tight loop.</p>
 <pre class="code"><code>
 for n in range(4, max_n + 1, 2):
     found = False
@@ -150,9 +150,9 @@ for n in range(4, max_n + 1, 2):
         # counterexample — this never fires
         return False
 </code></pre>
-<p>At 1,000,000 the verifier finishes in about 0.224 seconds and prints the first ten decompositions as a sanity check. The second file, <code>generate_thru_n.py</code>, reuses the same sieve but instead of stopping at a "yes/no" answer it writes out every decomposition it finds to a text file. That's the one that goes to 1 billion. It took 470 seconds, just under eight minutes, and produced a 12.38 GB text file that VS Code politely refused to open. The screenshot in the repo is literally VS Code throwing up its hands at the file size while the progress log scrolls past in the terminal.</p>
-<p>No counterexamples. Which is the boring expected outcome, because the conjecture has been computationally verified well past 4×10^18 by people with actual compute budgets. Worth being blunt about: this is not a proof. It's a verification, and verification is not proof in number theory. The conjecture is still open. What the run confirms, on one machine, is that the first billion even integers all behave. Goldbach wrote about this in 1742 in a letter to Euler and nobody has closed it since. This does not close it either.</p>
-<p>Why Python instead of something faster? Because it was written in one sitting, with no compiler to fight. The sieve is the hot path and <code>bytearray</code> makes it cheap enough that the bottleneck for the 1B run is mostly writing the output file to disk. Pushing past 1B would mean skipping the decompositions on disk and probably reaching for Rust with parallelized segmented sieving. Forks that grind it up to 10^10 or 10^11 are welcome: the <a href="https://github.com/EricSpencer00/goldbach-conj" target="_blank" rel="noopener">repo is here</a> and the code is short enough to be its own spec.</p>
+<p>At 1,000,000 the verifier finishes in about 0.224 seconds and prints the first ten decompositions as a sanity check. The second file, <code>generate_thru_n.py</code>, reuses the same sieve, but instead of stopping at a yes or no answer it writes out every decomposition it finds to a text file. That is the one that goes to 1 billion. It took 470 seconds, just under eight minutes, and produced a 12.38 GB text file that VS Code refused to open. The screenshot in the repo is VS Code declining the file size while the progress log scrolls past in the terminal.</p>
+<p>No counterexamples, which is the expected outcome: the conjecture has been computationally verified well past 4×10^18 by people with actual compute budgets. This is a verification, not a proof, and verification is not proof in number theory. The conjecture is still open. What the run confirms, on one machine, is that the first billion even integers all behave. Goldbach wrote about the problem in 1742 in a letter to Euler, and nobody has closed it since. This does not close it either.</p>
+<p>Python rather than something faster, because the code was written in one sitting with no compiler to fight. The sieve is the hot path, and <code>bytearray</code> makes it cheap enough that the bottleneck for the 1B run is mostly writing the output file to disk. Pushing past 1B would mean skipping the decompositions on disk and probably reaching for Rust with parallelized segmented sieving. The <a href="https://github.com/EricSpencer00/goldbach-conj" target="_blank" rel="noopener">repo is here</a>, and the code is short enough to be its own spec.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

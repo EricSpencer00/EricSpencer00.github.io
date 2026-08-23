@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,8 +135,9 @@ li{margin:4px 0}
 <p class="meta">Analyze different Machine Learning algorithms to identify fraud within a classified dataset</p>
 <p class="meta">repo: <span>https://github.com/EricSpencer00/fraud-predictor</span></p>
 <hr class="dash">
-<h2>Credit Card Fraud Detection Project - COMP 379/479 Machine Learning<span class="ln"></span></h2>
-<p>Ololade Akinsanola, Oliver Schramm, Eric Spencer, Tigist Tefera, and Avery Walker# Data Download</p>
+<h2>Credit card fraud detection project, COMP 379/479 Machine Learning<span class="ln"></span></h2>
+<p>Ololade Akinsanola, Oliver Schramm, Eric Spencer, Tigist Tefera, and Avery Walker.</p>
+<h2>Data download<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#1]</h3>
 <pre class="code"><code>
@@ -187,7 +188,7 @@ print(data.head())
 
 </code></pre>
 <p>Output:</p>
-<h2>Basic Info + Data Visualizations<span class="ln"></span></h2>
+<h2>Basic info and data visualizations<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#3]</h3>
 <pre class="code"><code>
@@ -196,7 +197,7 @@ print(data.head())
 # Check the class distribution
 print(data[&quot;Class&quot;].value_counts())  # 0 = Non-fraud, 1 = Fraud
 </code></pre>
-<p>Output: Basic info:</p>
+<p>Output: basic info.</p>
 <ul>
 <li>There are some null values, accounted for later</li>
 <li>SMOTE will be useful for classification</li>
@@ -218,7 +219,7 @@ sns.boxplot(x=&#x27;Class&#x27;, y=&#x27;Amount&#x27;, data=data)
 plt.title(&quot;Transaction Amount by Fraud Class&quot;)
 plt.show()
 </code></pre>
-<p>Output: This shows that classifications for fraud past ~2000 transactions can potentially be eliminated</p>
+<p>Output: classifications for fraud past ~2000 transactions can potentially be eliminated.</p>
 <hr class="dash">
 <h3>[#6]</h3>
 <pre class="code"><code>
@@ -230,7 +231,7 @@ plt.xlabel(&#x27;Transaction Amount Bins&#x27;)
 plt.ylabel(&#x27;Fraud Class (0: Non-Fraud, 1: Fraud)&#x27;)
 plt.show()
 </code></pre>
-<p>Output: Distribution of transaction amount</p>
+<p>Output: distribution of transaction amount.</p>
 <hr class="dash">
 <h3>[#7]</h3>
 <pre class="code"><code>
@@ -241,7 +242,8 @@ plt.xlabel(&quot;Transaction Amount ($)&quot;)
 plt.ylabel(&quot;Frequency&quot;)
 plt.show()
 </code></pre>
-<p>Output: A majority of the transactions are very low (close to zero) There are very few high-value transactions. Fraudulent transactions usually involve very high-values or unusual amounts of purchases.Features Correlation plot</p>
+<p>Output: a majority of the transactions are very low, close to zero. There are very few high-value transactions. Fraudulent transactions usually involve very high values or unusual amounts of purchases.</p>
+<h2>Feature correlation plot<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#8]</h3>
 <pre class="code"><code>
@@ -250,7 +252,7 @@ sns.heatmap(data.corr(), cmap=&quot;coolwarm&quot;, annot=False)
 plt.title(&quot;Feature Correlation Heatmap&quot;)
 plt.show()
 </code></pre>
-<p>Output: This graph represents features that have a higher correlation marked red, lower correlation marked light blue and negative correlation marked blue</p>
+<p>Output: higher correlation is marked red, lower correlation light blue, and negative correlation blue.</p>
 <hr class="dash">
 <h3>[#9]</h3>
 <pre class="code"><code>
@@ -290,7 +292,7 @@ plt.xlabel(&#x27;PCA Component 1&#x27;)
 plt.ylabel(&#x27;PCA Component 2&#x27;)
 plt.show()
 </code></pre>
-<p>Output: Consider using t-SNE or UMAP...</p>
+<p>Output: t-SNE or UMAP are the next things to try.</p>
 <hr class="dash">
 <h3>[#11]</h3>
 <pre class="code"><code>
@@ -336,7 +338,8 @@ plt.xlabel(&#x27;UMAP Component 1&#x27;)
 plt.ylabel(&#x27;UMAP Component 2&#x27;)
 plt.show()
 </code></pre>
-<p>Output: Neither of these looks as helpful.# Split data</p>
+<p>Output: neither of these looks as helpful.</p>
+<h2>Split data<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#13]</h3>
 <pre class="code"><code>
@@ -352,7 +355,7 @@ print(X.isna().sum())
 print(y.isna().sum())
 </code></pre>
 <p>Output:</p>
-<h2>Oversampling the imbalanced fraud data using SMOTE<span class="ln"></span></h2>
+<h2>Oversampling the imbalanced fraud data with SMOTE<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#14]</h3>
 <pre class="code"><code>
@@ -454,12 +457,16 @@ plt.ylabel(&#x27;PCA Component 2&#x27;)
 plt.show()
 </code></pre>
 <p>Output:</p>
-<h2>Training Models<span class="ln"></span></h2>
-<p>Logistic Regression</p>
-<p>Random Forest</p>
-<p>XGBoost</p>
-<p>SVM (RBF kernel)</p>
-<p>KNN## Logistic Regression</p>
+<h2>Training models<span class="ln"></span></h2>
+<p>The models trained are:</p>
+<ul>
+<li>Logistic Regression</li>
+<li>Random Forest</li>
+<li>XGBoost</li>
+<li>SVM (RBF kernel)</li>
+<li>KNN</li>
+</ul>
+<h2>Logistic regression<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#20]</h3>
 <pre class="code"><code>
@@ -493,7 +500,8 @@ precision, recall, thresholds = precision_recall_curve(y_test, y_pred)
 pr_auc = auc(recall, precision)
 print(&quot;PR AUC:&quot;, pr_auc)
 </code></pre>
-<p>Output: The logistic regression model is pretty accurate, with an accuracy score of 0.99 and a recall accuracy of 0.86. There are only 22 improper classifications with this model, as opposed to 8315 proper classifications.## Random Forest</p>
+<p>Output: the logistic regression model has an accuracy score of 0.99 and a recall of 0.86. It makes 22 improper classifications against 8315 proper ones.</p>
+<h2>Random forest<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#22]</h3>
 <pre class="code"><code>
@@ -533,7 +541,8 @@ precision, recall, thresholds = precision_recall_curve(y_test, y_pred_rf)
 pr_auc = auc(recall, precision)
 print(&quot;PR AUC:&quot;, pr_auc)
 </code></pre>
-<p>Output: The Random Forest model is even more accurate than the logistic regression model, with an accuracy score of 0.998## Support Vector Machine</p>
+<p>Output: the random forest model has an accuracy score of 0.998, higher than the logistic regression model.</p>
+<h2>Support vector machine<span class="ln"></span></h2>
 <hr class="dash">
 <h3>[#25]</h3>
 <pre class="code"><code>

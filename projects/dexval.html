@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -134,17 +134,15 @@ li{margin:4px 0}
 <h2>DexVal<span class="ln"></span></h2>
 <p class="meta">A project analyzing Dexcom CGM data beyond the standard Clarity app.</p>
 <hr class="dash">
-<p><hr></p>
-<p>For a <b>Type 1 Diabetic</b>, a <b>Continuous Glucose Monitor (CGM)</b> is a daily necessity. The <b>Dexcom</b> tracks <b>blood glucose levels</b> throughout the day. Key metrics like <b>Time in Range percentage</b> and <b>A1C estimator</b> help a wearer stay healthy.</p>
-<p>Through a sensor worn on the body, a <b>transmitter reads glucose levels</b> and sends the data to a phone via <b>Dexcom's cloud database</b>.</p>
+<p>DexVal reads and reports on data from a Dexcom continuous glucose monitor (CGM). For a Type 1 diabetic a CGM is a daily necessity: the Dexcom tracks blood glucose levels throughout the day, and metrics such as Time in Range percentage and an A1C estimator help a wearer stay healthy.</p>
+<p>A sensor is worn on the body. A transmitter reads glucose levels from it and sends the data to a phone through Dexcom's cloud database. Two Dexcom apps read that data, over different windows:</p>
 <ul>
-<li><b>Dexcom G6 mobile app</b>: Displays data for the past <b>24 hours</b></li>
-<li><b>Dexcom Clarity app</b>: Displays data for the past <b>year</b></li>
+<li>The Dexcom G6 mobile app displays data for the past 24 hours.</li>
+<li>The Dexcom Clarity app displays data for the past year.</li>
 </ul>
-<p>The goal of DexVal is to go beyond <b>Clarity's capabilities</b> by analyzing <b>habits, trends, and other influencing factors</b> for deeper insight into glucose patterns.</p>
-<p>Right now, this project <b>displays Dexcom data</b>, with planned expansion to <b>outperform apps like Sugarmate and Clarity</b> in the future.</p>
+<p>DexVal is intended to go beyond what Clarity does, by analyzing habits, trends, and other influencing factors for deeper insight into glucose patterns. At present it displays Dexcom data. Planned work extends it to outperform apps such as Sugarmate and Clarity.</p>
 <hr class="dash">
-<h3>🔢 Example Output (<code>main.py</code>):</h3>
+<h3>Example output (<code>main.py</code>)</h3>
 <pre class="code"><code>
 Your current glucose level is 136 mg/dL (steady →) &lt;br&gt;
 Time of reading: 2024-04-18 13:07:31 &lt;br&gt;
@@ -154,9 +152,9 @@ Estimated A1C: 9.484 &lt;br&gt;
 Time in Range (70-150 mg/dL): 58.33%
 </code></pre>
 <hr class="dash">
-<h3>🔗 Useful Links:</h3>
+<h3>Links</h3>
 <ul>
-<li>💻 <a href="https://github.com/EricSpencer00/Dexcom-Statistics" target="_blank" rel="noopener">GitHub Repository</a></li>
+<li><a href="https://github.com/EricSpencer00/Dexcom-Statistics" target="_blank" rel="noopener">GitHub Repository</a></li>
 </ul>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

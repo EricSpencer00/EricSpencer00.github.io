@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -139,8 +139,8 @@ li{margin:4px 0}
 <p><a href="https://github.com/EricSpencer00/UDP-server-binary" target="_blank" rel="noopener">https://github.com/EricSpencer00/UDP-server-binary</a></p>
 <h2>Tools<span class="ln"></span></h2>
 <ul>
-<li><code>udprecv</code>: Binds to a UDP port, receives one packet, prints sender and payload.</li>
-<li><code>udpsend_stream_file</code>: Sends a file as UDP packets.</li>
+<li><code>udprecv</code> binds to a UDP port, receives one packet, and prints the sender and the payload.</li>
+<li><code>udpsend_stream_file</code> sends a file as UDP packets.</li>
 </ul>
 <h2>Commands<span class="ln"></span></h2>
 <pre class="code"><code>
@@ -151,14 +151,9 @@ nc -u -l 9000 &gt; received.bin
 shasum -a 256 test.bin received.bin
 </code></pre>
 <h2>Build<span class="ln"></span></h2>
-<ul>
-<li><code>make</code> produces binaries in <code>bin/</code>.</li>
-</ul>
+<p><code>make</code> produces the binaries in <code>bin/</code>.</p>
 <h2>Notes<span class="ln"></span></h2>
-<ul>
-<li>UDP is lossy.</li>
-<li>Extendable for sequence numbers or timestamps.</li>
-</ul>
+<p>UDP is lossy. The tools are extendable for sequence numbers or timestamps.</p>
 <h2>Related<span class="ln"></span></h2>
 <ul>
 <li>NASDAQ ITCH parser: <a href="https://github.com/EricSpencer00/itch-parser-eric" target="_blank" rel="noopener">https://github.com/EricSpencer00/itch-parser-eric</a></li>

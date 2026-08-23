@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,15 +135,15 @@ li{margin:4px 0}
 <p class="meta">A real-time bus and train tracking system built during Loyola&#x27;s Hackathon.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/LoyolaHACK" target="_blank" rel="noopener">https://github.com/EricSpencer00/LoyolaHACK</a></p>
 <hr class="dash">
-<p><hr></p>
-<p><p><a href="https://youtube.com/watch?v=u8ivcj2fhrk" target="_blank" rel="noopener">&#9654; Watch on YouTube</a></p></p>
-<p><hr></p>
-<p>CTA Transit Tracker is a horribly buggy full-stack web app that predicts when Chicago buses and trains are about to show up near your home and then texts you about it. It was built solo in under 48 hours during Loyola's Spring Hackathon, which is the right amount of time to write the code and roughly half the amount of time you actually need to make it not break.</p>
-<p>The premise is simple enough: notice when a bus is a few minutes from your stop and send a text, so there is no need to keep refreshing the CTA app. The CTA exposes its own real-time prediction APIs for both buses and trains, and publishes GTFS feeds, the standard transit data format, distributed as a bag of CSVs (<code>stops.txt</code>, <code>shapes.txt</code>, etc.) describing every route and stop in the system. The data was already there. Everything around it is what the project builds.</p>
-<p>The backend is Flask with SQLite for storage and Flask-Migrate/Alembic for schema changes, which came up more times than expected for a weekend project. The map is Leaflet. You drop a draggable marker on your home location, pick the lines you care about, and that gets saved to your account. Authentication is OTP over SMS, so there are no passwords stored anywhere. The notification side runs on Celery with a beat scheduler that wakes up on an interval, polls the CTA prediction APIs for your favorite lines, and decides whether anything's close enough to your home to be worth bugging you about.</p>
-<p>The texting part is the dumb-but-fun trick of the project. Instead of paying for Twilio for a hackathon demo, texts go out through SMS-over-email gateways: every US carrier has an email-to-SMS bridge (<code>number@txt.att.net</code>, <code>@vtext.com</code>, etc.), so the app sends an email and the carrier turns it into a text on the other end. It is exactly as reliable as that sounds, which is to say "mostly." It worked for the demo.</p>
-<p>Running all of this in one place takes a Procfile with the Flask app under Gunicorn, the Celery worker, and the Celery beat scheduler, Heroku-style, though during the hackathon it ran locally on a laptop in a Loyola classroom. Nothing crashed during the judging round.</p>
-<p>It's still buggy. To poke at the code or fix any of it, the <a href="https://github.com/EricSpencer00/LoyolaHACK" target="_blank" rel="noopener">GitHub repo</a> is up, and there's a <a href="https://youtu.be/u8ivcj2fhrk" target="_blank" rel="noopener">demo video</a> that shows the thing limping through a working flow.</p>
+<hr>
+<p><a href="https://youtube.com/watch?v=u8ivcj2fhrk" target="_blank" rel="noopener">&#9654; Watch on YouTube</a></p>
+<hr>
+<p>CTA Transit Tracker is a full-stack web app that predicts when Chicago buses and trains are about to arrive near a saved home location and sends a text about it. It was built solo in under 48 hours during Loyola's Spring Hackathon, which is enough time to write the code and about half the time needed to make it stop breaking.</p>
+<p>The premise is to notice when a bus is a few minutes from a stop and send a text, instead of refreshing the CTA app. The CTA exposes real-time prediction APIs for both buses and trains, and publishes GTFS feeds, the standard transit data format, distributed as a set of CSVs (<code>stops.txt</code>, <code>shapes.txt</code>, and so on) describing every route and stop in the system. The data was already available. Everything around it is what the project builds.</p>
+<p>The backend is Flask with SQLite for storage and Flask-Migrate/Alembic for schema changes, which came up more often than expected for a weekend project. The map is Leaflet: a draggable marker sets the home location, lines of interest are selected, and both are saved to the account. Authentication is OTP over SMS, so no passwords are stored. Notifications run on Celery with a beat scheduler that wakes on an interval, polls the CTA prediction APIs for the saved lines, and decides whether anything is close enough to be worth a message.</p>
+<p>The texting is the cheap trick of the project. Rather than paying for Twilio for a hackathon demo, texts go out through SMS-over-email gateways: every US carrier runs an email-to-SMS bridge (<code>number@txt.att.net</code>, <code>@vtext.com</code>, and others), so the app sends an email and the carrier delivers it as a text. Reliability is roughly what that suggests. It worked for the demo.</p>
+<p>Running all of this in one place takes a Procfile with the Flask app under Gunicorn, the Celery worker, and the Celery beat scheduler, in the Heroku style, though during the hackathon it ran locally on a laptop in a Loyola classroom. Nothing crashed during the judging round.</p>
+<p>The app is still buggy. The code is at the <a href="https://github.com/EricSpencer00/LoyolaHACK" target="_blank" rel="noopener">GitHub repo</a>, and a <a href="https://youtu.be/u8ivcj2fhrk" target="_blank" rel="noopener">demo video</a> shows it working through a flow.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

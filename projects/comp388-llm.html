@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,23 +135,22 @@ li{margin:4px 0}
 <p class="meta">Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">https://github.com/EricSpencer00/comp388-llm</a></p>
 <hr class="dash">
-<p>COMP 388 at Loyola is the special-topics CS course, whatever the professor wants to teach that semester. The Spring 2026 version was on large language models, which lines up with the TLA+ and fine-tuning work at ai4fm. This repo holds two of its assignments.</p>
-<h3>HW1: prompting GPT-2 and a tiny evaluation</h3>
-<p>The first assignment was the "hello world" of loading a Hugging Face model and running it. The script (<code>llm_prompt.py</code>) loads <code>gpt2</code> via <code>transformers</code>, takes a prompt off the command line, and does manual token-by-token generation instead of calling <code>.generate()</code>. The reason for that is annoying: on an M1 Mac, calling <code>.generate()</code> would crash with a bus error half the time, and so would single-word prompts. The workaround is forcing CPU-only, setting <code>PYTORCH_ENABLE_MPS_FALLBACK=1</code>, and hand-rolling a sampling loop just to get reliable runs.</p>
-<p>The assignment then asked for a "simple evaluation," done two ways:</p>
-<ul>
-<li>A hand-rolled True/False dataset of 10 Wikipedia-style facts (<code>evaluate_wiki_tf.py</code>). GPT-2 got 6/10. Every one it got wrong was a false statement that it confidently called true.</li>
-<li>BoolQ from Hugging Face datasets, 20 examples, run twice, once with the supporting passage and once without (<code>evaluate_boolq.py</code>). Both runs got 45.0%. Identical. Looking at the outputs, GPT-2 was basically answering "yes" to everything, so the passage didn't matter.</li>
-</ul>
-<p>Not a deep result, but it is a small model failing in a clearly characterizable way rather than just being bad.</p>
-<h3>HW2: base vs instruction-tuned, and few-shot</h3>
-<p>The second assignment was the more interesting one. The task was to pick a small open model that ships both a base and an instruction-tuned variant, compare them, and then try few-shot prompting on the base model. The models are Qwen2.5-0.5B and Qwen2.5-0.5B-Instruct: same architecture, same tokenizer, only difference is the instruction-tuning step.</p>
-<p>The base-vs-chat comparison was textbook: the base model treats your prompt like a document to continue ("What is the capital of France?" → it generates more questions or bullet points), and the chat model just answers "The capital of France is Paris." Fine.</p>
+<p>COMP 388 at Loyola is the special-topics CS course, whose subject changes with the professor. The Spring 2026 version was on large language models, which overlaps with the TLA+ and fine-tuning work at ai4fm. This repository holds two of its assignments.</p>
+<h3>HW1: prompting GPT-2 and a small evaluation</h3>
+<p>The first assignment loads a Hugging Face model and runs it. The script <code>llm_prompt.py</code> loads <code>gpt2</code> via <code>transformers</code>, takes a prompt off the command line, and does manual token-by-token generation rather than calling <code>.generate()</code>. The reason is environmental: on an M1 Mac, <code>.generate()</code> crashed with a bus error about half the time, and so did single-word prompts. The workaround is to force CPU-only execution, set <code>PYTORCH_ENABLE_MPS_FALLBACK=1</code>, and hand-roll the sampling loop.</p>
+<p>The assignment then asked for a simple evaluation, done two ways. The first is a hand-written True/False dataset of 10 Wikipedia-style facts (<code>evaluate_wiki_tf.py</code>), on which GPT-2 scored 6 out of 10; every item it got wrong was a false statement that it called true. The second is BoolQ from Hugging Face datasets, 20 examples, run twice, once with the supporting passage and once without (<code>evaluate_boolq.py</code>). Both runs scored 45.0%. The outputs show GPT-2 answering yes to nearly everything, so the passage made no difference.</p>
+<h3>HW2: base versus instruction-tuned, and few-shot</h3>
+<p>The second assignment was to pick a small open model that ships both a base and an instruction-tuned variant, compare them, and then try few-shot prompting on the base model. The models used are Qwen2.5-0.5B and Qwen2.5-0.5B-Instruct: same architecture, same tokenizer, differing only in the instruction-tuning step.</p>
+<p>The base-vs-chat comparison behaved as expected. The base model treats a prompt as a document to continue, so "What is the capital of France?" produces more questions or bullet points, while the chat model answers "The capital of France is Paris."</p>
 <p>The evaluation was on SNLI (natural language inference), 100 examples, greedy decoding:</p>
-<p>| Configuration            | Accuracy | |--------------------------|----------| | Chat model (zero-shot)   | 61%      | | Base model (zero-shot)   | 64%      | | Base model (few-shot)    | 61%      |</p>
-<p>The base model beating the chat model zero-shot was not the expected outcome, and few-shot made it <i>worse</i>, not better. The likely reading is that at 0.5B the instruction tuning overfits to chatty response shapes that hurt on a constrained-label task like NLI, and that the few-shot prompts inflate the context enough that the small model loses the plot. The few-shot run also hit CPU and memory ceilings, because the in-context examples triple the prompt length; a GPU or a quantized model would have finished cleanly.</p>
-<h3>What it's good for</h3>
-<p>It's coursework, not a product. But the HW2 result, a small instruction-tuned model getting beaten by its base on a classification task, is the kind of thing worth keeping in mind when picking models for the ai4fm fine-tuning work. The repo is honest about the constraints: pinned to Python 3.11, macOS M1, CPU-only, hardcoded paths because the assignment template wanted it that way.</p>
+<ul>
+<li>Chat model, zero-shot: 61%</li>
+<li>Base model, zero-shot: 64%</li>
+<li>Base model, few-shot: 61%</li>
+</ul>
+<p>The base model beat the chat model zero-shot, and few-shot prompting made the base model worse rather than better. One reading is that at 0.5B the instruction tuning overfits to chatty response shapes that hurt on a constrained-label task like NLI, and that the longer few-shot prompts push the small model past what it handles well. The few-shot run also hit CPU and memory ceilings, since the in-context examples triple the prompt length; a GPU or a quantized model would have finished cleanly.</p>
+<h3>Constraints</h3>
+<p>This is coursework rather than a product, and the repository states its constraints plainly: pinned to Python 3.11, macOS on M1, CPU-only, with hardcoded paths that the assignment template called for.</p>
 <p><a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

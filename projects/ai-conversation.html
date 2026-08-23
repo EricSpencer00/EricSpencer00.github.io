@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,11 +135,11 @@ li{margin:4px 0}
 <p class="meta">A toy where two local Ollama models loop on consciousness until one of them gives up</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/ai-conversation" target="_blank" rel="noopener">https://github.com/EricSpencer00/ai-conversation</a></p>
 <hr class="dash">
-<p>This is a toy: two local LLMs sit across from each other and talk about philosophy. About 100 lines of Python does it. There is no agent framework and no orchestration layer, just <code>ollama.chat</code> in a for loop.</p>
-<p>Both AIs are the same model, <code>gemma:2b</code>, running locally through Ollama. The original plan paired <code>llama2</code> and <code>mistral</code> so the "conversation" would actually have two voices, but the two kept fighting for RAM on a laptop and one would die mid-turn, so both seats ended up pointed at gemma. A <code>test_ollama.py</code> that hits both models with a hello is still in the repo, left over from that plan.</p>
-<p>The opening prompt is hardcoded: <code>Hello, I am an AI. What are your thoughts on the nature of consciousness?</code> From there one model answers, the other model gets a follow-up question shoved into its mouth (<code>That's an interesting perspective. What do you think about the relationship between consciousness and intelligence?</code>) and they trade for eight turns before the script exits. Transcripts get appended to a text file in <code>conversations/</code> named after the date.</p>
-<p>The output is pretty much what a 2-billion-parameter model talking to itself about consciousness produces: a lot of "that's a fascinating question" and gentle re-statements of the previous turn. Gemma 2b is not Wittgenstein. The loop is still funny to watch, because the model genuinely doesn't seem to know it's the same model on both sides.</p>
-<p><code>chat.py</code> holds a half-built pipeline that was supposed to commit each day's transcript back to this repo at 3 AM UTC using PyGithub, so that eventually the repo itself would be a slow-growing archive of two gemmas talking to themselves about qualia. It has never been deployed anywhere with a <code>GITHUB_TOKEN</code> set, so the cron half is more aspiration than feature. Pull requests with transcripts from a week of running it on a Raspberry Pi are welcome.</p>
+<p>A toy: two local LLMs sit across from each other and talk about philosophy. About 100 lines of Python does it. There is no agent framework and no orchestration layer, just <code>ollama.chat</code> in a for loop.</p>
+<p>Both sides run the same model, <code>gemma:2b</code>, locally through Ollama. The original plan paired <code>llama2</code> and <code>mistral</code> so the conversation would have two voices, but the two kept fighting for RAM on a laptop and one would die mid-turn, so both seats ended up pointed at gemma. A <code>test_ollama.py</code> that hits both models with a hello is still in the repo, left over from that plan.</p>
+<p>The opening prompt is hardcoded: <code>Hello, I am an AI. What are your thoughts on the nature of consciousness?</code> From there one model answers, the other gets a fixed follow-up question put in its mouth (<code>That's an interesting perspective. What do you think about the relationship between consciousness and intelligence?</code>), and they trade for eight turns before the script exits. Transcripts are appended to a text file in <code>conversations/</code> named after the date.</p>
+<p>The output is what a two-billion-parameter model talking to itself about consciousness produces: a lot of "that's a fascinating question" and gentle re-statements of the previous turn. Gemma 2b is not Wittgenstein. The loop is still funny to watch, because neither side seems to register that it is the same model on both ends.</p>
+<p><code>chat.py</code> holds a half-built pipeline meant to commit each day's transcript back to the repo at 3 AM UTC using PyGithub, so that the repo would become a slow-growing archive of two gemmas talking to themselves about qualia. It has never been deployed anywhere with a <code>GITHUB_TOKEN</code> set, so the cron half is aspiration rather than feature.</p>
 <p><a href="https://github.com/EricSpencer00/ai-conversation" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

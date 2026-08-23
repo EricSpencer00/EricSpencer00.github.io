@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,10 +135,10 @@ li{margin:4px 0}
 <p class="meta">A VS Code extension that flattens a repo into a single .txt file for pasting into an LLM context window.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/flatten-repo" target="_blank" rel="noopener">https://github.com/EricSpencer00/flatten-repo</a></p>
 <hr class="dash">
-<p>Built to solve a real annoyance: burning through monthly Copilot credits and needing to drop a whole project into a free Gemini or Claude session without copy-pasting twenty files one by one.</p>
-<p>It's a VS Code extension. You point it at your workspace, run <code>Flatten Project to TXT</code> from the command palette, and it dumps the whole codebase into a single <code>.txt</code> file under <code>/flattened/</code>. If the repo is too big for one LLM's context window, it splits into chunks based on a configurable token limit (~4 chars per token, rough but fine). Each chunk starts with a directory tree, then the files in <code>=== FILE: path/to/file.ext ===</code> blocks. It also auto-adds <code>/flattened</code> to your <code>.gitignore</code> so you don't accidentally commit the dumps.</p>
-<p>The actually-useful part is the filtering. You don't want <code>node_modules</code> in there. You probably don't want test files or <code>.env</code> either. Everything gets configured through a single <code>.flatten_ignore</code> at the project root, which the extension generates for you on first run. Glob-based, with three sections: <code>global</code> for things you always want out, <code>whitelist</code> for narrowing down to specific paths, and <code>blacklist</code> for specific exceptions. There's also a <code>settings:</code> section for per-project token caps.</p>
-<p>A sample <code>.flatten_ignore</code> looks like this:</p>
+<p>flatten-repo exists to get a whole project into a free Gemini or Claude session once the month's Copilot credits are gone, without pasting twenty files one at a time.</p>
+<p>It is a VS Code extension. Pointed at a workspace, the <code>Flatten Project to TXT</code> command from the command palette dumps the codebase into a single <code>.txt</code> file under <code>/flattened/</code>. If the repo is too big for one model's context window, it splits into chunks based on a configurable token limit, estimated at roughly 4 characters per token. Each chunk starts with a directory tree, followed by the files in <code>=== FILE: path/to/file.ext ===</code> blocks. <code>/flattened</code> is added to <code>.gitignore</code> automatically so the dumps are not committed by accident.</p>
+<p>The useful part is the filtering. <code>node_modules</code> does not belong in the dump, and neither do test files or <code>.env</code> in most cases. All of it is configured through a single <code>.flatten_ignore</code> at the project root, which the extension generates on first run. The rules are glob-based, in three sections: <code>global</code> for permanent exclusions, <code>whitelist</code> for narrowing to specific paths, and <code>blacklist</code> for specific exceptions. A <code>settings:</code> section holds per-project token caps.</p>
+<p>A sample <code>.flatten_ignore</code>:</p>
 <pre class="code"><code>
 # Ignore rules
 global:
@@ -160,14 +160,14 @@ settings:
 maxTokenLimit: 50000
 maxTokensPerFile: 25000
 </code></pre>
-<p>You can also stick the same kind of config in <code>.vscode/settings.json</code> if you'd rather keep it with the rest of your VS Code stuff:</p>
+<p>The same kind of config can live in <code>.vscode/settings.json</code> instead:</p>
 <pre class="code"><code>
 &quot;flattenRepo.includeExtensions&quot;: [&quot;.ts&quot;, &quot;.tsx&quot;, &quot;.js&quot;, &quot;.jsx&quot;, &quot;.py&quot;, &quot;.html&quot;, &quot;.css&quot;],
 &quot;flattenRepo.ignoreDirs&quot;: [&quot;node_modules&quot;, &quot;.git&quot;, &quot;dist&quot;],
 &quot;flattenRepo.maxChunkSize&quot;: 200000
 </code></pre>
-<p>Command-only, with no UI for picking files interactively, and it doesn't flatten binaries or images. Most useful for dropping a flattened repo into a free model when paid credits run out.</p>
-<p><a href="https://github.com/EricSpencer00/flatten-repo" target="_blank" rel="noopener">GitHub Repo</a>. Feel free to open issues or send a PR if you want to take a swing at the file-picker UI.</p>
+<p>It is command-only, with no UI for picking files interactively, and it does not flatten binaries or images.</p>
+<p><a href="https://github.com/EricSpencer00/flatten-repo" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

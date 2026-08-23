@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,52 +135,44 @@ li{margin:4px 0}
 <p class="meta">Custom Safari Script for TDX Popups</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/WindowBlockerForTDX-MacOS" target="_blank" rel="noopener">https://github.com/EricSpencer00/WindowBlockerForTDX-MacOS</a></p>
 <hr class="dash">
-<p>TDX creates a new window whenever you click a new Ticket/User/etc. This script, paired with "Stay for Safari," blocks the new window from appearing and instead opens it within the current window in a modal container.</p>
-<p>Key features include:</p>
-<ul>
-<li>Overriding <code>openWin</code> to display content in a modal overlay.</li>
-<li>Removing <code>openWinHref</code> onclick attributes dynamically.</li>
-<li>Compatibility with Safari using the Stay for Safari extension.</li>
-</ul>
-<h2>How to Install <code>script.js</code> on Safari Using Stay for Safari<span class="ln"></span></h2>
+<p>TDX opens a new window whenever a ticket, user or similar record is clicked. This script, paired with Stay for Safari, blocks the new window and renders the content inside the current window in a modal container.</p>
+<p>It overrides <code>openWin</code> so that content is displayed in a modal overlay, and it removes <code>openWinHref</code> onclick attributes dynamically. It runs in Safari through the Stay for Safari extension.</p>
+<h2>How to install <code>script.js</code> on Safari using Stay for Safari<span class="ln"></span></h2>
 <h3>Prerequisites</h3>
 <ul>
 <li>macOS with Safari installed</li>
 <li>Stay for Safari extension installed from the <a href="https://apps.apple.com/us/app/stay-for-safari/id1591620171" target="_blank" rel="noopener">App Store</a></li>
-<li><code>script.js</code> file ready for installation</li>
+<li>The <code>script.js</code> file</li>
 </ul>
-<h3>Steps</h3>
 <h3>1. Install Stay for Safari</h3>
 <ol>
 <li>Open the <a href="https://apps.apple.com/us/app/stay-for-safari/id1591620171" target="_blank" rel="noopener">Stay for Safari</a> page on the App Store.</li>
-<li>Click on the "Get" button to download and install the extension.</li>
-<li>Once installed, open Safari and go to <code>Preferences</code> > <code>Extensions</code>.</li>
+<li>Click "Get" to download and install the extension.</li>
+<li>Once it is installed, open Safari and go to <code>Preferences</code> &gt; <code>Extensions</code>.</li>
 <li>Enable the Stay for Safari extension.</li>
 </ol>
 <h3>2. Open Stay for Safari</h3>
 <ol>
-<li>Click on the Stay for Safari icon in the Safari toolbar.</li>
+<li>Click the Stay for Safari icon in the Safari toolbar.</li>
 <li>Select "Manage Scripts" from the dropdown menu.</li>
 </ol>
 <h3>3. Add <code>script.js</code></h3>
 <ol>
-<li>In the Stay for Safari interface, click on the "+" button to add a new script.</li>
-<li>Enter a name for your script (e.g., <code>My Custom Script</code>).</li>
+<li>In the Stay for Safari interface, click the "+" button to add a new script.</li>
+<li>Enter a name for the script.</li>
 <li>Copy the contents of the <code>script.js</code> file found <a href="https://github.com/EricSpencer00/WindowBlockerForTDX-MacOS/blob/main/script.js" target="_blank" rel="noopener">here</a> and paste it into the script editor.</li>
 <li>Specify the TDX URL in the 6th line of the script.</li>
 </ol>
-<h3>4. Save and Activate the Script</h3>
+<h3>4. Save and activate the script</h3>
 <ol>
-<li>Click the "Save" button to save your script.</li>
-<li>Ensure that the script is enabled by checking the toggle switch next to the script name.</li>
+<li>Click "Save".</li>
+<li>Check the toggle switch next to the script name to confirm the script is enabled.</li>
 </ol>
-<h3>5. Verify the Script</h3>
+<h3>5. Verify the script</h3>
 <ol>
-<li>Navigate to a website where your script should run.</li>
-<li>Open the browser console (Option + Command + C) to verify that the script is executing correctly.</li>
+<li>Navigate to a page where the script should run.</li>
+<li>Open the browser console (Option + Command + C) to check that the script is executing.</li>
 </ol>
-<h3>Conclusion</h3>
-<p>You have successfully installed and activated <code>script.js</code> on Safari using the Stay for Safari extension. You can now enjoy the custom functionality provided by your script on the specified websites.</p>
 <p><a href="https://github.com/EricSpencer00/WindowBlockerForTDX-MacOS" target="_blank" rel="noopener">GitHub Repo</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

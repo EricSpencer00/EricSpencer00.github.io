@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -142,15 +142,15 @@ li{margin:4px 0}
 <p>A single Perplexity prompt comparing headphone warranties produced nine distinct searches, including <code>site:</code>-scoped ones aimed at the manufacturers' own documentation and a price query with the current month pinned into it. None of the nine matched the wording of the prompt. Guessing at that set is the hard part of answer engine optimisation; reading it off the wire removes the guessing.</p>
 
 <h2>How it works<span class="ln"></span></h2>
-<p>The extension observes the responses those pages already receive and recovers the query text from them. On Perplexity that means every issued query, reformulations and operators included. On Claude it is each <code>web_search</code> tool call. On ChatGPT it is the browsing tool's queries, which are present only when signed in.</p>
+<p>The extension observes the responses those pages already receive and recovers the query text from them. On Perplexity that is every issued query, reformulations and operators included. On Claude it is each <code>web_search</code> tool call. On ChatGPT it is the browsing tool's queries, which are present only when signed in.</p>
 
-<p>Signed-out ChatGPT is a real gap and it is not one an extension can close. The anonymous web app reports only that it is "searching 7 websites" and never delivers the query text to the browser. What the server does not send cannot be recovered. Signed in, the queries come through.</p>
+<p>Signed-out ChatGPT is a real gap, and not one an extension can close. The anonymous web app reports only that it is "searching 7 websites" and never delivers the query text to the browser. What the server does not send cannot be recovered. Signed in, the queries come through.</p>
 
 <h2>Verification<span class="ln"></span></h2>
-<p>Each supported site was checked by loading the packaged extension into Chrome, asking the live site a real question while signed in, and reading what actually landed in storage: nine queries from one Perplexity prompt, three from Claude, eleven from ChatGPT. Gemini and Copilot are best-effort and were not verified that way.</p>
+<p>Each supported site was checked by loading the packaged extension into Chrome, asking the live site a real question while signed in, and reading what landed in storage: nine queries from one Perplexity prompt, three from Claude, eleven from ChatGPT. Gemini and Copilot are best-effort and were not verified that way.</p>
 
 <h2>Scope and permissions<span class="ln"></span></h2>
-<p>The manifest is version 3 and asks for <code>storage</code> and <code>sidePanel</code> plus eight named hosts. There is no <code>&lt;all_urls&gt;</code>, no <code>tabs</code>, no <code>scripting</code>, and no <code>activeTab</code>. The extension is inert everywhere outside those hosts. Nothing is uploaded: there is no analytics, no telemetry, and no error reporting, and the packaging script refuses to build if a localhost address survives into the shipped manifest. Reading the responses those eight sites return is the entire product, which is why the host list is the shape it is.</p>
+<p>The manifest is version 3 and asks for <code>storage</code> and <code>sidePanel</code> plus eight named hosts. There is no <code>&lt;all_urls&gt;</code>, no <code>tabs</code>, no <code>scripting</code>, and no <code>activeTab</code>. The extension is inert everywhere outside those hosts. Nothing is uploaded: there is no analytics, no telemetry and no error reporting, and the packaging script refuses to build if a localhost address survives into the shipped manifest. Reading the responses those eight sites return is the entire product, which is why the host list has the shape it has.</p>
 
 <h2>Output<span class="ln"></span></h2>
 <ul>

@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -134,12 +134,11 @@ li{margin:4px 0}
 <h2>Recursive Maze Solver Example<span class="ln"></span></h2>
 <p class="meta">Recursive Maze Solver Example, a project by Eric Spencer.</p>
 <hr class="dash">
-<p>Recursive Maze Solver.</p>
-<p>#########################################</p>
+<p>Recursive maze solver. A transcript of an exchange with ChatGPT about maze-solving code in Java, framed around a CS2 data structures course. In the maze notation used throughout, '*' is a wall, '.' an unvisited square, '-' a dead-end, '0' the starting point, and '+' a visited space.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, what are some coding examples of a recursive maze solver? Assume this maze has walls marked with *'s, unvisited squares marked with '.'s, dead-ends marked with '-', the starting point marked with '0', and visited spaces marked with '+'s. Explain each step as you go. </div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Here is a coding example of a recursive maze solver in Java, following the ACM 2020 curricular guidelines:</p>
+<p>A recursive maze solver in Java:</p>
 <pre class="code"><code>
 public class MazeSolver {
     private char[][] maze;
@@ -207,44 +206,24 @@ public class MazeSolver {
 </code></pre>
 <p>The code step by step:</p>
 <ol>
-<li>The <code>MazeSolver</code> class is created to encapsulate the maze solving functionality. The class takes a 2D character array (<code>maze</code>) as input, which represents the maze structure with different symbols.</li>
+<li>The <code>MazeSolver</code> class holds the maze-solving functionality. It takes a 2D character array (<code>maze</code>) as input, which represents the maze structure with the symbols above.</li>
+<li><code>findStart()</code> locates the starting position marked with '0'.</li>
+<li><code>solve()</code> is the entry point. It calls <code>solveMaze()</code> with the starting position as the initial parameters.</li>
+<li><code>solveMaze()</code> performs the recursive algorithm. It takes the current row and column as input.</li>
+<li>The first conditions in <code>solveMaze()</code> check whether the current position is outside the maze boundaries, a wall ('*'), a visited space ('+'), or a dead-end ('-'). Any of these returns <code>false</code> and backtracks.</li>
+<li>If the current position is an unvisited square ('.'), the method changes it to '+' to mark it visited.</li>
+<li>It then checks whether the position sits on a maze boundary, which indicates the exit. In that case it returns <code>true</code>.</li>
+<li>Otherwise it recurses in all four directions, up, down, left, and right, and combines the results with the logical OR operator (<code>||</code>).</li>
+<li>If any recursive call returns <code>true</code>, an exit was found and the method returns <code>true</code>.</li>
+<li>If all recursive calls return <code>false</code>, the position is a dead-end. The method changes it to '-' and returns <code>false</code> to backtrack.</li>
+<li>Recursion continues until either an exit is found or all possible paths have been explored.</li>
 </ol>
-<ol>
-<li>The <code>findStart()</code> method is used to locate the starting position marked with '0' in the maze.</li>
-</ol>
-<ol>
-<li>The <code>solve()</code> method is the entry point for solving the maze. It calls the <code>solveMaze()</code> method with the starting position as the initial parameters.</li>
-</ol>
-<ol>
-<li>The <code>solveMaze()</code> method performs the recursive maze solving algorithm. It takes the current row and column as input.</li>
-</ol>
-<ol>
-<li>The first few conditions in <code>solveMaze()</code> check if the current position is outside the maze boundaries, a wall ('*'), a visited space ('+'), or a dead-end ('-'). If any of these conditions are met, the method returns <code>false</code> to backtrack.</li>
-</ol>
-<ol>
-<li>If the current position is an unvisited square ('.'), it marks the position as visited by changing the value to '+'.</li>
-</ol>
-<ol>
-<li>After marking the position as visited, it checks if the current position is at one of the maze boundaries, which indicates that the exit has been reached. In that case, the method returns <code>true</code> to signal a successful exit.</li>
-</ol>
-<ol>
-<li>If the current position is not at the boundary, the method makes recursive calls in all four directions (up, down, left, and right). It combines the results of these recursive calls using the logical OR (<code>||</code>) operator.</li>
-</ol>
-<ol>
-<li>If any of the recursive calls return <code>true</code>, it means an exit was found, and the method returns <code>true</code> to propagate the success.</li>
-</ol>
-<ol>
-<li>If all the recursive calls return <code>false</code>, it means the current position is a dead-end. In this case, the method marks the position as a dead-end by changing the value to '-' and returns <code>false</code> to backtrack.</li>
-</ol>
-<ol>
-<li>The <code>solveMaze()</code> method is called recursively, exploring the maze until either an exit is found or all possible paths have been explored.</li>
-</ol>
-<p>You can create an instance of the <code>MazeSolver</code> class with your maze as the input and then call the <code>solve()</code> method to find the solution. The maze will be modified in place, with '+' symbols indicating the path to the exit and '-' symbols indicating dead-ends.</p>
-<p>Note that this recursive maze solver assumes that there is exactly one starting position ('0') and exactly one path to the exit. If your maze doesn't satisfy these assumptions, the solver may not work correctly.</p>
+<p>An instance of <code>MazeSolver</code> is constructed with the maze as input, and <code>solve()</code> finds the solution. The maze is modified in place: '+' marks the path to the exit, '-' marks dead-ends.</p>
+<p>The solver assumes exactly one starting position ('0') and exactly one path to the exit. A maze that does not satisfy those assumptions may not solve correctly.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>What does an example maze look like, and what would it output?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Consider an example maze represented by a 2D character array. Here's the maze:</p>
+<p>An example maze as a 2D character array:</p>
 <pre class="code"><code>
 char[][] maze = {
     {&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;},
@@ -257,12 +236,12 @@ char[][] maze = {
     {&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;}
 };
 </code></pre>
-<p>In this maze, '*' represents walls, '.' represents unvisited squares, '0' represents the starting position, and the rest of the squares are initially empty. Solving this maze with the <code>MazeSolver</code> class:</p>
+<p>Solving it with the <code>MazeSolver</code> class:</p>
 <pre class="code"><code>
 MazeSolver solver = new MazeSolver(maze);
 solver.solve();
 </code></pre>
-<p>After solving the maze, the <code>maze</code> array will be modified in place, marking the path with '+' symbols and dead-ends with '-' symbols. Here's the resulting maze:</p>
+<p>The <code>maze</code> array is modified in place. The result:</p>
 <pre class="code"><code>
 {
     {&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;},
@@ -275,51 +254,32 @@ solver.solve();
     {&#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;, &#x27;*&#x27;}
 }
 </code></pre>
-<p>The path from the starting position ('0') to the exit is marked with '+'. The dead-ends are marked with '-'. This modified maze shows the solution to the maze.</p>
+<p>The path from the starting position ('0') to the exit is marked with '+'. The dead-ends are marked with '-'.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Explain Dijkstra's algorithm with respect to this maze solver</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Dijkstra's algorithm is a popular graph search algorithm used to find the shortest path between a starting node and all other nodes in a weighted graph. In the context of the maze solver, Dijkstra's algorithm can be adapted to find the shortest path from the starting position ('0') to the exit.</p>
-<p>Here's how Dijkstra's algorithm can be incorporated into the maze solver:</p>
+<p>Dijkstra's algorithm is a graph search algorithm that finds the shortest path between a starting node and all other nodes in a weighted graph. Applied to the maze, it finds the shortest path from the starting position ('0') to the exit.</p>
 <ol>
-<li>Initialize a priority queue to store the nodes to be visited. Each node in the priority queue is associated with a distance value, representing the shortest distance from the starting node. Initially, set the distance of the starting node to 0 and the distances of all other nodes to infinity.</li>
-</ol>
-<ol>
+<li>Initialize a priority queue to hold the nodes to be visited. Each node carries a distance value, the shortest known distance from the starting node. The starting node begins at 0 and every other node at infinity.</li>
 <li>While the priority queue is not empty, extract the node with the minimum distance value.</li>
+<li>For each neighbor of the extracted node that is not a wall ('*'), calculate the tentative distance from the starting node: the weight of the current node plus the weight of the edge to the neighbor. If that tentative distance is less than the neighbor's recorded distance, update the distance value and add the neighbor to the priority queue.</li>
+<li>Repeat steps 2 and 3 until the priority queue is empty.</li>
+<li>On termination, the distance value at each node is the shortest path from the starting position ('0') to that node.</li>
 </ol>
+<p>Folding this into the maze solver takes additional data structures and changes to <code>solveMaze()</code>:</p>
 <ol>
-<li>For each neighbor of the extracted node that is not a wall ('*'), calculate the tentative distance from the starting node by adding the weight of the current node and the weight of the edge between the current node and the neighbor. If this tentative distance is less than the previously recorded distance for the neighbor, update the distance value and add the neighbor to the priority queue.</li>
-</ol>
-<ol>
-<li>Repeat steps 2 and 3 until the priority queue becomes empty.</li>
-</ol>
-<ol>
-<li>After the algorithm terminates, the distance values for each node represent the shortest path from the starting position ('0') to all other reachable nodes in the maze.</li>
-</ol>
-<p>To modify the maze solver to incorporate Dijkstra's algorithm, you would need to introduce additional data structures and modify the <code>solveMaze()</code> method. Here's a high-level overview of the modifications:</p>
-<ol>
-<li>Replace the use of the recursive approach with an iterative approach, as Dijkstra's algorithm is typically implemented iteratively.</li>
-</ol>
-<ol>
-<li>Create a distance array to store the shortest distance from the starting position to each node. Initialize all distances to infinity, except the starting position which is set to 0.</li>
-</ol>
-<ol>
-<li>Create a priority queue to store the nodes to be visited. Each node in the priority queue is associated with its distance value.</li>
-</ol>
-<ol>
-<li>Instead of marking visited positions with '+', mark them with their corresponding distance value to track the shortest path.</li>
-</ol>
-<ol>
-<li>Modify the <code>solveMaze()</code> method to implement Dijkstra's algorithm by iteratively selecting the node with the minimum distance from the priority queue and updating the distances of its neighbors.</li>
-</ol>
-<ol>
-<li>Adjust the termination condition to stop when the</li>
+<li>Replace the recursive approach with an iterative one. Dijkstra's algorithm is normally implemented iteratively.</li>
+<li>Add a distance array holding the shortest distance from the starting position to each node, initialized to infinity except at the start, which is 0.</li>
+<li>Add a priority queue of nodes to visit, each with its distance value.</li>
+<li>Instead of marking visited positions with '+', mark them with their distance value.</li>
+<li>Rewrite <code>solveMaze()</code> to select the minimum-distance node from the priority queue and update the distances of its neighbors.</li>
+<li>Adjust the termination condition.</li>
 </ol>
 <h2>User:<span class="ln"></span></h2>
 <p><div>How can the maze-solving process be visualized step by step?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>To visualize the maze-solving process step by step, you can introduce a delay between each step and display the current state of the maze after each modification. One way to achieve this in Java is by using the <code>Thread.sleep()</code> method to pause the execution for a certain duration.</p>
-<p>Here's an updated version of the <code>MazeSolver</code> class that includes a method <code>visualizeSolve()</code> to visualize the maze-solving process step by step:</p>
+<p>Step-by-step visualization needs a delay between steps and a display of the maze after each modification. In Java, <code>Thread.sleep()</code> pauses execution for a set duration.</p>
+<p>This version of <code>MazeSolver</code> adds a <code>visualizeSolve()</code> method:</p>
 <pre class="code"><code>
 import java.util.concurrent.TimeUnit;
 
@@ -383,62 +343,44 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>The <code>visualizeSolve()</code> method introduces pauses of 500 milliseconds using <code>TimeUnit.MILLISECONDS.sleep(500)</code> before and after each recursive call, creating a delay between steps. You can adjust the duration of the delay as per your preference.</p>
-<p>The <code>visualizeMaze()</code> method is responsible for displaying the current state of the maze after each modification. It iterates over the maze array and prints the symbols representing walls, visited spaces, and dead-ends.</p>
-<p>Now, when you call <code>visualizeSolve()</code> on your <code>MazeSolver</code> instance, the maze-solving process will be visualized step by step, with a delay between each step to observe the changes.</p>
+<p><code>visualizeSolve()</code> pauses for 500 milliseconds via <code>TimeUnit.MILLISECONDS.sleep(500)</code> before and after each recursive call. The duration is adjustable.</p>
+<p><code>visualizeMaze()</code> displays the current state of the maze after each modification. It iterates over the maze array and prints the symbols for walls, visited spaces, and dead-ends.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you explain how to handle different types of maze configurations, such as loops or multiple solutions?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Handling different types of maze configurations, such as loops or multiple solutions, requires careful consideration in the maze-solving algorithm. Here are some approaches you can take to handle these scenarios:</p>
-<ol>
-<li>Loops in the Maze:</li>
-</ol>
-<p>One way to handle loops is by introducing a visited array or set to keep track of visited positions during the maze-solving process. Before marking a position as visited, you can check if it has already been visited to detect loops. If a loop is detected, you can mark the position as a dead-end ('-') and backtrack.Another approach is to introduce a depth parameter in the maze-solving algorithm to limit the maximum depth of recursion. If the depth exceeds a certain threshold, you can assume that a loop has been encountered and return from the current recursion level.</p>
+<p>Loops and multiple solutions each need handling in the algorithm.</p>
+<h3>Loops in the maze</h3>
 <ul>
-<li>One way to handle loops is by introducing a visited array or set to keep track of visited positions during the maze-solving process. Before marking a position as visited, you can check if it has already been visited to detect loops. If a loop is detected, you can mark the position as a dead-end ('-') and backtrack.</li>
-<li>Another approach is to introduce a depth parameter in the maze-solving algorithm to limit the maximum depth of recursion. If the depth exceeds a certain threshold, you can assume that a loop has been encountered and return from the current recursion level.</li>
+<li>One way to handle loops is by introducing a visited array or set to keep track of visited positions during the maze-solving process. Before marking a position as visited, check whether it has already been visited to detect loops. On detecting a loop, mark the position as a dead-end ('-') and backtrack.</li>
+<li>Another approach is a depth parameter that limits the maximum depth of recursion. Past a certain threshold, treat the path as a loop and return from the current recursion level.</li>
 </ul>
-<ol>
-<li>Multiple Solutions:</li>
-</ol>
-<p>If you want to find all possible solutions to a maze, you can modify the maze-solving algorithm to continue searching even after finding one solution. Instead of terminating the algorithm when the exit is reached, you can keep track of all successful paths found so far. This can be done by storing the path from the starting position to the current position in each recursion and storing them in a list or another data structure.If you want to find the shortest path among multiple solutions, you can adapt Dijkstra's algorithm or another shortest path algorithm. Instead of terminating the algorithm when the exit is reached for the first time, you continue searching for all possible paths. However, you update the distance values only if a shorter path is found.</p>
+<h3>Multiple solutions</h3>
 <ul>
-<li>If you want to find all possible solutions to a maze, you can modify the maze-solving algorithm to continue searching even after finding one solution. Instead of terminating the algorithm when the exit is reached, you can keep track of all successful paths found so far. This can be done by storing the path from the starting position to the current position in each recursion and storing them in a list or another data structure.</li>
-<li>If you want to find the shortest path among multiple solutions, you can adapt Dijkstra's algorithm or another shortest path algorithm. Instead of terminating the algorithm when the exit is reached for the first time, you continue searching for all possible paths. However, you update the distance values only if a shorter path is found.</li>
+<li>To find all possible solutions, modify the algorithm to continue searching after finding one. Rather than terminating when the exit is reached, keep track of all successful paths found so far, storing the path from the starting position to the current position at each recursion in a list or another data structure.</li>
+<li>To find the shortest path among multiple solutions, adapt Dijkstra's algorithm or another shortest path algorithm. Rather than terminating when the exit is first reached, continue searching all possible paths and update the distance values only when a shorter path is found.</li>
 </ul>
-<p>The complexity and performance of the maze-solving algorithm may vary depending on the specific maze configuration and the chosen approach to handle loops or multiple solutions. Consider the characteristics of the maze and the requirements of your application to determine the most suitable approach for handling these scenarios.</p>
+<p>Complexity and performance vary with the maze configuration and the approach chosen.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>What can be done to the maze solver to make it run better and faster? Is it already optimized? Are there certain tradeoffs for making one aspect of the maze better?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>The maze solver code provided earlier is a basic implementation that follows a recursive approach. While it can solve mazes correctly, there are certain optimizations that can be applied to improve its efficiency and speed. Here are some possible optimizations:</p>
+<p>The code above is a basic recursive implementation. It solves mazes correctly, but several optimizations apply:</p>
 <ol>
-<li>Memoization: Introduce memoization to avoid redundant calculations. This can be achieved by caching the results of previous computations and reusing them instead of recalculating. For example, you can cache the shortest distance from the starting position to each node and avoid re-computing it during the maze-solving process.</li>
+<li>Memoization. Cache the results of previous computations and reuse them instead of recalculating. The shortest distance from the starting position to each node can be cached and not recomputed during the solve.</li>
+<li>Iterative approach. Convert the solver to an iterative traversal managed by a stack or queue. This removes the overhead of function calls and gives more control over the flow of the algorithm.</li>
+<li>A* search or other heuristics. Informed search algorithms such as A* use an estimate of the remaining distance to the goal to guide the search, which improves the efficiency of finding the shortest path in some maze configurations.</li>
+<li>Multi-threading. For a large maze, split the work across multiple threads to use multiple CPU cores.</li>
 </ol>
+<p>The trade-offs:</p>
 <ol>
-<li>Iterative Approach: Instead of using recursion, you can convert the maze solver to an iterative approach using a stack or queue to manage the traversal. This eliminates the overhead of function calls and allows for better control over the flow of the algorithm.</li>
+<li>Optimizing for speed can require more complex data structures or algorithms, which raises code complexity and maintenance overhead.</li>
+<li>Some techniques, memoization and heuristic-based algorithms among them, trade accuracy for speed. They may not guarantee the optimal solution in every case.</li>
+<li>Multi-threading does not always produce a significant speedup. Managing threads and synchronizing data carries overhead that can offset the gains from parallel execution.</li>
 </ol>
-<ol>
-<li>A* Search or other Heuristics: Consider using informed search algorithms like A* Search, which incorporates heuristics to guide the search towards the goal. A* Search uses an estimation of the remaining distance to the goal, which can significantly improve the efficiency of finding the shortest path in certain maze configurations.</li>
-</ol>
-<ol>
-<li>Multi-threading: If your maze is large and complex, you can consider parallelizing the maze-solving algorithm using multi-threading. Splitting the workload across multiple threads can potentially speed up the process by utilizing multiple CPU cores.</li>
-</ol>
-<p>Trade-offs:</p>
-<ol>
-<li>Optimizing for speed might require more complex data structures or algorithms, which can lead to increased code complexity and maintenance overhead. It's important to strike a balance between optimization and code readability/maintainability, depending on the specific requirements of your project.</li>
-</ol>
-<ol>
-<li>Some optimization techniques, such as memoization or heuristic-based algorithms, may introduce approximation or trade accuracy for speed. While they can improve the performance, they may not guarantee the absolute optimal solution in every case.</li>
-</ol>
-<ol>
-<li>Depending on the maze size and complexity, certain optimizations like multi-threading might not always result in a significant speedup. The overhead of managing multiple threads and synchronizing the data can offset the gains obtained from parallel execution.</li>
-</ol>
-<p>Remember, the choice of optimization techniques should be driven by the specific characteristics of your maze, performance requirements, and the constraints of your project. Profiling and benchmarking different approaches can help identify the most effective optimizations for your particular scenario.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>convert this maze to A* search</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Converting the maze solver to use A* search requires a heuristic function that estimates the cost from each node to the goal. In the case of the maze, a common heuristic is the Manhattan distance or Euclidean distance between two points. The A* search algorithm evaluates nodes based on their combined cost and heuristic value to prioritize the most promising paths.</p>
-<p>Here's an updated version of the <code>MazeSolver</code> class that incorporates A* search using the Manhattan distance heuristic:</p>
+<p>A* search needs a heuristic function that estimates the cost from each node to the goal. For a maze, the Manhattan distance or Euclidean distance between two points is the common choice. A* evaluates nodes on their combined cost and heuristic value and explores the most promising paths first.</p>
+<p>This version of <code>MazeSolver</code> uses A* search with the Manhattan distance heuristic:</p>
 <pre class="code"><code>
 import java.util.*;
 
@@ -559,32 +501,25 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>This implementation introduces a <code>Node</code> class to represent each position in the maze. The <code>Node</code> class contains information about its row, column, g-score (the cost from the start node), heuristic value, and parent node.</p>
-<p>The <code>solveAStar()</code> method implements the A* search algorithm. It uses a <code>PriorityQueue</code> called <code>openList</code> to store the nodes to be explored, sorted based on their total cost (g-score + heuristic value). The <code>closedList</code> is a set that stores the already explored nodes.</p>
-<p>The <code>exploreNeighbors()</code> method is responsible for exploring the neighboring nodes of the current node. It calculates the tentative g-score, creates a new <code>Node</code> object for the neighbor, and checks whether it should be added to the <code>openList</code>.</p>
-<p>The <code>calculateHeuristic()</code> method calculates the Manhattan distance heuristic from a given position to the exit position.</p>
-<p>The <code>reconstructPath()</code> method reconstructs the path from the exit position to the start position based on the parent-child relationship stored in each node. It marks the path in the maze with '+' symbols.</p>
-<p>Note: This implementation assumes that all moves have the same cost (1). If your maze has different costs associated with different moves (e.g., diagonal moves), you would need to adjust the calculation of the g-score accordingly.</p>
-<p>By incorporating A* search with a heuristic function, this modified maze solver can potentially find the optimal path from the starting position to the exit more efficiently compared to the previous recursive approach.</p>
+<p>A <code>Node</code> class represents each position in the maze. It holds the row, column, g-score (the cost from the start node), heuristic value, and parent node.</p>
+<p><code>solveAStar()</code> implements the search. A <code>PriorityQueue</code> called <code>openList</code> holds the nodes still to be explored, sorted on total cost (g-score plus heuristic value). The <code>closedList</code> is a set of the nodes already explored.</p>
+<p><code>exploreNeighbors()</code> explores the neighboring nodes of the current node. It calculates the tentative g-score, creates a new <code>Node</code> for the neighbor, and checks whether it belongs in the <code>openList</code>.</p>
+<p><code>calculateHeuristic()</code> calculates the Manhattan distance from a given position to the exit position.</p>
+<p><code>reconstructPath()</code> walks the parent-child relationship stored in each node back from the exit position to the start position, and marks the path in the maze with '+' symbols.</p>
+<p>This implementation assumes every move costs the same (1). A maze with different costs for different moves, diagonal moves for instance, needs a different g-score calculation.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you explain the cost system of the A* search algorithm?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>The cost system in the A* search algorithm involves two components: the "g-score" and the "heuristic".</p>
-<ol>
-<li>G-Score (Path Cost):</li>
-</ol>
-<p>The "g-score" represents the cost of reaching a particular node from the starting node along the current path. In the context of a maze, it typically represents the number of steps taken to reach the node from the starting position. The g-score is updated as the search progresses and nodes are explored.</p>
-<ol>
-<li>Heuristic (Estimated Cost):</li>
-</ol>
-<p>The heuristic function provides an estimate of the cost from a given node to the goal or destination. It measures the desirability of a node based on the estimated cost to reach the goal. In the context of a maze, common heuristic functions include the Manhattan distance or Euclidean distance between two positions. The heuristic is used to guide the search algorithm towards the most promising paths by prioritizing nodes that appear closer to the goal.</p>
-<p>The total cost of a node in A* search is calculated as the sum of the g-score and the heuristic value. This total cost is used to determine the priority of nodes in the open list or priority queue. Nodes with lower total costs are considered more favorable and are explored earlier.</p>
-<p>During the search, the algorithm expands nodes by examining their neighbors and updating their g-scores and heuristic values accordingly. By combining the g-score (path cost) and the heuristic (estimated cost), A* search strikes a balance between exploring the most promising paths (based on the heuristic) and ensuring optimality (based on the g-score).</p>
-<p>The objective of the A* search algorithm is to find the path with the lowest total cost from the starting node to the goal node. By considering both the g-score and the heuristic, A* search can efficiently navigate through the search space and converge towards the optimal solution.</p>
+<p>The cost system in A* search has two components, the g-score and the heuristic.</p>
+<h3>G-score (path cost)</h3>
+<p>The g-score is the cost of reaching a particular node from the starting node along the current path. In a maze it is normally the number of steps taken to reach the node from the starting position. It is updated as the search progresses and nodes are explored.</p>
+<h3>Heuristic (estimated cost)</h3>
+<p>The heuristic function estimates the cost from a given node to the goal. In a maze, common heuristic functions include the Manhattan distance and the Euclidean distance between two positions. The heuristic guides the search toward nodes that appear closer to the goal.</p>
+<p>The total cost of a node is the sum of the g-score and the heuristic value. That total determines priority in the open list, and nodes with lower total costs are explored earlier. The algorithm expands nodes by examining their neighbors and updating g-scores and heuristic values. Combining path cost with estimated cost is what balances exploration of promising paths against optimality, and the objective is the path with the lowest total cost from the starting node to the goal node.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you provide a Memoization maze search method?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Here's an example of a memoized maze search method that uses memoization to avoid redundant calculations and improve the efficiency of the maze solver:</p>
+<p>A memoized maze search method, which avoids redundant calculations:</p>
 <pre class="code"><code>
 import java.util.*;
 
@@ -666,55 +601,40 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>In this implementation, the <code>solveMemoized()</code> method serves as the entry point for the memoized maze solving. It first resets the visited state and clears the path list. Then, it calls the <code>memoizedSearch()</code> method to start the search from the starting position.</p>
-<p>The <code>memoizedSearch()</code> method is a recursive function that explores the maze in a depth-first manner. It checks the base cases, such as reaching the exit or encountering a wall, and then proceeds to explore the neighboring positions recursively.</p>
-<p>The memoization is achieved through the <code>visited</code> array, which keeps track of visited positions in the maze. Before exploring a position, the method checks if it has already been visited to avoid redundant calculations.</p>
-<p>When a successful path to the exit is found, the positions are added to the <code>path</code> list in reverse order, representing the path from the exit to the starting position.</p>
-<p>Note: This implementation assumes that the maze is a rectangular grid represented by a 2D character array, where '*' represents walls, and other characters represent open spaces or the start/exit positions. Adjustments may be needed if your maze representation differs.</p>
-<p>By using memoization, the maze solver can avoid revisiting previously explored positions, significantly reducing redundant computations and improving the efficiency of the search algorithm.</p>
+<p><code>solveMemoized()</code> is the entry point. It resets the visited state, clears the path list, then calls <code>memoizedSearch()</code> to start from the starting position.</p>
+<p><code>memoizedSearch()</code> is a recursive function that explores the maze depth-first. It checks the base cases, reaching the exit or hitting a wall, then explores the neighboring positions recursively.</p>
+<p>The memoization is the <code>visited</code> array, which tracks visited positions. Before exploring a position, the method checks whether it has already been visited.</p>
+<p>When a successful path to the exit is found, the positions are added to the <code>path</code> list in reverse order, from the exit back to the starting position.</p>
+<p>This implementation assumes a rectangular grid represented by a 2D character array, where '*' is a wall and other characters are open spaces or the start and exit positions. A different maze representation needs adjustments.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>How is memoization different than regular DFS search?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Memoization and regular Depth-First Search (DFS) are two different techniques used in solving problems, including maze traversal. Here's how they differ:</p>
-<ol>
-<li>Approach:</li>
-</ol>
-<p>Memoization: Memoization is a technique that involves caching the results of expensive function calls and reusing them when the same inputs occur again. It is typically used in recursive algorithms to avoid redundant computations by storing and retrieving previously calculated results.Regular DFS: Regular DFS is a traversal algorithm that explores as far as possible along each branch before backtracking. It systematically searches the entire search space by traversing adjacent nodes, depth-wise, until the goal is reached or all nodes are explored.</p>
+<p>Memoization and regular depth-first search (DFS) differ on four points.</p>
+<h3>Approach</h3>
 <ul>
-<li>Memoization: Memoization is a technique that involves caching the results of expensive function calls and reusing them when the same inputs occur again. It is typically used in recursive algorithms to avoid redundant computations by storing and retrieving previously calculated results.</li>
-<li>Regular DFS: Regular DFS is a traversal algorithm that explores as far as possible along each branch before backtracking. It systematically searches the entire search space by traversing adjacent nodes, depth-wise, until the goal is reached or all nodes are explored.</li>
+<li>Memoization caches the results of expensive function calls and reuses them when the same inputs occur again. It is normally applied to recursive algorithms to avoid redundant computation.</li>
+<li>Regular DFS is a traversal algorithm that explores as far as possible along each branch before backtracking. It searches the space by traversing adjacent nodes depth-wise until the goal is reached or all nodes are explored.</li>
 </ul>
-<ol>
-<li>Redundancy:</li>
-</ol>
-<p>Memoization: Memoization eliminates redundant calculations by storing intermediate results. When encountering the same subproblem multiple times, the cached result is directly returned without re-computation.Regular DFS: Regular DFS does not inherently eliminate redundant calculations. It explores each possible path exhaustively, even if it has visited a particular node or encountered a particular state before.</p>
+<h3>Redundancy</h3>
 <ul>
-<li>Memoization: Memoization eliminates redundant calculations by storing intermediate results. When encountering the same subproblem multiple times, the cached result is directly returned without re-computation.</li>
-<li>Regular DFS: Regular DFS does not inherently eliminate redundant calculations. It explores each possible path exhaustively, even if it has visited a particular node or encountered a particular state before.</li>
+<li>Memoization eliminates redundant calculations by storing intermediate results. On encountering the same subproblem again, the cached result is returned directly.</li>
+<li>Regular DFS does not eliminate redundant calculations. It explores each possible path exhaustively, even where it has visited a node or encountered a state before.</li>
 </ul>
-<ol>
-<li>Time Complexity:</li>
-</ol>
-<p>Memoization: Memoization can significantly improve the time complexity of a recursive algorithm by avoiding duplicate work. By caching results, it can convert an exponential time complexity to linear or polynomial time complexity, depending on the nature of the problem and the number of unique subproblems.Regular DFS: The time complexity of regular DFS depends on the size of the search space and the branching factor. In the worst case, it can have exponential time complexity, as it may explore all possible paths in the search space.</p>
+<h3>Time complexity</h3>
 <ul>
-<li>Memoization: Memoization can significantly improve the time complexity of a recursive algorithm by avoiding duplicate work. By caching results, it can convert an exponential time complexity to linear or polynomial time complexity, depending on the nature of the problem and the number of unique subproblems.</li>
-<li>Regular DFS: The time complexity of regular DFS depends on the size of the search space and the branching factor. In the worst case, it can have exponential time complexity, as it may explore all possible paths in the search space.</li>
+<li>Memoization can improve the time complexity of a recursive algorithm by avoiding duplicate work. Caching results can convert exponential time complexity to linear or polynomial time complexity, depending on the problem and the number of unique subproblems.</li>
+<li>The time complexity of regular DFS depends on the size of the search space and the branching factor. In the worst case it is exponential, since it may explore every possible path.</li>
 </ul>
-<ol>
-<li>Space Complexity:</li>
-</ol>
-<p>Memoization: Memoization uses additional space to store the results of subproblems. The space complexity increases with the number of unique subproblems encountered during the computation. It can be beneficial for problems with overlapping subproblems.Regular DFS: Regular DFS typically requires less additional space, as it only needs to maintain a stack for the traversal path. The space complexity is influenced by the depth of the search and the maximum size of the stack.</p>
+<h3>Space complexity</h3>
 <ul>
-<li>Memoization: Memoization uses additional space to store the results of subproblems. The space complexity increases with the number of unique subproblems encountered during the computation. It can be beneficial for problems with overlapping subproblems.</li>
-<li>Regular DFS: Regular DFS typically requires less additional space, as it only needs to maintain a stack for the traversal path. The space complexity is influenced by the depth of the search and the maximum size of the stack.</li>
+<li>Memoization uses additional space to store the results of subproblems. The space complexity rises with the number of unique subproblems encountered, so it suits problems with overlapping subproblems.</li>
+<li>Regular DFS normally needs less additional space, since it only maintains a stack for the traversal path. Its space complexity follows the depth of the search and the maximum size of the stack.</li>
 </ul>
-<p>In the context of maze solving, memoization can be used to optimize the recursive maze-solving algorithm by avoiding redundant calculations. It caches the results of visiting specific positions, ensuring that previously explored paths are not revisited. This can lead to significant improvements in performance, especially in mazes with complex paths or large search spaces.</p>
-<p>Regular DFS, on the other hand, explores all possible paths exhaustively, without storing previous results. It systematically traverses adjacent nodes, potentially revisiting positions and recomputing paths that have already been explored.</p>
-<p>By incorporating memoization, the maze solver can achieve better efficiency by eliminating redundant computations and revisits. It trades off additional space complexity for improved time complexity, resulting in faster solution finding for certain types of mazes.</p>
+<p>In maze solving, memoization caches the results of visiting specific positions so that previously explored paths are not revisited. Regular DFS explores all possible paths exhaustively without storing previous results, potentially revisiting positions and recomputing paths. Memoization trades additional space complexity for improved time complexity.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Provide a method for multi-threading search</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>Here's an example of a multi-threaded maze search method using Java's ExecutorService and Callable interface:</p>
+<p>A multi-threaded maze search method using Java's ExecutorService and Callable interface:</p>
 <pre class="code"><code>
 import java.util.ArrayList;
 import java.util.List;
@@ -811,48 +731,37 @@ public class MazeSolver {
     }
 }
 </code></pre>
-<p>This implementation introduces a <code>MazeSearchTask</code> class that implements the <code>Callable</code> interface. Each task represents the search for a specific position in the maze. The <code>solveMultiThreaded()</code> method submits the initial search task to the <code>ExecutorService</code> and waits for the result.</p>
-<p>The <code>MazeSearchTask</code> class performs the recursive exploration of the maze similar to the single-threaded approach. However, instead of directly invoking the method recursively, it submits new <code>MazeSearchTask</code> instances to the executor service for each neighboring position. This allows multiple search tasks to be executed concurrently in different threads.</p>
-<p>The <code>Future<Boolean></code> objects are used to store the results of each search task. The <code>get()</code> method is called on each <code>Future</code> to retrieve the results. As soon as a path to the exit is found, the method returns with the result.</p>
-<p>Note: The example uses the <code>Executors.newCachedThreadPool()</code> method to create an executor service with a thread pool that dynamically adjusts its size based on the number of submitted tasks. You can modify the executor service creation according to your specific requirements.</p>
-<p>By introducing multi-threading, the maze solver can parallelize the search process and potentially speed up the solution finding in large mazes. Multiple search tasks can be executed concurrently, taking advantage of available CPU cores. Multi-threading does introduce overhead due to thread creation and synchronization. The effectiveness of multi-threading depends on factors such as the size of the maze, the number of available cores, and the complexity of the search space.</p>
+<p>A <code>MazeSearchTask</code> class implements the <code>Callable</code> interface. Each task represents the search for a specific position in the maze. <code>solveMultiThreaded()</code> submits the initial search task to the <code>ExecutorService</code> and waits for the result.</p>
+<p><code>MazeSearchTask</code> explores the maze recursively, as the single-threaded version does. But instead of invoking the method recursively, it submits a new <code>MazeSearchTask</code> to the executor service for each neighboring position, so multiple search tasks run concurrently in different threads.</p>
+<p>The <code>Future&lt;Boolean&gt;</code> objects hold the results of each search task, retrieved by calling <code>get()</code> on each <code>Future</code>. The method returns as soon as a path to the exit is found.</p>
+<p>The example calls <code>Executors.newCachedThreadPool()</code>, which creates an executor service whose thread pool adjusts its size to the number of submitted tasks.</p>
 <h2>User:<span class="ln"></span></h2>
 <p><div>Can you explain in further detail how the algorithm works? What does singular threading mean in the original recursive function and what changes to make it multi-threading?</div></p>
 <h2>ChatGPT:<span class="ln"></span></h2>
-<p>First, an explanation of the original single-threaded recursive function, then the changes required to make it multi-threaded.</p>
-<ol>
-<li>Single-Threaded Recursive Function:</li>
-</ol>
-<p>In the original single-threaded recursive function, the maze is explored in a depth-first manner using recursive calls. The algorithm starts from the starting position and explores neighboring positions until it reaches the exit or encounters a wall.The algorithm systematically traverses the maze by making recursive calls for each adjacent position (up, down, left, right) from the current position.The algorithm uses the call stack to keep track of the current position and return to the previous position after exploring all possible paths from the current position.</p>
+<h3>Single-threaded recursive function</h3>
 <ul>
-<li>In the original single-threaded recursive function, the maze is explored in a depth-first manner using recursive calls. The algorithm starts from the starting position and explores neighboring positions until it reaches the exit or encounters a wall.</li>
-<li>The algorithm systematically traverses the maze by making recursive calls for each adjacent position (up, down, left, right) from the current position.</li>
-<li>The algorithm uses the call stack to keep track of the current position and return to the previous position after exploring all possible paths from the current position.</li>
+<li>The maze is explored depth-first through recursive calls. The algorithm starts from the starting position and explores neighboring positions until it reaches the exit or encounters a wall.</li>
+<li>It traverses the maze by making a recursive call for each adjacent position (up, down, left, right) from the current position.</li>
+<li>It uses the call stack to track the current position and to return to the previous position once all paths from the current position have been explored.</li>
 </ul>
-<ol>
-<li>Multi-Threaded Approach:</li>
-</ol>
-<p>The multi-threaded approach uses concurrent execution across multiple threads to speed up the maze solving process.Instead of relying on the call stack for recursion, the ExecutorService and Callable interface divide the search into smaller tasks that can be executed concurrently.Each task represents the search for a specific position in the maze and is responsible for exploring its neighboring positions.The ExecutorService manages the execution of these tasks across multiple threads, distributing the workload and allowing for parallel execution.Dividing the search into multiple tasks and executing them concurrently can potentially reduce the overall time required to find a solution, especially for larger mazes.</p>
+<h3>Multi-threaded approach</h3>
 <ul>
-<li>The multi-threaded approach uses concurrent execution across multiple threads to speed up the maze solving process.</li>
-<li>Instead of relying on the call stack for recursion, the ExecutorService and Callable interface divide the search into smaller tasks that can be executed concurrently.</li>
-<li>Each task represents the search for a specific position in the maze and is responsible for exploring its neighboring positions.</li>
-<li>The ExecutorService manages the execution of these tasks across multiple threads, distributing the workload and allowing for parallel execution.</li>
-<li>Dividing the search into multiple tasks and executing them concurrently can potentially reduce the overall time required to find a solution, especially for larger mazes.</li>
+<li>The multi-threaded approach uses concurrent execution across multiple threads.</li>
+<li>Instead of relying on the call stack for recursion, the ExecutorService and Callable interface divide the search into smaller tasks that run concurrently.</li>
+<li>Each task represents the search for a specific position and explores that position's neighbors.</li>
+<li>The ExecutorService manages the execution of these tasks across multiple threads and distributes the workload.</li>
+<li>Dividing the search into concurrent tasks can reduce the overall time to find a solution, most of all in larger mazes.</li>
 </ul>
-<ol>
-<li>Changes for Multi-Threading:</li>
-</ol>
-<p>To modify the original single-threaded recursive function for multi-threading, a <code>MazeSearchTask</code> class implements the Callable interface.Each <code>MazeSearchTask</code> instance represents the search for a specific position in the maze.Instead of making recursive calls directly, new <code>MazeSearchTask</code> instances are submitted to the ExecutorService for each neighboring position from the current position.These submitted tasks are executed concurrently in separate threads, allowing for parallel exploration of different paths in the maze.The results of the search tasks are stored in <code>Future</code> objects, which can be used to retrieve the results and determine if a path to the exit has been found.As soon as a path to the exit is found, the algorithm can return with the result, effectively stopping the execution of other ongoing tasks.</p>
+<h3>Changes for multi-threading</h3>
 <ul>
-<li>To modify the original single-threaded recursive function for multi-threading, a <code>MazeSearchTask</code> class implements the Callable interface.</li>
+<li>A <code>MazeSearchTask</code> class implements the Callable interface.</li>
 <li>Each <code>MazeSearchTask</code> instance represents the search for a specific position in the maze.</li>
-<li>Instead of making recursive calls directly, new <code>MazeSearchTask</code> instances are submitted to the ExecutorService for each neighboring position from the current position.</li>
-<li>These submitted tasks are executed concurrently in separate threads, allowing for parallel exploration of different paths in the maze.</li>
-<li>The results of the search tasks are stored in <code>Future</code> objects, which can be used to retrieve the results and determine if a path to the exit has been found.</li>
-<li>As soon as a path to the exit is found, the algorithm can return with the result, effectively stopping the execution of other ongoing tasks.</li>
+<li>Instead of a direct recursive call, a new <code>MazeSearchTask</code> is submitted to the ExecutorService for each neighboring position.</li>
+<li>Those tasks run concurrently in separate threads, so different paths are explored in parallel.</li>
+<li>The results are stored in <code>Future</code> objects, which report whether a path to the exit has been found.</li>
+<li>As soon as a path to the exit is found, the algorithm returns, which stops the execution of the other ongoing tasks.</li>
 </ul>
-<p>Multi-threading takes advantage of parallel execution to potentially speed up the maze solving process. Each thread independently explores a portion of the search space, contributing to a faster convergence towards a solution. Multi-threading does introduce additional overhead due to thread creation, synchronization, and context switching. The effectiveness of multi-threading depends on factors such as the size of the maze, the number of available cores, and the complexity of the search space.</p>
+<p>Each thread explores a portion of the search space independently. Thread creation, synchronization, and context switching add overhead. How much multi-threading helps depends on the size of the maze, the number of available cores, and the complexity of the search space.</p>
 <p>Thread generated with ChatGPT [<a href="https://chat.openai.com" target="_blank" rel="noopener">https://chat.openai.com</a>] and downloaded with Botrush [<a href="https://botrush.io" target="_blank" rel="noopener">https://botrush.io</a>]</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

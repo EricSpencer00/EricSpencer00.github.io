@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -136,10 +136,10 @@ li{margin:4px 0}
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/mc-carspot" target="_blank" rel="noopener">https://github.com/EricSpencer00/mc-carspot</a></p>
 <hr class="dash">
 <p><a href="https://github.com/EricSpencer00/mc-carspot" target="_blank" rel="noopener">GitHub Repo</a></p>
-<p>mc-carspot is a small Rust program, written in one sitting, that plays with the online parking-spot problem. You're parked somewhere on a street, closer spots open up as time goes on, and every time you decide to move the car you eat a switching cost. The question is whether the walk you save is worth the move, and over a sequence of events what policy minimizes total cost. It's a classic toy from the online algorithms / metrical task systems world, which is where the "mc" in the name comes from (metrical cost).</p>
-<p>The whole thing is about 70 lines in <code>src/main.rs</code>. There's an <code>Env</code> struct that holds the number of spots, the per-step walk cost, the move cost, and a vector of distances. Each tick, some spots randomly become available (<code>rng.gen_bool(0.3)</code>), and the policy decides whether to stay or move to the closest open one. The default policy is a threshold rule: move only if <code>(dist_cur - dist_new) * walk_cost * expected_uses > move_cost</code>. In other words, the expected walking savings has to clear the move cost. It also includes the trivial baselines (always stay, always move) so you can compare.</p>
-<p>Only dependency is <code>rand</code>. The whole <code>Cargo.toml</code> is six lines. It prints a little table to stdout showing the spot, the action, the per-step cost, and the running total. That's it: no plotting, no CSV export, no fancy policies. Configuration is "edit <code>src/main.rs</code> and recompile," which is honest about what this is.</p>
-<p>Possible additions: a couple more policies (dynamic programming for the offline optimum, maybe a small RL agent for comparison) and dumping runs to CSV to plot regret curves in Python. Right now it's really just a sandbox, one commit, one file, no tests, but it does what it says on the tin. To drop in your own policy and see how it stacks up, the <code>should_move</code> function is the obvious place to start.</p>
+<p>mc-carspot is a small Rust program, written in one sitting, on the online parking-spot problem. A car is parked somewhere on a street, closer spots open up as time goes on, and every move costs a switching penalty. The question is whether the walk saved is worth the move, and which policy minimizes total cost over a sequence of events. It is a classic toy problem from online algorithms and metrical task systems, which is where the "mc" in the name comes from (metrical cost).</p>
+<p>The program is about 70 lines in <code>src/main.rs</code>. An <code>Env</code> struct holds the number of spots, the per-step walk cost, the move cost, and a vector of distances. On each tick some spots randomly become available (<code>rng.gen_bool(0.3)</code>), and the policy decides whether to stay or move to the closest open one. The default policy is a threshold rule: move only if <code>(dist_cur - dist_new) * walk_cost * expected_uses > move_cost</code>, that is, when the expected walking savings clears the move cost. The trivial baselines, always stay and always move, are included for comparison.</p>
+<p>The only dependency is <code>rand</code>, and <code>Cargo.toml</code> is six lines. The program prints a table to stdout showing the spot, the action, the per-step cost, and the running total. There is no plotting and no CSV export. Configuration means editing <code>src/main.rs</code> and recompiling.</p>
+<p>The repository is one commit and one file, with no tests. Possible additions: more policies (dynamic programming for the offline optimum, a small RL agent for comparison) and dumping runs to CSV to plot regret curves in Python. A new policy would go in the <code>should_move</code> function.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
