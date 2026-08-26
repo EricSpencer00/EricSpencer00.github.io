@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,9 +135,9 @@ li{margin:4px 0}
 <p class="meta">A proof of concept Jarvis-style macOS controller that takes voice commands and hand gestures from the webcam.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/Gesture" target="_blank" rel="noopener">https://github.com/EricSpencer00/Gesture</a></p>
 <hr class="dash">
-<p>Gesture is a Jarvis-style controller for macOS, built in a single sitting. The webcam watches your hands, the microphone listens for commands, and the two threads run side by side, so you can either say "open Safari" or wave at the screen to trigger an action. It is a proof of concept, with the emphasis on proof of concept.</p>
-<p>The whole thing is one <code>app.py</code> file with two functions running on separate threads. Voice control uses <code>SpeechRecognition</code> with Google's recognizer for transcription, then shells out to <code>osascript</code> or the macOS <code>say</code> command to actually do things. It knows how to open Safari and tell you the time. That's it. Everything else falls through to "Command not recognized." The two handlers are a scaffold for adding more, and no more were ever added.</p>
-<p>Gesture control uses OpenCV plus MediaPipe to pull hand landmarks from the webcam feed, and <code>pyautogui</code> to fire keystrokes. The current "gesture" is checking whether the tip of your index finger (landmark 8) is above your wrist (landmark 0), and if so, hitting spacebar. So you can pause a YouTube video by pointing up at your screen. There's a one-second <code>time.sleep</code> after each trigger to keep it from firing fifty times per raised finger.</p>
+<p>Gesture is a voice and hand controller for macOS, built in a single sitting. The webcam watches for hand positions, the microphone listens for commands, and the two threads run side by side, so an action can be triggered either by saying "open Safari" or by a gesture at the screen. It is a proof of concept.</p>
+<p>The whole program is one <code>app.py</code> file with two functions running on separate threads. Voice control uses <code>SpeechRecognition</code> with Google's recognizer for transcription, then shells out to <code>osascript</code> or the macOS <code>say</code> command to carry out the action. Two commands are handled: open Safari, and report the time. Everything else falls through to "Command not recognized." The two handlers are a scaffold for adding more, and no more were ever added.</p>
+<p>Gesture control uses OpenCV plus MediaPipe to pull hand landmarks from the webcam feed, and <code>pyautogui</code> to fire keystrokes. The current gesture is a check of whether the tip of the index finger (landmark 8) is above the wrist (landmark 0), and if so, a press of spacebar. That is enough to pause a YouTube video by pointing up at the screen. A one-second <code>time.sleep</code> after each trigger keeps it from firing fifty times per raised finger.</p>
 <pre class="code"><code>
 index_tip = hand_landmarks.landmark[8]
 wrist = hand_landmarks.landmark[0]
@@ -145,9 +145,9 @@ if index_tip.y &lt; wrist.y:
     pyautogui.press(&#x27;space&#x27;)
     time.sleep(1)
 </code></pre>
-<p>There's also a <code>stubs.py</code> that exists for the sole purpose of forcing <code>modulegraph</code> to detect <code>rubicon.objc</code> when bundling the app into a <code>.app</code> with <code>py2app</code>, which was its own little side quest. macOS does not love it when you try to ship a Python app that wants webcam and microphone access.</p>
-<p>The honest list of what doesn't work: there's no real command grammar (just two hardcoded <code>if</code> branches), no gesture vocabulary beyond "finger up = space," and no error recovery if the webcam isn't accessible. Feeling like Jarvis would take some kind of wake word, so it isn't transcribing every word you say all day. Swapping Google's recognizer for something local like Vosk would keep every utterance off Google's API.</p>
-<p>It shows how few moving parts the basic version of this actually needs. To fork it and add a real gesture set, <a href="https://github.com/EricSpencer00/Gesture" target="_blank" rel="noopener">GitHub Repo</a>.</p>
+<p>There is also a <code>stubs.py</code>, which exists for the sole purpose of forcing <code>modulegraph</code> to detect <code>rubicon.objc</code> when bundling the app into a <code>.app</code> with <code>py2app</code>. macOS is not accommodating about shipping a Python app that wants webcam and microphone access.</p>
+<p>What does not work: there is no real command grammar, just two hardcoded <code>if</code> branches; no gesture vocabulary beyond "finger up = space"; and no error recovery if the webcam is not accessible. A wake word would stop it transcribing every word said all day. Swapping Google's recognizer for something local such as Vosk would keep every utterance off Google's API.</p>
+<p>It shows how few moving parts the basic version of this needs. <a href="https://github.com/EricSpencer00/Gesture" target="_blank" rel="noopener">GitHub Repo</a>.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

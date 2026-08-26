@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>
+<iframe id="f" src="../1rm/index.html" style="width:390px;height:1400px;border:0"></iframe>
+<pre id="out"></pre>
+<script>
+var log = [];
+function ok(name, got, want){ log.push((String(got)===String(want)?"PASS":"FAIL")+" "+name+" got="+got+" want="+want); }
+function click(el){ el.dispatchEvent(new MouseEvent("click",{bubbles:true})); }
+function pdown(el){ el.dispatchEvent(new PointerEvent("pointerdown",{bubbles:true,cancelable:true})); el.dispatchEvent(new PointerEvent("pointerup",{bubbles:true})); }
+
+window.addEventListener("load", function(){
+  var w = document.getElementById("f").contentWindow, d = w.document;
+  var orm = function(){ return d.getElementById("orm").textContent; };
+  var rows = function(){ return Array.prototype.map.call(d.querySelectorAll("#tbl tr"), function(t){
+      return t.children[0].textContent+":"+t.children[1].textContent+":"+t.children[2].textContent; }); };
+
+  // default state: 185 lb x 5
+  ok("default 1RM", orm(), "210");
+  ok("table rows", d.querySelectorAll("#tbl tr").length, 12);
+  ok("row5 = input weight", rows()[4], "5:185:89%");
+  ok("row5 highlighted", d.querySelectorAll("#tbl tr.here")[0].children[0].textContent, "5");
+
+  // rep chip
+  click(d.querySelector('#reps button[data-r="1"]'));
+  ok("1 rep returns the lift", orm(), "185");
+  ok("row1 = 100%", rows()[0], "1:185:100%");
+
+  click(d.querySelector('#reps button[data-r="8"]'));
+  ok("8 reps 1RM", orm(), "230");
+  ok("row8 = input weight", rows()[7], "8:185:81%");
+
+  // +/- stepper snaps to the increment
+  var plus = d.querySelector('.step[data-d="1"]'), minus = d.querySelector('.step[data-d="-1"]');
+  pdown(plus);
+  ok("plus 5 lb", d.getElementById("w").value, "190");
+  pdown(minus); pdown(minus);
+  ok("minus twice", d.getElementById("w").value, "180");
+
+  // off-increment weight snaps rather than drifting
+  var wi = d.getElementById("w");
+  wi.value = "187"; wi.dispatchEvent(new Event("input",{bubbles:true}));
+  pdown(plus);
+  ok("snap up from 187", wi.value, "190");
+  wi.value = "187"; wi.dispatchEvent(new Event("input",{bubbles:true}));
+  pdown(minus);
+  ok("snap down from 187", wi.value, "185");
+
+  // unit toggle converts the bar, not the number
+  click(d.querySelector('.units button[data-unit="kg"]'));
+  ok("lb -> kg", wi.value, "85");
+  ok("unit label", d.getElementById("wu").textContent, "kg");
+  ok("kg step", wi.step, "2.5");
+  pdown(plus);
+  ok("kg step size", wi.value, "87.5");
+  click(d.querySelector('.units button[data-unit="lb"]'));
+  ok("kg -> lb", wi.value, "195");
+
+  // empty input degrades instead of showing NaN
+  wi.value = ""; wi.dispatchEvent(new Event("input",{bubbles:true}));
+  ok("empty weight", orm(), "—");
+  ok("empty table", d.querySelectorAll("#tbl tr").length, 0);
+
+  // keyboard on the rep group
+  wi.value = "100"; wi.dispatchEvent(new Event("input",{bubbles:true}));
+  click(d.querySelector('#reps button[data-r="3"]'));
+  d.getElementById("reps").dispatchEvent(new w.KeyboardEvent("keydown",{key:"ArrowRight",bubbles:true}));
+  ok("arrow right", d.querySelector('#reps [aria-checked="true"]').dataset.r, "4");
+  d.getElementById("reps").dispatchEvent(new w.KeyboardEvent("keydown",{key:"ArrowLeft",bubbles:true}));
+  d.getElementById("reps").dispatchEvent(new w.KeyboardEvent("keydown",{key:"ArrowLeft",bubbles:true}));
+  d.getElementById("reps").dispatchEvent(new w.KeyboardEvent("keydown",{key:"ArrowLeft",bubbles:true}));
+  ok("arrow left clamps at 1", d.querySelector('#reps [aria-checked="true"]').dataset.r, "1");
+
+  // monotonicity: predicted weight never rises as reps rise
+  click(d.querySelector('#reps button[data-r="5"]'));
+  var vals = rows().map(function(r){ return parseFloat(r.split(":")[1]); });
+  var mono = vals.every(function(v,i){ return i===0 || v <= vals[i-1]; });
+  ok("weights decrease with reps", mono, "true");
+
+  document.title = "RESULTS " + log.filter(function(l){return l.indexOf("FAIL")===0;}).length + " failures";
+  document.getElementById("out").textContent = log.join("\n");
+});
+</script></body></html>

@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,9 +135,9 @@ li{margin:4px 0}
 <p class="meta">Locally hosted youtube downloader for mp3 and mp4s</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/youtubeDL" target="_blank" rel="noopener">https://github.com/EricSpencer00/youtubeDL</a></p>
 <hr class="dash">
-<p>Sometimes a really great song or video isn't available on iTunes. This localhost webapp downloads mp3s and mp4s from YouTube locally.</p>
-<p>Here's a photo that shows what would happen if you hosted the script locally and served it via Flask: <img src="https://ericspencer.us/ericspencer-site-backup/previews/youtube-dl.png" alt="youtube-dl"></p>
-<p>If a webapp is too cumbersome to load, try this script instead:</p>
+<p>A localhost webapp that downloads mp3s and mp4s from YouTube, for the case where a song or video is not available on iTunes.</p>
+<p>A screenshot of the script hosted locally and served via Flask: <img src="https://ericspencer.us/ericspencer-site-backup/previews/youtube-dl.png" alt="youtube-dl"></p>
+<p>Without the webapp, the script alone does the same job:</p>
 <pre class="code"><code>
 import os
 import re
@@ -201,8 +201,8 @@ if __name__ == &quot;__main__&quot;:
     format_choice = input(&quot;🎵 Download as MP3 or 🎬 MP4? (mp3/mp4): &quot;).strip().lower()
     download_video(youtube_url, format_choice)
 </code></pre>
-<p>The app won't work on internet-hosted Python interpreters, because YouTube blocks IP addresses that come from data centers. Running it on <a href="pythonanywhere.com">pythonanywhere.com</a> produces logs saying none of the requests to Google were accepted.</p>
-<p>The yt-dlp python library is constantly updated to thwart Google's attempts at preventing such downloading. So, make sure your pip environment is updated regularly.</p>
+<p>It does not work on internet-hosted Python interpreters, because YouTube blocks IP addresses belonging to data centers. Running it on <a href="pythonanywhere.com">pythonanywhere.com</a> produces logs saying that none of the requests to Google were accepted.</p>
+<p>The yt-dlp library is updated constantly to keep pace with Google's attempts to prevent this kind of downloading, so the pip environment needs updating regularly.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

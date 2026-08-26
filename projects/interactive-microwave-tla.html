@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -137,13 +137,12 @@ li{margin:4px 0}
 <hr class="dash">
 <p><a href="https://github.com/EricSpencer00/interactive-microwave-tla" target="_blank" rel="noopener">GitHub Repo</a></p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/microwave/fullpic.png" alt="picture of the microwave"></p>
-<p>If you ever wanted an introduction to TLA+, you can try this locally hosted microwave application to get familiar with state traces along with a simple intuitive microwave.</p>
-<p>Built using Spring Boot (Java) and the very advanced framework Vaadin (also Java) you can boot up this program in a terminal and run it in your browser. The development process was straight-forward and took exactly 2 weeks from start to finish to get everything working. If you feel as if you could likely build a better, less ugly design for the microwave, please take a look at <a href="https://github.com/EricSpencer00/interactive-microwave-tla/issues" target="_blank" rel="noopener">https://github.com/EricSpencer00/interactive-microwave-tla/issues</a> and feel free to implement a new solution with a less archaic framework (maybe something that encourages the use of HTML and CSS).</p>
-<p>Turn on the power button mode to see an additional parameter of the state traces.</p>
-<p>Turn on dangerous mode to allow the microwave to operate while the door is open.</p>
-<p>Violating the Microwave's SAFE configuration will be caught by the mock TLC checker and will let you know that your actions resulted in an unsafe state. In a real TLC checker, the application explores all states and executions of the microwave for you and will tell you if there is a possibility of the microwave being in an unsafe state.</p>
+<p>This is a locally hosted microwave simulator intended as an introduction to TLA+. It pairs a simple microwave interface with the state traces the model produces.</p>
+<p>It is built with Spring Boot (Java) and Vaadin (also Java). The program starts from a terminal and runs in a browser. Development took two weeks from start to finish. Issues are tracked at <a href="https://github.com/EricSpencer00/interactive-microwave-tla/issues" target="_blank" rel="noopener">https://github.com/EricSpencer00/interactive-microwave-tla/issues</a>.</p>
+<p>Two toggles change what the model does. Power button mode adds a further parameter to the state traces. Dangerous mode allows the microwave to operate while the door is open.</p>
+<p>Violating the microwave's SAFE configuration is caught by the mock TLC checker, which reports that the sequence of actions produced an unsafe state. A real TLC checker explores all states and executions of the microwave and reports whether an unsafe state is reachable at all.</p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/microwave/failstatetrace.png" alt="picture of the violated state trace"></p>
-<p>Also, see the interactive guide on the left for a full tutorial on how to use the application along with a short introduction to TLA+ syntax and what to make of the state traces.</p>
+<p>The interactive guide on the left holds a tutorial for the application, a short introduction to TLA+ syntax, and an explanation of the state traces.</p>
 <p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/microwave/guide.png" alt="picture of the guide of the microwave"></p>
 <pre class="code"><code>
   ---- MODULE Microwave ----
@@ -198,7 +197,7 @@ Spec == Init /\ [][Next]_&lt;&gt;
 
 ====
 </code></pre>
-<p>Once you have defined your .tla and .cfg file you can run a TLC checker against it which will look something like below. This example is from the interactive microwave, so it won't be exactly like running a TLC checker.</p>
+<p>Once a .tla file and a .cfg file are defined, a TLC checker can be run against them, producing output of the kind shown below. This example comes from the interactive microwave, so it is not identical to the output of a real TLC run.</p>
 <pre class="code"><code>
 \* &lt;Initial line 10, col 3 to line 13, col 36 of module Microwave&gt;
 STATE_1 ==

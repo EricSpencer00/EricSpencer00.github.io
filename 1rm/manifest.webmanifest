@@ -1,0 +1,21 @@
+{
+  "name": "1RM — one-rep max calculator",
+  "short_name": "1RM",
+  "description": "Estimate a one-rep max from any set, and read off the training weight for every rep count.",
+  "id": "/1rm/",
+  "start_url": "/1rm/",
+  "scope": "/1rm/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#faf7f2",
+  "theme_color": "#faf7f2",
+  "categories": ["health", "fitness", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/1rm/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/1rm/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/1rm/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

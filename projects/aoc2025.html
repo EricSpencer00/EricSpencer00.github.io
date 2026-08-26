@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,11 +135,11 @@ li{margin:4px 0}
 <p class="meta">Advent of Code 2025 solutions in Python. Days 1 through 6, both parts each.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">https://github.com/EricSpencer00/AoC2025</a></p>
 <hr class="dash">
-<p>A Python run at <a href="https://adventofcode.com/2025" target="_blank" rel="noopener">Advent of Code</a> 2025 that covers days 1 through 6, both parts each, for twelve stars. The commits stop after that.</p>
-<p>Python, no framework, one file per part. <code>d1.py</code>, <code>d1_p2.py</code>, and so on. Inputs live in <code>inputs/</code> and aren't committed. That's the whole setup.</p>
-<p>Day 3 asks for something like "find the largest 12-digit number you can form by picking digits in order from a string." The first attempt nested twelve <code>for</code> loops, which is exactly as horrifying as it sounds. It is still there, commented out at the top of <code>d3_p2.py</code>. The committed solution is a greedy pass.</p>
-<p>Day 6 is a worksheet of "cephalopod math": numbers laid out vertically in columns, with the operator sitting at the bottom of each column block. Part 2 adds that the cephalopods read right-to-left within each problem, so the whole layout needs reshuffling. The solution transposes columns, finds the operator row, and reverses the order.</p>
-<p>The puzzles get harder after day 6 and the repo stops there. It is small and self-contained, so it is easy to compare solutions against or to read the twelve nested for loops: <a href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">github.com/EricSpencer00/AoC2025</a>.</p>
+<p>A Python run at <a href="https://adventofcode.com/2025" target="_blank" rel="noopener">Advent of Code</a> 2025 covering days 1 through 6, both parts each, for twelve stars. The commits stop after day 6.</p>
+<p>Python, no framework, one file per part: <code>d1.py</code>, <code>d1_p2.py</code>, and so on. Inputs live in <code>inputs/</code> and are not committed. That is the whole setup.</p>
+<p>Day 3 asks, roughly, for the largest 12-digit number that can be formed by picking digits in order from a string. The first attempt nested twelve <code>for</code> loops. It is still in the file, commented out at the top of <code>d3_p2.py</code>. The committed solution is a greedy pass.</p>
+<p>Day 6 is a worksheet of "cephalopod math": numbers laid out vertically in columns, with the operator sitting at the bottom of each column block. Part 2 adds that the cephalopods read right to left within each problem, so the whole layout needs reshuffling. The solution transposes columns, finds the operator row, and reverses the order.</p>
+<p>The puzzles get harder after day 6 and the repository stops there. Source: <a href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">github.com/EricSpencer00/AoC2025</a>.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

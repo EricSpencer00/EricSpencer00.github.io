@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -135,7 +135,7 @@ li{margin:4px 0}
 <p class="meta">Analyze different Machine Learning algorithms to identify fraud within a classified dataset</p>
 <p class="meta">repo: <span>https://github.com/EricSpencer00/fraud-predictor</span></p>
 <hr class="dash">
-<p>A group project for COMP 379: Machine Learning. It compares different ML algorithms for detecting fraud within a dataset that was anonymized and PCA'ed.</p>
+<p>A group project for COMP 379: Machine Learning. It compares several machine learning algorithms for fraud detection on a dataset that has been anonymized and transformed with PCA.</p>
 <p><a href="https://colab.research.google.com/drive/1dP9ev-j5ZRE3_MmWzLhHxXAbEtG5qKbT?usp=sharing" target="_blank" rel="noopener">https://colab.research.google.com/drive/1dP9ev-j5ZRE3_MmWzLhHxXAbEtG5qKbT?usp=sharing</a></p>
 <h2>Imports<span class="ln"></span></h2>
 <pre class="code"><code>
@@ -158,7 +158,7 @@ from xgboost                 import XGBClassifier
 from lightgbm                import LGBMClassifier
 from sklearn.neighbors       import KNeighborsClassifier
 </code></pre>
-<h2>Download the Dataset<span class="ln"></span></h2>
+<h2>Download the dataset<span class="ln"></span></h2>
 <pre class="code"><code>
 def download_dataset():
     &quot;&quot;&quot;Download the Kaggle creditcardfraud dataset if not present.&quot;&quot;&quot;
@@ -175,7 +175,7 @@ def download_dataset():
 # Run the download
 download_dataset()
 </code></pre>
-<h2>Load and Preview the Data<span class="ln"></span></h2>
+<h2>Load and preview the data<span class="ln"></span></h2>
 <pre class="code"><code>
 def load_data():
     &quot;&quot;&quot;Load the CSV into a pandas DataFrame.&quot;&quot;&quot;
@@ -185,7 +185,7 @@ def load_data():
 df = load_data()
 df.head()
 </code></pre>
-<h2>Model Comparison Function<span class="ln"></span></h2>
+<h2>Model comparison function<span class="ln"></span></h2>
 <pre class="code"><code>
 def compare_models(df):
     # 1) Features &amp; target
@@ -241,16 +241,24 @@ def compare_models(df):
     df_res = df_res.sort_values(&quot;roc_auc&quot;, ascending=False)
     return df_res
 </code></pre>
-<h2>Run Model Comparison<span class="ln"></span></h2>
+<h2>Run model comparison<span class="ln"></span></h2>
 <pre class="code"><code>
 # Run comparison and display results
 results_df = compare_models(df)
 print(&quot;=== Model Comparison Results ===&quot;)
 results_df
 </code></pre>
-<h3>Example Output Table</h3>
-<p>| Model              | Accuracy | Precision | Recall  | F1      | ROC AUC  | PR AUC  | |--------------------|----------|-----------|---------|---------|----------|---------| | LogisticRegression | 0.990948 | 0.148254  | 0.89025 | 0.25403 | 0.978925 | 0.75097 | | XGBoost            | 0.999466 | 0.850421  | 0.83944 | 0.84474 | 0.977823 | 0.85753 | | RandomForest       | 0.999530 | 0.892663  | 0.82723 | 0.85865 | 0.968977 | 0.85102 | | SVM (RBF)          | 0.997630 | 0.409137  | 0.82117 | 0.54560 | 0.964244 | 0.70854 | | LightGBM           | 0.999038 | 0.684689  | 0.83129 | 0.74998 | 0.962026 | 0.81331 | | KNN                | 0.998318 | 0.509715  | 0.81709 | 0.62733 | 0.914223 | 0.62561 |</p>
-<p>The Jupyter notebook above was Eric Spencer's individual contribution to the group project, along with the dataset visualizations in the <a href="../fraud-predictor-full">notebook report</a></p>
+<h3>Example output table</h3>
+<p>Mean scores across a stratified 5-fold cross-validation, ordered by ROC AUC:</p>
+<ul>
+<li>LogisticRegression: accuracy 0.990948, precision 0.148254, recall 0.89025, F1 0.25403, ROC AUC 0.978925, PR AUC 0.75097</li>
+<li>XGBoost: accuracy 0.999466, precision 0.850421, recall 0.83944, F1 0.84474, ROC AUC 0.977823, PR AUC 0.85753</li>
+<li>RandomForest: accuracy 0.999530, precision 0.892663, recall 0.82723, F1 0.85865, ROC AUC 0.968977, PR AUC 0.85102</li>
+<li>SVM (RBF): accuracy 0.997630, precision 0.409137, recall 0.82117, F1 0.54560, ROC AUC 0.964244, PR AUC 0.70854</li>
+<li>LightGBM: accuracy 0.999038, precision 0.684689, recall 0.83129, F1 0.74998, ROC AUC 0.962026, PR AUC 0.81331</li>
+<li>KNN: accuracy 0.998318, precision 0.509715, recall 0.81709, F1 0.62733, ROC AUC 0.914223, PR AUC 0.62561</li>
+</ul>
+<p>The Jupyter notebook above was Eric Spencer's individual contribution to the group project, along with the dataset visualizations in the <a href="../fraud-predictor-full">notebook report</a>.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

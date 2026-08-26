@@ -122,7 +122,7 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner"> _____      _        ____
+</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -134,7 +134,7 @@ li{margin:4px 0}
 <h2>A ~/.zshrc walkthrough<span class="ln"></span></h2>
 <p class="meta">Runs every time a terminal opens</p>
 <hr class="dash">
-<p>Runs every time a terminal opens on a Macbook Pro.</p>
+<p>Runs every time a terminal opens on a MacBook Pro.</p>
 <pre class="code"><code>
 PROMPT=&#x27;%F{green}$USER%f $ &#x27;
 echo &quot;8b    d8  dP\&quot;Yb   88888 88 
@@ -187,8 +187,8 @@ export PATH=$HOME/.npm-global/bin:$PATH
 </code></pre>
 <p>Notes:</p>
 <ul>
-<li>gpt.py is a CLI for ChatGPT. You can install it via <a href="https://github.com/EricSpencer00/TerminalGPT" target="_blank" rel="noopener">TerminalGPT</a></li>
-<li>You should use --rebase with git pull</li>
+<li><code>gpt.py</code> is a command-line client for ChatGPT, installable from <a href="https://github.com/EricSpencer00/TerminalGPT" target="_blank" rel="noopener">TerminalGPT</a>.</li>
+<li>The <code>gp</code> alias uses <code>git pull --rebase</code> rather than a merge pull.</li>
 </ul>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
