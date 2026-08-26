@@ -182,7 +182,7 @@ footer p{margin:0 0 8px}
 </table>
 
 <footer>
-  <p><a href="https://en.wikipedia.org/wiki/One-repetition_maximum#Estimating_1RM" target="_blank" rel="noopener">Epley formula</a></p>
+  <p><a href="https://en.wikipedia.org/wiki/One-repetition_maximum#Estimating_1RM" target="_blank" rel="noopener">combo of all seven</a></p>
   <p id="ios-hint" hidden>Share &rarr; Add to Home Screen to keep it offline.</p>
   <p><button type="button" id="install" hidden>Install</button></p>
   <p><a href="/">ericspencer.us</a></p>
@@ -193,11 +193,26 @@ footer p{margin:0 0 8px}
 (function(){
   "use strict";
 
-  // Epley: 1RM = w(1 + r/30), divided by its own value at one rep. Raw Epley
-  // reports 1.03x the bar for a true single, which is not an estimate of
-  // anything; normalised, one rep hands back the weight you lifted and the
-  // table row at your rep count reads back the weight you entered.
-  function factor(r){ return (30 + r) / 31; }
+  // 1RM/weight ratio at r reps, per estimator. Each is divided by its own value
+  // at r=1, so a single rep always reports back the weight you put in rather
+  // than a formula's residual disagreement with itself.
+  var F = [
+    function(r){ return 1 + r/30; },                              // Epley
+    function(r){ return 36/(37-r); },                             // Brzycki
+    function(r){ return Math.pow(r, 0.10); },                     // Lombardi
+    function(r){ return 1 + 0.025*r; },                           // O'Conner
+    function(r){ return 100/(48.8 + 53.8*Math.exp(-0.075*r)); },  // Wathan
+    function(r){ return 100/(52.2 + 41.9*Math.exp(-0.055*r)); },  // Mayhew
+    function(r){ return 100/(101.3 - 2.67123*r); }                // Lander
+  ];
+  var BASE = F.map(function(f){ return f(1); });
+
+  // The median, not the mean: one estimator wandering off at high reps moves a
+  // mean and cannot move a median.
+  function factor(r){
+    var fs = F.map(function(f,i){ return f(r)/BASE[i]; }).sort(function(a,b){ return a-b; });
+    return fs[fs.length >> 1];
+  }
 
   var MAXREPS = 12;
   var UNITS = { lb:{step:5, round:5}, kg:{step:2.5, round:2.5} };
