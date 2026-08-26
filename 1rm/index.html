@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>1RM — one-rep max calculator | Eric Spencer</title>
-<meta name="description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline, installs to your home screen.">
+<meta name="description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/1rm/">
@@ -20,7 +20,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta property="og:type" content="website">
 <meta property="og:title" content="1RM — one-rep max calculator">
-<meta property="og:description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline, installs to your home screen.">
+<meta property="og:description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline.">
 <meta property="og:url" content="https://ericspencer.us/1rm/">
 <meta property="og:image" content="https://ericspencer.us/assets/og/1rm.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -32,7 +32,7 @@
 <meta name="twitter:image:alt" content="1RM — one-rep max calculator — ericspencer.us">
 <meta property="linkedin:image" content="https://ericspencer.us/assets/og/1rm.jpg">
 <meta name="twitter:title" content="1RM — one-rep max calculator">
-<meta name="twitter:description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline, installs to your home screen.">
+<meta name="twitter:description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline.">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <style>
@@ -139,10 +139,6 @@ tr.here td:first-child{color:var(--accent)}
 footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--dim)}
 footer a{color:var(--dim)}
 footer p{margin:0 0 8px}
-#install{
-  appearance:none;border:1px solid var(--rule);background:var(--card);color:var(--ink);
-  border-radius:8px;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;cursor:pointer;min-height:38px;
-}
 [hidden]{display:none !important}
 @media (display-mode:standalone){nav.top{display:none}.wrap{padding-top:calc(20px + env(safe-area-inset-top))}}
 @media (prefers-reduced-motion:reduce){*{transition:none !important}}
@@ -183,8 +179,6 @@ footer p{margin:0 0 8px}
 
 <footer>
   <p><a href="https://en.wikipedia.org/wiki/One-repetition_maximum#Estimating_1RM" target="_blank" rel="noopener">combo of all seven</a></p>
-  <p id="ios-hint" hidden>Share &rarr; Add to Home Screen to keep it offline.</p>
-  <p><button type="button" id="install" hidden>Install</button></p>
   <p><a href="/">ericspencer.us</a></p>
 </footer>
 </div>
@@ -344,26 +338,6 @@ footer p{margin:0 0 8px}
   });
 
   render();
-
-  var prompt = null, $install = document.getElementById("install");
-  window.addEventListener("beforeinstallprompt", function(e){
-    e.preventDefault();
-    prompt = e;
-    $install.hidden = false;
-  });
-  $install.addEventListener("click", function(){
-    if (!prompt) return;
-    prompt.prompt();
-    prompt = null;
-    $install.hidden = true;
-  });
-  window.addEventListener("appinstalled", function(){ $install.hidden = true; });
-
-  // iOS has no install prompt, so the only way to say it is to say it.
-  var iOS = /iP(hone|ad|od)/.test(navigator.platform)
-         || (navigator.userAgent.indexOf("Mac") > -1 && navigator.maxTouchPoints > 1);
-  var standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
-  if (iOS && !standalone) document.getElementById("ios-hint").hidden = false;
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function(){
