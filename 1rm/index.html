@@ -73,8 +73,7 @@ body{
 nav.top{font-size:14px;font-weight:500;color:var(--dim);margin:0 0 26px}
 nav.top a{color:inherit;text-decoration:none;padding:0 2px}
 nav.top a:hover{color:var(--ink)}
-h1{font-size:26px;font-weight:700;letter-spacing:-0.025em;margin:0}
-.sub{font-size:14px;color:var(--dim);margin:2px 0 22px}
+h1{font-size:26px;font-weight:700;letter-spacing:-0.025em;margin:0 0 22px}
 .lbl{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:0 0 8px}
 
 /* unit toggle */
@@ -126,7 +125,6 @@ h1{font-size:26px;font-weight:700;letter-spacing:-0.025em;margin:0}
 .big{font-size:clamp(48px,15vw,68px);font-weight:700;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums}
 .big .ou{font-size:22px;font-weight:600;color:var(--dim);letter-spacing:0}
 .cap{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:0 0 10px}
-.range{font-size:13px;color:var(--dim);margin:10px 0 0;font-variant-numeric:tabular-nums}
 
 /* table */
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
@@ -155,7 +153,6 @@ footer p{margin:0 0 8px}
 <nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 
 <h1>One-rep max</h1>
-<p class="sub">Enter a set you actually did.</p>
 
 <div class="units" role="group" aria-label="Units">
   <button type="button" data-unit="lb" aria-pressed="true">lb</button>
@@ -176,7 +173,6 @@ footer p{margin:0 0 8px}
   <p class="cap">Estimated 1RM</p>
   <div aria-live="polite">
     <div class="big"><span id="orm">—</span><span class="ou" id="ou">&nbsp;lb</span></div>
-    <p class="range" id="range"></p>
   </div>
 </div>
 
@@ -186,8 +182,7 @@ footer p{margin:0 0 8px}
 </table>
 
 <footer>
-  <p>Median of seven published estimators (Epley, Brzycki, Lombardi, O&rsquo;Conner, Wathan, Mayhew, Lander), normalised so a single rep returns the weight you lifted. Accuracy falls off above about eight reps.</p>
-  <p>Weights round to the nearest 5&nbsp;lb / 2.5&nbsp;kg &mdash; what a bar can actually be loaded to.</p>
+  <p><a href="https://en.wikipedia.org/wiki/One-repetition_maximum#Estimating_1RM" target="_blank" rel="noopener">Epley formula</a></p>
   <p id="ios-hint" hidden>Share &rarr; Add to Home Screen to keep it offline.</p>
   <p><button type="button" id="install" hidden>Install</button></p>
   <p><a href="/">ericspencer.us</a></p>
@@ -198,27 +193,11 @@ footer p{margin:0 0 8px}
 (function(){
   "use strict";
 
-  // 1RM/weight ratio at r reps, per estimator. Each is divided by its own value
-  // at r=1, so a single rep always reports back the weight you put in rather
-  // than a formula's residual disagreement with itself.
-  var F = [
-    function(r){ return 1 + r/30; },                              // Epley
-    function(r){ return 36/(37-r); },                             // Brzycki
-    function(r){ return Math.pow(r, 0.10); },                     // Lombardi
-    function(r){ return 1 + 0.025*r; },                           // O'Conner
-    function(r){ return 100/(48.8 + 53.8*Math.exp(-0.075*r)); },  // Wathan
-    function(r){ return 100/(52.2 + 41.9*Math.exp(-0.055*r)); },  // Mayhew
-    function(r){ return 100/(101.3 - 2.67123*r); }                // Lander
-  ];
-  var BASE = F.map(function(f){ return f(1); });
-
-  function factors(r){
-    return F.map(function(f,i){ return f(r)/BASE[i]; }).sort(function(a,b){ return a-b; });
-  }
-  function median(a){
-    var m = a.length >> 1;
-    return a.length % 2 ? a[m] : (a[m-1]+a[m])/2;
-  }
+  // Epley: 1RM = w(1 + r/30), divided by its own value at one rep. Raw Epley
+  // reports 1.03x the bar for a true single, which is not an estimate of
+  // anything; normalised, one rep hands back the weight you lifted and the
+  // table row at your rep count reads back the weight you entered.
+  function factor(r){ return (30 + r) / 31; }
 
   var MAXREPS = 12;
   var UNITS = { lb:{step:5, round:5}, kg:{step:2.5, round:2.5} };
@@ -234,7 +213,6 @@ footer p{margin:0 0 8px}
       $wu = document.getElementById("wu"),
       $ou = document.getElementById("ou"),
       $orm = document.getElementById("orm"),
-      $range = document.getElementById("range"),
       $reps = document.getElementById("reps"),
       $tbl = document.getElementById("tbl");
 
@@ -269,21 +247,16 @@ footer p{margin:0 0 8px}
     var w = state.weight;
     if (!(w > 0)) {
       $orm.textContent = "—";
-      $range.textContent = "";
       $tbl.innerHTML = "";
       return;
     }
 
-    var fs = factors(state.reps);
-    var orm = w * median(fs);
+    var orm = w * factor(state.reps);
     $orm.textContent = fmt(roundTo(orm, u.round));
-    $range.textContent = state.reps === 1
-      ? "A single rep is the measurement, not an estimate."
-      : "Estimators span " + fmt(roundTo(w*fs[0], u.round)) + "–" + fmt(roundTo(w*fs[fs.length-1], u.round)) + " " + state.unit + ".";
 
     var rows = "";
     for (var r = 1; r <= MAXREPS; r++) {
-      var exact = orm / median(factors(r));
+      var exact = orm / factor(r);
       var shown = roundTo(exact, u.round);
       rows += '<tr' + (r === state.reps ? ' class="here"' : '') + '>'
             + "<td>" + r + "</td>"

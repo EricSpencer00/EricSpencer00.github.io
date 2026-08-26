@@ -1,6 +1,6 @@
 // Offline shell for /1rm/. Bump CACHE to ship a new version: the old cache is
 // dropped on activate, so a stale page can never outlive its own assets.
-var CACHE = "1rm-v1";
+var CACHE = "1rm-v2";
 var CORE = [
   "/1rm/",
   "/1rm/index.html",

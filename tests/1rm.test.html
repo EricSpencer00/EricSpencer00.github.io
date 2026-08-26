@@ -22,12 +22,11 @@ window.addEventListener("load", function(){
   // rep chip
   click(d.querySelector('#reps button[data-r="1"]'));
   ok("1 rep returns the lift", orm(), "185");
-  ok("1 rep note", d.getElementById("range").textContent.indexOf("measurement") > -1, "true");
   ok("row1 = 100%", rows()[0], "1:185:100%");
 
   click(d.querySelector('#reps button[data-r="8"]'));
-  ok("8 reps 1RM", orm(), "230");
-  ok("row8 = input weight", rows()[7], "8:185:81%");
+  ok("8 reps 1RM", orm(), "225");
+  ok("row8 = input weight", rows()[7], "8:185:82%");
 
   // +/- stepper snaps to the increment
   var plus = d.querySelector('.step[data-d="1"]'), minus = d.querySelector('.step[data-d="-1"]');
