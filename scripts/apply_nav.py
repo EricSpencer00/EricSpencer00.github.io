@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Directories that are in git for reference but never published, plus the blog
 # post template, which is a scaffold rather than a page.
-SKIP_DIRS = {".git", ".claude", "backup-site", "node_modules", "assets"}
+SKIP_DIRS = {".git", ".claude", "backup-site", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
 
 NAV_RE = re.compile(r'<nav class="top">.*?</nav>', re.DOTALL)

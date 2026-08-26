@@ -40,7 +40,7 @@ SCALE = 2
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 # Directories that are archives, samples or verification files, not pages.
-SKIP = ("/.git/", "/backup-site/", "/.claude/", "/samples/", "/_template", "/google")
+SKIP = ("/.git/", "/backup-site/", "/.claude/", "/samples/", "/tests/", "/_template", "/google")
 
 # Paper background, matching --paper in the site CSS.
 PAPER = (250, 248, 243)

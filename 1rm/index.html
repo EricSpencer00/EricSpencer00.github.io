@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1RM — one-rep max calculator | Eric Spencer</title>
+<meta name="description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline, installs to your home screen.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/1rm/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/1rm/icon-180.png">
+<meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#211e1a" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="/1rm/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="1RM">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:type" content="website">
+<meta property="og:title" content="1RM — one-rep max calculator">
+<meta property="og:description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline, installs to your home screen.">
+<meta property="og:url" content="https://ericspencer.us/1rm/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/1rm.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="1RM — one-rep max calculator — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/1rm.jpg">
+<meta name="twitter:image:alt" content="1RM — one-rep max calculator — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/1rm.jpg">
+<meta name="twitter:title" content="1RM — one-rep max calculator">
+<meta name="twitter:description" content="Estimate a one-rep max from any set, and read off the training weight for every rep count. Works offline, installs to your home screen.">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<style>
+:root{
+  --paper:oklch(0.978 0.006 80);
+  --card:oklch(1 0 0);
+  --ink:oklch(0.11 0.015 60);
+  --accent:oklch(0.30 0.13 22);
+  --dim:oklch(0.52 0.01 70);
+  --rule:oklch(0.87 0.005 80);
+  --sunk:oklch(0.94 0.005 80);
+  --on-accent:oklch(0.99 0 0);
+  --ring:oklch(0.30 0.13 22/.16);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:oklch(0.17 0.008 70);
+    --card:oklch(0.21 0.008 70);
+    --ink:oklch(0.95 0.005 80);
+    --accent:oklch(0.72 0.13 25);
+    --dim:oklch(0.65 0.01 70);
+    --rule:oklch(0.31 0.008 70);
+    --sunk:oklch(0.25 0.008 70);
+    /* The dark-mode accent is light, so what sits on it has to be dark. */
+    --on-accent:oklch(0.17 0.03 25);
+    --ring:oklch(0.72 0.13 25/.28);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+}
+.wrap{max-width:520px;margin:0 auto;padding:28px 20px calc(40px + env(safe-area-inset-bottom))}
+nav.top{font-size:14px;font-weight:500;color:var(--dim);margin:0 0 26px}
+nav.top a{color:inherit;text-decoration:none;padding:0 2px}
+nav.top a:hover{color:var(--ink)}
+h1{font-size:26px;font-weight:700;letter-spacing:-0.025em;margin:0}
+.sub{font-size:14px;color:var(--dim);margin:2px 0 22px}
+.lbl{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:0 0 8px}
+
+/* unit toggle */
+.units{display:inline-flex;background:var(--sunk);border-radius:10px;padding:3px;gap:2px;margin:0 0 22px}
+.units button{
+  appearance:none;border:0;background:transparent;color:var(--dim);cursor:pointer;
+  font:inherit;font-size:14px;font-weight:600;padding:6px 18px;border-radius:8px;
+  min-height:36px;transition:background .12s,color .12s;
+}
+.units button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px oklch(0 0 0/.10)}
+
+/* weight row */
+.wrow{display:flex;align-items:stretch;gap:10px;margin:0 0 24px}
+.step{
+  appearance:none;flex:0 0 58px;border:1px solid var(--rule);background:var(--card);color:var(--ink);
+  border-radius:12px;font:inherit;font-size:26px;line-height:1;cursor:pointer;
+  min-height:62px;display:flex;align-items:center;justify-content:center;
+  touch-action:manipulation;user-select:none;-webkit-user-select:none;
+}
+.step:active{background:var(--sunk)}
+.field{
+  /* min-width:0 or the number input's intrinsic width refuses to shrink and
+     the whole row overflows a phone. */
+  flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;
+  border:1px solid var(--rule);background:var(--card);border-radius:12px;min-height:62px;padding:0 8px;
+}
+.field:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+#w{
+  width:100%;min-width:0;appearance:none;border:0;background:transparent;color:var(--ink);
+  font:inherit;font-size:32px;font-weight:700;letter-spacing:-0.02em;text-align:right;
+  font-variant-numeric:tabular-nums;padding:0;outline:none;
+}
+#w::-webkit-outer-spin-button,#w::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+#w{-moz-appearance:textfield}
+.field .u{font-size:15px;font-weight:600;color:var(--dim);flex:0 0 auto}
+
+/* rep chips */
+.reps{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 26px}
+.reps button{
+  appearance:none;border:1px solid var(--rule);background:var(--card);color:var(--ink);
+  border-radius:10px;font:inherit;font-size:16px;font-weight:600;cursor:pointer;
+  min-height:48px;font-variant-numeric:tabular-nums;touch-action:manipulation;
+}
+.reps button:active{background:var(--sunk)}
+.reps button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+/* result */
+.out{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:22px 0;margin:0 0 26px;text-align:center}
+.big{font-size:clamp(48px,15vw,68px);font-weight:700;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums}
+.big .ou{font-size:22px;font-weight:600;color:var(--dim);letter-spacing:0}
+.cap{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:0 0 10px}
+.range{font-size:13px;color:var(--dim);margin:10px 0 0;font-variant-numeric:tabular-nums}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);text-align:right;padding:0 0 8px}
+th:first-child{text-align:left}
+td{padding:7px 0;border-top:1px solid var(--rule);text-align:right;font-size:16px}
+td:first-child{text-align:left;color:var(--dim);font-size:14px}
+tr.here td{color:var(--accent);font-weight:700}
+tr.here td:first-child{color:var(--accent)}
+.pct{color:var(--dim);font-size:14px;width:4.5em}
+
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--dim)}
+footer a{color:var(--dim)}
+footer p{margin:0 0 8px}
+#install{
+  appearance:none;border:1px solid var(--rule);background:var(--card);color:var(--ink);
+  border-radius:8px;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;cursor:pointer;min-height:38px;
+}
+[hidden]{display:none !important}
+@media (display-mode:standalone){nav.top{display:none}.wrap{padding-top:calc(20px + env(safe-area-inset-top))}}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+
+<h1>One-rep max</h1>
+<p class="sub">Enter a set you actually did.</p>
+
+<div class="units" role="group" aria-label="Units">
+  <button type="button" data-unit="lb" aria-pressed="true">lb</button>
+  <button type="button" data-unit="kg" aria-pressed="false">kg</button>
+</div>
+
+<label class="lbl" for="w">Weight</label>
+<div class="wrow">
+  <button type="button" class="step" data-d="-1" aria-label="Decrease weight">&minus;</button>
+  <div class="field"><input id="w" type="number" inputmode="decimal" enterkeyhint="done" autocomplete="off" min="0" value="185"><span class="u" id="wu">lb</span></div>
+  <button type="button" class="step" data-d="1" aria-label="Increase weight">+</button>
+</div>
+
+<span class="lbl" id="repsLabel">Reps</span>
+<div class="reps" id="reps" role="radiogroup" aria-labelledby="repsLabel"></div>
+
+<div class="out">
+  <p class="cap">Estimated 1RM</p>
+  <div aria-live="polite">
+    <div class="big"><span id="orm">—</span><span class="ou" id="ou">&nbsp;lb</span></div>
+    <p class="range" id="range"></p>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>Reps</th><th>Weight</th><th class="pct">% 1RM</th></tr></thead>
+  <tbody id="tbl"></tbody>
+</table>
+
+<footer>
+  <p>Median of seven published estimators (Epley, Brzycki, Lombardi, O&rsquo;Conner, Wathan, Mayhew, Lander), normalised so a single rep returns the weight you lifted. Accuracy falls off above about eight reps.</p>
+  <p>Weights round to the nearest 5&nbsp;lb / 2.5&nbsp;kg &mdash; what a bar can actually be loaded to.</p>
+  <p id="ios-hint" hidden>Share &rarr; Add to Home Screen to keep it offline.</p>
+  <p><button type="button" id="install" hidden>Install</button></p>
+  <p><a href="/">ericspencer.us</a></p>
+</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // 1RM/weight ratio at r reps, per estimator. Each is divided by its own value
+  // at r=1, so a single rep always reports back the weight you put in rather
+  // than a formula's residual disagreement with itself.
+  var F = [
+    function(r){ return 1 + r/30; },                              // Epley
+    function(r){ return 36/(37-r); },                             // Brzycki
+    function(r){ return Math.pow(r, 0.10); },                     // Lombardi
+    function(r){ return 1 + 0.025*r; },                           // O'Conner
+    function(r){ return 100/(48.8 + 53.8*Math.exp(-0.075*r)); },  // Wathan
+    function(r){ return 100/(52.2 + 41.9*Math.exp(-0.055*r)); },  // Mayhew
+    function(r){ return 100/(101.3 - 2.67123*r); }                // Lander
+  ];
+  var BASE = F.map(function(f){ return f(1); });
+
+  function factors(r){
+    return F.map(function(f,i){ return f(r)/BASE[i]; }).sort(function(a,b){ return a-b; });
+  }
+  function median(a){
+    var m = a.length >> 1;
+    return a.length % 2 ? a[m] : (a[m-1]+a[m])/2;
+  }
+
+  var MAXREPS = 12;
+  var UNITS = { lb:{step:5, round:5}, kg:{step:2.5, round:2.5} };
+  var LB_PER_KG = 2.2046226218;
+
+  var state = { weight:185, reps:5, unit:"lb" };
+  try {
+    var saved = JSON.parse(localStorage.getItem("1rm") || "null");
+    if (saved && UNITS[saved.unit] && saved.weight > 0) state = saved;
+  } catch (e) {}
+
+  var $w = document.getElementById("w"),
+      $wu = document.getElementById("wu"),
+      $ou = document.getElementById("ou"),
+      $orm = document.getElementById("orm"),
+      $range = document.getElementById("range"),
+      $reps = document.getElementById("reps"),
+      $tbl = document.getElementById("tbl");
+
+  function roundTo(v, inc){ return Math.round(v/inc)*inc; }
+  function fmt(v){ return (Math.round(v*10)/10).toLocaleString(undefined,{maximumFractionDigits:1}); }
+
+  for (var r = 1; r <= MAXREPS; r++) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = r;
+    b.setAttribute("role", "radio");
+    b.dataset.r = r;
+    $reps.appendChild(b);
+  }
+
+  function render(){
+    var u = UNITS[state.unit];
+    $wu.textContent = state.unit;
+    $ou.innerHTML = "&nbsp;" + state.unit;
+    $w.step = u.step;
+    if (document.activeElement !== $w) $w.value = state.weight;
+
+    Array.prototype.forEach.call($reps.children, function(b){
+      b.setAttribute("aria-checked", Number(b.dataset.r) === state.reps ? "true" : "false");
+      b.tabIndex = Number(b.dataset.r) === state.reps ? 0 : -1;
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll(".units button"), function(b){
+      b.setAttribute("aria-pressed", b.dataset.unit === state.unit ? "true" : "false");
+    });
+
+    var w = state.weight;
+    if (!(w > 0)) {
+      $orm.textContent = "—";
+      $range.textContent = "";
+      $tbl.innerHTML = "";
+      return;
+    }
+
+    var fs = factors(state.reps);
+    var orm = w * median(fs);
+    $orm.textContent = fmt(roundTo(orm, u.round));
+    $range.textContent = state.reps === 1
+      ? "A single rep is the measurement, not an estimate."
+      : "Estimators span " + fmt(roundTo(w*fs[0], u.round)) + "–" + fmt(roundTo(w*fs[fs.length-1], u.round)) + " " + state.unit + ".";
+
+    var rows = "";
+    for (var r = 1; r <= MAXREPS; r++) {
+      var exact = orm / median(factors(r));
+      var shown = roundTo(exact, u.round);
+      rows += '<tr' + (r === state.reps ? ' class="here"' : '') + '>'
+            + "<td>" + r + "</td>"
+            + "<td>" + fmt(shown) + "</td>"
+            + '<td class="pct">' + Math.round(exact/orm*100) + "%</td></tr>";
+    }
+    $tbl.innerHTML = rows;
+  }
+
+  function save(){
+    try { localStorage.setItem("1rm", JSON.stringify(state)); } catch (e) {}
+  }
+  function update(){ render(); save(); }
+
+  $w.addEventListener("input", function(){
+    var v = parseFloat($w.value);
+    state.weight = isNaN(v) ? 0 : v;
+    update();
+  });
+  $w.addEventListener("blur", function(){ render(); });
+  $w.addEventListener("focus", function(){ $w.select(); });
+
+  function bump(d){
+    var inc = UNITS[state.unit].step;
+    // Snap to the increment first: nudging 187 up should land on 190, not 192.
+    var base = Math.round(state.weight/inc)*inc;
+    if (d > 0 && base <= state.weight) base += inc;
+    else if (d < 0 && base >= state.weight) base -= inc;
+    state.weight = Math.max(0, Math.round(base*10)/10);
+    update();
+  }
+
+  // Press-and-hold repeats, so loading up from 45 lb is not twenty taps.
+  Array.prototype.forEach.call(document.querySelectorAll(".step"), function(b){
+    var d = Number(b.dataset.d), hold, tick;
+    function start(e){
+      e.preventDefault();
+      bump(d);
+      hold = setTimeout(function(){ tick = setInterval(function(){ bump(d); }, 70); }, 420);
+    }
+    function stop(){ clearTimeout(hold); clearInterval(tick); }
+    b.addEventListener("pointerdown", start);
+    ["pointerup","pointerleave","pointercancel"].forEach(function(ev){ b.addEventListener(ev, stop); });
+  });
+
+  $reps.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if (b) { state.reps = Number(b.dataset.r); update(); }
+  });
+  $reps.addEventListener("keydown", function(e){
+    var d = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1
+          : e.key === "ArrowLeft"  || e.key === "ArrowUp"   ? -1 : 0;
+    if (!d) return;
+    e.preventDefault();
+    state.reps = Math.min(MAXREPS, Math.max(1, state.reps + d));
+    update();
+    $reps.querySelector('[aria-checked="true"]').focus();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".units button"), function(b){
+    b.addEventListener("click", function(){
+      if (b.dataset.unit === state.unit) return;
+      var to = b.dataset.unit;
+      // Converting keeps the same bar, not the same number.
+      var w = to === "kg" ? state.weight/LB_PER_KG : state.weight*LB_PER_KG;
+      state.weight = roundTo(w, UNITS[to].round);
+      state.unit = to;
+      update();
+    });
+  });
+
+  render();
+
+  var prompt = null, $install = document.getElementById("install");
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    prompt = e;
+    $install.hidden = false;
+  });
+  $install.addEventListener("click", function(){
+    if (!prompt) return;
+    prompt.prompt();
+    prompt = null;
+    $install.hidden = true;
+  });
+  window.addEventListener("appinstalled", function(){ $install.hidden = true; });
+
+  // iOS has no install prompt, so the only way to say it is to say it.
+  var iOS = /iP(hone|ad|od)/.test(navigator.platform)
+         || (navigator.userAgent.indexOf("Mac") > -1 && navigator.maxTouchPoints > 1);
+  var standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  if (iOS && !standalone) document.getElementById("ios-hint").hidden = false;
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("/1rm/sw.js", { scope: "/1rm/" }).catch(function(){});
+    });
+  }
+})();
+</script>
+</body>
+</html>
