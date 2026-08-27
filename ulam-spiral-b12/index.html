@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ulam spiral, base twelve</title>
+<meta name="description" content="The integers on a square spiral, primes marked, written in base twelve. Every prime past 3 ends in 1, 5, 7 or E.">
+<link rel="canonical" href="https://ericspencer.us/ulam-spiral-b12/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#0d0d10; --ash:#6b6b76; --haze:#ececf1;
+  --signal:#3a1ce0; --signal-soft:#ece9ff;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --display:"Archivo",ui-sans-serif,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+@supports (height:100dvh){html,body{height:100dvh}}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--mono);
+  overflow:hidden; overscroll-behavior:none;
+  display:flex; flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Rewritten in place by scripts/apply_nav.py, so the markup below is a
+   starting value and not the source of truth. */
+nav.top{
+  flex:0 0 auto; font-size:13px; color:var(--ash);
+  padding:12px 16px calc(12px - 1px); border-bottom:1px solid var(--haze);
+  padding-top:calc(12px + env(safe-area-inset-top));
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+nav.top a{color:inherit;text-decoration:none;padding:0 2px}
+nav.top a:hover,nav.top a.active{color:var(--signal)}
+
+/* The canvas is sized from this box rather than from the window: the two
+   bars are real rows, so "fills the browser" means the grid area and there
+   is nothing hidden under an overlay. */
+#stage{flex:1 1 auto; position:relative; min-height:0}
+#grid{display:block; width:100%; height:100%; touch-action:none; cursor:crosshair}
+
+.label{
+  font-family:var(--display); font-weight:700; text-transform:uppercase;
+  letter-spacing:.16em; font-size:.625rem; color:var(--ash);
+}
+
+#hint{
+  position:absolute; left:0; right:0; bottom:14px; text-align:center;
+  pointer-events:none; transition:opacity .4s steps(3);
+}
+#hint span{
+  background:var(--paper); box-shadow:0 0 0 1px var(--haze);
+  border-radius:3px; padding:7px 12px; display:inline-block; max-width:92%;
+  line-height:1.9;
+}
+#hint.gone{opacity:0}
+
+#bar{
+  flex:0 0 auto; display:flex; align-items:center; gap:14px;
+  padding:12px 16px; padding-bottom:calc(12px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--haze); background:var(--paper);
+}
+#read{display:flex; align-items:baseline; gap:14px; min-width:0; flex:1 1 auto}
+#read b{font-weight:700; font-size:15px; font-variant-numeric:tabular-nums}
+#read .sep{color:var(--haze)}
+#sel.prime{color:var(--signal)}
+#glyphs{color:var(--ash);opacity:.75}
+#sel[hidden]{display:none}
+
+#home{
+  appearance:none; border:0; cursor:pointer; font-family:var(--display);
+  font-weight:700; text-transform:uppercase; letter-spacing:.16em;
+  font-size:.625rem; color:var(--paper); background:var(--ink);
+  padding:11px 16px; border-radius:3px; flex:0 0 auto;
+  box-shadow:5px 5px 0 0 var(--haze);
+  transition:box-shadow .12s steps(2), transform .12s steps(2);
+}
+#home:active{transform:translate(3px,3px); box-shadow:2px 2px 0 0 var(--haze)}
+#home:focus-visible{outline:2px solid var(--signal); outline-offset:3px}
+
+@media (max-width:520px){
+  #read .wide{display:none}
+  #hint .wide{display:none}
+  #bar{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+
+<div id="stage">
+  <canvas id="grid" aria-label="Ulam spiral. Scroll to expand outward, tap a number to make it the centre."></canvas>
+  <div id="hint" class="label"><span>scroll to expand &nbsp;&middot;&nbsp; tap a number<span class="wide"> &nbsp;&middot;&nbsp; scroll back to centre it</span><br>base twelve &nbsp;&middot;&nbsp; X is ten, E is eleven</span></div>
+</div>
+
+<div id="bar">
+  <div id="read" class="label">
+    <span>base 12</span>
+    <span class="wide" id="glyphs">X=ten E=eleven</span>
+    <span class="sep">/</span>
+    <span>centre <b id="ctr">1</b></span>
+    <span class="sep">/</span>
+    <span>w <b id="wid">5</b></span>
+    <span class="sep" id="selsep" hidden>/</span>
+    <span id="sel" hidden>tapped <b id="seln">—</b></span>
+  </div>
+  <button id="home" type="button">centre</button>
+</div>
+
+<script>
+"use strict";
+(function () {
+
+/* ── base twelve ────────────────────────────────────────────────────────────
+ *
+ * X and E for ten and eleven — the older Dozenal Society digits, taken over
+ * U+218A and U+218B because nothing in this font stack draws those and a tofu
+ * box in every twelfth cell is worse than an unfamiliar letter.
+ *
+ * Only the writing changes. Primality is a property of a number and not of
+ * how it is spelled, so the sieve, the spiral and the marked cells here are
+ * identical to the base-ten page. What the base buys is something you can
+ * see: twelve is 2^2 * 3, so a prime past 3 cannot end in an even digit or in
+ * 3, 6 or 9, and every one of them on the screen ends in 1, 5, 7 or E.
+ */
+const BASE = 12;
+const GLYPHS = "0123456789XE";
+
+function show(v) {
+  if (v < BASE) return GLYPHS[v];
+  let out = "";
+  for (let r = v; r > 0; r = Math.floor(r / BASE)) out = GLYPHS[r % BASE] + out;
+  return out;
+}
+
+/* ── primality ──────────────────────────────────────────────────────────────
+ *
+ * The first 2048 numbers are baked in, bit-packed, one hex digit per four
+ * integers. Two reasons, and the second is the one that mattered: the opening
+ * frames need no work at all, and every prime below 2048 is a base prime for
+ * the segmented sieve, which is therefore correct for anything under 2048² —
+ * far past the cell cap below. Nothing else is ever sieved from scratch.
+ */
+const SEED_HEX =
+  "ac288aa0208a202888820802a2280280080aa02088202880a20008802882020882a0200a200088220008022882802088202002022880820802a2088080088820" +
+  "000a00200820080a02088282200a80008a20280022080820208080208880200222000820000aa0288000208a00208a0000888000022208028008828020002228" +
+  "8082000aa02000802882202008020080020808200802022082a02000020800a0080aa2088082000000008220200080000280288280280880008a220880000808" +
+  "80208280088800208222280820000082280000200a20000a202008820000822800020880800080002088a20002200802002800a00000200808a2080802288000";
+const SEED_LIMIT = SEED_HEX.length * 4;
+
+let bits = new Uint8Array(SEED_HEX.length / 2);
+for (let i = 0; i < bits.length; i++) bits[i] = parseInt(SEED_HEX.substr(i * 2, 2), 16);
+
+/* Primality is known for [0, limit). Beyond it a cell is drawn as pending
+   rather than guessed at, which is what makes the sieve visible. */
+let limit = SEED_LIMIT;
+let want = SEED_LIMIT;
+
+const basePrimes = [];
+for (let n = 2; n < SEED_LIMIT; n++) if ((bits[n >> 3] >> (n & 7)) & 1) basePrimes.push(n);
+
+const isPrime = (n) => (bits[n >> 3] >> (n & 7)) & 1;
+
+/* How much of a frame the sieve may take, and the granularity it checks at.
+   A fixed count per frame was the wrong knob: it left a fast machine drawing
+   white margins it had the time to fill, and would have stalled a slow one on
+   a deep expansion. A budget does the right thing at both ends — the fill-in
+   is visible exactly on the devices and jumps where it is real work. */
+const SIEVE_MS = 4;
+const CHUNK = 1 << 16;
+
+function sieveStep() {
+  if (limit >= want) return false;
+  const lo = limit, hi = Math.min(want, lo + CHUNK);
+
+  if (hi > bits.length * 8) {
+    const grown = new Uint8Array(Math.max(hi, bits.length * 16) >> 3);
+    grown.set(bits);
+    bits = grown;
+  }
+
+  const seg = new Uint8Array(hi - lo).fill(1);
+  for (let i = 0; i < basePrimes.length; i++) {
+    const p = basePrimes[i];
+    if (p * p >= hi) break;
+    let start = Math.max(p * p, Math.ceil(lo / p) * p);
+    for (let j = start; j < hi; j += p) seg[j - lo] = 0;
+  }
+  for (let n = lo; n < hi; n++) if (seg[n - lo]) bits[n >> 3] |= 1 << (n & 7);
+
+  limit = hi;
+  return true;
+}
+
+/* ── the spiral ─────────────────────────────────────────────────────────────
+ *
+ * Given a cell, which integer sits in it. The renderer walks cells, never
+ * numbers, so this direction is the only one the page needs.
+ *
+ * A cell belongs to ring r = max(|x|,|y|), whose largest member is (2r+1)² at
+ * the bottom-right corner. Walking backwards from that corner gives one linear
+ * expression per side. The corner cases fall out as long as the sides are
+ * tested in the same order they are walked.
+ */
+function numberAt(x, y) {
+  const r = Math.max(Math.abs(x), Math.abs(y));
+  if (r === 0) return 1;
+  const m = (2 * r + 1) * (2 * r + 1);
+  if (y === -r) return m - r + x;
+  if (x === -r) return m - 3 * r - y;
+  if (y === r) return m - 5 * r - x;
+  return m - 7 * r + y;
+}
+
+/* Which way n + 1 lies from the cell holding n.
+ *
+ * Every side of a ring runs one way and each corner belongs to the side it
+ * STARTS, not the one it ends, so the tests have to exclude the corner the
+ * previous side already claimed. The bottom row is checked first and keeps
+ * both of its corners: the bottom-left one turns the spiral, and the
+ * bottom-right one steps out into the next ring, and both of those are +x.
+ */
+const RIGHT = 0, UP = 1, LEFT = 2, DOWN = 3;
+function stepDir(x, y) {
+  const r = Math.max(Math.abs(x), Math.abs(y));
+  if (y === -r) return RIGHT;
+  if (x === r && y < r) return UP;
+  if (y === r && x > -r) return LEFT;
+  return DOWN;
+}
+
+/* ── view ───────────────────────────────────────────────────────────────── */
+
+const canvas = document.getElementById("grid");
+const ctx = canvas.getContext("2d", { alpha: false });
+const stage = document.getElementById("stage");
+const elCtr = document.getElementById("ctr");
+const elWid = document.getElementById("wid");
+const elSel = document.getElementById("sel");
+const elSelN = document.getElementById("seln");
+const elSelSep = document.getElementById("selsep");
+const elHint = document.getElementById("hint");
+
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let W = 0, H = 0, dpr = 1;
+let img = null;                  // reused ImageData for the small-cell path
+let cell = 64;                   // px per cell, continuous
+let cx = 0, cy = 0;              // grid coordinate at the centre of the canvas
+let sel = null;                  // {x, y, n} — the tapped cell, and the zoom anchor
+let anchor = null;               // where the view was when it was tapped
+let reveal = Infinity;           // during the opening, the highest number drawn
+let dirty = true;
+let started = false;
+
+/* No more cells on screen than this. It fixes the floor on cell size, and with
+   it the largest number the sieve is ever asked for. */
+const CELL_CAP = 600000;
+
+/* Floored, because every other size-derived quantity is expressed against
+   this one and a stage that has not been laid out yet reports zero. */
+const settledCell = () => (W < 768 ? Math.max(8, Math.min(W, H) / 5) : 72);
+const minCell = () => Math.max(1.2, Math.sqrt((W * H) / CELL_CAP));
+/* Four times the settled size, but never so close that fewer than about three
+   cells are on screen — one number filling the viewport is not a view of a
+   spiral. */
+const maxCell = () => Math.min(settledCell() * 4, Math.min(W, H) / 3);
+const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+
+/* Every size-dependent quantity is recomputed here rather than captured once.
+   The first measurement taken at parse time reported a two-pixel stage — the
+   flex row had not resolved yet — and a settled cell size captured from it
+   drove the whole grid to a sub-pixel scale, past the sieve's reach, so the
+   page rendered blank. Nothing size-derived is allowed to outlive a resize
+   now, and the opening waits for a stage with real dimensions. */
+function resize() {
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const r = stage.getBoundingClientRect();
+  const w = Math.round(r.width);
+  const h = Math.round(r.height);
+
+  /* A hidden tab reports a zero-sized stage. Letting that through rewrote the
+     view state from a degenerate viewport and collapsed the zoom to nothing,
+     so a page backgrounded and returned to came back wrong. */
+  if (w < 8 || h < 8) return;
+  if (w === W && h === H && img) return;
+
+  W = w; H = h;
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  img = ctx.createImageData(canvas.width, canvas.height);
+  cell = clamp(cell, minCell(), maxCell());
+  dirty = true;
+
+  if (!started) start();
+}
+
+/* The largest number anywhere in the current viewport. Rings grow outward from
+   the origin, so it is always at whichever corner is furthest from (0,0). */
+function maxVisible() {
+  const hx = W / 2 / cell, hy = H / 2 / cell;
+  let best = 1;
+  for (const sx of [-1, 1]) for (const sy of [-1, 1]) {
+    const n = numberAt(Math.round(cx + sx * hx), Math.round(cy + sy * hy));
+    if (n > best) best = n;
+  }
+  return best;
+}
+
+function draw() {
+  /* Nothing has been measured yet — the page was opened in a tab that is not
+     on screen. The loop keeps turning so that it is already running when the
+     tab is looked at; it just has nothing to draw on until then. */
+  if (!img) return;
+
+  const x0 = Math.floor(cx - W / 2 / cell), x1 = Math.ceil(cx + W / 2 / cell);
+  const y0 = Math.floor(cy - H / 2 / cell), y1 = Math.ceil(cy + H / 2 / cell);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, W, H);
+
+  /* The half-cell is the point of these: (cx, cy) names the cell under the
+     middle of the screen, so it is that cell's CENTRE that has to land there,
+     not its corner. Without it the grid sat half a cell to the right and the
+     tap hit-test — which does put the centre on the centre — disagreed with
+     the renderer by one cell along each edge. */
+  const ox = W / 2 - cell / 2 - cx * cell;   // screen x of column 0's left edge
+  const oy = H / 2 - cell / 2 + cy * cell;   // screen y of row 0's top edge
+
+  /* Type size is decided by the widest number on screen, not by the cell size,
+     so the numerals thin out exactly when they stop fitting rather than at a
+     threshold picked by hand. */
+  const digits = show(Math.floor(Math.min(maxVisible(), reveal))).length;
+  let fontPx = Math.min(cell * 0.36, (cell * 0.84) / (digits * 0.6));
+  const showText = fontPx >= 8;
+  const textAlpha = clamp((fontPx - 8) / 4, 0, 1);
+
+  if (showText) {
+    ctx.font = fontPx.toFixed(1) + 'px "JetBrains Mono", ui-monospace, monospace';
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+  }
+
+  /* The spiral itself. Without it the page is a table of numbers that happen
+     to be arranged oddly; the line is what shows that they are being written
+     in one continuous turn, and it is what makes the prime diagonals read as a
+     property of the walk rather than of the grid. Drawn only where the
+     cells are big enough to have gaps, because below that size it stops being a
+     path and becomes a fill. That is a lower bar than the numerals clear: the
+     lattice carrying bare prime marks is the whole point of the thing, and
+     cutting it at the same moment the digits went made the diagonals arrive
+     out of nowhere. The reveal gates it too, so the opening traces the walk. */
+  const trail = cell >= 9;
+  if (trail) {
+    /* Weighted per regime, because the same line means different things in
+       each. Among numerals there are a few dozen segments and they carry the
+       construction, so they match the digits; among bare marks there are
+       thousands and they are a substrate for the diagonals, so they recede. */
+    ctx.strokeStyle = showText ? "#6b6b76" : "#d3d3de";
+    ctx.lineWidth = showText
+      ? Math.max(1.25, Math.min(3, cell * 0.045))
+      : Math.max(1, Math.min(2, cell * 0.03));
+    ctx.lineCap = "butt";
+    ctx.lineJoin = "miter";
+    ctx.beginPath();
+    for (let y = y0 - 1; y <= y1 + 1; y++) {
+      for (let x = x0 - 1; x <= x1 + 1; x++) {
+        if (numberAt(x, y) + 1 > reveal) continue;
+        const d = stepDir(x, y);
+        const mx = ox + x * cell + cell / 2;
+        const my = oy - y * cell + cell / 2;
+        ctx.moveTo(mx, my);
+        ctx.lineTo(
+          mx + (d === RIGHT ? cell : d === LEFT ? -cell : 0),
+          my + (d === UP ? -cell : d === DOWN ? cell : 0)
+        );
+      }
+    }
+    ctx.stroke();
+    ctx.lineJoin = "round";
+  }
+
+  const small = cell < 3;
+  let data = null;
+  if (small) {
+    data = img.data;
+    data.fill(255);
+  }
+
+  const inset = Math.max(0, cell * 0.06);
+  const pending = [];
+
+  for (let y = y0; y <= y1; y++) {
+    const sy = oy - y * cell;
+    for (let x = x0; x <= x1; x++) {
+      const n = numberAt(x, y);
+      if (n > reveal) continue;
+      const sx = ox + x * cell;
+
+      if (n >= limit) {                       // not sieved yet
+        if (n < want && cell >= 3) pending.push(sx, sy);
+        continue;
+      }
+      const prime = isPrime(n);
+
+      if (small) {
+        if (!prime) continue;
+        const px0 = Math.max(0, Math.round(sx * dpr));
+        const py0 = Math.max(0, Math.round(sy * dpr));
+        const px1 = Math.min(canvas.width, Math.max(px0 + 1, Math.round((sx + cell) * dpr)));
+        const py1 = Math.min(canvas.height, Math.max(py0 + 1, Math.round((sy + cell) * dpr)));
+        for (let py = py0; py < py1; py++) {
+          let i = (py * canvas.width + px0) * 4;
+          for (let px = px0; px < px1; px++, i += 4) {
+            data[i] = 0x3a; data[i + 1] = 0x1c; data[i + 2] = 0xe0;
+          }
+        }
+        continue;
+      }
+
+      /* Where there are no numerals a prime is a mark, small enough to leave
+         the lattice and the diagonals between marks visible. */
+      if (prime && !showText) {
+        const pad = cell * 0.22;
+        ctx.fillStyle = "#3a1ce0";
+        ctx.fillRect(sx + pad, sy + pad, cell - pad * 2, cell - pad * 2);
+      }
+
+      if (showText) {
+        /* One box per number, sized to the digits rather than to the cell, and
+           painted over the line before the digits go on top. It is the clear
+           space the trail stops at, and it is the prime marker, which is why
+           they are the same rectangle: the dash then ends the same distance
+           from every number instead of at whatever the widest one needed.
+           An outline-stroked halo was tried first and cannot work — it follows
+           the glyph, so the line still ran through the gap between digits. */
+        const t = show(n);
+        const tx = sx + cell / 2, ty = sy + cell / 2;
+        const gw = t.length * fontPx * 0.6 + fontPx * 0.42;
+        const gh = fontPx * 1.36;
+        ctx.globalAlpha = textAlpha;
+        ctx.fillStyle = prime ? "#ece9ff" : "#ffffff";
+        ctx.fillRect(tx - gw / 2, ty - gh / 2, gw, gh);
+        ctx.fillStyle = prime ? "#3a1ce0" : "#6b6b76";
+        ctx.fillText(t, tx, ty + fontPx * 0.04);
+        ctx.globalAlpha = 1;
+      }
+    }
+  }
+
+  if (small) ctx.putImageData(img, 0, 0);
+
+  /* Cells the sieve has not reached. Drawn after the image data so they are
+     not erased by it, and in haze so the fill-in reads as arrival rather than
+     as a second kind of number. */
+  if (pending.length && cell >= 3) {
+    ctx.fillStyle = "#ececf1";
+    for (let i = 0; i < pending.length; i += 2) {
+      ctx.fillRect(pending[i] + inset, pending[i + 1] + inset, cell - inset * 2, cell - inset * 2);
+    }
+  }
+
+  if (sel) {
+    const sx = ox + sel.x * cell, sy = oy - sel.y * cell;
+    const pad = Math.max(1.5, cell * 0.04);
+    ctx.strokeStyle = "#0d0d10";
+    ctx.lineWidth = Math.max(1.5, Math.min(3, cell * 0.06));
+    ctx.strokeRect(sx - pad, sy - pad, cell + pad * 2, cell + pad * 2);
+  }
+}
+
+function readout() {
+  /* Only claim a centre once the view has actually landed on one. (cx, cy)
+     runs continuously while a tapped cell is being converged on, and naming
+     whichever number happened to be under the middle of the screen at that
+     instant was reporting the camera's position rather than where the page
+     had been scrolled to — a number that changed every frame and meant
+     nothing at any of them. */
+  const settled = Math.abs(cx - Math.round(cx)) < 0.2 && Math.abs(cy - Math.round(cy)) < 0.2;
+  elCtr.textContent = settled
+    ? show(numberAt(Math.round(cx), Math.round(cy)))
+    : "\u2014";
+
+  elWid.textContent = show(Math.max(1, Math.round(W / cell)));
+
+  const on = !!sel;
+  elSel.hidden = !on;
+  elSelSep.hidden = !on;
+  if (on) {
+    elSelN.textContent = show(sel.n);
+    /* Blue is what marks a prime everywhere else on the page, so it cannot
+       also mean "this is the one you tapped". */
+    elSel.classList.toggle("prime", sel.n < limit && !!isPrime(sel.n));
+  }
+}
+
+/* ── the loop ───────────────────────────────────────────────────────────── */
+
+let anim = null;
+
+function frame() {
+  if (anim) {
+    const t = clamp((performance.now() - anim.t0) / anim.ms, 0, 1);
+    const e = 1 - Math.pow(1 - t, 3);
+    cell = Math.exp(anim.c0 + (anim.c1 - anim.c0) * e);
+    cx = anim.x0 + (anim.x1 - anim.x0) * e;
+    cy = anim.y0 + (anim.y1 - anim.y0) * e;
+    if (anim.revealTo) reveal = 1 + Math.pow(e, 0.7) * (anim.revealTo - 1);
+    if (t >= 1) { anim = null; reveal = Infinity; }
+    dirty = true;
+  }
+
+  const need = Math.min(maxVisible() + 1, basePrimes[basePrimes.length - 1] ** 2);
+  if (need > want) want = need;
+
+  const until = performance.now() + SIEVE_MS;
+  while (sieveStep()) { dirty = true; if (performance.now() >= until) break; }
+
+  if (dirty) { draw(); readout(); dirty = false; }
+  requestAnimationFrame(frame);
+}
+
+function animateTo(toCell, toX, toY, ms, revealTo) {
+  anim = {
+    t0: performance.now(), ms,
+    c0: Math.log(cell), c1: Math.log(toCell),
+    x0: cx, x1: toX, y0: cy, y1: toY,
+    revealTo: revealTo || 0,
+  };
+}
+
+/* ── gestures ───────────────────────────────────────────────────────────── */
+
+/* Selecting a cell records where the view was standing at the time, because
+   the journey back to it is measured against that, not against the last frame. */
+function setSel(v) {
+  sel = v;
+  anchor = v ? { x: cx, y: cy, cell } : null;
+}
+
+/* Where the view sits, given how far the zoom has come back in.
+ *
+ * The centre is a pure function of the zoom rather than something nudged a
+ * little on every wheel tick. Nudging was the obvious way and it cannot work:
+ * the step was tied to the zoom factor, so the total travel available is
+ * capped by the total zoom available, and a cell tapped near the edge of a
+ * far-out view simply ran out of room and parked half a cell short of the
+ * middle — off by a hair's breadth, permanently, at the one moment the
+ * gesture is supposed to pay off. Read off the zoom instead and the arrival
+ * is exact and unconditional: by the time the view is back at its settled
+ * width the tapped number IS the middle, however the scroll was paced,
+ * interrupted, or reversed on the way.
+ */
+function applyAnchor() {
+  if (!sel || !anchor) return;
+  const goal = Math.max(settledCell(), anchor.cell * 2);
+  const span = Math.log(goal / anchor.cell);
+  const p = span > 0 ? clamp(Math.log(cell / anchor.cell) / span, 0, 1) : 1;
+  cx = anchor.x + (sel.x - anchor.x) * p;
+  cy = anchor.y + (sel.y - anchor.y) * p;
+}
+
+/* Zooming out expands from the middle of the screen, which is what "outward"
+   means; zooming in walks the centre toward whatever was tapped. */
+function zoomBy(f) {
+  if (!started) return;
+  cell = clamp(cell * f, minCell(), maxCell());
+  applyAnchor();
+  anim = null;
+  reveal = Infinity;
+  dirty = true;
+  used();
+}
+
+let hintGone = false;
+function used() {
+  if (hintGone) return;
+  hintGone = true;
+  elHint.classList.add("gone");
+}
+
+canvas.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const d = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * H : e.deltaY;
+  zoomBy(Math.exp(-clamp(d, -240, 240) * 0.0018));
+}, { passive: false });
+
+/* One finger drags the zoom, two pinch it, and both end up in zoomBy — so the
+   anchor rule is the same either way: expand from the middle of the screen, or
+   converge on the tapped cell. A pinch deliberately does not pan, because
+   nothing here pans; choosing a centre is what tapping is for. */
+const touches = new Map();
+let drag = null;
+let spread = 0;
+
+function pinchSpread() {
+  const [a, b] = touches.values();
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
+canvas.addEventListener("pointerdown", (e) => {
+  canvas.setPointerCapture(e.pointerId);
+  touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (touches.size === 2) {
+    drag = null;            // a second finger makes this neither a tap nor a drag
+    spread = pinchSpread();
+  } else if (touches.size === 1) {
+    drag = { y: e.clientY, x0: e.clientX, y0: e.clientY, t: performance.now(), moved: 0 };
+  }
+});
+
+canvas.addEventListener("pointermove", (e) => {
+  if (touches.has(e.pointerId)) touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+  if (touches.size === 2) {
+    const d = pinchSpread();
+    if (spread > 0 && d > 0) zoomBy(d / spread);
+    spread = d;
+    return;
+  }
+
+  if (!drag) return;
+  const dy = e.clientY - drag.y;
+  drag.y = e.clientY;
+  drag.moved = Math.max(drag.moved, Math.abs(e.clientX - drag.x0), Math.abs(e.clientY - drag.y0));
+  if (drag.moved > 6) zoomBy(Math.exp(dy * 0.005));
+});
+
+/* Whatever finger is still down when a pinch ends has a stale origin, and
+   using it would jump the zoom by however far it travelled during the pinch.
+   It has to lift and land again before it means anything. */
+function release(e) {
+  touches.delete(e.pointerId);
+  if (touches.size < 2) spread = 0;
+  if (touches.size >= 1) drag = null;
+}
+
+canvas.addEventListener("pointerup", (e) => {
+  const d = drag;
+  release(e);
+  if (!d) return;
+  drag = null;
+
+  const tap = d.moved <= 6 && performance.now() - d.t < 500;
+  if (!tap || !started) return;
+
+  const r = canvas.getBoundingClientRect();
+  const x = Math.round((e.clientX - r.left - W / 2) / cell + cx);
+  const y = Math.round((H / 2 - (e.clientY - r.top)) / cell + cy);
+  const n = numberAt(x, y);
+  setSel(sel && sel.x === x && sel.y === y ? null : { x, y, n });
+  dirty = true;
+  used();
+});
+
+canvas.addEventListener("pointercancel", (e) => { release(e); drag = null; });
+
+document.getElementById("home").addEventListener("click", () => {
+  setSel(null);
+  animateTo(settledCell(), 0, 0, reduced ? 0 : 700);
+  used();
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown" || e.key === "-") zoomBy(0.82);
+  else if (e.key === "ArrowUp" || e.key === "+" || e.key === "=") zoomBy(1 / 0.82);
+  else if (e.key === "Escape") { setSel(null); dirty = true; }
+  else if (e.key === "Home") { setSel(null); animateTo(settledCell(), 0, 0, reduced ? 0 : 700); }
+  else return;
+  e.preventDefault();
+});
+
+new ResizeObserver(resize).observe(stage);
+window.addEventListener("orientationchange", () => setTimeout(resize, 120));
+
+/* ── opening ────────────────────────────────────────────────────
+ *
+ * It starts on 1 through 10 and pulls back to the settled width while the
+ * numbers arrive in spiral order, so the first thing the page shows is how the
+ * thing is built. There is nothing to wait for — the seed table already has
+ * every number in that range — so this is a reveal and not a loading state.
+ *
+ * Called from the first resize that reports a laid-out stage, which is the
+ * only moment at which "the settled width" means anything.
+ */
+function start() {
+  started = true;
+  const settled = settledCell();
+
+  if (reduced) {
+    cell = settled; cx = 0; cy = 0; reveal = Infinity;
+    return;
+  }
+
+  cell = Math.max(settled * 2.2, Math.min(W, H) / 3.4);
+  cx = 0.5; cy = 0;
+
+  /* How far the reveal has to count: the largest number that will be on
+     screen once the camera has finished pulling back. */
+  const from = cell;
+  cell = settled;
+  const target = maxVisible();
+  cell = from;
+
+  reveal = 1;
+  animateTo(settled, 0, 0, 1500, target);
+}
+
+resize();
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>
