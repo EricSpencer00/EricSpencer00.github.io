@@ -71,7 +71,7 @@ nav.top a:hover,nav.top a.active{color:var(--signal)}
 #read{display:flex; align-items:baseline; gap:14px; min-width:0; flex:1 1 auto}
 #read b{font-weight:700; font-size:15px; font-variant-numeric:tabular-nums}
 #read .sep{color:var(--haze)}
-#sel{color:var(--signal)}
+#sel.prime{color:var(--signal)}
 #sel[hidden]{display:none}
 
 #home{
@@ -231,6 +231,7 @@ let img = null;                  // reused ImageData for the small-cell path
 let cell = 64;                   // px per cell, continuous
 let cx = 0, cy = 0;              // grid coordinate at the centre of the canvas
 let sel = null;                  // {x, y, n} — the tapped cell, and the zoom anchor
+let anchor = null;               // where the view was when it was tapped
 let reveal = Infinity;           // during the opening, the highest number drawn
 let dirty = true;
 let started = false;
@@ -243,7 +244,10 @@ const CELL_CAP = 600000;
    this one and a stage that has not been laid out yet reports zero. */
 const settledCell = () => (W < 768 ? Math.max(8, Math.min(W, H) / 5) : 72);
 const minCell = () => Math.max(1.2, Math.sqrt((W * H) / CELL_CAP));
-const maxCell = () => settledCell() * 4;
+/* Four times the settled size, but never so close that fewer than about three
+   cells are on screen — one number filling the viewport is not a view of a
+   spiral. */
+const maxCell = () => Math.min(settledCell() * 4, Math.min(W, H) / 3);
 const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
 
 /* Every size-dependent quantity is recomputed here rather than captured once.
@@ -450,12 +454,28 @@ function draw() {
 }
 
 function readout() {
-  elCtr.textContent = numberAt(Math.round(cx), Math.round(cy)).toLocaleString();
+  /* Only claim a centre once the view has actually landed on one. (cx, cy)
+     runs continuously while a tapped cell is being converged on, and naming
+     whichever number happened to be under the middle of the screen at that
+     instant was reporting the camera's position rather than where the page
+     had been scrolled to — a number that changed every frame and meant
+     nothing at any of them. */
+  const settled = Math.abs(cx - Math.round(cx)) < 0.2 && Math.abs(cy - Math.round(cy)) < 0.2;
+  elCtr.textContent = settled
+    ? numberAt(Math.round(cx), Math.round(cy)).toLocaleString()
+    : "\u2014";
+
   elWid.textContent = String(Math.max(1, Math.round(W / cell)));
+
   const on = !!sel;
   elSel.hidden = !on;
   elSelSep.hidden = !on;
-  if (on) elSelN.textContent = sel.n.toLocaleString();
+  if (on) {
+    elSelN.textContent = sel.n.toLocaleString();
+    /* Blue is what marks a prime everywhere else on the page, so it cannot
+       also mean "this is the one you tapped". */
+    elSel.classList.toggle("prime", sel.n < limit && !!isPrime(sel.n));
+  }
 }
 
 /* ── the loop ───────────────────────────────────────────────────────────── */
@@ -495,20 +515,41 @@ function animateTo(toCell, toX, toY, ms, revealTo) {
 
 /* ── gestures ───────────────────────────────────────────────────────────── */
 
+/* Selecting a cell records where the view was standing at the time, because
+   the journey back to it is measured against that, not against the last frame. */
+function setSel(v) {
+  sel = v;
+  anchor = v ? { x: cx, y: cy, cell } : null;
+}
+
+/* Where the view sits, given how far the zoom has come back in.
+ *
+ * The centre is a pure function of the zoom rather than something nudged a
+ * little on every wheel tick. Nudging was the obvious way and it cannot work:
+ * the step was tied to the zoom factor, so the total travel available is
+ * capped by the total zoom available, and a cell tapped near the edge of a
+ * far-out view simply ran out of room and parked half a cell short of the
+ * middle — off by a hair's breadth, permanently, at the one moment the
+ * gesture is supposed to pay off. Read off the zoom instead and the arrival
+ * is exact and unconditional: by the time the view is back at its settled
+ * width the tapped number IS the middle, however the scroll was paced,
+ * interrupted, or reversed on the way.
+ */
+function applyAnchor() {
+  if (!sel || !anchor) return;
+  const goal = Math.max(settledCell(), anchor.cell * 2);
+  const span = Math.log(goal / anchor.cell);
+  const p = span > 0 ? clamp(Math.log(cell / anchor.cell) / span, 0, 1) : 1;
+  cx = anchor.x + (sel.x - anchor.x) * p;
+  cy = anchor.y + (sel.y - anchor.y) * p;
+}
+
 /* Zooming out expands from the middle of the screen, which is what "outward"
-   means. Zooming in pulls the tapped cell toward the centre by exactly the
-   fraction the scale grew, so a tap followed by a scroll back always lands it
-   in the middle no matter how it is paced or interrupted. */
+   means; zooming in walks the centre toward whatever was tapped. */
 function zoomBy(f) {
   if (!started) return;
-  const before = cell;
   cell = clamp(cell * f, minCell(), maxCell());
-  const grew = cell / before;
-  if (grew > 1 && sel) {
-    const t = 1 - 1 / grew;
-    cx += (sel.x - cx) * t;
-    cy += (sel.y - cy) * t;
-  }
+  applyAnchor();
   anim = null;
   reveal = Infinity;
   dirty = true;
@@ -591,7 +632,7 @@ canvas.addEventListener("pointerup", (e) => {
   const x = Math.round((e.clientX - r.left - W / 2) / cell + cx);
   const y = Math.round((H / 2 - (e.clientY - r.top)) / cell + cy);
   const n = numberAt(x, y);
-  sel = sel && sel.x === x && sel.y === y ? null : { x, y, n };
+  setSel(sel && sel.x === x && sel.y === y ? null : { x, y, n });
   dirty = true;
   used();
 });
@@ -599,7 +640,7 @@ canvas.addEventListener("pointerup", (e) => {
 canvas.addEventListener("pointercancel", (e) => { release(e); drag = null; });
 
 document.getElementById("home").addEventListener("click", () => {
-  sel = null;
+  setSel(null);
   animateTo(settledCell(), 0, 0, reduced ? 0 : 700);
   used();
 });
@@ -607,8 +648,8 @@ document.getElementById("home").addEventListener("click", () => {
 window.addEventListener("keydown", (e) => {
   if (e.key === "ArrowDown" || e.key === "-") zoomBy(0.82);
   else if (e.key === "ArrowUp" || e.key === "+" || e.key === "=") zoomBy(1 / 0.82);
-  else if (e.key === "Escape") { sel = null; dirty = true; }
-  else if (e.key === "Home") { sel = null; animateTo(settledCell(), 0, 0, reduced ? 0 : 700); }
+  else if (e.key === "Escape") { setSel(null); dirty = true; }
+  else if (e.key === "Home") { setSel(null); animateTo(settledCell(), 0, 0, reduced ? 0 : 700); }
   else return;
   e.preventDefault();
 });
