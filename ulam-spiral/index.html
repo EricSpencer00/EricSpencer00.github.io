@@ -528,22 +528,63 @@ canvas.addEventListener("wheel", (e) => {
   zoomBy(Math.exp(-clamp(d, -240, 240) * 0.0018));
 }, { passive: false });
 
+/* One finger drags the zoom, two pinch it, and both end up in zoomBy — so the
+   anchor rule is the same either way: expand from the middle of the screen, or
+   converge on the tapped cell. A pinch deliberately does not pan, because
+   nothing here pans; choosing a centre is what tapping is for. */
+const touches = new Map();
 let drag = null;
+let spread = 0;
+
+function pinchSpread() {
+  const [a, b] = touches.values();
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
 canvas.addEventListener("pointerdown", (e) => {
   canvas.setPointerCapture(e.pointerId);
-  drag = { y: e.clientY, x0: e.clientX, y0: e.clientY, t: performance.now(), moved: 0 };
+  touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (touches.size === 2) {
+    drag = null;            // a second finger makes this neither a tap nor a drag
+    spread = pinchSpread();
+  } else if (touches.size === 1) {
+    drag = { y: e.clientY, x0: e.clientX, y0: e.clientY, t: performance.now(), moved: 0 };
+  }
 });
+
 canvas.addEventListener("pointermove", (e) => {
+  if (touches.has(e.pointerId)) touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+  if (touches.size === 2) {
+    const d = pinchSpread();
+    if (spread > 0 && d > 0) zoomBy(d / spread);
+    spread = d;
+    return;
+  }
+
   if (!drag) return;
   const dy = e.clientY - drag.y;
   drag.y = e.clientY;
   drag.moved = Math.max(drag.moved, Math.abs(e.clientX - drag.x0), Math.abs(e.clientY - drag.y0));
   if (drag.moved > 6) zoomBy(Math.exp(dy * 0.005));
 });
+
+/* Whatever finger is still down when a pinch ends has a stale origin, and
+   using it would jump the zoom by however far it travelled during the pinch.
+   It has to lift and land again before it means anything. */
+function release(e) {
+  touches.delete(e.pointerId);
+  if (touches.size < 2) spread = 0;
+  if (touches.size >= 1) drag = null;
+}
+
 canvas.addEventListener("pointerup", (e) => {
-  if (!drag) return;
-  const tap = drag.moved <= 6 && performance.now() - drag.t < 500;
+  const d = drag;
+  release(e);
+  if (!d) return;
   drag = null;
+
+  const tap = d.moved <= 6 && performance.now() - d.t < 500;
   if (!tap || !started) return;
 
   const r = canvas.getBoundingClientRect();
@@ -554,7 +595,8 @@ canvas.addEventListener("pointerup", (e) => {
   dirty = true;
   used();
 });
-canvas.addEventListener("pointercancel", () => { drag = null; });
+
+canvas.addEventListener("pointercancel", (e) => { release(e); drag = null; });
 
 document.getElementById("home").addEventListener("click", () => {
   sel = null;
