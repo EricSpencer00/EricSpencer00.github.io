@@ -529,17 +529,23 @@ function setSel(v) {
  * the step was tied to the zoom factor, so the total travel available is
  * capped by the total zoom available, and a cell tapped near the edge of a
  * far-out view simply ran out of room and parked half a cell short of the
- * middle — off by a hair's breadth, permanently, at the one moment the
- * gesture is supposed to pay off. Read off the zoom instead and the arrival
- * is exact and unconditional: by the time the view is back at its settled
- * width the tapped number IS the middle, however the scroll was paced,
- * interrupted, or reversed on the way.
+ * middle. Read off the zoom instead and the arrival is exact: by the time
+ * the view is back at its settled width the tapped number IS the middle,
+ * however the scroll was paced, interrupted, or reversed on the way.
+ *
+ * What the fraction is measured against decides what the eye sees. The
+ * distance on screen is the gap in cells times the cell size, so closing the
+ * gap evenly against the zoom is not enough: the cells grow faster than the
+ * gap closes, and the tapped number slides off the edge and only comes back
+ * in the last part of the scroll. Closing it in step with the cell size makes
+ * the distance in pixels fall straight to zero, so the number walks to the
+ * middle in view the whole way.
  */
 function applyAnchor() {
   if (!sel || !anchor) return;
   const goal = Math.max(settledCell(), anchor.cell * 2);
-  const span = Math.log(goal / anchor.cell);
-  const p = span > 0 ? clamp(Math.log(cell / anchor.cell) / span, 0, 1) : 1;
+  const span = 1 - anchor.cell / goal;
+  const p = span > 0 ? clamp((1 - anchor.cell / cell) / span, 0, 1) : 1;
   cx = anchor.x + (sel.x - anchor.x) * p;
   cy = anchor.y + (sel.y - anchor.y) * p;
 }
