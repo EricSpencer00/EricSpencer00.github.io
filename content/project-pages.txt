@@ -41,7 +41,7 @@
 /projects/glucopilot.html|projects/2025/glucopilot/index.html
 /projects/goldbach-conj.html|projects/2021/goldbach-conj/index.html
 /projects/healthup!.html|projects/2024/healthup!/index.html
-/projects/index.html
+/projects.html|projects/index.html
 /projects/interactive-microwave-tla.html|projects/2025/interactive-microwave-tla/index.html
 /projects/ios-soundboard.html|projects/2025/ios-soundboard/index.html
 /projects/iterative-maze-solver.html|projects/2023/iterative-maze-solver/index.html

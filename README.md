@@ -52,6 +52,10 @@ python3 scripts/check_project_pages.py         # report drift; runs on deploy
 python3 scripts/check_project_pages.py --fix   # rewrite mirrors from the page
 ```
 
+`--fix` diffs a mirror against the page before it overwrites it and prints how
+many words were the mirror's own, so a copy that was edited by hand is not lost
+without a word.
+
 ## Blog workflow
 
 Write posts as `content/blog/your-slug.md` with front matter:

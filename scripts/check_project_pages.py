@@ -17,23 +17,36 @@ checks that list against the files on disk and reports every disagreement:
     unlisted-mirror  a mirror directory exists but is not in the list
     not-a-stub       the mirror is a full copy of the page, not a redirect
     wrong-target     the stub redirects somewhere other than its canonical
+    wrong-canonical  the page canonicalises to something other than itself
 
 --fix rewrites not-a-stub and wrong-target mirrors from the canonical page.
-The other four are list edits, so they are reported and left alone.
+The other five are list edits or page edits, so they are reported and left
+alone. A mirror with a body is diffed against the page before it is
+overwritten, and the drift is printed: a copy that grew paragraphs of its own
+is an edit someone made, not a stale duplicate, and losing it in silence is
+how this went wrong the first time.
 
     python3 scripts/check_project_pages.py           # report, exit 1 on drift
     python3 scripts/check_project_pages.py --fix     # rewrite bad mirrors
 """
 
 import argparse
+import difflib
 import re
 import sys
 from pathlib import Path
 
-from collapse_mirrors import MARKER, ROBOTS, SITE, STUB
+from collapse_mirrors import MARKER, SITE, STUB
 
 ROOT = Path(__file__).resolve().parent.parent
 LIST = ROOT / "content" / "project-pages.txt"
+
+# Page furniture, the same on every page. Only the writeup is worth diffing.
+FURNITURE = re.compile(
+    r"<pre class=\"banner\".*?</pre>|<nav\b.*?</nav>|<footer\b.*?</footer>"
+    r"|<script\b.*?</script>|<style\b.*?</style>",
+    re.S | re.I,
+)
 
 
 def entries():
@@ -55,9 +68,15 @@ def on_disk():
 
 
 def target_of(path):
-    """The site path a stub redirects to, or None if it is not a stub."""
+    """The site path a stub redirects to, or None if it is not a stub.
+
+    The marker alone decides. Backfilling the noindex line onto older stubs is
+    collapse_mirrors.py's job and it runs first, so demanding it here would only
+    report a stub it is about to repair -- and would misread the one hand-made
+    redirect that leaves noindex off on purpose (projects/index.html).
+    """
     text = path.read_text(encoding="utf-8", errors="replace")
-    if MARKER not in text or ROBOTS not in text:
+    if MARKER not in text:
         return None
     m = re.search(r'<link rel="canonical" href="' + re.escape(SITE) + r'([^"]+)"', text)
     return m.group(1) if m else None
@@ -71,6 +90,22 @@ def title_of(canonical, mirror):
             if m:
                 return m.group(1).strip()
     return "Eric Spencer"
+
+
+def words(path):
+    """A page's readable text, with the head and the furniture removed."""
+    body = path.read_text(encoding="utf-8", errors="replace").split("</head>", 1)[-1]
+    return re.sub(r"<[^>]+>", " ", FURNITURE.sub("", body)).split()
+
+
+def drift(canonical, mirror):
+    """How far a mirror's text has moved from the page it claims to be."""
+    page = ROOT / canonical.lstrip("/")
+    if not page.is_file():
+        return "canonical served from another repo, nothing to diff against"
+    a, b = words(page), words(mirror)
+    shared = sum(n for _, _, n in difflib.SequenceMatcher(None, a, b).get_matching_blocks())
+    return f"{shared}/{len(a)} words of the page, {len(b) - shared} words of its own"
 
 
 def main():
@@ -96,6 +131,8 @@ def main():
                 continue
             kind = "not-a-stub" if target is None else "wrong-target"
             if args.fix:
+                if kind == "not-a-stub":
+                    print(f"{mirror}: {drift(canonical, path)}")
                 path.write_text(
                     STUB.format(
                         title=title_of(canonical, path),
@@ -110,9 +147,24 @@ def main():
                 problems.append((kind, mirror))
 
     listed_pages = {c for c, _, _ in entries()}
+    # A page that canonicalises to its own mirror hands the mirror the ranking,
+    # and collapse_mirrors.py then reads that back and leaves the mirror alone.
+    for canonical, _, note in entries():
+        page = ROOT / canonical.lstrip("/")
+        if note == "external" or not page.is_file():
+            continue
+        m = re.search(r'<link rel="canonical" href="([^"]+)"', page.read_text(errors="replace"))
+        if m and m.group(1) != SITE + canonical:
+            problems.append(("wrong-canonical", f"{canonical} -> {m.group(1)}"))
     for page in sorted(ROOT.glob("projects/*.html")):
-        if "/" + str(page.relative_to(ROOT)) not in listed_pages:
-            problems.append(("unlisted-page", str(page.relative_to(ROOT))))
+        rel = str(page.relative_to(ROOT))
+        if "/" + rel in listed_pages or rel in listed_mirrors:
+            continue
+        # A stub under projects/ is a mirror of some other page, not a page of
+        # its own -- /projects/index.html redirects to /projects.html. Listing
+        # it as canonical would claim a redirect is what gets indexed.
+        kind = "unlisted-mirror" if target_of(page) else "unlisted-page"
+        problems.append((kind, rel))
     for mirror in sorted(on_disk() - listed_mirrors):
         problems.append(("unlisted-mirror", mirror))
 
@@ -121,7 +173,7 @@ def main():
     if fixed:
         print(f"{fixed} mirror(s) rewritten from the canonical page")
     if problems:
-        print(f"{len(problems)} problem(s); edit {LIST.relative_to(ROOT)}")
+        print(f"{len(problems)} problem(s); fix the page or {LIST.relative_to(ROOT)}")
         return 1
     print(f"{len(listed_pages)} pages, {len(listed_mirrors)} mirrors, no drift")
     return 0
