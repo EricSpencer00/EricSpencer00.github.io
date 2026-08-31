@@ -12,6 +12,12 @@ worth re-fetching.
 
 `changefreq` and `priority` are omitted: Google ignores both.
 
+The tree holds about twice as many .html files as the sitemap holds URLs, and
+every part of that gap is deliberate: redirect stubs under projects/<year>/ and
+miscellaneous/ share a canonical with the page they point at, and noindex pages
+are left out. The run prints the count in each group, so a page that stops being
+published moves a number here instead of going missing without a trace.
+
     python3 scripts/build_sitemap.py
 """
 
@@ -27,6 +33,9 @@ OUT = ROOT / "sitemap.xml"
 
 NOINDEX = re.compile(r'<meta[^>]+name="robots"[^>]+content="[^"]*noindex', re.I)
 STUB = "<!-- redirect stub -->"
+
+# Not part of the site at all, so not part of the count either.
+ARCHIVE = ("/.git/", "/backup-site/", "/.claude/")
 
 
 def last_commit(path):
@@ -58,6 +67,26 @@ def entries():
         yield url, (dates[-1] if dates else None)
 
 
+def audit(listed):
+    """Account for every .html file in the tree, listed or not.
+
+    Each file falls in exactly one group, and the groups add up to the file
+    count, so the line can be read as a check rather than as a claim.
+    """
+    grouped = published_pages()
+    in_tree = [p for p in ROOT.rglob("*.html")
+               if not any(k in "/" + str(p.relative_to(ROOT)) for k in ARCHIVE)]
+    files = {p for pages in grouped.values() for p in pages}
+    # A canonical with no file of its own is served from another repo.
+    elsewhere = sum(1 for pages in grouped.values() if not pages)
+    here = len(grouped) - elsewhere
+    print(f"  {len(in_tree)} .html files: {len(in_tree) - len(files)} are not "
+          f"pages, {len(files) - here} are extra copies of a page already "
+          f"listed, {here - (listed - elsewhere)} carry noindex, "
+          f"{listed - elsewhere} are listed")
+    print(f"  plus {elsewhere} pages served from another repo")
+
+
 def main():
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -72,6 +101,7 @@ def main():
     lines.append("</urlset>")
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Wrote sitemap.xml with {n} URLs")
+    audit(n)
     return 0
 
 

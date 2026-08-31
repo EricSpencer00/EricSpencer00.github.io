@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ericspencer.us/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-25</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/1rm/</loc>
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/cv/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/ddia/</loc>
@@ -255,5 +255,13 @@
   <url>
     <loc>https://ericspencer.us/research.html</loc>
     <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://ericspencer.us/ulam-spiral-b12/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://ericspencer.us/ulam-spiral/</loc>
+    <lastmod>2026-08-28</lastmod>
   </url>
 </urlset>
