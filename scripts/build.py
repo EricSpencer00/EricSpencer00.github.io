@@ -175,7 +175,7 @@ body{{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakart
 .wrap{{max-width:720px;margin:0 auto;padding:56px 24px 100px}}
 .name-hero{{font-size:clamp(34px,5.5vw,52px);font-weight:700;letter-spacing:-0.025em;line-height:1.05;margin:0 0 10px}}
 nav.top{{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;color:var(--dim);margin:16px 0 0}}
-nav.top a{{color:inherit;text-decoration:none;border:0;padding:0 2px}}
+nav.top a{{color:inherit;text-decoration:none;border:0;padding:0 5px;margin:0 -3px}}
 nav.top a:hover{{color:var(--ink)}}
 nav.top a.active{{color:var(--ink);font-weight:600}}
 hr{{border:0;border-top:1px solid var(--rule);margin:28px 0}}
@@ -183,7 +183,7 @@ a{{color:var(--accent);text-decoration:none;border:0}}
 a:hover{{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}}
 code,kbd,.mono,pre{{font-family:"IBM Plex Mono",ui-monospace,monospace}}
 h2{{font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:48px 0 14px;scroll-margin-top:20px}}
-h2 .pill{{font-family:"IBM Plex Mono",monospace;font-size:10px;text-transform:none;letter-spacing:0;font-weight:400;vertical-align:middle;margin-left:6px}}
+h2 .pill{{font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:none;letter-spacing:0;font-weight:400;vertical-align:middle;margin-left:6px}}
 h3{{font-size:18px;font-weight:600;letter-spacing:-0.01em;margin:20px 0 4px}}
 p{{margin:12px 0}}
 .lead{{font-size:17px;line-height:1.65;letter-spacing:-0.01em}}
@@ -195,8 +195,8 @@ p{{margin:12px 0}}
 .news{{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;display:flex;gap:16px;align-items:baseline;padding:4px 0}}
 .news .d{{flex:0 0 88px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums}}
 .news .t{{flex:1;font-size:15px;color:var(--ink)}}
-.pill{{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}}
-.linkrow{{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;margin:12px 0 0}}
+.pill{{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}}
+.linkrow{{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;line-height:2;margin:12px 0 0}}
 .linkrow a{{margin-right:6px;color:var(--dim);border:0}}
 .linkrow a:hover{{color:var(--ink);text-decoration:none}}
 .post-row{{display:flex;gap:20px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--rule)}}
@@ -217,7 +217,7 @@ p{{margin:12px 0}}
 .cv-note{{font-size:14px;color:var(--dim);margin:3px 0 0}}
 .small{{font-size:13px;color:var(--dim)}}
 code{{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}}
-.tag{{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;border:1px solid var(--rule);border-radius:3px;padding:0 5px;color:var(--dim);background:transparent;margin-left:4px}}
+.tag{{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;color:var(--dim);background:transparent;margin-left:4px}}
 footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}}
 /* GitHub repos dynamic section */
 #gh-repos .gh-cat{{margin:48px 0 0}}
@@ -241,10 +241,16 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 #hf-list .loading{{font-size:14px;color:var(--dim);font-style:italic;margin:8px 0}}
 /* "Show more" disclosure: rows past the third are hidden until asked for */
 .gh-rest[hidden]{{display:none}}
-.gh-more{{font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);background:none;border:0;border-bottom:1px dotted var(--rule);padding:2px 0;margin-top:6px;cursor:pointer}}
+.gh-more{{font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);background:none;border:0;border-bottom:1px dotted var(--rule);padding:5px 0 4px;margin-top:6px;cursor:pointer}}
 .gh-more:hover{{color:var(--accent);border-bottom-color:var(--accent)}}
 .cat-note{{font-size:14px;color:var(--dim);margin:-4px 0 10px;font-variant-numeric:tabular-nums}}
 .cat-note b{{color:var(--ink);font-weight:600}}
+/* WCAG 2.2 target size (24x24). A link inside a line of text is only as tall
+   as its font box -- 17px at 14px type -- so the row links and the [link]
+   markers get a 24px box of their own. Every one of these sits in a line that
+   already reserves 24px or more, so the page does not move. Links inside a
+   sentence keep the inline exception and stay as they are. */
+nav.top a,.linkrow a,.cv-org a,.post-title a,footer a,a.pill{{display:inline-block;min-height:24px;line-height:24px}}
 @media(max-width:560px){{.wrap{{padding:36px 18px 80px}}.proj .dt,.proj .ds{{display:none}}.post-d{{display:none}}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{{display:none}}#hf-list .repo-row .dt,#hf-list .repo-row .ds{{display:none}}}}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
