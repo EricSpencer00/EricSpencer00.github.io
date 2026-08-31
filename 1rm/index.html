@@ -36,29 +36,58 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <style>
+/* A custom property holds any value, so a hex fallback in the same block is
+   overwritten, not skipped. @supports is what keeps oklch off browsers that
+   cannot read it: Chrome <=110, Safari <=15.3, Firefox <=112. */
 :root{
-  --paper:oklch(0.978 0.006 80);
-  --card:oklch(1 0 0);
-  --ink:oklch(0.11 0.015 60);
-  --accent:oklch(0.30 0.13 22);
-  --dim:oklch(0.52 0.01 70);
-  --rule:oklch(0.87 0.005 80);
-  --sunk:oklch(0.94 0.005 80);
-  --on-accent:oklch(0.99 0 0);
-  --ring:oklch(0.30 0.13 22/.16);
+  --paper:#faf7f2;
+  --card:#ffffff;
+  --ink:#080401;
+  --accent:#5f000b;
+  --dim:#6d6863;
+  --rule:#d6d4d1;
+  --sunk:#edebe7;
+  --on-accent:#fcfcfc;
+  --ring:#5f000b29;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --paper:oklch(0.17 0.008 70);
-    --card:oklch(0.21 0.008 70);
-    --ink:oklch(0.95 0.005 80);
-    --accent:oklch(0.72 0.13 25);
-    --dim:oklch(0.65 0.01 70);
-    --rule:oklch(0.31 0.008 70);
-    --sunk:oklch(0.25 0.008 70);
+    --paper:#120f0c;
+    --card:#1b1814;
+    --ink:#f0eeeb;
+    --accent:#eb827b;
+    --dim:#938e89;
+    --rule:#33302c;
+    --sunk:#24211e;
     /* The dark-mode accent is light, so what sits on it has to be dark. */
-    --on-accent:oklch(0.17 0.03 25);
-    --ring:oklch(0.72 0.13 25/.28);
+    --on-accent:#1b0a09;
+    --ring:#eb827b47;
+  }
+}
+@supports (color:oklch(0 0 0)){
+  :root{
+    --paper:oklch(0.978 0.006 80);
+    --card:oklch(1 0 0);
+    --ink:oklch(0.11 0.015 60);
+    --accent:oklch(0.30 0.13 22);
+    --dim:oklch(0.52 0.01 70);
+    --rule:oklch(0.87 0.005 80);
+    --sunk:oklch(0.94 0.005 80);
+    --on-accent:oklch(0.99 0 0);
+    --ring:oklch(0.30 0.13 22/.16);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:oklch(0.17 0.008 70);
+      --card:oklch(0.21 0.008 70);
+      --ink:oklch(0.95 0.005 80);
+      --accent:oklch(0.72 0.13 25);
+      --dim:oklch(0.65 0.01 70);
+      --rule:oklch(0.31 0.008 70);
+      --sunk:oklch(0.25 0.008 70);
+      --on-accent:oklch(0.17 0.03 25);
+      --ring:oklch(0.72 0.13 25/.28);
+    }
   }
 }
 *{box-sizing:border-box}
@@ -83,7 +112,7 @@ h1{font-size:26px;font-weight:700;letter-spacing:-0.025em;margin:0 0 22px}
   font:inherit;font-size:14px;font-weight:600;padding:6px 18px;border-radius:8px;
   min-height:36px;transition:background .12s,color .12s;
 }
-.units button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px oklch(0 0 0/.10)}
+.units button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.10);box-shadow:0 1px 2px oklch(0 0 0/.10)}
 
 /* weight row */
 .wrow{display:flex;align-items:stretch;gap:10px;margin:0 0 24px}

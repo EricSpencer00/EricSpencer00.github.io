@@ -27,7 +27,11 @@ PAGE = """<!doctype html><html lang="en"><head>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 <style>
-:root{{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}
+:root{{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}}
+/* A custom property holds any value, so a hex fallback in the same block is
+   overwritten, not skipped. @supports is what keeps oklch off browsers that
+   cannot read it: Chrome <=110, Safari <=15.3, Firefox <=112. */
+@supports (color:oklch(0 0 0)){{:root{{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}}}
 *{{box-sizing:border-box}}
 body{{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}}
 .wrap{{max-width:960px;margin:0 auto;padding:48px 24px 72px}}

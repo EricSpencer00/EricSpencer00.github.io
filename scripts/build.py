@@ -169,7 +169,11 @@ def build_page(news, about, selected, blog, experience):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 <style>
-:root{{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}
+:root{{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}}
+/* A custom property holds any value, so a hex fallback in the same block is
+   overwritten, not skipped. @supports is what keeps oklch off browsers that
+   cannot read it: Chrome <=110, Safari <=15.3, Firefox <=112. */
+@supports (color:oklch(0 0 0)){{:root{{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}}}
 *{{box-sizing:border-box}}html{{scroll-behavior:smooth}}
 body{{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}}
 .wrap{{max-width:720px;margin:0 auto;padding:56px 24px 100px}}
@@ -216,7 +220,7 @@ p{{margin:12px 0}}
 .cv-when{{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim);margin:2px 0 0}}
 .cv-note{{font-size:14px;color:var(--dim);margin:3px 0 0}}
 .small{{font-size:13px;color:var(--dim)}}
-code{{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}}
+code{{background:#edebe7;background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}}
 .tag{{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;border:1px solid var(--rule);border-radius:3px;padding:0 5px;color:var(--dim);background:transparent;margin-left:4px}}
 footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}}
 /* GitHub repos dynamic section */
