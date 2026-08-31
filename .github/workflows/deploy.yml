@@ -42,6 +42,13 @@ jobs:
       - name: Drop the blog when nothing is published
         run: python3 scripts/prune_blog.py
 
+      # The old Hugo URLs (/projects/<year>/<slug>/, /miscellaneous/<slug>/) are
+      # kept as redirect stubs, not second copies of the page. Runs every build
+      # so a newly added project cannot quietly ship a duplicate again. Before
+      # apply_og_tags.py, which has to reapply the card tags to the new stub.
+      - name: Collapse the old Hugo URLs to redirects
+        run: python3 scripts/collapse_mirrors.py
+
       # Runs last: the generators above rewrite whole <head> blocks, so the
       # link-preview tags have to be reapplied after them or every rebuild
       # silently drops each page back to a generic card. The card images
