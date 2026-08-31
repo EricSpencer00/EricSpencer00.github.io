@@ -27,6 +27,8 @@ jobs:
         run: python3 scripts/prune_blog.py
       - name: Collapse the old Hugo URLs to redirects
         run: python3 scripts/collapse_mirrors.py
+      - name: Check every project page has one copy
+        run: python3 scripts/check_project_pages.py
       - name: Point pages at their link-preview cards
         run: python3 scripts/apply_og_tags.py
       - name: Apply search tags

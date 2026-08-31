@@ -1,0 +1,74 @@
+# Project pages — canonical|mirrors|note
+#
+# Every project writeup has one canonical page. Its old Hugo URLs stay alive as
+# redirect stubs (see scripts/collapse_mirrors.py), one directory per mirror.
+# The pairing is not derivable from the slug, so it is written down here.
+#
+# canonical  site path of the page that gets indexed
+# mirrors    comma-separated repo paths of its redirect stubs; may be empty
+# note       "external" when the canonical is served from another repo
+#
+# scripts/check_project_pages.py checks this list against the files on disk and
+# fails the build when they disagree. Add a line here when you add a page.
+
+/ddia/|miscellaneous/ddia/index.html|external
+/projects/aeo-queries.html|projects/2026/aeo-queries/index.html
+/projects/ai-conversation.html|projects/2025/ai-conversation/index.html
+/projects/ai-headshots.html|projects/2025/ai-headshots/index.html
+/projects/ai-os.html|projects/2025/ai-os/index.html
+/projects/anagram.html|projects/2023/anagram/index.html
+/projects/anagram_v2.html|projects/2023/anagram_v2/index.html
+/projects/ancestry_tree.html|projects/2023/ancestry_tree/index.html
+/projects/aoc2025.html|miscellaneous/aoc2025/index.html
+/projects/ascii-llm-training.html|projects/2025/ascii-llm-training/index.html
+/projects/brightbet.html|projects/2024/brightbet/index.html
+/projects/chatgpt_research.html|projects/2023/chatgpt_research/index.html
+/projects/chattla-dataset.html|miscellaneous/chattla-dataset/index.html
+/projects/claude-architect-quiz.html|projects/2026/claude-architect-quiz/index.html
+/projects/comp388-llm.html|projects/2026/comp388-llm/index.html
+/projects/connect-4.html|projects/2025/connect-4/index.html
+/projects/cubed-pack-solve.html|projects/2023/cubed-pack-solve/index.html
+/projects/dailytask.html|projects/2024/dailytask/index.html
+/projects/dexcom-navbar-macos.html|projects/2025/dexcom-navbar-macos/index.html
+/projects/dexval.html|projects/2024/dexval/index.html
+/projects/fb-clone.html|projects/2025/fb-clone/index.html
+/projects/flatten-repo.html|projects/2025/flatten-repo/index.html
+/projects/fraud-predictor-full.html|projects/2025/fraud-predictor-full/index.html
+/projects/fraud-predictor.html|projects/2025/fraud-predictor/index.html
+/projects/freetime-calc.html|projects/2022/freetime-calc/index.html
+/projects/gesture.html|projects/2025/gesture/index.html
+/projects/gitkey.html|projects/2025/gitkey/index.html
+/projects/glucopilot.html|projects/2025/glucopilot/index.html
+/projects/goldbach-conj.html|projects/2021/goldbach-conj/index.html
+/projects/healthup!.html|projects/2024/healthup!/index.html
+/projects/index.html
+/projects/interactive-microwave-tla.html|projects/2025/interactive-microwave-tla/index.html
+/projects/ios-soundboard.html|projects/2025/ios-soundboard/index.html
+/projects/iterative-maze-solver.html|projects/2023/iterative-maze-solver/index.html
+/projects/its-rag-bot.html|projects/2024/its-rag-bot/index.html
+/projects/llmjammer.html|projects/2025/llmjammer/index.html
+/projects/LoyolaHACK.html|projects/2025/loyolahack/index.html
+/projects/mc-carspot.html|projects/2025/mc-carspot/index.html
+/projects/meta_research.html|projects/2023/meta_research/index.html
+/projects/mlb-hackathon.html|projects/2025/mlb-hackathon/index.html
+/projects/movierec.html|projects/2024/movierec/index.html
+/projects/my-zshrc.html|miscellaneous/my-zshrc/index.html
+/projects/one-rep-max.html|projects/2024/one-rep-max/index.html
+/projects/recursive-maze-solver.html|projects/2023/recursive-maze-solver/index.html
+/projects/resilient.html|projects/2026/resilient/index.html
+/projects/rubix-snake-puzzle.html|projects/2026/rubix-snake-puzzle/index.html
+/projects/serenity.html|projects/2024/serenity/index.html
+/projects/sign-language.html|projects/2025/sign-language/index.html
+/projects/skeuomorphism.html|miscellaneous/skeuomorphism/index.html
+/projects/song-recommender.html|miscellaneous/song-recommender/index.html
+/projects/tdx-window-blocker.html|projects/2025/tdx-window-blocker/index.html
+/projects/tell-ai.html|miscellaneous/tell-ai/index.html
+/projects/terminalgpt.html|projects/2025/terminalgpt/index.html
+/projects/tla-dexcom-g7.html|projects/2024/tla-dexcom-g7/index.html
+/projects/tla-formal-generation.html|projects/2025/tla-formal-generation/index.html
+/projects/tla-laptop.html|projects/2024/tla-laptop/index.html
+/projects/tla-walk-in-oven.html|projects/2024/tla-walk-in-oven/index.html
+/projects/tunes2tube-mac.html|projects/2026/tunes2tube-mac/index.html
+/projects/udp-server-binary.html|projects/2025/udp-server-binary/index.html
+/projects/yeat-llm.html|projects/2026/yeat-llm/index.html
+/projects/youtube-dl.html|projects/2025/youtube-dl/index.html

@@ -38,6 +38,20 @@ Edit those pages in their own repos. Their preview cards still live in
 `assets/og/` here and are listed in `EXTERNAL` in `scripts/build_og_images.py`,
 so reshooting keeps working.
 
+## One copy of each project page
+
+A project writeup lives at `projects/<slug>.html`. Its old Hugo URLs
+(`projects/<year>/<slug>/`, `miscellaneous/<slug>/`) stay alive as redirect
+stubs, so the writeup is served once and the old links still work.
+
+`content/project-pages.txt` lists which mirror belongs to which page. The
+pairing is not derivable from the slug, so add a line when you add a page.
+
+```bash
+python3 scripts/check_project_pages.py         # report drift; runs on deploy
+python3 scripts/check_project_pages.py --fix   # rewrite mirrors from the page
+```
+
 ## Blog workflow
 
 Write posts as `content/blog/your-slug.md` with front matter:

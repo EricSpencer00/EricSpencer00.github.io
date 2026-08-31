@@ -49,6 +49,13 @@ jobs:
       - name: Collapse the old Hugo URLs to redirects
         run: python3 scripts/collapse_mirrors.py
 
+      # collapse_mirrors.py reads each mirror's own canonical tag, so a mirror
+      # without one is skipped and keeps serving a second copy of the writeup.
+      # content/project-pages.txt says which mirror belongs to which page; this
+      # fails the build when the files disagree with it.
+      - name: Check every project page has one copy
+        run: python3 scripts/check_project_pages.py
+
       # Runs last: the generators above rewrite whole <head> blocks, so the
       # link-preview tags have to be reapplied after them or every rebuild
       # silently drops each page back to a generic card. The card images
