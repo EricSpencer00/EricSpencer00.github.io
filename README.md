@@ -38,6 +38,25 @@ Edit those pages in their own repos. Their preview cards still live in
 `assets/og/` here and are listed in `EXTERNAL` in `scripts/build_og_images.py`,
 so reshooting keeps working.
 
+## Project URLs
+
+A project article lives at one path: `/projects/<slug>.html`. The Hugo paths it
+had before the rewrite — `/projects/<year>/<slug>/` and `/miscellaneous/<slug>/`
+— still work, but they serve a redirect stub, not a second copy. Old links keep
+working and a crawler spends one fetch on the article instead of three.
+
+`scripts/mirrors.txt` lists every one of those paths and the page it redirects
+to. Add a line when you add a project.
+
+```bash
+python3 scripts/sync_mirrors.py           # rebuild any stub that has drifted
+python3 scripts/sync_mirrors.py --check   # report only; exit 1 on drift
+```
+
+`sync_mirrors.py` runs on every deploy, before `apply_og_tags.py`. It fails the
+build on a path that is not in `mirrors.txt`, so a hand-copied page cannot ship
+as a duplicate of the article.
+
 ## Blog workflow
 
 Write posts as `content/blog/your-slug.md` with front matter:

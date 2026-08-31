@@ -42,6 +42,12 @@ jobs:
       - name: Drop the blog when nothing is published
         run: python3 scripts/prune_blog.py
 
+      # Before the link-preview tags, so a stub rebuilt here still gets its card.
+      # Fails the build on a mirror that is not in scripts/mirrors.txt: a new
+      # hand-copy has to be registered, not guessed at.
+      - name: Redirect the old Hugo URLs to the canonical page
+        run: python3 scripts/sync_mirrors.py
+
       # Runs last: the generators above rewrite whole <head> blocks, so the
       # link-preview tags have to be reapplied after them or every rebuild
       # silently drops each page back to a generic card. The card images
