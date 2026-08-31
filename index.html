@@ -124,6 +124,17 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 .cat-note{font-size:14px;color:var(--dim);margin:-4px 0 10px;font-variant-numeric:tabular-nums}
 .cat-note b{color:var(--ink);font-weight:600}
 @media(max-width:560px){.wrap{padding:36px 18px 80px}.proj .dt,.proj .ds{display:none}.post-d{display:none}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{display:none}#hf-list .repo-row .dt,#hf-list .repo-row .ds{display:none}}
+/* Tap targets. A finger needs 24x24 (WCAG 2.2 2.5.8); the desktop rows and the
+   [link] markers are about 18px and 14px tall. Grow the box, not the text: the
+   links that sit on a line of their own get min-height, and the markers inside
+   a sentence get a size bump as well. */
+@media(max-width:560px){
+nav.top a,.linkrow a,a.pill,.cv-org a,.post-title a,.small a,footer a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}
+.proj a.nm,#gh-repos .repo-row a,#hf-list .repo-row a,.gh-more{min-height:24px}
+.linkrow{line-height:2}
+a.pill{font-size:12px}
+.tag{font-size:12px;padding:1px 6px}
+}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
 <nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
