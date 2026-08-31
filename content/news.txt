@@ -3,6 +3,10 @@
 # html_text: HTML allowed (bold, links etc)
 # optional_link_url + label: appended as a pill link
 
+2026-08-30|<b>palindrome-sentence-generator</b> v3. GPT-2 ranks a two-ended dictionary search, so a 200-letter palindrome reads as English.|https://palindrome.ericspencer.us|[live]
+2026-08-28|BeamNG.drive 0.38.5 runs playable on Apple Silicon at 108&ndash;128 FPS, on a Wine build with DXMT and no paid software.|https://github.com/EricSpencer00/Whisky|[repo]
+2026-08-27|Released <b>Ripcord</b>: offline audio mastering for macOS. Swift and Accelerate, 2 MB, no network code.|https://github.com/EricSpencer00/ripcord|[repo]
+2026-08|<b>SideSwing</b> is on TestFlight. The phone is the club, and the launch monitor reads its attitude through the swing.|https://sideswing.tech|[link]
 2026-06-05|<b>tla-prover</b> accepted at <b>ICSOFT 2026</b>.|https://arxiv.org/html/2606.06133v1|[link]
 2026-04-17|Presented <b>ChatTLA+</b> at Loyola's Undergraduate Research &amp; Engagement Symposium.|https://ai4fm.cs.luc.edu/posts/chattla-presentation-2026/|[link]
 2026-04|Released <b>chattla-20b</b> on Hugging Face. 13,500+ downloads.|https://huggingface.co/EricSpencer00/chattla-20b|[model]
