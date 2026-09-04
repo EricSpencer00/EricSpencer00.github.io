@@ -119,15 +119,16 @@ def index_pages() -> list[dict[str, str]]:
 
 
 def inject_bootstrap() -> int:
-    changed = 0
-    for _, path in published_html():
-        source = path.read_text(encoding="utf-8", errors="replace")
-        if 'data-site-assistant' in source or "</body>" not in source.lower():
-            continue
-        updated = re.sub(r"</body>", BOOTSTRAP + "</body>", source, count=1, flags=re.I)
-        path.write_text(updated, encoding="utf-8")
-        changed += 1
-    return changed
+    # The assistant has a single, deliberate home: the profile page.  Its
+    # retrieval index still covers every public page, but the UI does not
+    # follow a visitor through the entire site.
+    path = ROOT / "index.html"
+    source = path.read_text(encoding="utf-8", errors="replace")
+    if 'data-site-assistant' in source or "</body>" not in source.lower():
+        return 0
+    updated = re.sub(r"</body>", BOOTSTRAP + "</body>", source, count=1, flags=re.I)
+    path.write_text(updated, encoding="utf-8")
+    return 1
 
 
 def main() -> None:

@@ -85,9 +85,9 @@ function createAssistant() {
       @media (max-width: 520px) { .launcher { right:12px; bottom:12px; } .panel { right:12px; bottom:64px; width:calc(100vw - 24px); height:min(590px, calc(100svh - 82px)); } }
       @media (prefers-reduced-motion: reduce) { * { scroll-behavior:auto; } }
     </style>
-    <button class="launcher" type="button" aria-expanded="false">Ask Eric’s site</button>
-    <section class="panel" hidden aria-label="Ask Eric’s site">
-      <header><div><h2>Ask Eric’s site</h2><p>Grounded in this site’s build from ${window.ERIC_SITE_KNOWLEDGE?.updated || "today"}. Nothing you type is sent to an application server.</p></div><button class="close" type="button" aria-label="Close assistant">×</button></header>
+    <button class="launcher" type="button" aria-expanded="false">Ask Eric</button>
+    <section class="panel" hidden aria-label="Ask Eric">
+      <header><div><h2>Ask Eric</h2><p>Local model. Site sources only.</p></div><button class="close" type="button" aria-label="Close assistant">×</button></header>
       <div class="messages" role="log"></div>
       <form><input aria-label="Ask a question about Eric Spencer" autocomplete="off" placeholder="What has Eric built?" /><button type="submit">Ask</button></form>
     </section>`;
@@ -136,7 +136,7 @@ function createAssistant() {
         initProgressCallback: (report) => { line.textContent = report.text || "Preparing the local model…"; },
       });
       line.remove();
-      say("The local model is ready. I’ll answer only from the site passages I retrieve for each question.");
+      say("Ready.");
       return engine;
     })();
     try { return await loading; } finally { loading = null; }
@@ -144,10 +144,10 @@ function createAssistant() {
 
   function showFallback(passages) {
     if (!passages.length) {
-      say("I could not find a matching passage on this site. Try a project, topic, paper, role, or organization.");
+      say("No matching site source found.");
       return;
     }
-    say(`I found these site passages. This browser can still search the site, but it cannot run the local language model.\n\n${passages.slice(0, 3).map((item) => item.text).join("\n\n")}`, "assistant", passages);
+    say(passages.slice(0, 3).map((item) => item.text).join("\n\n"), "assistant", passages);
   }
 
   async function ask(question) {
@@ -158,7 +158,7 @@ function createAssistant() {
     try {
       const local = await startModel();
       if (!passages.length) {
-        say("I don’t have enough support for that in the current site index. I can only answer from material published here.");
+        say("Not in the site sources.");
         return;
       }
       const sourceText = passages.map((item, index) => `[${index + 1}] ${item.title}\n${item.text}`).join("\n\n").slice(0, CONTEXT_LIMIT);
@@ -183,7 +183,7 @@ function createAssistant() {
     panel.hidden = !panel.hidden;
     launcher.setAttribute("aria-expanded", String(!panel.hidden));
     if (!panel.hidden && !messages.childElementCount) {
-      say("Ask about Eric’s research, projects, writing, or experience. The first question downloads a small model to this browser (roughly 350 MB, then cached locally).", "assistant");
+      say("Ask about research, projects, or experience. First use downloads the local model.", "assistant");
     }
     if (!panel.hidden) input.focus();
   });
