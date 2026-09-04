@@ -47,7 +47,7 @@ jobs:
           # is a duplicate of production competing in search, and its robots.txt
           # was even pointing crawlers at the production sitemap.
           printf 'User-agent: *\nDisallow: /\n' > robots.txt
-          git add -A CNAME index.html blog robots.txt cv resume assets \
+          git add -A CNAME index.html blog robots.txt cv resume assets editor \
             research.html projects.html 404.html projects
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts

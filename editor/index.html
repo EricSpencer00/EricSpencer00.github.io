@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Project Copy Review</title>
+  <style>
+    :root { --paper: oklch(.975 .008 80); --ink: oklch(.16 .018 55); --muted: oklch(.5 .012 70); --line: oklch(.84 .01 75); --mark: oklch(.33 .13 25); --wash: oklch(.93 .018 68); --ready: oklch(.36 .1 150); }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font: 15px/1.55 "Plus Jakarta Sans", ui-sans-serif, sans-serif; }
+    button, input, select, textarea { font: inherit; }
+    .shell { display:grid; grid-template-columns: minmax(270px, 25vw) 1fr; min-height:100vh; }
+    aside { position:sticky; top:0; height:100vh; padding:24px 16px; border-right:1px solid var(--line); overflow:auto; }
+    .eyebrow, .count, label { font: 11px/1.2 "IBM Plex Mono", ui-monospace, monospace; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+    h1 { margin:5px 0 18px; font-size:clamp(25px, 3vw, 38px); letter-spacing:-.045em; line-height:1; }
+    .hint { margin:0 0 20px; max-width:28ch; color:var(--muted); font-size:13px; }
+    input[type="search"] { width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:5px; background:transparent; color:var(--ink); }
+    .project-list { display:grid; gap:2px; margin-top:13px; }
+    .project { display:grid; grid-template-columns:8px 1fr; gap:8px; width:100%; padding:8px 7px; border:0; border-radius:4px; background:transparent; color:var(--ink); text-align:left; font-size:13px; cursor:pointer; }
+    .project:hover, .project[aria-current="true"] { background:var(--wash); }
+    .project i { width:7px; height:7px; margin-top:6px; border-radius:50%; background:var(--line); }
+    .project[data-review="reviewing"] i { background:var(--mark); }.project[data-review="ready"] i { background:var(--ready); }
+    main { display:grid; grid-template-rows:auto 1fr; min-width:0; }
+    .bar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 24px; border-bottom:1px solid var(--line); }
+    .bar-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    button.action, select { border:1px solid var(--line); border-radius:4px; padding:7px 9px; background:transparent; color:var(--ink); cursor:pointer; font-size:12px; }
+    button.action:hover { border-color:var(--mark); color:var(--mark); }
+    .editor { max-width:1060px; width:100%; margin:0 auto; padding:clamp(26px, 5vw, 70px) 28px; }
+    .empty { color:var(--muted); margin-top:60px; }
+    .project-head { display:grid; grid-template-columns:1fr auto; gap:18px; align-items:start; margin-bottom:25px; }
+    h2 { margin:4px 0 8px; font-size:clamp(28px, 4vw, 52px); letter-spacing:-.05em; line-height:.98; }
+    .description { max-width:64ch; margin:0; color:var(--muted); }
+    .live { color:var(--mark); font:12px "IBM Plex Mono", ui-monospace, monospace; text-decoration:none; border-bottom:1px dotted currentColor; }
+    .live:hover { color:var(--ink); }
+    .control { display:flex; gap:10px; align-items:center; margin:24px 0 8px; }
+    textarea { display:block; width:100%; min-height:calc(100vh - 310px); resize:vertical; border:1px solid var(--line); border-radius:5px; padding:18px; background:oklch(.99 .005 80); color:var(--ink); font:14px/1.65 "IBM Plex Mono", ui-monospace, monospace; }
+    textarea:focus { outline:2px solid oklch(.55 .11 30); outline-offset:2px; border-color:transparent; }
+    .save-note { margin:10px 0 0; color:var(--muted); font-size:12px; }
+    @media (max-width:760px) { .shell { grid-template-columns:1fr; }.shell aside { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }.project-list { max-height:210px; overflow:auto; }.editor { padding:28px 18px; }.bar { padding:12px 18px; }.project-head { grid-template-columns:1fr; } textarea { min-height:58vh; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="eyebrow">ericspencer.us</div>
+      <h1>Copy review</h1>
+      <p class="hint">One Markdown file. One project at a time.</p>
+      <input id="search" type="search" placeholder="Filter projects" aria-label="Filter projects">
+      <div id="project-list" class="project-list"></div>
+    </aside>
+    <main>
+      <div class="bar"><span id="count" class="count">Loading copy…</span><div class="bar-actions"><button class="action" id="copy">Copy draft</button><button class="action" id="download">Download .md</button><button class="action" id="reset">Reset draft</button></div></div>
+      <div id="editor" class="editor"></div>
+    </main>
+  </div>
+  <script>
+    const draftKey = "eric-project-copy-draft-v1";
+    const reviewKey = "eric-project-copy-review-v1";
+    let original = "", draft = "", records = [], active = "", review = JSON.parse(localStorage.getItem(reviewKey) || "{}");
+    const $ = (selector) => document.querySelector(selector);
+
+    function parse(markdown) {
+      const matcher = /<!-- PROJECT ([^ ]+) START -->\n## ([^\n]+)\n\n- URL: ([^\n]+)\n- Description: ([^\n]*)\n- Review: ([^\n]+)\n\n### Copy\n\n([\s\S]*?)\n<!-- PROJECT \1 END -->/g;
+      return [...markdown.matchAll(matcher)].map((match) => ({ slug:match[1], title:match[2], url:match[3], description:match[4], review:review[match[1]] || match[5], copy:match[6], whole:match[0] }));
+    }
+    function setDraft(value) { draft = value; localStorage.setItem(draftKey, draft); records = parse(draft); renderList(); }
+    function updateRecord(slug, copy) {
+      const current = parse(draft).find((record) => record.slug === slug);
+      if (current) setDraft(draft.replace(current.whole, current.whole.replace(current.copy, copy)));
+    }
+    function renderList() {
+      const term = $("#search").value.toLowerCase(); const list = $("#project-list"); list.innerHTML = "";
+      const visible = records.filter((r) => `${r.title} ${r.slug}`.toLowerCase().includes(term));
+      $("#count").textContent = `${visible.length} / ${records.length} projects`;
+      for (const record of visible) { const button = document.createElement("button"); button.className = "project"; button.dataset.review = record.review; button.setAttribute("aria-current", String(record.slug === active)); button.innerHTML = `<i></i><span>${record.title}</span>`; button.onclick = () => { active = record.slug; render(); }; list.append(button); }
+    }
+    function render() {
+      records = parse(draft); const record = records.find((item) => item.slug === active) || records[0]; if (!record) return;
+      active = record.slug; const root = $("#editor"); root.innerHTML = "";
+      const head = document.createElement("div"); head.className = "project-head"; head.innerHTML = `<div><div class="eyebrow">${record.slug}</div><h2>${record.title}</h2><p class="description">${record.description}</p></div><a class="live" href="${record.url}" target="_blank" rel="noopener">view page ↗</a>`; root.append(head);
+      const control = document.createElement("div"); control.className = "control"; control.innerHTML = `<label for="review">Review</label><select id="review"><option value="needs-review">Needs review</option><option value="reviewing">Reviewing</option><option value="ready">Ready</option></select>`; root.append(control);
+      const select = control.querySelector("select"); select.value = record.review; select.onchange = () => { review[record.slug] = select.value; localStorage.setItem(reviewKey, JSON.stringify(review)); renderList(); };
+      const area = document.createElement("textarea"); area.setAttribute("aria-label", `Copy for ${record.title}`); area.value = record.copy; area.oninput = () => updateRecord(record.slug, area.value); root.append(area);
+      const note = document.createElement("p"); note.className = "save-note"; note.textContent = "Edits stay in this browser until you download the Markdown draft."; root.append(note); renderList();
+    }
+    function download() { const blob = new Blob([draft], {type:"text/markdown"}); const link = Object.assign(document.createElement("a"), {href:URL.createObjectURL(blob), download:"index.md"}); link.click(); URL.revokeObjectURL(link.href); }
+    $("#search").oninput = renderList;
+    $("#copy").onclick = async () => { await navigator.clipboard.writeText(draft); $("#copy").textContent = "Copied"; setTimeout(() => $("#copy").textContent = "Copy draft", 1200); };
+    $("#download").onclick = download;
+    $("#reset").onclick = () => { localStorage.removeItem(draftKey); draft = original; records = parse(draft); active = records[0]?.slug || ""; render(); };
+    fetch("index.md").then((response) => response.text()).then((text) => { original = text; draft = localStorage.getItem(draftKey) || text; records = parse(draft); active = records[0]?.slug || ""; render(); }).catch(() => { $("#editor").innerHTML = '<p class="empty">Could not load index.md.</p>'; });
+  </script>
+</body>
+</html>
