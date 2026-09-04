@@ -50,13 +50,14 @@
       <div id="project-list" class="project-list"></div>
     </aside>
     <main>
-      <div class="bar"><span id="count" class="count">Loading copy…</span><div class="bar-actions"><button class="action" id="copy">Copy draft</button><button class="action" id="download">Download .md</button><button class="action" id="reset">Reset draft</button></div></div>
+      <div class="bar"><span id="count" class="count">Loading copy…</span><div class="bar-actions"><button class="action" id="save" hidden>Save index.md</button><button class="action" id="copy">Copy draft</button><button class="action" id="download">Download .md</button><button class="action" id="reset">Reset draft</button></div></div>
       <div id="editor" class="editor"></div>
     </main>
   </div>
   <script>
     const draftKey = "eric-project-copy-draft-v1";
     const reviewKey = "eric-project-copy-review-v1";
+    const localEditor = ["127.0.0.1", "localhost"].includes(location.hostname);
     let original = "", draft = "", records = [], active = "", review = JSON.parse(localStorage.getItem(reviewKey) || "{}");
     const $ = (selector) => document.querySelector(selector);
 
@@ -82,13 +83,15 @@
       const control = document.createElement("div"); control.className = "control"; control.innerHTML = `<label for="review">Review</label><select id="review"><option value="needs-review">Needs review</option><option value="reviewing">Reviewing</option><option value="ready">Ready</option></select>`; root.append(control);
       const select = control.querySelector("select"); select.value = record.review; select.onchange = () => { review[record.slug] = select.value; localStorage.setItem(reviewKey, JSON.stringify(review)); renderList(); };
       const area = document.createElement("textarea"); area.setAttribute("aria-label", `Copy for ${record.title}`); area.value = record.copy; area.oninput = () => updateRecord(record.slug, area.value); root.append(area);
-      const note = document.createElement("p"); note.className = "save-note"; note.textContent = "Edits stay in this browser until you download the Markdown draft."; root.append(note); renderList();
+      const note = document.createElement("p"); note.className = "save-note"; note.textContent = localEditor ? "Save writes this draft to index.md in the local checkout." : "Edits stay in this browser until you download the Markdown draft."; root.append(note); renderList();
     }
     function download() { const blob = new Blob([draft], {type:"text/markdown"}); const link = Object.assign(document.createElement("a"), {href:URL.createObjectURL(blob), download:"index.md"}); link.click(); URL.revokeObjectURL(link.href); }
     $("#search").oninput = renderList;
     $("#copy").onclick = async () => { await navigator.clipboard.writeText(draft); $("#copy").textContent = "Copied"; setTimeout(() => $("#copy").textContent = "Copy draft", 1200); };
     $("#download").onclick = download;
+    $("#save").onclick = async () => { const button = $("#save"); button.disabled = true; try { const response = await fetch("/api/markdown", {method:"PUT", headers:{"Content-Type":"text/markdown; charset=utf-8"}, body:draft}); if (!response.ok) throw new Error(); original = draft; localStorage.removeItem(draftKey); button.textContent = "Saved"; } catch { button.textContent = "Save failed"; } finally { setTimeout(() => { button.textContent = "Save index.md"; button.disabled = false; }, 1200); } };
     $("#reset").onclick = () => { localStorage.removeItem(draftKey); draft = original; records = parse(draft); active = records[0]?.slug || ""; render(); };
+    if (localEditor) $("#save").hidden = false;
     fetch("index.md").then((response) => response.text()).then((text) => { original = text; draft = localStorage.getItem(draftKey) || text; records = parse(draft); active = records[0]?.slug || ""; render(); }).catch(() => { $("#editor").innerHTML = '<p class="empty">Could not load index.md.</p>'; });
   </script>
 </body>

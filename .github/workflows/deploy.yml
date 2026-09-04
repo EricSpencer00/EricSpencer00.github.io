@@ -78,13 +78,14 @@ jobs:
       - name: Build sitemap
         run: python3 scripts/build_sitemap.py
 
-      # backup-site/ is an archive of the old Hugo site kept in git for
+      # backup-site/ and editor/ are local-only authoring material. Shipping
+      # either would publish duplicate or unpublished working copy.
       # reference. Shipping it published ~30 duplicate pages — including a
       # second copy of the homepage at /backup-site/ — which competed with the
       # real site in search. Keep it in the repo, keep it off the web. tests/
       # is the same deal: harnesses that drive a page in an iframe, not pages.
       - name: Strip non-published directories from the artifact
-        run: rm -rf backup-site tests
+        run: rm -rf backup-site tests editor
 
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3

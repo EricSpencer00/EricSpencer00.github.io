@@ -35,6 +35,8 @@ jobs:
         run: python3 scripts/seo_tags.py
       - name: Build the browser-only site assistant
         run: python3 scripts/build_chatbot_knowledge.py
+      - name: Keep the copy review desk local
+        run: rm -rf editor
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
