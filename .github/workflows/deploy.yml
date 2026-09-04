@@ -69,6 +69,11 @@ jobs:
       - name: Apply search tags
         run: python3 scripts/seo_tags.py
 
+      # Read the completed public site into a static retrieval index and attach
+      # the browser-only assistant to every public page.
+      - name: Build the browser-only site assistant
+        run: python3 scripts/build_chatbot_knowledge.py
+
       # Reads the finished pages, so it runs after everything that writes them.
       - name: Build sitemap
         run: python3 scripts/build_sitemap.py

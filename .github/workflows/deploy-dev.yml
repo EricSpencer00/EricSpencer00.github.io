@@ -33,6 +33,8 @@ jobs:
         run: python3 scripts/apply_og_tags.py
       - name: Apply search tags
         run: python3 scripts/seo_tags.py
+      - name: Build the browser-only site assistant
+        run: python3 scripts/build_chatbot_knowledge.py
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
@@ -45,7 +47,7 @@ jobs:
           # is a duplicate of production competing in search, and its robots.txt
           # was even pointing crawlers at the production sitemap.
           printf 'User-agent: *\nDisallow: /\n' > robots.txt
-          git add -A CNAME index.html blog robots.txt cv resume assets/pdf assets/og \
+          git add -A CNAME index.html blog robots.txt cv resume assets \
             research.html projects.html 404.html projects
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
