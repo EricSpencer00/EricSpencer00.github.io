@@ -79,7 +79,8 @@
     function render() {
       records = parse(draft); const record = records.find((item) => item.slug === active) || records[0]; if (!record) return;
       active = record.slug; const root = $("#editor"); root.innerHTML = "";
-      const head = document.createElement("div"); head.className = "project-head"; head.innerHTML = `<div><div class="eyebrow">${record.slug}</div><h2>${record.title}</h2><p class="description">${record.description}</p></div><a class="live" href="${record.url}" target="_blank" rel="noopener">view page ↗</a>`; root.append(head);
+      const pageUrl = localEditor ? `https://ericspencer.us${record.url}` : record.url;
+      const head = document.createElement("div"); head.className = "project-head"; head.innerHTML = `<div><div class="eyebrow">${record.slug}</div><h2>${record.title}</h2><p class="description">${record.description}</p></div><a class="live" href="${pageUrl}" target="_blank" rel="noopener">view page ↗</a>`; root.append(head);
       const control = document.createElement("div"); control.className = "control"; control.innerHTML = `<label for="review">Review</label><select id="review"><option value="needs-review">Needs review</option><option value="reviewing">Reviewing</option><option value="ready">Ready</option></select>`; root.append(control);
       const select = control.querySelector("select"); select.value = record.review; select.onchange = () => { review[record.slug] = select.value; localStorage.setItem(reviewKey, JSON.stringify(review)); renderList(); };
       const area = document.createElement("textarea"); area.setAttribute("aria-label", `Copy for ${record.title}`); area.value = record.copy; area.oninput = () => updateRecord(record.slug, area.value); root.append(area);
