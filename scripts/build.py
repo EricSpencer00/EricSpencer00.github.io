@@ -6,6 +6,7 @@ Run by GitHub Actions on every push; do not edit index.html directly.
 
 from pathlib import Path
 import html as htmllib
+import json
 
 from build_blog import load_posts
 
@@ -41,16 +42,46 @@ def build_news():
     return "\n".join(rows)
 
 
+def news_history():
+    history = json.loads((CONTENT / "news-history.json").read_text(encoding="utf-8"))
+    entries = []
+    for line in lines("news.txt"):
+        date, text, url, label = parse(line, 4)
+        entry = {"date": date, "html": text, "url": url}
+        entry.update(history["updates"].get(url, {}))
+        entries.append(entry)
+    entries.extend(history["entries"])
+    return sorted(entries, key=lambda entry: entry["date"])
+
+
+def news_attachment(attachment):
+    escape = htmllib.escape
+    image = attachment["image"]
+    if not (ROOT / image.lstrip("/")).is_file():
+        raise ValueError(f"Missing news preview: {image}")
+    return (
+        f'<a class="news-attachment" href="{escape(attachment["url"], quote=True)}" '
+        f'target="_blank" rel="noopener" aria-label="Open {escape(attachment["title"], quote=True)} PDF">'
+        f'<img src="{escape(image, quote=True)}" '
+        f'alt="First-page preview of {escape(attachment["title"], quote=True)}" '
+        f'width="{int(attachment["width"])}" height="{int(attachment["height"])}" '
+        'loading="lazy" decoding="async">'
+        f'<span class="attachment-caption">{escape(attachment["title"])}'
+        f'<span class="attachment-type">{escape(attachment["kind"])} · PDF ↗</span></span></a>'
+    )
+
+
 def build_news_page():
     rows = []
-    entries = [parse(line, 4) for line in lines("news.txt")]
-    for date, text, url, label in sorted(entries, key=lambda entry: entry[0]):
+    for entry in news_history():
+        date, text, url = entry["date"], entry["html"], entry["url"]
         link = (f' <a href="{htmllib.escape(url, quote=True)}" target="_blank" '
                 f'rel="noopener">See more ↗</a>') if url else ""
+        attachment = news_attachment(entry["attachment"]) if entry.get("attachment") else ""
         rows.append(
             f'<div class="messages-title"><time datetime="{htmllib.escape(date)}">{htmllib.escape(date)}</time></div>'
             '<div class="message message-received message-tail"><div class="message-content">'
-            f'<div class="message-bubble"><div class="message-text">{text}{link}'
+            f'{attachment}<div class="message-bubble"><div class="message-text">{text}{link}'
             ' Reply STOP to unsubscribe.</div></div></div></div>'
         )
     return '''<!doctype html>

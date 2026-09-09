@@ -27,3 +27,11 @@ a:focus-visible {outline:2px solid oklch(0.43 0.2 257);outline-offset:4px}
  .news-page {padding:20px 16px 40px}
  .void-board .message {max-width:96%}
 }
+/* Separate attachments share the sender's alignment, like a Messages photo. */
+.void-board .message-content {min-width:0;max-width:100%}
+.news-attachment {display:block;width:292px;max-width:100%;margin:0 0 6px 6px;overflow:hidden;border:1px solid oklch(0.88 0.005 265);border-radius:18px;background:oklch(0.96 0.004 265);color:inherit;text-decoration:none}
+.news-attachment img {display:block;width:100%;height:auto;max-height:360px;object-fit:contain;background:oklch(0.997 0.001 265)}
+.attachment-caption {display:block;padding:12px 14px;font-size:14px;line-height:1.35;font-weight:500}
+.attachment-type {display:block;margin-top:4px;color:oklch(0.46 0.01 265);font-size:12px;font-weight:400}
+.news-attachment:hover {border-color:oklch(0.58 0.07 257);background:oklch(0.93 0.012 257)}
+@media(max-width:480px) {.news-attachment {width:260px}}
