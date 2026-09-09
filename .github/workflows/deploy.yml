@@ -27,7 +27,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      # The dev mirror is already built, pruned, and marked noindex by deploy-dev.
+      # Publish that artifact as-is; rebuilding loses those transformations.
       - name: Build static pages
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: |
           python3 scripts/build.py
           python3 scripts/build_blog.py
@@ -36,10 +39,12 @@ jobs:
       # One definition of the top nav for every page, so `cv` cannot reach only
       # the homepage again and `blog` only appears once something is published.
       - name: Apply the top nav
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/apply_nav.py
 
       # Before the sitemap: an unpublished blog should not be listed in it.
       - name: Drop the blog when nothing is published
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/prune_blog.py
 
       # The old Hugo URLs (/projects/<year>/<slug>/, /miscellaneous/<slug>/) are
@@ -47,6 +52,7 @@ jobs:
       # so a newly added project cannot quietly ship a duplicate again. Before
       # apply_og_tags.py, which has to reapply the card tags to the new stub.
       - name: Collapse the old Hugo URLs to redirects
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/collapse_mirrors.py
 
       # collapse_mirrors.py reads each mirror's own canonical tag, so a mirror
@@ -54,6 +60,7 @@ jobs:
       # content/project-pages.txt says which mirror belongs to which page; this
       # fails the build when the files disagree with it.
       - name: Check every project page has one copy
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/check_project_pages.py
 
       # Runs last: the generators above rewrite whole <head> blocks, so the
@@ -62,20 +69,24 @@ jobs:
       # themselves are committed -- regenerating those needs Chrome and is a
       # local step (scripts/build_og_images.py).
       - name: Point pages at their link-preview cards
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/apply_og_tags.py
 
       # Also last, and for the same reason: favicon links, robots directives and
       # the structured-data image live in the same <head> the generators rewrite.
       - name: Apply search tags
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/seo_tags.py
 
       # Read the completed public site into a static retrieval index and attach
       # the browser-only assistant to every public page.
       - name: Build the browser-only site assistant
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/build_chatbot_knowledge.py
 
       # Reads the finished pages, so it runs after everything that writes them.
       - name: Build sitemap
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/build_sitemap.py
 
       # backup-site/ and editor/ are local-only authoring material. Shipping
