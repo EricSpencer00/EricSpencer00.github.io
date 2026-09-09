@@ -66,8 +66,7 @@ def news_attachment(attachment):
         f'alt="First-page preview of {escape(attachment["title"], quote=True)}" '
         f'width="{int(attachment["width"])}" height="{int(attachment["height"])}" '
         'loading="lazy" decoding="async">'
-        f'<span class="attachment-caption">{escape(attachment["title"])}'
-        f'<span class="attachment-type">{escape(attachment["kind"])} · PDF ↗</span></span></a>'
+        f'<span class="attachment-caption">{escape(Path(image).stem)}.pdf</span></a>'
     )
 
 
@@ -75,20 +74,22 @@ def build_news_page():
     rows = []
     for entry in news_history():
         date, text, url = entry["date"], entry["html"], entry["url"]
-        link = (f' <a href="{htmllib.escape(url, quote=True)}" target="_blank" '
-                f'rel="noopener">See more ↗</a>') if url else ""
+        visible_url = "https://ericspencer.us" + url if url.startswith("/") else url
+        link = (f'<br><a href="{htmllib.escape(url, quote=True)}" target="_blank" '
+                f'rel="noopener">{htmllib.escape(visible_url)}</a>') if url else ""
         attachment = news_attachment(entry["attachment"]) if entry.get("attachment") else ""
         rows.append(
             f'<div class="messages-title"><time datetime="{htmllib.escape(date)}">{htmllib.escape(date)}</time></div>'
             '<div class="message message-received message-tail"><div class="message-content">'
             f'{attachment}<div class="message-bubble"><div class="message-text">{text}{link}'
-            ' Reply STOP to unsubscribe.</div></div></div></div>'
+            '</div></div></div></div>'
         )
     return '''<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>News · Eric Spencer</title>
+<script src="/assets/js/news-scroll.js" defer></script>
 <meta name="description" content="Research, papers, and project updates from Eric Spencer, as texts from the void.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ericspencer.us/news/">

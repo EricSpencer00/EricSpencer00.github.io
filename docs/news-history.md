@@ -42,3 +42,12 @@ to refresh the local WebP files. The regular site build does not download PDFs.
 Excluded: duplicate role entries, individual classes and Dean's List semesters,
 minor project commits, undocumented job endings, and an unsupported separate
 best-paper award claim. The history is editorial, not a dump of every repo.
+
+The timeline copy is first-person text-message prose. Keep the `source` field
+for provenance even when a job or personal update has no public-facing link.
+Visible links show their URL. Attachment captions are filenames. The homepage
+retains its original curated wording and formatting.
+
+`assets/js/news-scroll.js` opens fresh visits at the latest message. It respects
+explicit fragments and back/forward restoration, and stops repositioning after
+user input. Image dimensions reserve attachment space before lazy images load.
