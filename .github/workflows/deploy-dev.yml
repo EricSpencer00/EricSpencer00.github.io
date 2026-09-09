@@ -67,7 +67,7 @@ jobs:
           # Crawlers must be able to fetch development pages to see their
           # noindex directives and production canonical URLs.
           printf 'User-agent: *\nAllow: /\n' > robots.txt
-          git add -A CNAME index.html blog robots.txt cv resume assets editor \
+          git add -A CNAME index.html news blog robots.txt cv resume assets editor \
             research.html projects.html 404.html projects
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
