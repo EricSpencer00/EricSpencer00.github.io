@@ -1,0 +1,48 @@
+/* Framework7 8.3.4 Messages supplies the layout and iOS bubble tails. */
+.void-board {
+  --f7-theme-color: oklch(0.51 0.22 257);
+  --f7-message-sent-bg-color: var(--f7-theme-color);
+  --f7-message-received-bg-color: oklch(0.93 0.005 265);
+  --f7-message-received-text-color: oklch(0.2 0.005 265);
+  --f7-messages-title-text-color: oklch(0.48 0.01 265);
+  --f7-messages-content-bg-color: transparent;
+  --f7-message-bubble-line-height: 1.45;
+  --f7-message-bubble-font-size: 15px;
+  --f7-message-bubble-padding-vertical: 11px;
+  --f7-message-bubble-border-radius: 19px;
+  overflow: hidden;
+  border: 1px solid oklch(0.86 0.005 265);
+  border-radius: 22px;
+  background: oklch(0.993 0.002 265);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  line-height: 1.4;
+  color: oklch(0.2 0.005 265);
+}
+.void-contact {display:flex;flex-direction:column;align-items:center;gap:3px;padding:18px 16px 14px;background:oklch(0.975 0.003 265);border-bottom:1px solid oklch(0.9 0.005 265)}
+.void-avatar {display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:oklch(0.25 0.01 265);color:oklch(0.95 0.005 265);font-size:32px;line-height:1}
+.void-contact strong {font-size:14px;font-weight:600;margin-top:3px}
+.void-contact > span:last-child {font-size:11px;color:oklch(0.48 0.01 265)}
+.void-history {max-height:450px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:0 20px 24px}
+.void-board .messages {padding:0;background:transparent}
+.void-caption {text-align:center;font-size:11px;color:oklch(0.48 0.01 265);padding:20px 0 0}
+.void-board .messages-title {margin:20px 0 9px;font-size:11px}
+.void-board .message {max-width:85%;margin-top:0}
+.void-board .message-text {overflow-wrap:anywhere}
+.void-board .message-text a {color:oklch(0.43 0.2 257);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.void-board .message-text a:hover {color:oklch(0.3 0.14 257)}
+.void-fineprint {display:block;margin-top:8px;font-size:12px;color:oklch(0.46 0.01 265)}
+.void-compose {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-top:1px solid oklch(0.9 0.005 265)}
+.void-compose[hidden] {display:none}
+.void-compose > span {font-size:12px;color:oklch(0.48 0.01 265)}
+.void-stop {flex-shrink:0;border:1px solid oklch(0.82 0.005 265);border-radius:22px;padding:6px 7px 6px 14px;background:transparent;color:oklch(0.4 0.01 265);font:inherit;font-size:13px;cursor:pointer;min-height:44px}
+.void-stop span {display:inline-grid;place-items:center;width:28px;height:28px;margin-left:10px;border-radius:50%;background:var(--f7-theme-color);color:oklch(0.99 0.002 265);font-size:22px}
+.void-stop:hover {background:oklch(0.93 0.01 265)}
+.void-board :focus-visible {outline:2px solid var(--f7-theme-color);outline-offset:-3px}
+.void-board .void-replies:not(:empty) {padding:8px 20px 20px;gap:12px}
+.void-stop:disabled {cursor:default;opacity:.65}
+@media(max-width:480px) {
+ .void-history {padding-inline:14px;max-height:420px}
+ .void-board .message {max-width:94%}
+ .void-compose {padding-inline:12px;gap:8px}
+ .void-compose > span {max-width:110px}
+}

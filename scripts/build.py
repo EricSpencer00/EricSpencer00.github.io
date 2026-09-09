@@ -35,9 +35,24 @@ def build_news():
     rows = []
     for line in lines("news.txt"):
         date, text, url, label = parse(line, 4)
-        pill = f' <a href="{url}" target="_blank" rel="noopener" class="pill">{label}</a>' if url else ""
-        rows.append(f'<div class="news"><span class="d">{date}</span><span class="t">{text}{pill}</span></div>')
-    return "\n".join(rows)
+        link = (f' <a href="{htmllib.escape(url, quote=True)}" target="_blank" '
+                f'rel="noopener">See more ↗</a>') if url else ""
+        rows.append(
+            f'<div class="messages-title"><time datetime="{htmllib.escape(date)}">{htmllib.escape(date)}</time></div>'
+            '<div class="message message-received message-tail"><div class="message-content">'
+            f'<div class="message-bubble"><div class="message-text">{text}{link}'
+            ' <span class="void-fineprint">Reply STOP to unsubscribe.</span></div></div></div></div>'
+        )
+    return ('<section class="void-board ios" aria-label="News: texts from the void">'
+            '<header class="void-contact"><span class="void-avatar" aria-hidden="true">◌</span>'
+            '<strong>the void</strong><span>news from eric</span></header>'
+            '<div class="void-history" tabindex="0" role="region" aria-label="News messages, newest first">'
+            '<div class="messages"><div class="void-caption">Text Message · newest first</div>'
+            + "\n".join(rows) + '</div></div>'
+            '<div class="void-replies messages" aria-live="polite" aria-atomic="true"></div>'
+            '<div class="void-compose" hidden><span>the void has your number.</span>'
+            '<button type="button" class="void-stop">Reply STOP <span aria-hidden="true">↑</span></button></div>'
+            '</section>')
 
 def build_about():
     text = (CONTENT / "about.txt").read_text(encoding="utf-8")
@@ -168,6 +183,9 @@ def build_page(news, about, selected, blog, experience):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/vendor/framework7/messages.css">
+<link rel="stylesheet" href="/assets/css/void-news.css">
+<script src="/assets/js/void-news.js" defer></script>
 <style>
 :root{{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}}
 /* A custom property holds any value, so a hex fallback in the same block is
