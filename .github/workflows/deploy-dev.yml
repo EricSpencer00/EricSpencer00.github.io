@@ -35,6 +35,25 @@ jobs:
         run: python3 scripts/seo_tags.py
       - name: Build the browser-only site assistant
         run: python3 scripts/build_chatbot_knowledge.py
+      - name: Keep development pages out of search
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          for path in Path('.').rglob('*.html'):
+              if any(part in {'.git', 'backup-site', 'editor', 'tests'} for part in path.parts):
+                  continue
+              text = path.read_text(encoding='utf-8', errors='replace')
+              if '</head>' not in text:
+                  continue
+              text = re.sub(
+                  r'<meta name="robots" content="[^"]*">',
+                  '<meta name="robots" content="noindex, follow">',
+                  text,
+              )
+              path.write_text(text, encoding='utf-8')
+          PY
       - name: Keep the copy review desk local
         run: rm -rf editor
       - uses: webfactory/ssh-agent@v0.9.0
@@ -45,10 +64,9 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
-          # dev.ericspencer.us serves a full copy of the site. Left crawlable it
-          # is a duplicate of production competing in search, and its robots.txt
-          # was even pointing crawlers at the production sitemap.
-          printf 'User-agent: *\nDisallow: /\n' > robots.txt
+          # Crawlers must be able to fetch development pages to see their
+          # noindex directives and production canonical URLs.
+          printf 'User-agent: *\nAllow: /\n' > robots.txt
           git add -A CNAME index.html blog robots.txt cv resume assets editor \
             research.html projects.html 404.html projects
           git commit --allow-empty -m "chore: build + set dev CNAME"

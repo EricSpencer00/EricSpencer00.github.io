@@ -54,6 +54,7 @@
 /projects/movierec.html|projects/2024/movierec/index.html
 /projects/my-zshrc.html|miscellaneous/my-zshrc/index.html
 /projects/one-rep-max.html|projects/2024/one-rep-max/index.html
+https://github.com/EricSpencer00/rl-agent-c4|projects/2023/rl-agent-c4/index.html|external
 /projects/recursive-maze-solver.html|projects/2023/recursive-maze-solver/index.html
 /projects/resilient.html|projects/2026/resilient/index.html
 /projects/rubix-snake-puzzle.html|projects/2026/rubix-snake-puzzle/index.html

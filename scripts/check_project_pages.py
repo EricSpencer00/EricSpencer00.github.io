@@ -78,8 +78,11 @@ def target_of(path):
     text = path.read_text(encoding="utf-8", errors="replace")
     if MARKER not in text:
         return None
-    m = re.search(r'<link rel="canonical" href="' + re.escape(SITE) + r'([^"]+)"', text)
-    return m.group(1) if m else None
+    m = re.search(r'<link rel="canonical" href="([^"]+)"', text)
+    if not m:
+        return None
+    url = m.group(1)
+    return url[len(SITE):] if url.startswith(SITE) else url
 
 
 def title_of(canonical, mirror):
