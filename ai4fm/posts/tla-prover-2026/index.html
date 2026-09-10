@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ericspencer.us/ai4fm/posts/tla-prover-2026/" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="Building on our evaluation study that showed the best public LLMs achieve only 8.6% semantic correctness on TLA+ specification generation, we present TLA-Prover: a 20-billion-parameter model traine..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="Building on our evaluation study that showed the best public LLMs achieve only 8.6% semantic correctness on TLA+ specification generation, we present TLA-Prover: a 20-billion-parameter model traine..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis &#8212; AI4FM | AI for Formal Methods</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=aaf57dc5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="../../_static/documentation_options.js?v=3ff7b324"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="canonical" href="https://ericspencer.us/ai4fm/posts/tla-prover-2026/" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="TLA-Prover Paper Accepted to ICSOFT 2026" href="../tla-prover-accepted-2026/" />
+    <link rel="prev" title="TLA+ for All: Running Model Checking in a Python Notebook" href="../tla-for-all-running-model-checking-in-a-python-notebook/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+</head><body class="inner-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <nav aria-label="Main navigation">
+      
+      <a href="../../papers/">Research Papers</a>
+      
+      <a href="../" aria-current="page">Research Updates</a>
+      
+      <a href="../../pages/people/">Team</a>
+      
+      <a href="../../pages/software/">Software and Datasets</a>
+      
+      <a href="../../pages/about/">About</a>
+      
+      <a href="../../pages/prospective-students/">Get Involved</a>
+      
+      <a href="../../search/">Search</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page-layout site-width">
+  <main role="main" id="main" class="article-body">
+    <div class="breadcrumbs"><a href="../../">ai4fm</a><span aria-hidden="true"> / </span><a href="../">Research Updates</a></div>
+    
+<section id="new-paper-tla-prover-fine-tuning-llms-for-verifiable-tla-specification-synthesis">
+<h1>New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis<a class="headerlink" href="#new-paper-tla-prover-fine-tuning-llms-for-verifiable-tla-specification-synthesis" title="Link to this heading">¶</a></h1>
+<p>Building on our <a class="reference internal" href="../llm-tla-evaluation-2025/"><span class="doc">evaluation study</span></a> that showed the best public LLMs
+achieve only 8.6% semantic correctness on TLA+ specification generation, we present
+<strong>TLA-Prover</strong>: a 20-billion-parameter model trained specifically for TLA+ specification synthesis.</p>
+<p>TLA-Prover combines supervised fine-tuning (SFT) on verified examples with repair-based
+group-relative policy optimization (GRPO), where the model learns to fix its own rejected
+specifications. TLC model checking provides the reward signal directly — no learned reward
+model is needed. A four-tier grading scheme (Bronze, Silver, Gold, Diamond) measures output
+quality, with Diamond requiring that the model’s correctness property is meaningful enough
+for TLC to detect deliberate violations.</p>
+<p>TLA-Prover achieves <strong>30% pass&#64;1 at Gold and Diamond</strong> on a held-out 30-problem benchmark —
+roughly <strong>3.5× the 8.6% untuned baseline</strong>. A DPO ablation trained from the same SFT
+checkpoint reaches 20% at Diamond.</p>
+<p><a class="reference external" href="../../papers/tla-prover/">Read the full paper details</a></p>
+<p><a class="reference external" href="index.html">See other posts</a></p>
+</section>
+
+
+
+
+<div class="ablog-post-meta">
+  
+    Authored by
+    
+      <a href="https://marslan.cs.luc.edu/">Arslan Bisharat</a>
+    
+    
+  
+</div>
+
+
+
+  </main>
+  
+</div>
+
+
+<footer class="site-footer site-width"><a class="footer-name" href="../../">ai4fm @ luc.edu</a><nav aria-label="Footer"><a href="https://www.luc.edu/">Loyola University Chicago</a><a href="../../pages/funding/">Funding</a><a href="https://github.com/LUC-AI4FM">GitHub</a></nav></footer>
+
+  </body>
+</html>

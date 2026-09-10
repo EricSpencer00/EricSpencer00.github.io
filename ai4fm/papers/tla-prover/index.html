@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ericspencer.us/ai4fm/papers/tla-prover/" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="Status, Accepted,, Venue, ICSOFT 2026 - International Conference on Software Technologies, Porto, Portugal,, Authors, AI4FM, Loyola University Chicago,, DOI / PDF, Available upon publication,. Abst..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="Status, Accepted,, Venue, ICSOFT 2026 - International Conference on Software Technologies, Porto, Portugal,, Authors, AI4FM, Loyola University Chicago,, DOI / PDF, Available upon publication,. Abst..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation &#8212; AI4FM | AI for Formal Methods</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=aaf57dc5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="../../_static/documentation_options.js?v=3ff7b324"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="canonical" href="https://ericspencer.us/ai4fm/papers/tla-prover/" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Eric Spencer Presents ChatTLA+ at Loyola University Chicago" href="../../posts/chattla-presentation-2026/" />
+    <link rel="prev" title="TLA+ for All: Running Model Checking in a Python Notebook" href="../tla-for-all/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+</head><body class="inner-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <nav aria-label="Main navigation">
+      
+      <a href="../" aria-current="page">Research Papers</a>
+      
+      <a href="../../posts/">Research Updates</a>
+      
+      <a href="../../pages/people/">Team</a>
+      
+      <a href="../../pages/software/">Software and Datasets</a>
+      
+      <a href="../../pages/about/">About</a>
+      
+      <a href="../../pages/prospective-students/">Get Involved</a>
+      
+      <a href="../../search/">Search</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page-layout site-width">
+  <main role="main" id="main" class="article-body">
+    <div class="breadcrumbs"><a href="../../">ai4fm</a><span aria-hidden="true"> / </span><a href="../">Research Papers</a></div>
+    
+<section id="tla-prover-verifiable-tla-specification-synthesis-via-preference-optimized-low-rank-adaptation">
+<h1>TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation<a class="headerlink" href="#tla-prover-verifiable-tla-specification-synthesis-via-preference-optimized-low-rank-adaptation" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Venue<span class="colon">:</span></dt>
+<dd class="field-even"><p>ICSOFT 2026 - International Conference on Software Technologies, Porto, Portugal</p>
+</dd>
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AI4FM, Loyola University Chicago</p>
+</dd>
+<dt class="field-even">DOI / PDF<span class="colon">:</span></dt>
+<dd class="field-even"><p>Available upon publication</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>TLA+ is a formal specification language for verifying distributed systems and safety-critical
+protocols. Large language models (LLMs) frequently produce TLA+ specifications that fail the TLC
+model checker for semantic reasons. Across 25 LLMs, the best public baseline is 26.6% syntactic
+parse and 8.6% semantic model-check. We present TLA-Prover, a 20-billion-parameter model for
+TLA+ specification synthesis. Training combines supervised fine-tuning (SFT) on verified examples
+with repair-based group-relative policy optimization (GRPO). In the GRPO stage, the model learns
+to fix its own rejected specifications. We also train a direct preference optimization (DPO)
+variant from the same SFT checkpoint as an ablation. TLC provides the reward signal directly,
+with no learned reward model.</p>
+<p>Four tiers grade each output: Bronze (parses), Silver (no warnings), Gold (passes TLC), and
+Diamond. To reach Diamond, the model’s correctness property is automatically altered in a small
+way; TLC must then detect a violation. If TLC still passes, the property was always-true and
+contributes nothing; the output fails Diamond. TLA-Prover reaches 9/30 (pass&#64;1 = 30%) at both
+Gold and Diamond on a held-out 30-problem benchmark. This is roughly 3.5× the 8.6% untuned
+baseline. The DPO variant reaches 20% at Diamond. Gold and Diamond coincide at every checkpoint,
+preventing the trivial-property failure mode.</p>
+</section>
+<section id="key-results">
+<h2>Key Results<a class="headerlink" href="#key-results" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Syntactic correctness — best public baseline</p></td>
+<td><p>26.6%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Semantic correctness — best public baseline (8.6% untuned)</p></td>
+<td><p>8.6%</p></td>
+</tr>
+<tr class="row-even"><td><p>TLA-Prover Gold (passes TLC) pass&#64;1</p></td>
+<td><p><strong>30%</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>TLA-Prover Diamond pass&#64;1</p></td>
+<td><p><strong>30%</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>DPO variant Diamond pass&#64;1</p></td>
+<td><p>20%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Improvement over untuned baseline</p></td>
+<td><p>~3.5×</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="training-approach">
+<h2>Training Approach<a class="headerlink" href="#training-approach" title="Link to this heading">¶</a></h2>
+<p><strong>Supervised Fine-Tuning (SFT)</strong>
+The model is first trained on a curated set of verified TLA+ specifications to establish a
+strong syntactic and semantic foundation.</p>
+<p><strong>Group-Relative Policy Optimization (GRPO)</strong>
+In the GRPO stage, the model generates multiple candidate specifications per prompt. Rejected
+outputs are used as repair targets, teaching the model to iteratively correct its own mistakes.
+TLC model-checker output serves as the reward signal — no learned reward model is involved.</p>
+<p><strong>Direct Preference Optimization (DPO) ablation</strong>
+A DPO variant is trained from the same SFT checkpoint to compare preference-optimization
+strategies. It reaches 20% at Diamond, versus 30% for the GRPO variant.</p>
+</section>
+<section id="grading-tiers">
+<h2>Grading Tiers<a class="headerlink" href="#grading-tiers" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tier</p></th>
+<th class="head"><p>Criterion</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bronze</p></td>
+<td><p>Specification parses (SANY)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silver</p></td>
+<td><p>No parser warnings</p></td>
+</tr>
+<tr class="row-even"><td><p>Gold</p></td>
+<td><p>Passes TLC model checker</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diamond</p></td>
+<td><p>Gold, plus TLC detects a violation when the correctness property is deliberately mutated</p></td>
+</tr>
+</tbody>
+</table>
+<p>Diamond prevents the trivial-property failure mode: a specification whose correctness
+property is always true passes TLC by vacuity and contributes nothing meaningful. The
+mutation test catches this. Gold and Diamond coincide at every checkpoint in TLA-Prover,
+indicating the model never falls back to trivial properties.</p>
+</section>
+<section id="relationship-to-prior-work">
+<h2>Relationship to Prior Work<a class="headerlink" href="#relationship-to-prior-work" title="Link to this heading">¶</a></h2>
+<p>This paper extends the findings of our evaluation study
+<a class="reference internal" href="../llm-tla-evaluation/"><span class="doc">Can LLMs Write Correct TLA+ Specifications?</span></a>,
+which established the 8.6% semantic correctness baseline across 25 LLMs. TLA-Prover
+demonstrates that targeted fine-tuning with verifiable reward signals can close much
+of that gap.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The paper has been accepted at ICSOFT 2026. Full citation will be available upon publication.</p>
+</div>
+</section>
+</section>
+
+
+
+  </main>
+  <aside class="page-toc" aria-label="On this page"><ul>
+<li><a class="reference internal" href="#">TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#key-results">Key Results</a></li>
+<li><a class="reference internal" href="#training-approach">Training Approach</a></li>
+<li><a class="reference internal" href="#grading-tiers">Grading Tiers</a></li>
+<li><a class="reference internal" href="#relationship-to-prior-work">Relationship to Prior Work</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</aside>
+</div>
+
+
+<footer class="site-footer site-width"><a class="footer-name" href="../../">ai4fm @ luc.edu</a><nav aria-label="Footer"><a href="https://www.luc.edu/">Loyola University Chicago</a><a href="../../pages/funding/">Funding</a><a href="https://github.com/LUC-AI4FM">GitHub</a></nav></footer>
+
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Interactive Microwave: TLA+ in the Browser" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ericspencer.us/ai4fm/posts/interactive-microwave-tla/" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="We published a browser-native version of the interactive-microwave-tla simulator. It mimics a Java microwave runtime and a small TLA+ model checker that is a literal transcription of the project’s ..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="We published a browser-native version of the interactive-microwave-tla simulator. It mimics a Java microwave runtime and a small TLA+ model checker that is a literal transcription of the project’s ..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>Interactive Microwave: TLA+ in the Browser &#8212; AI4FM | AI for Formal Methods</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=aaf57dc5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="../../_static/documentation_options.js?v=3ff7b324"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="canonical" href="https://ericspencer.us/ai4fm/posts/interactive-microwave-tla/" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Our Paper on LLM-Based TLA+ Specification Generation Has Been Accepted" href="../llm-tla-accepted-2026/" />
+    <link rel="prev" title="Brian Ortiz Presents Poster at Graduate School Interdisciplinary Research Symposium 2026" href="../gsirs-llm-tla-poster-2026/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+</head><body class="inner-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <nav aria-label="Main navigation">
+      
+      <a href="../../papers/">Research Papers</a>
+      
+      <a href="../" aria-current="page">Research Updates</a>
+      
+      <a href="../../pages/people/">Team</a>
+      
+      <a href="../../pages/software/">Software and Datasets</a>
+      
+      <a href="../../pages/about/">About</a>
+      
+      <a href="../../pages/prospective-students/">Get Involved</a>
+      
+      <a href="../../search/">Search</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page-layout site-width">
+  <main role="main" id="main" class="article-body">
+    <div class="breadcrumbs"><a href="../../">ai4fm</a><span aria-hidden="true"> / </span><a href="../">Research Updates</a></div>
+    
+<section id="interactive-microwave-tla-in-the-browser">
+<h1>Interactive Microwave: TLA+ in the Browser<a class="headerlink" href="#interactive-microwave-tla-in-the-browser" title="Link to this heading">¶</a></h1>
+<p>We published a browser-native version of the
+<a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla">interactive-microwave-tla</a>
+simulator. It mimics a Java microwave runtime and a small TLA+ model checker
+that is a literal transcription of the project’s <code class="docutils literal notranslate"><span class="pre">Microwave.tla</span></code> spec, so
+students can experiment with the state machine — including the stuttering
+liveness failure from Laufer, Mertin, and Thiruvathukal,
+<a class="reference external" href="https://arxiv.org/abs/2407.21152">arXiv:2407.21152</a> — without installing
+Java, Maven, or TLC.</p>
+<section id="the-stuttering-failure-made-visible">
+<h2>The stuttering failure, made visible<a class="headerlink" href="#the-stuttering-failure-made-visible" title="Link to this heading">¶</a></h2>
+<p>Section IV.C of the paper introduces a liveness property and its stuttering
+counterexample:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HeatLiveness == (radiation = ON) ~&gt; (radiation = OFF)
+
+Spec == Init /\ [][Next]_&lt;&lt;door, time, radiation, power&gt;&gt;
+</pre></div>
+</div>
+<p>Under this original <code class="docutils literal notranslate"><span class="pre">Spec</span></code>, TLA+ permits behaviors where every step after the
+microwave begins radiating is a stutter (<code class="docutils literal notranslate"><span class="pre">vars'</span> <span class="pre">=</span> <span class="pre">vars</span></code>). The tick never
+fires, the time never decrements, and <code class="docutils literal notranslate"><span class="pre">radiation</span> <span class="pre">=</span> <span class="pre">ON</span></code> holds forever —
+violating <code class="docutils literal notranslate"><span class="pre">HeatLiveness</span></code>. The fix (Exercise 3b) is weak fairness on <code class="docutils literal notranslate"><span class="pre">Tick</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Spec == Init /\ [][Next]_&lt;&lt;door, time, radiation, power&gt;&gt; /\ WF_vars(Tick)
+</pre></div>
+</div>
+<p>Our previous web demo did not model any of this — neither the liveness
+property, nor the stuttering failure, nor the fairness condition. It merely
+happened to tick unconditionally in Java and therefore looked correct without
+explaining why.</p>
+</section>
+<section id="what-the-new-build-does">
+<h2>What the new build does<a class="headerlink" href="#what-the-new-build-does" title="Link to this heading">¶</a></h2>
+<p>The browser port re-implements the spec literally in TypeScript and exposes
+both the failure and its fix:</p>
+<ul class="simple">
+<li><p>A <strong>Weak fairness on Tick</strong> toggle in the sidebar switches the tick loop
+between the paper’s original (unfair) spec and the fixed spec with
+<code class="docutils literal notranslate"><span class="pre">WF_vars(Tick)</span></code>.</p></li>
+<li><p>With fairness off, the engine lets stutters run even when <code class="docutils literal notranslate"><span class="pre">Tick</span></code> is
+enabled. A runtime liveness detector surfaces the trap: after a short window
+of stutter-while-radiating, the UI flags <code class="docutils literal notranslate"><span class="pre">HeatLiveness</span></code> as violated and
+shows a 🔥 overlay — a runtime witness of Figure 7.</p></li>
+<li><p>With fairness on, the engine forces <code class="docutils literal notranslate"><span class="pre">Tick</span></code> to fire whenever it is
+continuously enabled. <code class="docutils literal notranslate"><span class="pre">HeatLiveness</span></code> holds and the overlay clears.</p></li>
+</ul>
+<p>An exhaustive safety check enumerates every state reachable from <code class="docutils literal notranslate"><span class="pre">Init</span></code> via
+the <code class="docutils literal notranslate"><span class="pre">Next</span></code> relation and confirms zero <code class="docutils literal notranslate"><span class="pre">DoorSafety</span></code> violations (matching
+Exercise 2b).</p>
+</section>
+<section id="try-it">
+<h2>Try it<a class="headerlink" href="#try-it" title="Link to this heading">¶</a></h2>
+<div id="microwave-root" style="min-height: 560px;"></div>
+<link rel="stylesheet" href="../../_static/demos/microwave/assets/index.css" />
+<script type="module" src="../../_static/demos/microwave/assets/index.js"></script><p>Reproduce the paper’s Figure 7 by pressing <strong>Power</strong>, <strong>+3s</strong>, <strong>Start</strong>, and
+then turning off <strong>Weak fairness on Tick</strong>. The <code class="docutils literal notranslate"><span class="pre">Tick</span></code> action stops firing,
+the radiation indicator stays lit, and the liveness signal flips to
+<em>violated</em>.</p>
+</section>
+<section id="source-and-details">
+<h2>Source and details<a class="headerlink" href="#source-and-details" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla">Repository</a></p></li>
+<li><p><a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla/blob/main/docs/superpowers/specs/2026-04-17-web-port-design.md">Design spec</a></p></li>
+<li><p><a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla/tree/main/web">Browser port (web/)</a></p></li>
+<li><p>Laufer, Mertin, Thiruvathukal. <em>WIP: An Engaging Undergraduate Intro to
+Model Checking in Software Engineering Using TLA+.</em>
+<a class="reference external" href="https://arxiv.org/abs/2407.21152">arXiv:2407.21152</a>, 2024.</p></li>
+</ul>
+</section>
+</section>
+
+
+
+
+<div class="ablog-post-meta">
+  
+    Authored by
+    
+      <a href="../../blog/author/eric-spencer/">Eric Spencer</a>
+    
+    
+  
+</div>
+
+
+
+  </main>
+  <aside class="page-toc" aria-label="On this page"><ul>
+<li><a class="reference internal" href="#">Interactive Microwave: TLA+ in the Browser</a><ul>
+<li><a class="reference internal" href="#the-stuttering-failure-made-visible">The stuttering failure, made visible</a></li>
+<li><a class="reference internal" href="#what-the-new-build-does">What the new build does</a></li>
+<li><a class="reference internal" href="#try-it">Try it</a></li>
+<li><a class="reference internal" href="#source-and-details">Source and details</a></li>
+</ul>
+</li>
+</ul>
+</aside>
+</div>
+
+
+<footer class="site-footer site-width"><a class="footer-name" href="../../">ai4fm @ luc.edu</a><nav aria-label="Footer"><a href="https://www.luc.edu/">Loyola University Chicago</a><a href="../../pages/funding/">Funding</a><a href="https://github.com/LUC-AI4FM">GitHub</a></nav></footer>
+
+  </body>
+</html>

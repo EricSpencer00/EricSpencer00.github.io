@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ericspencer.us/ai4fm/papers/gcasr-2025-tla-llm/" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="Work in Progress Status, Presented,, Venue, GCASR 2025 - 12th Greater Chicago Area Systems Research Workshop, May 8, 2025, Loyola University Chicago,, Authors, Brian Ortiz, Mohammed Abuhamad, TaiNi..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="Work in Progress Status, Presented,, Venue, GCASR 2025 - 12th Greater Chicago Area Systems Research Workshop, May 8, 2025, Loyola University Chicago,, Authors, Brian Ortiz, Mohammed Abuhamad, TaiNi..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines &#8212; AI4FM | AI for Formal Methods</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=aaf57dc5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="../../_static/documentation_options.js?v=3ff7b324"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="canonical" href="https://ericspencer.us/ai4fm/papers/gcasr-2025-tla-llm/" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems" href="../gsirs-2026-tla-llm/" />
+    <link rel="prev" title="ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification" href="../chattla-2026/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+</head><body class="inner-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <nav aria-label="Main navigation">
+      
+      <a href="../" aria-current="page">Research Papers</a>
+      
+      <a href="../../posts/">Research Updates</a>
+      
+      <a href="../../pages/people/">Team</a>
+      
+      <a href="../../pages/software/">Software and Datasets</a>
+      
+      <a href="../../pages/about/">About</a>
+      
+      <a href="../../pages/prospective-students/">Get Involved</a>
+      
+      <a href="../../search/">Search</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page-layout site-width">
+  <main role="main" id="main" class="article-body">
+    <div class="breadcrumbs"><a href="../../">ai4fm</a><span aria-hidden="true"> / </span><a href="../">Research Papers</a></div>
+    
+<section id="automating-tla-model-synthesis-with-large-language-models-and-formal-verification-pipelines">
+<h1>Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines<a class="headerlink" href="#automating-tla-model-synthesis-with-large-language-models-and-formal-verification-pipelines" title="Link to this heading">¶</a></h1>
+<p><em>Work in Progress</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Presented</p>
+</dd>
+<dt class="field-even">Venue<span class="colon">:</span></dt>
+<dd class="field-even"><p>GCASR 2025 - 12th Greater Chicago Area Systems Research Workshop, May 8, 2025, Loyola University Chicago</p>
+</dd>
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Brian Ortiz, Mohammed Abuhamad, TaiNing Wang, George K. Thiruvathukal, Konstantin Läufer</p>
+</dd>
+<dt class="field-even">Institution<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loyola University Chicago</p>
+</dd>
+<dt class="field-odd">DOI / Poster<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://doi.org/10.6084/m9.figshare.31896151">10.6084/m9.figshare.31896151</a></p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>This work-in-progress presents a pipeline for automating TLA+ model synthesis
+using large language models, coupled with formal verification via the SANY parser and
+TLC model checker. The system takes natural language descriptions of concurrent or
+distributed systems and attempts to generate syntactically and semantically correct
+TLA+ specifications, evaluated through automated verification pipelines.</p>
+</section>
+<section id="why-this-matters">
+<h2>Why This Matters<a class="headerlink" href="#why-this-matters" title="Link to this heading">¶</a></h2>
+<p>TLA+ specification writing requires significant expertise, limiting adoption in
+industry and academia. Automating synthesis with LLMs - while ensuring correctness
+through formal verification - could make TLA+ accessible to a much broader audience
+of engineers and researchers.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<p>Brian Ortiz, Mohammed Abuhamad, TaiNing Wang, George K. Thiruvathukal, and Konstantin Läufer,
+<em>Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines (WIP)</em>,
+GCASR 2025, May 8, 2025.
+<a class="reference external" href="https://doi.org/10.6084/m9.figshare.31896151">https://doi.org/10.6084/m9.figshare.31896151</a></p>
+</section>
+</section>
+
+
+
+  </main>
+  <aside class="page-toc" aria-label="On this page"><ul>
+<li><a class="reference internal" href="#">Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#why-this-matters">Why This Matters</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</aside>
+</div>
+
+
+<footer class="site-footer site-width"><a class="footer-name" href="../../">ai4fm @ luc.edu</a><nav aria-label="Footer"><a href="https://www.luc.edu/">Loyola University Chicago</a><a href="../../pages/funding/">Funding</a><a href="https://github.com/LUC-AI4FM">GitHub</a></nav></footer>
+
+  </body>
+</html>

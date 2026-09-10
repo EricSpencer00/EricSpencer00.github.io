@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Can LLMs Write Correct TLA+ Specifications?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ericspencer.us/ai4fm/papers/llm-tla-evaluation/" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="Evaluating Natural-Language-to-TLA+ Generation Status, Accepted,, Venue, ICSOFT 2026 - International Conference on Software Technologies, Porto, Portugal,, Authors, AI4FM, Loyola University Chicago..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="Evaluating Natural-Language-to-TLA+ Generation Status, Accepted,, Venue, ICSOFT 2026 - International Conference on Software Technologies, Porto, Portugal,, Authors, AI4FM, Loyola University Chicago..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>Can LLMs Write Correct TLA+ Specifications? &#8212; AI4FM | AI for Formal Methods</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=aaf57dc5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="../../_static/documentation_options.js?v=3ff7b324"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="canonical" href="https://ericspencer.us/ai4fm/papers/llm-tla-evaluation/" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="TLA+ for All: Running Model Checking in a Python Notebook" href="../tla-for-all/" />
+    <link rel="prev" title="Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems" href="../gsirs-2026-tla-llm/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+</head><body class="inner-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <nav aria-label="Main navigation">
+      
+      <a href="../" aria-current="page">Research Papers</a>
+      
+      <a href="../../posts/">Research Updates</a>
+      
+      <a href="../../pages/people/">Team</a>
+      
+      <a href="../../pages/software/">Software and Datasets</a>
+      
+      <a href="../../pages/about/">About</a>
+      
+      <a href="../../pages/prospective-students/">Get Involved</a>
+      
+      <a href="../../search/">Search</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page-layout site-width">
+  <main role="main" id="main" class="article-body">
+    <div class="breadcrumbs"><a href="../../">ai4fm</a><span aria-hidden="true"> / </span><a href="../">Research Papers</a></div>
+    
+<section id="can-llms-write-correct-tla-specifications">
+<h1>Can LLMs Write Correct TLA+ Specifications?<a class="headerlink" href="#can-llms-write-correct-tla-specifications" title="Link to this heading">¶</a></h1>
+<p>Evaluating Natural-Language-to-TLA+ Generation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accepted</p>
+</dd>
+<dt class="field-even">Venue<span class="colon">:</span></dt>
+<dd class="field-even"><p>ICSOFT 2026 - International Conference on Software Technologies, Porto, Portugal</p>
+</dd>
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>AI4FM, Loyola University Chicago</p>
+</dd>
+<dt class="field-even">DOI / PDF<span class="colon">:</span></dt>
+<dd class="field-even"><p>Available upon publication</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>TLA+ has supported industrial verification at companies such as Amazon and Microsoft,
+yet writing correct TLA+ specifications from natural language still requires significant
+time and expertise, which limits adoption. LLMs show promise, but no prior study measures
+whether they produce semantically correct TLA+ specifications from natural language.</p>
+<p>This paper presents the first systematic evaluation of LLM-based TLA+ specification
+synthesis from natural language. Our study evaluates 30 LLMs across eight families on a
+curated dataset of 205 TLA+ specifications: 25 open-weight models across four prompting
+strategies (2,600 runs) and 5 proprietary models under few-shot prompting (130 runs),
+all validated by the SANY parser and TLC model checker.</p>
+</section>
+<section id="key-results">
+<h2>Key Results<a class="headerlink" href="#key-results" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Best Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Syntactic correctness (SANY)</p></td>
+<td><p><strong>26.6%</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Semantic correctness (TLC)</p></td>
+<td><p><strong>8.6%</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Prompting strategy enabling semantic success</p></td>
+<td><p>Progressive prompting only</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="surprising-findings">
+<h2>Surprising Findings<a class="headerlink" href="#surprising-findings" title="Link to this heading">¶</a></h2>
+<p><strong>Model size does not predict quality.</strong>
+DeepSeek r1:8b outperforms its 70b variant across all prompting strategies.
+This suggests that reasoning alignment for formal languages matters more than
+raw parameter count.</p>
+<p><strong>Code-specialized models consistently underperform.</strong>
+Models trained heavily on mainstream programming languages show negative transfer
+when applied to TLA+. Familiarity with Python or Java does not generalize to
+formal specification languages.</p>
+<p><strong>Semantic success requires progressive prompting.</strong>
+Across all evaluations, semantic correctness - specifications that pass the TLC
+model checker - was only achieved under progressive prompting strategies.
+Direct and few-shot prompting failed to produce semantically valid outputs.</p>
+</section>
+<section id="why-this-matters">
+<h2>Why This Matters<a class="headerlink" href="#why-this-matters" title="Link to this heading">¶</a></h2>
+<p>TLA+ is not a niche language. It has been used to verify core distributed systems
+at Amazon Web Services (DynamoDB, S3), Microsoft Azure, and other production environments.
+If LLMs could reliably generate TLA+ from natural language, formal verification could
+become far more accessible to engineers who understand their system but lack specification expertise.</p>
+<p>This paper shows that current LLMs are not there yet. Reaching reliable TLA+ generation
+will require targeted work on reasoning alignment, formal language training data,
+and evaluation-driven prompting strategies - all active directions for AI4FM.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Full citation will be available upon publication. The paper has been accepted.</p>
+</div>
+</section>
+</section>
+
+
+
+  </main>
+  <aside class="page-toc" aria-label="On this page"><ul>
+<li><a class="reference internal" href="#">Can LLMs Write Correct TLA+ Specifications?</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#key-results">Key Results</a></li>
+<li><a class="reference internal" href="#surprising-findings">Surprising Findings</a></li>
+<li><a class="reference internal" href="#why-this-matters">Why This Matters</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</aside>
+</div>
+
+
+<footer class="site-footer site-width"><a class="footer-name" href="../../">ai4fm @ luc.edu</a><nav aria-label="Footer"><a href="https://www.luc.edu/">Loyola University Chicago</a><a href="../../pages/funding/">Funding</a><a href="https://github.com/LUC-AI4FM">GitHub</a></nav></footer>
+
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ericspencer.us/ai4fm/papers/gsirs-2026-tla-llm/" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="Status, Presented,, Venue, GSIRS 2026 - Graduate School Interdisciplinary Research Symposium, April 11, 2026, Loyola University Chicago,, Authors, Brian Ortiz, Arslan Bisharat, Mohammed Abuhamad, K..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="Status, Presented,, Venue, GSIRS 2026 - Graduate School Interdisciplinary Research Symposium, April 11, 2026, Loyola University Chicago,, Authors, Brian Ortiz, Arslan Bisharat, Mohammed Abuhamad, K..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems &#8212; AI4FM | AI for Formal Methods</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=aaf57dc5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <script src="../../_static/documentation_options.js?v=3ff7b324"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="canonical" href="https://ericspencer.us/ai4fm/papers/gsirs-2026-tla-llm/" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Can LLMs Write Correct TLA+ Specifications?" href="../llm-tla-evaluation/" />
+    <link rel="prev" title="Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines" href="../gcasr-2025-tla-llm/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <meta name="robots" content="noindex, nofollow">
+</head><body class="inner-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <nav aria-label="Main navigation">
+      
+      <a href="../" aria-current="page">Research Papers</a>
+      
+      <a href="../../posts/">Research Updates</a>
+      
+      <a href="../../pages/people/">Team</a>
+      
+      <a href="../../pages/software/">Software and Datasets</a>
+      
+      <a href="../../pages/about/">About</a>
+      
+      <a href="../../pages/prospective-students/">Get Involved</a>
+      
+      <a href="../../search/">Search</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page-layout site-width">
+  <main role="main" id="main" class="article-body">
+    <div class="breadcrumbs"><a href="../../">ai4fm</a><span aria-hidden="true"> / </span><a href="../">Research Papers</a></div>
+    
+<section id="large-language-models-llm-and-temporal-logic-of-actions-tla-how-effective-are-llms-for-verification-systems">
+<h1>Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems<a class="headerlink" href="#large-language-models-llm-and-temporal-logic-of-actions-tla-how-effective-are-llms-for-verification-systems" title="Link to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Presented</p>
+</dd>
+<dt class="field-even">Venue<span class="colon">:</span></dt>
+<dd class="field-even"><p>GSIRS 2026 - Graduate School Interdisciplinary Research Symposium, April 11, 2026, Loyola University Chicago</p>
+</dd>
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Brian Ortiz, Arslan Bisharat, Mohammed Abuhamad, Konstantin Läufer, Eric Spencer, Khushboo Bhadauria, George K. Thiruvathukal, TaiNing Wang</p>
+</dd>
+<dt class="field-even">Institution<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loyola University Chicago</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
+<p>TLA+ has supported industrial verification at companies such as Amazon and Microsoft,
+yet writing correct TLA+ specifications from natural language still requires time and
+expertise, which limits adoption. LLMs show promise, but no prior study measures whether
+they produce semantically correct TLA+ specifications from natural language.</p>
+<p>This paper presents the first systematic evaluation of LLM-based TLA+ specification
+synthesis from natural language. Our study evaluates 30 LLMs across eight families on a
+curated dataset of 205 TLA+ specifications: 25 open-weight models across four prompting
+strategies (2,600 runs) and 5 proprietary models under few-shot prompting (130 runs),
+all validated by the SANY parser and TLC model checker. LLMs achieve up to 26.6%
+syntactic correctness but only 8.6% semantic correctness, with successes exclusive to
+progressive prompting. Results show that model size does not predict quality, and
+code-specialized models consistently underperform due to negative transfer from mainstream
+language training.</p>
+</section>
+<section id="based-on">
+<h2>Based On<a class="headerlink" href="#based-on" title="Link to this heading">¶</a></h2>
+<p>This poster is based on the paper <a class="reference internal" href="../llm-tla-evaluation/"><span class="doc">Can LLMs Write Correct TLA+ Specifications? Evaluating Natural-Language-to-TLA+ Generation</span></a>, currently under submission.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<p>Brian Ortiz, Arslan Bisharat, Mohammed Abuhamad, Konstantin Läufer, Eric Spencer,
+Khushboo Bhadauria, George K. Thiruvathukal, and TaiNing Wang,
+<em>Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems</em>,
+GSIRS 2026, April 11, 2026.</p>
+</section>
+</section>
+
+
+
+  </main>
+  <aside class="page-toc" aria-label="On this page"><ul>
+<li><a class="reference internal" href="#">Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems</a><ul>
+<li><a class="reference internal" href="#abstract">Abstract</a></li>
+<li><a class="reference internal" href="#based-on">Based On</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</aside>
+</div>
+
+
+<footer class="site-footer site-width"><a class="footer-name" href="../../">ai4fm @ luc.edu</a><nav aria-label="Footer"><a href="https://www.luc.edu/">Loyola University Chicago</a><a href="../../pages/funding/">Funding</a><a href="https://github.com/LUC-AI4FM">GitHub</a></nav></footer>
+
+  </body>
+</html>

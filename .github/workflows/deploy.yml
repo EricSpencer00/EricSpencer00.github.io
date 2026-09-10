@@ -27,6 +27,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Keep the standalone preview out of portfolio-wide HTML rewrites.
+      - name: Preserve AI4FM preview
+        run: |
+          if [ -d ai4fm ]; then
+            mv ai4fm "$RUNNER_TEMP/ai4fm-preview"
+          fi
+
       - name: Build static pages
         run: |
           python3 scripts/build.py
@@ -66,6 +73,12 @@ jobs:
       # is the same deal: harnesses that drive a page in an iframe, not pages.
       - name: Strip non-published directories from the artifact
         run: rm -rf backup-site tests
+
+      - name: Restore AI4FM preview
+        run: |
+          if [ -d "$RUNNER_TEMP/ai4fm-preview" ]; then
+            mv "$RUNNER_TEMP/ai4fm-preview" ai4fm
+          fi
 
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3
