@@ -54,3 +54,15 @@ a:visited{color:var(--maroon)}.site-header .wordmark:visited,.site-header nav a:
   .footer-logo img { width: 80px; height: 80px; }
   .site-footer nav { flex-direction: column; gap: 10px; padding-top: 8px; }
 }
+/* Use the same square portrait size for faculty and students. */
+.article-body img.profile-photo,
+.article-body img.sd-card-img-top {
+  width: 200px !important;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+@media (min-width: 576px) {
+  .article-body .team-photo-col { flex: 0 0 216px; max-width: 216px; }
+  .article-body .team-text-col { flex: 1 1 0; min-width: 0; }
+}
