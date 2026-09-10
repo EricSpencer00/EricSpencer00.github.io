@@ -8,3 +8,49 @@
 a:visited{color:var(--maroon)}.site-header .wordmark:visited,.site-header nav a:visited{color:var(--paper)}.site-header a:hover,.site-header a:visited:hover{color:var(--gold)}.research-entry h3 a:visited,.news-entry h3 a:visited{color:var(--ink)}.research-entry h3 a:hover,.news-entry h3 a:hover{color:var(--maroon)}.profile-photo[src*="laufer"]{object-position:left top}.article-body svg.sd-octicon{display:none}.article-body p{max-width:75ch}
 
 .hero-inner img{width:auto;max-width:100%;object-fit:contain;justify-self:end}@media(max-width:520px){.hero-inner img{width:100%}}
+
+/* Square frames use the original portrait assets without resizing the source files. */
+.article-body img.profile-photo,
+.article-body img.sd-card-img-top {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+}
+.article-body img.profile-photo[src*="laufer"] { object-position: left center; }
+.article-body img.sd-card-img-top[src*="bhadauria"] { object-position: center 20%; }
+.site-footer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: var(--maroon);
+  border-top: none;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.footer-logo { display: block; flex-shrink: 0; }
+.footer-logo img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.site-footer nav a, .site-footer nav a:visited { color: var(--paper); }
+.site-footer nav a:hover { color: var(--gold); }
+@media (max-width: 520px) {
+  .footer-inner { align-items: flex-start; gap: 25px; }
+  .footer-logo img { width: 80px; height: 80px; }
+  .site-footer nav { flex-direction: column; gap: 10px; padding-top: 8px; }
+}
