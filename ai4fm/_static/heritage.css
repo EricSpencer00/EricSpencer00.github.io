@@ -66,3 +66,25 @@ a:visited{color:var(--maroon)}.site-header .wordmark:visited,.site-header nav a:
   .article-body .team-photo-col { flex: 0 0 216px; max-width: 216px; }
   .article-body .team-text-col { flex: 1 1 0; min-width: 0; }
 }
+
+/* Team directory: portrait above compact copy, following the reference's columns. */
+.team-page .page-layout { display: block; max-width: 1080px; }
+.team-page .page-toc { display: none; }
+.team-page .article-body > section > p { margin-bottom: 36px; }
+.team-page .team-card { border: 0; }
+.team-page .team-card .sd-card-body { padding: 0 0 24px; }
+.team-page .team-card img.profile-photo {
+  width: 200px !important;
+  margin: 0 0 15px;
+  object-position: center;
+}
+.team-page .team-card img[src*="laufer"] { object-position: left center; }
+.team-page .team-card img[src*="bhadauria"] { object-position: center 20%; }
+.team-page .team-card p { font-size: 13px; line-height: 1.65; margin-bottom: 10px; }
+.team-page .team-card p strong { font-size: 16px; font-weight: 600; }
+.team-page .team-card p em { font-size: 12px; font-style: normal; color: var(--muted); }
+.team-page .team-card a { overflow-wrap: anywhere; }
+@media (max-width: 575px) {
+  .team-page .team-card img.profile-photo { width: 180px !important; }
+  .team-page .team-card p { max-width: 46ch; }
+}
