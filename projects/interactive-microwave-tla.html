@@ -136,14 +136,14 @@ li{margin:4px 0}
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/interactive-microwave-tla" target="_blank" rel="noopener">https://github.com/EricSpencer00/interactive-microwave-tla</a></p>
 <hr class="dash">
 <p><a href="https://github.com/EricSpencer00/interactive-microwave-tla" target="_blank" rel="noopener">GitHub Repo</a></p>
-<p><img src="/ericspencer-site-backup/images/projects/microwave/fullpic.png" alt="picture of the microwave"></p>
+<p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/microwave/fullpic.png" alt="picture of the microwave"></p>
 <p>This is a locally hosted microwave simulator intended as an introduction to TLA+. It pairs a simple microwave interface with the state traces the model produces.</p>
 <p>It is built with Spring Boot (Java) and Vaadin (also Java). The program starts from a terminal and runs in a browser. Development took two weeks from start to finish. Issues are tracked at <a href="https://github.com/EricSpencer00/interactive-microwave-tla/issues" target="_blank" rel="noopener">https://github.com/EricSpencer00/interactive-microwave-tla/issues</a>.</p>
 <p>Two toggles change what the model does. Power button mode adds a further parameter to the state traces. Dangerous mode allows the microwave to operate while the door is open.</p>
 <p>Violating the microwave's SAFE configuration is caught by the mock TLC checker, which reports that the sequence of actions produced an unsafe state. A real TLC checker explores all states and executions of the microwave and reports whether an unsafe state is reachable at all.</p>
-<p><img src="/ericspencer-site-backup/images/projects/microwave/failstatetrace.png" alt="picture of the violated state trace"></p>
+<p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/microwave/failstatetrace.png" alt="picture of the violated state trace"></p>
 <p>The interactive guide on the left holds a tutorial for the application, a short introduction to TLA+ syntax, and an explanation of the state traces.</p>
-<p><img src="/ericspencer-site-backup/images/projects/microwave/guide.png" alt="picture of the guide of the microwave"></p>
+<p><img src="https://ericspencer.us/ericspencer-site-backup/images/projects/microwave/guide.png" alt="picture of the guide of the microwave"></p>
 <pre class="code"><code>
   ---- MODULE Microwave ----
 EXTENDS Integers, TLC
