@@ -84,8 +84,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
           # robots.txt lets crawlers fetch the page-level noindex directives.
-          git add -A CNAME index.html news blog robots.txt cv resume assets editor \
-            research.html projects.html 404.html projects sitemap.xml
+          git add -A CNAME index.html news blog robots.txt cv resume assets editor 1rm \
+            miscellaneous research.html projects.html 404.html projects sitemap.xml \
+            ulam-spiral ulam-spiral-b12
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git
