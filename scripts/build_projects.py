@@ -20,7 +20,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "content" / "public-projects.json"
+SELECTED = ROOT / "content" / "selected.txt"
 OUTPUT = ROOT / "projects.html"
+SITE = "https://ericspencer.us"
+PAGE_DESCRIPTION = (
+    "Selected software, formal-methods research, LLM tools, and live apps by "
+    "Eric Spencer, plus a complete catalog of public work."
+)
 
 
 def key(value: str) -> str:
@@ -35,6 +41,10 @@ def external(url: str) -> bool:
 def valid_url(url: str) -> bool:
     """Allow only public web locations or site-root-relative locations."""
     return external(url) or (url.startswith("/") and not url.startswith("//"))
+
+
+def absolute_url(url: str) -> str:
+    return url if external(url) else SITE + url
 
 
 def load_projects() -> list[dict[str, str]]:
@@ -65,6 +75,30 @@ def load_projects() -> list[dict[str, str]]:
     return sorted(projects, key=lambda item: item["name"].casefold())
 
 
+def load_selected() -> list[dict[str, str]]:
+    """Load the smaller editorial set used for the homepage's lead projects."""
+    projects: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for line_number, raw_line in enumerate(SELECTED.read_text(encoding="utf-8").splitlines(), 1):
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split("|", 2)
+        if len(parts) != 3 or not all(part.strip() for part in parts):
+            raise ValueError(f"selected.txt line {line_number} must be name|url|description")
+        name, url, description = (part.strip() for part in parts)
+        name_key = key(name)
+        if name_key in seen:
+            raise ValueError(f"duplicate selected project: {name}")
+        if not valid_url(url):
+            raise ValueError(f"selected project URL must be https:// or root-relative: {url}")
+        seen.add(name_key)
+        projects.append({"name": name, "url": url, "description": description})
+    if not projects:
+        raise ValueError("selected.txt must contain at least one project")
+    return projects
+
+
 def render_row(project: dict[str, str]) -> str:
     url = html.escape(project["url"], quote=True)
     name = html.escape(project["name"])
@@ -78,16 +112,48 @@ def render_row(project: dict[str, str]) -> str:
     )
 
 
-def render(projects: list[dict[str, str]]) -> str:
+def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> str:
     rows = "\n".join(render_row(project) for project in projects)
+    selected_rows = "\n".join(render_row(project) for project in selected)
+    selected_items = [
+        {
+            "@type": "ListItem",
+            "position": position,
+            "item": {
+                "@type": "CreativeWork",
+                "name": project["name"],
+                "url": absolute_url(project["url"]),
+                "description": project["description"],
+            },
+        }
+        for position, project in enumerate(selected, 1)
+    ]
+    structured_data = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Projects & Public Work",
+            "url": f"{SITE}/projects.html",
+            "description": PAGE_DESCRIPTION,
+            "author": {"@type": "Person", "name": "Eric Spencer", "url": f"{SITE}/"},
+            "hasPart": {
+                "@type": "ItemList",
+                "name": "Selected work",
+                "numberOfItems": len(selected),
+                "itemListElement": selected_items,
+            },
+        },
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projects | Eric Spencer</title>
-<meta name="description" content="Projects and live work by Eric Spencer.">
+<title>Projects &amp; Public Work | Eric Spencer</title>
+<meta name="description" content="{PAGE_DESCRIPTION}">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/projects.html">
@@ -96,20 +162,20 @@ def render(projects: list[dict[str, str]]) -> str:
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#faf7f2">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Projects | Eric Spencer">
-<meta property="og:description" content="Projects and live work by Eric Spencer.">
+<meta property="og:title" content="Projects &amp; Public Work | Eric Spencer">
+<meta property="og:description" content="{PAGE_DESCRIPTION}">
 <meta property="og:url" content="https://ericspencer.us/projects.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta property="og:image:alt" content="Projects | Eric Spencer">
+<meta property="og:image:alt" content="Projects &amp; Public Work | Eric Spencer">
 <meta property="og:site_name" content="Eric Spencer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Projects | Eric Spencer">
-<meta name="twitter:description" content="Projects and live work by Eric Spencer.">
+<meta name="twitter:title" content="Projects &amp; Public Work | Eric Spencer">
+<meta name="twitter:description" content="{PAGE_DESCRIPTION}">
 <meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"CollectionPage","name":"Projects","url":"https://ericspencer.us/projects.html","description":"Projects and live work by Eric Spencer.","author":{{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"}}}}
+{structured_data}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +191,9 @@ nav{{margin:16px 0 0;font-size:.9rem;color:var(--dim)}}
 nav a{{color:inherit;text-decoration:none;padding:2px}} nav a:hover,nav a[aria-current="page"]{{color:var(--ink)}} nav a[aria-current="page"]{{font-weight:700}}
 hr{{border:0;border-top:1px solid var(--rule);margin:28px 0}}
 main{{max-width:860px}} h1{{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.035em;line-height:1.15}}
-.intro{{max-width:68ch;color:var(--dim);margin:12px 0 24px}}
+.intro,.section-intro{{max-width:68ch;color:var(--dim);margin:12px 0 24px}}
+h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}}
+.selected-list{{margin-bottom:28px}}
 .project-list{{list-style:none;padding:0;margin:0;border-top:1px solid var(--rule)}}
 .project{{display:grid;grid-template-columns:minmax(13rem,.8fr) minmax(0,2fr);gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}}
 .project-name{{font-weight:700;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}} .project-name:hover{{color:var(--accent);text-decoration:underline;text-underline-offset:3px}}
@@ -139,8 +207,17 @@ main{{max-width:860px}} h1{{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-
 <nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">publications</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
 <hr>
 <main>
-<h1>Projects</h1>
+<h1>Projects &amp; Public Work</h1>
+<p class="intro">{PAGE_DESCRIPTION}</p>
+<section aria-labelledby="selected-work">
+<h2 id="selected-work">Selected work</h2>
+<ol id="selected-project-list" class="project-list selected-list">{selected_rows}</ol>
+</section>
+<section aria-labelledby="all-projects">
+<h2 id="all-projects">Complete project list</h2>
+<p class="section-intro">The full public catalog: research artifacts, applications, experiments, coursework, and source repositories.</p>
 <ol id="project-list" class="project-list">{rows}</ol>
+</section>
 </main>
 <footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>
 </div>
@@ -154,7 +231,8 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="fail when projects.html is stale")
     args = parser.parse_args()
     projects = load_projects()
-    output = render(projects)
+    selected = load_selected()
+    output = render(projects, selected)
     if args.check:
         if not OUTPUT.exists():
             print("projects.html is stale; run python3 scripts/build_projects.py", file=sys.stderr)
@@ -163,21 +241,28 @@ def main() -> int:
         # head later in the release pipeline. Check the manifest-owned body
         # instead of requiring the whole document to remain byte-identical.
         expected_rows = "\n".join(render_row(project) for project in projects)
+        expected_selected_rows = "\n".join(render_row(project) for project in selected)
         current = OUTPUT.read_text(encoding="utf-8")
+        selected_match = re.search(
+            r'<ol id="selected-project-list" class="project-list selected-list">(.*?)</ol>',
+            current,
+            re.S,
+        )
         match = re.search(r'<ol id="project-list" class="project-list">(.*?)</ol>', current, re.S)
         forbidden = (
-            'Projects A–Z', 'research artifacts',
-            'source repository is never disclosed', 'catalog-tools',
+            'Projects A–Z', 'source repository is never disclosed',
+            'catalog-tools',
             'project-filter', 'project-count',
         )
-        if (not match or match.group(1) != expected_rows
+        if (not selected_match or selected_match.group(1) != expected_selected_rows
+                or not match or match.group(1) != expected_rows
                 or any(text in current for text in forbidden)):
             print("projects.html is stale; run python3 scripts/build_projects.py", file=sys.stderr)
             return 1
         print("projects.html is current")
         return 0
     OUTPUT.write_text(output, encoding="utf-8")
-    print(f"Built {len(projects)} public projects -> projects.html")
+    print(f"Built {len(selected)} selected + {len(projects)} public projects -> projects.html")
     return 0
 
 

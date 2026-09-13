@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projects | Eric Spencer</title>
-<meta name="description" content="Projects and live work by Eric Spencer.">
+<title>Projects &amp; Public Work | Eric Spencer</title>
+<meta name="description" content="Selected software, formal-methods research, LLM tools, and live apps by Eric Spencer, plus a complete catalog of public work.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/projects.html">
@@ -16,23 +16,18 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Projects | Eric Spencer">
-<meta property="og:description" content="Projects and live work by Eric Spencer.">
+<meta property="og:title" content="Projects &amp; Public Work | Eric Spencer">
+<meta property="og:description" content="Selected software, formal-methods research, LLM tools, and live apps by Eric Spencer, plus a complete catalog of public work.">
 <meta property="og:url" content="https://ericspencer.us/projects.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Projects | Eric Spencer — ericspencer.us">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta name="twitter:image:alt" content="Projects | Eric Spencer — ericspencer.us">
-<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects.jpg">
+<meta property="og:image:alt" content="Projects &amp; Public Work | Eric Spencer">
 <meta property="og:site_name" content="Eric Spencer">
-<meta name="twitter:title" content="Projects | Eric Spencer">
-<meta name="twitter:description" content="Projects and live work by Eric Spencer.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Projects &amp; Public Work | Eric Spencer">
+<meta name="twitter:description" content="Selected software, formal-methods research, LLM tools, and live apps by Eric Spencer, plus a complete catalog of public work.">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CollectionPage","name":"Projects","url":"https://ericspencer.us/projects.html","description":"Projects and live work by Eric Spencer.","author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"}}
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Projects & Public Work","url":"https://ericspencer.us/projects.html","description":"Selected software, formal-methods research, LLM tools, and live apps by Eric Spencer, plus a complete catalog of public work.","author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},"hasPart":{"@type":"ItemList","name":"Selected work","numberOfItems":5,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"CreativeWork","name":"Not Hotdog","url":"https://ericspencer.us/apps/not-hotdog/","description":"Hot dog or not hot dog: a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference."}},{"@type":"ListItem","position":2,"item":{"@type":"CreativeWork","name":"Resilient","url":"https://ericspencer.us/projects/resilient.html","description":"Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V."}},{"@type":"ListItem","position":3,"item":{"@type":"CreativeWork","name":"HST-Studio","url":"https://github.com/HorneSci/hst-studio","description":"A delta-aware sparse linear algebra runtime, and the tooling around it."}},{"@type":"ListItem","position":4,"item":{"@type":"CreativeWork","name":"tlakit","url":"https://tlakit.pages.dev","description":"Python and notebook client for the TLA+ toolchain. Drives SANY, TLC, and TLAPS from a cell without reimplementing TLA+ semantics."}},{"@type":"ListItem","position":5,"item":{"@type":"CreativeWork","name":"paper-digest","url":"https://ericspencer.us/apps/paper-digest/","description":"Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks."}}]}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +43,9 @@ nav{margin:16px 0 0;font-size:.9rem;color:var(--dim)}
 nav a{color:inherit;text-decoration:none;padding:2px} nav a:hover,nav a[aria-current="page"]{color:var(--ink)} nav a[aria-current="page"]{font-weight:700}
 hr{border:0;border-top:1px solid var(--rule);margin:28px 0}
 main{max-width:860px} h1{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.035em;line-height:1.15}
-.intro{max-width:68ch;color:var(--dim);margin:12px 0 24px}
+.intro,.section-intro{max-width:68ch;color:var(--dim);margin:12px 0 24px}
+h2{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
+.selected-list{margin-bottom:28px}
 .project-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--rule)}
 .project{display:grid;grid-template-columns:minmax(13rem,.8fr) minmax(0,2fr);gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}
 .project-name{font-weight:700;color:var(--ink);text-decoration:none;overflow-wrap:anywhere} .project-name:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
@@ -62,7 +59,19 @@ main{max-width:860px} h1{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spa
 <nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">publications</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
 <hr>
 <main>
-<h1>Projects</h1>
+<h1>Projects &amp; Public Work</h1>
+<p class="intro">Selected software, formal-methods research, LLM tools, and live apps by Eric Spencer, plus a complete catalog of public work.</p>
+<section aria-labelledby="selected-work">
+<h2 id="selected-work">Selected work</h2>
+<ol id="selected-project-list" class="project-list selected-list"><li class="project"><a class="project-name" href="/apps/not-hotdog/">Not Hotdog</a><span class="project-description">Hot dog or not hot dog: a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference.</span></li>
+<li class="project"><a class="project-name" href="/projects/resilient.html">Resilient</a><span class="project-description">Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/HorneSci/hst-studio" target="_blank" rel="noopener">HST-Studio</a><span class="project-description">A delta-aware sparse linear algebra runtime, and the tooling around it.</span></li>
+<li class="project"><a class="project-name" href="https://tlakit.pages.dev" target="_blank" rel="noopener">tlakit</a><span class="project-description">Python and notebook client for the TLA+ toolchain. Drives SANY, TLC, and TLAPS from a cell without reimplementing TLA+ semantics.</span></li>
+<li class="project"><a class="project-name" href="/apps/paper-digest/">paper-digest</a><span class="project-description">Cloudflare Worker that ranks each day&#x27;s new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.</span></li></ol>
+</section>
+<section aria-labelledby="all-projects">
+<h2 id="all-projects">Complete project list</h2>
+<p class="section-intro">The full public catalog: research artifacts, applications, experiments, coursework, and source repositories.</p>
 <ol id="project-list" class="project-list"><li class="project"><a class="project-name" href="/apps/one-rep-max/">1RM</a><span class="project-description">One-rep-max calculator: median of seven estimators, installs to a phone home screen and runs offline.</span></li>
 <li class="project"><a class="project-name" href="https://github.com/EricSpencer00/abbreviation-maker" target="_blank" rel="noopener">abbreviation-maker</a><span class="project-description">A tiny phrase and abbreviation generator.</span></li>
 <li class="project"><a class="project-name" href="/projects/aeo-queries.html">AEO Queries</a><span class="project-description">Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue for a prompt.</span></li>
@@ -264,6 +273,7 @@ main{max-width:860px} h1{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spa
 <li class="project"><a class="project-name" href="https://github.com/EricSpencer00/yeat-llm" target="_blank" rel="noopener">yeat-llm</a><span class="project-description">Lyric-style language model experiment.</span></li>
 <li class="project"><a class="project-name" href="https://github.com/EricSpencer00/youtubeDL" target="_blank" rel="noopener">youtubeDL</a><span class="project-description">Personal CLI / localhost YouTube audio+video downloader.</span></li>
 <li class="project"><a class="project-name" href="/projects/my-zshrc.html">~/.zshrc</a><span class="project-description">Annotated walkthrough of a shell config.</span></li></ol>
+</section>
 </main>
 <footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>
 </div>
