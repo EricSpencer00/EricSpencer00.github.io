@@ -98,6 +98,7 @@ def build_news_page():
 <link rel="stylesheet" href="/assets/css/void-news.css">
 </head><body>
 <main class="news-page">
+<h1 class="visually-hidden">News</h1>
 <a class="news-back" href="/#news">← back</a>
 <section class="void-board ios" aria-label="News"><div class="messages">
 ''' + "\n".join(rows) + '\n</div></section></main></body></html>\n'
