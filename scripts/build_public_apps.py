@@ -127,10 +127,30 @@ def expected_paths(apps: list[dict[str, str]]) -> dict[Path, str]:
     return output
 
 
+def stale_aliases(output: dict[Path, str]) -> list[Path]:
+    """Find obsolete, generator-owned aliases without touching real content."""
+    if not OUT.exists():
+        return []
+    stale = []
+    for child in OUT.iterdir():
+        page = child / "index.html"
+        if not child.is_dir() or page in output or not page.exists():
+            continue
+        if "<!-- redirect stub -->" not in page.read_text(encoding="utf-8"):
+            continue
+        # A generated alias contains exactly one small redirect file. Refuse to
+        # delete anything a person has added to the directory.
+        if list(child.iterdir()) == [page]:
+            stale.append(page)
+    return stale
+
+
 def is_current(apps: list[dict[str, str]]) -> bool:
     """Check generated content while allowing the SEO pass to enrich the hub."""
     index = OUT / "index.html"
     if not index.exists():
+        return False
+    if stale_aliases(expected_paths(apps)):
         return False
     match = re.search(r'<ul class="app-list">(.*?)</ul>', index.read_text(encoding="utf-8"), re.S)
     expected_rows = "\n".join(render_row(app) for app in apps)
@@ -156,13 +176,17 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     apps = load_apps()
+    output = expected_paths(apps)
     if args.check:
         if not is_current(apps):
             print("public app pages are stale; run python3 scripts/build_public_apps.py", file=sys.stderr)
             return 1
         print(f"public app pages are current ({len(apps)} builds)")
         return 0
-    for path, text in expected_paths(apps).items():
+    for stale in stale_aliases(output):
+        stale.unlink()
+        stale.parent.rmdir()
+    for path, text in output.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(text, encoding="utf-8")
     print(f"Built {len(apps)} public build paths -> apps/")

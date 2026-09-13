@@ -114,12 +114,6 @@
     "description": "Interactive square spiral with primes marked."
   },
   {
-    "slug": "ulam-spiral-base-twelve",
-    "name": "Ulam Spiral, Base Twelve",
-    "url": "https://ericspencer.us/ulam-spiral-b12/",
-    "description": "Interactive prime spiral written in base twelve."
-  },
-  {
     "slug": "vocal",
     "name": "VoCal",
     "url": "https://vocal.best/",

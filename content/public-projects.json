@@ -1158,12 +1158,6 @@
     "language": "Web"
   },
   {
-    "name": "Ulam Spiral, Base Twelve",
-    "url": "/apps/ulam-spiral-base-twelve/",
-    "description": "Interactive prime spiral written in base twelve.",
-    "language": "Web"
-  },
-  {
     "name": "usage-badge",
     "url": "https://github.com/EricSpencer00/usage-badge",
     "description": "Live README badge for AI coding usage - subscription limits plus token/cost across agents, in one Worker.",
