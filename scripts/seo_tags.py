@@ -39,9 +39,9 @@ ICON_MARKER = 'rel="icon" href="/favicon.svg"'
 
 ROBOTS = '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'
 REFERRER = '<meta name="referrer" content="strict-origin-when-cross-origin">'
-# GitHub Pages cannot set HTTP response headers. This document policy is still
-# valuable: it limits code, styles, and network requests in browsers while the
-# production edge supplies header-level controls.
+# GitHub Pages cannot set HTTP response headers. This document policy still
+# limits code, styles, and network requests in browsers; a header-capable edge
+# can add transport-level controls such as HSTS separately.
 CSP = (
     '<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; '
     "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; "
