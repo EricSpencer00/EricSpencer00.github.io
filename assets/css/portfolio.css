@@ -1,0 +1,492 @@
+/* Shared editorial shell for the public portfolio surfaces.
+   The landing page remains the source of truth for these tokens. */
+:root {
+  --portfolio-paper: #faf7f2;
+  --portfolio-ink: #080401;
+  --portfolio-accent: #5f000b;
+  --portfolio-dim: #6d6863;
+  --portfolio-rule: #d6d4d1;
+  --portfolio-soft: #f0ebe4;
+  --portfolio-code: #1c1613;
+  --portfolio-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --portfolio-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@supports (color: oklch(0 0 0)) {
+  :root {
+    --portfolio-paper: oklch(0.978 0.006 80);
+    --portfolio-ink: oklch(0.11 0.015 60);
+    --portfolio-accent: oklch(0.30 0.13 22);
+    --portfolio-dim: oklch(0.52 0.01 70);
+    --portfolio-rule: oklch(0.87 0.005 80);
+    --portfolio-soft: oklch(0.95 0.009 78);
+    --portfolio-code: oklch(0.18 0.012 55);
+  }
+}
+
+body.portfolio-page,
+body.portfolio-article,
+body.news-surface {
+  margin: 0;
+  background: var(--portfolio-paper);
+  background-image: none;
+  color: var(--portfolio-ink);
+  font-family: var(--portfolio-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.portfolio-page .wrap,
+body.portfolio-article .wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(36px, 7vw, 56px) 24px 96px;
+}
+
+body.portfolio-page a,
+body.portfolio-article a,
+body.news-surface a {
+  color: var(--portfolio-accent);
+  text-decoration: none;
+  border: 0;
+}
+
+body.portfolio-page a:hover,
+body.portfolio-article a:hover,
+body.news-surface a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+body.portfolio-page a:focus-visible,
+body.portfolio-article a:focus-visible,
+body.news-surface a:focus-visible,
+body.portfolio-page button:focus-visible,
+body.portfolio-article button:focus-visible,
+body.news-surface button:focus-visible {
+  outline: 2px solid var(--portfolio-accent);
+  outline-offset: 3px;
+}
+
+body.portfolio-page .name,
+body.portfolio-page .name-hero,
+body.portfolio-article .name-hero {
+  margin: 0 0 10px;
+  color: var(--portfolio-ink);
+  font-family: var(--portfolio-body);
+  font-size: clamp(34px, 5.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+body.portfolio-page .page-title,
+body.portfolio-page main > h1,
+body.portfolio-article h1.article-title,
+body.portfolio-article h1:not(.name-hero) {
+  display: block;
+  margin: 0 0 12px;
+  color: var(--portfolio-ink);
+  font-family: var(--portfolio-body);
+  font-size: clamp(28px, 4.5vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+body.portfolio-page h1::before,
+body.portfolio-page h1 .ln,
+body.portfolio-article h1.article-title .ln,
+body.portfolio-article h1:not(.name-hero) .ln {
+  display: none;
+  content: none;
+}
+
+body.portfolio-article .banner {
+  display: none;
+}
+
+body.portfolio-page .sub,
+body.portfolio-article .sub,
+body.news-surface .sub {
+  margin: 0 0 6px;
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+body.portfolio-page nav.top,
+body.portfolio-article nav.top,
+body.news-surface nav.top {
+  margin: 16px 0 0;
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+body.portfolio-page nav.top a,
+body.portfolio-article nav.top a,
+body.news-surface nav.top a {
+  color: inherit;
+  padding: 0 2px;
+  text-decoration: none;
+}
+
+body.portfolio-page nav.top a:hover,
+body.portfolio-article nav.top a:hover,
+body.news-surface nav.top a:hover,
+body.portfolio-page nav.top a.active,
+body.portfolio-article nav.top a.active,
+body.news-surface nav.top a.active {
+  color: var(--portfolio-ink);
+  text-decoration: none;
+}
+
+body.portfolio-page nav.top a.active,
+body.portfolio-article nav.top a.active,
+body.news-surface nav.top a.active {
+  font-weight: 600;
+}
+
+body.portfolio-page hr,
+body.portfolio-article hr {
+  border: 0;
+  border-top: 1px solid var(--portfolio-rule);
+  margin: 28px 0;
+}
+
+body.portfolio-page .dash,
+body.portfolio-article .dash {
+  border-top-style: solid;
+  margin: 28px 0;
+}
+
+body.portfolio-page h2,
+body.portfolio-article h2 {
+  margin: 48px 0 14px;
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.3;
+  scroll-margin-top: 20px;
+  text-transform: uppercase;
+}
+
+body.portfolio-page h2::before,
+body.portfolio-article h2::before,
+body.portfolio-page h2 .ln,
+body.portfolio-article h2 .ln {
+  display: none;
+  content: none;
+}
+
+body.portfolio-page h3,
+body.portfolio-article h3 {
+  margin: 20px 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+body.portfolio-page p,
+body.portfolio-article p,
+body.news-surface p,
+body.portfolio-page li,
+body.portfolio-article li,
+body.news-surface li {
+  max-width: 68ch;
+}
+
+body.portfolio-page .lead,
+body.portfolio-article .lead,
+body.news-surface .lead {
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  line-height: 1.65;
+}
+
+body.portfolio-page .back,
+body.portfolio-article .back,
+body.news-surface .back {
+  margin: 0 0 14px;
+  font-family: var(--portfolio-body);
+  font-size: 13px;
+}
+
+body.portfolio-page .back a,
+body.portfolio-article .back a,
+body.news-surface .back a {
+  color: var(--portfolio-dim);
+}
+
+body.portfolio-page .meta,
+body.portfolio-article .meta,
+body.news-surface .meta {
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-mono);
+  font-size: 12px;
+}
+
+body.portfolio-page code,
+body.portfolio-article code,
+body.news-surface code {
+  background: var(--portfolio-soft);
+  border-radius: 4px;
+  font-family: var(--portfolio-mono);
+  font-size: 13px;
+  padding: 1px 5px;
+}
+
+body.portfolio-page pre.code,
+body.portfolio-article pre.code,
+body.news-surface pre.code {
+  background: var(--portfolio-code);
+  border-radius: 6px;
+  color: var(--portfolio-paper);
+  font-family: var(--portfolio-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+  padding: 14px 18px;
+}
+
+body.portfolio-page pre.code code,
+body.portfolio-article pre.code code,
+body.news-surface pre.code code {
+  background: transparent;
+  padding: 0;
+}
+
+body.portfolio-page blockquote,
+body.portfolio-article blockquote,
+body.news-surface blockquote {
+  margin: 16px 0;
+  padding: 10px 14px;
+  border: 1px solid var(--portfolio-rule);
+  background: var(--portfolio-soft);
+  color: var(--portfolio-dim);
+  font-style: italic;
+}
+
+body.portfolio-page img,
+body.portfolio-article img,
+body.news-surface img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--portfolio-rule);
+  border-radius: 6px;
+}
+
+body.portfolio-page .tag,
+body.portfolio-article .tag {
+  border: 1px solid var(--portfolio-rule);
+  border-radius: 3px;
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-mono);
+  font-size: 10px;
+  padding: 0 5px;
+}
+
+body.portfolio-page footer,
+body.portfolio-article footer,
+body.news-surface footer {
+  margin-top: 60px;
+  padding-top: 16px;
+  border-top: 1px solid var(--portfolio-rule);
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-body);
+  font-size: 13px;
+}
+
+body.portfolio-page .project-list,
+body.portfolio-page .selected-list {
+  border-top: 1px solid var(--portfolio-rule);
+}
+
+body.portfolio-page .project {
+  border-bottom: 1px solid var(--portfolio-rule);
+}
+
+body.portfolio-page .project-name {
+  color: var(--portfolio-ink);
+}
+
+body.portfolio-page .project-name:hover {
+  color: var(--portfolio-accent);
+}
+
+body.portfolio-page .project-description,
+body.portfolio-page .section-intro,
+body.portfolio-page .intro,
+body.portfolio-page .post-desc {
+  color: var(--portfolio-dim);
+}
+
+body.portfolio-page .news,
+body.portfolio-article .news {
+  font-family: var(--portfolio-body);
+}
+
+body.portfolio-page .news .d,
+body.portfolio-article .news .d {
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-mono);
+}
+
+body.portfolio-page .news .t,
+body.portfolio-article .news .t {
+  color: var(--portfolio-ink);
+}
+
+body.portfolio-page .small,
+body.portfolio-article .small,
+body.news-surface .small {
+  color: var(--portfolio-dim);
+  font-size: 13px;
+}
+
+body.news-surface .wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(36px, 7vw, 56px) 24px 96px;
+}
+
+body.news-surface .news-page {
+  max-width: none;
+  padding: 0;
+}
+
+body.news-surface .news-back {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 0;
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-body);
+  font-size: 13px;
+}
+
+body.news-surface .news-board {
+  margin-top: 8px;
+}
+
+body.news-surface .messages {
+  padding: 0;
+  background: transparent;
+}
+
+body.news-surface .messages-title {
+  margin: 34px 0 12px;
+  color: var(--portfolio-dim);
+  font-family: var(--portfolio-mono);
+  font-size: 12px;
+}
+
+body.news-surface .message {
+  max-width: 72%;
+  margin-top: 0;
+}
+
+body.news-surface .message-bubble {
+  border-radius: 3px;
+  background: var(--portfolio-soft);
+  color: var(--portfolio-ink);
+  font-family: var(--portfolio-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+body.news-surface .message-text {
+  overflow-wrap: anywhere;
+}
+
+body.news-surface .message-text a {
+  color: var(--portfolio-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.news-surface .news-attachment {
+  width: 292px;
+  max-width: 100%;
+  margin: 0 0 6px 0;
+  border: 1px solid var(--portfolio-rule);
+  border-radius: 6px;
+  background: var(--portfolio-soft);
+}
+
+body.news-surface .news-attachment img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  border: 0;
+  border-radius: 6px 6px 0 0;
+  object-fit: contain;
+}
+
+body.news-surface .attachment-caption {
+  display: block;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+@media (max-width: 560px) {
+  body.portfolio-page .wrap,
+  body.portfolio-article .wrap,
+  body.news-surface .wrap {
+    padding: 36px 18px 80px;
+  }
+
+  body.portfolio-page .project,
+  body.portfolio-page .proj,
+  body.portfolio-article .proj {
+    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+    gap: 3px;
+    white-space: normal;
+  }
+
+  body.portfolio-page .project-description,
+  body.portfolio-page .proj .ds,
+  body.portfolio-article .proj .ds {
+    white-space: normal;
+  }
+
+  body.portfolio-page .project,
+  body.portfolio-page .proj,
+  body.portfolio-article .proj {
+    padding: 14px 0;
+  }
+
+  body.portfolio-page .post-d {
+    display: none;
+  }
+
+  body.news-surface .message {
+    max-width: 94%;
+  }
+
+  body.news-surface .news-attachment {
+    width: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.portfolio-page *,
+  body.portfolio-article *,
+  body.news-surface * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

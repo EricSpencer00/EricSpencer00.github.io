@@ -90,18 +90,23 @@ def build_news_page():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>News · Eric Spencer</title>
 <script src="/assets/js/news-scroll.js" defer></script>
-<meta name="description" content="Research, papers, and project updates from Eric Spencer, as texts from the void.">
+<meta name="description" content="Research, papers, and project updates from Eric Spencer.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ericspencer.us/news/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/vendor/framework7/messages.css">
 <link rel="stylesheet" href="/assets/css/void-news.css">
-</head><body>
+</head><body class="news-surface">
+<div class="wrap">
+<p class="name-hero">Eric Spencer</p>
+<p class="sub">news</p>
+<nav class="top" aria-label="Primary"><a href="/">index</a> &middot; <a href="/research.html">publications</a> &middot; <a href="/projects.html">projects</a> &middot; <a href="/cv/">cv</a></nav>
+<hr>
 <main class="news-page">
-<h1 class="visually-hidden">News</h1>
-<a class="news-back" href="/#news">← back</a>
+<h1 class="page-title">News</h1>
+<a class="news-back" href="/#news">← back to index</a>
 <section class="void-board ios" aria-label="News"><div class="messages">
-''' + "\n".join(rows) + '\n</div></section></main></body></html>\n'
+''' + "\n".join(rows) + '\n</div></section></main>\n<footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>\n</div></body></html>\n'
 
 def build_about():
     text = (CONTENT / "about.txt").read_text(encoding="utf-8")
@@ -479,7 +484,7 @@ a.pill{{font-size:12px}}
         desc: 'FROM AMERICA LLC: independent software studio.' }},
       {{ repo: 'gcf-de', url: 'https://ericspencer.us/gcf-de/' }},
       {{ name: 'stockgenie.app', url: '/apps/stockgenie/',
-        desc: 'Daily AI stock pick, free tier plus options.' }},
+        desc: 'AI-ranked market analysis for iPhone; informational only, not financial advice.' }},
     ],
     'Hackathons & Coursework': [
       {{ name: 'sideswing.tech', url: '/apps/sideswing/',

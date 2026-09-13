@@ -4,7 +4,9 @@
 Project pages predate the current static build and were hand-authored with a
 title-shaped H2. This normalizer upgrades that first heading to the page H1,
 keeps the article title visible, and makes the full fraud notebook distinct
-from the shorter fraud-predictor page.
+from the shorter fraud-predictor page. It also repairs the few legacy pages
+whose interactive markup was wrapped in paragraphs or contained unescaped
+HTML-looking text.
 """
 
 from __future__ import annotations
@@ -30,8 +32,58 @@ def replace_full_fraud_title(text: str) -> str:
     )
 
 
+def repair_legacy_markup(path: Path, text: str) -> str:
+    # Archived ChatGPT transcripts sometimes wrapped a block-level div in a
+    # paragraph. HTML parsers repair that differently, so keep the transcript
+    # text but make the structure valid for every project page.
+    text = re.sub(r"<p>\s*(<div\b[^>]*>)", r"\1", text)
+    text = re.sub(r"(</div>)\s*</p>", r"\1", text)
+    if path.name == "one-rep-max.html":
+        text = text.replace(
+            '<p><div style="margin: 1em 0;">',
+            '<div class="one-rep-max-controls" style="margin: 1em 0;"><p>',
+        )
+        controls = '<div class="one-rep-max-controls" style="margin: 1em 0;">'
+        if controls + '<p>' not in text:
+            text = text.replace(controls, controls + '<p>', 1)
+        text = text.replace('</button> </div></p>', '</button></p></div>')
+        text = text.replace('</button> </div>', '</button></p></div>')
+        text = text.replace('<p><div id="result"', '<div id="result"')
+        text = text.replace('style="margin-top: 1em; font-weight: bold;"></div></p>',
+                            'style="margin-top: 1em; font-weight: bold;"></div>')
+        text = text.replace('</script></p>', '</script>')
+    elif path.name == "skeuomorphism.html":
+        text = text.replace('<p><div class="skeuomorphic-wrapper">',
+                            '<div class="skeuomorphic-wrapper">')
+        text = text.replace('</div> </div></p>', '</div> </div>')
+        text = re.sub(
+            r'(<svg\b.*?title="Sign Language Interpreter".*?</a>)</p>',
+            r'\1',
+            text,
+            count=1,
+            flags=re.S,
+        )
+        text = text.replace('<span> <rect x="135" y="485" width="130" height="70" class="clickable-area" /> </span>',
+                            '<g> <rect x="135" y="485" width="130" height="70" class="clickable-area" /> </g>')
+        text = re.sub(r'<p><!-- (?:Networking|Health|Games|Web|Personal).*?</p>',
+                      lambda match: match.group(0)[3:-4] + '\n', text, flags=re.S)
+        text = text.replace('<p><style>', '<style>').replace('</style></p>', '</style>')
+        text = text.replace('<p><script>', '<script>').replace('</script></p>', '</script>')
+    elif path.name == "llmjammer.html":
+        text = re.sub(
+            r'<p>A future version could strip the code of spacing and tabbing,.*?</p>\n',
+            '<p>A future version could minify the obfuscated code, but that experiment is not part of the package.</p>\n',
+            text,
+            count=1,
+            flags=re.S,
+        )
+        text = re.sub(r'<p>!function\(n\)\{.*?</p>\n', '', text, count=1, flags=re.S)
+    return text
+
+
 def normalize(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
+    text = repair_legacy_markup(path, text)
     # Repair the escaped attribute emitted by the initial normalizer release;
     # browsers treated it as a literal attribute name, not a CSS class.
     text = text.replace('class=\\"article-title\\"', 'class="article-title"')

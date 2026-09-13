@@ -49,6 +49,9 @@ CORE_URLS = {
     f"{SITE}/news/",
     f"{SITE}/projects.html",
     f"{SITE}/research.html",
+    f"{SITE}/1rm/",
+    f"{SITE}/ulam-spiral/",
+    f"{SITE}/ulam-spiral-b12/",
 }
 
 

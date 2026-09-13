@@ -26,7 +26,7 @@
   {
     "name": "AI Headshots",
     "url": "/projects/ai-headshots.html",
-    "description": "Replicate Wrapper",
+    "description": "Replicate-backed headshot generator.",
     "language": ""
   },
   {
@@ -68,7 +68,7 @@
   {
     "name": "Ancestry Tree Java Example",
     "url": "/projects/ancestry_tree.html",
-    "description": "Ancestry Tree Java Example - project by Eric Spencer.",
+    "description": "Java graph-traversal example for checking ancestry links.",
     "language": ""
   },
   {
@@ -140,7 +140,7 @@
   {
     "name": "BrightBet.tech",
     "url": "/projects/brightbet.html",
-    "description": "An AI-powered trade and prediction analysis platform built for HackIllinois 2026.",
+    "description": "Trade and prediction analysis platform built for HackIllinois 2026.",
     "language": ""
   },
   {
@@ -170,7 +170,7 @@
   {
     "name": "ChatGPT Research",
     "url": "/projects/chatgpt_research.html",
-    "description": "Research with v3.0 and how it could possibly teach those new to Java Data Structures",
+    "description": "Loyola research on ChatGPT responses to CS2 data-structure questions.",
     "language": ""
   },
   {
@@ -236,7 +236,7 @@
   {
     "name": "COMP322 Final Project Reflection",
     "url": "/projects/healthup!.html",
-    "description": "COMP322 Final Project Reflection - project by Eric Spencer.",
+    "description": "COMP322 final-project reflection.",
     "language": ""
   },
   {
@@ -632,7 +632,7 @@
   {
     "name": "Iterative Maze Solver Example",
     "url": "/projects/iterative-maze-solver.html",
-    "description": "Iterative Maze Solver Example - project by Eric Spencer.",
+    "description": "Java iterator-based maze-solver example.",
     "language": ""
   },
   {
@@ -668,7 +668,7 @@
   {
     "name": "Machine Learning Fraud Identifier",
     "url": "/projects/fraud-predictor.html",
-    "description": "Analyze different Machine Learning algorithms to identify fraud within a classified dataset",
+    "description": "Compares machine-learning models on an anonymized, PCA-transformed fraud dataset.",
     "language": ""
   },
   {
@@ -740,7 +740,7 @@
   {
     "name": "openclaw-skill-stockgenie",
     "url": "https://github.com/EricSpencer00/openclaw-skill-stockgenie",
-    "description": "OpenClaw/picoclaw skill: StockGenie daily AI stock pick.",
+    "description": "OpenClaw/picoclaw skill for StockGenie market analysis.",
     "language": ""
   },
   {
@@ -806,7 +806,7 @@
   {
     "name": "Recursive Maze Solver Example",
     "url": "/projects/recursive-maze-solver.html",
-    "description": "Recursive Maze Solver Example - project by Eric Spencer.",
+    "description": "Java recursion and graph-search maze-solver examples.",
     "language": ""
   },
   {
@@ -818,7 +818,7 @@
   {
     "name": "Researching ChatGPT with ChatGPT",
     "url": "/projects/meta_research.html",
-    "description": "Researching ChatGPT with ChatGPT - project by Eric Spencer.",
+    "description": "Transcript of ChatGPT prompts about CS2 data structures and maze solvers.",
     "language": ""
   },
   {
@@ -878,7 +878,7 @@
   {
     "name": "roman-numeral-converter",
     "url": "https://github.com/EricSpencer00/roman-numeral-converter",
-    "description": "Roman-numeral &lt;-&gt; integer converter.",
+    "description": "Roman numeral ↔ integer converter.",
     "language": "Java"
   },
   {
@@ -986,7 +986,7 @@
   {
     "name": "StockGenie",
     "url": "/apps/stockgenie/",
-    "description": "AI stock-pick app for iPhone.",
+    "description": "AI-ranked market analysis for iPhone; informational only, not financial advice.",
     "language": "Swift"
   },
   {

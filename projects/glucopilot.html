@@ -6,7 +6,6 @@
 <meta name="description" content="A glucose insights app that reads several health sources, built on gpt-oss-120b for the September 2025 OpenAI hackathon.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="keywords" content="GluCoPilot, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/glucopilot.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -125,13 +124,17 @@ li{margin:4px 0}
 h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h1 class="article-title">GluCoPilot<span class="ln"></span></h1>
@@ -140,9 +143,10 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 <hr class="dash">
 <p>GluCoPilot was built for the September 2025 OpenAI Hackathon for GPT-OSS:120b, which opened free inference on the model through HuggingFace. The hackathon was intended to produce fine-tuned use cases for the open-source model. Like many other entries, this one is a wrapper around the model rather than a fine-tune; the only tuning applied to 120b is prompt engineering.</p>
 <p>GluCoPilot draws on several health sources to produce commentary on a user's glucose readings across the day. Owners of a Dexcom-based continuous glucose monitor (a Stelo or a G7, for example) can pull live data through the manufacturer's APIs. The app combines that with Apple Health and MyFitnessPal, then arranges the aggregate into a 24 hour time series that 120b analyzes. If glucose runs high at 4pm and the Apple Watch record shows little movement at that hour, the model suggests more activity in that window. If a Sprite at 7pm did not cause a spike because of the activity that preceded it, the model notes that too.</p>
+<p>This is a research prototype, not medical advice and not a tool for dosing, treatment, or emergency decisions.</p>
 <p>In practice the app is limited by how little data reaches it. Logging is the hurdle: a CGM and an Apple Watch record themselves, while MyFitnessPal depends on manual entry and carries missing and inaccurate values. Food bought without a label or a barcode has no nutritional record to look up at all.</p>
 <p>On the architecture. The project started as React Native with a Python backend, using the Dexcom library pydexcom. Apple Health integration, among other things, prompted a move to Swift with a lighter Python backend. The Swift frontend authenticates through Dexcom OAuth, and the backend makes rate-limited API calls to the HuggingFace inference servers. Apple Health, Dexcom, and MyFitnessPal data aggregate on the frontend once those services are connected. A single JSON prompt carrying roughly 100k tokens of context then goes to the model.</p>
-<p>Accuracy is about 65%. The output is too general in some cases: because the model is forced to always return five results, it produces one or two useful insights and then repeats boilerplate suggestions.</p>
+<p>The output is too general in some cases: because the model is forced to always return five results, it produces one or two useful insights and then repeats boilerplate suggestions.</p>
 <p>Devpost submission: <a href="https://devpost.com/software/glucopilot" target="_blank" rel="noopener">https://devpost.com/software/glucopilot</a></p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

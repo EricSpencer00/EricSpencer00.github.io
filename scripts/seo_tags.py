@@ -50,6 +50,9 @@ CSP = (
     "connect-src 'self' https://api.github.com https://huggingface.co; "
     "object-src 'self'; base-uri 'self'; form-action 'self'\">"
 )
+KEYWORDS = re.compile(
+    r'^[ \t]*<meta\s+name=["\']keywords["\'][^>]*>\n?', re.IGNORECASE | re.MULTILINE
+)
 
 
 def og_image(head):
@@ -63,6 +66,11 @@ def apply(path, write=True):
     if not sep:
         return "no-head"
     original = text
+
+    # Meta keywords have no search value and often preserve stale, repetitive
+    # labels from the old site. Remove them at the same post-build boundary
+    # that owns the rest of the page-wide SEO hygiene.
+    head = KEYWORDS.sub("", head)
 
     # The structured-data image should be the page's own card when it has one.
     if DEAD_IMAGE in head:

@@ -30,6 +30,8 @@ jobs:
         run: python3 scripts/build_public_apps.py
       - name: Normalize canonical project headings
         run: python3 scripts/normalize_project_pages.py
+      - name: Apply shared portfolio theme
+        run: python3 scripts/apply_portfolio_theme.py
       - name: Apply the top nav
         run: python3 scripts/apply_nav.py
       - name: Drop the blog when nothing is published

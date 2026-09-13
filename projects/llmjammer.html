@@ -6,7 +6,6 @@
 <meta name="description" content="A pip-installable obfuscator that rewrites public Python source to confuse LLMs training on it.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="keywords" content="llmjammer, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/llmjammer.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -125,13 +124,17 @@ li{margin:4px 0}
 h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h1 class="article-title">llmjammer<span class="ln"></span></h1>
@@ -206,8 +209,7 @@ class batch:
 </code></pre>
 <p>The import aliases are the first layer: they try to make an LLM read numpy as tensorflow. That trick came from a LinkedIn post. Functions and local variables are then scrambled to random letters.</p>
 <p>In the few tests run against LLMs, the models still guessed correctly what the original code was doing. Obfuscating the training process was the goal of the package regardless.</p>
-<p>A future version could strip the code of spacing and tabbing, in the manner of minified browser code:</p>
-<p>!function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{enumerable:!0,get:r})},e.r=function(n){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(n,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(n,"<b>esModule",{value:!0})},e.t=function(n,t){if(1&t&&(n=e(n)),8&t)return n;if(4&t&&"object"==typeof n&&n&&n.</b>esModule)return n;var r=Object.create(null);if(e.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:n}),2&t&&"string"!=typeof n)for(var o in n)e.d(r,o,function(t){return n[t]}.bind(null,o));return r},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,"a",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p="",e(e.s=92)}({6:function(n,t,e){"use strict";e.d(t,"d",(function(){return u})),e.d(t,"a",(function(){return c})),e.d(t,"b",(function(){return l})),e.d(t,"c",(function(){return s}));var r=e(9),o=function(){return(o=Object.assign||function(n){for(var t,e=1,r=arguments.length;e<r;e++)for(var o in t=arguments[e])Object.prototype.hasOwnProperty.call(t,o)&&(n[o]=t[o]);return n}).apply(this,arguments)},i=function(n,t,e,r){return new(e||(e=Promise))((function(o,i){function a(n){try{c(r.next(n))}catch(n){i(n)}}function u(n){try{c(r.throw(n))}catch(n){i(n)}}function c(n){var t;n.done?o(n.value):(t=n.value,t instanceof e?t:new e((function(n){n(t)}))).then(a,u)}c((r=r.apply(n,t||[])).next())}))},a=function(n,t){var e,r,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:u(0),throw:u(1),return:u(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function u(i){return function(u){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;a;)try{if(e=1,r&&(o=2&i[0]?r.return:i[0]?r.throw||((o=r.return)&&o.call(r),0):r.next)&&!(o=o.call(r,i[1])).done)return o;switch(r=0,o&&(i=[2&i[0],o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,r=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=a.trys,(o=o.length>0&&o[o.length-1])||6!==i[0]&&2!==i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2])</p>
+<p>A future version could minify the obfuscated code, but that experiment is not part of the package.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

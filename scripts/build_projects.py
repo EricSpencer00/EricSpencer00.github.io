@@ -24,8 +24,7 @@ SELECTED = ROOT / "content" / "selected.txt"
 OUTPUT = ROOT / "projects.html"
 SITE = "https://ericspencer.us"
 PAGE_DESCRIPTION = (
-    "Selected software, formal-methods research, LLM tools, and live apps by "
-    "Eric Spencer, plus a complete catalog of public work."
+    "Software, research, experiments, coursework, and live apps from Eric Spencer."
 )
 
 
@@ -132,7 +131,7 @@ def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> st
         {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Projects & Public Work",
+            "name": "Projects",
             "url": f"{SITE}/projects.html",
             "description": PAGE_DESCRIPTION,
             "author": {"@type": "Person", "name": "Eric Spencer", "url": f"{SITE}/"},
@@ -152,7 +151,7 @@ def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> st
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projects &amp; Public Work | Eric Spencer</title>
+<title>Projects | Eric Spencer</title>
 <meta name="description" content="{PAGE_DESCRIPTION}">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -164,14 +163,17 @@ def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> st
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Projects &amp; Public Work | Eric Spencer">
+<meta property="og:title" content="Projects | Eric Spencer">
 <meta property="og:description" content="{PAGE_DESCRIPTION}">
 <meta property="og:url" content="https://ericspencer.us/projects.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta property="og:image:alt" content="Projects &amp; Public Work | Eric Spencer">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Projects | Eric Spencer">
 <meta property="og:site_name" content="Eric Spencer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Projects &amp; Public Work | Eric Spencer">
+<meta name="twitter:title" content="Projects | Eric Spencer">
 <meta name="twitter:description" content="{PAGE_DESCRIPTION}">
 <meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
 <script type="application/ld+json">
@@ -207,15 +209,15 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 <nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">publications</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
 <hr>
 <main>
-<h1>Projects &amp; Public Work</h1>
-<p class="intro">{PAGE_DESCRIPTION}</p>
+<h1>Projects</h1>
+<p class="intro">Software, research, experiments, coursework, and live apps.</p>
 <section aria-labelledby="selected-work">
 <h2 id="selected-work">Selected work</h2>
 <ol id="selected-project-list" class="project-list selected-list">{selected_rows}</ol>
 </section>
 <section aria-labelledby="all-projects">
-<h2 id="all-projects">Complete project list</h2>
-<p class="section-intro">The full public catalog: research artifacts, applications, experiments, coursework, and source repositories.</p>
+<h2 id="all-projects">All work</h2>
+<p class="section-intro">The complete list, including older experiments and archived writeups.</p>
 <ol id="project-list" class="project-list">{rows}</ol>
 </section>
 </main>

@@ -3,10 +3,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Recursive Maze Solver Example | Eric Spencer</title>
-<meta name="description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
+<meta name="description" content="Java recursion and graph-search maze-solver examples.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="noindex, follow">
-<meta name="keywords" content="Recursive Maze Solver Example, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/recursive-maze-solver.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -14,7 +13,7 @@
 <meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Recursive Maze Solver Example | Eric Spencer">
-<meta property="og:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
+<meta property="og:description" content="Java recursion and graph-search maze-solver examples.">
 <meta property="og:url" content="https://ericspencer.us/projects/recursive-maze-solver.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-recursive-maze-solver.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -28,13 +27,13 @@
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Recursive Maze Solver Example | Eric Spencer">
-<meta name="twitter:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
+<meta name="twitter:description" content="Java recursion and graph-search maze-solver examples.">
 <meta property="linkedin:title" content="Recursive Maze Solver Example | Eric Spencer">
-<meta property="linkedin:description" content="Recursive Maze Solver Example, a project by Eric Spencer.">
+<meta property="linkedin:description" content="Java recursion and graph-search maze-solver examples.">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Recursive Maze Solver Example",
-"description":"Recursive Maze Solver Example, a project by Eric Spencer.",
+"description":"Java recursion and graph-search maze-solver examples.",
 "url":"https://ericspencer.us/projects/recursive-maze-solver.html",
 "image":"https://ericspencer.us/assets/og/projects-recursive-maze-solver.jpg",
 "author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
@@ -125,21 +124,25 @@ li{margin:4px 0}
 h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h1 class="article-title">Recursive Maze Solver Example<span class="ln"></span></h1>
-<p class="meta">Recursive Maze Solver Example, a project by Eric Spencer.</p>
+<p class="meta">Java recursion and graph-search maze-solver examples.</p>
 <hr class="dash">
 <p>Recursive maze solver. A transcript of an exchange with ChatGPT about maze-solving code in Java, framed around a CS2 data structures course. In the maze notation used throughout, '*' is a wall, '.' an unvisited square, '-' a dead-end, '0' the starting point, and '+' a visited space.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, what are some coding examples of a recursive maze solver? Assume this maze has walls marked with *'s, unvisited squares marked with '.'s, dead-ends marked with '-', the starting point marked with '0', and visited spaces marked with '+'s. Explain each step as you go. </div></p>
+<div>A CS2 course is one that covers the top data structures in Java, following the ACM 2020 curricular guidelines.  In the context of a CS2 course, what are some coding examples of a recursive maze solver? Assume this maze has walls marked with *'s, unvisited squares marked with '.'s, dead-ends marked with '-', the starting point marked with '0', and visited spaces marked with '+'s. Explain each step as you go. </div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>A recursive maze solver in Java:</p>
 <pre class="code"><code>
@@ -224,7 +227,7 @@ public class MazeSolver {
 <p>An instance of <code>MazeSolver</code> is constructed with the maze as input, and <code>solve()</code> finds the solution. The maze is modified in place: '+' marks the path to the exit, '-' marks dead-ends.</p>
 <p>The solver assumes exactly one starting position ('0') and exactly one path to the exit. A maze that does not satisfy those assumptions may not solve correctly.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>What does an example maze look like, and what would it output?</div></p>
+<div>What does an example maze look like, and what would it output?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>An example maze as a 2D character array:</p>
 <pre class="code"><code>
@@ -259,7 +262,7 @@ solver.solve();
 </code></pre>
 <p>The path from the starting position ('0') to the exit is marked with '+'. The dead-ends are marked with '-'.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Explain Dijkstra's algorithm with respect to this maze solver</div></p>
+<div>Explain Dijkstra's algorithm with respect to this maze solver</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Dijkstra's algorithm is a graph search algorithm that finds the shortest path between a starting node and all other nodes in a weighted graph. Applied to the maze, it finds the shortest path from the starting position ('0') to the exit.</p>
 <ol>
@@ -279,7 +282,7 @@ solver.solve();
 <li>Adjust the termination condition.</li>
 </ol>
 <h2>User:<span class="ln"></span></h2>
-<p><div>How can the maze-solving process be visualized step by step?</div></p>
+<div>How can the maze-solving process be visualized step by step?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Step-by-step visualization needs a delay between steps and a display of the maze after each modification. In Java, <code>Thread.sleep()</code> pauses execution for a set duration.</p>
 <p>This version of <code>MazeSolver</code> adds a <code>visualizeSolve()</code> method:</p>
@@ -349,7 +352,7 @@ public class MazeSolver {
 <p><code>visualizeSolve()</code> pauses for 500 milliseconds via <code>TimeUnit.MILLISECONDS.sleep(500)</code> before and after each recursive call. The duration is adjustable.</p>
 <p><code>visualizeMaze()</code> displays the current state of the maze after each modification. It iterates over the maze array and prints the symbols for walls, visited spaces, and dead-ends.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Can you explain how to handle different types of maze configurations, such as loops or multiple solutions?</div></p>
+<div>Can you explain how to handle different types of maze configurations, such as loops or multiple solutions?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Loops and multiple solutions each need handling in the algorithm.</p>
 <h3>Loops in the maze</h3>
@@ -364,7 +367,7 @@ public class MazeSolver {
 </ul>
 <p>Complexity and performance vary with the maze configuration and the approach chosen.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>What can be done to the maze solver to make it run better and faster? Is it already optimized? Are there certain tradeoffs for making one aspect of the maze better?</div></p>
+<div>What can be done to the maze solver to make it run better and faster? Is it already optimized? Are there certain tradeoffs for making one aspect of the maze better?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>The code above is a basic recursive implementation. It solves mazes correctly, but several optimizations apply:</p>
 <ol>
@@ -380,7 +383,7 @@ public class MazeSolver {
 <li>Multi-threading does not always produce a significant speedup. Managing threads and synchronizing data carries overhead that can offset the gains from parallel execution.</li>
 </ol>
 <h2>User:<span class="ln"></span></h2>
-<p><div>convert this maze to A* search</div></p>
+<div>convert this maze to A* search</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>A* search needs a heuristic function that estimates the cost from each node to the goal. For a maze, the Manhattan distance or Euclidean distance between two points is the common choice. A* evaluates nodes on their combined cost and heuristic value and explores the most promising paths first.</p>
 <p>This version of <code>MazeSolver</code> uses A* search with the Manhattan distance heuristic:</p>
@@ -511,7 +514,7 @@ public class MazeSolver {
 <p><code>reconstructPath()</code> walks the parent-child relationship stored in each node back from the exit position to the start position, and marks the path in the maze with '+' symbols.</p>
 <p>This implementation assumes every move costs the same (1). A maze with different costs for different moves, diagonal moves for instance, needs a different g-score calculation.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Can you explain the cost system of the A* search algorithm?</div></p>
+<div>Can you explain the cost system of the A* search algorithm?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>The cost system in A* search has two components, the g-score and the heuristic.</p>
 <h3>G-score (path cost)</h3>
@@ -520,7 +523,7 @@ public class MazeSolver {
 <p>The heuristic function estimates the cost from a given node to the goal. In a maze, common heuristic functions include the Manhattan distance and the Euclidean distance between two positions. The heuristic guides the search toward nodes that appear closer to the goal.</p>
 <p>The total cost of a node is the sum of the g-score and the heuristic value. That total determines priority in the open list, and nodes with lower total costs are explored earlier. The algorithm expands nodes by examining their neighbors and updating g-scores and heuristic values. Combining path cost with estimated cost is what balances exploration of promising paths against optimality, and the objective is the path with the lowest total cost from the starting node to the goal node.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Can you provide a Memoization maze search method?</div></p>
+<div>Can you provide a Memoization maze search method?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>A memoized maze search method, which avoids redundant calculations:</p>
 <pre class="code"><code>
@@ -610,7 +613,7 @@ public class MazeSolver {
 <p>When a successful path to the exit is found, the positions are added to the <code>path</code> list in reverse order, from the exit back to the starting position.</p>
 <p>This implementation assumes a rectangular grid represented by a 2D character array, where '*' is a wall and other characters are open spaces or the start and exit positions. A different maze representation needs adjustments.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>How is memoization different than regular DFS search?</div></p>
+<div>How is memoization different than regular DFS search?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>Memoization and regular depth-first search (DFS) differ on four points.</p>
 <h3>Approach</h3>
@@ -635,7 +638,7 @@ public class MazeSolver {
 </ul>
 <p>In maze solving, memoization caches the results of visiting specific positions so that previously explored paths are not revisited. Regular DFS explores all possible paths exhaustively without storing previous results, potentially revisiting positions and recomputing paths. Memoization trades additional space complexity for improved time complexity.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Provide a method for multi-threading search</div></p>
+<div>Provide a method for multi-threading search</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <p>A multi-threaded maze search method using Java's ExecutorService and Callable interface:</p>
 <pre class="code"><code>
@@ -739,7 +742,7 @@ public class MazeSolver {
 <p>The <code>Future&lt;Boolean&gt;</code> objects hold the results of each search task, retrieved by calling <code>get()</code> on each <code>Future</code>. The method returns as soon as a path to the exit is found.</p>
 <p>The example calls <code>Executors.newCachedThreadPool()</code>, which creates an executor service whose thread pool adjusts its size to the number of submitted tasks.</p>
 <h2>User:<span class="ln"></span></h2>
-<p><div>Can you explain in further detail how the algorithm works? What does singular threading mean in the original recursive function and what changes to make it multi-threading?</div></p>
+<div>Can you explain in further detail how the algorithm works? What does singular threading mean in the original recursive function and what changes to make it multi-threading?</div>
 <h2>ChatGPT:<span class="ln"></span></h2>
 <h3>Single-threaded recursive function</h3>
 <ul>

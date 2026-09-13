@@ -38,6 +38,7 @@ jobs:
           python3 scripts/build_projects.py
           python3 scripts/build_public_apps.py
           python3 scripts/normalize_project_pages.py
+          python3 scripts/apply_portfolio_theme.py
 
       # One definition of the top nav for every page, so `cv` cannot reach only
       # the homepage again and `blog` only appears once something is published.

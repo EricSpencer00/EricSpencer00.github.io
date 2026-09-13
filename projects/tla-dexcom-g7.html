@@ -6,7 +6,6 @@
 <meta name="description" content="A formal TLA+ specification of the Dexcom G7 continuous glucose monitor&#x27;s behavior and safety properties.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="keywords" content="TLA+ Model of Dexcom G7, Eric Spencer, project">
 <link rel="canonical" href="https://ericspencer.us/projects/tla-dexcom-g7.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -125,23 +124,27 @@ li{margin:4px 0}
 h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h1 class="article-title">TLA+ Model of Dexcom G7<span class="ln"></span></h1>
 <p class="meta">A formal TLA+ specification of the Dexcom G7 continuous glucose monitor&#x27;s behavior and safety properties.</p>
 <hr class="dash">
-<p>The Dexcom G7 is the small white disc that sits on the back of the arm, reads blood sugar every five minutes, and alerts a phone when something is wrong. A pile of software already surrounds it: DexVal, GluCoPilot, a macOS menu bar icon that shows the current number. None of it writes down what the device is <i>supposed</i> to do. This TLA+ spec does.</p>
+<p>This TLA+ spec models a sensor, transmitter, receiver, expiry, and alerts as an abstract state machine inspired by a Dexcom G7. It is an educational formal-methods exercise, not device validation or medical advice.</p>
 <p>It is one of three TLA+ specs, alongside the walk-in oven and laptop models. The interactive microwave spec is a friendlier on-ramp for a reader who has never used TLA+.</p>
 <p><a href="https://github.com/EricSpencer00/tla-dexcom-g7" target="_blank" rel="noopener">GitHub Repo</a></p>
 <h2>What the spec models<span class="ln"></span></h2>
-<p>The G7 is a sensor plus a transmitter that lives on the arm for ten days. There is a 30-minute warmup after insertion, then it samples glucose every five minutes, transmits over BLE to a receiver (usually a phone), and the receiver decides whether to fire a high or low alert. After 10 days the sensor enters a 12-hour grace period and then expires.</p>
+<p>In this model, the sensor has a ten-day lifetime, a 30-minute warmup, five-minute samples, a BLE connection to a receiver, and a 12-hour grace period after expiration.</p>
 <p><code>g7.tla</code> models all of that as a state machine. The state variables look like this:</p>
 <pre class="code"><code>
 VARIABLES
@@ -161,7 +164,7 @@ NoReadingsAfterExpiry ==
   \A i \in 1..Len(receiverStore) :
      receiverStore[i].time &lt;= LIFETIME_MINS + GRACE_MINS
 </code></pre>
-<p>In English: nothing should ever land in the receiver's store with a timestamp past the sensor's expiration. A stale or post-expiration reading is worse than useless. If the CGM reports 110 when the real value is 50, the wearer eats nothing, and a 50 with no alert is how diabetics end up in the ER. False-negative readings are the failure mode to design out, not the false positives.</p>
+<p>In English: nothing should land in the receiver's store with a timestamp past the modeled expiration. The counterexample is a property of this abstraction; it does not describe a production device or a patient's care.</p>
 <p>Running TLC against the debug config catches this. The model surfaces a state where <code>lastSample</code> gets produced and stored after the sensor should have moved to <code>Expired</code>, because <code>ExpireSensor</code> and <code>ProduceSample</code> race on the same tick. That is the point of writing the spec: the invariant is not satisfied by the current model, and the trace says where to tighten it.</p>
 <h2>What's missing<span class="ln"></span></h2>
 <p>A lot. The spec does not model calibration (the G7 mostly does not need it, but the API surface still exists). It does not model the signal loss state when the transmitter and receiver are out of range for too long. It does not model the difference between the sensor producing a sample and the <i>transmitter</i> packaging it for BLE. Alerts are a single high/low flag instead of the hysteresis the device actually uses: Dexcom will not refire the low alert if the wearer is already in low territory and has not climbed back out. There is no model of the predictive "you'll be low in 20 minutes" alerts.</p>
