@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Interactive Microwave: TLA+ in the Browser" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ai4fm.cs.luc.edu/posts/interactive-microwave-tla.html" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="We published a browser-native version of the interactive-microwave-tla simulator. It mimics a Java microwave runtime and a small TLA+ model checker that is a literal transcription of the project’s ..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="We published a browser-native version of the interactive-microwave-tla simulator. It mimics a Java microwave runtime and a small TLA+ model checker that is a literal transcription of the project’s ..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>Interactive Microwave: TLA+ in the Browser &#8212; AI4FM | AI for Formal Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d56a4d63" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/interactive-microwave-tla';</script>
+    <link rel="canonical" href="https://ai4fm.cs.luc.edu/posts/interactive-microwave-tla.html" />
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-text.jpeg" class="logo__image only-light" alt="AI4FM | AI for Formal Methods - Home"/>
+    <script>document.write(`<img src="../_static/logo-text.jpeg" class="logo__image only-dark" alt="AI4FM | AI for Formal Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/LoyolaChicagoCS/ai4fm" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/people.html">Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/software.html">Software and Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/funding.html">Funding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/prospective-students.html">Get Involved</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Papers</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../papers/index.html">All Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/tla-prover.html">TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/llm-tla-evaluation.html">Can LLMs Write Correct TLA+ Specifications?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/chattla-2026.html">ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/gsirs-2026-tla-llm.html">Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/gcasr-2025-tla-llm.html">Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/tla-for-all.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Updates</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">All Posts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tla-prover-accepted-2026.html">TLA-Prover Paper Accepted to ICSOFT 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-tla-accepted-2026.html">Our Paper on LLM-Based TLA+ Specification Generation Has Been Accepted</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tla-prover-2026.html">New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chattla-presentation-2026.html">Eric Spencer Presents ChatTLA+ at Loyola University Chicago</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsirs-llm-tla-poster-2026.html">Brian Ortiz Presents Poster at Graduate School Interdisciplinary Research Symposium 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-tla-evaluation-2025.html">Can LLMs Write Correct TLA+ Specifications? Our New Evaluation Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gcasr-2025-poster.html">Brian Ortiz Presents Poster at GCASR 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eric-spencer-mulcahy-scholar-2025.html">Eric Spencer Awarded Mulcahy Scholar Stipend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tla-for-all-running-model-checking-in-a-python-notebook.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li></ul>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/posts/interactive-microwave-tla.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Interactive Microwave: TLA+ in the Browser</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-stuttering-failure-made-visible">The stuttering failure, made visible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-new-build-does">What the new build does</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it">Try it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source-and-details">Source and details</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="interactive-microwave-tla-in-the-browser">
+<h1>Interactive Microwave: TLA+ in the Browser<a class="headerlink" href="#interactive-microwave-tla-in-the-browser" title="Link to this heading">#</a></h1>
+<p>We published a browser-native version of the
+<a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla">interactive-microwave-tla</a>
+simulator. It mimics a Java microwave runtime and a small TLA+ model checker
+that is a literal transcription of the project’s <code class="docutils literal notranslate"><span class="pre">Microwave.tla</span></code> spec, so
+students can experiment with the state machine — including the stuttering
+liveness failure from Laufer, Mertin, and Thiruvathukal,
+<a class="reference external" href="https://arxiv.org/abs/2407.21152">arXiv:2407.21152</a> — without installing
+Java, Maven, or TLC.</p>
+<section id="the-stuttering-failure-made-visible">
+<h2>The stuttering failure, made visible<a class="headerlink" href="#the-stuttering-failure-made-visible" title="Link to this heading">#</a></h2>
+<p>Section IV.C of the paper introduces a liveness property and its stuttering
+counterexample:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HeatLiveness == (radiation = ON) ~&gt; (radiation = OFF)
+
+Spec == Init /\ [][Next]_&lt;&lt;door, time, radiation, power&gt;&gt;
+</pre></div>
+</div>
+<p>Under this original <code class="docutils literal notranslate"><span class="pre">Spec</span></code>, TLA+ permits behaviors where every step after the
+microwave begins radiating is a stutter (<code class="docutils literal notranslate"><span class="pre">vars'</span> <span class="pre">=</span> <span class="pre">vars</span></code>). The tick never
+fires, the time never decrements, and <code class="docutils literal notranslate"><span class="pre">radiation</span> <span class="pre">=</span> <span class="pre">ON</span></code> holds forever —
+violating <code class="docutils literal notranslate"><span class="pre">HeatLiveness</span></code>. The fix (Exercise 3b) is weak fairness on <code class="docutils literal notranslate"><span class="pre">Tick</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Spec == Init /\ [][Next]_&lt;&lt;door, time, radiation, power&gt;&gt; /\ WF_vars(Tick)
+</pre></div>
+</div>
+<p>Our previous web demo did not model any of this — neither the liveness
+property, nor the stuttering failure, nor the fairness condition. It merely
+happened to tick unconditionally in Java and therefore looked correct without
+explaining why.</p>
+</section>
+<section id="what-the-new-build-does">
+<h2>What the new build does<a class="headerlink" href="#what-the-new-build-does" title="Link to this heading">#</a></h2>
+<p>The browser port re-implements the spec literally in TypeScript and exposes
+both the failure and its fix:</p>
+<ul class="simple">
+<li><p>A <strong>Weak fairness on Tick</strong> toggle in the sidebar switches the tick loop
+between the paper’s original (unfair) spec and the fixed spec with
+<code class="docutils literal notranslate"><span class="pre">WF_vars(Tick)</span></code>.</p></li>
+<li><p>With fairness off, the engine lets stutters run even when <code class="docutils literal notranslate"><span class="pre">Tick</span></code> is
+enabled. A runtime liveness detector surfaces the trap: after a short window
+of stutter-while-radiating, the UI flags <code class="docutils literal notranslate"><span class="pre">HeatLiveness</span></code> as violated and
+shows a 🔥 overlay — a runtime witness of Figure 7.</p></li>
+<li><p>With fairness on, the engine forces <code class="docutils literal notranslate"><span class="pre">Tick</span></code> to fire whenever it is
+continuously enabled. <code class="docutils literal notranslate"><span class="pre">HeatLiveness</span></code> holds and the overlay clears.</p></li>
+</ul>
+<p>An exhaustive safety check enumerates every state reachable from <code class="docutils literal notranslate"><span class="pre">Init</span></code> via
+the <code class="docutils literal notranslate"><span class="pre">Next</span></code> relation and confirms zero <code class="docutils literal notranslate"><span class="pre">DoorSafety</span></code> violations (matching
+Exercise 2b).</p>
+</section>
+<section id="try-it">
+<h2>Try it<a class="headerlink" href="#try-it" title="Link to this heading">#</a></h2>
+<div id="microwave-root" style="min-height: 560px;"></div>
+<link rel="stylesheet" href="../_static/demos/microwave/assets/index.css" />
+<script type="module" src="../_static/demos/microwave/assets/index.js"></script><p>Reproduce the paper’s Figure 7 by pressing <strong>Power</strong>, <strong>+3s</strong>, <strong>Start</strong>, and
+then turning off <strong>Weak fairness on Tick</strong>. The <code class="docutils literal notranslate"><span class="pre">Tick</span></code> action stops firing,
+the radiation indicator stays lit, and the liveness signal flips to
+<em>violated</em>.</p>
+</section>
+<section id="source-and-details">
+<h2>Source and details<a class="headerlink" href="#source-and-details" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla">Repository</a></p></li>
+<li><p><a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla/blob/main/docs/superpowers/specs/2026-04-17-web-port-design.md">Design spec</a></p></li>
+<li><p><a class="reference external" href="https://github.com/EricSpencer00/interactive-microwave-tla/tree/main/web">Browser port (web/)</a></p></li>
+<li><p>Laufer, Mertin, Thiruvathukal. <em>WIP: An Engaging Undergraduate Intro to
+Model Checking in Software Engineering Using TLA+.</em>
+<a class="reference external" href="https://arxiv.org/abs/2407.21152">arXiv:2407.21152</a>, 2024.</p></li>
+</ul>
+</section>
+</section>
+
+
+
+
+<div class="ablog-post-meta" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--color-background-border, #e0e0e0); color: var(--color-foreground-muted, #6c757d); font-size: 0.9rem;">
+  
+    Authored by
+    
+      <a href="../blog/author/eric-spencer.html" style="color: inherit;">Eric Spencer</a>
+    
+    
+  
+</div>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-stuttering-failure-made-visible">The stuttering failure, made visible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-new-build-does">What the new build does</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it">Try it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source-and-details">Source and details</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AI4FM Research Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, AI4FM Research Group.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

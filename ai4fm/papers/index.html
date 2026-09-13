@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Research Papers" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ericspencer.us/ai4fm/papers/" />
+<meta property="og:url" content="https://ai4fm.cs.luc.edu/papers/" />
 <meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
-<meta property="og:description" content="Research outputs from the AI4FM group at Loyola University Chicago. Papers TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation Accepted at ICSOFT 2026 A..." />
 <meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
 <meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
-<meta name="description" content="Research outputs from the AI4FM group at Loyola University Chicago. Papers TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation Accepted at ICSOFT 2026 A..." />
-<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
 <meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
 <meta name="twitter:card" content="summary">
 <meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+<meta property="og:description" content="Research outputs from the AI4FM group at Loyola University Chicago." />
+<meta name="description" content="Research outputs from the AI4FM group at Loyola University Chicago." />
 
     <title>Research Papers &#8212; AI4FM | AI for Formal Methods</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../_static/heritage.css?v=286b35d7" />
+    <link rel="stylesheet" type="text/css" href="../_static/heritage.css?v=9f37d3f0" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -34,22 +33,22 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <link rel="canonical" href="https://ericspencer.us/ai4fm/papers/" />
+    <link rel="canonical" href="https://ai4fm.cs.luc.edu/papers/" />
     <link rel="icon" href="../_static/logo-dark.png"/>
     <link rel="index" title="Index" href="../genindex/" />
     <link rel="search" title="Search" href="../search/" />
-    <link rel="next" title="Research Updates" href="../posts/" />
-    <link rel="prev" title="Get Involved" href="../pages/prospective-students/" />
+    <link rel="next" title="Can LLMs Write Correct TLA+ Specifications? Evaluating Natural-Language-to-TLA+ Generation" href="llm-tla-evaluation/" />
+    <link rel="prev" title="Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems" href="gsirs-2026-tla-llm/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <meta name="robots" content="noindex, nofollow">
-</head><body class="inner-page">
+
+  </head><body class="inner-page">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="header-inner">
-    <a class="wordmark" href="../">ai4fm <span>@ luc.edu</span></a>
+    <a class="wordmark" href="../" aria-label="AI4FM home">ai4fm <span aria-hidden="true">@</span> <img src="https://pxl-lucedu.terminalfour.net/prod01/cdn/media/luc-redesign-2026/images/Loyola-University-Chicago-white.svg" alt="luc.edu" width="154" height="32"></a>
     <nav aria-label="Main navigation">
       
       <a href="#" aria-current="page">Research Papers</a>
@@ -62,9 +61,6 @@
       
       <a href="../pages/about/">About</a>
       
-      <a href="../pages/prospective-students/">Get Involved</a>
-      
-      <a href="../search/">Search</a>
     </nav>
   </div>
 </header>
@@ -86,8 +82,20 @@ Papers</label><div class="sd-tab-content docutils">
 <div class="sd-col sd-d-flex-row sd-m-0 docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-database sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3.5c0-.626.292-1.165.7-1.59.406-.422.956-.767 1.579-1.041C4.525.32 6.195 0 8 0c1.805 0 3.475.32 4.722.869.622.274 1.172.62 1.578 1.04.408.426.7.965.7 1.591v9c0 .626-.292 1.165-.7 1.59-.406.422-.956.767-1.579 1.041C11.476 15.68 9.806 16 8 16c-1.805 0-3.475-.32-4.721-.869-.623-.274-1.173-.62-1.579-1.04-.408-.426-.7-.965-.7-1.591Zm1.5 0c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 5.205 6.353 5.5 8 5.5c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55 0-.133-.058-.318-.282-.551-.227-.237-.591-.483-1.101-.707C11.102 1.795 9.647 1.5 8 1.5c-1.646 0-3.101.295-4.118.742-.508.224-.873.471-1.1.708-.224.232-.282.417-.282.55Zm0 4.5c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 9.705 6.353 10 8 10c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55V5.724c-.241.15-.503.286-.778.407C11.475 6.68 9.805 7 8 7c-1.805 0-3.475-.32-4.721-.869a6.15 6.15 0 0 1-.779-.407Zm0 2.225V12.5c0 .133.058.318.282.55.227.237.592.484 1.1.708 1.016.447 2.471.742 4.118.742 1.647 0 3.102-.295 4.117-.742.51-.224.874-.47 1.101-.707.224-.233.282-.418.282-.551v-2.275c-.241.15-.503.285-.778.406-1.247.549-2.917.869-4.722.869-1.805 0-3.475-.32-4.721-.869a6.327 6.327 0 0 1-.779-.406Z"></path></svg> <strong>TLA+-Bench: An Execution-Grounded Benchmark and Dataset for Natural-Language to TLA+ Specification Generation</strong></p>
+<p class="sd-card-text"><em>Preprint / under review, July 2026</em></p>
+<p class="sd-card-text">An execution-grounded benchmark for natural-language-to-TLA+ generation:
+1,300 specifications, including 403 TLC-model-checked gold specifications,
+with a reproducible grader and research artifact.</p>
+<p class="sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="tla-bench/"><span>Full Details</span></a></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
 <p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-beaker sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"></path></svg> <strong>TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation</strong></p>
-<p class="sd-card-text"><em>Accepted at ICSOFT 2026</em></p>
+<p class="sd-card-text"><em>Published in ICSOFT 2026, pp. 627–636</em></p>
 <p class="sd-card-text">A 20-billion-parameter model trained with SFT and repair-based GRPO for TLA+
 specification synthesis. TLC model checking provides the reward signal directly.
 Achieves 30% pass&#64;1 at Gold and Diamond — roughly 3.5× the 8.6% untuned baseline.</p>
@@ -99,7 +107,7 @@ Achieves 30% pass&#64;1 at Gold and Diamond — roughly 3.5× the 8.6% untuned b
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-beaker sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"></path></svg> <strong>Can LLMs Write Correct TLA+ Specifications? Evaluating Natural-Language-to-TLA+ Generation</strong></p>
-<p class="sd-card-text"><em>Accepted at ICSOFT 2026</em></p>
+<p class="sd-card-text"><em>Published in ICSOFT 2026, pp. 39–50</em></p>
 <p class="sd-card-text">The first systematic evaluation of LLM-based TLA+ specification synthesis from natural
 language. Evaluates 30 LLMs across eight families on 205 TLA+ specifications using the
 SANY parser and TLC model checker. LLMs achieve only 8.6% semantic correctness.
@@ -171,8 +179,8 @@ Tools &amp; Artifacts</label><div class="sd-tab-content docutils">
 <div class="sd-col sd-d-flex-row sd-m-0 docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-book sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path></svg> <strong>TLA+ for All: Running Model Checking in a Python Notebook</strong></p>
-<p class="sd-card-text"><em>figshare, February 2025</em> - Laufer, Thiruvathukal</p>
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-book sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path></svg> <strong>TLA+ for All: Model Checking in a Python Notebook</strong></p>
+<p class="sd-card-text"><em>figshare preprint, February 2025</em> - Laufer, Thiruvathukal</p>
 <p class="sd-card-text">Integrates TLA+ model checking into Python notebook environments, making formal
 verification accessible without specialized tooling. Supports literate modeling,
 reproducibility, and barrier-free access for teaching and research.</p>

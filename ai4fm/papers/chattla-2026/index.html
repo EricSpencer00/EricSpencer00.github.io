@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ericspencer.us/ai4fm/papers/chattla-2026/" />
+<meta property="og:url" content="https://ai4fm.cs.luc.edu/papers/chattla-2026/" />
 <meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
-<meta property="og:description" content="Status, Presented,, Venue, Undergraduate Research and Engagement Symposium, Loyola University Chicago, April 17, 2026,, Authors, Eric Spencer,, Institution, Loyola University Chicago,. Abstract: A ..." />
 <meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
 <meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
-<meta name="description" content="Status, Presented,, Venue, Undergraduate Research and Engagement Symposium, Loyola University Chicago, April 17, 2026,, Authors, Eric Spencer,, Institution, Loyola University Chicago,. Abstract: A ..." />
-<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
 <meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
 <meta name="twitter:card" content="summary">
 <meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+<meta property="og:description" content="A presentation exploring the use of large language models for generating and verifying TLA+ formal specifications. The talk examines how LLMs can assist in..." />
+<meta name="description" content="A presentation exploring the use of large language models for generating and verifying TLA+ formal specifications. The talk examines how LLMs can assist in..." />
 
     <title>ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification &#8212; AI4FM | AI for Formal Methods</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=286b35d7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/heritage.css?v=9f37d3f0" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -34,22 +33,22 @@
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <link rel="canonical" href="https://ericspencer.us/ai4fm/papers/chattla-2026/" />
+    <link rel="canonical" href="https://ai4fm.cs.luc.edu/papers/chattla-2026/" />
     <link rel="icon" href="../../_static/logo-dark.png"/>
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
     <link rel="next" title="Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines" href="../gcasr-2025-tla-llm/" />
-    <link rel="prev" title="Research Updates" href="../../posts/" />
+    <link rel="prev" title="Get Involved" href="../../pages/prospective-students/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <meta name="robots" content="noindex, nofollow">
-</head><body class="inner-page">
+
+  </head><body class="inner-page">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="header-inner">
-    <a class="wordmark" href="../../">ai4fm <span>@ luc.edu</span></a>
+    <a class="wordmark" href="../../" aria-label="AI4FM home">ai4fm <span aria-hidden="true">@</span> <img src="https://pxl-lucedu.terminalfour.net/prod01/cdn/media/luc-redesign-2026/images/Loyola-University-Chicago-white.svg" alt="luc.edu" width="154" height="32"></a>
     <nav aria-label="Main navigation">
       
       <a href="../" aria-current="page">Research Papers</a>
@@ -62,9 +61,6 @@
       
       <a href="../../pages/about/">About</a>
       
-      <a href="../../pages/prospective-students/">Get Involved</a>
-      
-      <a href="../../search/">Search</a>
     </nav>
   </div>
 </header>
@@ -89,6 +85,9 @@
 <dt class="field-even">Institution<span class="colon">:</span></dt>
 <dd class="field-even"><p>Loyola University Chicago</p>
 </dd>
+<dt class="field-odd">Archive / PDF<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://ecommons.luc.edu/ures/2026uresarchive/2026uresarchive/41/">Loyola eCommons archival record</a> | <a class="reference external" href="https://ecommons.luc.edu/cgi/viewcontent.cgi?article=2648&amp;context=ures">View archival PDF</a></p>
+</dd>
 </dl>
 <section id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
@@ -101,7 +100,8 @@ synthesis, extending the discussion to practical generation and verification pip
 </section>
 <section id="based-on">
 <h2>Based On<a class="headerlink" href="#based-on" title="Link to this heading">¶</a></h2>
-<p>This presentation builds on the paper <a class="reference internal" href="../llm-tla-evaluation/"><span class="doc">Can LLMs Write Correct TLA+ Specifications? Evaluating Natural-Language-to-TLA+ Generation</span></a>, currently under submission.</p>
+<p>This presentation builds on the <a class="reference internal" href="../llm-tla-evaluation/"><span class="doc">published ICSOFT 2026 paper</span></a>. The archival record uses the title <em>ChatTLA+ - Can
+LLMs Write Correct TLA+ Specifications?</em>.</p>
 </section>
 <section id="presentation">
 <h2>Presentation<a class="headerlink" href="#presentation" title="Link to this heading">¶</a></h2>
