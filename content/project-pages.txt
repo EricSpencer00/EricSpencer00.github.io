@@ -62,6 +62,7 @@ https://github.com/EricSpencer00/rl-agent-c4|projects/2023/rl-agent-c4/index.htm
 /projects/sign-language.html|projects/2025/sign-language/index.html
 /projects/skeuomorphism.html|miscellaneous/skeuomorphism/index.html
 /projects/song-recommender.html|miscellaneous/song-recommender/index.html
+/projects/stemacle.html
 /projects/tdx-window-blocker.html|projects/2025/tdx-window-blocker/index.html
 /projects/tell-ai.html|miscellaneous/tell-ai/index.html
 /projects/terminalgpt.html|projects/2025/terminalgpt/index.html

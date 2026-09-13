@@ -979,8 +979,8 @@
   },
   {
     "name": "stemacle",
-    "url": "/apps/stemacle/",
-    "description": "Browser-based stem player - splits a track into its parts in the tab, no upload.",
+    "url": "/projects/stemacle.html",
+    "description": "Browser stem player that separates an audio file into drums, vocals, bass, and melody.",
     "language": "JavaScript"
   },
   {
