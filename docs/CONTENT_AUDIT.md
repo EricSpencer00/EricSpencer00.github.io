@@ -38,10 +38,9 @@ workspace, tests, and redirect-only mirrors are not treated as public content.
 
 ## Human follow-up
 
-- `projects/chattla-dataset.html` still says the paper is under double-blind
-  review and that the repository is anonymized, while the homepage and
-  research page describe the work as accepted and public. Confirm the intended
-  publication status before changing that historical note.
+- Resolved 2026-09-13: the ChatTLA+ paper was accepted to and presented at
+  ICSOFT 2026. The dataset page now records the repository's review-era
+  anonymized name without suggesting that the paper is still under review.
 - External URLs and third-party claims were not treated as locally verified.
   In particular, confirm the `/latex/` redirect target and any hosted pages
   that are not generated from this repository.

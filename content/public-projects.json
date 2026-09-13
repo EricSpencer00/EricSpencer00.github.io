@@ -176,13 +176,13 @@
   {
     "name": "ChatTLA+ Dataset",
     "url": "/projects/chattla-dataset.html",
-    "description": "Notes on the ChatTLA+ dataset release.",
+    "description": "Dataset release for ChatTLA+, the TLA+ specification-generation paper presented at ICSOFT 2026.",
     "language": ""
   },
   {
     "name": "chattla-dataset-anon",
     "url": "https://github.com/EricSpencer00/chattla-dataset-anon",
-    "description": "Anonymized dataset release for the ChatTLA+ paper.",
+    "description": "ChatTLA+ corpus and benchmark; the repository retains its review-era anonymized name.",
     "language": ""
   },
   {
