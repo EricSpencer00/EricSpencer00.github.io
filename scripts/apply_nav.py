@@ -75,6 +75,11 @@ def pages():
     for path in sorted(ROOT.rglob("*.html")):
         if any(part in SKIP_DIRS for part in path.relative_to(ROOT).parts):
             continue
+        # The catalog is generated from content/public-projects.json and owns
+        # a labelled landmark plus its current-page state. Do not replace that
+        # accessible nav with the older string-only template below.
+        if path == ROOT / "projects.html":
+            continue
         if path in SKIP_FILES:
             continue
         yield path

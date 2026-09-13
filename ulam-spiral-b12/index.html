@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ulam spiral, base twelve</title>
 <meta name="description" content="The integers on a square spiral, primes marked, written in base twelve. Every prime past 3 ends in 1, 5, 7 or E.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/ulam-spiral-b12/">
+<meta property="og:title" content="Ulam spiral, base twelve">
+<meta property="og:description" content="The integers on a square spiral, primes marked, written in base twelve. Every prime past 3 ends in 1, 5, 7 or E.">
+<meta property="og:url" content="https://ericspencer.us/ulam-spiral-b12/">
+<meta name="twitter:title" content="Ulam spiral, base twelve">
+<meta name="twitter:description" content="The integers on a square spiral, primes marked, written in base twelve. Every prime past 3 ends in 1, 5, 7 or E.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -47,6 +53,7 @@ nav.top a:hover,nav.top a.active{color:var(--signal)}
    is nothing hidden under an overlay. */
 #stage{flex:1 1 auto; position:relative; min-height:0}
 #grid{display:block; width:100%; height:100%; touch-action:none; cursor:crosshair}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .label{
   font-family:var(--display); font-weight:700; text-transform:uppercase;
@@ -94,11 +101,14 @@ nav.top a:hover,nav.top a.active{color:var(--signal)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none !important}}
 </style>
-</head>
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head>
 <body>
 <nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 
 <div id="stage">
+  <h1 class="visually-hidden">Ulam spiral, base twelve</h1>
   <canvas id="grid" aria-label="Ulam spiral. Scroll to expand outward, tap a number to make it the centre."></canvas>
   <div id="hint" class="label"><span>scroll to expand &nbsp;&middot;&nbsp; tap a number<span class="wide"> &nbsp;&middot;&nbsp; scroll back to centre it</span><br>base twelve &nbsp;&middot;&nbsp; X is ten, E is eleven</span></div>
 </div>

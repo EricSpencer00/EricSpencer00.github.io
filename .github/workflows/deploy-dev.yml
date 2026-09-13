@@ -5,6 +5,9 @@ on:
     branches:
       - dev
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,6 +24,10 @@ jobs:
         run: python3 scripts/build_blog.py
       - name: Build resume/CV landing pages
         run: python3 scripts/build_resume_pages.py
+      - name: Build the public project catalog
+        run: python3 scripts/build_projects.py
+      - name: Normalize canonical project headings
+        run: python3 scripts/normalize_project_pages.py
       - name: Apply the top nav
         run: python3 scripts/apply_nav.py
       - name: Drop the blog when nothing is published
@@ -47,13 +54,25 @@ jobs:
               text = path.read_text(encoding='utf-8', errors='replace')
               if '</head>' not in text:
                   continue
-              text = re.sub(
+              noindex = '<meta name="robots" content="noindex, follow">'
+              if re.search(r'<meta name="robots" content="[^"]*">', text):
+                  text = re.sub(
                   r'<meta name="robots" content="[^"]*">',
-                  '<meta name="robots" content="noindex, follow">',
+                  noindex,
                   text,
-              )
+                  )
+              else:
+                  text = text.replace('</head>', noindex + '\n</head>', 1)
               path.write_text(text, encoding='utf-8')
           PY
+      - name: Keep the staging host out of crawler discovery
+        run: |
+          # Dev has production canonicals and noindex tags. Do not hand
+          # crawlers a production sitemap from the staging hostname as well.
+          # Let crawlers see the noindex directive. A disallow would prevent
+          # fetching the HTML and can leave URL-only results in an index.
+          printf 'User-agent: *\nAllow: /\n' > robots.txt
+          rm -f sitemap.xml
       - name: Keep the copy review desk local
         run: rm -rf editor
       - uses: webfactory/ssh-agent@v0.9.0
@@ -64,11 +83,9 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
-          # Crawlers must be able to fetch development pages to see their
-          # noindex directives and production canonical URLs.
-          printf 'User-agent: *\nAllow: /\n' > robots.txt
+          # robots.txt lets crawlers fetch the page-level noindex directives.
           git add -A CNAME index.html news blog robots.txt cv resume assets editor \
-            research.html projects.html 404.html projects
+            research.html projects.html 404.html projects sitemap.xml
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git

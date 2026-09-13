@@ -172,7 +172,9 @@ footer p{margin:0 0 8px}
 @media (display-mode:standalone){nav.top{display:none}.wrap{padding-top:calc(20px + env(safe-area-inset-top))}}
 @media (prefers-reduced-motion:reduce){*{transition:none !important}}
 </style>
-</head>
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head>
 <body>
 <div class="wrap">
 <nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>

@@ -26,6 +26,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from build_blog import load_posts
 from build_og_images import SITE, published_pages
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -50,7 +51,13 @@ def last_commit(path):
 
 
 def entries():
+    has_posts = bool(load_posts())
     for url, pages in sorted(published_pages().items()):
+        # The committed blog shell is an authoring template. It is pruned from
+        # a release with no posts, so it must not leak back into a source-tree
+        # sitemap when this script is run locally before that pruning step.
+        if not has_posts and url.startswith(f"{SITE}/blog/"):
+            continue
         # Redirect stubs are never the page a URL is about; they point at one.
         # They have to be dropped before the noindex check, or a noindexed page
         # would still get listed on the strength of a stub aimed at it.

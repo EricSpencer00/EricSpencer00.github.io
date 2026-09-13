@@ -3,6 +3,7 @@ html {scroll-behavior:auto}
 * {box-sizing:border-box}
 body {margin:0;background:oklch(0.993 0.002 265);color:oklch(0.2 0.005 265);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
 .news-page {max-width:640px;margin:0 auto;padding:32px 24px 64px}
+.visually-hidden {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .news-back {display:inline-block;padding:10px 0;color:oklch(0.43 0.2 257);font-size:14px;text-decoration:none}
 .news-back:hover {text-decoration:underline;text-underline-offset:3px}
 .void-board {

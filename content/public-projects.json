@@ -1,0 +1,1166 @@
+[
+  {
+    "name": "1RM",
+    "url": "/1rm/",
+    "description": "One-rep-max calculator: median of seven estimators, installs to a phone home screen and runs offline.",
+    "language": "HTML"
+  },
+  {
+    "name": "abbreviation-maker",
+    "url": "https://github.com/EricSpencer00/abbreviation-maker",
+    "description": "A tiny phrase and abbreviation generator.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "AEO Queries",
+    "url": "/projects/aeo-queries.html",
+    "description": "Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue for a prompt.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "aeo-extension",
+    "url": "https://github.com/EricSpencer00/aeo-extension",
+    "description": "Chrome extension that shows the exact web-search queries ChatGPT, Claude, and Perplexity run for your prompts.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "AI Headshots",
+    "url": "/projects/ai-headshots.html",
+    "description": "Replicate Wrapper",
+    "language": ""
+  },
+  {
+    "name": "ai-conversation",
+    "url": "https://github.com/EricSpencer00/ai-conversation",
+    "description": "Two LLMs debate philosophy with each other.",
+    "language": "Python"
+  },
+  {
+    "name": "ai-os",
+    "url": "https://github.com/EricSpencer00/ai-os",
+    "description": "Experimental LLM-driven operating-shell concept.",
+    "language": "Python"
+  },
+  {
+    "name": "als-signature-reversal",
+    "url": "https://github.com/EricSpencer00/als-signature-reversal",
+    "description": "Reverse-signature drug repurposing for ALS on iPSC RNA-seq data.",
+    "language": "Jupyter Notebook"
+  },
+  {
+    "name": "Anagram Solver",
+    "url": "/projects/anagram.html",
+    "description": "Scrabble Inspired Anagram Solver",
+    "language": ""
+  },
+  {
+    "name": "Anagram Solver V2",
+    "url": "/projects/anagram_v2.html",
+    "description": "Scrabble Inspired Anagram Solver",
+    "language": ""
+  },
+  {
+    "name": "AnagramSolverV1",
+    "url": "https://github.com/EricSpencer00/AnagramSolverV1",
+    "description": "Anagram solver.",
+    "language": "Java"
+  },
+  {
+    "name": "Ancestry Tree Java Example",
+    "url": "/projects/ancestry_tree.html",
+    "description": "Ancestry Tree Java Example - project by Eric Spencer.",
+    "language": ""
+  },
+  {
+    "name": "AoC2025",
+    "url": "https://github.com/EricSpencer00/AoC2025",
+    "description": "Advent of Code 2025 notes.",
+    "language": "Python"
+  },
+  {
+    "name": "apple-music-widget",
+    "url": "https://github.com/EricSpencer00/apple-music-widget",
+    "description": "Now-playing Apple Music web widget.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "archaic-radio-frontend",
+    "url": "https://github.com/EricSpencer00/archaic-radio-frontend",
+    "description": "Front-end for a retro internet-radio player.",
+    "language": "HTML"
+  },
+  {
+    "name": "arxiv-report",
+    "url": "https://github.com/EricSpencer00/arxiv-report",
+    "description": "Interest-matched arXiv papers for your AI agent \u2014 free Cloudflare Workers API with semantic ranking, honest thresholds, and keyword fallback",
+    "language": "TypeScript"
+  },
+  {
+    "name": "ascii-llm-training",
+    "url": "https://github.com/EricSpencer00/ascii-llm-training",
+    "description": "Training a small LM purely on ASCII text.",
+    "language": "Python"
+  },
+  {
+    "name": "audio-tabula-rasa",
+    "url": "https://github.com/EricSpencer00/audio-tabula-rasa",
+    "description": "Audio processing experiment.",
+    "language": "Python"
+  },
+  {
+    "name": "auto-decode",
+    "url": "https://github.com/EricSpencer00/auto-decode",
+    "description": "Heuristic auto-detection and decoding of encoded text.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "bio-ops-web",
+    "url": "https://github.com/EricSpencer00/bio-ops-web",
+    "description": "Bioinformatics ops web dashboard.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "BlackJack",
+    "url": "https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/blackjack.md",
+    "description": "Browser blackjack with fake money.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "BlackJackGame",
+    "url": "https://github.com/EricSpencer00/BlackJackGame",
+    "description": "Blackjack game.",
+    "language": "Python"
+  },
+  {
+    "name": "BrightBet.tech",
+    "url": "/projects/brightbet.html",
+    "description": "An AI-powered trade and prediction analysis platform built for HackIllinois 2026.",
+    "language": ""
+  },
+  {
+    "name": "c4-fmitf",
+    "url": "https://github.com/EricSpencer00/c4-fmitf",
+    "description": "TLA+ formal model of Connect-4 game mechanics.",
+    "language": "TLA"
+  },
+  {
+    "name": "caterpillar",
+    "url": "https://github.com/EricSpencer00/caterpillar",
+    "description": "Static / interactive web piece.",
+    "language": "HTML"
+  },
+  {
+    "name": "chambr-web",
+    "url": "https://github.com/from-america/chambr-web",
+    "description": "Chambr website: privacy, terms, landing page.",
+    "language": "HTML"
+  },
+  {
+    "name": "Chat",
+    "url": "https://github.com/EricSpencer00/Chat",
+    "description": "Java chat application.",
+    "language": "Java"
+  },
+  {
+    "name": "ChatGPT Research",
+    "url": "/projects/chatgpt_research.html",
+    "description": "Research with v3.0 and how it could possibly teach those new to Java Data Structures",
+    "language": ""
+  },
+  {
+    "name": "ChatTLA+ Dataset",
+    "url": "/projects/chattla-dataset.html",
+    "description": "Notes on the ChatTLA+ dataset release.",
+    "language": ""
+  },
+  {
+    "name": "chattla-dataset-anon",
+    "url": "https://github.com/EricSpencer00/chattla-dataset-anon",
+    "description": "Anonymized dataset release for the ChatTLA+ paper.",
+    "language": ""
+  },
+  {
+    "name": "chattla-gpt-oss-paper",
+    "url": "/research.html#chattla-gpt-oss-paper",
+    "description": "Paper on fine-tuning gpt-oss-20b for verifiable TLA+ specifications.",
+    "language": "TeX"
+  },
+  {
+    "name": "chattla-spec-gen-paper",
+    "url": "/research.html#talks",
+    "description": "ChatTLA+ research presentation and paper artifact.",
+    "language": "TeX"
+  },
+  {
+    "name": "Chess Game",
+    "url": "https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/chess.md",
+    "description": "Browser chess game.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "chess-coach",
+    "url": "https://github.com/EricSpencer00/chess-coach",
+    "description": "Personal chess coach: Chess.com history + Stockfish analysis + play-vs-engine debrief.",
+    "language": "HTML"
+  },
+  {
+    "name": "Chess.com Stats",
+    "url": "https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/chess-stats.md",
+    "description": "Pulls and visualizes Chess.com stats.",
+    "language": "Python"
+  },
+  {
+    "name": "ChessStats",
+    "url": "https://github.com/EricSpencer00/ChessStats",
+    "description": "Pulls and displays Chess.com statistics.",
+    "language": "Python"
+  },
+  {
+    "name": "Claude-architect-quiz",
+    "url": "https://github.com/EricSpencer00/Claude-architect-quiz",
+    "description": "Free flashcards + practice quiz for the Anthropic architect exam.",
+    "language": "CSS"
+  },
+  {
+    "name": "Comp272Projects",
+    "url": "https://github.com/EricSpencer00/Comp272Projects",
+    "description": "Data structures (COMP 272).",
+    "language": "Java"
+  },
+  {
+    "name": "COMP322 Final Project Reflection",
+    "url": "/projects/healthup!.html",
+    "description": "COMP322 Final Project Reflection - project by Eric Spencer.",
+    "language": ""
+  },
+  {
+    "name": "COMP330Group5",
+    "url": "https://github.com/EricSpencer00/COMP330Group5",
+    "description": "Coursework group project (COMP 330).",
+    "language": "Java"
+  },
+  {
+    "name": "comp371-team8-activity",
+    "url": "https://github.com/EricSpencer00/comp371-team8-activity",
+    "description": "Programming languages (COMP 371).",
+    "language": "Scala"
+  },
+  {
+    "name": "comp388-llm",
+    "url": "https://github.com/EricSpencer00/comp388-llm",
+    "description": "Coursework: LLM systems (COMP 388).",
+    "language": "Python"
+  },
+  {
+    "name": "cone-site",
+    "url": "https://github.com/EricSpencer00/cone-site",
+    "description": "Static site project.",
+    "language": "HTML"
+  },
+  {
+    "name": "connect-4",
+    "url": "https://github.com/EricSpencer00/connect-4",
+    "description": "Chess-engine-style analyzer for Connect-4.",
+    "language": "Python"
+  },
+  {
+    "name": "copilot-cli-test",
+    "url": "https://github.com/EricSpencer00/copilot-cli-test",
+    "description": "Copilot CLI evaluation sandbox.",
+    "language": "Shell"
+  },
+  {
+    "name": "Cubed Pack Solver",
+    "url": "/projects/cubed-pack-solve.html",
+    "description": "A solver for packing 54 T-tetracubes into a 6x6x6 cube using Knuth's Dancing Links algorithm.",
+    "language": ""
+  },
+  {
+    "name": "cubed-pack-solve",
+    "url": "https://github.com/EricSpencer00/cubed-pack-solve",
+    "description": "Solver for a 3-D cube-packing puzzle.",
+    "language": "Python"
+  },
+  {
+    "name": "Daily Task - Wellness Tracker",
+    "url": "/projects/dailytask.html",
+    "description": "A habit manager for daily consistency.",
+    "language": ""
+  },
+  {
+    "name": "DailyTask-web",
+    "url": "https://github.com/EricSpencer00/DailyTask-web",
+    "description": "Daily-task tracker web app.",
+    "language": "HTML"
+  },
+  {
+    "name": "ddia",
+    "url": "https://github.com/EricSpencer00/ddia",
+    "description": "DDIA study deck \u2014 chapter recall and trade-off practice. Served at ericspencer.us/ddia/",
+    "language": "HTML"
+  },
+  {
+    "name": "DDIA Learning Lab",
+    "url": "https://ericspencer.us/ddia/",
+    "description": "Designing Data-Intensive Applications study notes and quiz drill.",
+    "language": "HTML"
+  },
+  {
+    "name": "design-skill",
+    "url": "https://github.com/EricSpencer00/design-skill",
+    "description": "Single-page editorial rendition of the personal site.",
+    "language": "HTML"
+  },
+  {
+    "name": "dev.EricSpencer00.github.io",
+    "url": "https://github.com/EricSpencer00/dev.EricSpencer00.github.io",
+    "description": "Public dev/staging of the personal site.",
+    "language": "HTML"
+  },
+  {
+    "name": "DexcomNavBarIcon-macos",
+    "url": "https://github.com/EricSpencer00/DexcomNavBarIcon-macos",
+    "description": "macOS menu-bar widget surfacing live Dexcom readings.",
+    "language": "Python"
+  },
+  {
+    "name": "DexVal",
+    "url": "https://github.com/EricSpencer00/DexVal",
+    "description": "A project analyzing Dexcom CGM data beyond the standard Clarity app.",
+    "language": "Python"
+  },
+  {
+    "name": "drift",
+    "url": "https://github.com/EricSpencer00/drift",
+    "description": "Procedural low-poly planet \u2014 Three.js + Perlin noise",
+    "language": "HTML"
+  },
+  {
+    "name": "dxmt",
+    "url": "https://github.com/EricSpencer00/dxmt",
+    "description": "Metal-based implementation of D3D11 and D3D10 for macOS / Wine",
+    "language": "C++"
+  },
+  {
+    "name": "ealing-capital",
+    "url": "https://ealing-capital.pages.dev",
+    "description": "Ealing Capital site redesign (Astro + Tailwind).",
+    "language": "Astro"
+  },
+  {
+    "name": "earthcraft",
+    "url": "https://github.com/EricSpencer00/earthcraft",
+    "description": "Measured whole-Earth terrain and urban world generation",
+    "language": "Python"
+  },
+  {
+    "name": "echotest-scala",
+    "url": "https://github.com/EricSpencer00/echotest-scala",
+    "description": "Scala echo test.",
+    "language": "Scala"
+  },
+  {
+    "name": "editorial-frontend",
+    "url": "https://github.com/EricSpencer00/editorial-frontend",
+    "description": "Claude Code skill: editorial frontend design \u2014 typography-first, anti-vibe-code, 6 design DNAs",
+    "language": ""
+  },
+  {
+    "name": "EmailExtraction",
+    "url": "https://github.com/EricSpencer00/EmailExtraction",
+    "description": "Bulk email-address extraction utility.",
+    "language": "Python"
+  },
+  {
+    "name": "eric-paper",
+    "url": "/research.html#eric-paper",
+    "description": "ICSOFT paper on ChatTLA+ fine-tuning for verifiable TLA+ specifications.",
+    "language": "TeX"
+  },
+  {
+    "name": "ericspencer-site-backup",
+    "url": "https://github.com/EricSpencer00/ericspencer-site-backup",
+    "description": "Backup of the Hugo-based personal site before HTML rewrite (May 2026)",
+    "language": "HTML"
+  },
+  {
+    "name": "EricSpencer00",
+    "url": "https://github.com/EricSpencer00/EricSpencer00",
+    "description": "GitHub profile README.",
+    "language": "HTML"
+  },
+  {
+    "name": "EricSpencer00.github.io",
+    "url": "https://github.com/EricSpencer00/EricSpencer00.github.io",
+    "description": "Source of this site.",
+    "language": "HTML"
+  },
+  {
+    "name": "etl-demo",
+    "url": "https://github.com/EricSpencer00/etl-demo",
+    "description": "Small ETL pipeline demonstration.",
+    "language": "Python"
+  },
+  {
+    "name": "Examples",
+    "url": "https://github.com/EricSpencer00/Examples",
+    "description": "A collection of TLA+ specifications.",
+    "language": "TLA"
+  },
+  {
+    "name": "faciometry",
+    "url": "https://github.com/EricSpencer00/faciometry",
+    "description": "Facial morphometrics from a photograph, with a 95% interval on every measurement and no aggregate score. Runs locally.",
+    "language": "Python"
+  },
+  {
+    "name": "famous.moji",
+    "url": "https://famousmoji.com",
+    "description": "Emoji app.",
+    "language": "CSS"
+  },
+  {
+    "name": "fb-clone",
+    "url": "https://github.com/EricSpencer00/fb-clone",
+    "description": "Systems-analysis Facebook clone (GraceNook).",
+    "language": "TypeScript"
+  },
+  {
+    "name": "fg-scrape",
+    "url": "https://github.com/EricSpencer00/fg-scrape",
+    "description": "Targeted web-scraping utility.",
+    "language": "Python"
+  },
+  {
+    "name": "flatten-repo",
+    "url": "https://github.com/EricSpencer00/flatten-repo",
+    "description": "VS Code extension: flattens a repository into a single LLM-ready file.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "fm-cb-game",
+    "url": "https://github.com/EricSpencer00/fm-cb-game",
+    "description": "Formally-modeled combinatorial board game in TLA+.",
+    "language": "TLA"
+  },
+  {
+    "name": "FormaLLM",
+    "url": "https://github.com/LUC-AI4FM/FormaLLM",
+    "description": "Toolkit for evaluating LLMs on formal-specification synthesis.",
+    "language": "TLA"
+  },
+  {
+    "name": "fortnite-oneshot",
+    "url": "https://github.com/EricSpencer00/fortnite-oneshot",
+    "description": "One-shot scripting experiment.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "Free Time Calculator in Java",
+    "url": "/projects/freetime-calc.html",
+    "description": "A Java program to find overlapping free time for up to four people.",
+    "language": ""
+  },
+  {
+    "name": "FreeLock",
+    "url": "https://fromamerica-llc.com/FreeLock-web/",
+    "description": "iOS app.",
+    "language": "Swift"
+  },
+  {
+    "name": "FreeLock-web",
+    "url": "https://github.com/from-america/FreeLock-web",
+    "description": "FreeLock web presence.",
+    "language": "HTML"
+  },
+  {
+    "name": "from-america.github.io",
+    "url": "https://github.com/from-america/from-america.github.io",
+    "description": "FROM AMERICA LLC corporate site.",
+    "language": "HTML"
+  },
+  {
+    "name": "Game of Life",
+    "url": "https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/gameoflife.md",
+    "description": "Conway's Game of Life - canvas demo.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "gcf-de",
+    "url": "https://github.com/EricSpencer00/gcf-de",
+    "description": "Svelte data-engineering front end.",
+    "language": "Svelte"
+  },
+  {
+    "name": "Gesture",
+    "url": "https://github.com/EricSpencer00/Gesture",
+    "description": "Proof-of-concept Jarvis-style gesture control for macOS.",
+    "language": "Python"
+  },
+  {
+    "name": "git-key-guardian",
+    "url": "https://github.com/EricSpencer00/git-key-guardian",
+    "description": "Pre-commit guard that blocks secret keys from being committed.",
+    "language": "Shell"
+  },
+  {
+    "name": "GluCoPilot",
+    "url": "https://github.com/EricSpencer00/GluCoPilot",
+    "description": "OpenAI Hackathon '25 - LLM copilot over Dexcom glucose data.",
+    "language": "Swift"
+  },
+  {
+    "name": "glucopilot-v2",
+    "url": "/projects/glucopilot.html",
+    "description": "GluCoPilot iOS prototype.",
+    "language": "Swift"
+  },
+  {
+    "name": "Goldbach Conjecture",
+    "url": "/projects/goldbach-conj.html",
+    "description": "Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.",
+    "language": ""
+  },
+  {
+    "name": "goldbach-conj",
+    "url": "https://github.com/EricSpencer00/goldbach-conj",
+    "description": "Brute-force verification of the strong Goldbach conjecture to 1e9.",
+    "language": "Python"
+  },
+  {
+    "name": "grade-public-commits",
+    "url": "https://github.com/EricSpencer00/grade-public-commits",
+    "description": "Auto-grades student work from public commit history.",
+    "language": "Python"
+  },
+  {
+    "name": "GTA V Gold Medal Checklist",
+    "url": "https://ericspencer.us/gta-v-gold-checklist/",
+    "description": "Every mission's gold-medal requirements in one checklist that remembers what you've cleared.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "gta-v-gold-checklist",
+    "url": "https://github.com/EricSpencer00/gta-v-gold-checklist",
+    "description": "Gold medal checklist for GTA V missions. Served at ericspencer.us/gta-v-gold-checklist/",
+    "language": "HTML"
+  },
+  {
+    "name": "gta-v-whisky-mod-config",
+    "url": "https://github.com/EricSpencer00/gta-v-whisky-mod-config",
+    "description": "Public project source repository.",
+    "language": "C"
+  },
+  {
+    "name": "HackIllinois26",
+    "url": "https://github.com/EricSpencer00/HackIllinois26",
+    "description": "HackIllinois 2026 hackathon project.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "Handwriting",
+    "url": "https://github.com/EricSpencer00/Handwriting",
+    "description": "Handwriting-recognition experiment.",
+    "language": "Python"
+  },
+  {
+    "name": "hardtekk-generator",
+    "url": "https://github.com/EricSpencer00/hardtekk-generator",
+    "description": "Generative hardtekk in the browser.",
+    "language": "Python"
+  },
+  {
+    "name": "HealthUp-",
+    "url": "https://github.com/EricSpencer00/HealthUp-",
+    "description": "COMP 322 semester-long mobile health app.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "hotdog",
+    "url": "https://github.com/EricSpencer00/hotdog",
+    "description": "Not Hotdog \u2014 a 136,417-parameter int8 CNN with hand-written JavaScript kernels, no dependencies. Served at ericspencer.us/hotdog/",
+    "language": "HTML"
+  },
+  {
+    "name": "How to tell if it's AI",
+    "url": "/projects/tell-ai.html",
+    "description": "Heuristic essay on spotting AI-generated text.",
+    "language": ""
+  },
+  {
+    "name": "interactive-microwave-tla",
+    "url": "https://github.com/EricSpencer00/interactive-microwave-tla",
+    "description": "Browser-based TLA+ microwave - a gentle first model-checking demo.",
+    "language": "Java"
+  },
+  {
+    "name": "Intro-to-tts",
+    "url": "https://github.com/EricSpencer00/Intro-to-tts",
+    "description": "Minimal text-to-speech in Python.",
+    "language": "Python"
+  },
+  {
+    "name": "iOS-soundboard",
+    "url": "https://github.com/EricSpencer00/iOS-soundboard",
+    "description": "iOS soundboard app.",
+    "language": "Swift"
+  },
+  {
+    "name": "itch-parser",
+    "url": "https://github.com/EricSpencer00/itch-parser",
+    "description": "C parser for ITCH-format market data.",
+    "language": "C"
+  },
+  {
+    "name": "itch-parser-eric",
+    "url": "https://github.com/EricSpencer00/itch-parser-eric",
+    "description": "Hand-rolled C variant of the ITCH market-data parser.",
+    "language": "C"
+  },
+  {
+    "name": "Iterative Maze Solver Example",
+    "url": "/projects/iterative-maze-solver.html",
+    "description": "Iterative Maze Solver Example - project by Eric Spencer.",
+    "language": ""
+  },
+  {
+    "name": "ITS-RAG-bot",
+    "url": "https://github.com/EricSpencer00/ITS-RAG-bot",
+    "description": "Retrieval-augmented assistant for an IT-service knowledge base.",
+    "language": "Python"
+  },
+  {
+    "name": "llmjammer",
+    "url": "https://github.com/EricSpencer00/llmjammer",
+    "description": "Python source obfuscator built to confuse code-scraping LLMs.",
+    "language": "Python"
+  },
+  {
+    "name": "Loyola ITS RAG Bot",
+    "url": "/projects/its-rag-bot.html",
+    "description": "A voice-first RAG chatbot trained on Loyola's ITS knowledge base, built after two years of answering the same tickets.",
+    "language": ""
+  },
+  {
+    "name": "LoyolaHACK",
+    "url": "https://github.com/EricSpencer00/LoyolaHACK",
+    "description": "CTA Transit Tracker - Loyola hackathon.",
+    "language": "HTML"
+  },
+  {
+    "name": "Machine Learning Fraud Identifier",
+    "url": "/projects/fraud-predictor.html",
+    "description": "Analyze different Machine Learning algorithms to identify fraud within a classified dataset",
+    "language": ""
+  },
+  {
+    "name": "margaux-website",
+    "url": "https://github.com/EricSpencer00/margaux-website",
+    "description": "Personal client website.",
+    "language": ""
+  },
+  {
+    "name": "mc-carspot",
+    "url": "https://github.com/EricSpencer00/mc-carspot",
+    "description": "Rust online-parking-spot simulator with switching costs.",
+    "language": "Rust"
+  },
+  {
+    "name": "MLB-Hackathon",
+    "url": "https://github.com/EricSpencer00/MLB-Hackathon",
+    "description": "Google Cloud x MLB hackathon - Hall of Fame predictor.",
+    "language": "Python"
+  },
+  {
+    "name": "Movie Recommendation Website",
+    "url": "/projects/movierec.html",
+    "description": "A movie recommendation website developed as part of the Loyola AI Club's Fall 2024 project.",
+    "language": ""
+  },
+  {
+    "name": "MovieRec-F24",
+    "url": "https://github.com/EricSpencer00/MovieRec-F24",
+    "description": "Fall 2024 movie rec project.",
+    "language": "Python"
+  },
+  {
+    "name": "not-hotdog",
+    "url": "https://github.com/EricSpencer00/not-hotdog",
+    "description": "A 136K-parameter int8 CNN running on hand-written JavaScript kernels - no TensorFlow, no WASM, no dependencies. Hot dog or not hot dog.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "notify-agent-done",
+    "url": "https://github.com/EricSpencer00/notify-agent-done",
+    "description": "Desktop notification when a long-running agent finishes.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "ollama-vibecode",
+    "url": "https://github.com/EricSpencer00/ollama-vibecode",
+    "description": "Local Ollama-driven code generation experiments.",
+    "language": "Python"
+  },
+  {
+    "name": "One Rep Max Calculator",
+    "url": "/projects/one-rep-max.html",
+    "description": "Calculate your One Rep Max",
+    "language": ""
+  },
+  {
+    "name": "oneshot-hm2016",
+    "url": "https://github.com/EricSpencer00/oneshot-hm2016",
+    "description": "One-shot generation experiment.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "openclaw-skill-paper-digest",
+    "url": "https://github.com/EricSpencer00/openclaw-skill-paper-digest",
+    "description": "OpenClaw/picoclaw skill: semantically-ranked recent papers by interest, with TL;DRs.",
+    "language": ""
+  },
+  {
+    "name": "openclaw-skill-stockgenie",
+    "url": "https://github.com/EricSpencer00/openclaw-skill-stockgenie",
+    "description": "OpenClaw/picoclaw skill: StockGenie daily AI stock pick.",
+    "language": ""
+  },
+  {
+    "name": "palindrome-sentence-generator",
+    "url": "https://github.com/EricSpencer00/palindrome-sentence-generator",
+    "description": "Generates whole paragraphs that read as palindromes.",
+    "language": "Python"
+  },
+  {
+    "name": "paper-digest",
+    "url": "https://paper-digest.ericspencer.us",
+    "description": "Interest-matched research papers on Cloudflare Workers - semantic ranking, honest thresholds, keyword fallback.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "paper-parse",
+    "url": "https://github.com/LUC-AI4FM/paper-parse",
+    "description": "Research paper parsing utilities.",
+    "language": "Python"
+  },
+  {
+    "name": "picai",
+    "url": "https://picai.us",
+    "description": "AI photo platform.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "pitch",
+    "url": "https://github.com/EricSpencer00/pitch",
+    "description": "Pitch-deck site.",
+    "language": "HTML"
+  },
+  {
+    "name": "Pixel Profile",
+    "url": "https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/pixel-profile.md",
+    "description": "GitHub profile-picture generator.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "pm-whale-tracker",
+    "url": "https://github.com/EricSpencer00/pm-whale-tracker",
+    "description": "Polymarket whale tracker \u2014 browser-only, no backend. Lives at ericspencer.us/pm-whale-tracker",
+    "language": "TypeScript"
+  },
+  {
+    "name": "polymarket-whale-tracker",
+    "url": "https://github.com/EricSpencer00/polymarket-whale-tracker",
+    "description": "Finds the algorithmic whales on Polymarket and emits copy-trade signals. Read-only - it watches, it does not place bets.",
+    "language": "Python"
+  },
+  {
+    "name": "ralph-tla",
+    "url": "https://github.com/LUC-AI4FM/ralph-tla",
+    "description": "Ralph TLA+ experiments.",
+    "language": "Python"
+  },
+  {
+    "name": "Recursive Maze Solver Example",
+    "url": "/projects/recursive-maze-solver.html",
+    "description": "Recursive Maze Solver Example - project by Eric Spencer.",
+    "language": ""
+  },
+  {
+    "name": "reelforge",
+    "url": "https://github.com/EricSpencer00/reelforge",
+    "description": "macOS app: Claude writes the script, ffmpeg burns the captions.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "Researching ChatGPT with ChatGPT",
+    "url": "/projects/meta_research.html",
+    "description": "Researching ChatGPT with ChatGPT - project by Eric Spencer.",
+    "language": ""
+  },
+  {
+    "name": "ReserveLibraryRoom",
+    "url": "https://github.com/EricSpencer00/ReserveLibraryRoom",
+    "description": "Automates Loyola library-room reservations.",
+    "language": "Python"
+  },
+  {
+    "name": "Resilient",
+    "url": "https://github.com/EricSpencer00/Resilient",
+    "description": "Statically-typed compiled language for safety-critical embedded systems with Z3-verified contracts.",
+    "language": "Rust"
+  },
+  {
+    "name": "Resilient-examples",
+    "url": "https://github.com/EricSpencer00/Resilient-examples",
+    "description": "Mission-critical example programs for Resilient.",
+    "language": "Shell"
+  },
+  {
+    "name": "resume",
+    "url": "https://github.com/EricSpencer00/resume",
+    "description": "LaTeX source for Eric Spencer's CV and role-tuned resumes. GitHub Actions builds the PDFs and publishes them to ericspencer.us.",
+    "language": "TeX"
+  },
+  {
+    "name": "reverse-xoroshiro128plusplus",
+    "url": "https://github.com/EricSpencer00/reverse-xoroshiro128plusplus",
+    "description": "Recovering xoroshiro128++ PRNG state from output.",
+    "language": "Python"
+  },
+  {
+    "name": "ripcord",
+    "url": "https://github.com/EricSpencer00/ripcord",
+    "description": "Offline mastering for macOS",
+    "language": "Swift"
+  },
+  {
+    "name": "rl-agent-c4",
+    "url": "https://github.com/EricSpencer00/rl-agent-c4",
+    "description": "Reinforcement-learning agent for Connect-4.",
+    "language": "Python"
+  },
+  {
+    "name": "rocq",
+    "url": "https://github.com/EricSpencer00/rocq",
+    "description": "Playground for the Rocq (Coq) proof assistant.",
+    "language": "Coq"
+  },
+  {
+    "name": "roman-numeral-converter",
+    "url": "https://github.com/EricSpencer00/roman-numeral-converter",
+    "description": "Roman-numeral &lt;-&gt; integer converter.",
+    "language": "Java"
+  },
+  {
+    "name": "rubix-snake-puzzle",
+    "url": "https://github.com/EricSpencer00/rubix-snake-puzzle",
+    "description": "Formal verification (Coq + TLA+) of Rubik's-Snake state reachability.",
+    "language": "Rocq Prover"
+  },
+  {
+    "name": "rvc-artist",
+    "url": "https://github.com/EricSpencer00/rvc-artist",
+    "description": "Retrieval-based voice-conversion pipeline.",
+    "language": "Python"
+  },
+  {
+    "name": "rz-ecommerce-backend",
+    "url": "https://github.com/EricSpencer00/rz-ecommerce-backend",
+    "description": "Ecommerce backend comparison: Resilient vs Rust vs Python \u2014 demo of vibe coding with verified contracts",
+    "language": "Rust"
+  },
+  {
+    "name": "scala-hello-world",
+    "url": "https://github.com/EricSpencer00/scala-hello-world",
+    "description": "Scala starter project.",
+    "language": "Scala"
+  },
+  {
+    "name": "scala-workshop",
+    "url": "https://github.com/EricSpencer00/scala-workshop",
+    "description": "Scala workshop materials and exercises.",
+    "language": "Scala"
+  },
+  {
+    "name": "seedex",
+    "url": "https://github.com/EricSpencer00/seedex",
+    "description": "Local-first coding companion for macOS and iPhone \u2014 BYOK models, Tailscale/SSH host control, GitHub App and MCP integration.",
+    "language": "Rust"
+  },
+  {
+    "name": "Serenity",
+    "url": "https://github.com/EricSpencer00/Serenity",
+    "description": "A mental wellness application developed at Northwestern's Wildhacks Hackathon.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "session-curator",
+    "url": "https://github.com/EricSpencer00/session-curator",
+    "description": "Archive stale Claude Code sessions, keep the ones still in flight. Deterministic rules + Haiku classification, never deletes.",
+    "language": "Python"
+  },
+  {
+    "name": "Skeuomorphic Desk",
+    "url": "/projects/skeuomorphism.html",
+    "description": "An editorial / skeuomorphic project desk.",
+    "language": "HTML"
+  },
+  {
+    "name": "slot-machine",
+    "url": "https://github.com/EricSpencer00/slot-machine",
+    "description": "Browser slot-machine game.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "sneaker-run",
+    "url": "https://github.com/EricSpencer00/sneaker-run",
+    "description": "Browser endless-runner game.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "Song Recommender",
+    "url": "/projects/song-recommender.html",
+    "description": "Python recommender that beats Spotify's mid suggestions.",
+    "language": "Python"
+  },
+  {
+    "name": "spa-web",
+    "url": "https://github.com/EricSpencer00/spa-web",
+    "description": "Single-page web app scaffold.",
+    "language": "HTML"
+  },
+  {
+    "name": "splithound-web",
+    "url": "https://github.com/from-america/splithound-web",
+    "description": "SplitHound web presence.",
+    "language": "HTML"
+  },
+  {
+    "name": "stardust",
+    "url": "https://github.com/EricSpencer00/stardust",
+    "description": "Interactive cosmic particle art experience \u2014 move your cursor to shape the cosmos",
+    "language": "HTML"
+  },
+  {
+    "name": "stemacle",
+    "url": "https://stemacle.com",
+    "description": "Browser-based stem player - splits a track into its parts in the tab, no upload.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "StockGenie",
+    "url": "https://stockgenie.app",
+    "description": "AI stock-pick app for iPhone.",
+    "language": "Swift"
+  },
+  {
+    "name": "stockgenie-web",
+    "url": "https://github.com/from-america/stockgenie-web",
+    "description": "StockGenie static site: Privacy & Terms.",
+    "language": "HTML"
+  },
+  {
+    "name": "T-square",
+    "url": "https://github.com/EricSpencer00/T-square",
+    "description": "Swift utility app.",
+    "language": "Swift"
+  },
+  {
+    "name": "tax-formalization-gap-audit-site",
+    "url": "https://github.com/EricSpencer00/tax-formalization-gap-audit-site",
+    "description": "Public tax formalization gap audit site",
+    "language": "TLA"
+  },
+  {
+    "name": "TerminalGPT",
+    "url": "https://github.com/EricSpencer00/TerminalGPT",
+    "description": "Terminal-native LLM chat through OpenRouter.",
+    "language": "Python"
+  },
+  {
+    "name": "tig-exam-trainer",
+    "url": "https://github.com/EricSpencer00/tig-exam-trainer",
+    "description": "TIG Exam Trainer \u2014 The Three Books (Elon, Naval, Thiel) flashcard & mock exam tool",
+    "language": "HTML"
+  },
+  {
+    "name": "TLA+ Generator",
+    "url": "https://tla.ericspencer.us",
+    "description": "Plain English in, model-checked TLA+ out - a self-correcting loop that runs until SANY and TLC pass and the invariant holds.",
+    "language": "Python"
+  },
+  {
+    "name": "TLA+ Model of a Laptop",
+    "url": "/projects/tla-laptop.html",
+    "description": "A formal TLA+ specification modeling a laptop's power states, battery, lid, thermals, and auto-suspend.",
+    "language": ""
+  },
+  {
+    "name": "TLA+ Model of a Walk-In Oven",
+    "url": "/projects/tla-walk-in-oven.html",
+    "description": "A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.",
+    "language": ""
+  },
+  {
+    "name": "TLA+ Model of Dexcom G7",
+    "url": "/projects/tla-dexcom-g7.html",
+    "description": "A formal TLA+ specification of the Dexcom G7 continuous glucose monitor's behavior and safety properties.",
+    "language": ""
+  },
+  {
+    "name": "tla-dataset-pipeline",
+    "url": "https://github.com/LUC-AI4FM/tla-dataset-pipeline",
+    "description": "Dataset pipeline for TLA+ specification data.",
+    "language": "Python"
+  },
+  {
+    "name": "tla-dexcom-g7",
+    "url": "https://github.com/EricSpencer00/tla-dexcom-g7",
+    "description": "TLA+ specification of Dexcom G7 CGM session lifecycle.",
+    "language": "TLA"
+  },
+  {
+    "name": "TLA-Extraction",
+    "url": "/research.html#tools",
+    "description": "Extracting TLA+ specifications from research papers.",
+    "language": "Python"
+  },
+  {
+    "name": "tla-formal-generation",
+    "url": "https://github.com/EricSpencer00/tla-formal-generation",
+    "description": "Pipeline for generating TLA+ specs from natural language.",
+    "language": "Python"
+  },
+  {
+    "name": "tla-laptop",
+    "url": "https://github.com/EricSpencer00/tla-laptop",
+    "description": "TLA+ model of laptop power/state transitions.",
+    "language": "TLA"
+  },
+  {
+    "name": "tla-microwave",
+    "url": "https://github.com/EricSpencer00/tla-microwave",
+    "description": "Interactive TLA+ microwave - the entire state space in your browser, learned by clicking buttons.",
+    "language": "TypeScript"
+  },
+  {
+    "name": "TLA-Prove",
+    "url": "https://github.com/LUC-AI4FM/TLA-Prove",
+    "description": "Fine-tuning open-source LLMs to generate verifiable TLA+ formal specifications",
+    "language": "Python"
+  },
+  {
+    "name": "tla-prover",
+    "url": "https://github.com/EricSpencer00/tla-prover",
+    "description": "public mirror of LUC-AI4FM/tla-prover for cloud-routine W4 corpus runs",
+    "language": "TLA"
+  },
+  {
+    "name": "tla-walk-in-oven",
+    "url": "https://github.com/EricSpencer00/tla-walk-in-oven",
+    "description": "TLA+ specification of a walk-in-oven control system.",
+    "language": "TLA"
+  },
+  {
+    "name": "tla_benchmark",
+    "url": "https://github.com/LUC-AI4FM/tla_benchmark",
+    "description": "Benchmark suite for TLA+ spec generation.",
+    "language": "TLA"
+  },
+  {
+    "name": "tla_description",
+    "url": "/research.html#models",
+    "description": "TLA+ description corpus for language-model training.",
+    "language": ""
+  },
+  {
+    "name": "TLAJVM",
+    "url": "https://github.com/EricSpencer00/TLAJVM",
+    "description": "Experiments running TLA+ / TLC tooling on the JVM.",
+    "language": "Java"
+  },
+  {
+    "name": "tlakit",
+    "url": "https://github.com/LUC-AI4FM/tlakit",
+    "description": "A Python and notebook client for the TLA+ toolchain \u2014 model-check specs from Jupyter, get structured results back",
+    "language": "Python"
+  },
+  {
+    "name": "tof-audit",
+    "url": "https://github.com/EricSpencer00/tof-audit",
+    "description": "Physics-based location audit: times light in fiber to eight cities and triangulates the browser on a 3D globe.",
+    "language": "HTML"
+  },
+  {
+    "name": "tunes2tube-mac",
+    "url": "https://github.com/EricSpencer00/tunes2tube-mac",
+    "description": "macOS app: cover art + audio in, MP4 music videos out.",
+    "language": "Swift"
+  },
+  {
+    "name": "tutor",
+    "url": "https://github.com/EricSpencer00/tutor",
+    "description": "Daily-article teaching site \u2014 new topic every day, deployed via GitHub Pages",
+    "language": "Python"
+  },
+  {
+    "name": "typescript-go",
+    "url": "https://github.com/EricSpencer00/typescript-go",
+    "description": "Native port of TypeScript.",
+    "language": "Go"
+  },
+  {
+    "name": "UDP-server-binary",
+    "url": "https://github.com/EricSpencer00/UDP-server-binary",
+    "description": "Binary-protocol UDP server in C++.",
+    "language": "C++"
+  },
+  {
+    "name": "usage-badge",
+    "url": "https://github.com/EricSpencer00/usage-badge",
+    "description": "Live README badge for AI coding usage - subscription limits plus token/cost across agents, in one Worker.",
+    "language": "Python"
+  },
+  {
+    "name": "uzzGenerator",
+    "url": "https://github.com/EricSpencer00/uzzGenerator",
+    "description": "Procedurally generates 'uzz'.",
+    "language": "Python"
+  },
+  {
+    "name": "VoCal",
+    "url": "https://github.com/EricSpencer00/VoCal",
+    "description": "Voice-first calorie and macro tracker for iOS \u2014 speak a meal, get nutrition in under three seconds. HealthKit, widgets, Live Activities, Watch.",
+    "language": "Swift"
+  },
+  {
+    "name": "Whisky",
+    "url": "https://github.com/EricSpencer00/Whisky",
+    "description": "A modern Wine wrapper for macOS built with SwiftUI.",
+    "language": "Swift"
+  },
+  {
+    "name": "WindowBlockerForTDX-MacOS",
+    "url": "https://github.com/EricSpencer00/WindowBlockerForTDX-MacOS",
+    "description": "Safari script blocking the TDX ticketing pop-out on macOS.",
+    "language": "JavaScript"
+  },
+  {
+    "name": "yeat-llm",
+    "url": "https://github.com/EricSpencer00/yeat-llm",
+    "description": "Lyric-style language model experiment.",
+    "language": "Python"
+  },
+  {
+    "name": "youtubeDL",
+    "url": "https://github.com/EricSpencer00/youtubeDL",
+    "description": "Personal CLI / localhost YouTube audio+video downloader.",
+    "language": "Python"
+  },
+  {
+    "name": "~/.zshrc",
+    "url": "/projects/my-zshrc.html",
+    "description": "Annotated walkthrough of a shell config.",
+    "language": "Shell"
+  }
+]

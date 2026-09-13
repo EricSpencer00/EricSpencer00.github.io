@@ -122,7 +122,10 @@ li{margin:4px 0}
   .proj{white-space:normal;flex-wrap:wrap}
   .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
 }
-</style></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body><div class="wrap"><pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
 | ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
 |  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
@@ -131,7 +134,7 @@ li{margin:4px 0}
 <nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
-<h2>TLA+ Model of a Walk-In Oven<span class="ln"></span></h2>
+<h1 class="article-title">TLA+ Model of a Walk-In Oven<span class="ln"></span></h1>
 <p class="meta">A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.</p>
 <hr class="dash">
 <p>One of a handful of small TLA+ specs that take a real-world industrial control system and ask what the minimum state machine is that keeps the system from killing someone. It sits next to the <a href="/projects/tla-laptop.html">laptop power-state spec</a> and the <a href="/projects/tla-dexcom-g7.html">Dexcom G7 spec</a>: same flavor, different system. The failure mode here is concrete. A person physically walks inside a room-sized oven, and then the oven heats up.</p>

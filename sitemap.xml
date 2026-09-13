@@ -2,18 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ericspencer.us/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/1rm/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/Claude-of-Duty/</loc>
-  </url>
-  <url>
-    <loc>https://ericspencer.us/blog/</loc>
-    <lastmod>2026-08-19</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/cv/</loc>
@@ -29,8 +25,12 @@
     <loc>https://ericspencer.us/hotdog/</loc>
   </url>
   <url>
+    <loc>https://ericspencer.us/news/</loc>
+    <lastmod>2026-09-09</lastmod>
+  </url>
+  <url>
     <loc>https://ericspencer.us/projects.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/LoyolaHACK.html</loc>
@@ -74,15 +74,15 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/chatgpt_research.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/chattla-dataset.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/claude-architect-quiz.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/comp388-llm.html</loc>
@@ -90,11 +90,11 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/connect-4.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/cubed-pack-solve.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/dailytask.html</loc>
@@ -122,7 +122,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/fraud-predictor.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/freetime-calc.html</loc>
@@ -150,7 +150,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/interactive-microwave-tla.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/ios-soundboard.html</loc>
@@ -174,7 +174,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/movierec.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/my-zshrc.html</loc>
@@ -186,7 +186,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/resilient.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/rubix-snake-puzzle.html</loc>
@@ -202,7 +202,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/skeuomorphism.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/song-recommender.html</loc>
@@ -214,11 +214,11 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/tell-ai.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/terminalgpt.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/tla-dexcom-g7.html</loc>
@@ -238,7 +238,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/tunes2tube-mac.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/udp-server-binary.html</loc>
@@ -250,7 +250,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/youtube-dl.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-12</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/research.html</loc>

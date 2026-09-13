@@ -35,6 +35,8 @@ jobs:
           python3 scripts/build.py
           python3 scripts/build_blog.py
           python3 scripts/build_resume_pages.py
+          python3 scripts/build_projects.py
+          python3 scripts/normalize_project_pages.py
 
       # One definition of the top nav for every page, so `cv` cannot reach only
       # the homepage again and `blog` only appears once something is published.
@@ -83,6 +85,12 @@ jobs:
       - name: Build the browser-only site assistant
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/build_chatbot_knowledge.py
+
+      - name: Verify generated project catalog and article headings
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: |
+          python3 scripts/build_projects.py --check
+          python3 scripts/normalize_project_pages.py --check
 
       # Reads the finished pages, so it runs after everything that writes them.
       - name: Build sitemap
