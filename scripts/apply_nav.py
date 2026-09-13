@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # post template, which is a scaffold rather than a page.
 SKIP_DIRS = {".git", ".claude", "backup-site", "editor", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
-OWN_NAV_PAGES = {ROOT / "apps" / "index.html", ROOT / "news" / "index.html", ROOT / "projects.html"}
+OWN_NAV_PAGES = {ROOT / "news" / "index.html", ROOT / "projects.html"}
 
 NAV_RE = re.compile(r'<nav class="top">.*?</nav>', re.DOTALL)
 
@@ -33,9 +33,8 @@ VERIFICATION_RE = re.compile(r"google-site-verification", re.IGNORECASE)
 # key, label, href, and the path prefix that makes this item the active one.
 ITEMS = [
     ("index",    "index",    "/",               ()),
-    ("research", "research", "/research.html",  ("research.html",)),
+    ("research", "publications", "/research.html",  ("research.html",)),
     ("projects", "projects", "/projects.html",  ("projects.html", "projects/")),
-    ("apps",     "apps",     "/apps/",          ("apps/",)),
     ("blog",     "blog",     "/blog/",          ("blog/",)),
     ("cv",       "cv",       "/cv/",            ("cv/", "resume/")),
 ]

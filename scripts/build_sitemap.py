@@ -15,8 +15,8 @@ worth re-fetching.
 The tree holds about twice as many .html files as the sitemap holds URLs, and
 every part of that gap is deliberate: redirect stubs under projects/<year>/ and
 miscellaneous/ share a canonical with the page they point at, live apps are
-collected at /apps/ rather than competing as top-level portfolio pages, and
-noindex pages are left out. The run prints the count in each group, so a page
+linked from the projects page through durable /apps/<slug>/ paths, and noindex
+pages are left out. The run prints the count in each group, so a page
 that stops being published moves a number here instead of going missing without
 a trace.
 
@@ -41,11 +41,10 @@ STUB = "<!-- redirect stub -->"
 ARCHIVE = ("/.git/", "/backup-site/", "/.claude/")
 
 # A sitemap is navigation for crawlers, not an exhaustive inventory of every
-# backwards-compatible endpoint. Public apps have a browsable home at /apps/;
-# individual project writeups carry the durable editorial URLs.
+# backwards-compatible endpoint. The projects page is the single catalog;
+# individual live builds keep durable /apps/<slug>/ entry paths.
 CORE_URLS = {
     f"{SITE}/",
-    f"{SITE}/apps/",
     f"{SITE}/cv/",
     f"{SITE}/news/",
     f"{SITE}/projects.html",

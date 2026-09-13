@@ -69,13 +69,11 @@ def render_row(project: dict[str, str]) -> str:
     url = html.escape(project["url"], quote=True)
     name = html.escape(project["name"])
     description = html.escape(project["description"])
-    language = html.escape(project["language"])
     attrs = ' target="_blank" rel="noopener"' if external(project["url"]) else ""
-    language_html = f'<span class="language">{language}</span>' if language else ""
     return (
         '<li class="project">'
         f'<a class="project-name" href="{url}"{attrs}>{name}</a>'
-        f'<span class="project-description">{description}</span>{language_html}'
+        f'<span class="project-description">{description}</span>'
         "</li>"
     )
 
@@ -88,8 +86,8 @@ def render(projects: list[dict[str, str]]) -> str:
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projects A–Z | Eric Spencer</title>
-<meta name="description" content="An A–Z catalog of {len(projects)} public projects, research artifacts, apps, demos, and source repositories associated with Eric Spencer.">
+<title>Projects | Eric Spencer</title>
+<meta name="description" content="Projects and live work by Eric Spencer.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/projects.html">
@@ -100,18 +98,18 @@ def render(projects: list[dict[str, str]]) -> str:
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Projects A–Z | Eric Spencer">
-<meta property="og:description" content="An A–Z catalog of {len(projects)} public projects, research artifacts, apps, demos, and source repositories.">
+<meta property="og:title" content="Projects | Eric Spencer">
+<meta property="og:description" content="Projects and live work by Eric Spencer.">
 <meta property="og:url" content="https://ericspencer.us/projects.html">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta property="og:image:alt" content="Projects A–Z | Eric Spencer">
+<meta property="og:image:alt" content="Projects | Eric Spencer">
 <meta property="og:site_name" content="Eric Spencer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Projects A–Z | Eric Spencer">
-<meta name="twitter:description" content="An A–Z catalog of {len(projects)} public projects, research artifacts, apps, demos, and source repositories.">
+<meta name="twitter:title" content="Projects | Eric Spencer">
+<meta name="twitter:description" content="Projects and live work by Eric Spencer.">
 <meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"CollectionPage","name":"Projects A–Z","url":"https://ericspencer.us/projects.html","description":"An A–Z catalog of {len(projects)} public projects and artifacts associated with Eric Spencer.","author":{{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"}}}}
+{{"@context":"https://schema.org","@type":"CollectionPage","name":"Projects","url":"https://ericspencer.us/projects.html","description":"Projects and live work by Eric Spencer.","author":{{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"}}}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,50 +126,24 @@ nav a{{color:inherit;text-decoration:none;padding:2px}} nav a:hover,nav a[aria-c
 hr{{border:0;border-top:1px solid var(--rule);margin:28px 0}}
 main{{max-width:860px}} h1{{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.035em;line-height:1.15}}
 .intro{{max-width:68ch;color:var(--dim);margin:12px 0 24px}}
-.catalog-tools{{display:flex;align-items:center;gap:12px;justify-content:space-between;border-block:1px solid var(--rule);padding:12px 0;margin:24px 0 14px;flex-wrap:wrap}}
-.catalog-tools label{{font:500 .78rem/1.2 "IBM Plex Mono",monospace;color:var(--dim);text-transform:uppercase;letter-spacing:.05em}}
-#project-filter{{min-width:min(100%,310px);border:1px solid var(--rule);border-radius:0;background:var(--paper);padding:9px 11px;color:var(--ink);font:inherit}}
-#project-filter:focus-visible,a:focus-visible{{outline:3px solid color-mix(in srgb,var(--accent) 40%,transparent);outline-offset:3px}}
-.count{{font:.78rem "IBM Plex Mono",monospace;color:var(--dim)}}
 .project-list{{list-style:none;padding:0;margin:0;border-top:1px solid var(--rule)}}
-.project{{display:grid;grid-template-columns:minmax(13rem, .8fr) minmax(0,1.8fr) auto;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}} .project[hidden]{{display:none}}
+.project{{display:grid;grid-template-columns:minmax(13rem,.8fr) minmax(0,2fr);gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}}
 .project-name{{font-weight:700;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}} .project-name:hover{{color:var(--accent);text-decoration:underline;text-underline-offset:3px}}
-.project-description{{color:var(--dim);overflow-wrap:anywhere}} .language{{font:.7rem "IBM Plex Mono",monospace;color:var(--dim);white-space:nowrap}}
-.empty{{display:none;color:var(--dim);padding:20px 0}} footer{{margin-top:60px;color:var(--dim);font-size:.85rem}}
-@media (max-width:680px){{.wrap{{padding:36px 18px 72px}}.project{{grid-template-columns:1fr;gap:3px;padding:14px 0}}.language{{margin-top:2px}}#project-filter{{width:100%}}.catalog-tools{{align-items:stretch}}}}
+.project-description{{color:var(--dim);overflow-wrap:anywhere}} footer{{margin-top:60px;color:var(--dim);font-size:.85rem}}
+@media (max-width:680px){{.wrap{{padding:36px 18px 72px}}.project{{grid-template-columns:1fr;gap:3px;padding:14px 0}}}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <p class="name">Eric Spencer</p>
-<nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">research</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/apps/">apps</a> · <a href="/cv/">cv</a></nav>
+<nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">publications</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
 <hr>
 <main>
-<h1>Projects A–Z</h1>
-<p class="intro">{len(projects)} public projects, research artifacts, apps, demos, and source repositories. Entries link only to public work; a private source repository is never disclosed.</p>
-<div class="catalog-tools"><label for="project-filter">Filter projects</label><input id="project-filter" type="search" placeholder="Name, topic, or language" autocomplete="off"><span id="project-count" class="count" aria-live="polite">{len(projects)} shown</span></div>
+<h1>Projects</h1>
 <ol id="project-list" class="project-list">{rows}</ol>
-<p id="empty" class="empty">No public project matches that filter.</p>
 </main>
 <footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>
 </div>
-<script>
-const filter = document.querySelector('#project-filter');
-const entries = [...document.querySelectorAll('.project')];
-const count = document.querySelector('#project-count');
-const empty = document.querySelector('#empty');
-filter.addEventListener('input', () => {{
-  const query = filter.value.trim().toLocaleLowerCase();
-  let shown = 0;
-  for (const entry of entries) {{
-    const match = !query || entry.textContent.toLocaleLowerCase().includes(query);
-    entry.hidden = !match;
-    if (match) shown += 1;
-  }}
-  count.textContent = `${{shown}} shown`;
-  empty.hidden = shown !== 0;
-}});
-</script>
 </body>
 </html>
 """
@@ -193,7 +165,13 @@ def main() -> int:
         expected_rows = "\n".join(render_row(project) for project in projects)
         current = OUTPUT.read_text(encoding="utf-8")
         match = re.search(r'<ol id="project-list" class="project-list">(.*?)</ol>', current, re.S)
-        if not match or match.group(1) != expected_rows:
+        forbidden = (
+            'Projects A–Z', 'research artifacts',
+            'source repository is never disclosed', 'catalog-tools',
+            'project-filter', 'project-count',
+        )
+        if (not match or match.group(1) != expected_rows
+                or any(text in current for text in forbidden)):
             print("projects.html is stale; run python3 scripts/build_projects.py", file=sys.stderr)
             return 1
         print("projects.html is current")

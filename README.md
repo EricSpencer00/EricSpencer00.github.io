@@ -10,8 +10,8 @@ Hand-written HTML personal site with small Python build scripts. No frameworks.
 
 ```
 index.html          homepage
-projects.html       all 116+ repos + org work
-research.html       papers, talks, models
+projects.html       projects and live work
+research.html       publications: papers, talks, models, and tools
 projects/*.html     individual project writeups
 blog/               compiled from content/blog/*.md
 cv/, resume/        landing pages, built from content/resumes.txt
