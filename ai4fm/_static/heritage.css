@@ -185,3 +185,26 @@ a:visited{color:var(--maroon)}.site-header .wordmark:visited,.site-header nav a:
   .team-page .team-card img.profile-photo { width: 180px !important; }
   .team-page .team-card p { max-width: 46ch; }
 }
+
+/* Let Antenna Condensed's native spacing and kerning control the display type. */
+body,
+h1,
+h2,
+h3,
+h4 {
+  font-kerning: normal;
+  font-feature-settings: "kern" 1;
+}
+
+h1,
+h2 {
+  letter-spacing: 0;
+}
+
+.hero-inner h1 {
+  letter-spacing: 0;
+}
+
+.wordmark {
+  letter-spacing: 0;
+}
