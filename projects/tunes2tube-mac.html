@@ -131,7 +131,7 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/apps/">apps</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h1 class="article-title">tunes2tube<span class="ln"></span></h1>
@@ -147,7 +147,7 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 <p>Audio formats accepted, all producing MP3 out: <code>mp3 wav flac m4a aac aiff ogg opus</code>. Cover formats: <code>.png</code>, <code>.jpg</code>, <code>.webp</code>. A per-file failure does not kill the batch. Each track gets its own result, and the UI reports which ones succeeded.</p>
 <p>A <code>Makefile</code> wraps <code>swift build</code> to produce a real <code>.app</code> bundle (Info.plist, ad-hoc codesigned). It is not notarized, because that costs $99/year.</p>
 <h2>The local-first thing<span class="ln"></span></h2>
-<p>Small project, same habit as the <a href="https://ericspencer.us/ericspencer-site-backup/private-whisper-privacy.html">Private Whisper privacy work</a>, which is the longer version of the argument. The recurring pattern is an entirely mechanical task (transcribe audio, embed cover art, convert a file) that has perfectly capable local tooling on macOS, while the easiest discoverable option on Google is a website that wants the files on someone else's disk. There is no good reason an MP3 tagger should leave the machine it runs on, so when the local options are unfriendly or abandoned, the fix is to write the SwiftUI shell.</p>
+<p>The same local-first principle applies here. The recurring pattern is an entirely mechanical task (transcribe audio, embed cover art, convert a file) that has perfectly capable local tooling on macOS, while the easiest discoverable option on Google is a website that wants the files on someone else's disk. There is no good reason an MP3 tagger should leave the machine it runs on, so when the local options are unfriendly or abandoned, the fix is to write the SwiftUI shell.</p>
 <h2>What is not done<span class="ln"></span></h2>
 <p>It is an MVP. The roadmap in the README lists per-track title editing (titles currently come from the filename), a bitrate toggle for re-encoded inputs, an optional video output for the YouTube workflow without the GCP piece, a universal binary release in GitHub Releases, and possibly Sparkle auto-update.</p>
 <footer>

@@ -26,6 +26,8 @@ jobs:
         run: python3 scripts/build_resume_pages.py
       - name: Build the public project catalog
         run: python3 scripts/build_projects.py
+      - name: Build the public app directory
+        run: python3 scripts/build_public_apps.py
       - name: Normalize canonical project headings
         run: python3 scripts/normalize_project_pages.py
       - name: Apply the top nav
@@ -85,7 +87,7 @@ jobs:
           echo "dev.ericspencer.us" > CNAME
           # robots.txt lets crawlers fetch the page-level noindex directives.
           git add -A CNAME index.html news blog robots.txt cv resume assets editor 1rm \
-            miscellaneous research.html projects.html 404.html projects sitemap.xml \
+            miscellaneous research.html projects.html apps 404.html projects sitemap.xml \
             ulam-spiral ulam-spiral-b12
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts

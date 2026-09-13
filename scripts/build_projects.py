@@ -144,7 +144,7 @@ main{{max-width:860px}} h1{{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-
 <body>
 <div class="wrap">
 <p class="name">Eric Spencer</p>
-<nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">research</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
+<nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">research</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/apps/">apps</a> · <a href="/cv/">cv</a></nav>
 <hr>
 <main>
 <h1>Projects A–Z</h1>

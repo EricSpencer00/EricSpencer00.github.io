@@ -131,7 +131,7 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 | |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
 |_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
                           |_|                             </pre>
-<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top">~/projects &nbsp; <a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">[projects]</a> &nbsp;&middot;&nbsp; <a href="/apps/">apps</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
 <h1 class="article-title">ChatTLA+ Dataset<span class="ln"></span></h1>
@@ -142,7 +142,7 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 <p>The dataset has two parts. The first is <code>corpus/diamond_sft.jsonl</code>, 209 rows of supervised fine-tuning data. Each row is an OpenAI-style chat list (developer, user, assistant) in which the assistant turn is a TLA+ spec that TLC validated. Every row carries semantic metadata: how many distinct states TLC explored, what fraction of declared actions were exercised, whether the spec caught at least one mutation of its invariant, and how many invariants were checked. The <code>_source: opus_subagent</code> tag records that an Opus-family model drafted the seed and TLC verified it, which is a methodology marker rather than an author hint.</p>
 <p>The second part is a 30-problem held-out benchmark in <code>benchmark/</code>, split across six domains: consensus and election, data structures, classical puzzles, scheduling and resources, transactions and databases, and workflows and state machines. There are five problems per domain. Each entry has a natural-language description, an ordinal 1-5 difficulty, the invariants the spec must declare, and a module-name pointer to the closest reference spec in the public <a href="https://github.com/tlaplus/examples" target="_blank" rel="noopener"><code>tlaplus/examples</code></a> repository. No verbatim files from <code>tlaplus/examples</code> are redistributed, only pointers, which keeps the licensing clean. The dataset itself is CC-BY-4.0.</p>
 <p>A small <code>eval.jsonl</code> of four prompts serves as a generation eval during training.</p>
-<p>For context on what ChatTLA+ does, a <a href="https://ericspencer.us/ericspencer-site-backup/miscellaneous/chattlaplus/">short presentation</a> from an earlier version of the work is available. The dataset is the artifact that makes the paper reproducible. The companion repository, holding the TLC validator harness, the reward-shaping config, and the GRPO and SFT scripts, will go public alongside the camera-ready.</p>
+<p>The dataset is the artifact that makes the paper reproducible. The companion repository, holding the TLC validator harness, the reward-shaping config, and the GRPO and SFT scripts, will go public alongside the camera-ready.</p>
 <p>Anonymized repo: <a href="https://github.com/EricSpencer00/chattla-dataset-anon" target="_blank" rel="noopener">chattla-dataset-anon</a>.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>

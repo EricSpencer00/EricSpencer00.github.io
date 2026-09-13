@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "brightbet",
+    "name": "BrightBet",
+    "url": "https://brightbet.tech/",
+    "description": "Prediction-analysis platform built for HackIllinois 2026."
+  },
+  {
+    "slug": "claude-architect-quiz",
+    "name": "Claude Architect Quiz",
+    "url": "https://ericspencer.us/Claude-architect-quiz/",
+    "description": "Flashcards, practice quizzes, and cram mode for the Claude Architect exam."
+  },
+  {
+    "slug": "ddia",
+    "name": "DDIA Learning Lab",
+    "url": "https://ericspencer.us/ddia/",
+    "description": "Study notes and quiz drills for Designing Data-Intensive Applications."
+  },
+  {
+    "slug": "famous-moji",
+    "name": "Famous Moji",
+    "url": "https://famousmoji.com/",
+    "description": "Emoji app and release archive."
+  },
+  {
+    "slug": "freelock",
+    "name": "FreeLock",
+    "url": "https://fromamerica-llc.com/FreeLock-web/",
+    "description": "NFC-based focus app for iPhone."
+  },
+  {
+    "slug": "gta-gold-checklist",
+    "name": "GTA V Gold Medal Checklist",
+    "url": "https://ericspencer.us/gta-v-gold-checklist/",
+    "description": "Mission gold-medal requirements in one saved checklist."
+  },
+  {
+    "slug": "ipaidforthisshirt",
+    "name": "I Paid For This Shirt",
+    "url": "https://ipaidforthisshirt.com/",
+    "description": "Choose a price; the shirt is printed with the exact amount paid."
+  },
+  {
+    "slug": "latex",
+    "name": "LaTeX Workspace",
+    "url": "https://ericspencer.us/latex/",
+    "description": "Browser workspace for editing, compiling, and versioning papers."
+  },
+  {
+    "slug": "not-hotdog",
+    "name": "Not Hotdog",
+    "url": "https://ericspencer.us/hotdog/",
+    "description": "In-browser image classifier built with handwritten JavaScript kernels."
+  },
+  {
+    "slug": "one-rep-max",
+    "name": "One Rep Max",
+    "url": "https://ericspencer.us/1rm/",
+    "description": "Offline one-rep-max calculator with seven estimators."
+  },
+  {
+    "slug": "palindrome",
+    "name": "Palindrome",
+    "url": "https://palindrome.ericspencer.us/",
+    "description": "Browser tool for generating palindromic sentences."
+  },
+  {
+    "slug": "paper-digest",
+    "name": "Paper Digest",
+    "url": "https://paper-digest.ericspencer.us/",
+    "description": "Cached arXiv-paper matching API for AI agents."
+  },
+  {
+    "slug": "picai",
+    "name": "Picaius",
+    "url": "https://picai.us/",
+    "description": "Photo editor with layers, background removal, transforms, and exports."
+  },
+  {
+    "slug": "resilient",
+    "name": "Resilient Docs",
+    "url": "https://ericspencer.us/Resilient/",
+    "description": "Documentation for the safety-focused Resilient programming language."
+  },
+  {
+    "slug": "sideswing",
+    "name": "SideSwing",
+    "url": "https://sideswing.tech/",
+    "description": "Phone-based golf game with a physically simulated ball on a real map."
+  },
+  {
+    "slug": "stemacle",
+    "name": "Stemacle",
+    "url": "https://stemacle.com/",
+    "description": "Stem-player releases for web and macOS."
+  },
+  {
+    "slug": "stockgenie",
+    "name": "StockGenie",
+    "url": "https://stockgenie.app/",
+    "description": "Daily AI-ranked market analysis for iPhone."
+  },
+  {
+    "slug": "tla-generator",
+    "name": "TLA+ Generator",
+    "url": "https://tla.ericspencer.us/",
+    "description": "Plain English in; model-checked TLA+ specifications out."
+  },
+  {
+    "slug": "ulam-spiral",
+    "name": "Ulam Spiral",
+    "url": "https://ericspencer.us/ulam-spiral/",
+    "description": "Interactive square spiral with primes marked."
+  },
+  {
+    "slug": "ulam-spiral-base-twelve",
+    "name": "Ulam Spiral, Base Twelve",
+    "url": "https://ericspencer.us/ulam-spiral-b12/",
+    "description": "Interactive prime spiral written in base twelve."
+  },
+  {
+    "slug": "vocal",
+    "name": "VoCal",
+    "url": "https://vocal.best/",
+    "description": "Food-photo tracking with voice context for portions and ingredients."
+  }
+]

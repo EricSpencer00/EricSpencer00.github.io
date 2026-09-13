@@ -478,14 +478,14 @@ a.pill{{font-size:12px}}
       {{ name: 'fromamerica-llc.com', url: 'https://fromamerica-llc.com',
         desc: 'FROM AMERICA LLC: independent software studio.' }},
       {{ repo: 'gcf-de', url: 'https://ericspencer.us/gcf-de/' }},
-      {{ name: 'stockgenie.app', url: 'https://stockgenie.app',
+      {{ name: 'stockgenie.app', url: '/apps/stockgenie/',
         desc: 'Daily AI stock pick, free tier plus options.' }},
     ],
     'Hackathons & Coursework': [
-      {{ name: 'sideswing.tech', url: 'https://sideswing.tech',
+      {{ name: 'sideswing.tech', url: '/apps/sideswing/',
         desc: 'Phone-as-club golf swing tracker.' }},
-      {{ repo: 'VoCal', name: 'vocal.best', url: 'https://vocal.best' }},
-      {{ name: 'brightbet.tech', url: 'https://brightbet.tech',
+      {{ repo: 'VoCal', name: 'vocal.best', url: '/apps/vocal/' }},
+      {{ name: 'brightbet.tech', url: '/apps/brightbet/',
         desc: 'Sports betting model and dashboard.' }},
     ],
     'Other': [

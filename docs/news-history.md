@@ -7,7 +7,7 @@ Every added event has a source. Dates retain the precision supported by it.
 
 Reviewed 2026-09-09:
 
-- Live archived CV: https://ericspencer.us/ericspencer-site-backup/resume/
+- Archived CV source: https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/
   (also preserved in `backup-site/resume/`). This supplies the earlier jobs,
   club leadership, education, and founder timeline.
 - Current homepage and `content/experience.txt` supply HorneSci and the

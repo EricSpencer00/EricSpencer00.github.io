@@ -1,7 +1,7 @@
 [
   {
     "name": "1RM",
-    "url": "/1rm/",
+    "url": "/apps/one-rep-max/",
     "description": "One-rep-max calculator: median of seven estimators, installs to a phone home screen and runs offline.",
     "language": "HTML"
   },
@@ -132,6 +132,12 @@
     "language": "Python"
   },
   {
+    "name": "BrightBet",
+    "url": "/apps/brightbet/",
+    "description": "Prediction-analysis platform built for HackIllinois 2026.",
+    "language": "Web"
+  },
+  {
     "name": "BrightBet.tech",
     "url": "/projects/brightbet.html",
     "description": "An AI-powered trade and prediction analysis platform built for HackIllinois 2026.",
@@ -217,7 +223,7 @@
   },
   {
     "name": "Claude-architect-quiz",
-    "url": "https://github.com/EricSpencer00/Claude-architect-quiz",
+    "url": "/apps/claude-architect-quiz/",
     "description": "Free flashcards + practice quiz for the Anthropic architect exam.",
     "language": "CSS"
   },
@@ -301,7 +307,7 @@
   },
   {
     "name": "DDIA Learning Lab",
-    "url": "https://ericspencer.us/ddia/",
+    "url": "/apps/ddia/",
     "description": "Designing Data-Intensive Applications study notes and quiz drill.",
     "language": "HTML"
   },
@@ -415,7 +421,7 @@
   },
   {
     "name": "famous.moji",
-    "url": "https://famousmoji.com",
+    "url": "/apps/famous-moji/",
     "description": "Emoji app.",
     "language": "CSS"
   },
@@ -463,7 +469,7 @@
   },
   {
     "name": "FreeLock",
-    "url": "https://fromamerica-llc.com/FreeLock-web/",
+    "url": "/apps/freelock/",
     "description": "iOS app.",
     "language": "Swift"
   },
@@ -535,7 +541,7 @@
   },
   {
     "name": "GTA V Gold Medal Checklist",
-    "url": "https://ericspencer.us/gta-v-gold-checklist/",
+    "url": "/apps/gta-gold-checklist/",
     "description": "Every mission's gold-medal requirements in one checklist that remembers what you've cleared.",
     "language": "TypeScript"
   },
@@ -588,6 +594,12 @@
     "language": ""
   },
   {
+    "name": "I Paid For This Shirt",
+    "url": "/apps/ipaidforthisshirt/",
+    "description": "Choose a price; the shirt is printed with the exact amount paid.",
+    "language": "Web"
+  },
+  {
     "name": "interactive-microwave-tla",
     "url": "https://github.com/EricSpencer00/interactive-microwave-tla",
     "description": "Browser-based TLA+ microwave - a gentle first model-checking demo.",
@@ -628,6 +640,12 @@
     "url": "https://github.com/EricSpencer00/ITS-RAG-bot",
     "description": "Retrieval-augmented assistant for an IT-service knowledge base.",
     "language": "Python"
+  },
+  {
+    "name": "LaTeX Workspace",
+    "url": "/apps/latex/",
+    "description": "Browser workspace for editing, compiling, and versioning papers.",
+    "language": "Web"
   },
   {
     "name": "llmjammer",
@@ -685,7 +703,7 @@
   },
   {
     "name": "not-hotdog",
-    "url": "https://github.com/EricSpencer00/not-hotdog",
+    "url": "/apps/not-hotdog/",
     "description": "A 136K-parameter int8 CNN running on hand-written JavaScript kernels - no TensorFlow, no WASM, no dependencies. Hot dog or not hot dog.",
     "language": "JavaScript"
   },
@@ -726,6 +744,12 @@
     "language": ""
   },
   {
+    "name": "Palindrome",
+    "url": "/apps/palindrome/",
+    "description": "Browser tool for generating palindromic sentences.",
+    "language": "Web"
+  },
+  {
     "name": "palindrome-sentence-generator",
     "url": "https://github.com/EricSpencer00/palindrome-sentence-generator",
     "description": "Generates whole paragraphs that read as palindromes.",
@@ -733,7 +757,7 @@
   },
   {
     "name": "paper-digest",
-    "url": "https://paper-digest.ericspencer.us",
+    "url": "/apps/paper-digest/",
     "description": "Interest-matched research papers on Cloudflare Workers - semantic ranking, honest thresholds, keyword fallback.",
     "language": "TypeScript"
   },
@@ -745,7 +769,7 @@
   },
   {
     "name": "picai",
-    "url": "https://picai.us",
+    "url": "/apps/picai/",
     "description": "AI photo platform.",
     "language": "TypeScript"
   },
@@ -808,6 +832,12 @@
     "url": "https://github.com/EricSpencer00/Resilient",
     "description": "Statically-typed compiled language for safety-critical embedded systems with Z3-verified contracts.",
     "language": "Rust"
+  },
+  {
+    "name": "Resilient Docs",
+    "url": "/apps/resilient/",
+    "description": "Documentation for the safety-focused Resilient programming language.",
+    "language": "Web"
   },
   {
     "name": "Resilient-examples",
@@ -900,6 +930,12 @@
     "language": "Python"
   },
   {
+    "name": "SideSwing",
+    "url": "/apps/sideswing/",
+    "description": "Phone-based golf game with a physically simulated ball on a real map.",
+    "language": "Web"
+  },
+  {
     "name": "Skeuomorphic Desk",
     "url": "/projects/skeuomorphism.html",
     "description": "An editorial / skeuomorphic project desk.",
@@ -943,13 +979,13 @@
   },
   {
     "name": "stemacle",
-    "url": "https://stemacle.com",
+    "url": "/apps/stemacle/",
     "description": "Browser-based stem player - splits a track into its parts in the tab, no upload.",
     "language": "JavaScript"
   },
   {
     "name": "StockGenie",
-    "url": "https://stockgenie.app",
+    "url": "/apps/stockgenie/",
     "description": "AI stock-pick app for iPhone.",
     "language": "Swift"
   },
@@ -985,7 +1021,7 @@
   },
   {
     "name": "TLA+ Generator",
-    "url": "https://tla.ericspencer.us",
+    "url": "/apps/tla-generator/",
     "description": "Plain English in, model-checked TLA+ out - a self-correcting loop that runs until SANY and TLC pass and the invariant holds.",
     "language": "Python"
   },
@@ -1116,6 +1152,18 @@
     "language": "C++"
   },
   {
+    "name": "Ulam Spiral",
+    "url": "/apps/ulam-spiral/",
+    "description": "Interactive square spiral with primes marked.",
+    "language": "Web"
+  },
+  {
+    "name": "Ulam Spiral, Base Twelve",
+    "url": "/apps/ulam-spiral-base-twelve/",
+    "description": "Interactive prime spiral written in base twelve.",
+    "language": "Web"
+  },
+  {
     "name": "usage-badge",
     "url": "https://github.com/EricSpencer00/usage-badge",
     "description": "Live README badge for AI coding usage - subscription limits plus token/cost across agents, in one Worker.",
@@ -1129,7 +1177,7 @@
   },
   {
     "name": "VoCal",
-    "url": "https://github.com/EricSpencer00/VoCal",
+    "url": "/apps/vocal/",
     "description": "Voice-first calorie and macro tracker for iOS \u2014 speak a meal, get nutrition in under three seconds. HealthKit, widgets, Live Activities, Watch.",
     "language": "Swift"
   },

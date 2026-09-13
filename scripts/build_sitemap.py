@@ -14,9 +14,11 @@ worth re-fetching.
 
 The tree holds about twice as many .html files as the sitemap holds URLs, and
 every part of that gap is deliberate: redirect stubs under projects/<year>/ and
-miscellaneous/ share a canonical with the page they point at, and noindex pages
-are left out. The run prints the count in each group, so a page that stops being
-published moves a number here instead of going missing without a trace.
+miscellaneous/ share a canonical with the page they point at, live apps are
+collected at /apps/ rather than competing as top-level portfolio pages, and
+noindex pages are left out. The run prints the count in each group, so a page
+that stops being published moves a number here instead of going missing without
+a trace.
 
     python3 scripts/build_sitemap.py
 """
@@ -38,6 +40,22 @@ STUB = "<!-- redirect stub -->"
 # Not part of the site at all, so not part of the count either.
 ARCHIVE = ("/.git/", "/backup-site/", "/.claude/")
 
+# A sitemap is navigation for crawlers, not an exhaustive inventory of every
+# backwards-compatible endpoint. Public apps have a browsable home at /apps/;
+# individual project writeups carry the durable editorial URLs.
+CORE_URLS = {
+    f"{SITE}/",
+    f"{SITE}/apps/",
+    f"{SITE}/cv/",
+    f"{SITE}/news/",
+    f"{SITE}/projects.html",
+    f"{SITE}/research.html",
+}
+
+
+def belongs_in_sitemap(url):
+    return url in CORE_URLS or url.startswith(f"{SITE}/projects/")
+
 
 def last_commit(path):
     try:
@@ -53,6 +71,8 @@ def last_commit(path):
 def entries():
     has_posts = bool(load_posts())
     for url, pages in sorted(published_pages().items()):
+        if not belongs_in_sitemap(url):
+            continue
         # The committed blog shell is an authoring template. It is pruned from
         # a release with no posts, so it must not leak back into a source-tree
         # sitemap when this script is run locally before that pruning step.
@@ -87,10 +107,20 @@ def audit(listed):
     # A canonical with no file of its own is served from another repo.
     elsewhere = sum(1 for pages in grouped.values() if not pages)
     here = len(grouped) - elsewhere
+    noindex = 0
+    off_map = 0
+    for url, pages in grouped.items():
+        local = [p for p in pages if STUB not in p.read_text(errors="replace")]
+        if not local:
+            continue
+        if all(NOINDEX.search(p.read_text(errors="replace")) for p in local):
+            noindex += 1
+        elif not belongs_in_sitemap(url):
+            off_map += 1
     print(f"  {len(in_tree)} .html files: {len(in_tree) - len(files)} are not "
           f"pages, {len(files) - here} are extra copies of a page already "
-          f"listed, {here - (listed - elsewhere)} carry noindex, "
-          f"{listed - elsewhere} are listed")
+          f"listed, {noindex} carry noindex, {off_map} are deliberately "
+          f"off-map, {listed} are listed")
     print(f"  plus {elsewhere} pages served from another repo")
 
 

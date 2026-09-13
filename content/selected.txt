@@ -1,8 +1,9 @@
 # Selected work — name|url|description
 # These appear in the "Selected Work" section on the homepage.
 
-Not Hotdog|https://ericspencer.us/hotdog/|Hot dog or not hot dog: a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference.
+Not Hotdog|/apps/not-hotdog/|Hot dog or not hot dog: a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference.
 Resilient|/projects/resilient.html|Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.
 HST-Studio|https://github.com/HorneSci/hst-studio|A delta-aware sparse linear algebra runtime, and the tooling around it.
 tlakit|https://tlakit.pages.dev|Python and notebook client for the TLA+ toolchain. Drives SANY, TLC, and TLAPS from a cell without reimplementing TLA+ semantics.
-paper-digest|https://paper-digest.ericspencer.us|Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.
+paper-digest|/apps/paper-digest/|Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.
+Public builds|/apps/|Twenty-one live apps, tools, and interactive builds.

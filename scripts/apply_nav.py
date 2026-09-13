@@ -18,13 +18,14 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Directories that are in git for reference but never published, plus the blog
 # post template, which is a scaffold rather than a page.
-SKIP_DIRS = {".git", ".claude", "backup-site", "node_modules", "assets", "tests"}
+SKIP_DIRS = {".git", ".claude", "backup-site", "editor", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
+OWN_NAV_PAGES = {ROOT / "apps" / "index.html", ROOT / "news" / "index.html", ROOT / "projects.html"}
 
 NAV_RE = re.compile(r'<nav class="top">.*?</nav>', re.DOTALL)
 
 # A page whose whole body is a redirect stub has no header to hang a nav on.
-REDIRECT_RE = re.compile(r'location\.replace|This page has moved|This page lives at')
+REDIRECT_RE = re.compile(r'location\.replace|This page has moved|This page lives at|<!-- redirect stub -->')
 
 # Search-console verification files are a single line of text served as .html.
 VERIFICATION_RE = re.compile(r"google-site-verification", re.IGNORECASE)
@@ -34,6 +35,7 @@ ITEMS = [
     ("index",    "index",    "/",               ()),
     ("research", "research", "/research.html",  ("research.html",)),
     ("projects", "projects", "/projects.html",  ("projects.html", "projects/")),
+    ("apps",     "apps",     "/apps/",          ("apps/",)),
     ("blog",     "blog",     "/blog/",          ("blog/",)),
     ("cv",       "cv",       "/cv/",            ("cv/", "resume/")),
 ]
@@ -75,10 +77,10 @@ def pages():
     for path in sorted(ROOT.rglob("*.html")):
         if any(part in SKIP_DIRS for part in path.relative_to(ROOT).parts):
             continue
-        # The catalog is generated from content/public-projects.json and owns
-        # a labelled landmark plus its current-page state. Do not replace that
-        # accessible nav with the older string-only template below.
-        if path == ROOT / "projects.html":
+        # The catalog and public-build hub own labelled navigation with their
+        # active state. News deliberately offers a single back link to its
+        # chronological origin on the home page.
+        if path in OWN_NAV_PAGES:
             continue
         if path in SKIP_FILES:
             continue
