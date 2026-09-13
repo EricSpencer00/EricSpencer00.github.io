@@ -161,7 +161,7 @@ live invariant: pressure &gt;= 0 &amp;&amp; pressure &lt;= 250 {
 }
 </code></pre>
 <p>This addresses the class of fault where a retry genuinely recovers: sensor noise, a debouncing window, a one-cycle EMI spike on an industrial bus, in a controller that cannot afford to fall off the rails. Cycle limits and an escalation path back the rewind, so a permanently broken invariant does not loop forever. That part is still rough, and the failure semantics are revised every few weeks.</p>
-<h2>Why the examples repo exists<span class="ln"></span></h2>
+<h2>Examples<span class="ln"></span></h2>
 <p>A separate repository, <a href="https://github.com/EricSpencer00/Resilient-examples" target="_blank" rel="noopener">Resilient-examples</a>, carries the motivating programs. Each folder is a small runnable program, usually one <code>.rz</code> file and a README, modelling a real safety-critical domain:</p>
 <ul>
 <li><code>01-pacemaker</code>: implantable cardiac pacer, uses <code>live { invariant }</code> and <code>recovers_to</code> to guard the pacing decision logic.</li>

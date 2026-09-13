@@ -139,10 +139,10 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/git-key-guardian" target="_blank" rel="noopener">https://github.com/EricSpencer00/git-key-guardian</a></p>
 <hr class="dash">
 <p>Git Key Guardian is a pre-commit hook and helper toolkit. It scans staged changes for common secret patterns and for a user-supplied list of personal keys, so that API keys, tokens, and credentials are caught before they enter git history.</p>
-<h2>Why this project<span class="ln"></span></h2>
+<h2>Motivation<span class="ln"></span></h2>
 <p>Secrets get committed by accident. API keys, SSH keys, cloud credentials, and other sensitive strings can slip into commits or CI logs. Git Key Guardian is an opt-in check that runs locally as a shared hook and reports matches against a configurable set of regex patterns and a personal key list.</p>
 <p>The tool is deliberately simple and conservative. It scans only staged changes, uses maintainable regex patterns, and supports exact-string matches for specific keys.</p>
-<h2>Features<span class="ln"></span></h2>
+<h2>What it does<span class="ln"></span></h2>
 <ul>
 <li>Scans only staged (cached) changes, which avoids noise from the working tree.</li>
 <li>Configurable regex patterns stored in <code>patterns/common_patterns.txt</code>, one per line, with inline comments allowed.</li>
@@ -200,7 +200,7 @@ GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
 <li><code>ssh-rsa\s+[A-Za-z0-9+/=]+</code> (SSH public keys)</li>
 </ul>
 <p>Exact personal secrets go in <code>$HOME/.git-key-guardian/personal_keys.txt</code>. Lines beginning with <code>#</code> are ignored.</p>
-<h2>Implementation notes<span class="ln"></span></h2>
+<h2>Notes<span class="ln"></span></h2>
 <ul>
 <li>The hook uses POSIX-compatible tools: bash, sed, grep, and awk.</li>
 <li>The patterns file is preprocessed to strip comments and blank lines before <code>grep -En -f</code> runs against staged additions.</li>

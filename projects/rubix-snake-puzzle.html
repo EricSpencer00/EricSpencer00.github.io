@@ -158,10 +158,10 @@ Inductive Rotation : Type :=
   | R270 (* 270° — left angle *).
 </code></pre>
 <p>The whole thing is built on a 3D integer grid with 6 axis-aligned directions, so the proof never has to deal with floating-point rotation matrices. Everything is <code>Z</code>-arithmetic, and Lia can close most of the arithmetic obligations.</p>
-<h2>What is not done (yet)<span class="ln"></span></h2>
+<h2>Limits<span class="ln"></span></h2>
 <p>The count is not proved. Aylett's number (13,446,591,920,995 valid configurations) is established by exhaustive search. Proving it formally in Coq would require either reflecting the enumerator into Gallina and computing it, which is impractical since the search took weeks of CPU time in C, or a combinatorial argument that nobody has found yet. What the repo has is the formal <i>specification</i> of what a valid configuration is. The bridge from spec to count is still empirical.</p>
 <p>The symmetry quotient (mirror plus cyclic) that Aylett applies to drop the count from 13.4T to 6.7T is also not fully worked out. The TLA+ spec does not have it at all, and the Coq side has a stub.</p>
-<h2>Why this exists<span class="ln"></span></h2>
+<h2>Purpose<span class="ln"></span></h2>
 <p>It is a hobby-scale formal verification project: small enough to finish, and connected to the AI-for-formal-methods (ai4fm) work going on alongside it. As a project to learn Coq on, the geometry of a physical puzzle is a change from verifying insertion sort. The state space is huge, but every individual piece of reasoning is concrete, and the puzzle can be held in hand and checked against the math.</p>
 <p>The README has build instructions for Coq 8.18+ / Rocq and the TLA+ Toolbox.</p>
 <footer>

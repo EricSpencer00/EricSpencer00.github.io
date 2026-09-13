@@ -154,7 +154,7 @@ VARIABLES
 </code></pre>
 <p>The actions are the things the device can do: <code>InsertSensor</code>, <code>FinishWarmup</code>, <code>ProduceSample</code>, <code>ConnectOrDisconnect</code>, <code>TransmitSample</code>, <code>UpdateAlerts</code>, <code>ClearAlerts</code>, <code>ExpireSensor</code>, and a <code>Tick</code> that advances <code>now</code> by one minute. Transmission is nondeterministic, since packets can be delivered or dropped: in practice the phone is often in another room and the BLE link is unreliable.</p>
 <p>There are two config files. <code>g7.debug.cfg</code> shrinks everything (lifetime 10 minutes, glucose values 80 to 82) so TLC can finish in a second. <code>g7.realistic.cfg</code> uses real numbers: 30-minute warmup, 10-day lifetime, 12-hour grace, glucose range 40 to 400. The realistic one explodes the state space.</p>
-<h2>The invariant that actually matters<span class="ln"></span></h2>
+<h2>Safety invariant<span class="ln"></span></h2>
 <p>The safety property that matters most is <code>NoReadingsAfterExpiry</code>:</p>
 <pre class="code"><code>
 NoReadingsAfterExpiry ==
