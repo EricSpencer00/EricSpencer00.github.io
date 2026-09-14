@@ -22,6 +22,8 @@ import re
 import sys
 from pathlib import Path
 
+from build_project_routes import is_live_project_source
+
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://ericspencer.us"
 MARKER = "<!-- redirect stub -->"
@@ -50,7 +52,9 @@ a{{color:#6e1a19}}
 
 
 def mirrors():
-    yield from sorted(ROOT.glob("projects/20*/*/index.html"))
+    for path in sorted(ROOT.glob("projects/20*/*/index.html")):
+        if not is_live_project_source(path):
+            yield path
     yield from sorted(ROOT.glob("miscellaneous/*/index.html"))
 
 

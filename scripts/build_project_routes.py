@@ -18,12 +18,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+LIVE_PROJECTS = frozenset({"1rm", "stem-player", "ulam-spiral", "ulam-spiral-b12"})
+
 ROUTES = {
-    "1rm": ROOT / "projects" / "1rm",
-    "stem-player": ROOT / "projects" / "stem-player",
-    "ulam-spiral": ROOT / "projects" / "ulam-spiral",
-    "ulam-spiral-b12": ROOT / "projects" / "ulam-spiral-b12",
+    name: ROOT / "projects" / "2026" / name
+    for name in LIVE_PROJECTS
 }
+
+
+def is_live_project_source(path: Path) -> bool:
+    """Whether a path belongs to one of the live builds under projects/2026."""
+    try:
+        relative = path.relative_to(ROOT / "projects" / "2026")
+    except ValueError:
+        return False
+    return bool(relative.parts) and relative.parts[0] in LIVE_PROJECTS
 
 
 def source_files(source: Path) -> dict[Path, Path]:

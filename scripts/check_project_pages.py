@@ -37,6 +37,7 @@ import sys
 from pathlib import Path
 
 from collapse_mirrors import MARKER, SITE, STUB
+from build_project_routes import is_live_project_source
 
 ROOT = Path(__file__).resolve().parent.parent
 LIST = ROOT / "content" / "project-pages.txt"
@@ -62,7 +63,10 @@ def entries():
 
 def on_disk():
     """Every mirror index.html in the repo, as repo-relative strings."""
-    found = sorted(ROOT.glob("projects/20*/*/index.html"))
+    found = [
+        path for path in sorted(ROOT.glob("projects/20*/*/index.html"))
+        if not is_live_project_source(path)
+    ]
     found += sorted(ROOT.glob("miscellaneous/*/index.html"))
     return {str(p.relative_to(ROOT)) for p in found}
 

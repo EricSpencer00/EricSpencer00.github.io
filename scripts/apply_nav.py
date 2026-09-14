@@ -12,6 +12,7 @@ from pathlib import Path
 import re
 import sys
 
+from build_project_routes import is_live_project_source
 from build_blog import load_posts
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,8 +22,6 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP_DIRS = {".git", ".claude", "backup-site", "editor", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
 OWN_NAV_PAGES = {ROOT / "news" / "index.html", ROOT / "projects.html"}
-LIVE_PROJECTS = {"1rm", "stem-player", "ulam-spiral", "ulam-spiral-b12"}
-
 NAV_RE = re.compile(r'<nav class="top"[^>]*>.*?</nav>', re.DOTALL)
 
 # A page whose whole body is a redirect stub has no header to hang a nav on.
@@ -81,7 +80,7 @@ def pages():
         # These are source trees for live builds, not editorial project pages.
         # Their public route mirrors are updated separately and retain their
         # product-specific navigation.
-        if len(relative.parts) > 2 and relative.parts[0] == "projects" and relative.parts[1] in LIVE_PROJECTS:
+        if is_live_project_source(path):
             continue
         # The catalog and public-build hub own labelled navigation with their
         # active state. News deliberately offers a single back link to its

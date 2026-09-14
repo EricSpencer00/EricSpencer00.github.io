@@ -13,10 +13,10 @@ index.html          homepage
 projects.html       projects and live work
 research.html       publications: papers, talks, models, and tools
 projects/*.html     individual project writeups
-projects/1rm/       source for the live 1RM build and its route mirror
-projects/stem-player/ source for the Stemacle route stub
-projects/ulam-spiral/ live Ulam spiral build
-projects/ulam-spiral-b12/ base-twelve Ulam spiral build
+projects/2026/1rm/ source for the live 1RM build and its route mirror
+projects/2026/stem-player/ Stemacle route stub
+projects/2026/ulam-spiral/ live Ulam spiral build
+projects/2026/ulam-spiral-b12/ base-twelve Ulam spiral build
 blog/               compiled from content/blog/*.md
 cv/, resume/        landing pages, built from content/resumes.txt
 assets/og/          link-preview cards, one per page
