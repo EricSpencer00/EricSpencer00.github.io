@@ -27,12 +27,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Keep the standalone preview out of portfolio-wide HTML rewrites.
-      - name: Preserve AI4FM preview
-        run: |
-          if [ -d ai4fm ]; then
-            mv ai4fm "$RUNNER_TEMP/ai4fm-preview"
-          fi
+      # AI4FM is built from its own main branch below; never publish the
+      # checked-in preview copy that may be left in this repository.
+      - name: Remove checked-in AI4FM preview
+        run: rm -rf ai4fm
 
       - name: Build static pages
         run: |
@@ -74,11 +72,26 @@ jobs:
       - name: Strip non-published directories from the artifact
         run: rm -rf backup-site tests
 
-      - name: Restore AI4FM preview
+      - name: Set up Python for AI4FM
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Build AI4FM main under /ai4fm
         run: |
-          if [ -d "$RUNNER_TEMP/ai4fm-preview" ]; then
-            mv "$RUNNER_TEMP/ai4fm-preview" ai4fm
-          fi
+          git clone --depth 1 --branch main https://github.com/EricSpencer00/ai4fm.git "$RUNNER_TEMP/ai4fm-main"
+          python3 -m pip install uv
+          (
+            cd "$RUNNER_TEMP/ai4fm-main"
+            uv sync --frozen
+          )
+          AI4FM_BASE_URL="https://ericspencer.us/ai4fm/" \
+            "$RUNNER_TEMP/ai4fm-main/.venv/bin/sphinx-build" \
+            -b dirhtml --write-all "$RUNNER_TEMP/ai4fm-main/src" ai4fm
+          sed -i 's#https://ai4fm.cs.luc.edu/#https://ericspencer.us/ai4fm/#g' ai4fm/robots.txt
+          rm -f ai4fm/CNAME
+          test -f ai4fm/index.html
+          grep -q 'https://ericspencer.us/ai4fm/' ai4fm/index.html
 
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3
