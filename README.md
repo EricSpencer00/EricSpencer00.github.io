@@ -13,6 +13,10 @@ index.html          homepage
 projects.html       projects and live work
 research.html       publications: papers, talks, models, and tools
 projects/*.html     individual project writeups
+projects/1rm/       source for the live 1RM build and its route mirror
+projects/stem-player/ source for the Stemacle route stub
+projects/ulam-spiral/ live Ulam spiral build
+projects/ulam-spiral-b12/ base-twelve Ulam spiral build
 blog/               compiled from content/blog/*.md
 cv/, resume/        landing pages, built from content/resumes.txt
 assets/og/          link-preview cards, one per page
@@ -46,6 +50,11 @@ stubs, so the writeup is served once and the old links still work.
 
 `content/project-pages.txt` lists which mirror belongs to which page. The
 pairing is not derivable from the slug, so add a line when you add a page.
+
+The live builds in `projects/` keep their existing public paths (`/1rm/`,
+`/stem-player/`, `/ulam-spiral/`, and `/ulam-spiral-b12/`).
+`scripts/build_project_routes.py` refreshes those top-level route mirrors on
+each deployment.
 
 ```bash
 python3 scripts/check_project_pages.py         # report drift; runs on deploy
