@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Software and Datasets" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ai4fm.cs.luc.edu/pages/software.html" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="AI4FM develops its research artifacts in the open. Our source code lives under the LUC-AI4FM GitHub organization, and the trained models and corpora produced by that code are published on Hugging F..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="AI4FM develops its research artifacts in the open. Our source code lives under the LUC-AI4FM GitHub organization, and the trained models and corpora produced by that code are published on Hugging F..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>Software and Datasets &#8212; AI4FM | AI for Formal Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d56a4d63" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/software';</script>
+    <link rel="canonical" href="https://ai4fm.cs.luc.edu/pages/software.html" />
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Funding" href="funding.html" />
+    <link rel="prev" title="Team" href="people.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-text.jpeg" class="logo__image only-light" alt="AI4FM | AI for Formal Methods - Home"/>
+    <script>document.write(`<img src="../_static/logo-text.jpeg" class="logo__image only-dark" alt="AI4FM | AI for Formal Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/LoyolaChicagoCS/ai4fm" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="people.html">Team</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Software and Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funding.html">Funding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prospective-students.html">Get Involved</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Papers</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../papers/index.html">All Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/tla-prover.html">TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/llm-tla-evaluation.html">Can LLMs Write Correct TLA+ Specifications?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/chattla-2026.html">ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/gsirs-2026-tla-llm.html">Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/gcasr-2025-tla-llm.html">Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../papers/tla-for-all.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Updates</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../posts/index.html">All Posts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/tla-prover-accepted-2026.html">TLA-Prover Paper Accepted to ICSOFT 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/llm-tla-accepted-2026.html">Our Paper on LLM-Based TLA+ Specification Generation Has Been Accepted</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/tla-prover-2026.html">New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/chattla-presentation-2026.html">Eric Spencer Presents ChatTLA+ at Loyola University Chicago</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/gsirs-llm-tla-poster-2026.html">Brian Ortiz Presents Poster at Graduate School Interdisciplinary Research Symposium 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/llm-tla-evaluation-2025.html">Can LLMs Write Correct TLA+ Specifications? Our New Evaluation Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/gcasr-2025-poster.html">Brian Ortiz Presents Poster at GCASR 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/eric-spencer-mulcahy-scholar-2025.html">Eric Spencer Awarded Mulcahy Scholar Stipend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/tla-for-all-running-model-checking-in-a-python-notebook.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li></ul>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/pages/software.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Software and Datasets</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-and-fine-tuning">Models and Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#released-models">Released Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#released-datasets">Released Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-pipelines-and-evaluation">Data Pipelines and Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-pipelines">Generation Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="software-and-datasets">
+<h1>Software and Datasets<a class="headerlink" href="#software-and-datasets" title="Link to this heading">#</a></h1>
+<p>AI4FM develops its research artifacts in the open. Our source code lives under the
+<a class="reference external" href="https://github.com/LUC-AI4FM">LUC-AI4FM GitHub organization</a>, and the trained
+models and corpora produced by that code are published on
+<a class="reference external" href="https://huggingface.co/EricSpencer00">Hugging Face</a> - available for reuse and
+replication.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page lists our publicly released repositories. Work that is still under
+submission or embargo is released once the associated paper is public.</p>
+</div>
+<section id="models-and-fine-tuning">
+<h2>Models and Fine-Tuning<a class="headerlink" href="#models-and-fine-tuning" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-cpu sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5.75V2h3V.75a.75.75 0 0 1 1.5 0V2h1.25c.966 0 1.75.784 1.75 1.75V5h1.25a.75.75 0 0 1 0 1.5H14v3h1.25a.75.75 0 0 1 0 1.5H14v1.25A1.75 1.75 0 0 1 12.25 14H11v1.25a.75.75 0 0 1-1.5 0V14h-3v1.25a.75.75 0 0 1-1.5 0V14H3.75A1.75 1.75 0 0 1 2 12.25V11H.75a.75.75 0 0 1 0-1.5H2v-3H.75a.75.75 0 0 1 0-1.5H2V3.75C2 2.784 2.784 2 3.75 2H5V.75a.75.75 0 0 1 1.5 0Zm5.75 11.75a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25ZM5.75 5h4.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-4.5a.75.75 0 0 1-.75-.75v-4.5A.75.75 0 0 1 5.75 5Zm.75 4.5h3v-3h-3Z"></path></svg> <strong>TLA-Prove (ChatTLA)</strong></p>
+<p class="sd-card-text">The training and evaluation code behind <a class="reference internal" href="../papers/tla-prover.html"><span class="doc">TLA-Prover</span></a>,
+accepted at ICSOFT 2026. The distinguishing choice is the training metric: success
+is measured by whether a generated specification passes the TLC model checker, not
+by perplexity. The resulting 20B model is derived from <code class="docutils literal notranslate"><span class="pre">openai/gpt-oss-20b</span></code> and
+released under Apache 2.0.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/TLA-Prove">Repository</a> |
+<a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-20b">Model on Hugging Face</a></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-sync sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z"></path></svg> <strong>ralph-tla</strong></p>
+<p class="sd-card-text">Experiments pairing the Ralph specification language with TLA+ in a self-correcting
+loop: the model drafts a specification, SANY and TLC check it, and the resulting
+errors are fed back to the model until the specification passes. A test of whether
+verifier feedback can substitute for human repair.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/ralph-tla">Repository</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="released-models">
+<h2>Released Models<a class="headerlink" href="#released-models" title="Link to this heading">#</a></h2>
+<p>The <strong>ChatTLA</strong> model family, fine-tuned from <code class="docutils literal notranslate"><span class="pre">openai/gpt-oss</span></code> base models for TLA+
+specification synthesis. All are released under Apache 2.0 and are
+<a class="reference external" href="https://huggingface.co/EricSpencer00">published on Hugging Face</a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 12.0%" />
+<col style="width: 58.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-20b">chattla-20b</a></p></td>
+<td><p>20B</p></td>
+<td><p>The model behind <a class="reference internal" href="../papers/tla-prover.html"><span class="doc">TLA-Prover</span></a> (ICSOFT 2026), trained
+with supervised fine-tuning and GRPO. A
+<a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-20b-gguf">GGUF build</a> is
+available for local inference via Ollama and llama.cpp.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-v2-sft2">chattla-v2-sft2</a></p></td>
+<td><p>20B</p></td>
+<td><p>Retrained on the verifier-gated RFT corpus below, so every training example is
+one the model checker already accepted.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-w4dg-120b">chattla-w4dg-120b</a></p></td>
+<td><p>117B</p></td>
+<td><p>The largest model in the family, fine-tuned on the W4 diamond/gold corpus. Also
+published as a
+<a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-w4dg-120b-adapter">LoRA adapter</a>
+for use on top of the stock base model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/EricSpencer00/chattla-20b-prover-v3">chattla-20b-prover-v3</a></p></td>
+<td><p>20B (LoRA)</p></td>
+<td><p>Targets TLAPS <em>proof</em> construction rather than specification generation - the
+harder downstream task of proving a spec’s invariants.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="released-datasets">
+<h2>Released Datasets<a class="headerlink" href="#released-datasets" title="Link to this heading">#</a></h2>
+<p>Training and evaluation corpora produced by the pipelines above. These are
+<strong>verifier-gated</strong>: examples are kept only if SANY parses them and TLC accepts them,
+so the corpora contain machine-checked specifications rather than merely plausible ones.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 12.0%" />
+<col style="width: 54.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/datasets/EricSpencer00/tla-w4-diamond-gold">tla-w4-diamond-gold</a></p></td>
+<td><p>4,119 rows</p></td>
+<td><p>Diamond- and gold-tier survivors of a cross-family verify-until-correct loop,
+exported as SFT text. The largest corpus in the set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/datasets/EricSpencer00/chattla-rft-corpora-v2">chattla-rft-corpora-v2</a></p></td>
+<td><p>1K-10K rows</p></td>
+<td><p>Rejection-sampling fine-tuning (RFT/STaR) corpus for specification generation.
+Used to train <code class="docutils literal notranslate"><span class="pre">chattla-v2-sft2</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/datasets/EricSpencer00/chattla-tla-prover-corpora-v1">chattla-tla-prover-corpora-v1</a></p></td>
+<td><p>1,125 SFT rows</p></td>
+<td><p>Training and evaluation corpora for the TLAPS theorem-proving work.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/datasets/EricSpencer00/chattla-tla-prover-108-108">chattla-tla-prover-108-108</a></p></td>
+<td><p>Artifact</p></td>
+<td><p>A reproducible TLAPS proof artifact recording a 108/108 prover result.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data-pipelines-and-evaluation">
+<h2>Data Pipelines and Evaluation<a class="headerlink" href="#data-pipelines-and-evaluation" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-database sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3.5c0-.626.292-1.165.7-1.59.406-.422.956-.767 1.579-1.041C4.525.32 6.195 0 8 0c1.805 0 3.475.32 4.722.869.622.274 1.172.62 1.578 1.04.408.426.7.965.7 1.591v9c0 .626-.292 1.165-.7 1.59-.406.422-.956.767-1.579 1.041C11.476 15.68 9.806 16 8 16c-1.805 0-3.475-.32-4.721-.869-.623-.274-1.173-.62-1.579-1.04-.408-.426-.7-.965-.7-1.591Zm1.5 0c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 5.205 6.353 5.5 8 5.5c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55 0-.133-.058-.318-.282-.551-.227-.237-.591-.483-1.101-.707C11.102 1.795 9.647 1.5 8 1.5c-1.646 0-3.101.295-4.118.742-.508.224-.873.471-1.1.708-.224.232-.282.417-.282.55Zm0 4.5c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 9.705 6.353 10 8 10c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55V5.724c-.241.15-.503.286-.778.407C11.475 6.68 9.805 7 8 7c-1.805 0-3.475-.32-4.721-.869a6.15 6.15 0 0 1-.779-.407Zm0 2.225V12.5c0 .133.058.318.282.55.227.237.592.484 1.1.708 1.016.447 2.471.742 4.118.742 1.647 0 3.102-.295 4.117-.742.51-.224.874-.47 1.101-.707.224-.233.282-.418.282-.551v-2.275c-.241.15-.503.285-.778.406-1.247.549-2.917.869-4.722.869-1.805 0-3.475-.32-4.721-.869a6.327 6.327 0 0 1-.779-.406Z"></path></svg> <strong>tla-dataset-pipeline</strong></p>
+<p class="sd-card-text">A pipeline that discovers TLA+ repositories across GitHub, extracts <code class="docutils literal notranslate"><span class="pre">.tla</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.cfg</span></code>, and <code class="docutils literal notranslate"><span class="pre">.tlaps</span></code> files, parses them with LLM-based analysis, and archives
+the results to S3. Discovery runs nightly under CI with DVC-tracked state, so the
+corpus grows continuously rather than being frozen at collection time.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/tla-dataset-pipeline">Repository</a></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-checklist sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"></path></svg> <strong>tla_benchmark</strong></p>
+<p class="sd-card-text">The evaluation harness behind our LLM benchmarking work. Extracts real
+SANY-parsed ASTs, runs specifications through <code class="docutils literal notranslate"><span class="pre">tla2tools</span></code>, and scores them on
+syntactic and semantic correctness alongside code-quality metrics. Includes a
+dashboard for reviewing runs.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/tla_benchmark">Repository</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="generation-pipelines">
+<h2>Generation Pipelines<a class="headerlink" href="#generation-pipelines" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-1 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-beaker sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"></path></svg> <strong>FormaLLM</strong></p>
+<p class="sd-card-text">A research pipeline for generating TLA+ specifications from natural language,
+orchestrated with ZenML and backed by OpenAI, Anthropic, or local Ollama models.
+Separates prompting, parsing, and evaluation into swappable pipeline steps so that
+backends and prompting strategies can be compared under identical conditions.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/FormaLLM">Repository</a></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-arrow-switch sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.22 14.78a.75.75 0 0 0 1.06-1.06L4.56 12h8.69a.75.75 0 0 0 0-1.5H4.56l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3a.75.75 0 0 0 0 1.06l3 3Zm5.56-6.5a.75.75 0 1 1-1.06-1.06l1.72-1.72H2.75a.75.75 0 0 1 0-1.5h8.69L9.72 2.28a.75.75 0 0 1 1.06-1.06l3 3a.75.75 0 0 1 0 1.06l-3 3Z"></path></svg> <strong>FormaLLM-Reverse</strong></p>
+<p class="sd-card-text">The companion to FormaLLM, exploring the opposite direction: recovering readable
+natural-language documentation from existing formal models.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/FormaLLM-Reverse">Repository</a></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-m-0 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-file sd-text-primary" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg> <strong>paper-parse</strong></p>
+<p class="sd-card-text">Tooling for extracting structured data from research PDFs at scale, used to build
+the comment-ratio dataset supporting our empirical software engineering work.</p>
+<p class="sd-card-text"><a class="reference external" href="https://github.com/LUC-AI4FM/paper-parse">Repository</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
+<p>Our repositories are open to students and collaborators. If you are interested in
+working on any of these projects, see <a class="reference internal" href="prospective-students.html"><span class="doc">Get Involved</span></a>.</p>
+</section>
+</section>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="people.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Team</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="funding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Funding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#models-and-fine-tuning">Models and Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#released-models">Released Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#released-datasets">Released Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-pipelines-and-evaluation">Data Pipelines and Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation-pipelines">Generation Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AI4FM Research Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, AI4FM Research Group.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

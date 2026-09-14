@@ -29,7 +29,7 @@ BOOTSTRAP = (
     '<script type="module" src="/assets/js/site-assistant.js" '
     'data-site-assistant></script>\n'
 )
-SKIP_PARTS = {".git", ".claude", "backup-site", "tests", "assets"}
+SKIP_PARTS = {".git", ".claude", "ai4fm", "backup-site", "tests", "assets"}
 SKIP_TAGS = {"script", "style", "noscript", "svg", "template"}
 STUB = "<!-- redirect stub -->"
 

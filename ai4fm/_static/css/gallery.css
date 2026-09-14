@@ -1,0 +1,44 @@
+.ai4fm-gallery {
+  max-width: 900px;
+  margin: 1.2em 0;
+}
+.ai4fm-gallery .main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.ai4fm-gallery .thumbs {
+  margin-top: 0.6em;
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.ai4fm-gallery .thumbs img {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  opacity: 0.8;
+  border: 2px solid transparent;
+  border-radius: 3px;
+}
+.ai4fm-gallery .thumbs img.active,
+.ai4fm-gallery .thumbs img:hover {
+  opacity: 1;
+  border-color: #0078d4;
+}
+.ai4fm-gallery .controls {
+  margin-top: 0.4em;
+  display: flex;
+  gap: 0.5em;
+}
+.ai4fm-gallery .controls button {
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  padding: 0.3em 0.6em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.ai4fm-gallery .controls button:disabled { opacity: 0.5 }

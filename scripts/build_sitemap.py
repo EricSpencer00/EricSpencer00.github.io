@@ -38,7 +38,7 @@ NOINDEX = re.compile(r'<meta[^>]+name="robots"[^>]+content="[^"]*noindex', re.I)
 STUB = "<!-- redirect stub -->"
 
 # Not part of the site at all, so not part of the count either.
-ARCHIVE = ("/.git/", "/backup-site/", "/.claude/")
+ARCHIVE = ("/.git/", "/ai4fm/", "/backup-site/", "/.claude/")
 
 # A sitemap is navigation for crawlers, not an exhaustive inventory of every
 # backwards-compatible endpoint. The projects page is the single catalog;

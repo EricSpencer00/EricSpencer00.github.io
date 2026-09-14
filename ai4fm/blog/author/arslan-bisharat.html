@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts by Arslan Bisharat &#8212; AI4FM | AI for Formal Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d56a4d63" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blog/author/arslan-bisharat';</script>
+    <link rel="canonical" href="https://ai4fm.cs.luc.edu/blog/author/arslan-bisharat.html" />
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo-text.jpeg" class="logo__image only-light" alt="AI4FM | AI for Formal Methods - Home"/>
+    <script>document.write(`<img src="../../_static/logo-text.jpeg" class="logo__image only-dark" alt="AI4FM | AI for Formal Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/LoyolaChicagoCS/ai4fm" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/people.html">Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/software.html">Software and Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/funding.html">Funding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pages/prospective-students.html">Get Involved</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Papers</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../papers/index.html">All Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers/tla-prover.html">TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers/llm-tla-evaluation.html">Can LLMs Write Correct TLA+ Specifications?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers/chattla-2026.html">ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers/gsirs-2026-tla-llm.html">Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers/gcasr-2025-tla-llm.html">Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers/tla-for-all.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Updates</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../posts/index.html">All Posts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/tla-prover-accepted-2026.html">TLA-Prover Paper Accepted to ICSOFT 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/llm-tla-accepted-2026.html">Our Paper on LLM-Based TLA+ Specification Generation Has Been Accepted</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/tla-prover-2026.html">New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/chattla-presentation-2026.html">Eric Spencer Presents ChatTLA+ at Loyola University Chicago</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/gsirs-llm-tla-poster-2026.html">Brian Ortiz Presents Poster at Graduate School Interdisciplinary Research Symposium 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/llm-tla-evaluation-2025.html">Can LLMs Write Correct TLA+ Specifications? Our New Evaluation Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/gcasr-2025-poster.html">Brian Ortiz Presents Poster at GCASR 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/eric-spencer-mulcahy-scholar-2025.html">Eric Spencer Awarded Mulcahy Scholar Stipend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../posts/tla-for-all-running-model-checking-in-a-python-notebook.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li></ul>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   
+<div class="section ablog__collection">
+  <h1>
+    
+    <span
+      >Posts by 
+      <a href="https://marslan.cs.luc.edu/">Arslan Bisharat</a>
+      
+    </span>
+  </h1>
+   
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/tla-prover-accepted-2026.html">TLA-Prover Paper Accepted to ICSOFT 2026</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>05 June 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/publication.html">Publication</a>
+        
+    <a href="../tag/icsoft.html">ICSOFT</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We are pleased to announce that our latest research paper, <strong>“TLA-Prover: Verifiable TLA+
+Specification Synthesis via Preference-Optimized Low-Rank Adaptation”</strong> (Paper #131), has been
+accepted for publication at <strong>ICSOFT 2026</strong> (International Conference on Software Technologies)
+in Porto, Portugal.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/tla-prover-accepted-2026.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/tla-prover-2026.html">New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>16 May 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/fine-tuning.html">Fine-Tuning</a>
+        
+    <a href="../tag/grpo.html">GRPO</a>
+        
+    <a href="../tag/dpo.html">DPO</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Building on our <a class="reference external" href="../llm-tla-evaluation-2025/">evaluation study</a> that showed the best public LLMs
+achieve only 8.6% semantic correctness on TLA+ specification generation, we present
+<strong>TLA-Prover</strong>: a 20-billion-parameter model trained specifically for TLA+ specification synthesis.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/tla-prover-2026.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/gcasr-2026-posters.html">Presented Two Posters at GCASR 2026</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>11 May 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/gcasr.html">GCASR</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>On May 11, 2026 we presented two posters at the 13th Greater Chicago Area
+Systems Research Workshop (GCASR 2026).</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/gcasr-2026-posters.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/llm-tla-accepted-2026.html">Our Paper on LLM-Based TLA+ Specification Generation Has Been Accepted</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>30 April 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/publication.html">Publication</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We are excited to announce that our paper <strong>Can LLMs Write Correct TLA+ Specifications?
+Evaluating Natural-Language-to-TLA+ Generation</strong> has been accepted for publication at <strong>ICSOFT 2026</strong> (International Conference on Software Technologies) in Porto, Portugal.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/llm-tla-accepted-2026.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/chattla-presentation-2026.html">Eric Spencer Presents ChatTLA+ at Loyola University Chicago</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>17 April 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/presentation.html">Presentation</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Eric Spencer presented <strong>ChatTLA+</strong> at the <strong>Undergraduate Research and Engagement Symposium</strong>
+at Loyola University Chicago on April 17, 2026 - a talk exploring the use of large language
+models for generating and verifying TLA+ formal specifications.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/chattla-presentation-2026.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/gsirs-llm-tla-poster-2026.html">Brian Ortiz Presents Poster at Graduate School Interdisciplinary Research Symposium 2026</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>11 April 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/gsirs.html">GSIRS</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Brian Ortiz presented a poster at the Graduate School Interdisciplinary Research Symposium
+(GSIRS 2026) on April 11, 2026, at Loyola University Chicago.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/gsirs-llm-tla-poster-2026.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/llm-tla-evaluation-2025.html">Can LLMs Write Correct TLA+ Specifications? Our New Evaluation Study</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>29 March 2026</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We have submitted a new paper evaluating whether large language models can generate
+semantically correct TLA+ specifications from natural language. We evaluated 30 LLMs
+across eight families on 205 TLA+ specifications. Best semantic correctness achieved
+was only 8.6%, and model size did not predict quality.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/llm-tla-evaluation-2025.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/eric-spencer-mulcahy-scholar-2025.html">Eric Spencer Awarded Mulcahy Scholar Stipend</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>15 August 2025</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/awards.html">Awards</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Eric Spencer, an undergraduate researcher in the AI4FM group, has been awarded a
+<strong>$1,000 Mulcahy Scholar stipend</strong> from the Loyola University Chicago College of
+Arts and Sciences to support his research on LLM-based TLA+ specification synthesis.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/eric-spencer-mulcahy-scholar-2025.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/gcasr-2025-poster.html">Brian Ortiz Presents Poster at GCASR 2025</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>08 May 2025</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+        
+    <a href="../tag/llms.html">LLMs</a>
+        
+    <a href="../tag/gcasr.html">GCASR</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Brian Ortiz presented a work-in-progress poster at the 12th Greater Chicago Area
+Systems Research Workshop (GCASR 2025), held on May 8, 2025 at Loyola University
+Chicago’s Water Tower Campus.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/gcasr-2025-poster.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+  
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/tla-for-all-running-model-checking-in-a-python-notebook.html">TLA+ for All: Running Model Checking in a Python Notebook</a>
+    </h2>
+    <ul class="ablog-archive">
+      <li>
+         
+        <span>05 February 2025</span>
+        
+      </li>
+      <div class="ablog-sidebar-item ablog__postcard2">
+   
+  <li id="ablog-sidebar-item author ablog__author">
+    <span>
+       Author: 
+    </span>
+     
+    <a href="#">Arslan Bisharat</a>
+      
+  </li>
+    
+  <li id="ablog-sidebar-item language ablog__language">
+    <span>
+       Language: 
+    </span>
+     
+    <a href="../language/english.html">English</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item category ablog__category">
+    <span>
+       Category: 
+    </span>
+     
+    <a href="../category/research-update.html">Research Update</a>
+      
+  </li>
+   
+  <li id="ablog-sidebar-item tags ablog__tags">
+    <span>
+        Tags:  
+    </span>
+     
+    <a href="../tag/formal-methods.html">Formal Methods</a>
+        
+    <a href="../tag/tla.html">TLA+</a>
+      
+  </li>
+   
+</div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We published a project embedding TLA+ model checking directly into a Python notebook
+environment, making formal verification accessible without any installation. Users can
+write specifications, run the TLC model checker, and visualize behaviors in-browser.</p>
+</p>
+
+    <p class="ablog-post-expand">
+      <a href="../../posts/tla-for-all-running-model-checking-in-a-python-notebook.html"><em>Read more ...</em></a>
+    </p>
+    <hr />
+  </div>
+   
+</div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AI4FM Research Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, AI4FM Research Group.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

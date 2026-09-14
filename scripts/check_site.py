@@ -22,7 +22,7 @@ from build_blog import load_posts
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://ericspencer.us"
-SKIP_DIRS = {".git", "backup-site", "editor", "tests"}
+SKIP_DIRS = {".git", "ai4fm", "backup-site", "editor", "tests"}
 SKIP_FILES = {
     ROOT / "404.html",  # GitHub Pages' fallback document keeps its file URL.
     ROOT / "blog" / "_template.html",

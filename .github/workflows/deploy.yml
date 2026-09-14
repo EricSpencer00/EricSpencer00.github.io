@@ -29,6 +29,13 @@ jobs:
 
       # The dev mirror is already built, pruned, and marked noindex by deploy-dev.
       # Publish that artifact as-is; rebuilding loses those transformations.
+      # The production build below is skipped for the dev mirror, but the
+      # checked-in AI4FM preview must also never be copied into the artifact.
+      # The /ai4fm project path is deployed by the AI4FM repository's own
+      # Pages workflow. Never publish the checked-in preview copy from this
+      # personal-site artifact.
+      - name: Remove checked-in AI4FM preview
+        run: rm -rf ai4fm
       - name: Build static pages
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: |

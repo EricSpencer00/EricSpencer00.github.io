@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai4fm.cs.luc.edu/sitemap.xml

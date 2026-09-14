@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="TLA+ for All: Running Model Checking in a Python Notebook" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ai4fm.cs.luc.edu/papers/tla-for-all.html" />
+<meta property="og:site_name" content="AI4FM | AI for Formal Methods" />
+<meta property="og:description" content="Status, Published,, Venue, figshare, February 2025,, Authors, Konstantin Laufer, George K. Thiruvathukal,, DOI / PDF, 10.6084/m9.figshare.28376276.v1,. Overview: TLA+ is a powerful formal specifica..." />
+<meta property="og:image" content="https://ai4fm.cs.luc.edu/_static/images/logo-light.png" />
+<meta property="og:image:alt" content="AI4FM | AI for Formal Methods" />
+<meta name="description" content="Status, Published,, Venue, figshare, February 2025,, Authors, Konstantin Laufer, George K. Thiruvathukal,, DOI / PDF, 10.6084/m9.figshare.28376276.v1,. Overview: TLA+ is a powerful formal specifica..." />
+<meta name="description" content="AI4FM — AI for Formal Methods research group at Loyola University Chicago. Advancing TLA+, formal verification, and LLM evaluation for rigorous system design.">
+<meta name="keywords" content="formal methods, TLA+, LLMs, model checking, Loyola University Chicago, AI, verification">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="04K9THhTvTqHTgt9pjOMw5pqkSi5_83nQCXMMrDnFsc" />
+
+    <title>TLA+ for All: Running Model Checking in a Python Notebook &#8212; AI4FM | AI for Formal Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d56a4d63" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'papers/tla-for-all';</script>
+    <link rel="canonical" href="https://ai4fm.cs.luc.edu/papers/tla-for-all.html" />
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Research Updates" href="../posts/index.html" />
+    <link rel="prev" title="Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines" href="gcasr-2025-tla-llm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo-text.jpeg" class="logo__image only-light" alt="AI4FM | AI for Formal Methods - Home"/>
+    <script>document.write(`<img src="../_static/logo-text.jpeg" class="logo__image only-dark" alt="AI4FM | AI for Formal Methods - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/LoyolaChicagoCS/ai4fm" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/people.html">Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/software.html">Software and Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/funding.html">Funding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/prospective-students.html">Get Involved</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Papers</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">All Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tla-prover.html">TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-tla-evaluation.html">Can LLMs Write Correct TLA+ Specifications?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chattla-2026.html">ChatTLA+: Using LLMs for TLA+ Formal Specification Generation and Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsirs-2026-tla-llm.html">Large Language Models (LLM) and Temporal Logic of Actions (TLA): How Effective are LLMs for Verification Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gcasr-2025-tla-llm.html">Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Research Updates</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../posts/index.html">All Posts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/tla-prover-accepted-2026.html">TLA-Prover Paper Accepted to ICSOFT 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/llm-tla-accepted-2026.html">Our Paper on LLM-Based TLA+ Specification Generation Has Been Accepted</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/tla-prover-2026.html">New Paper: TLA-Prover — Fine-Tuning LLMs for Verifiable TLA+ Specification Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/chattla-presentation-2026.html">Eric Spencer Presents ChatTLA+ at Loyola University Chicago</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/gsirs-llm-tla-poster-2026.html">Brian Ortiz Presents Poster at Graduate School Interdisciplinary Research Symposium 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/llm-tla-evaluation-2025.html">Can LLMs Write Correct TLA+ Specifications? Our New Evaluation Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/gcasr-2025-poster.html">Brian Ortiz Presents Poster at GCASR 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/eric-spencer-mulcahy-scholar-2025.html">Eric Spencer Awarded Mulcahy Scholar Stipend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../posts/tla-for-all-running-model-checking-in-a-python-notebook.html">TLA+ for All: Running Model Checking in a Python Notebook</a></li>
+</ul></details></li></ul>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/papers/tla-for-all.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TLA+ for All: Running Model Checking in a Python Notebook</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-accessibility-barriers-in-formal-methods">The Problem: Accessibility Barriers in Formal Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-tla-in-a-notebook">The Solution: TLA+ in a Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<section id="tla-for-all-running-model-checking-in-a-python-notebook">
+<h1>TLA+ for All: Running Model Checking in a Python Notebook<a class="headerlink" href="#tla-for-all-running-model-checking-in-a-python-notebook" title="Link to this heading">#</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Published</p>
+</dd>
+<dt class="field-even">Venue<span class="colon">:</span></dt>
+<dd class="field-even"><p>figshare, February 2025</p>
+</dd>
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Konstantin Laufer, George K. Thiruvathukal</p>
+</dd>
+<dt class="field-even">DOI / PDF<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://dx.doi.org/10.6084/m9.figshare.28376276.v1">10.6084/m9.figshare.28376276.v1</a></p>
+</dd>
+</dl>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>TLA+ is a powerful formal specification language for designing and verifying concurrent
+and distributed systems. But for many students and practitioners, the ecosystem has felt
+inaccessible - requiring specialized tooling, complex installation steps, and the
+perception that formal methods are only for specialists.</p>
+<p>This project changes that by embedding TLA+ model checking directly into a Python
+notebook environment. Anyone who can open a browser can now write specifications,
+run the TLC model checker, explore counterexamples, and visualize system behaviors.</p>
+</section>
+<section id="the-problem-accessibility-barriers-in-formal-methods">
+<h2>The Problem: Accessibility Barriers in Formal Methods<a class="headerlink" href="#the-problem-accessibility-barriers-in-formal-methods" title="Link to this heading">#</a></h2>
+<p>Despite decades of success in verifying critical systems, TLA+ adoption remains limited.
+The barriers are real:</p>
+<ul class="simple">
+<li><p>The TLC model checker requires a local Java installation and command-line setup</p></li>
+<li><p>The TLA+ Toolbox IDE is unfamiliar to students used to notebook-based workflows</p></li>
+<li><p>No standard way exists to combine specifications, narrative, and results in a
+reproducible and shareable format</p></li>
+<li><p>Workshop and classroom use requires every participant to install and configure tooling</p></li>
+</ul>
+<p>These barriers disproportionately affect students encountering formal methods for the
+first time and instructors at institutions without dedicated systems support.</p>
+</section>
+<section id="the-solution-tla-in-a-notebook">
+<h2>The Solution: TLA+ in a Notebook<a class="headerlink" href="#the-solution-tla-in-a-notebook" title="Link to this heading">#</a></h2>
+<p>By integrating TLA+ into a Python notebook environment (Jupyter/JupyterLite):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>In-browser TLC execution</p></td>
+<td><p>Run TLA+ model checker without installing anything</p></td>
+</tr>
+<tr class="row-odd"><td><p>Literate specifications</p></td>
+<td><p>Mix TLA+ code, prose, and results in one notebook</p></td>
+</tr>
+<tr class="row-even"><td><p>Trace visualization</p></td>
+<td><p>Explore counterexamples and behaviors interactively</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reproducibility</p></td>
+<td><p>Share a URL and anyone can re-run the full analysis</p></td>
+</tr>
+<tr class="row-even"><td><p>No setup friction</p></td>
+<td><p>Classroom and workshop ready - open a link and start</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">#</a></h2>
+<p><strong>Teaching and workshops</strong> - No setup friction. Students open a URL and start writing specs.</p>
+<p><strong>Research documentation</strong> - Executable specifications embedded in research papers and reports.</p>
+<p><strong>Exploratory modeling</strong> - Engineers sketch system designs and check properties without
+committing to a full tool installation.</p>
+<p><strong>Tutorials and onboarding</strong> - New team members explore a codebase’s formal model
+before touching the implementation.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
+<p>Konstantin Laufer and George K. Thiruvathukal,
+<em>TLA for All: Model Checking in a Python Notebook</em>,
+figshare, February 2025.
+<a class="reference external" href="http://dx.doi.org/10.6084/m9.figshare.28376276.v1">http://dx.doi.org/10.6084/m9.figshare.28376276.v1</a></p>
+</section>
+</section>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gcasr-2025-tla-llm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Automating TLA+ Model Synthesis with Large Language Models and Formal Verification Pipelines</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../posts/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Research Updates</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-accessibility-barriers-in-formal-methods">The Problem: Accessibility Barriers in Formal Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-tla-in-a-notebook">The Solution: TLA+ in a Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AI4FM Research Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, AI4FM Research Group.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
