@@ -133,43 +133,43 @@
   "additional": [
     {
       "name": "TLA+",
-      "url": "/projects/tla-plus.html",
+      "url": "/projects/tla-plus/",
       "description": "TLA+ modeling and verification work, including interactive examples, research tools, and generated specifications.",
       "language": "TLA+"
     },
     {
       "name": "Agent Board",
-      "url": "/projects/agent-board.html",
+      "url": "/projects/agent-board/",
       "description": "Shared ticket board with a SQLite source of truth, a kanban UI, a CLI, and a GitHub Issues mirror.",
       "language": "Python"
     },
     {
       "name": "AI Music Playground",
-      "url": "/projects/ai-music-playground.html",
+      "url": "/projects/ai-music-playground/",
       "description": "Private workspace for experiments with AI-generated music.",
       "language": ""
     },
     {
       "name": "Hermes Ops",
-      "url": "/projects/hermes-ops.html",
+      "url": "/projects/hermes-ops/",
       "description": "Operations scripts and configuration for the Hermes agent and its delegated jobs.",
       "language": "Shell"
     },
     {
       "name": "PhoneClaw",
-      "url": "/projects/phoneclaw.html",
+      "url": "/projects/phoneclaw/",
       "description": "A Mac bridge and old-iPhone client that route text messages to AI agents.",
       "language": "Python / Swift"
     },
     {
       "name": "instxnt.xyz",
-      "url": "/projects/instxnt.html",
+      "url": "/projects/instxnt/",
       "description": "Dashboard and storefront system for creating AI-powered online stores.",
       "language": "TypeScript"
     },
     {
       "name": "I Paid For This Shirt",
-      "url": "/projects/i-paid-for-this-shirt.html",
+      "url": "/projects/i-paid-for-this-shirt/",
       "description": "A storefront that prints the exact price paid on the shirt.",
       "language": "Web"
     },

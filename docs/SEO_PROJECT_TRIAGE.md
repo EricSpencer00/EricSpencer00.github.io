@@ -23,7 +23,7 @@ This is an issue backlog, not a ranking report. The earlier 50-query fuzzy scan 
 
 - [Eric Spencer’s GitHub profile](https://github.com/EricSpencer00) currently shows **161 repositories**, 60 stars, and pins **Resilient**, **LUC-AI4FM/TLA-Prove**, and **LUC-AI4FM/tlakit**. The profile identifies Eric as a formal methods researcher at Loyola University Chicago and links the personal site, ORCID, LinkedIn, and Hugging Face.
 - The [personal homepage](https://ericspencer.us/) currently leads with formal methods, LLM research, AI4FM, ChatTLA+, Resilient, FROM AMERICA, and selected work such as Not Hotdog, tlakit, and paper-digest.
-- The current [projects hub](https://ericspencer.us/projects.html) exposes the entire public-repository corpus plus LUC-AI4FM and FROM AMERICA work. That is useful as an index, but it is too broad to be the only information architecture for search.
+- The current [projects hub](https://ericspencer.us/projects/) exposes the entire public-repository corpus plus LUC-AI4FM and FROM AMERICA work. That is useful as an index, but it is too broad to be the only information architecture for search.
 - The public research graph is strong: [AI4FM](https://ai4fm.cs.luc.edu/), [DBLP](https://dblp.org/pid/439/8284.html), arXiv papers, Hugging Face models, GitHub repositories, and the personal site reinforce one another.
 - The [Resilient repository](https://github.com/EricSpencer00/Resilient) has a substantially more specific proposition than its name alone: a statically typed compiled language for safety-critical embedded systems, with Z3-backed contracts, `no_std` runtime work, and self-healing blocks.
 - The [tlakit repository](https://github.com/LUC-AI4FM/tlakit) and [PyPI package](https://pypi.org/project/tlakit/) create a strong package-to-documentation-to-author path. The [TLA-Prove repository](https://github.com/LUC-AI4FM/TLA-Prove) supplies a similarly strong research-artifact path.
@@ -140,11 +140,11 @@ Priority meanings: **P0** = fixes the entity/canonical foundation; **P1** = mate
 
 **Acceptance criteria:** every public repo and organization project is accounted for; every canonical writeup has one tier; selected projects are reachable from the home page within one click; archive/contribution labels are visible to humans; no page is hidden solely because it is hard to classify.
 
-#### SEO-002 — Make `/projects.html` the one project-hub URL
+#### SEO-002 — Make `/projects/` the one project-hub URL
 
 **Targets:** `/projects/`, `projects/index.html`, internal links, sitemap, old mirror paths.
 
-**Fix:** Use `/projects.html` consistently in internal links, canonical tags, and the sitemap. Verify the deployed old `/projects/` path returns a real redirect where the host supports it; otherwise keep the static redirect stub but do not serve a second full project index there. Request recrawl after deployment.
+**Fix:** Use `/projects/` consistently in internal links, canonical tags, and the sitemap. Verify the deployed old `/projects/` path returns a real redirect where the host supports it; otherwise keep the static redirect stub but do not serve a second full project index there. Request recrawl after deployment.
 
 **Acceptance criteria:** one project hub appears in the sitemap; old paths do not contain a second full copy; canonical and redirect targets agree; a crawler sees the same title/description/links regardless of which legacy path it enters.
 
@@ -339,9 +339,9 @@ When implementation begins, use this order:
 ## Source files and references
 
 - [`content/project-pages.txt`](../content/project-pages.txt) — canonical/mirror map.
-- [`projects.html`](../projects.html) — current all-projects index and categories.
+- [`projects/`](../projects/) — current all-projects index and categories.
 - [`index.html`](../index.html) — current entity copy, links, and homepage JSON-LD.
-- [`research.html`](../research.html) — current research metadata and artifact links.
+- [`research/`](../research/) — current research metadata and artifact links.
 - [`scripts/build_sitemap.py`](../scripts/build_sitemap.py) — sitemap generation policy.
 - [`scripts/build_og_images.py`](../scripts/build_og_images.py) — published-page discovery and canonical grouping.
 - [`scripts/check_project_pages.py`](../scripts/check_project_pages.py) — mirror/canonical consistency check.

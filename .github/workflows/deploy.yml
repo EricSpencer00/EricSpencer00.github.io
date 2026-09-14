@@ -37,6 +37,7 @@ jobs:
           python3 scripts/build_blog.py
           python3 scripts/build_resume_pages.py
           python3 scripts/build_projects.py
+          python3 scripts/build_legacy_redirects.py
           python3 scripts/build_public_apps.py
           python3 scripts/normalize_project_pages.py
           python3 scripts/apply_portfolio_theme.py
@@ -101,6 +102,10 @@ jobs:
       - name: Build sitemap
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/build_sitemap.py
+
+      - name: Verify routes and SEO metadata
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/check_site.py
 
       # backup-site/ and editor/ are local-only authoring material. Shipping
       # either would publish duplicate or unpublished working copy.

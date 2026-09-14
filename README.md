@@ -10,9 +10,9 @@ Hand-written HTML personal site with small Python build scripts. No frameworks.
 
 ```
 index.html          homepage
-projects.html       projects and live work
-research.html       publications: papers, talks, models, and tools
-projects/*.html     individual project writeups
+projects/           projects and live work
+research/           publications: papers, talks, models, and tools
+projects/*/         individual project writeups
 projects/2026/1rm/ source for the live 1RM build and its route mirror
 projects/2026/stem-player/ Stemacle route stub
 projects/2026/ulam-spiral/ live Ulam spiral build
@@ -44,9 +44,10 @@ so reshooting keeps working.
 
 ## One copy of each project page
 
-A project writeup lives at `projects/<slug>.html`. Its old Hugo URLs
-(`projects/<year>/<slug>/`, `miscellaneous/<slug>/`) stay alive as redirect
-stubs, so the writeup is served once and the old links still work.
+A project writeup lives at `projects/<slug>/`. Its old flat `.html` URL and Hugo
+URLs (`projects/<year>/<slug>/`, `miscellaneous/<slug>/`) stay alive as
+noindex redirect stubs, so the writeup is served once and the old links still
+work.
 
 `content/project-pages.txt` lists which mirror belongs to which page. The
 pairing is not derivable from the slug, so add a line when you add a page.
@@ -78,7 +79,7 @@ published: true
 ---
 ```
 
-Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug.html` and update `blog/index.html`. The deployment workflow runs this automatically. Set `published: false` while drafting.
+Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug/` and update `blog/index.html`. The deployment workflow runs this automatically. Set `published: false` while drafting.
 
 ## Link previews
 

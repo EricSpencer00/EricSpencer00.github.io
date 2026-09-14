@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * build-blog.js
- * Compile blog/posts/*.md → blog/*.html and regenerate blog/index.html
+ * Compile blog/posts/*.md → blog/<slug>/index.html and regenerate blog/index.html
  *
  * Frontmatter (YAML-style, between --- delimiters):
  *   title: My Post Title
@@ -132,11 +132,11 @@ function renderPost({ title, date, description, slug, body }) {
 <meta name="description" content="${safeDesc}">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ericspencer.us/blog/${slug}.html">
+<link rel="canonical" href="https://ericspencer.us/blog/${slug}/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${safeTitle} | Eric Spencer">
 <meta property="og:description" content="${safeDesc}">
-<meta property="og:url" content="https://ericspencer.us/blog/${slug}.html">
+<meta property="og:url" content="https://ericspencer.us/blog/${slug}/">
 <meta property="og:site_name" content="Eric Spencer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -202,7 +202,7 @@ function rebuildIndex(posts) {
   } else {
     rows = '\n' + sorted.map(p => {
       const desc = p.description ? `\n<div class="post-desc">${escapeHtml(p.description)}</div>` : '';
-      return `<div class="post-row"><div class="post-d">${p.date || ''}</div><div class="post-body"><div class="post-title"><a href="/blog/${p.slug}.html">${escapeHtml(p.title)}</a></div>${desc}</div></div>`;
+      return `<div class="post-row"><div class="post-d">${p.date || ''}</div><div class="post-body"><div class="post-title"><a href="/blog/${p.slug}/">${escapeHtml(p.title)}</a></div>${desc}</div></div>`;
     }).join('\n') + '\n';
   }
 
@@ -253,9 +253,11 @@ for (const file of mdFiles) {
   const htmlBody = mdToHtml(body);
   const page = renderPost({ title, date, description, slug, body: htmlBody });
 
-  const outPath = join(BLOG_DIR, `${slug}.html`);
+  const outDir = join(BLOG_DIR, slug);
+  mkdirSync(outDir, { recursive: true });
+  const outPath = join(outDir, 'index.html');
   writeFileSync(outPath, page, 'utf8');
-  console.log(`  built  blog/${slug}.html`);
+  console.log(`  built  blog/${slug}/index.html`);
 
   built.push({ slug, title, date, description });
 }

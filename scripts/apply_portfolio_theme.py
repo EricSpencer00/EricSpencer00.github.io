@@ -20,16 +20,16 @@ SKIP = {".git", ".claude", "backup-site", "editor", "tests", "assets"}
 def targets() -> list[Path]:
     paths = [
         ROOT / "404.html",
-        ROOT / "projects.html",
-        ROOT / "research.html",
+        ROOT / "projects" / "index.html",
+        ROOT / "research" / "index.html",
         ROOT / "cv" / "index.html",
         ROOT / "blog" / "index.html",
         ROOT / "news" / "index.html",
     ]
     paths.extend(
         path
-        for path in sorted((ROOT / "projects").glob("*.html"))
-        if path.name != "index.html"
+        for path in sorted((ROOT / "projects").glob("*/index.html"))
+        if path.parent.name != "2026" and path.parent.name != "index"
     )
     return [path for path in paths if path.is_file()]
 
@@ -86,7 +86,9 @@ def apply(path: Path) -> str:
         return "skipped-redirect"
     original = text
     body_class = "news-surface" if path == ROOT / "news" / "index.html" else (
-        "portfolio-article" if path.parent == ROOT / "projects" else "portfolio-page"
+        "portfolio-article"
+        if path.parent.parent == ROOT / "projects" and path.parent.name != "2026"
+        else "portfolio-page"
     )
     text = add_body_class(text, body_class)
     if body_class == "portfolio-article":

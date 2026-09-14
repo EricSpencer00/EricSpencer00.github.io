@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Hold the project pages to one copy each, listed in content/project-pages.txt.
 
-A project writeup lives at /projects/<slug>.html. Its old Hugo URLs stay alive
+A project writeup lives at /projects/<slug>/. Its old flat and Hugo URLs stay alive
 as redirect stubs under projects/<year>/<slug>/ and miscellaneous/<slug>/.
 collapse_mirrors.py writes those stubs, but it reads the target out of the
 mirror's own canonical tag -- so a mirror that never had one, or that points at
@@ -64,6 +64,10 @@ def entries():
 def on_disk():
     """Every mirror index.html in the repo, as repo-relative strings."""
     found = [
+        path for path in sorted(ROOT.glob("projects/*.html"))
+        if path.name != "index.html"
+    ]
+    found += [
         path for path in sorted(ROOT.glob("projects/20*/*/index.html"))
         if not is_live_project_source(path)
     ]
@@ -91,7 +95,10 @@ def target_of(path):
 
 def title_of(canonical, mirror):
     """The stub's title: the canonical page's, or the mirror's if it has none."""
-    for path in (ROOT / canonical.lstrip("/"), mirror):
+    page = ROOT / canonical.lstrip("/")
+    if page.is_dir():
+        page = page / "index.html"
+    for path in (page, mirror):
         if path.is_file():
             m = re.search(r"<title>(.*?)</title>", path.read_text(errors="replace"), re.S)
             if m:
@@ -108,6 +115,8 @@ def words(path):
 def drift(canonical, mirror):
     """How far a mirror's text has moved from the page it claims to be."""
     page = ROOT / canonical.lstrip("/")
+    if page.is_dir():
+        page = page / "index.html"
     if not page.is_file():
         return "canonical served from another repo, nothing to diff against"
     a, b = words(page), words(mirror)
@@ -125,7 +134,10 @@ def main():
     listed_mirrors = set()
 
     for canonical, mirrors, note in entries():
-        if note != "external" and not (ROOT / canonical.lstrip("/")).is_file():
+        page = ROOT / canonical.lstrip("/")
+        if page.is_dir():
+            page = page / "index.html"
+        if note != "external" and not page.is_file():
             problems.append(("missing-page", canonical))
         for mirror in mirrors:
             listed_mirrors.add(mirror)
@@ -158,17 +170,21 @@ def main():
     # and collapse_mirrors.py then reads that back and leaves the mirror alone.
     for canonical, _, note in entries():
         page = ROOT / canonical.lstrip("/")
+        if page.is_dir():
+            page = page / "index.html"
         if note == "external" or not page.is_file():
             continue
         m = re.search(r'<link rel="canonical" href="([^"]+)"', page.read_text(errors="replace"))
         if m and m.group(1) != SITE + canonical:
             problems.append(("wrong-canonical", f"{canonical} -> {m.group(1)}"))
     for page in sorted(ROOT.glob("projects/*.html")):
+        if page.name == "index.html":
+            continue
         rel = str(page.relative_to(ROOT))
         if "/" + rel in listed_pages or rel in listed_mirrors:
             continue
         # A stub under projects/ is a mirror of some other page, not a page of
-        # its own -- /projects/index.html redirects to /projects.html. Listing
+        # its own -- /projects/index.html is the project catalog. Listing
         # it as canonical would claim a redirect is what gets indexed.
         kind = "unlisted-mirror" if target_of(page) else "unlisted-page"
         problems.append((kind, rel))

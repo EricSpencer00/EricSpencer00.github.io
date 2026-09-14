@@ -23,7 +23,7 @@ MANIFEST = ROOT / "content" / "public-projects.json"
 PRIORITIES = ROOT / "content" / "project-priorities.json"
 PUBLIC_APPS = ROOT / "content" / "public-apps.json"
 SELECTED = ROOT / "content" / "selected.txt"
-OUTPUT = ROOT / "projects.html"
+OUTPUT = ROOT / "projects" / "index.html"
 SITE = "https://ericspencer.us"
 PAGE_DESCRIPTION = (
     "Software, research, experiments, coursework, and live apps from Eric Spencer."
@@ -228,7 +228,7 @@ def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> st
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": "Projects",
-            "url": f"{SITE}/projects.html",
+            "url": f"{SITE}/projects/",
             "description": PAGE_DESCRIPTION,
             "author": {"@type": "Person", "name": "Eric Spencer", "url": f"{SITE}/"},
             "hasPart": {
@@ -251,7 +251,7 @@ def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> st
 <meta name="description" content="{PAGE_DESCRIPTION}">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<link rel="canonical" href="https://ericspencer.us/projects.html">
+<link rel="canonical" href="https://ericspencer.us/projects/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -261,7 +261,7 @@ def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> st
 <meta property="og:type" content="website">
 <meta property="og:title" content="Projects | Eric Spencer">
 <meta property="og:description" content="{PAGE_DESCRIPTION}">
-<meta property="og:url" content="https://ericspencer.us/projects.html">
+<meta property="og:url" content="https://ericspencer.us/projects/">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -303,7 +303,7 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 <body class="portfolio-page">
 <div class="wrap">
 <p class="name">Eric Spencer</p>
-<nav aria-label="Primary"><a href="/">index</a> · <a href="/research.html">publications</a> · <a href="/projects.html" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
+<nav aria-label="Primary"><a href="/">index</a> · <a href="/research/">publications</a> · <a href="/projects/" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
 <hr>
 <main>
 <h1>Projects</h1>
@@ -323,14 +323,14 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--check", action="store_true", help="fail when projects.html is stale")
+    parser.add_argument("--check", action="store_true", help="fail when projects/ is stale")
     args = parser.parse_args()
     projects = load_projects()
     selected = selected_projects(projects, load_selected())
     output = render(projects, selected)
     if args.check:
         if not OUTPUT.exists():
-            print("projects.html is stale; run python3 scripts/build_projects.py", file=sys.stderr)
+            print("projects/ is stale; run python3 scripts/build_projects.py", file=sys.stderr)
             return 1
         # apply_og_tags.py and seo_tags.py intentionally enrich the generated
         # head later in the release pipeline. Check the manifest-owned body
@@ -347,13 +347,13 @@ def main() -> int:
         actual = re.sub(r"\s+", " ", actual_body.group(1) if actual_body else "")
         if (not expected_body or not actual_body or expected != actual
                 or any(text in current for text in forbidden)):
-            print("projects.html is stale; run python3 scripts/build_projects.py", file=sys.stderr)
+            print("projects/ is stale; run python3 scripts/build_projects.py", file=sys.stderr)
             return 1
-        print("projects.html is current")
+        print("projects/ is current")
         return 0
     OUTPUT.write_text(output, encoding="utf-8")
     counts = {tier: sum(project["priority"] == tier for project in projects) for tier in TIER_ORDER}
-    print(f"Built {counts} visible projects -> projects.html")
+    print(f"Built {counts} visible projects -> projects/")
     return 0
 
 

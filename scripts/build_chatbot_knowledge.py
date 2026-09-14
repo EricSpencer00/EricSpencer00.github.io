@@ -19,6 +19,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 from build_og_images import published_pages
+from build_blog import load_posts
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "data" / "site-knowledge.js"
@@ -90,12 +91,15 @@ def chunks(text: str, limit: int = 900) -> list[str]:
 def published_html() -> list[tuple[str, Path]]:
     selected: list[tuple[str, Path]] = []
     seen: set[str] = set()
+    has_published_blog = bool(load_posts())
     for url, paths in published_pages().items():
         if url in seen:
             continue
         for path in paths:
             rel = path.relative_to(ROOT)
             if any(part in SKIP_PARTS for part in rel.parts):
+                continue
+            if not has_published_blog and path == ROOT / "blog" / "index.html":
                 continue
             body = path.read_text(encoding="utf-8", errors="replace")
             if STUB not in body:

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Turn the old Hugo URLs into redirects instead of second copies.
 
-Every project page exists twice: at /projects/<slug>.html, and at the Hugo path
+Every project page exists at /projects/<slug>/, with legacy copies at
+/projects/<slug>.html and the Hugo path
 it had before the rewrite -- /projects/<year>/<slug>/ or /miscellaneous/<slug>/.
 The mirrors already canonicalise to the real page, but they still serve a full
 copy of it, so a crawler spends a fetch on each one and finds nothing new. On a
@@ -52,6 +53,9 @@ a{{color:#6e1a19}}
 
 
 def mirrors():
+    yield from sorted(
+        path for path in ROOT.glob("projects/*.html") if path.name != "index.html"
+    )
     for path in sorted(ROOT.glob("projects/20*/*/index.html")):
         if not is_live_project_source(path):
             yield path

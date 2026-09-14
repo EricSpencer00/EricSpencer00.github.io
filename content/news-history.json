@@ -63,25 +63,25 @@
     {
       "date": "2025-01",
       "html": "just wrote up my Hall of Fame predictor from the Google Cloud × MLB hackathon. it’s a decision tree trained on baseball stats",
-      "url": "/projects/mlb-hackathon.html",
-      "source": "/projects/mlb-hackathon.html"
+      "url": "/projects/mlb-hackathon/",
+      "source": "/projects/mlb-hackathon/"
     },
     {
       "date": "2025-03",
       "html": "I made a VS Code extension to turn a whole repo into a text file for an LLM. got tired of pasting files one at a time",
-      "url": "/projects/flatten-repo.html",
-      "source": "/projects/flatten-repo.html"
+      "url": "/projects/flatten-repo/",
+      "source": "/projects/flatten-repo/"
     },
     {
       "date": "2025-04",
       "html": "we’ve been working on sign language recognition in AI Club with Python and OpenCV. downloading all the videos taught me that you can run out of wifi",
-      "url": "/projects/sign-language.html",
-      "source": "/projects/sign-language.html"
+      "url": "/projects/sign-language/",
+      "source": "/projects/sign-language/"
     },
     {
       "date": "2025-05",
       "html": "just built a microwave demo to help teach TLA+ at Loyola. took two weeks. Spring Boot (Java) and Vaadin (also Java)",
-      "url": "/projects/interactive-microwave-tla.html",
+      "url": "/projects/interactive-microwave-tla/",
       "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/loyola-cs-software-engineer-2025/"
     },
     {
@@ -129,26 +129,26 @@
     {
       "date": "2026-05-13",
       "html": "just put out the ChatTLA+ dataset. it has the verified training examples and the benchmark we used for the paper",
-      "url": "/projects/chattla-dataset.html",
-      "source": "/projects/chattla-dataset.html"
+      "url": "/projects/chattla-dataset/",
+      "source": "/projects/chattla-dataset/"
     },
     {
       "date": "2026-05-15",
       "html": "I made a little macOS app for putting cover art on MP3s. drop in the audio and an image and it does the rest locally",
-      "url": "/projects/tunes2tube-mac.html",
-      "source": "/projects/tunes2tube-mac.html"
+      "url": "/projects/tunes2tube-mac/",
+      "source": "/projects/tunes2tube-mac/"
     },
     {
       "date": "2026-05",
       "html": "I’ve been writing Coq and TLA+ specs for Rubik’s Snake. there’s a Python enumerator too",
-      "url": "/projects/rubix-snake-puzzle.html",
-      "source": "/projects/rubix-snake-puzzle.html"
+      "url": "/projects/rubix-snake-puzzle/",
+      "source": "/projects/rubix-snake-puzzle/"
     },
     {
       "date": "2026-05-20",
       "html": "I started making a programming language called Resilient. trying to put checked contracts and runtime recovery into the language itself. very much a research project",
-      "url": "/projects/resilient.html",
-      "source": "/projects/resilient.html"
+      "url": "/projects/resilient/",
+      "source": "/projects/resilient/"
     },
     {
       "date": "2026-06",

@@ -1,0 +1,233 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Git Key Guardian | Eric Spencer</title>
+<meta name="description" content="Protect sensitive keys from accidentally being uploaded to your git history at any point.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/gitkey/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Key Guardian | Eric Spencer">
+<meta property="og:description" content="Protect sensitive keys from accidentally being uploaded to your git history at any point.">
+<meta property="og:url" content="https://ericspencer.us/projects/gitkey/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects-gitkey.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Git Key Guardian | Eric Spencer — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-gitkey.jpg">
+<meta name="twitter:image:alt" content="Git Key Guardian | Eric Spencer — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-gitkey.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="Git Key Guardian | Eric Spencer">
+<meta name="twitter:description" content="Protect sensitive keys from accidentally being uploaded to your git history at any point.">
+<meta property="linkedin:title" content="Git Key Guardian | Eric Spencer">
+<meta property="linkedin:description" content="Protect sensitive keys from accidentally being uploaded to your git history at any point.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Git Key Guardian",
+"description":"Protect sensitive keys from accidentally being uploaded to your git history at any point.",
+"url":"https://ericspencer.us/projects/gitkey/",
+"image":"https://ericspencer.us/assets/og/projects-gitkey.jpg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2025-09-14",
+"mainEntityOfPage":"https://ericspencer.us/projects/gitkey/"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h1 class="article-title">Git Key Guardian<span class="ln"></span></h1>
+<p class="meta">Protect sensitive keys from accidentally being uploaded to your git history at any point.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/git-key-guardian" target="_blank" rel="noopener">https://github.com/EricSpencer00/git-key-guardian</a></p>
+<hr class="dash">
+<p>Git Key Guardian is a pre-commit hook and helper toolkit. It scans staged changes for common secret patterns and for a user-supplied list of personal keys, so that API keys, tokens, and credentials are caught before they enter git history.</p>
+<h2>Motivation<span class="ln"></span></h2>
+<p>Secrets get committed by accident. API keys, SSH keys, cloud credentials, and other sensitive strings can slip into commits or CI logs. Git Key Guardian is an opt-in check that runs locally as a shared hook and reports matches against a configurable set of regex patterns and a personal key list.</p>
+<p>The tool is deliberately simple and conservative. It scans only staged changes, uses maintainable regex patterns, and supports exact-string matches for specific keys.</p>
+<h2>What it does<span class="ln"></span></h2>
+<ul>
+<li>Scans only staged (cached) changes, which avoids noise from the working tree.</li>
+<li>Configurable regex patterns stored in <code>patterns/common_patterns.txt</code>, one per line, with inline comments allowed.</li>
+<li>Exact-string matching against a per-user personal key file at <code>$HOME/.git-key-guardian/personal_keys.txt</code>.</li>
+<li>An interactive prompt when matches are detected, with the option to abort or proceed with the commit.</li>
+<li>An installer script that wires the hook globally via <code>core.hooksPath</code> so it covers all local repositories.</li>
+</ul>
+<h2>How it works<span class="ln"></span></h2>
+<p>On <code>git commit</code>, the pre-commit hook captures the staged diff with zero context and extracts newly added lines, meaning those starting with a single <code>+</code>. It then runs two checks:</p>
+<ol>
+<li>Grep-style regex checks using the patterns in <code>patterns/common_patterns.txt</code>, with comments and blank lines ignored.</li>
+<li>Fixed string checks against the personal keys file at <code>$HOME/.git-key-guardian/personal_keys.txt</code>.</li>
+</ol>
+<p>If either check matches, the hook prints a sample of the matching lines and prompts for abort or continue.</p>
+<h2>Install<span class="ln"></span></h2>
+<p>Clone the repository and run the installer script. The installer copies the <code>pre-commit</code> hook to a shared hooks directory and configures <code>git</code> to use it globally.</p>
+<pre class="code"><code>
+git clone https://github.com/EricSpencer00/git-key-guardian.git
+cd git-key-guardian
+chmod +x ./scripts/install.sh
+./scripts/install.sh
+</code></pre>
+<p>Patterns are copied to <code>$HOME/.git-key-guardian/patterns/common_patterns.txt</code> and the hook is installed at <code>$HOME/.git-key-guardian/hooks/pre-commit</code>. The installer also creates an editable <code>personal_keys.txt</code>.</p>
+<p>To uninstall, remove the shared hooks directory or run:</p>
+<pre class="code"><code>
+git config --global --unset core.hooksPath
+</code></pre>
+<h2>Usage<span class="ln"></span></h2>
+<ul>
+<li>Stage changes as usual with <code>git add</code>.</li>
+<li>Run <code>git commit</code>. The hook scans staged changes automatically.</li>
+<li>When potential secrets are found, sample matches are printed along with a prompt to continue or abort.</li>
+</ul>
+<h3>Test locally without installing</h3>
+<p>To exercise the hook without changing the global git configuration, create a temporary repository and run a commit, as described in <code>CONTRIBUTING.md</code>:</p>
+<pre class="code"><code>
+mkdir /tmp/gkg-test &amp;&amp; cd /tmp/gkg-test &amp;&amp; git init -q
+cat &gt; test.txt &lt;&lt;&#x27;EOS&#x27;
+ess kay _ live_1234567890abcdefghijklmn
+not_a_key AKIAABCDEFGHIJKLMNOP
+random text
+EOS
+
+git add test.txt
+GIT_DIR=.git GIT_WORK_TREE=. git commit -m &quot;test&quot; || true
+</code></pre>
+<p>The hook reports any matches and prompts before the commit proceeds.</p>
+<h2>Patterns and personal keys<span class="ln"></span></h2>
+<p>The shipped regex list lives at <code>patterns/common_patterns.txt</code>. Entries follow three rules: one regex per line, with no <code>/.../</code> delimiters; inline comments after whitespace and a <code>#</code> are allowed; and patterns should avoid catastrophic backtracking, preferring anchored subpatterns and bounded repetition.</p>
+<p>Patterns included by default:</p>
+<ul>
+<li><code>sk_live_[0-9a-zA-Z]{24}</code> (Stripe live keys)</li>
+<li><code>sk-[A-Za-z0-9]{48}</code> (older OpenAI key format)</li>
+<li><code>AKIA[0-9A-Z]{16}</code> (AWS Access Key ID)</li>
+<li><code>ssh-rsa\s+[A-Za-z0-9+/=]+</code> (SSH public keys)</li>
+</ul>
+<p>Exact personal secrets go in <code>$HOME/.git-key-guardian/personal_keys.txt</code>. Lines beginning with <code>#</code> are ignored.</p>
+<h2>Notes<span class="ln"></span></h2>
+<ul>
+<li>The hook uses POSIX-compatible tools: bash, sed, grep, and awk.</li>
+<li>The patterns file is preprocessed to strip comments and blank lines before <code>grep -En -f</code> runs against staged additions.</li>
+<li>Personal keys are searched as fixed strings with <code>grep -Fn -f</code>, again after comment and blank lines are removed.</li>
+<li>Only added lines in the staged diff are inspected (<code>git diff --cached --unified=0</code> plus an awk filter for <code>^+[^+]</code>).</li>
+</ul>
+<h2>Caveats<span class="ln"></span></h2>
+<ul>
+<li>The tool is a helper, not a substitute for secret management. Keys still need rotation, environment variables or secret stores, and audits of logs and CI output.</li>
+<li>False positives are possible. The personal keys file reduces noise for known values.</li>
+<li>The hook runs locally and does not scan remote or CI logs, so server-side scanning in CI remains a separate concern.</li>
+</ul>
+<h2>Links<span class="ln"></span></h2>
+<ul>
+<li>Git repository: <a href="https://github.com/EricSpencer00/git-key-guardian" target="_blank" rel="noopener">https://github.com/EricSpencer00/git-key-guardian</a></li>
+<li>Installer script: <code>scripts/install.sh</code></li>
+<li>Hook file: <code>hooks/pre-commit</code></li>
+<li>Default patterns: <code>patterns/common_patterns.txt</code></li>
+</ul>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
+</footer>
+</div></body></html>

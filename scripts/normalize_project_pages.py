@@ -17,7 +17,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = sorted(path for path in (ROOT / "projects").glob("*.html") if path.name != "index.html")
+PAGES = sorted(
+    path for path in (ROOT / "projects").glob("*/index.html")
+    if path.parent.name != "2026"
+)
 CSS = """h1.article-title{font-family:\"IBM Plex Mono\",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}\n"""
 FIRST_HEADING = re.compile(r"(<p class=\"back\">.*?</p>\s*)<h2(?:\s[^>]*)?>(.*?)</h2>", re.S)
 
@@ -89,7 +92,7 @@ def normalize(path: Path) -> str:
     text = text.replace('class=\\"article-title\\"', 'class="article-title"')
     if path.name == "fraud-predictor-full.html":
         text = replace_full_fraud_title(text)
-    if 'class="article-title"' not in text:
+    if 'class="article-title"' not in text and not re.search(r"<h1\b", text, re.I):
         text, count = FIRST_HEADING.subn(r'\1<h1 class="article-title">\2</h1>', text, count=1)
         if count != 1:
             raise ValueError(f"could not find article heading in {path.relative_to(ROOT)}")

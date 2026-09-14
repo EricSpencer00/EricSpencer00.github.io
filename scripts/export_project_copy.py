@@ -81,7 +81,7 @@ def records():
         if not line or line.startswith("#"):
             continue
         canonical, _, note = (line.split("|") + ["", ""])[:3]
-        if note == "external" or canonical == "/projects.html":
+        if note == "external" or canonical == "/projects/":
             continue
         yield canonical, ROOT / canonical.lstrip("/")
 

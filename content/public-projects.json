@@ -13,7 +13,7 @@
   },
   {
     "name": "AEO Queries",
-    "url": "/projects/aeo-queries.html",
+    "url": "/projects/aeo-queries/",
     "description": "Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue for a prompt.",
     "language": "JavaScript"
   },
@@ -25,7 +25,7 @@
   },
   {
     "name": "AI Headshots",
-    "url": "/projects/ai-headshots.html",
+    "url": "/projects/ai-headshots/",
     "description": "Replicate-backed headshot generator.",
     "language": ""
   },
@@ -49,13 +49,13 @@
   },
   {
     "name": "Anagram Solver",
-    "url": "/projects/anagram.html",
+    "url": "/projects/anagram/",
     "description": "Scrabble Inspired Anagram Solver",
     "language": ""
   },
   {
     "name": "Anagram Solver V2",
-    "url": "/projects/anagram_v2.html",
+    "url": "/projects/anagram-v2/",
     "description": "Scrabble Inspired Anagram Solver",
     "language": ""
   },
@@ -67,7 +67,7 @@
   },
   {
     "name": "Ancestry Tree Java Example",
-    "url": "/projects/ancestry_tree.html",
+    "url": "/projects/ancestry-tree/",
     "description": "Java graph-traversal example for checking ancestry links.",
     "language": ""
   },
@@ -139,7 +139,7 @@
   },
   {
     "name": "BrightBet.tech",
-    "url": "/projects/brightbet.html",
+    "url": "/projects/brightbet/",
     "description": "Trade and prediction analysis platform built for HackIllinois 2026.",
     "language": ""
   },
@@ -169,13 +169,13 @@
   },
   {
     "name": "ChatGPT Research",
-    "url": "/projects/chatgpt_research.html",
+    "url": "/projects/chatgpt-research/",
     "description": "Loyola research on ChatGPT responses to CS2 data-structure questions.",
     "language": ""
   },
   {
     "name": "ChatTLA+ Dataset",
-    "url": "/projects/chattla-dataset.html",
+    "url": "/projects/chattla-dataset/",
     "description": "Dataset release for ChatTLA+, the TLA+ specification-generation paper presented at ICSOFT 2026.",
     "language": ""
   },
@@ -187,13 +187,13 @@
   },
   {
     "name": "chattla-gpt-oss-paper",
-    "url": "/research.html#chattla-gpt-oss-paper",
+    "url": "/research/#chattla-gpt-oss-paper",
     "description": "Paper on fine-tuning gpt-oss-20b for verifiable TLA+ specifications.",
     "language": "TeX"
   },
   {
     "name": "chattla-spec-gen-paper",
-    "url": "/research.html#talks",
+    "url": "/research/#talks",
     "description": "ChatTLA+ research presentation and paper artifact.",
     "language": "TeX"
   },
@@ -235,7 +235,7 @@
   },
   {
     "name": "COMP322 Final Project Reflection",
-    "url": "/projects/healthup!.html",
+    "url": "/projects/healthup/",
     "description": "COMP322 final-project reflection.",
     "language": ""
   },
@@ -277,7 +277,7 @@
   },
   {
     "name": "Cubed Pack Solver",
-    "url": "/projects/cubed-pack-solve.html",
+    "url": "/projects/cubed-pack-solve/",
     "description": "A solver for packing 54 T-tetracubes into a 6x6x6 cube using Knuth's Dancing Links algorithm.",
     "language": ""
   },
@@ -289,7 +289,7 @@
   },
   {
     "name": "Daily Task - Wellness Tracker",
-    "url": "/projects/dailytask.html",
+    "url": "/projects/dailytask/",
     "description": "A habit manager for daily consistency.",
     "language": ""
   },
@@ -379,7 +379,7 @@
   },
   {
     "name": "eric-paper",
-    "url": "/research.html#eric-paper",
+    "url": "/research/#eric-paper",
     "description": "ICSOFT paper on ChatTLA+ fine-tuning for verifiable TLA+ specifications.",
     "language": "TeX"
   },
@@ -463,7 +463,7 @@
   },
   {
     "name": "Free Time Calculator in Java",
-    "url": "/projects/freetime-calc.html",
+    "url": "/projects/freetime-calc/",
     "description": "A Java program to find overlapping free time for up to four people.",
     "language": ""
   },
@@ -517,13 +517,13 @@
   },
   {
     "name": "glucopilot-v2",
-    "url": "/projects/glucopilot.html",
+    "url": "/projects/glucopilot/",
     "description": "GluCoPilot iOS prototype.",
     "language": "Swift"
   },
   {
     "name": "Goldbach Conjecture",
-    "url": "/projects/goldbach-conj.html",
+    "url": "/projects/goldbach-conj/",
     "description": "Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.",
     "language": ""
   },
@@ -589,7 +589,7 @@
   },
   {
     "name": "How to tell if it's AI",
-    "url": "/projects/tell-ai.html",
+    "url": "/projects/tell-ai/",
     "description": "Heuristic essay on spotting AI-generated text.",
     "language": ""
   },
@@ -631,7 +631,7 @@
   },
   {
     "name": "Iterative Maze Solver Example",
-    "url": "/projects/iterative-maze-solver.html",
+    "url": "/projects/iterative-maze-solver/",
     "description": "Java iterator-based maze-solver example.",
     "language": ""
   },
@@ -655,7 +655,7 @@
   },
   {
     "name": "Loyola ITS RAG Bot",
-    "url": "/projects/its-rag-bot.html",
+    "url": "/projects/its-rag-bot/",
     "description": "A voice-first RAG chatbot trained on Loyola's ITS knowledge base, built after two years of answering the same tickets.",
     "language": ""
   },
@@ -667,7 +667,7 @@
   },
   {
     "name": "Machine Learning Fraud Identifier",
-    "url": "/projects/fraud-predictor.html",
+    "url": "/projects/fraud-predictor/",
     "description": "Compares machine-learning models on an anonymized, PCA-transformed fraud dataset.",
     "language": ""
   },
@@ -691,7 +691,7 @@
   },
   {
     "name": "Movie Recommendation Website",
-    "url": "/projects/movierec.html",
+    "url": "/projects/movierec/",
     "description": "A movie recommendation website developed as part of the Loyola AI Club's Fall 2024 project.",
     "language": ""
   },
@@ -721,7 +721,7 @@
   },
   {
     "name": "One Rep Max Calculator",
-    "url": "/projects/one-rep-max.html",
+    "url": "/projects/one-rep-max/",
     "description": "Calculate your One Rep Max",
     "language": ""
   },
@@ -805,7 +805,7 @@
   },
   {
     "name": "Recursive Maze Solver Example",
-    "url": "/projects/recursive-maze-solver.html",
+    "url": "/projects/recursive-maze-solver/",
     "description": "Java recursion and graph-search maze-solver examples.",
     "language": ""
   },
@@ -817,7 +817,7 @@
   },
   {
     "name": "Researching ChatGPT with ChatGPT",
-    "url": "/projects/meta_research.html",
+    "url": "/projects/meta-research/",
     "description": "Transcript of ChatGPT prompts about CS2 data structures and maze solvers.",
     "language": ""
   },
@@ -937,7 +937,7 @@
   },
   {
     "name": "Skeuomorphic Desk",
-    "url": "/projects/skeuomorphism.html",
+    "url": "/projects/skeuomorphism/",
     "description": "An editorial / skeuomorphic project desk.",
     "language": "HTML"
   },
@@ -955,7 +955,7 @@
   },
   {
     "name": "Song Recommender",
-    "url": "/projects/song-recommender.html",
+    "url": "/projects/song-recommender/",
     "description": "Python recommender that beats Spotify's mid suggestions.",
     "language": "Python"
   },
@@ -979,7 +979,7 @@
   },
   {
     "name": "stemacle",
-    "url": "/projects/stemacle.html",
+    "url": "/projects/stemacle/",
     "description": "Browser stem player that separates an audio file into drums, vocals, bass, and melody.",
     "language": "JavaScript"
   },
@@ -1027,19 +1027,19 @@
   },
   {
     "name": "TLA+ Model of a Laptop",
-    "url": "/projects/tla-laptop.html",
+    "url": "/projects/tla-laptop/",
     "description": "A formal TLA+ specification modeling a laptop's power states, battery, lid, thermals, and auto-suspend.",
     "language": ""
   },
   {
     "name": "TLA+ Model of a Walk-In Oven",
-    "url": "/projects/tla-walk-in-oven.html",
+    "url": "/projects/tla-walk-in-oven/",
     "description": "A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.",
     "language": ""
   },
   {
     "name": "TLA+ Model of Dexcom G7",
-    "url": "/projects/tla-dexcom-g7.html",
+    "url": "/projects/tla-dexcom-g7/",
     "description": "A formal TLA+ specification of the Dexcom G7 continuous glucose monitor's behavior and safety properties.",
     "language": ""
   },
@@ -1057,7 +1057,7 @@
   },
   {
     "name": "TLA-Extraction",
-    "url": "/research.html#tools",
+    "url": "/research/#tools",
     "description": "Extracting TLA+ specifications from research papers.",
     "language": "Python"
   },
@@ -1105,7 +1105,7 @@
   },
   {
     "name": "tla_description",
-    "url": "/research.html#models",
+    "url": "/research/#models",
     "description": "TLA+ description corpus for language-model training.",
     "language": ""
   },
@@ -1201,7 +1201,7 @@
   },
   {
     "name": "~/.zshrc",
-    "url": "/projects/my-zshrc.html",
+    "url": "/projects/my-zshrc/",
     "description": "Annotated walkthrough of a shell config.",
     "language": "Shell"
   }

@@ -58,7 +58,7 @@ def app_path(app: dict[str, str]) -> str:
 
 
 def render_index() -> str:
-    target = f"{SITE}/projects.html"
+    target = f"{SITE}/projects/"
     return f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
@@ -69,7 +69,7 @@ def render_index() -> str:
 <meta http-equiv="refresh" content="0; url={target}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <!-- redirect stub -->
-</head><body><p>See <a href="/projects.html">projects</a>.</p><script>location.replace({json.dumps(target)});</script></body></html>
+</head><body><p>See <a href="/projects/">projects</a>.</p><script>location.replace({json.dumps(target)});</script></body></html>
 """
 
 
@@ -118,7 +118,7 @@ def is_current(apps: list[dict[str, str]]) -> bool:
     if stale_aliases(expected_paths(apps)):
         return False
     index_text = index.read_text(encoding="utf-8")
-    target = html.escape(f"{SITE}/projects.html", quote=True)
+    target = html.escape(f"{SITE}/projects/", quote=True)
     if ("<!-- redirect stub -->" not in index_text
             or '<meta name="robots" content="noindex, follow">' not in index_text
             or f'<link rel="canonical" href="{target}">' not in index_text

@@ -1,0 +1,162 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loyola ITS RAG Bot | Eric Spencer</title>
+<meta name="description" content="A voice-first RAG chatbot trained on Loyola&#x27;s ITS knowledge base, built after two years of answering the same tickets.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/its-rag-bot/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Loyola ITS RAG Bot | Eric Spencer">
+<meta property="og:description" content="A voice-first RAG chatbot trained on Loyola&#x27;s ITS knowledge base, built after two years of answering the same tickets.">
+<meta property="og:url" content="https://ericspencer.us/projects/its-rag-bot/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects-its-rag-bot.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Loyola ITS RAG Bot | Eric Spencer — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-its-rag-bot.jpg">
+<meta name="twitter:image:alt" content="Loyola ITS RAG Bot | Eric Spencer — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-its-rag-bot.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="Loyola ITS RAG Bot | Eric Spencer">
+<meta name="twitter:description" content="A voice-first RAG chatbot trained on Loyola&#x27;s ITS knowledge base, built after two years of answering the same tickets.">
+<meta property="linkedin:title" content="Loyola ITS RAG Bot | Eric Spencer">
+<meta property="linkedin:description" content="A voice-first RAG chatbot trained on Loyola&#x27;s ITS knowledge base, built after two years of answering the same tickets.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Loyola ITS RAG Bot",
+"description":"A voice-first RAG chatbot trained on Loyola's ITS knowledge base, built after two years of answering the same tickets.",
+"url":"https://ericspencer.us/projects/its-rag-bot/",
+"image":"https://ericspencer.us/assets/og/projects-its-rag-bot.jpg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2026-01-24",
+"mainEntityOfPage":"https://ericspencer.us/projects/its-rag-bot/"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h1 class="article-title">Loyola ITS RAG Bot<span class="ln"></span></h1>
+<p class="meta">A voice-first RAG chatbot trained on Loyola&#x27;s ITS knowledge base, built after two years of answering the same tickets.</p>
+<hr class="dash">
+<p>Eric Spencer worked at Loyola's ITS Service Desk for two years (2024-2025). Roughly 70% of the tickets there are the same five questions: connecting to LUC-Secure, a Duo push that does not arrive, no way into Sakai, printer credits that do not show up, Outlook re-asking for a sign-in. The answers all sit in the public TeamDynamix knowledge base, which people do not read, because reading a KB article is the last thing anyone wants to do while the laptop will not join the wifi. They want to ask a person.</p>
+<p>This is a voice-first RAG chatbot that pulls from Loyola's ITS knowledge base and answers spoken questions out loud.</p>
+<p>The stack is Python/FastAPI, FAISS for the vector index, sentence-transformers for embeddings, and Ollama running a local <code>llama3.1:8b</code> for inference. Speech-to-text is faster-whisper; the project started on Vosk and switched, for reasons below. Text-to-speech uses Microsoft Edge's free voices via <code>edge-tts</code>. The ingestion script crawls <code>services.luc.edu/TDClient/33/Portal/KB/</code>, strips boilerplate with <code>trafilatura</code>, chunks article text at about 900 characters with 120 of overlap, embeds each chunk, and writes a FAISS index to <code>data/faiss/faiss.index</code>. Retrieval at query time is a top-k similarity lookup whose results are stuffed into the system prompt. There is no reranker.</p>
+<p>The whole thing runs in a Docker container. A <code>heroku.yml</code> covers the deploy path that was actually used. Heroku cannot run the local LLM, so that deployment falls back to a HuggingFace-hosted model (<code>tiiuae/zephyr-7b-instruct</code>) over the HF Inference API.</p>
+<p>A few things were harder than expected.</p>
+<p>Speech-to-text on technical jargon is rough. Vosk handled ordinary English fine, but "Duo" came back as "duel", "LUC-Secure" as "luxor", "Sakai" as "ski". faster-whisper replaced it: heavier, but it gets the proper nouns right most of the time. The trade is a couple of seconds of cold-start latency on a laptop CPU, which is noticeable in a spoken exchange. Fine-tuning on a small domain vocabulary was considered and never done.</p>
+<p>The vector store candidates were Chroma, which wants a separate server process, Pinecone, which was more than the project needed and not free at the scale required, and FAISS, which is a file on disk. FAISS won as the simplest thing that could possibly work. The cost is no built-in metadata filtering, so filtering by KB category happens in Python after the search.</p>
+<p>Local LLM latency on a MacBook is the bottleneck. llama3.1:8b under Ollama answers a typical query in maybe 4-8 seconds, which is long for someone sitting and waiting for the speaker to start. The HuggingFace remote path is faster but rate-limited, and it assumes an API key that not every user has. An engine dropdown selects between them.</p>
+<p>The last rabbit hole was a full-duplex voice mode using NVIDIA's PersonaPlex 7B speech-to-speech model: no separate STT and TTS step, with the model hearing the speaker and replying directly. It loads on Apple Silicon via MPS; then came <code>moshi-mlx</code>, then the fact that the <code>moshi-personaplex</code> package pins <code>torch&lt;2.5</code>, which locks the environment to Python 3.11. The commits from April are mostly attempts to make it work, and "wait personaplex won't work" is a real commit message. It is still in the repo as an optional engine, and the cascaded mode (Whisper, then the LLM, then Edge TTS) is the default.</p>
+<p>ITS did not adopt it, and it was never pitched: by the time there was a version worth showing, graduation had already ended the service desk job. A current student desker can fork it and pitch it to Loyola. The ingestion script will pick up whatever is on the TDX portal at the time, and the knowledge base has not changed structure since.</p>
+<p>Left to do: scoping retrieval to a single school, so that a question clearly about Sakai returns only Sakai articles; better handling of the escape hatch to a human; and possibly a hosted demo that avoids installing 15 GB of torch wheels.</p>
+<p><a href="https://github.com/EricSpencer00/ITS-RAG-bot" target="_blank" rel="noopener">GitHub Repo</a></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
+</footer>
+</div></body></html>

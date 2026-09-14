@@ -100,7 +100,7 @@ def build_news_page():
 <div class="wrap">
 <p class="name-hero">Eric Spencer</p>
 <p class="sub">news</p>
-<nav class="top" aria-label="Primary"><a href="/">index</a> &middot; <a href="/research.html">publications</a> &middot; <a href="/projects.html">projects</a> &middot; <a href="/cv/">cv</a></nav>
+<nav class="top" aria-label="Primary"><a href="/">index</a> &middot; <a href="/research/">publications</a> &middot; <a href="/projects/">projects</a> &middot; <a href="/cv/">cv</a></nav>
 <hr>
 <main class="news-page">
 <h1 class="page-title">News</h1>
@@ -136,7 +136,7 @@ def build_blog():
             f'<div class="post-row">'
             f'<span class="post-d">{post.date}</span>'
             f'<div class="post-body">'
-            f'<div class="post-title"><a href="/blog/{post.slug}.html">{htmllib.escape(post.title)}</a></div>'
+            f'<div class="post-title"><a href="/blog/{post.slug}/">{htmllib.escape(post.title)}</a></div>'
             f'<p class="post-desc">{htmllib.escape(post.description)}</p>'
             f'</div></div>'
         )
@@ -332,7 +332,7 @@ a.pill{{font-size:12px}}
 }}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
-<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">publications</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 
 <h2 id="news">News</h2>
@@ -370,7 +370,7 @@ a.pill{{font-size:12px}}
 <div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a><span class="dt"></span><span class="ds">gpt-oss-20b fine-tuned to write verifiable TLA+ specifications.</span></div>
 <div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00" target="_blank" rel="noopener">huggingface.co/EricSpencer00</a><span class="dt"></span><span class="ds">The ChatTLA+ models and the datasets they were trained on.</span></div>
 <div class="proj"><a class="nm" href="https://github.com/EricSpencer00" target="_blank" rel="noopener">github.com/EricSpencer00</a><span class="dt"></span><span class="ds">Formal methods, LLM tooling, compilers, macOS and iOS apps.</span></div>
-<div class="proj"><a class="nm" href="/projects.html">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
+<div class="proj"><a class="nm" href="/projects/">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
 </noscript>
 
 <h2 id="cv">Experience</h2>
