@@ -11,10 +11,12 @@
 # scripts/check_project_pages.py checks this list against the files on disk and
 # fails the build when they disagree. Add a line here when you add a page.
 
+/projects/agent-board.html
 /ddia/|miscellaneous/ddia/index.html|external
 /projects/aeo-queries.html|projects/2026/aeo-queries/index.html
 /projects/ai-conversation.html|projects/2025/ai-conversation/index.html
 /projects/ai-headshots.html|projects/2025/ai-headshots/index.html
+/projects/ai-music-playground.html
 /projects/ai-os.html|projects/2025/ai-os/index.html
 /projects/anagram.html|projects/2023/anagram/index.html
 /projects/anagram_v2.html|projects/2023/anagram_v2/index.html
@@ -41,11 +43,14 @@
 /projects/glucopilot.html|projects/2025/glucopilot/index.html
 /projects/goldbach-conj.html|projects/2021/goldbach-conj/index.html
 /projects/healthup!.html|projects/2024/healthup!/index.html
+/projects/hermes-ops.html
 /projects.html|projects/index.html
 /projects/interactive-microwave-tla.html|projects/2025/interactive-microwave-tla/index.html
 /projects/ios-soundboard.html|projects/2025/ios-soundboard/index.html
 /projects/iterative-maze-solver.html|projects/2023/iterative-maze-solver/index.html
 /projects/its-rag-bot.html|projects/2024/its-rag-bot/index.html
+/projects/i-paid-for-this-shirt.html
+/projects/instxnt.html
 /projects/llmjammer.html|projects/2025/llmjammer/index.html
 /projects/LoyolaHACK.html|projects/2025/loyolahack/index.html
 /projects/mc-carspot.html|projects/2025/mc-carspot/index.html
@@ -54,6 +59,7 @@
 /projects/movierec.html|projects/2024/movierec/index.html
 /projects/my-zshrc.html|miscellaneous/my-zshrc/index.html
 /projects/one-rep-max.html|projects/2024/one-rep-max/index.html
+/projects/phoneclaw.html
 https://github.com/EricSpencer00/rl-agent-c4|projects/2023/rl-agent-c4/index.html|external
 /projects/recursive-maze-solver.html|projects/2023/recursive-maze-solver/index.html
 /projects/resilient.html|projects/2026/resilient/index.html
@@ -66,6 +72,7 @@ https://github.com/EricSpencer00/rl-agent-c4|projects/2023/rl-agent-c4/index.htm
 /projects/tdx-window-blocker.html|projects/2025/tdx-window-blocker/index.html
 /projects/tell-ai.html|miscellaneous/tell-ai/index.html
 /projects/terminalgpt.html|projects/2025/terminalgpt/index.html
+/projects/tla-plus.html
 /projects/tla-dexcom-g7.html|projects/2024/tla-dexcom-g7/index.html
 /projects/tla-formal-generation.html|projects/2025/tla-formal-generation/index.html
 /projects/tla-laptop.html|projects/2024/tla-laptop/index.html

@@ -73,6 +73,7 @@ body.news-surface button:focus-visible {
 
 body.portfolio-page .name,
 body.portfolio-page .name-hero,
+body.portfolio-article .name,
 body.portfolio-article .name-hero {
   margin: 0 0 10px;
   color: var(--portfolio-ink);

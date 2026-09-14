@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hermes Ops | Eric Spencer</title>
+<meta name="description" content="Operations scripts and configuration for the Hermes agent and its delegated jobs.">
+<link rel="canonical" href="https://ericspencer.us/projects/hermes-ops.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/project-article.css">
+<link rel="stylesheet" href="/assets/css/portfolio.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+</head>
+<body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p><p class="sub">projects</p>
+<nav class="top" aria-label="Primary"><a href="/">index</a> · <a href="/research.html">publications</a> · <a href="/projects.html">projects</a> · <a href="/cv/">cv</a></nav><hr>
+<p class="back">← <a href="/projects.html">back to projects</a></p>
+<main><h1>Hermes Ops</h1><p class="meta">Operations scripts and configuration for the Hermes agent.</p>
+<p>Hermes Ops contains the scripts and configuration used to run an agent gateway, notify when coding jobs finish, dispatch work in isolated worktrees, and report status to Discord. The repository also tracks the agent identity and the rules used by the dispatcher.</p>
+<p>The project separates operational configuration from credentials. Tokens and local environment files stay on the machines that run Hermes; they are not part of the repository.</p>
+<h2>Current state</h2><p>The repository includes live notification hooks, guarded agent spawning, watchdog and usage-pacing scripts, and migration notes for running Hermes on a Mac mini. Some controls remain notify-only until they have been calibrated against live agent sessions.</p>
+</main><footer><span>© 2026 Eric Spencer · Chicago, IL</span><span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span></footer>
+</div></body></html>

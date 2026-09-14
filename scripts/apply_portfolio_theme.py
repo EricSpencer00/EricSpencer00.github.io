@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css">'
+FONT_STYLESHEET = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">'
 SKIP = {".git", ".claude", "backup-site", "editor", "tests", "assets"}
 
 
@@ -94,6 +95,8 @@ def apply(path: Path) -> str:
         text = add_page_header(text, "cv")
     if STYLESHEET not in text and "</head>" in text:
         text = text.replace("</head>", f"{STYLESHEET}\n</head>", 1)
+    if "fonts.googleapis.com/css2?family=IBM+Plex+Mono" not in text and "</head>" in text:
+        text = text.replace("</head>", f"{FONT_STYLESHEET}\n</head>", 1)
     if text == original:
         return "same"
     path.write_text(text, encoding="utf-8")

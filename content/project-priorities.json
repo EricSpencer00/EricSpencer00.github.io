@@ -1,0 +1,219 @@
+{
+  "P1": [
+    "TLA+",
+    "https://github.com/EricSpencer00/Resilient"
+  ],
+  "P1.5": [
+    "BrightBet",
+    "Claude Architect Quiz",
+    "DDIA Learning Lab",
+    "ddia",
+    "Famous Moji",
+    "FreeLock",
+    "FreeLock-web",
+    "GTA V Gold Medal Checklist",
+    "gta-v-gold-checklist",
+    "I Paid For This Shirt",
+    "LaTeX Workspace",
+    "Not Hotdog",
+    "One Rep Max",
+    "Palindrome",
+    "Paper Digest",
+    "Picaius",
+    "picai",
+    "Resilient Docs",
+    "SideSwing",
+    "Stemacle",
+    "StockGenie",
+    "TLA+ Generator",
+    "Ulam Spiral",
+    "VoCal",
+    "ai4fm",
+    "cad-bench-submission",
+    "chambr-web",
+    "from-america.github.io",
+    "ha.mr",
+    "hardtekk-generator",
+    "DailyTask-web",
+    "ealing-capital",
+    "gcf-de",
+    "LoyolaHACK",
+    "pm-whale-tracker",
+    "splithound-web",
+    "stockgenie-web",
+    "webpage"
+  ],
+  "P2": [
+    "Agent Board",
+    "AI Music Playground",
+    "Hermes Ops",
+    "PhoneClaw",
+    "instxnt.xyz",
+    "I Paid For This Shirt",
+    "MoltenVK",
+    "tlaplus_jupyter"
+  ],
+  "P3": [
+    "ai-conversation",
+    "AIs Talking Philosophy",
+    "als-signature-reversal",
+    "AoC2025",
+    "apple-music-widget",
+    "archaic-radio-frontend",
+    "argon-design-system-angular",
+    "bio-ops-web",
+    "BrowserOS",
+    "caterpillar",
+    "Chat",
+    "chattla-dataset-anon",
+    "ChessStats",
+    "Chess.com Stats",
+    "cli-github",
+    "colibri",
+    "Comp272Projects",
+    "COMP330Group5",
+    "comp371-team8-activity",
+    "cone-site",
+    "copilot-cli-test",
+    "CSAPP-Lab",
+    "design-skill",
+    "echotest-scala",
+    "editorial-frontend",
+    "ericspencer-site-backup",
+    "etl-demo",
+    "Examples",
+    "harvard-cs50w-2020",
+    "headroom",
+    "Hello-World",
+    "iOS-soundboard",
+    "kickbacks.ai",
+    "linguist",
+    "March-Madness-ML",
+    "margaux-website",
+    "mc-carspot",
+    "openclaw-skill-paper-digest",
+    "openclaw-skill-stockgenie",
+    "opencode",
+    "pitch",
+    "PoC",
+    "proofside",
+    "public-apis",
+    "rocq",
+    "roman-numeral-converter",
+    "scala-hello-world",
+    "scala-workshop",
+    "seedex",
+    "session-curator",
+    "shapes-oo-scala",
+    "simpleconcurrency-tla",
+    "spa-web",
+    "Specula",
+    "https://github.com/EricSpencer00/tlaplus",
+    "vscode"
+  ],
+  "forks": [
+    "Whisky",
+    "MoltenVK",
+    "cli-github",
+    "linguist",
+    "opencode",
+    "https://github.com/EricSpencer00/tlaplus",
+    "typescript-go",
+    "vscode",
+    "dxmt",
+    "MovieRec-F24",
+    "Sign-Language-Recognition",
+    "trash-alloy",
+    "ha.mr",
+    "claude-architect-exam-prep",
+    "Claude-of-Duty",
+    "https://github.com/EricSpencer00/FormaLLM",
+    "tlaplus_jupyter"
+  ],
+  "additional": [
+    {
+      "name": "TLA+",
+      "url": "/projects/tla-plus.html",
+      "description": "TLA+ modeling and verification work, including interactive examples, research tools, and generated specifications.",
+      "language": "TLA+"
+    },
+    {
+      "name": "Agent Board",
+      "url": "/projects/agent-board.html",
+      "description": "Shared ticket board with a SQLite source of truth, a kanban UI, a CLI, and a GitHub Issues mirror.",
+      "language": "Python"
+    },
+    {
+      "name": "AI Music Playground",
+      "url": "/projects/ai-music-playground.html",
+      "description": "Private workspace for experiments with AI-generated music.",
+      "language": ""
+    },
+    {
+      "name": "Hermes Ops",
+      "url": "/projects/hermes-ops.html",
+      "description": "Operations scripts and configuration for the Hermes agent and its delegated jobs.",
+      "language": "Shell"
+    },
+    {
+      "name": "PhoneClaw",
+      "url": "/projects/phoneclaw.html",
+      "description": "A Mac bridge and old-iPhone client that route text messages to AI agents.",
+      "language": "Python / Swift"
+    },
+    {
+      "name": "instxnt.xyz",
+      "url": "/projects/instxnt.html",
+      "description": "Dashboard and storefront system for creating AI-powered online stores.",
+      "language": "TypeScript"
+    },
+    {
+      "name": "I Paid For This Shirt",
+      "url": "/projects/i-paid-for-this-shirt.html",
+      "description": "A storefront that prints the exact price paid on the shirt.",
+      "language": "Web"
+    },
+    {
+      "name": "AI4FM",
+      "url": "https://github.com/EricSpencer00/ai4fm",
+      "description": "Public website for Loyola's Formal Methods in the Field group.",
+      "language": "Web"
+    },
+    {
+      "name": "CAD Bench Submission",
+      "url": "https://github.com/EricSpencer00/cad-bench-submission",
+      "description": "Submission portal for the Parametric CAD Bench leaderboard.",
+      "language": "Web"
+    },
+    {
+      "name": "MoltenVK",
+      "url": "https://github.com/EricSpencer00/MoltenVK",
+      "description": "Eric's public MoltenVK repository, a Vulkan portability layer over Apple's Metal framework.",
+      "language": "C++"
+    },
+    {
+      "name": "tlaplus_jupyter",
+      "url": "https://github.com/EricSpencer00/tlaplus_jupyter",
+      "description": "Jupyter kernel for running TLA+ model-checking workflows.",
+      "language": "Python"
+    },
+    {
+      "name": "headroom",
+      "url": "https://github.com/EricSpencer00/headroom",
+      "description": "Tooling for compressing agent inputs before they reach a language model.",
+      "language": "Python"
+    },
+    {
+      "name": "not-hotdog",
+      "url": "https://github.com/EricSpencer00/not-hotdog",
+      "description": "The source repository for the browser-based Not Hotdog classifier.",
+      "language": "Python"
+    },
+    {
+      "name": "webpage",
+      "url": "https://github.com/LUC-AI4FM/webpage",
+      "description": "Public website for the LUC AI4FM group.",
+      "language": "Web"
+    }
+  ]
+}
