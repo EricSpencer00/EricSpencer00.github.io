@@ -4,54 +4,49 @@
     "https://github.com/EricSpencer00/Resilient"
   ],
   "P1.5": [
-    "BrightBet",
-    "Claude Architect Quiz",
-    "DDIA Learning Lab",
-    "ddia",
-    "Famous Moji",
-    "FreeLock",
-    "FreeLock-web",
-    "GTA V Gold Medal Checklist",
-    "gta-v-gold-checklist",
     "I Paid For This Shirt",
-    "LaTeX Workspace",
-    "Not Hotdog",
-    "One Rep Max",
-    "Palindrome",
-    "Paper Digest",
-    "Picaius",
-    "picai",
-    "Resilient Docs",
+    "ai4fm.cs.luc.edu",
+    "BrightBet.tech",
     "SideSwing",
     "Stemacle",
     "StockGenie",
-    "TLA+ Generator",
-    "Ulam Spiral",
     "VoCal",
-    "ai4fm",
-    "cad-bench-submission",
-    "chambr-web",
-    "from-america.github.io",
-    "ha.mr",
-    "hardtekk-generator",
-    "DailyTask-web",
-    "ealing-capital",
+    "Paper Digest",
+    "TLA+ Generator",
+    "Resilient Docs",
+    "FreeLock",
+    "Famous Moji",
+    "GTA V Gold Medal Checklist",
+    "DDIA Learning Lab",
+    "Claude Architect Quiz",
+    "LaTeX Workspace",
+    "One Rep Max",
+    "Palindrome",
+    "Ulam Spiral",
+    "Not Hotdog",
+    "tlakit",
+    "CAD Bench Submission",
     "gcf-de",
+    "ealing-capital",
+    "from-america.github.io",
+    "FreeLock-web",
+    "DailyTask-web",
+    "gta-v-gold-checklist",
+    "hardtekk-generator",
     "LoyolaHACK",
     "pm-whale-tracker",
     "splithound-web",
     "stockgenie-web",
-    "webpage"
+    "Picaius"
   ],
   "P2": [
     "Agent Board",
-    "AI Music Playground",
-    "Hermes Ops",
     "PhoneClaw",
-    "instxnt.xyz",
-    "I Paid For This Shirt",
+    "tlaplus_jupyter",
     "MoltenVK",
-    "tlaplus_jupyter"
+    "Hermes Ops",
+    "instxnt.xyz",
+    "AI Music Playground"
   ],
   "P3": [
     "ai-conversation",
@@ -128,7 +123,11 @@
     "claude-architect-exam-prep",
     "Claude-of-Duty",
     "https://github.com/EricSpencer00/FormaLLM",
-    "tlaplus_jupyter"
+    "tlaplus_jupyter",
+    "chambr-web"
+  ],
+  "last": [
+    "chambr-web"
   ],
   "additional": [
     {
@@ -174,8 +173,8 @@
       "language": "Web"
     },
     {
-      "name": "AI4FM",
-      "url": "https://github.com/EricSpencer00/ai4fm",
+      "name": "ai4fm.cs.luc.edu",
+      "url": "https://ai4fm.cs.luc.edu/",
       "description": "Public website for Loyola's Formal Methods in the Field group.",
       "language": "Web"
     },
@@ -208,12 +207,6 @@
       "url": "https://github.com/EricSpencer00/not-hotdog",
       "description": "The source repository for the browser-based Not Hotdog classifier.",
       "language": "Python"
-    },
-    {
-      "name": "webpage",
-      "url": "https://github.com/LUC-AI4FM/webpage",
-      "description": "Public website for the LUC AI4FM group.",
-      "language": "Web"
     }
   ]
 }

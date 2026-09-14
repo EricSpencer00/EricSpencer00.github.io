@@ -1,7 +1,13 @@
 [
   {
+    "slug": "ai4fm",
+    "name": "ai4fm.cs.luc.edu",
+    "url": "https://ai4fm.cs.luc.edu/",
+    "description": "Public website for Loyola's Formal Methods in the Field group."
+  },
+  {
     "slug": "brightbet",
-    "name": "BrightBet",
+    "name": "BrightBet.tech",
     "url": "https://brightbet.tech/",
     "description": "Prediction-analysis platform built for HackIllinois 2026."
   },
@@ -106,6 +112,12 @@
     "name": "TLA+ Generator",
     "url": "https://tla.ericspencer.us/",
     "description": "Plain English in; model-checked TLA+ specifications out."
+  },
+  {
+    "slug": "tlakit",
+    "name": "tlakit",
+    "url": "https://tlakit.pages.dev/",
+    "description": "A Python and notebook client for the TLA+ toolchain — model-check specs from Jupyter, get structured results back."
   },
   {
     "slug": "ulam-spiral",

@@ -28,7 +28,7 @@ SITE = "https://ericspencer.us"
 PAGE_DESCRIPTION = (
     "Software, research, experiments, coursework, and live apps from Eric Spencer."
 )
-TIER_ORDER = ("P1", "P1.5", "P2")
+TIER_ORDER = ("P1", "P1.5", "P2", "P3")
 TIER_LABELS = {
     "P1": ("Primary work", "The projects that define the current direction."),
     "P1.5": ("Live apps", "Public apps and sites that can be opened directly."),
@@ -64,10 +64,30 @@ def load_editorial() -> dict:
     data = json.loads(PRIORITIES.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
         raise ValueError("project-priorities.json must contain an object")
-    for field in ("P1", "P1.5", "P2", "P3", "forks", "additional"):
+    for field in ("P1", "P1.5", "P2", "P3", "forks", "last", "additional"):
         if field not in data:
             raise ValueError(f"project-priorities.json is missing {field}")
     return data
+
+
+def editorial_rank(project: dict[str, str], editorial: dict) -> int:
+    """Return the hand-curated quality order, with unknowns after their tier."""
+    if any(project_matches(project, token) for token in editorial["last"]):
+        return 1000000
+    tier_tokens = {
+        "P1": editorial["P1"],
+        "P1.5": editorial["P1.5"],
+        "P2": editorial["P2"],
+        "P3": editorial["P3"] + editorial["forks"],
+    }
+    offset = 0
+    for tier in TIER_ORDER:
+        tokens = tier_tokens[tier]
+        for position, token in enumerate(tokens):
+            if project_matches(project, token):
+                return offset + position
+        offset += len(tokens) + 1
+    return offset + 1000
 
 
 def project_matches(project: dict[str, str], token: str) -> bool:
@@ -79,28 +99,52 @@ def project_matches(project: dict[str, str], token: str) -> bool:
     }
 
 
+def load_live_apps() -> list[dict[str, str]]:
+    editorial = load_editorial()
+    apps = json.loads(PUBLIC_APPS.read_text(encoding="utf-8"))
+    if not isinstance(apps, list):
+        raise ValueError("public-apps.json must contain an array")
+    live_apps = []
+    for app in apps:
+        for field in ("slug", "name", "url", "description"):
+            if not isinstance(app.get(field), str) or not app[field].strip():
+                raise ValueError(f"app is missing {field}: {app!r}")
+        live_app = dict(app)
+        live_app["is_live_app"] = True
+        live_app["rank"] = editorial_rank(live_app, editorial)
+        live_apps.append(live_app)
+    return sorted(live_apps, key=lambda item: (item["rank"], item["name"].casefold()))
+
+
+def live_app_for(
+    project: dict[str, str],
+    live_apps: list[dict[str, str]],
+    fuzzy: bool = True,
+) -> dict[str, str] | None:
+    """Find the live destination that supersedes an app's source/writeup row."""
+    project_key = key(project["name"])
+    for app in live_apps:
+        app_keys = (key(app["name"]), key(app["slug"]))
+        if any(
+            app_key == project_key
+            or (fuzzy and (app_key in project_key or project_key in app_key))
+            for app_key in app_keys if app_key
+        ):
+            return app
+    return None
+
+
 def load_projects() -> list[dict[str, str]]:
     editorial = load_editorial()
     projects = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if not isinstance(projects, list):
         raise ValueError("public-projects.json must contain a JSON array")
 
-    # Live apps are maintained separately from the repository catalog. Merge
-    # them in so a deployed app can take the place of its source-repository row.
-    public_apps = json.loads(PUBLIC_APPS.read_text(encoding="utf-8"))
-    for app in public_apps:
-        projects.append({
-            "name": app["name"],
-            "url": app["url"],
-            "description": app["description"],
-            "language": "Web",
-        })
-
     projects.extend(editorial["additional"])
 
-    # Merge duplicate names after adding live apps and editorial writeup pages.
-    # Later entries win, which lets a writeup or deployed app become the visible
-    # destination without duplicating the same project in the list.
+    # Merge duplicate names from the reviewed manifest and editorial rows.
+    # Later entries win, which lets an editorial destination replace a raw
+    # repository row without duplicating the same project in the list.
     merged: dict[str, dict[str, str]] = {}
     for project in projects:
         if not isinstance(project, dict):
@@ -135,13 +179,10 @@ def load_projects() -> list[dict[str, str]]:
         if project["url"] in seen_urls:
             raise ValueError(f"duplicate catalog destination: {project['url']}")
         seen_urls.add(project["url"])
-        if project["priority"] != "P3":
-            visible.append(project)
+        project["rank"] = editorial_rank(project, editorial)
+        visible.append(project)
 
-    return sorted(
-        visible,
-        key=lambda item: (TIER_ORDER.index(item["priority"]), item["name"].casefold()),
-    )
+    return sorted(visible, key=lambda item: (item["rank"], item["name"].casefold()))
 
 
 def load_selected() -> list[dict[str, str]]:
@@ -162,64 +203,92 @@ def load_selected() -> list[dict[str, str]]:
         if not valid_url(url):
             raise ValueError(f"selected project URL must be https:// or root-relative: {url}")
         seen.add(name_key)
-        projects.append({"name": name, "url": url, "description": description})
+        projects.append({
+            "name": name,
+            "url": url,
+            "description": description,
+            "selection_rank": len(projects),
+        })
     if not projects:
         raise ValueError("selected.txt must contain at least one project")
     return projects
 
 
-def render_row(project: dict[str, str]) -> str:
+def render_row(project: dict[str, str], show_description: bool = True) -> str:
     url = html.escape(project["url"], quote=True)
     name = html.escape(project["name"])
-    description = html.escape(project["description"])
     attrs = ' target="_blank" rel="noopener"' if external(project["url"]) else ""
+    description = (
+        f'<span class="project-description">{html.escape(project["description"])}</span>'
+        if show_description else ""
+    )
     return (
         '<li class="project">'
         f'<a class="project-name" href="{url}"{attrs}>{name}</a>'
-        f'<span class="project-description">{description}</span>'
+        f'{description}'
         "</li>"
     )
 
 
-def selected_projects(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> list[dict[str, str]]:
+def selected_projects(
+    projects: list[dict[str, str]],
+    selected: list[dict[str, str]],
+    live_apps: list[dict[str, str]],
+) -> list[dict[str, str]]:
     """Put the P1 projects beside the existing homepage selection."""
-    merged = {key(project["name"]): project for project in selected}
+    merged = {}
+    for project in selected:
+        app = (
+            live_app_for(project, live_apps, fuzzy=False)
+            if not project["url"].startswith("/projects/") else None
+        )
+        if app:
+            merged[key(app["name"])] = {
+                **app,
+                "selection_rank": project["selection_rank"],
+            }
+        else:
+            merged[key(project["name"])] = project
     for project in projects:
         if project["priority"] == "P1":
-            merged.setdefault(key(project["name"]), {
-                "name": project["name"],
-                "url": project["url"],
-                "description": project["description"],
-            })
-    return sorted(merged.values(), key=lambda item: item["name"].casefold())
+            merged.setdefault(key(project["name"]), project)
+    return sorted(
+        merged.values(),
+        key=lambda item: (item.get("selection_rank", -1), item.get("rank", 100000)),
+    )
 
 
-def render(projects: list[dict[str, str]], selected: list[dict[str, str]]) -> str:
-    sections = []
-    for tier in ("P1.5", "P2"):
-        tier_projects = [project for project in projects if project["priority"] == tier]
-        rows = "\n".join(render_row(project) for project in tier_projects)
-        heading, intro = TIER_LABELS[tier]
-        section_id = f"projects-{tier.lower().replace('.', '')}"
-        sections.append(
-            f'<section aria-labelledby="{section_id}">'
-            f'<h2 id="{section_id}">{heading}</h2>'
-            f'<p class="section-intro">{intro}</p>'
-            f'<ol class="project-list">{rows}</ol>'
-            "</section>"
-        )
-
-    selected_rows = "\n".join(render_row(project) for project in selected)
+def render(
+    projects: list[dict[str, str]],
+    selected: list[dict[str, str]],
+    live_apps: list[dict[str, str]],
+) -> str:
+    live_rows = "\n".join(render_row(app, show_description=False) for app in live_apps)
+    selected_rows = "\n".join(
+        render_row(project, show_description=not project.get("is_live_app", False))
+        for project in selected
+    )
+    selected_keys = {key(project["name"]) for project in selected}
+    other_projects = [
+        project for project in projects
+        if project["priority"] != "P1"
+        and not live_app_for(project, live_apps)
+        and key(project["name"]) not in selected_keys
+    ]
+    other_rows = "\n".join(render_row(project) for project in other_projects)
     selected_items = [
         {
             "@type": "ListItem",
             "position": position,
-            "item": {
-                "@type": "CreativeWork",
-                "name": project["name"],
-                "url": absolute_url(project["url"]),
-                "description": project["description"],
-            },
+            "item": dict(
+                {
+                    "@type": "CreativeWork",
+                    "name": project["name"],
+                    "url": absolute_url(project["url"]),
+                },
+                **({"description": project["description"]}
+                   if not project.get("is_live_app", False) else {}),
+            ),
         }
         for position, project in enumerate(selected, 1)
     ]
@@ -312,7 +381,16 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 <h2 id="selected-work">Selected work</h2>
 <ol class="project-list selected-list">{selected_rows}</ol>
 </section>
-{''.join(sections)}
+<section aria-labelledby="projects-p15">
+<h2 id="projects-p15">{TIER_LABELS["P1.5"][0]}</h2>
+<p class="section-intro">{TIER_LABELS["P1.5"][1]}</p>
+<ol class="project-list">{live_rows}</ol>
+</section>
+<section aria-labelledby="projects-p2">
+<h2 id="projects-p2">{TIER_LABELS["P2"][0]}</h2>
+<p class="section-intro">{TIER_LABELS["P2"][1]}</p>
+<ol class="project-list">{other_rows}</ol>
+</section>
 </main>
 <footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>
 </div>
@@ -326,8 +404,9 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="fail when projects/ is stale")
     args = parser.parse_args()
     projects = load_projects()
-    selected = selected_projects(projects, load_selected())
-    output = render(projects, selected)
+    live_apps = load_live_apps()
+    selected = selected_projects(projects, load_selected(), live_apps)
+    output = render(projects, selected, live_apps)
     if args.check:
         if not OUTPUT.exists():
             print("projects/ is stale; run python3 scripts/build_projects.py", file=sys.stderr)

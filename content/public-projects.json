@@ -1,11 +1,5 @@
 [
   {
-    "name": "1RM",
-    "url": "/apps/one-rep-max/",
-    "description": "One-rep-max calculator: median of seven estimators, installs to a phone home screen and runs offline.",
-    "language": "HTML"
-  },
-  {
     "name": "abbreviation-maker",
     "url": "https://github.com/EricSpencer00/abbreviation-maker",
     "description": "A tiny phrase and abbreviation generator.",
@@ -130,12 +124,6 @@
     "url": "https://github.com/EricSpencer00/BlackJackGame",
     "description": "Blackjack game.",
     "language": "Python"
-  },
-  {
-    "name": "BrightBet",
-    "url": "/apps/brightbet/",
-    "description": "Prediction-analysis platform built for HackIllinois 2026.",
-    "language": "Web"
   },
   {
     "name": "BrightBet.tech",
@@ -1117,7 +1105,7 @@
   },
   {
     "name": "tlakit",
-    "url": "https://github.com/LUC-AI4FM/tlakit",
+    "url": "https://tlakit.pages.dev/",
     "description": "A Python and notebook client for the TLA+ toolchain \u2014 model-check specs from Jupyter, get structured results back",
     "language": "Python"
   },
