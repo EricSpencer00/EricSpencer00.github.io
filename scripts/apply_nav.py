@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP_DIRS = {".git", ".claude", "backup-site", "editor", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
 OWN_NAV_PAGES = {ROOT / "news" / "index.html", ROOT / "projects.html"}
+LIVE_PROJECTS = {"1rm", "stem-player", "ulam-spiral", "ulam-spiral-b12"}
 
 NAV_RE = re.compile(r'<nav class="top"[^>]*>.*?</nav>', re.DOTALL)
 
@@ -74,7 +75,13 @@ def build_nav(current: str, keys: list[str]) -> str:
 
 def pages():
     for path in sorted(ROOT.rglob("*.html")):
-        if any(part in SKIP_DIRS for part in path.relative_to(ROOT).parts):
+        relative = path.relative_to(ROOT)
+        if any(part in SKIP_DIRS for part in relative.parts):
+            continue
+        # These are source trees for live builds, not editorial project pages.
+        # Their public route mirrors are updated separately and retain their
+        # product-specific navigation.
+        if len(relative.parts) > 2 and relative.parts[0] == "projects" and relative.parts[1] in LIVE_PROJECTS:
             continue
         # The catalog and public-build hub own labelled navigation with their
         # active state. News deliberately offers a single back link to its

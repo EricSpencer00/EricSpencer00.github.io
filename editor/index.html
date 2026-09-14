@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Project Copy Review</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
   <style>
     :root { --paper: oklch(.975 .008 80); --ink: oklch(.16 .018 55); --muted: oklch(.5 .012 70); --line: oklch(.84 .01 75); --mark: oklch(.33 .13 25); --wash: oklch(.93 .018 68); --ready: oklch(.36 .1 150); }
     * { box-sizing: border-box; }
@@ -33,19 +37,32 @@
     .description { max-width:64ch; margin:0; color:var(--muted); }
     .live { color:var(--mark); font:12px "IBM Plex Mono", ui-monospace, monospace; text-decoration:none; border-bottom:1px dotted currentColor; }
     .live:hover { color:var(--ink); }
+    .audit { margin:0 0 24px; padding:13px 14px; border:1px solid var(--line); border-left:3px solid var(--mark); background:oklch(.965 .012 72); }
+    .audit-title { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0 0 8px; font:12px/1.3 "IBM Plex Mono", ui-monospace, monospace; text-transform:uppercase; letter-spacing:.04em; }
+    .audit-title a { color:var(--mark); text-decoration:none; text-transform:none; letter-spacing:0; }
+    .audit-title a:hover { color:var(--ink); }
+    .audit-items { display:grid; gap:8px; margin:0; padding:0; list-style:none; }
+    .audit-items li { color:var(--muted); font-size:12px; }
+    .audit-items strong { color:var(--ink); }
+    .audit-items q { display:block; margin-top:2px; color:var(--ink); font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:11px; }
     .control { display:flex; gap:10px; align-items:center; margin:24px 0 8px; }
     textarea { display:block; width:100%; min-height:calc(100vh - 310px); resize:vertical; border:1px solid var(--line); border-radius:5px; padding:18px; background:oklch(.99 .005 80); color:var(--ink); font:14px/1.65 "IBM Plex Mono", ui-monospace, monospace; }
     textarea:focus { outline:2px solid oklch(.55 .11 30); outline-offset:2px; border-color:transparent; }
     .save-note { margin:10px 0 0; color:var(--muted); font-size:12px; }
     @media (max-width:760px) { .shell { grid-template-columns:1fr; }.shell aside { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }.project-list { max-height:210px; overflow:auto; }.editor { padding:28px 18px; }.bar { padding:12px 18px; }.project-head { grid-template-columns:1fr; } textarea { min-height:58vh; } }
   </style>
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
+<meta property="og:title" content="Project Copy Review">
+<meta name="twitter:title" content="Project Copy Review">
 </head>
 <body>
   <div class="shell">
     <aside>
       <div class="eyebrow">ericspencer.us</div>
       <h1>Copy review</h1>
-      <p class="hint">One Markdown file. One project at a time.</p>
+      <p class="hint">One Markdown file. One project at a time. <a class="live" href="STYLE-GUIDE.md" target="_blank" rel="noopener">STE001 rules ↗</a></p>
       <input id="search" type="search" placeholder="Filter projects" aria-label="Filter projects">
       <div id="project-list" class="project-list"></div>
     </aside>
@@ -58,7 +75,7 @@
     const draftKey = "eric-project-copy-draft-v1";
     const reviewKey = "eric-project-copy-review-v1";
     const localEditor = ["127.0.0.1", "localhost"].includes(location.hostname);
-    let original = "", draft = "", records = [], active = "", review = JSON.parse(localStorage.getItem(reviewKey) || "{}");
+    let original = "", draft = "", records = [], active = "", audit = {}, review = JSON.parse(localStorage.getItem(reviewKey) || "{}");
     const $ = (selector) => document.querySelector(selector);
 
     function parse(markdown) {
@@ -74,13 +91,22 @@
       const term = $("#search").value.toLowerCase(); const list = $("#project-list"); list.innerHTML = "";
       const visible = records.filter((r) => `${r.title} ${r.slug}`.toLowerCase().includes(term));
       $("#count").textContent = `${visible.length} / ${records.length} projects`;
-      for (const record of visible) { const button = document.createElement("button"); button.className = "project"; button.dataset.review = record.review; button.setAttribute("aria-current", String(record.slug === active)); button.innerHTML = `<i></i><span>${record.title}</span>`; button.onclick = () => { active = record.slug; render(); }; list.append(button); }
+      for (const record of visible) { const button = document.createElement("button"); button.className = "project"; button.dataset.review = record.review; button.setAttribute("aria-current", String(record.slug === active)); const findings = audit[record.slug]?.flags?.length || 0; button.innerHTML = `<i></i><span>${record.title}${findings ? ` <small class="count">${findings}</small>` : ""}</span>`; button.onclick = () => { active = record.slug; render(); }; list.append(button); }
     }
     function render() {
       records = parse(draft); const record = records.find((item) => item.slug === active) || records[0]; if (!record) return;
       active = record.slug; const root = $("#editor"); root.innerHTML = "";
       const pageUrl = localEditor ? `https://ericspencer.us${record.url}` : record.url;
       const head = document.createElement("div"); head.className = "project-head"; head.innerHTML = `<div><div class="eyebrow">${record.slug}</div><h2>${record.title}</h2><p class="description">${record.description}</p></div><a class="live" href="${pageUrl}" target="_blank" rel="noopener">view page ↗</a>`; root.append(head);
+      const findings = audit[record.slug]?.flags || [];
+      if (findings.length) {
+        const panel = document.createElement("section"); panel.className = "audit"; panel.setAttribute("aria-label", "Copy audit findings");
+        const required = findings.filter((finding) => finding.kind.startsWith("STE001")).length;
+        const title = document.createElement("p"); title.className = "audit-title"; title.innerHTML = `<span>Copy audit · ${required ? `${required} STE001 required · ` : ""}${findings.length} finding${findings.length === 1 ? "" : "s"}</span><a href="audit.md" target="_blank" rel="noopener">full report ↗</a>`; panel.append(title);
+        const list = document.createElement("ul"); list.className = "audit-items";
+        for (const finding of findings) { const item = document.createElement("li"); const label = document.createElement("strong"); label.textContent = `${finding.kind}: `; item.append(label, finding.note); const quote = document.createElement("q"); quote.textContent = finding.text; item.append(quote); list.append(item); }
+        panel.append(list); root.append(panel);
+      }
       const control = document.createElement("div"); control.className = "control"; control.innerHTML = `<label for="review">Review</label><select id="review"><option value="needs-review">Needs review</option><option value="reviewing">Reviewing</option><option value="ready">Ready</option></select>`; root.append(control);
       const select = control.querySelector("select"); select.value = record.review; select.onchange = () => { review[record.slug] = select.value; localStorage.setItem(reviewKey, JSON.stringify(review)); renderList(); };
       const area = document.createElement("textarea"); area.setAttribute("aria-label", `Copy for ${record.title}`); area.value = record.copy; area.oninput = () => updateRecord(record.slug, area.value); root.append(area);
@@ -93,7 +119,10 @@
     $("#save").onclick = async () => { const button = $("#save"); button.disabled = true; try { const response = await fetch("/api/markdown", {method:"PUT", headers:{"Content-Type":"text/markdown; charset=utf-8"}, body:draft}); if (!response.ok) throw new Error(); original = draft; localStorage.removeItem(draftKey); button.textContent = "Saved"; } catch { button.textContent = "Save failed"; } finally { setTimeout(() => { button.textContent = "Save index.md"; button.disabled = false; }, 1200); } };
     $("#reset").onclick = () => { localStorage.removeItem(draftKey); draft = original; records = parse(draft); active = records[0]?.slug || ""; render(); };
     if (localEditor) $("#save").hidden = false;
-    fetch("index.md").then((response) => response.text()).then((text) => { original = text; draft = localStorage.getItem(draftKey) || text; records = parse(draft); active = records[0]?.slug || ""; render(); }).catch(() => { $("#editor").innerHTML = '<p class="empty">Could not load index.md.</p>'; });
+    Promise.all([
+      fetch("index.md").then((response) => { if (!response.ok) throw new Error(); return response.text(); }),
+      fetch("audit.json").then((response) => response.ok ? response.json() : {records:[]}).catch(() => ({records:[]})),
+    ]).then(([text, report]) => { audit = Object.fromEntries((report.records || []).map((record) => [record.slug, record])); original = text; draft = localStorage.getItem(draftKey) || text; records = parse(draft); active = records[0]?.slug || ""; render(); }).catch(() => { $("#editor").innerHTML = '<p class="empty">Could not load index.md.</p>'; });
   </script>
 </body>
 </html>

@@ -8,6 +8,8 @@ path: the review desk is an authoring tool for this checkout.
 from __future__ import annotations
 
 import argparse
+import subprocess
+import sys
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -16,6 +18,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 EDITOR = ROOT / "editor"
 MARKDOWN = EDITOR / "index.md"
+AUDITOR = ROOT / "scripts" / "audit_project_copy.py"
 MAX_BYTES = 2_000_000
 
 
@@ -42,6 +45,11 @@ class EditorHandler(SimpleHTTPRequestHandler):
         temporary = MARKDOWN.with_suffix(".tmp")
         temporary.write_text(content, encoding="utf-8")
         temporary.replace(MARKDOWN)
+        try:
+            subprocess.run([sys.executable, str(AUDITOR)], cwd=ROOT, check=True, timeout=20)
+        except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            self.send_error(HTTPStatus.INTERNAL_SERVER_ERROR, "Saved the draft but could not refresh the audit")
+            return
         self.send_response(HTTPStatus.NO_CONTENT)
         self.end_headers()
 

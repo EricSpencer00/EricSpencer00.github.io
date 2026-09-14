@@ -32,6 +32,7 @@ jobs:
       - name: Build static pages
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: |
+          python3 scripts/build_project_routes.py
           python3 scripts/build.py
           python3 scripts/build_blog.py
           python3 scripts/build_resume_pages.py
@@ -91,6 +92,7 @@ jobs:
       - name: Verify generated project catalog and article headings
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: |
+          python3 scripts/build_project_routes.py --check
           python3 scripts/build_projects.py --check
           python3 scripts/build_public_apps.py --check
           python3 scripts/normalize_project_pages.py --check

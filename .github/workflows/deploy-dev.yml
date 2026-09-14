@@ -20,6 +20,8 @@ jobs:
           python-version: "3.12"
       - name: Build index.html from content/*.txt
         run: python3 scripts/build.py
+      - name: Build project route mirrors
+        run: python3 scripts/build_project_routes.py
       - name: Build blog HTML from Markdown
         run: python3 scripts/build_blog.py
       - name: Build resume/CV landing pages
@@ -88,9 +90,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
           # robots.txt lets crawlers fetch the page-level noindex directives.
-          git add -A CNAME index.html news blog robots.txt cv resume assets editor 1rm \
+          git add -A CNAME index.html news blog robots.txt cv resume assets editor \
             miscellaneous research.html projects.html apps 404.html projects sitemap.xml \
-            ulam-spiral ulam-spiral-b12
+            1rm stem-player ulam-spiral ulam-spiral-b12
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git
