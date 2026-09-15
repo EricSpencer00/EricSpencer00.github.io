@@ -1,0 +1,229 @@
+{
+  "entries": [
+    {
+      "date": "2017-04",
+      "html": "just started caddying at Oak Park Country Club",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/oak-park-country-club-caddie-2017-2024/"
+    },
+    {
+      "date": "2020",
+      "html": "I started selling clothes on Grailed. sourcing things, putting up listings, shipping orders",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/grailed-seller-2020-2021/"
+    },
+    {
+      "date": "2022-08",
+      "html": "just started at Loyola. studying computer science with an information systems minor",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/loyola-education/"
+    },
+    {
+      "date": "2023",
+      "html": "I’m doing research at Loyola on how ChatGPT handles advanced Java concepts",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/undergraduate-research-assistant-2023/"
+    },
+    {
+      "date": "2024-03",
+      "html": "working with Unchained AI this month, testing GPT-4 and figuring out why it gives the wrong answers",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/unchained-ai-jr-prompt-engineer-2024/"
+    },
+    {
+      "date": "2024-05",
+      "html": "I’m taking care of the Alpha Kappa Psi website now. working on the homepage and member pages",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/alpha-kappa-psi-it-chair/"
+    },
+    {
+      "date": "2024-07",
+      "html": "just started at Loyola’s IT help desk. lots of support tickets and account access problems",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/loyola-its-service-desk-2024/"
+    },
+    {
+      "date": "2024-08",
+      "html": "I’m helping run the technical projects and workshops for Loyola’s AI Club this year",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/loyola-ai-club-vp-technology/"
+    },
+    {
+      "date": "2025-01",
+      "html": "just started interning at EpiFinder. automating some of the internal workflows with Google Apps Script",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/epifinder-intern-2025/"
+    },
+    {
+      "date": "2025-01",
+      "html": "I’m working on a marketing CX study for Microsoft this year",
+      "url": "",
+      "source": "content/experience.txt; https://ericspencer.us/#cv"
+    },
+    {
+      "date": "2025-01",
+      "html": "just wrote up my Hall of Fame predictor from the Google Cloud × MLB hackathon. it’s a decision tree trained on baseball stats",
+      "url": "/projects/mlb-hackathon/",
+      "source": "/projects/mlb-hackathon/"
+    },
+    {
+      "date": "2025-03",
+      "html": "I made a VS Code extension to turn a whole repo into a text file for an LLM. got tired of pasting files one at a time",
+      "url": "/projects/flatten-repo/",
+      "source": "/projects/flatten-repo/"
+    },
+    {
+      "date": "2025-04",
+      "html": "we’ve been working on sign language recognition in AI Club with Python and OpenCV. downloading all the videos taught me that you can run out of wifi",
+      "url": "/projects/sign-language/",
+      "source": "/projects/sign-language/"
+    },
+    {
+      "date": "2025-05",
+      "html": "just built a microwave demo to help teach TLA+ at Loyola. took two weeks. Spring Boot (Java) and Vaadin (also Java)",
+      "url": "/projects/interactive-microwave-tla/",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/loyola-cs-software-engineer-2025/"
+    },
+    {
+      "date": "2025-05",
+      "html": "just started my summer internship at CCC. working with Vue and Spring Boot on their portal and an insurance claims dashboard",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/ccc-intern-2025/"
+    },
+    {
+      "date": "2025-08",
+      "html": "I’m joining AI4FM at Loyola to work on TLA+ and fine-tuning language models",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/ai4fm-researcher/"
+    },
+    {
+      "date": "2025-10",
+      "html": "I’m putting my apps under FROM AMERICA LLC now",
+      "url": "https://fromamerica-llc.com",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/from-america-llc-founder/"
+    },
+    {
+      "date": "2025-10",
+      "html": "just built Stock Genie, an iOS app for looking into stocks with AI",
+      "url": "https://stockgenie.app",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/stockgenie-founder/"
+    },
+    {
+      "date": "2025-12",
+      "html": "I’m building instxnt.xyz so you can make a storefront without paying a monthly subscription",
+      "url": "https://instxnt.xyz",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/instxnt-xyz-founder/"
+    },
+    {
+      "date": "2026-03",
+      "html": "I made Picaius because none of the photo editing apps on the App Store were doing what I wanted",
+      "url": "https://picai.us",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/picaius-founder/"
+    },
+    {
+      "date": "2026-05",
+      "html": "just graduated from Loyola. BS in computer science, minor in information systems",
+      "url": "",
+      "source": "https://github.com/EricSpencer00/ericspencer-site-backup/tree/main/resume/loyola-education/"
+    },
+    {
+      "date": "2026-05-13",
+      "html": "just put out the ChatTLA+ dataset. it has the verified training examples and the benchmark we used for the paper",
+      "url": "/projects/chattla-dataset/",
+      "source": "/projects/chattla-dataset/"
+    },
+    {
+      "date": "2026-05-15",
+      "html": "I made a little macOS app for putting cover art on MP3s. drop in the audio and an image and it does the rest locally",
+      "url": "/projects/tunes2tube-mac/",
+      "source": "/projects/tunes2tube-mac/"
+    },
+    {
+      "date": "2026-05",
+      "html": "I’ve been writing Coq and TLA+ specs for Rubik’s Snake. there’s a Python enumerator too",
+      "url": "/projects/rubix-snake-puzzle/",
+      "source": "/projects/rubix-snake-puzzle/"
+    },
+    {
+      "date": "2026-05-20",
+      "html": "I started making a programming language called Resilient. trying to put checked contracts and runtime recovery into the language itself. very much a research project",
+      "url": "/projects/resilient/",
+      "source": "/projects/resilient/"
+    },
+    {
+      "date": "2026-06",
+      "html": "just joined HorneSci",
+      "url": "https://hornesci.github.io",
+      "source": "content/experience.txt; https://ericspencer.us/#cv"
+    },
+    {
+      "date": "2026-07-26",
+      "html": "our TLA+-Bench preprint is out. we check the generated specs by actually running them. the dataset has 403 model-checked gold specs",
+      "url": "https://arxiv.org/abs/2607.23425",
+      "source": "https://arxiv.org/abs/2607.23425",
+      "attachment": {
+        "image": "/assets/news/tla-bench.webp",
+        "title": "TLA+-Bench",
+        "url": "https://arxiv.org/pdf/2607.23425v1",
+        "width": 928,
+        "height": 1200,
+        "kind": "Paper"
+      }
+    }
+  ],
+  "updates": {
+    "https://arxiv.org/html/2606.06133v1": {
+      "attachment": {
+        "image": "/assets/news/tla-prover.webp",
+        "title": "TLA-Prover",
+        "url": "https://arxiv.org/pdf/2606.06133v1",
+        "width": 849,
+        "height": 1200,
+        "kind": "Paper"
+      },
+      "html": "TLA-Prover just got accepted to ICSOFT 2026. this is the model I’ve been working on for generating TLA+ specs"
+    },
+    "https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/": {
+      "attachment": {
+        "image": "/assets/news/llm-tla.webp",
+        "title": "Can LLMs Write Correct TLA+ Specifications?",
+        "url": "https://arxiv.org/pdf/2606.05792v1",
+        "width": 848,
+        "height": 1200,
+        "kind": "Paper"
+      },
+      "html": "our paper on whether LLMs can write correct TLA+ was accepted to and presented at ICSOFT 2026 in Porto"
+    },
+    "https://ai4fm.cs.luc.edu/posts/chattla-presentation-2026/": {
+      "attachment": {
+        "image": "/assets/news/chattla-talk.webp",
+        "title": "ChatTLA+ · Loyola presentation",
+        "url": "https://ai4fm.cs.luc.edu/_static/ChatTLA-presentation-2026.pdf",
+        "width": 1200,
+        "height": 675,
+        "kind": "Slides"
+      },
+      "html": "just presented our ChatTLA+ work at Loyola’s undergraduate research symposium. these are my slides"
+    },
+    "https://ai4fm.cs.luc.edu/posts/gsirs-llm-tla-poster-2026/": {
+      "date": "2026-04-11",
+      "attachment": {
+        "image": "/assets/news/gsirs-poster.webp",
+        "title": "LLMs and TLA+ · GSIRS 2026",
+        "url": "https://ndownloader.figshare.com/files/63644781",
+        "width": 801,
+        "height": 1200,
+        "kind": "Poster"
+      },
+      "html": "Brian just presented the poster we worked on at GSIRS. it’s about how well LLMs actually do at writing TLA+"
+    },
+    "https://huggingface.co/EricSpencer00/chattla-20b": {
+      "date": "2026-03-06",
+      "html": "just uploaded chattla-20b to Hugging Face. I’ve been fine-tuning it to write TLA+ specs",
+      "source": "https://huggingface.co/api/models/EricSpencer00/chattla-20b"
+    },
+    "https://ai4fm.cs.luc.edu/posts/eric-spencer-mulcahy-scholar-2025/": {
+      "html": "I got a Mulcahy Scholar stipend to work on LLMs and TLA+ at Loyola"
+    }
+  }
+}

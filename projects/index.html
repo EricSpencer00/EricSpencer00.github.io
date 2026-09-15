@@ -1,25 +1,286 @@
-<!doctype html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>Redirecting...</title>
-<link rel="canonical" href="https://ericspencer.us/projects.html">
-<meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Redirecting... — ericspencer.us">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
-<meta name="twitter:image:alt" content="Redirecting... — ericspencer.us">
-<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects.jpg">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Eric Spencer</title>
+<meta name="description" content="Software, research, experiments, coursework, and live apps from Eric Spencer.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#faf7f2">
-<meta http-equiv="refresh" content="0; url=https://ericspencer.us/projects.html">
-<!-- redirect stub -->
-<!-- No noindex: the canonical above is what consolidates this URL onto
-     /projects.html, and Google treats noindex alongside it as a contradiction. -->
-<script>location.replace("https://ericspencer.us/projects.html");</script>
-</head><body>
-<p>This page has moved. Redirecting to <a href="https://ericspencer.us/projects.html">https://ericspencer.us/projects.html</a>...</p>
-</body></html>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects | Eric Spencer">
+<meta property="og:description" content="Software, research, experiments, coursework, and live apps from Eric Spencer.">
+<meta property="og:url" content="https://ericspencer.us/projects/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Projects | Eric Spencer">
+<meta property="og:site_name" content="Eric Spencer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Projects | Eric Spencer">
+<meta name="twitter:description" content="Software, research, experiments, coursework, and live apps from Eric Spencer.">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Projects","url":"https://ericspencer.us/projects/","description":"Software, research, experiments, coursework, and live apps from Eric Spencer.","author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},"hasPart":{"@type":"ItemList","name":"Selected work","numberOfItems":3,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"CreativeWork","name":"TLA+","url":"https://ericspencer.us/projects/tla-plus/","description":"TLA+ modeling and verification work, including interactive examples, research tools, and generated specifications."}},{"@type":"ListItem","position":2,"item":{"@type":"CreativeWork","name":"Resilient","url":"https://ericspencer.us/projects/resilient/","description":"Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V."}},{"@type":"ListItem","position":3,"item":{"@type":"CreativeWork","name":"HST-Studio","url":"https://github.com/HorneSci/hst-studio","description":"A delta-aware sparse linear algebra runtime, and the tooling around it."}}]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--paper:#faf7f2;--ink:#16120f;--accent:#5f000b;--dim:#625d57;--rule:#d6d0c8;--soft:#f0ebe4}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:16px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:56px 24px 96px}
+.name{margin:0;font-size:clamp(2.25rem,5vw,3.5rem);letter-spacing:-.045em;line-height:1.05}
+nav{margin:16px 0 0;font-size:.9rem;color:var(--dim)}
+nav a{color:inherit;text-decoration:none;padding:2px} nav a:hover,nav a[aria-current="page"]{color:var(--ink)} nav a[aria-current="page"]{font-weight:700}
+hr{border:0;border-top:1px solid var(--rule);margin:28px 0}
+main{max-width:860px} h1{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.035em;line-height:1.15}
+.intro,.section-intro{max-width:68ch;color:var(--dim);margin:12px 0 24px}
+h2{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
+.selected-list{margin-bottom:28px}
+.project-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--rule)}
+.project{display:grid;grid-template-columns:minmax(13rem,.8fr) minmax(0,2fr);gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}
+.project-name{font-weight:700;color:var(--ink);text-decoration:none;overflow-wrap:anywhere} .project-name:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.project-description{color:var(--dim);overflow-wrap:anywhere} footer{margin-top:60px;color:var(--dim);font-size:.85rem}
+@media (max-width:680px){.wrap{padding:36px 18px 72px}.project{grid-template-columns:1fr;gap:3px;padding:14px 0}}
+</style>
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+</head>
+<body class="portfolio-page">
+<div class="wrap">
+<p class="name">Eric Spencer</p>
+<nav aria-label="Primary"><a href="/">index</a> · <a href="/research/">publications</a> · <a href="/projects/" aria-current="page">projects</a> · <a href="/cv/">cv</a></nav>
+<hr>
+<main>
+<h1>Projects</h1>
+<p class="intro">Software, research, experiments, coursework, and live apps.</p>
+<section aria-labelledby="selected-work">
+<h2 id="selected-work">Selected work</h2>
+<ol class="project-list selected-list"><li class="project"><a class="project-name" href="/projects/tla-plus/">TLA+</a><span class="project-description">TLA+ modeling and verification work, including interactive examples, research tools, and generated specifications.</span></li>
+<li class="project"><a class="project-name" href="/projects/resilient/">Resilient</a><span class="project-description">Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/HorneSci/hst-studio" target="_blank" rel="noopener">HST-Studio</a><span class="project-description">A delta-aware sparse linear algebra runtime, and the tooling around it.</span></li></ol>
+</section>
+<section aria-labelledby="projects-p15">
+<h2 id="projects-p15">Live apps</h2>
+
+<ol class="project-list"><li class="project"><a class="project-name" href="https://ipaidforthisshirt.com/" target="_blank" rel="noopener">I Paid For This Shirt</a><span class="project-description">Shirt price printed on shirt</span></li>
+<li class="project"><a class="project-name" href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">ai4fm.cs.luc.edu</a><span class="project-description">Loyola formal methods research group</span></li>
+<li class="project"><a class="project-name" href="https://brightbet.tech/" target="_blank" rel="noopener">BrightBet.tech</a><span class="project-description">Trade and prediction analysis</span></li>
+<li class="project"><a class="project-name" href="https://sideswing.tech/" target="_blank" rel="noopener">SideSwing</a><span class="project-description">Map-based phone golf game</span></li>
+<li class="project"><a class="project-name" href="https://stemacle.com/" target="_blank" rel="noopener">Stemacle</a><span class="project-description">Browser stem separation app</span></li>
+<li class="project"><a class="project-name" href="https://stockgenie.app/" target="_blank" rel="noopener">StockGenie</a><span class="project-description">iPhone market analysis app</span></li>
+<li class="project"><a class="project-name" href="https://vocal.best/" target="_blank" rel="noopener">VoCal</a><span class="project-description">Voice-assisted food logging</span></li>
+<li class="project"><a class="project-name" href="https://paper-digest.ericspencer.us/" target="_blank" rel="noopener">Paper Digest</a><span class="project-description">arXiv paper matching API</span></li>
+<li class="project"><a class="project-name" href="https://tla.ericspencer.us/" target="_blank" rel="noopener">TLA+ Generator</a><span class="project-description">Natural-language TLA+ generator</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/Resilient/" target="_blank" rel="noopener">Resilient Docs</a><span class="project-description">Resilient language documentation</span></li>
+<li class="project"><a class="project-name" href="https://fromamerica-llc.com/FreeLock-web/" target="_blank" rel="noopener">FreeLock</a><span class="project-description">NFC focus app for iPhone</span></li>
+<li class="project"><a class="project-name" href="https://famousmoji.com/" target="_blank" rel="noopener">Famous Moji</a><span class="project-description">Emoji app and archive</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/gta-v-gold-checklist/" target="_blank" rel="noopener">GTA V Gold Medal Checklist</a><span class="project-description">GTA V mission requirements checklist</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/ddia/" target="_blank" rel="noopener">DDIA Learning Lab</a><span class="project-description">DDIA study notes and quizzes</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/Claude-architect-quiz/" target="_blank" rel="noopener">Claude Architect Quiz</a><span class="project-description">Claude Architect exam practice</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/latex/" target="_blank" rel="noopener">LaTeX Workspace</a><span class="project-description">Browser LaTeX editing workspace</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/1rm/" target="_blank" rel="noopener">One Rep Max</a><span class="project-description">One-rep-max calculator</span></li>
+<li class="project"><a class="project-name" href="https://palindrome.ericspencer.us/" target="_blank" rel="noopener">Palindrome</a><span class="project-description">Palindromic sentence generator</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/ulam-spiral/" target="_blank" rel="noopener">Ulam Spiral</a><span class="project-description">Prime-marked number spiral</span></li>
+<li class="project"><a class="project-name" href="https://ericspencer.us/hotdog/" target="_blank" rel="noopener">Not Hotdog</a><span class="project-description">Browser image classifier</span></li>
+<li class="project"><a class="project-name" href="https://tlakit.pages.dev/" target="_blank" rel="noopener">tlakit</a><span class="project-description">Jupyter client for TLA+</span></li>
+<li class="project"><a class="project-name" href="https://picai.us/" target="_blank" rel="noopener">Picaius</a><span class="project-description">Layered photo editor</span></li></ol>
+</section>
+<section aria-labelledby="projects-p2">
+<h2 id="projects-p2">Other work</h2>
+
+<ol class="project-list"><li class="project"><a class="project-name" href="https://github.com/EricSpencer00/cad-bench-submission" target="_blank" rel="noopener">CAD Bench Submission</a><span class="project-description">Submission portal for the Parametric CAD Bench leaderboard.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/gcf-de" target="_blank" rel="noopener">gcf-de</a><span class="project-description">Svelte data-engineering front end.</span></li>
+<li class="project"><a class="project-name" href="https://ealing-capital.pages.dev" target="_blank" rel="noopener">ealing-capital</a><span class="project-description">Ealing Capital site redesign (Astro + Tailwind).</span></li>
+<li class="project"><a class="project-name" href="https://github.com/from-america/from-america.github.io" target="_blank" rel="noopener">from-america.github.io</a><span class="project-description">FROM AMERICA LLC corporate site.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/DailyTask-web" target="_blank" rel="noopener">DailyTask-web</a><span class="project-description">Daily-task tracker web app.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/gta-v-gold-checklist" target="_blank" rel="noopener">gta-v-gold-checklist</a><span class="project-description">Gold medal checklist for GTA V missions. Served at ericspencer.us/gta-v-gold-checklist/</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/hardtekk-generator" target="_blank" rel="noopener">hardtekk-generator</a><span class="project-description">Generative hardtekk in the browser.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/LoyolaHACK" target="_blank" rel="noopener">LoyolaHACK</a><span class="project-description">CTA Transit Tracker - Loyola hackathon.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/pm-whale-tracker" target="_blank" rel="noopener">pm-whale-tracker</a><span class="project-description">Polymarket whale tracker — browser-only, no backend. Lives at ericspencer.us/pm-whale-tracker</span></li>
+<li class="project"><a class="project-name" href="https://github.com/from-america/splithound-web" target="_blank" rel="noopener">splithound-web</a><span class="project-description">SplitHound web presence.</span></li>
+<li class="project"><a class="project-name" href="/projects/agent-board/">Agent Board</a><span class="project-description">Shared ticket board with a SQLite source of truth, a kanban UI, a CLI, and a GitHub Issues mirror.</span></li>
+<li class="project"><a class="project-name" href="/projects/phoneclaw/">PhoneClaw</a><span class="project-description">A Mac bridge and old-iPhone client that route text messages to AI agents.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tlaplus_jupyter" target="_blank" rel="noopener">tlaplus_jupyter</a><span class="project-description">Jupyter kernel for running TLA+ model-checking workflows.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/MoltenVK" target="_blank" rel="noopener">MoltenVK</a><span class="project-description">Eric&#x27;s public MoltenVK repository, a Vulkan portability layer over Apple&#x27;s Metal framework.</span></li>
+<li class="project"><a class="project-name" href="/projects/hermes-ops/">Hermes Ops</a><span class="project-description">Operations scripts and configuration for the Hermes agent and its delegated jobs.</span></li>
+<li class="project"><a class="project-name" href="/projects/instxnt/">instxnt.xyz</a><span class="project-description">Dashboard and storefront system for creating AI-powered online stores.</span></li>
+<li class="project"><a class="project-name" href="/projects/ai-music-playground/">AI Music Playground</a><span class="project-description">Private workspace for experiments with AI-generated music.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ai-conversation" target="_blank" rel="noopener">ai-conversation</a><span class="project-description">Two LLMs debate philosophy with each other.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/als-signature-reversal" target="_blank" rel="noopener">als-signature-reversal</a><span class="project-description">Reverse-signature drug repurposing for ALS on iPSC RNA-seq data.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/AoC2025" target="_blank" rel="noopener">AoC2025</a><span class="project-description">Advent of Code 2025 notes.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/apple-music-widget" target="_blank" rel="noopener">apple-music-widget</a><span class="project-description">Now-playing Apple Music web widget.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/archaic-radio-frontend" target="_blank" rel="noopener">archaic-radio-frontend</a><span class="project-description">Front-end for a retro internet-radio player.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/bio-ops-web" target="_blank" rel="noopener">bio-ops-web</a><span class="project-description">Bioinformatics ops web dashboard.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/caterpillar" target="_blank" rel="noopener">caterpillar</a><span class="project-description">Static / interactive web piece.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Chat" target="_blank" rel="noopener">Chat</a><span class="project-description">Java chat application.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/chattla-dataset-anon" target="_blank" rel="noopener">chattla-dataset-anon</a><span class="project-description">ChatTLA+ corpus and benchmark; the repository retains its review-era anonymized name.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ChessStats" target="_blank" rel="noopener">ChessStats</a><span class="project-description">Pulls and displays Chess.com statistics.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/chess-stats.md" target="_blank" rel="noopener">Chess.com Stats</a><span class="project-description">Pulls and visualizes Chess.com stats.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Comp272Projects" target="_blank" rel="noopener">Comp272Projects</a><span class="project-description">Data structures (COMP 272).</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/COMP330Group5" target="_blank" rel="noopener">COMP330Group5</a><span class="project-description">Coursework group project (COMP 330).</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/comp371-team8-activity" target="_blank" rel="noopener">comp371-team8-activity</a><span class="project-description">Programming languages (COMP 371).</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/cone-site" target="_blank" rel="noopener">cone-site</a><span class="project-description">Static site project.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/copilot-cli-test" target="_blank" rel="noopener">copilot-cli-test</a><span class="project-description">Copilot CLI evaluation sandbox.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/design-skill" target="_blank" rel="noopener">design-skill</a><span class="project-description">Single-page editorial rendition of the personal site.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/echotest-scala" target="_blank" rel="noopener">echotest-scala</a><span class="project-description">Scala echo test.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/editorial-frontend" target="_blank" rel="noopener">editorial-frontend</a><span class="project-description">Claude Code skill: editorial frontend design — typography-first, anti-vibe-code, 6 design DNAs</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ericspencer-site-backup" target="_blank" rel="noopener">ericspencer-site-backup</a><span class="project-description">Backup of the Hugo-based personal site before HTML rewrite (May 2026)</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/etl-demo" target="_blank" rel="noopener">etl-demo</a><span class="project-description">Small ETL pipeline demonstration.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Examples" target="_blank" rel="noopener">Examples</a><span class="project-description">A collection of TLA+ specifications.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/headroom" target="_blank" rel="noopener">headroom</a><span class="project-description">Tooling for compressing agent inputs before they reach a language model.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/iOS-soundboard" target="_blank" rel="noopener">iOS-soundboard</a><span class="project-description">iOS soundboard app.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/margaux-website" target="_blank" rel="noopener">margaux-website</a><span class="project-description">Personal client website.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/mc-carspot" target="_blank" rel="noopener">mc-carspot</a><span class="project-description">Rust online-parking-spot simulator with switching costs.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/pitch" target="_blank" rel="noopener">pitch</a><span class="project-description">Pitch-deck site.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/rocq" target="_blank" rel="noopener">rocq</a><span class="project-description">Playground for the Rocq (Coq) proof assistant.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/roman-numeral-converter" target="_blank" rel="noopener">roman-numeral-converter</a><span class="project-description">Roman numeral ↔ integer converter.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/scala-hello-world" target="_blank" rel="noopener">scala-hello-world</a><span class="project-description">Scala starter project.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/scala-workshop" target="_blank" rel="noopener">scala-workshop</a><span class="project-description">Scala workshop materials and exercises.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/seedex" target="_blank" rel="noopener">seedex</a><span class="project-description">Local-first coding companion for macOS and iPhone — BYOK models, Tailscale/SSH host control, GitHub App and MCP integration.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/session-curator" target="_blank" rel="noopener">session-curator</a><span class="project-description">Archive stale Claude Code sessions, keep the ones still in flight. Deterministic rules + Haiku classification, never deletes.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/spa-web" target="_blank" rel="noopener">spa-web</a><span class="project-description">Single-page web app scaffold.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Whisky" target="_blank" rel="noopener">Whisky</a><span class="project-description">A modern Wine wrapper for macOS built with SwiftUI.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/typescript-go" target="_blank" rel="noopener">typescript-go</a><span class="project-description">Native port of TypeScript.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/dxmt" target="_blank" rel="noopener">dxmt</a><span class="project-description">Metal-based implementation of D3D11 and D3D10 for macOS / Wine</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/MovieRec-F24" target="_blank" rel="noopener">MovieRec-F24</a><span class="project-description">Fall 2024 movie rec project.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/abbreviation-maker" target="_blank" rel="noopener">abbreviation-maker</a><span class="project-description">A tiny phrase and abbreviation generator.</span></li>
+<li class="project"><a class="project-name" href="/projects/aeo-queries/">AEO Queries</a><span class="project-description">Chrome extension that records the exact search queries ChatGPT, Claude and Perplexity issue for a prompt.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/aeo-extension" target="_blank" rel="noopener">aeo-extension</a><span class="project-description">Chrome extension that shows the exact web-search queries ChatGPT, Claude, and Perplexity run for your prompts.</span></li>
+<li class="project"><a class="project-name" href="/projects/ai-headshots/">AI Headshots</a><span class="project-description">Replicate-backed headshot generator.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ai-os" target="_blank" rel="noopener">ai-os</a><span class="project-description">Experimental LLM-driven operating-shell concept.</span></li>
+<li class="project"><a class="project-name" href="/projects/anagram/">Anagram Solver</a><span class="project-description">Scrabble Inspired Anagram Solver</span></li>
+<li class="project"><a class="project-name" href="/projects/anagram-v2/">Anagram Solver V2</a><span class="project-description">Scrabble Inspired Anagram Solver</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/AnagramSolverV1" target="_blank" rel="noopener">AnagramSolverV1</a><span class="project-description">Anagram solver.</span></li>
+<li class="project"><a class="project-name" href="/projects/ancestry-tree/">Ancestry Tree Java Example</a><span class="project-description">Java graph-traversal example for checking ancestry links.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/arxiv-report" target="_blank" rel="noopener">arxiv-report</a><span class="project-description">Interest-matched arXiv papers for your AI agent — free Cloudflare Workers API with semantic ranking, honest thresholds, and keyword fallback</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ascii-llm-training" target="_blank" rel="noopener">ascii-llm-training</a><span class="project-description">Training a small LM purely on ASCII text.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/audio-tabula-rasa" target="_blank" rel="noopener">audio-tabula-rasa</a><span class="project-description">Audio processing experiment.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/auto-decode" target="_blank" rel="noopener">auto-decode</a><span class="project-description">Heuristic auto-detection and decoding of encoded text.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/blackjack.md" target="_blank" rel="noopener">BlackJack</a><span class="project-description">Browser blackjack with fake money.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/BlackJackGame" target="_blank" rel="noopener">BlackJackGame</a><span class="project-description">Blackjack game.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/c4-fmitf" target="_blank" rel="noopener">c4-fmitf</a><span class="project-description">TLA+ formal model of Connect-4 game mechanics.</span></li>
+<li class="project"><a class="project-name" href="/projects/chatgpt-research/">ChatGPT Research</a><span class="project-description">Loyola research on ChatGPT responses to CS2 data-structure questions.</span></li>
+<li class="project"><a class="project-name" href="/projects/chattla-dataset/">ChatTLA+ Dataset</a><span class="project-description">Dataset release for ChatTLA+, the TLA+ specification-generation paper presented at ICSOFT 2026.</span></li>
+<li class="project"><a class="project-name" href="/research/#chattla-gpt-oss-paper">chattla-gpt-oss-paper</a><span class="project-description">Paper on fine-tuning gpt-oss-20b for verifiable TLA+ specifications.</span></li>
+<li class="project"><a class="project-name" href="/research/#talks">chattla-spec-gen-paper</a><span class="project-description">ChatTLA+ research presentation and paper artifact.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/chess.md" target="_blank" rel="noopener">Chess Game</a><span class="project-description">Browser chess game.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/chess-coach" target="_blank" rel="noopener">chess-coach</a><span class="project-description">Personal chess coach: Chess.com history + Stockfish analysis + play-vs-engine debrief.</span></li>
+<li class="project"><a class="project-name" href="/projects/healthup/">COMP322 Final Project Reflection</a><span class="project-description">COMP322 final-project reflection.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">comp388-llm</a><span class="project-description">Coursework: LLM systems (COMP 388).</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/connect-4" target="_blank" rel="noopener">connect-4</a><span class="project-description">Chess-engine-style analyzer for Connect-4.</span></li>
+<li class="project"><a class="project-name" href="/projects/cubed-pack-solve/">Cubed Pack Solver</a><span class="project-description">A solver for packing 54 T-tetracubes into a 6x6x6 cube using Knuth&#x27;s Dancing Links algorithm.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/cubed-pack-solve" target="_blank" rel="noopener">cubed-pack-solve</a><span class="project-description">Solver for a 3-D cube-packing puzzle.</span></li>
+<li class="project"><a class="project-name" href="/projects/dailytask/">Daily Task - Wellness Tracker</a><span class="project-description">A habit manager for daily consistency.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/dev.EricSpencer00.github.io" target="_blank" rel="noopener">dev.EricSpencer00.github.io</a><span class="project-description">Public dev/staging of the personal site.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/DexcomNavBarIcon-macos" target="_blank" rel="noopener">DexcomNavBarIcon-macos</a><span class="project-description">macOS menu-bar widget surfacing live Dexcom readings.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/DexVal" target="_blank" rel="noopener">DexVal</a><span class="project-description">A project analyzing Dexcom CGM data beyond the standard Clarity app.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/drift" target="_blank" rel="noopener">drift</a><span class="project-description">Procedural low-poly planet — Three.js + Perlin noise</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/earthcraft" target="_blank" rel="noopener">earthcraft</a><span class="project-description">Measured whole-Earth terrain and urban world generation</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/EmailExtraction" target="_blank" rel="noopener">EmailExtraction</a><span class="project-description">Bulk email-address extraction utility.</span></li>
+<li class="project"><a class="project-name" href="/research/#eric-paper">eric-paper</a><span class="project-description">ICSOFT paper on ChatTLA+ fine-tuning for verifiable TLA+ specifications.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/EricSpencer00" target="_blank" rel="noopener">EricSpencer00</a><span class="project-description">GitHub profile README.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/EricSpencer00.github.io" target="_blank" rel="noopener">EricSpencer00.github.io</a><span class="project-description">Source of this site.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/faciometry" target="_blank" rel="noopener">faciometry</a><span class="project-description">Facial morphometrics from a photograph, with a 95% interval on every measurement and no aggregate score. Runs locally.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/fb-clone" target="_blank" rel="noopener">fb-clone</a><span class="project-description">Systems-analysis Facebook clone (GraceNook).</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/fg-scrape" target="_blank" rel="noopener">fg-scrape</a><span class="project-description">Targeted web-scraping utility.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/flatten-repo" target="_blank" rel="noopener">flatten-repo</a><span class="project-description">VS Code extension: flattens a repository into a single LLM-ready file.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/fm-cb-game" target="_blank" rel="noopener">fm-cb-game</a><span class="project-description">Formally-modeled combinatorial board game in TLA+.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/LUC-AI4FM/FormaLLM" target="_blank" rel="noopener">FormaLLM</a><span class="project-description">Toolkit for evaluating LLMs on formal-specification synthesis.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/fortnite-oneshot" target="_blank" rel="noopener">fortnite-oneshot</a><span class="project-description">One-shot scripting experiment.</span></li>
+<li class="project"><a class="project-name" href="/projects/freetime-calc/">Free Time Calculator in Java</a><span class="project-description">A Java program to find overlapping free time for up to four people.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/gameoflife.md" target="_blank" rel="noopener">Game of Life</a><span class="project-description">Conway&#x27;s Game of Life - canvas demo.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Gesture" target="_blank" rel="noopener">Gesture</a><span class="project-description">Proof-of-concept Jarvis-style gesture control for macOS.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/git-key-guardian" target="_blank" rel="noopener">git-key-guardian</a><span class="project-description">Pre-commit guard that blocks secret keys from being committed.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/GluCoPilot" target="_blank" rel="noopener">GluCoPilot</a><span class="project-description">OpenAI Hackathon &#x27;25 - LLM copilot over Dexcom glucose data.</span></li>
+<li class="project"><a class="project-name" href="/projects/glucopilot/">glucopilot-v2</a><span class="project-description">GluCoPilot iOS prototype.</span></li>
+<li class="project"><a class="project-name" href="/projects/goldbach-conj/">Goldbach Conjecture</a><span class="project-description">Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/goldbach-conj" target="_blank" rel="noopener">goldbach-conj</a><span class="project-description">Brute-force verification of the strong Goldbach conjecture to 1e9.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/grade-public-commits" target="_blank" rel="noopener">grade-public-commits</a><span class="project-description">Auto-grades student work from public commit history.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/gta-v-whisky-mod-config" target="_blank" rel="noopener">gta-v-whisky-mod-config</a><span class="project-description">Public project source repository.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/HackIllinois26" target="_blank" rel="noopener">HackIllinois26</a><span class="project-description">HackIllinois 2026 hackathon project.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Handwriting" target="_blank" rel="noopener">Handwriting</a><span class="project-description">Handwriting-recognition experiment.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/HealthUp-" target="_blank" rel="noopener">HealthUp-</a><span class="project-description">COMP 322 semester-long mobile health app.</span></li>
+<li class="project"><a class="project-name" href="/projects/tell-ai/">How to tell if it&#x27;s AI</a><span class="project-description">Heuristic essay on spotting AI-generated text.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/interactive-microwave-tla" target="_blank" rel="noopener">interactive-microwave-tla</a><span class="project-description">Browser-based TLA+ microwave - a gentle first model-checking demo.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Intro-to-tts" target="_blank" rel="noopener">Intro-to-tts</a><span class="project-description">Minimal text-to-speech in Python.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/itch-parser" target="_blank" rel="noopener">itch-parser</a><span class="project-description">C parser for ITCH-format market data.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/itch-parser-eric" target="_blank" rel="noopener">itch-parser-eric</a><span class="project-description">Hand-rolled C variant of the ITCH market-data parser.</span></li>
+<li class="project"><a class="project-name" href="/projects/iterative-maze-solver/">Iterative Maze Solver Example</a><span class="project-description">Java iterator-based maze-solver example.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ITS-RAG-bot" target="_blank" rel="noopener">ITS-RAG-bot</a><span class="project-description">Retrieval-augmented assistant for an IT-service knowledge base.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/llmjammer" target="_blank" rel="noopener">llmjammer</a><span class="project-description">Python source obfuscator built to confuse code-scraping LLMs.</span></li>
+<li class="project"><a class="project-name" href="/projects/its-rag-bot/">Loyola ITS RAG Bot</a><span class="project-description">A voice-first RAG chatbot trained on Loyola&#x27;s ITS knowledge base, built after two years of answering the same tickets.</span></li>
+<li class="project"><a class="project-name" href="/projects/fraud-predictor/">Machine Learning Fraud Identifier</a><span class="project-description">Compares machine-learning models on an anonymized, PCA-transformed fraud dataset.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/MLB-Hackathon" target="_blank" rel="noopener">MLB-Hackathon</a><span class="project-description">Google Cloud x MLB hackathon - Hall of Fame predictor.</span></li>
+<li class="project"><a class="project-name" href="/projects/movierec/">Movie Recommendation Website</a><span class="project-description">A movie recommendation website developed as part of the Loyola AI Club&#x27;s Fall 2024 project.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/notify-agent-done" target="_blank" rel="noopener">notify-agent-done</a><span class="project-description">Desktop notification when a long-running agent finishes.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ollama-vibecode" target="_blank" rel="noopener">ollama-vibecode</a><span class="project-description">Local Ollama-driven code generation experiments.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/oneshot-hm2016" target="_blank" rel="noopener">oneshot-hm2016</a><span class="project-description">One-shot generation experiment.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/LUC-AI4FM/paper-parse" target="_blank" rel="noopener">paper-parse</a><span class="project-description">Research paper parsing utilities.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ericspencer-site-backup/blob/main/content/miscellaneous/pixel-profile.md" target="_blank" rel="noopener">Pixel Profile</a><span class="project-description">GitHub profile-picture generator.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/polymarket-whale-tracker" target="_blank" rel="noopener">polymarket-whale-tracker</a><span class="project-description">Finds the algorithmic whales on Polymarket and emits copy-trade signals. Read-only - it watches, it does not place bets.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/LUC-AI4FM/ralph-tla" target="_blank" rel="noopener">ralph-tla</a><span class="project-description">Ralph TLA+ experiments.</span></li>
+<li class="project"><a class="project-name" href="/projects/recursive-maze-solver/">Recursive Maze Solver Example</a><span class="project-description">Java recursion and graph-search maze-solver examples.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/reelforge" target="_blank" rel="noopener">reelforge</a><span class="project-description">macOS app: Claude writes the script, ffmpeg burns the captions.</span></li>
+<li class="project"><a class="project-name" href="/projects/meta-research/">Researching ChatGPT with ChatGPT</a><span class="project-description">Transcript of ChatGPT prompts about CS2 data structures and maze solvers.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ReserveLibraryRoom" target="_blank" rel="noopener">ReserveLibraryRoom</a><span class="project-description">Automates Loyola library-room reservations.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/resume" target="_blank" rel="noopener">resume</a><span class="project-description">LaTeX source for Eric Spencer&#x27;s CV and role-tuned resumes. GitHub Actions builds the PDFs and publishes them to ericspencer.us.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/reverse-xoroshiro128plusplus" target="_blank" rel="noopener">reverse-xoroshiro128plusplus</a><span class="project-description">Recovering xoroshiro128++ PRNG state from output.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/ripcord" target="_blank" rel="noopener">ripcord</a><span class="project-description">Offline mastering for macOS</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/rl-agent-c4" target="_blank" rel="noopener">rl-agent-c4</a><span class="project-description">Reinforcement-learning agent for Connect-4.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/rubix-snake-puzzle" target="_blank" rel="noopener">rubix-snake-puzzle</a><span class="project-description">Formal verification (Coq + TLA+) of Rubik&#x27;s-Snake state reachability.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/rvc-artist" target="_blank" rel="noopener">rvc-artist</a><span class="project-description">Retrieval-based voice-conversion pipeline.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/rz-ecommerce-backend" target="_blank" rel="noopener">rz-ecommerce-backend</a><span class="project-description">Ecommerce backend comparison: Resilient vs Rust vs Python — demo of vibe coding with verified contracts</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/Serenity" target="_blank" rel="noopener">Serenity</a><span class="project-description">A mental wellness application developed at Northwestern&#x27;s Wildhacks Hackathon.</span></li>
+<li class="project"><a class="project-name" href="/projects/skeuomorphism/">Skeuomorphic Desk</a><span class="project-description">An editorial / skeuomorphic project desk.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/slot-machine" target="_blank" rel="noopener">slot-machine</a><span class="project-description">Browser slot-machine game.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/sneaker-run" target="_blank" rel="noopener">sneaker-run</a><span class="project-description">Browser endless-runner game.</span></li>
+<li class="project"><a class="project-name" href="/projects/song-recommender/">Song Recommender</a><span class="project-description">Python recommender that beats Spotify&#x27;s mid suggestions.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/stardust" target="_blank" rel="noopener">stardust</a><span class="project-description">Interactive cosmic particle art experience — move your cursor to shape the cosmos</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/T-square" target="_blank" rel="noopener">T-square</a><span class="project-description">Swift utility app.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tax-formalization-gap-audit-site" target="_blank" rel="noopener">tax-formalization-gap-audit-site</a><span class="project-description">Public tax formalization gap audit site</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/TerminalGPT" target="_blank" rel="noopener">TerminalGPT</a><span class="project-description">Terminal-native LLM chat through OpenRouter.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tig-exam-trainer" target="_blank" rel="noopener">tig-exam-trainer</a><span class="project-description">TIG Exam Trainer — The Three Books (Elon, Naval, Thiel) flashcard &amp; mock exam tool</span></li>
+<li class="project"><a class="project-name" href="/projects/tla-laptop/">TLA+ Model of a Laptop</a><span class="project-description">A formal TLA+ specification modeling a laptop&#x27;s power states, battery, lid, thermals, and auto-suspend.</span></li>
+<li class="project"><a class="project-name" href="/projects/tla-walk-in-oven/">TLA+ Model of a Walk-In Oven</a><span class="project-description">A formal TLA+ specification of a walk-in industrial oven with a focus on safety interlocks.</span></li>
+<li class="project"><a class="project-name" href="/projects/tla-dexcom-g7/">TLA+ Model of Dexcom G7</a><span class="project-description">A formal TLA+ specification of the Dexcom G7 continuous glucose monitor&#x27;s behavior and safety properties.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/LUC-AI4FM/tla-dataset-pipeline" target="_blank" rel="noopener">tla-dataset-pipeline</a><span class="project-description">Dataset pipeline for TLA+ specification data.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tla-dexcom-g7" target="_blank" rel="noopener">tla-dexcom-g7</a><span class="project-description">TLA+ specification of Dexcom G7 CGM session lifecycle.</span></li>
+<li class="project"><a class="project-name" href="/research/#tools">TLA-Extraction</a><span class="project-description">Extracting TLA+ specifications from research papers.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tla-formal-generation" target="_blank" rel="noopener">tla-formal-generation</a><span class="project-description">Pipeline for generating TLA+ specs from natural language.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tla-laptop" target="_blank" rel="noopener">tla-laptop</a><span class="project-description">TLA+ model of laptop power/state transitions.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tla-microwave" target="_blank" rel="noopener">tla-microwave</a><span class="project-description">Interactive TLA+ microwave - the entire state space in your browser, learned by clicking buttons.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/LUC-AI4FM/TLA-Prove" target="_blank" rel="noopener">TLA-Prove</a><span class="project-description">Fine-tuning open-source LLMs to generate verifiable TLA+ formal specifications</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tla-prover" target="_blank" rel="noopener">tla-prover</a><span class="project-description">public mirror of LUC-AI4FM/tla-prover for cloud-routine W4 corpus runs</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tla-walk-in-oven" target="_blank" rel="noopener">tla-walk-in-oven</a><span class="project-description">TLA+ specification of a walk-in-oven control system.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/LUC-AI4FM/tla_benchmark" target="_blank" rel="noopener">tla_benchmark</a><span class="project-description">Benchmark suite for TLA+ spec generation.</span></li>
+<li class="project"><a class="project-name" href="/research/#models">tla_description</a><span class="project-description">TLA+ description corpus for language-model training.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/TLAJVM" target="_blank" rel="noopener">TLAJVM</a><span class="project-description">Experiments running TLA+ / TLC tooling on the JVM.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tof-audit" target="_blank" rel="noopener">tof-audit</a><span class="project-description">Physics-based location audit: times light in fiber to eight cities and triangulates the browser on a 3D globe.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tunes2tube-mac" target="_blank" rel="noopener">tunes2tube-mac</a><span class="project-description">macOS app: cover art + audio in, MP4 music videos out.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/tutor" target="_blank" rel="noopener">tutor</a><span class="project-description">Daily-article teaching site — new topic every day, deployed via GitHub Pages</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/UDP-server-binary" target="_blank" rel="noopener">UDP-server-binary</a><span class="project-description">Binary-protocol UDP server in C++.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/usage-badge" target="_blank" rel="noopener">usage-badge</a><span class="project-description">Live README badge for AI coding usage - subscription limits plus token/cost across agents, in one Worker.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/uzzGenerator" target="_blank" rel="noopener">uzzGenerator</a><span class="project-description">Procedurally generates &#x27;uzz&#x27;.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/WindowBlockerForTDX-MacOS" target="_blank" rel="noopener">WindowBlockerForTDX-MacOS</a><span class="project-description">Safari script blocking the TDX ticketing pop-out on macOS.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/yeat-llm" target="_blank" rel="noopener">yeat-llm</a><span class="project-description">Lyric-style language model experiment.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/EricSpencer00/youtubeDL" target="_blank" rel="noopener">youtubeDL</a><span class="project-description">Personal CLI / localhost YouTube audio+video downloader.</span></li>
+<li class="project"><a class="project-name" href="/projects/my-zshrc/">~/.zshrc</a><span class="project-description">Annotated walkthrough of a shell config.</span></li>
+<li class="project"><a class="project-name" href="https://github.com/from-america/chambr-web" target="_blank" rel="noopener">chambr-web</a><span class="project-description">Chambr website: privacy, terms, landing page.</span></li></ol>
+</section>
+</main>
+<footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>
+</div>
+</body>
+</html>

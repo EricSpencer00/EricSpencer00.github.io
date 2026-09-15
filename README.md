@@ -3,16 +3,20 @@
 Hand-written HTML personal site with small Python build scripts. No frameworks.
 
 - **Live:** [ericspencer.us](https://ericspencer.us)
-- **Old site:** [ericspencer.us/ericspencer-site-backup/](https://ericspencer.us/ericspencer-site-backup/) — served from its own repo; the `backup-site/` copy here is kept for reference and stripped at deploy
+- **Old site source:** [ericspencer-site-backup](https://github.com/EricSpencer00/ericspencer-site-backup) — the `backup-site/` copy here is kept for reference and stripped at deploy
 - **Backup repo:** [ericspencer-site-backup](https://github.com/EricSpencer00/ericspencer-site-backup)
 
 ## Structure
 
 ```
 index.html          homepage
-projects.html       all 116+ repos + org work
-research.html       papers, talks, models
-projects/*.html     individual project writeups
+projects/           projects and live work
+research/           publications: papers, talks, models, and tools
+projects/*/         individual project writeups
+projects/2026/1rm/ source for the live 1RM build and its route mirror
+projects/2026/stem-player/ Stemacle route stub
+projects/2026/ulam-spiral/ live Ulam spiral build
+projects/2026/ulam-spiral-b12/ base-twelve Ulam spiral build
 blog/               compiled from content/blog/*.md
 cv/, resume/        landing pages, built from content/resumes.txt
 assets/og/          link-preview cards, one per page
@@ -38,6 +42,30 @@ Edit those pages in their own repos. Their preview cards still live in
 `assets/og/` here and are listed in `EXTERNAL` in `scripts/build_og_images.py`,
 so reshooting keeps working.
 
+## One copy of each project page
+
+A project writeup lives at `projects/<slug>/`. Its old flat `.html` URL and Hugo
+URLs (`projects/<year>/<slug>/`, `miscellaneous/<slug>/`) stay alive as
+noindex redirect stubs, so the writeup is served once and the old links still
+work.
+
+`content/project-pages.txt` lists which mirror belongs to which page. The
+pairing is not derivable from the slug, so add a line when you add a page.
+
+The live builds in `projects/` keep their existing public paths (`/1rm/`,
+`/stem-player/`, `/ulam-spiral/`, and `/ulam-spiral-b12/`).
+`scripts/build_project_routes.py` refreshes those top-level route mirrors on
+each deployment.
+
+```bash
+python3 scripts/check_project_pages.py         # report drift; runs on deploy
+python3 scripts/check_project_pages.py --fix   # rewrite mirrors from the page
+```
+
+`--fix` diffs a mirror against the page before it overwrites it and prints how
+many words were the mirror's own, so a copy that was edited by hand is not lost
+without a word.
+
 ## Blog workflow
 
 Write posts as `content/blog/your-slug.md` with front matter:
@@ -51,7 +79,7 @@ published: true
 ---
 ```
 
-Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug.html` and update `blog/index.html`. The deployment workflow runs this automatically. Set `published: false` while drafting.
+Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug/` and update `blog/index.html`. The deployment workflow runs this automatically. Set `published: false` while drafting.
 
 ## Link previews
 

@@ -1,0 +1,134 @@
+[
+  {
+    "slug": "ai4fm",
+    "name": "ai4fm.cs.luc.edu",
+    "url": "https://ai4fm.cs.luc.edu/",
+    "description": "Loyola formal methods research group"
+  },
+  {
+    "slug": "brightbet",
+    "name": "BrightBet.tech",
+    "url": "https://brightbet.tech/",
+    "description": "Trade and prediction analysis"
+  },
+  {
+    "slug": "claude-architect-quiz",
+    "name": "Claude Architect Quiz",
+    "url": "https://ericspencer.us/Claude-architect-quiz/",
+    "description": "Claude Architect exam practice"
+  },
+  {
+    "slug": "ddia",
+    "name": "DDIA Learning Lab",
+    "url": "https://ericspencer.us/ddia/",
+    "description": "DDIA study notes and quizzes"
+  },
+  {
+    "slug": "famous-moji",
+    "name": "Famous Moji",
+    "url": "https://famousmoji.com/",
+    "description": "Emoji app and archive"
+  },
+  {
+    "slug": "freelock",
+    "name": "FreeLock",
+    "url": "https://fromamerica-llc.com/FreeLock-web/",
+    "description": "NFC focus app for iPhone"
+  },
+  {
+    "slug": "gta-gold-checklist",
+    "name": "GTA V Gold Medal Checklist",
+    "url": "https://ericspencer.us/gta-v-gold-checklist/",
+    "description": "GTA V mission requirements checklist"
+  },
+  {
+    "slug": "ipaidforthisshirt",
+    "name": "I Paid For This Shirt",
+    "url": "https://ipaidforthisshirt.com/",
+    "description": "Shirt price printed on shirt"
+  },
+  {
+    "slug": "latex",
+    "name": "LaTeX Workspace",
+    "url": "https://ericspencer.us/latex/",
+    "description": "Browser LaTeX editing workspace"
+  },
+  {
+    "slug": "not-hotdog",
+    "name": "Not Hotdog",
+    "url": "https://ericspencer.us/hotdog/",
+    "description": "Browser image classifier"
+  },
+  {
+    "slug": "one-rep-max",
+    "name": "One Rep Max",
+    "url": "https://ericspencer.us/1rm/",
+    "description": "One-rep-max calculator"
+  },
+  {
+    "slug": "palindrome",
+    "name": "Palindrome",
+    "url": "https://palindrome.ericspencer.us/",
+    "description": "Palindromic sentence generator"
+  },
+  {
+    "slug": "paper-digest",
+    "name": "Paper Digest",
+    "url": "https://paper-digest.ericspencer.us/",
+    "description": "arXiv paper matching API"
+  },
+  {
+    "slug": "picai",
+    "name": "Picaius",
+    "url": "https://picai.us/",
+    "description": "Layered photo editor"
+  },
+  {
+    "slug": "resilient",
+    "name": "Resilient Docs",
+    "url": "https://ericspencer.us/Resilient/",
+    "description": "Resilient language documentation"
+  },
+  {
+    "slug": "sideswing",
+    "name": "SideSwing",
+    "url": "https://sideswing.tech/",
+    "description": "Map-based phone golf game"
+  },
+  {
+    "slug": "stemacle",
+    "name": "Stemacle",
+    "url": "https://stemacle.com/",
+    "description": "Browser stem separation app"
+  },
+  {
+    "slug": "stockgenie",
+    "name": "StockGenie",
+    "url": "https://stockgenie.app/",
+    "description": "iPhone market analysis app"
+  },
+  {
+    "slug": "tla-generator",
+    "name": "TLA+ Generator",
+    "url": "https://tla.ericspencer.us/",
+    "description": "Natural-language TLA+ generator"
+  },
+  {
+    "slug": "tlakit",
+    "name": "tlakit",
+    "url": "https://tlakit.pages.dev/",
+    "description": "Jupyter client for TLA+"
+  },
+  {
+    "slug": "ulam-spiral",
+    "name": "Ulam Spiral",
+    "url": "https://ericspencer.us/ulam-spiral/",
+    "description": "Prime-marked number spiral"
+  },
+  {
+    "slug": "vocal",
+    "name": "VoCal",
+    "url": "https://vocal.best/",
+    "description": "Voice-assisted food logging"
+  }
+]

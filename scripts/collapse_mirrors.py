@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Turn the old Hugo URLs into redirects instead of second copies.
 
-Every project page exists twice: at /projects/<slug>.html, and at the Hugo path
+Every project page exists at /projects/<slug>/, with legacy copies at
+/projects/<slug>.html and the Hugo path
 it had before the rewrite -- /projects/<year>/<slug>/ or /miscellaneous/<slug>/.
 The mirrors already canonicalise to the real page, but they still serve a full
 copy of it, so a crawler spends a fetch on each one and finds nothing new. On a
@@ -22,15 +23,19 @@ import re
 import sys
 from pathlib import Path
 
+from build_project_routes import is_live_project_source
+
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://ericspencer.us"
 MARKER = "<!-- redirect stub -->"
+ROBOTS = '<meta name="robots" content="noindex, follow">'
 
 STUB = """<!doctype html><html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <link rel="canonical" href="{url}">
+<meta name="robots" content="noindex, follow">
 <meta http-equiv="refresh" content="0; url={path}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -48,14 +53,27 @@ a{{color:#6e1a19}}
 
 
 def mirrors():
-    yield from sorted(ROOT.glob("projects/20*/*/index.html"))
+    yield from sorted(
+        path for path in ROOT.glob("projects/*.html") if path.name != "index.html"
+    )
+    for path in sorted(ROOT.glob("projects/20*/*/index.html")):
+        if not is_live_project_source(path):
+            yield path
     yield from sorted(ROOT.glob("miscellaneous/*/index.html"))
 
 
 def convert(path):
     text = path.read_text(encoding="utf-8", errors="replace")
     if MARKER in text:
-        return "already-stub"
+        # Stubs written before the noindex line existed. The canonical alone
+        # leaves it to the crawler to decide; noindex says it outright.
+        if ROBOTS in text:
+            return "already-stub"
+        path.write_text(
+            text.replace('<meta http-equiv="refresh"', ROBOTS + '\n<meta http-equiv="refresh"', 1),
+            encoding="utf-8",
+        )
+        return "wrote"
     m = re.search(r'<link rel="canonical" href="(' + re.escape(SITE) + r'/[^"]+)"', text)
     if not m:
         return "no-canonical"
@@ -79,7 +97,9 @@ def main():
     counts = {}
     for path in mirrors():
         if args.check:
-            result = "would-write" if MARKER not in path.read_text(errors="replace") else "already-stub"
+            text = path.read_text(errors="replace")
+            done = MARKER in text and ROBOTS in text
+            result = "already-stub" if done else "would-write"
         else:
             result = convert(path)
         counts[result] = counts.get(result, 0) + 1

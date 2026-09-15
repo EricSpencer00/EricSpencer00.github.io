@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Board | Eric Spencer</title>
+<meta name="description" content="A shared ticket board with a SQLite source of truth, a CLI, a kanban UI, and a GitHub Issues mirror.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/agent-board/">
+<meta property="og:title" content="Agent Board | Eric Spencer">
+<meta property="og:description" content="A shared ticket board with a SQLite source of truth, a CLI, a kanban UI, and a GitHub Issues mirror.">
+<meta property="og:url" content="https://ericspencer.us/projects/agent-board/">
+<meta name="twitter:title" content="Agent Board | Eric Spencer">
+<meta name="twitter:description" content="A shared ticket board with a SQLite source of truth, a CLI, a kanban UI, and a GitHub Issues mirror.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/project-article.css">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head>
+<body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p><p class="sub">projects</p>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav><hr>
+<p class="back">← <a href="/projects/">back to projects</a></p>
+<main><h1>Agent Board</h1><p class="meta">A shared ticket board for local coding agents.</p>
+<p>Agent Board stores work items in SQLite and exposes the same state through a kanban interface, a command-line client, and a GitHub Issues mirror. A dispatcher can triage tickets, start approved jobs with different model backends, and record the result.</p>
+<p>The repository is used as an operations tool rather than a hosted public service. The board process, agent contract, and deployment scripts are kept together so the same ticket state can be inspected from a terminal or a browser.</p>
+<h2>Scope</h2><p>The board is intended for a trusted local environment. The UI and CLI are clients of the SQLite database; GitHub Issues is a mirror rather than the source of truth.</p>
+</main><footer><span>© 2026 Eric Spencer · Chicago, IL</span><span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span></footer>
+</div></body></html>

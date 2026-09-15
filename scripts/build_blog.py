@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build blog/*.html and blog/index.html from content/blog/*.md."""
+"""Build blog/<slug>/index.html and blog/index.html from content/blog/*.md."""
 
 from __future__ import annotations
 
@@ -189,7 +189,7 @@ def render_index(posts: list[Post]) -> str:
     index = path.read_text(encoding="utf-8")
     rows = "\n".join(
         f'<div class="post-row"><span class="post-d">{post.date}</span>'
-        f'<div class="post-body"><div class="post-title"><a href="/blog/{post.slug}.html">'
+        f'<div class="post-body"><div class="post-title"><a href="/blog/{post.slug}/">'
         f"{html.escape(post.title)}</a></div><p class=\"post-desc\">"
         f"{html.escape(post.description)}</p></div></div>"
         for post in posts
@@ -209,12 +209,20 @@ def prune_orphans(posts: list[Post]) -> list[str]:
     Flipping a post to `published: false` used to leave its HTML behind, so an
     unpublished draft stayed reachable by direct link and stayed in the sitemap.
     """
-    keep = {f"{post.slug}.html" for post in posts} | {"index.html", "_template.html"}
+    keep = {post.slug for post in posts} | {"index.html", "_template.html"}
     removed = []
     for path in sorted(OUTPUT.glob("*.html")):
         if path.name not in keep:
             path.unlink()
             removed.append(path.name)
+    for path in sorted(OUTPUT.iterdir() if OUTPUT.exists() else []):
+        if not path.is_dir() or path.name in keep:
+            continue
+        page = path / "index.html"
+        if page.exists() and page.is_file():
+            page.unlink()
+            path.rmdir()
+            removed.append(f"{path.name}/")
     return removed
 
 
@@ -222,7 +230,9 @@ def main() -> None:
     posts = load_posts()
     OUTPUT.mkdir(exist_ok=True)
     for post in posts:
-        (OUTPUT / f"{post.slug}.html").write_text(render_post(post), encoding="utf-8")
+        post_dir = OUTPUT / post.slug
+        post_dir.mkdir(parents=True, exist_ok=True)
+        (post_dir / "index.html").write_text(render_post(post), encoding="utf-8")
     (OUTPUT / "index.html").write_text(render_index(posts), encoding="utf-8")
     removed = prune_orphans(posts)
     print(f"Built {len(posts)} blog post(s)"

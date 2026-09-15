@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PhoneClaw | Eric Spencer</title>
+<meta name="description" content="A Mac bridge and old-iPhone client that route text messages to AI agents.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/phoneclaw/">
+<meta property="og:title" content="PhoneClaw | Eric Spencer">
+<meta property="og:description" content="A Mac bridge and old-iPhone client that route text messages to AI agents.">
+<meta property="og:url" content="https://ericspencer.us/projects/phoneclaw/">
+<meta name="twitter:title" content="PhoneClaw | Eric Spencer">
+<meta name="twitter:description" content="A Mac bridge and old-iPhone client that route text messages to AI agents.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/project-article.css">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head>
+<body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p><p class="sub">projects</p>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav><hr>
+<p class="back">← <a href="/projects/">back to projects</a></p>
+<main><h1>PhoneClaw</h1><p class="meta">A Mac bridge and old-iPhone client for text-based agent access.</p>
+<p>PhoneClaw uses a Mac daemon to read incoming iMessage and SMS activity, route approved messages to agent backends, and send replies through Messages.app. A companion iOS app runs on an old iPhone as a kiosk client and status surface.</p>
+<p>The bridge is the component that sends messages. The phone communicates with the bridge over HTTP and WebSocket after pairing; it does not send iMessages directly because iOS does not expose that API.</p>
+<h2>Constraints</h2><p>The tested baseline is an iPhone 7 running iOS 15.8.5. The Mac process needs Full Disk Access to read the Messages database, and the iOS app must remain in the foreground for reliable delivery. The default configuration uses an explicit sender allowlist.</p>
+</main><footer><span>© 2026 Eric Spencer · Chicago, IL</span><span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span></footer>
+</div></body></html>

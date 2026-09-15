@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Goldbach Conjecture | Eric Spencer</title>
+<meta name="description" content="Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/goldbach-conj/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Goldbach Conjecture | Eric Spencer">
+<meta property="og:description" content="Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.">
+<meta property="og:url" content="https://ericspencer.us/projects/goldbach-conj/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects-goldbach-conj.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Goldbach Conjecture | Eric Spencer — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-goldbach-conj.jpg">
+<meta name="twitter:image:alt" content="Goldbach Conjecture | Eric Spencer — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-goldbach-conj.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="Goldbach Conjecture | Eric Spencer">
+<meta name="twitter:description" content="Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.">
+<meta property="linkedin:title" content="Goldbach Conjecture | Eric Spencer">
+<meta property="linkedin:description" content="Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Goldbach Conjecture",
+"description":"Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.",
+"url":"https://ericspencer.us/projects/goldbach-conj/",
+"image":"https://ericspencer.us/assets/og/projects-goldbach-conj.jpg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2025-11-28",
+"mainEntityOfPage":"https://ericspencer.us/projects/goldbach-conj/"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h1 class="article-title">Goldbach Conjecture<span class="ln"></span></h1>
+<p class="meta">Verifying the Goldbach Conjecture by brute force for every even number up to 1 billion.</p>
+<hr class="dash">
+<p>Goldbach's conjecture is easy to state and so far impossible to prove: every even integer greater than 2 is the sum of two primes. 4 = 2 + 2. 100 = 3 + 97. 1,000,000,000 = 3 + 999,999,997. It has been open since 1742. This project points a computer at it and records that no counterexample turns up.</p>
+<p>The verifier was written from scratch over a long weekend in late November 2025. The plan was to start at a cap of a million and raise it as far as a laptop would carry it. The final run stops at one billion.</p>
+<p>The whole thing is two short Python files. The first, <code>goldbach_check.py</code>, builds a sieve of Eratosthenes as a <code>bytearray</code> and then walks every even number <code>n</code> from 4 to the cap, looking for any prime <code>p ≤ n/2</code> such that <code>n - p</code> is also prime. It stops at the first one it finds. If it ever fails to find one, it prints the counterexample and bails out. The sieve is the trick: once primality lookup is fast, the rest is a tight loop.</p>
+<pre class="code"><code>
+for n in range(4, max_n + 1, 2):
+    found = False
+    for p in primes:
+        if p &gt; n // 2:
+            break
+        if prime_set[n - p]:
+            found = True
+            break
+    if not found:
+        # counterexample — this never fires
+        return False
+</code></pre>
+<p>At 1,000,000 the verifier finishes in about 0.224 seconds and prints the first ten decompositions as a sanity check. The second file, <code>generate_thru_n.py</code>, reuses the same sieve, but instead of stopping at a yes or no answer it writes out every decomposition it finds to a text file. That is the one that goes to 1 billion. It took 470 seconds, just under eight minutes, and produced a 12.38 GB text file that VS Code refused to open. The screenshot in the repo is VS Code declining the file size while the progress log scrolls past in the terminal.</p>
+<p>No counterexamples, which is the expected outcome: the conjecture has been computationally verified well past 4×10^18 by people with actual compute budgets. This is a verification, not a proof, and verification is not proof in number theory. The conjecture is still open. What the run confirms, on one machine, is that the first billion even integers all behave. Goldbach wrote about the problem in 1742 in a letter to Euler, and nobody has closed it since. This does not close it either.</p>
+<p>Python rather than something faster, because the code was written in one sitting with no compiler to fight. The sieve is the hot path, and <code>bytearray</code> makes it cheap enough that the bottleneck for the 1B run is mostly writing the output file to disk. Pushing past 1B would mean skipping the decompositions on disk and probably reaching for Rust with parallelized segmented sieving. The <a href="https://github.com/EricSpencer00/goldbach-conj" target="_blank" rel="noopener">repo is here</a>, and the code is short enough to be its own spec.</p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
+</footer>
+</div></body></html>

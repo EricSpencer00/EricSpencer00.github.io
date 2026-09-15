@@ -1,0 +1,177 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MLB Hall of Fame Predictor | Eric Spencer</title>
+<meta name="description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/mlb-hackathon/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MLB Hall of Fame Predictor | Eric Spencer">
+<meta property="og:description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
+<meta property="og:url" content="https://ericspencer.us/projects/mlb-hackathon/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects-mlb-hackathon.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MLB Hall of Fame Predictor | Eric Spencer — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-mlb-hackathon.jpg">
+<meta name="twitter:image:alt" content="MLB Hall of Fame Predictor | Eric Spencer — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-mlb-hackathon.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="MLB Hall of Fame Predictor | Eric Spencer">
+<meta name="twitter:description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
+<meta property="linkedin:title" content="MLB Hall of Fame Predictor | Eric Spencer">
+<meta property="linkedin:description" content="A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"MLB Hall of Fame Predictor",
+"description":"A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.",
+"url":"https://ericspencer.us/projects/mlb-hackathon/",
+"image":"https://ericspencer.us/assets/og/projects-mlb-hackathon.jpg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2025-01-17",
+"mainEntityOfPage":"https://ericspencer.us/projects/mlb-hackathon/"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h1 class="article-title">MLB Hall of Fame Predictor<span class="ln"></span></h1>
+<p class="meta">A scikit-learn decision tree that guesses whether a current MLB player would get voted into Cooperstown, built for the Google Cloud x MLB hackathon.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/MLB-Hackathon" target="_blank" rel="noopener">https://github.com/EricSpencer00/MLB-Hackathon</a></p>
+<hr class="dash">
+<p>An entry for the Google Cloud x MLB hackathon in December. The prompt was open-ended around baseball data. The Hall of Fame angle works because the question is fun to argue about and the dataset is clean enough to model without spending the whole weekend on data prep.</p>
+<p>The data is the Lahman Baseball Database (1871-2023): every player, every season, batting, pitching and fielding splits, awards, and the Hall of Fame ballot history. The pitch was to take a current player's career-to-date stats, feed them into a model trained on the historical record of who got inducted and who did not, and get a probability back.</p>
+<p>Most of the actual hackathon time went into <code>merging.py</code>. Lahman ships as a dozen separate CSVs that have to be aggregated per player and then joined: sum every season of batting into a career line, do the same for pitching and fielding, count awards per player, then left-join the Hall of Fame ballot table to get the <code>inducted</code> label. There is a lot of room to be clever here (era adjustments, advanced metrics, position weighting) and none of it is done.</p>
+<p>The features are mostly the obvious counting stats: games, at-bats, runs, hits, doubles, triples, home runs, RBIs, walks, strikeouts on the batting side; wins, losses, ERA, saves, strikeouts on the pitching side; putouts, assists, errors on the fielding side; plus an <code>AwardsCount</code> column aggregated from <code>AwardsPlayers.csv</code>. Twenty-three features in total, all numeric.</p>
+<pre class="code"><code>
+feature_columns = [
+    &#x27;BattingGames&#x27;, &#x27;AtBats&#x27;, &#x27;Runs&#x27;, &#x27;Hits&#x27;, &#x27;Doubles&#x27;, &#x27;Triples&#x27;, &#x27;HomeRuns&#x27;, &#x27;RBIs&#x27;, &#x27;Walks&#x27;, &#x27;Strikeouts&#x27;,
+    &#x27;Wins&#x27;, &#x27;Losses&#x27;, &#x27;PitchingGames&#x27;, &#x27;GamesStarted&#x27;, &#x27;CompleteGames&#x27;, &#x27;Saves&#x27;, &#x27;PitchingStrikeouts&#x27;, &#x27;EarnedRunAverage&#x27;,
+    &#x27;FieldingGames&#x27;, &#x27;Putouts&#x27;, &#x27;Assists&#x27;, &#x27;Errors&#x27;, &#x27;AwardsCount&#x27;
+]
+
+features = data[feature_columns]
+labels = data[&#x27;inducted&#x27;]
+
+train_features, test_features, train_labels, test_labels = train_test_split(
+    features, labels, test_size=0.2, random_state=42
+)
+
+skmodel = DecisionTreeClassifier()
+skmodel.fit(train_features, train_labels)
+print(&#x27;accuracy is:&#x27;, skmodel.score(test_features, test_labels))
+</code></pre>
+<p>The model is a vanilla scikit-learn <code>DecisionTreeClassifier</code>: no tuning, no ensemble, no cross-validation beyond a single 80/20 split. The class imbalance is real. A tiny fraction of MLB players ever make the Hall, so raw accuracy is a misleading number to chase, and a "predict not inducted for everyone" baseline already gets into the high 90s. Precision and recall on the inducted class are the numbers to check before claiming the model does anything. A fair-weekend version would swap in a random forest or gradient boosting with proper stratified cross-validation.</p>
+<p>The cloud half of the project is in <code>interact.py</code> and a Vertex AI endpoint. <code>train.py</code> has the commented-out GCS upload: the idea was to push <code>model.joblib</code> to a bucket, deploy it to Vertex, and hit it from anywhere with a prediction call. The wiring is in place, but the endpoint never got deployed before the deadline, so that half is a sketch.</p>
+<p>Things another weekend would buy: real per-season time series instead of career totals (the dataset is called <code>_Timeseries</code> for a reason, but it gets collapsed here), position-aware features, era adjustments so a 1920s slugger is not penalized for not having modern counting stats, and a frontend where a current player is picked and a probability comes back. Evaluating against players who recently became eligible but are not inducted yet would also be a more honest test than a random split.</p>
+<p><a href="https://github.com/EricSpencer00/MLB-Hackathon" target="_blank" rel="noopener">GitHub Repo</a></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
+</footer>
+</div></body></html>

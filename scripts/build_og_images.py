@@ -11,6 +11,7 @@ The images land in assets/og/. Writing them into the pages is apply_og_tags.py.
     python3 scripts/build_og_images.py            # only what is missing
     python3 scripts/build_og_images.py --force    # reshoot everything
     python3 scripts/build_og_images.py --only cv hotdog
+    python3 scripts/build_og_images.py --base-url http://127.0.0.1:8765 --only news
 """
 
 import argparse
@@ -40,7 +41,7 @@ SCALE = 2
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 # Directories that are archives, samples or verification files, not pages.
-SKIP = ("/.git/", "/backup-site/", "/.claude/", "/samples/", "/tests/", "/_template", "/google")
+SKIP = ("/.git/", "/ai4fm/", "/backup-site/", "/.claude/", "/samples/", "/tests/", "/_template", "/google", "/404.html")
 
 # Paper background, matching --paper in the site CSS.
 PAPER = (250, 248, 243)
@@ -96,7 +97,14 @@ def slug_for(url):
     return re.sub(r"[^a-z0-9]+", "-", p.lower()).strip("-") or "home"
 
 
-def content_image(pages):
+def source_url(url, base_url):
+    """Map a canonical site URL to the host being used for this run."""
+    if base_url.rstrip("/") == SITE:
+        return url
+    return base_url.rstrip("/") + url[len(SITE):]
+
+
+def content_image(pages, base_url=SITE):
     """The first real content image on a page, if it has one.
 
     Skips logos, badges and icons -- those make for a worse card than the page
@@ -109,7 +117,7 @@ def content_image(pages):
             if NOT_CONTENT.search(src):
                 continue
             if src.startswith("/"):
-                src = SITE + src
+                src = base_url.rstrip("/") + src
             if not src.startswith("http"):
                 continue
             return src
@@ -192,26 +200,30 @@ def save(img, dest):
     img.save(dest, "JPEG", quality=QUALITY, optimize=True, progressive=True)
 
 
-def is_live(url):
+def is_live(url, base_url=SITE):
     """A page that does not resolve would only yield a card of the 404 screen."""
     try:
-        req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "og-builder"})
+        req = urllib.request.Request(
+            source_url(url, base_url),
+            method="HEAD",
+            headers={"User-Agent": "og-builder"},
+        )
         with urllib.request.urlopen(req, timeout=20) as r:
             return r.status == 200
     except Exception:
         return False
 
 
-def build_one(url, pages, force):
+def build_one(url, pages, force, base_url):
     slug = slug_for(url)
     dest = OUT / f"{slug}.jpg"
     if dest.exists() and not force:
         return slug, "kept"
-    if not is_live(url):
+    if not is_live(url, base_url):
         dest.unlink(missing_ok=True)
         return slug, "dead"
 
-    src = content_image(pages)
+    src = content_image(pages, base_url)
     if src:
         data = fetch(src)
         if data:
@@ -225,7 +237,7 @@ def build_one(url, pages, force):
             except Exception:
                 pass
 
-    screenshot(url, dest)
+    screenshot(source_url(url, base_url), dest)
     return slug, "shot"
 
 
@@ -234,6 +246,11 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--only", nargs="*", default=None)
     ap.add_argument("--jobs", type=int, default=6)
+    ap.add_argument(
+        "--base-url",
+        default=SITE,
+        help="host to render instead of the canonical site (useful for local QA)",
+    )
     args = ap.parse_args()
 
     if not Path(CHROME).exists():
@@ -247,7 +264,8 @@ def main():
     counts = {}
     with concurrent.futures.ThreadPoolExecutor(args.jobs) as pool:
         futures = {
-            pool.submit(build_one, u, p, args.force): u for u, p in pages.items()
+            pool.submit(build_one, u, p, args.force, args.base_url): u
+            for u, p in pages.items()
         }
         for done in concurrent.futures.as_completed(futures):
             url = futures[done]
