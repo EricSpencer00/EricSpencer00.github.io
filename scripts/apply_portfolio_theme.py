@@ -76,7 +76,9 @@ def add_page_header(text: str, label: str) -> str:
     marker = '<div class="wrap">'
     if marker not in text:
         return text
-    header = f'<p class="name">Eric Spencer</p>\n<p class="sub">{label}</p>\n'
+    header = '<p class="name">Eric Spencer</p>\n'
+    if label:
+        header += f'<p class="sub">{label}</p>\n'
     return text.replace(marker, f"{marker}\n{header}", 1)
 
 
@@ -94,7 +96,8 @@ def apply(path: Path) -> str:
     if body_class == "portfolio-article":
         text = add_article_header(text)
     elif path == ROOT / "cv" / "index.html":
-        text = add_page_header(text, "cv")
+        text = add_page_header(text, "")
+        text = re.sub(r'<p class="sub">cv</p>\s*', '', text, count=1)
     if STYLESHEET not in text and "</head>" in text:
         text = text.replace("</head>", f"{STYLESHEET}\n</head>", 1)
     if "fonts.googleapis.com/css2?family=IBM+Plex+Mono" not in text and "</head>" in text:

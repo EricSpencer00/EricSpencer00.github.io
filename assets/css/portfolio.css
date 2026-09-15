@@ -143,14 +143,21 @@ body.news-surface nav.top a {
 body.portfolio-page nav.top a:hover,
 body.portfolio-article nav.top a:hover,
 body.news-surface nav.top a:hover,
-body.portfolio-page nav.top a.active,
-body.portfolio-article nav.top a.active,
-body.news-surface nav.top a.active {
+body.portfolio-page nav[aria-label="Primary"] a:hover {
   color: var(--portfolio-ink);
   text-decoration: none;
 }
 
+body.portfolio-page nav[aria-label="Primary"] a[aria-current="page"],
 body.portfolio-page nav.top a.active,
+body.portfolio-article nav.top a.active,
+body.news-surface nav.top a.active {
+  color: var(--portfolio-accent);
+  text-decoration: none;
+}
+
+body.portfolio-page nav.top a.active,
+body.portfolio-page nav[aria-label="Primary"] a[aria-current="page"],
 body.portfolio-article nav.top a.active,
 body.news-surface nav.top a.active {
   font-weight: 600;
