@@ -12,7 +12,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css">'
+LEGACY_STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css">'
+STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">'
 FONT_STYLESHEET = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">'
 SKIP = {".git", ".claude", "backup-site", "editor", "tests", "assets"}
 
@@ -98,6 +99,8 @@ def apply(path: Path) -> str:
     elif path == ROOT / "cv" / "index.html":
         text = add_page_header(text, "")
         text = re.sub(r'<p class="sub">cv</p>\s*', '', text, count=1)
+    if LEGACY_STYLESHEET in text:
+        text = text.replace(LEGACY_STYLESHEET, STYLESHEET)
     if STYLESHEET not in text and "</head>" in text:
         text = text.replace("</head>", f"{STYLESHEET}\n</head>", 1)
     if "fonts.googleapis.com/css2?family=IBM+Plex+Mono" not in text and "</head>" in text:
