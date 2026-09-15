@@ -31,8 +31,8 @@ PAGE_DESCRIPTION = (
 TIER_ORDER = ("P1", "P1.5", "P2", "P3")
 TIER_LABELS = {
     "P1": ("Primary work", "The projects that define the current direction."),
-    "P1.5": ("Live apps", "Public apps and sites that can be opened directly."),
-    "P2": ("Other work", "The remaining projects and writeups."),
+    "P1.5": ("Live apps", ""),
+    "P2": ("Other work", ""),
 }
 
 
@@ -109,6 +109,8 @@ def load_live_apps() -> list[dict[str, str]]:
         for field in ("slug", "name", "url", "description"):
             if not isinstance(app.get(field), str) or not app[field].strip():
                 raise ValueError(f"app is missing {field}: {app!r}")
+        if len(app["description"].split()) > 5:
+            raise ValueError(f"app description must be five words or fewer: {app!r}")
         live_app = dict(app)
         live_app["is_live_app"] = True
         live_app["rank"] = editorial_rank(live_app, editorial)
@@ -263,7 +265,7 @@ def render(
     selected: list[dict[str, str]],
     live_apps: list[dict[str, str]],
 ) -> str:
-    live_rows = "\n".join(render_row(app, show_description=False) for app in live_apps)
+    live_rows = "\n".join(render_row(app, show_description=True) for app in live_apps)
     selected_rows = "\n".join(
         render_row(project, show_description=not project.get("is_live_app", False))
         for project in selected
@@ -383,12 +385,12 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 </section>
 <section aria-labelledby="projects-p15">
 <h2 id="projects-p15">{TIER_LABELS["P1.5"][0]}</h2>
-<p class="section-intro">{TIER_LABELS["P1.5"][1]}</p>
+{f'<p class="section-intro">{TIER_LABELS["P1.5"][1]}</p>' if TIER_LABELS["P1.5"][1] else ''}
 <ol class="project-list">{live_rows}</ol>
 </section>
 <section aria-labelledby="projects-p2">
 <h2 id="projects-p2">{TIER_LABELS["P2"][0]}</h2>
-<p class="section-intro">{TIER_LABELS["P2"][1]}</p>
+{f'<p class="section-intro">{TIER_LABELS["P2"][1]}</p>' if TIER_LABELS["P2"][1] else ''}
 <ol class="project-list">{other_rows}</ol>
 </section>
 </main>
