@@ -1,5 +1,5 @@
 # Selected work — name|url|description
-# These appear in the "Selected Work" section on the homepage.
+# These appear in the Projects page's Selected work section.
 
 TLA+|/projects/tla-plus/|TLA+ modeling and verification work, including interactive examples, research tools, and generated specifications.
 Resilient|/projects/resilient/|Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.

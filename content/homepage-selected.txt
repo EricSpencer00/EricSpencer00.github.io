@@ -1,0 +1,13 @@
+# Homepage selected work — name|url|description
+# The first three rows are visible; the rest appear under "Show more".
+
+Palindrome|https://palindrome.ericspencer.us/|Palindromic sentence generator
+Not Hotdog|https://ericspencer.us/hotdog/|Browser image classifier
+I Paid For This Shirt|https://ipaidforthisshirt.com/|Shirt price printed on shirt
+Ulam Spiral|https://ericspencer.us/ulam-spiral/|Prime-marked number spiral
+One Rep Max|https://ericspencer.us/1rm/|One-rep-max calculator
+TLA+ Generator|https://tla.ericspencer.us/|Natural-language TLA+ generator
+Famous Moji|https://famousmoji.com/|Emoji app and archive
+Stemacle|https://stemacle.com/|Browser stem separation app
+BrightBet.tech|https://brightbet.tech/|Trade and prediction analysis
+ai4fm.cs.luc.edu|https://ai4fm.cs.luc.edu/|Loyola formal methods research group

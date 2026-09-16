@@ -119,10 +119,20 @@ def build_about():
 
 def build_selected():
     rows = []
-    for line in lines("selected.txt"):
+    for line in lines("homepage-selected.txt"):
         name, url, desc = parse(line, 3)
         rows.append(f'<div class="proj"><a class="nm" href="{url}">{name}</a><span class="dt"></span><span class="ds">{desc}</span></div>')
-    return "\n".join(rows)
+    visible = "\n".join(rows[:3])
+    rest = "\n".join(rows[3:])
+    if not rest:
+        return visible
+    count = len(rows) - 3
+    return (
+        f'{visible}\n'
+        f'<div class="gh-rest" id="selected-rest" hidden>\n{rest}\n</div>\n'
+        f'<button class="gh-more" type="button" aria-expanded="false" '
+        f'aria-controls="selected-rest" data-count="{count}">Show {count} more</button>'
+    )
 
 def build_blog():
     """The whole Blog section, or nothing at all when nothing is published.
@@ -748,6 +758,7 @@ a.pill{{font-size:12px}}
     }}
   }}
 
+  wireDisclosures(document);
   render();
   renderHF();
 }})();

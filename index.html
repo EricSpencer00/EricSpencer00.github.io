@@ -164,9 +164,19 @@ a.pill{font-size:12px}
 </div>
 
 <h2 id="selected">Selected Work</h2>
-<div class="proj"><a class="nm" href="/projects/tla-plus/">TLA+</a><span class="dt"></span><span class="ds">TLA+ modeling and verification work, including interactive examples, research tools, and generated specifications.</span></div>
-<div class="proj"><a class="nm" href="/projects/resilient/">Resilient</a><span class="dt"></span><span class="ds">Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.</span></div>
-<div class="proj"><a class="nm" href="https://github.com/HorneSci/hst-studio">HST-Studio</a><span class="dt"></span><span class="ds">A delta-aware sparse linear algebra runtime, and the tooling around it.</span></div>
+<div class="proj"><a class="nm" href="https://palindrome.ericspencer.us/">Palindrome</a><span class="dt"></span><span class="ds">Palindromic sentence generator</span></div>
+<div class="proj"><a class="nm" href="https://ericspencer.us/hotdog/">Not Hotdog</a><span class="dt"></span><span class="ds">Browser image classifier</span></div>
+<div class="proj"><a class="nm" href="https://ipaidforthisshirt.com/">I Paid For This Shirt</a><span class="dt"></span><span class="ds">Shirt price printed on shirt</span></div>
+<div class="gh-rest" id="selected-rest" hidden>
+<div class="proj"><a class="nm" href="https://ericspencer.us/ulam-spiral/">Ulam Spiral</a><span class="dt"></span><span class="ds">Prime-marked number spiral</span></div>
+<div class="proj"><a class="nm" href="https://ericspencer.us/1rm/">One Rep Max</a><span class="dt"></span><span class="ds">One-rep-max calculator</span></div>
+<div class="proj"><a class="nm" href="https://tla.ericspencer.us/">TLA+ Generator</a><span class="dt"></span><span class="ds">Natural-language TLA+ generator</span></div>
+<div class="proj"><a class="nm" href="https://famousmoji.com/">Famous Moji</a><span class="dt"></span><span class="ds">Emoji app and archive</span></div>
+<div class="proj"><a class="nm" href="https://stemacle.com/">Stemacle</a><span class="dt"></span><span class="ds">Browser stem separation app</span></div>
+<div class="proj"><a class="nm" href="https://brightbet.tech/">BrightBet.tech</a><span class="dt"></span><span class="ds">Trade and prediction analysis</span></div>
+<div class="proj"><a class="nm" href="https://ai4fm.cs.luc.edu/">ai4fm.cs.luc.edu</a><span class="dt"></span><span class="ds">Loyola formal methods research group</span></div>
+</div>
+<button class="gh-more" type="button" aria-expanded="false" aria-controls="selected-rest" data-count="7">Show 7 more</button>
 
 
 
@@ -567,6 +577,7 @@ a.pill{font-size:12px}
     }
   }
 
+  wireDisclosures(document);
   render();
   renderHF();
 })();
