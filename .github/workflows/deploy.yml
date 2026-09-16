@@ -91,6 +91,12 @@ jobs:
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/seo_tags.py
 
+      # Apply Analytics after every generator that rewrites a page head, so
+      # future builds keep sending production page views to the same property.
+      - name: Apply Google Analytics tag
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/apply_ga4.py
+
       # Read the completed public site into a static retrieval index and attach
       # the browser-only assistant to every public page.
       - name: Build the browser-only site assistant
