@@ -369,7 +369,7 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 .project-description{{color:var(--dim);overflow-wrap:anywhere}} footer{{margin-top:60px;color:var(--dim);font-size:.85rem}}
 @media (max-width:680px){{.wrap{{padding:36px 18px 72px}}.project{{grid-template-columns:1fr;gap:3px;padding:14px 0}}}}
 </style>
-<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
 </head>
 <body class="portfolio-page">
 <div class="wrap">

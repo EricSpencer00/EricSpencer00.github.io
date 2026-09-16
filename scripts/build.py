@@ -96,7 +96,7 @@ def build_news_page():
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/vendor/framework7/messages.css">
 <link rel="stylesheet" href="/assets/css/void-news.css">
-<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260915">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
