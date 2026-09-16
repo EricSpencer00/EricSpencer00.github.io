@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MEASUREMENT_ID = "G-F5044SW1GJ"
+MEASUREMENT_ID = "G-30FQRTZWJ8"
 MARKER = f"googletagmanager.com/gtag/js?id={MEASUREMENT_ID}"
 TAG = f'''<script async src="https://www.googletagmanager.com/gtag/js?id={MEASUREMENT_ID}"></script>
 <script>
