@@ -35,6 +35,10 @@ class PageParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.title: list[str] = []
         self.description: list[str] = []
+        self.og_title: list[str] = []
+        self.og_description: list[str] = []
+        self.og_url: list[str] = []
+        self.twitter_card: list[str] = []
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.hrefs: list[str] = []
@@ -58,7 +62,14 @@ class PageParser(HTMLParser):
                 self.description.append(values.get("content", ""))
             elif name == "robots":
                 self.robots.append(values.get("content", ""))
+            elif name == "twitter:card":
+                self.twitter_card.append(values.get("content", ""))
+            if prop == "og:title":
+                self.og_title.append(values.get("content", ""))
+            elif prop == "og:description":
+                self.og_description.append(values.get("content", ""))
             elif prop == "og:url":
+                self.og_url.append(values.get("content", ""))
                 self.canonicals.append(values.get("content", ""))
         elif tag == "link" and values.get("rel", "").lower() == "canonical":
             self.canonicals.append(values.get("href", ""))
@@ -156,8 +167,18 @@ def check_pages() -> tuple[list[str], dict[str, int]]:
                 problems.append(f"{rel}: missing or duplicate title")
             if len(parser.description) != 1 or not parser.description[0].strip():
                 problems.append(f"{rel}: missing or duplicate meta description")
+            for label, values in (
+                ("og:title", parser.og_title),
+                ("og:description", parser.og_description),
+                ("og:url", parser.og_url),
+                ("twitter:card", parser.twitter_card),
+            ):
+                if len(values) != 1 or not values[0].strip():
+                    problems.append(f"{rel}: missing or duplicate {label}")
             if parser.h1_count != 1:
                 problems.append(f"{rel}: expected one H1, found {parser.h1_count}")
+            if not parser.json_ld:
+                problems.append(f"{rel}: missing JSON-LD")
             for block in parser.json_ld:
                 try:
                     json.loads(block)

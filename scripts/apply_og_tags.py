@@ -4,7 +4,8 @@
 Rewrites the og:image / twitter:image block in each page's <head> so it names
 the card that build_og_images.py made for that page, and upgrades the Twitter
 card type to summary_large_image -- the difference between a thumbnail the size
-of a favicon and a preview someone can actually read.
+of a favicon and a preview someone can actually read. Pages without a generated
+image still get a summary card from their existing title and description.
 
 Idempotent: run it after every card rebuild.
 
@@ -92,6 +93,8 @@ def apply(path, slug, write=True, include_card=True):
     # A large card with no title or description renders as a bare image in
     # Twitter and Slack. Backfill from the Open Graph values.
     added = ""
+    if not include_card and not meta_value(new_head, "twitter:card"):
+        added += '<meta name="twitter:card" content="summary">\n'
     for tw, value in (("twitter:title", title), ("twitter:description", description)):
         if not meta_value(new_head, tw):
             if value:
