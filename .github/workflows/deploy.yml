@@ -61,6 +61,11 @@ jobs:
       - name: Apply search tags
         run: python3 scripts/seo_tags.py
 
+      # Apply Analytics after every generator that rewrites a page head, so
+      # future builds keep sending production page views to the same property.
+      - name: Apply Google Analytics tag
+        run: python3 scripts/apply_ga4.py
+
       # Reads the finished pages, so it runs after everything that writes them.
       - name: Build sitemap
         run: python3 scripts/build_sitemap.py
