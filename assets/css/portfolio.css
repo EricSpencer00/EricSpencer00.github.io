@@ -133,6 +133,7 @@ body.news-surface nav.top {
 }
 
 body.portfolio-page nav.top a,
+body.portfolio-page nav[aria-label="Primary"] a,
 body.portfolio-article nav.top a,
 body.news-surface nav.top a {
   color: inherit;
