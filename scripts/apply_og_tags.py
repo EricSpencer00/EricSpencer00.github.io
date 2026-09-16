@@ -54,35 +54,58 @@ def meta_value(head, key):
     return m.group(1) if m else None
 
 
-def apply(path, slug):
+def first_title(head):
+    m = re.search(r"<title>(.*?)</title>", head, re.S)
+    return html.escape(re.sub(r"\s+", " ", m.group(1)).strip()) if m else "Eric Spencer"
+
+
+def canonical_url(head):
+    m = re.search(r'<link rel="canonical" href="([^"]+)"', head)
+    return m.group(1) if m else None
+
+
+def apply(path, slug, write=True, include_card=True):
     text = path.read_text(encoding="utf-8", errors="replace")
     head, sep, body = text.partition("</head>")
     if not sep:
         return "no-head"
 
-    title = meta_value(head, "og:title") or ""
-    if not title:
-        m = re.search(r"<title>(.*?)</title>", head, re.S)
-        title = html.escape(m.group(1).strip()) if m else "Eric Spencer"
+    title = meta_value(head, "og:title") or first_title(head)
+    description = meta_value(head, "og:description") or meta_value(head, "description")
+    canonical = canonical_url(head)
     alt = f"{title} — ericspencer.us"
 
-    new_head = OWNED.sub("", head)
+    # Preserve an authored image when this page has no generated card. Social
+    # title/description/URL metadata still belongs on every public page.
+    new_head = OWNED.sub("", head) if include_card else head
+
+    # Every indexable page gets a complete social identity, even when its
+    # original template only supplied a title, description, and canonical.
+    missing_og = ""
+    if not meta_value(new_head, "og:title"):
+        missing_og += f'<meta property="og:title" content="{title}">\n'
+    if description and not meta_value(new_head, "og:description"):
+        missing_og += f'<meta property="og:description" content="{description}">\n'
+    if canonical and not meta_value(new_head, "og:url"):
+        missing_og += f'<meta property="og:url" content="{canonical}">\n'
 
     # A large card with no title or description renders as a bare image in
     # Twitter and Slack. Backfill from the Open Graph values.
     added = ""
-    for tw, og in (("twitter:title", "og:title"), ("twitter:description", "og:description")):
+    for tw, value in (("twitter:title", title), ("twitter:description", description)):
         if not meta_value(new_head, tw):
-            val = meta_value(new_head, og)
-            if val:
-                added += f'<meta name="{tw}" content="{val}">\n'
+            if value:
+                added += f'<meta name="{tw}" content="{value}">\n'
 
     # Anchor the block after og:url when there is one, so the Open Graph tags
     # stay together; otherwise after the canonical link.
     anchor = re.search(r'^[ \t]*<meta[^>]+property="og:url"[^>]*>\n', new_head, re.M)
     if not anchor:
         anchor = re.search(r"^[ \t]*<link rel=\"canonical\"[^>]*>\n", new_head, re.M)
-    insert = block(slug, alt) + added
+    if not anchor:
+        anchor = re.search(r'^[ \t]*<meta[^>]+property="og:title"[^>]*>\n', new_head, re.M)
+    image_tags = block(slug, alt) if include_card else ""
+    insert = missing_og + image_tags + added
     if anchor:
         at = anchor.end()
         new_head = new_head[:at] + insert + new_head[at:]
@@ -92,6 +115,8 @@ def apply(path, slug):
     updated = new_head + sep + body
     if updated == text:
         return "same"
+    if not write:
+        return "would-write"
     path.write_text(updated, encoding="utf-8")
     return "wrote"
 
@@ -105,18 +130,16 @@ def main():
     missing = []
     for url, pages in sorted(published_pages().items()):
         slug = slug_for(url)
-        if not (OUT / f"{slug}.jpg").exists():
-            # No card -- usually a page that is not live yet. Leave its tags
-            # alone rather than pointing them at an image that does not exist.
+        include_card = (OUT / f"{slug}.jpg").exists()
+        if not include_card:
             missing.append(url)
-            continue
         for path in pages:
-            result = "would-write" if args.check else apply(path, slug)
+            result = apply(path, slug, write=not args.check, include_card=include_card)
             counts[result] = counts.get(result, 0) + 1
 
     print(", ".join(f"{v} {k}" for k, v in sorted(counts.items())))
     for url in missing:
-        print(f"  no card, skipped: {url}")
+        print(f"  no card, metadata only: {url}")
     return 0
 
 

@@ -5,6 +5,9 @@ on:
     branches:
       - dev
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,18 +20,71 @@ jobs:
           python-version: "3.12"
       - name: Build index.html from content/*.txt
         run: python3 scripts/build.py
+      - name: Build project route mirrors
+        run: python3 scripts/build_project_routes.py
       - name: Build blog HTML from Markdown
         run: python3 scripts/build_blog.py
       - name: Build resume/CV landing pages
         run: python3 scripts/build_resume_pages.py
+      - name: Build the public project catalog
+        run: python3 scripts/build_projects.py
+      - name: Build legacy hub redirects
+        run: python3 scripts/build_legacy_redirects.py
+      - name: Build the public app directory
+        run: python3 scripts/build_public_apps.py
+      - name: Normalize canonical project headings
+        run: python3 scripts/normalize_project_pages.py
+      - name: Apply shared portfolio theme
+        run: python3 scripts/apply_portfolio_theme.py
       - name: Apply the top nav
         run: python3 scripts/apply_nav.py
       - name: Drop the blog when nothing is published
         run: python3 scripts/prune_blog.py
+      - name: Collapse the old Hugo URLs to redirects
+        run: python3 scripts/collapse_mirrors.py
+      - name: Check every project page has one copy
+        run: python3 scripts/check_project_pages.py
       - name: Point pages at their link-preview cards
         run: python3 scripts/apply_og_tags.py
       - name: Apply search tags
         run: python3 scripts/seo_tags.py
+      - name: Build the browser-only site assistant
+        run: python3 scripts/build_chatbot_knowledge.py
+      - name: Verify routes and SEO metadata
+        run: python3 scripts/check_site.py
+      - name: Keep development pages out of search
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          for path in Path('.').rglob('*.html'):
+              if any(part in {'.git', 'backup-site', 'editor', 'tests'} for part in path.parts):
+                  continue
+              text = path.read_text(encoding='utf-8', errors='replace')
+              if '</head>' not in text:
+                  continue
+              noindex = '<meta name="robots" content="noindex, follow">'
+              if re.search(r'<meta name="robots" content="[^"]*">', text):
+                  text = re.sub(
+                  r'<meta name="robots" content="[^"]*">',
+                  noindex,
+                  text,
+                  )
+              else:
+                  text = text.replace('</head>', noindex + '\n</head>', 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+      - name: Keep the staging host out of crawler discovery
+        run: |
+          # Dev has production canonicals and noindex tags. Do not hand
+          # crawlers a production sitemap from the staging hostname as well.
+          # Let crawlers see the noindex directive. A disallow would prevent
+          # fetching the HTML and can leave URL-only results in an index.
+          printf 'User-agent: *\nAllow: /\n' > robots.txt
+          rm -f sitemap.xml
+      - name: Keep the copy review desk local
+        run: rm -rf editor
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
@@ -37,12 +93,10 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "dev.ericspencer.us" > CNAME
-          # dev.ericspencer.us serves a full copy of the site. Left crawlable it
-          # is a duplicate of production competing in search, and its robots.txt
-          # was even pointing crawlers at the production sitemap.
-          printf 'User-agent: *\nDisallow: /\n' > robots.txt
-          git add -A CNAME index.html blog robots.txt cv resume assets/pdf assets/og \
-            research.html projects.html 404.html projects
+          # robots.txt lets crawlers fetch the page-level noindex directives.
+          git add -A CNAME index.html news blog robots.txt cv resume assets editor \
+            miscellaneous research research.html projects.html apps 404.html projects sitemap.xml \
+            1rm stem-player ulam-spiral ulam-spiral-b12
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git

@@ -12,19 +12,23 @@ from pathlib import Path
 import re
 import sys
 
+from build_project_routes import is_live_project_source
 from build_blog import load_posts
 
 ROOT = Path(__file__).resolve().parent.parent
 
 # Directories that are in git for reference but never published, plus the blog
 # post template, which is a scaffold rather than a page.
-SKIP_DIRS = {".git", ".claude", "backup-site", "node_modules", "assets", "tests"}
+SKIP_DIRS = {".git", ".claude", "backup-site", "editor", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
-
-NAV_RE = re.compile(r'<nav class="top">.*?</nav>', re.DOTALL)
+OWN_NAV_PAGES = {
+    ROOT / "news" / "index.html",
+    ROOT / "projects" / "index.html",
+}
+NAV_RE = re.compile(r'<nav class="top"[^>]*>.*?</nav>', re.DOTALL)
 
 # A page whose whole body is a redirect stub has no header to hang a nav on.
-REDIRECT_RE = re.compile(r'location\.replace|This page has moved|This page lives at')
+REDIRECT_RE = re.compile(r'location\.replace|This page has moved|This page lives at|<!-- redirect stub -->')
 
 # Search-console verification files are a single line of text served as .html.
 VERIFICATION_RE = re.compile(r"google-site-verification", re.IGNORECASE)
@@ -32,8 +36,8 @@ VERIFICATION_RE = re.compile(r"google-site-verification", re.IGNORECASE)
 # key, label, href, and the path prefix that makes this item the active one.
 ITEMS = [
     ("index",    "index",    "/",               ()),
-    ("research", "research", "/research.html",  ("research.html",)),
-    ("projects", "projects", "/projects.html",  ("projects.html", "projects/")),
+    ("research", "publications", "/research/",  ("research/",)),
+    ("projects", "projects", "/projects/",  ("projects/",)),
     ("blog",     "blog",     "/blog/",          ("blog/",)),
     ("cv",       "cv",       "/cv/",            ("cv/", "resume/")),
 ]
@@ -51,29 +55,40 @@ def active_key(rel: str) -> str:
     return best
 
 
-def build_nav(current: str, keys: list[str], prefix: str, bracket: bool) -> str:
+def build_nav(current: str, keys: list[str]) -> str:
     """One nav block.
 
-    `bracket` reproduces the terminal-style `[projects]` marker the 404 and the
-    project article pages use; everywhere else the active item is marked with a
-    class so it can be styled rather than punctuated.
+    The public pages share the landing page's quiet text navigation. Active
+    state is a class, not a breadcrumb or terminal-style punctuation.
     """
     parts = []
     for key, label, href, _ in ITEMS:
         if key not in keys:
             continue
         if key == current:
-            text = f"[{label}]" if bracket else label
-            cls = "" if bracket else ' class="active"'
+            text = label
+            cls = ' class="active"'
             parts.append(f'<a href="{href}"{cls}>{text}</a>')
         else:
             parts.append(f'<a href="{href}">{label}</a>')
-    return f'<nav class="top">{prefix}{f" {SEP} ".join(parts)}</nav>'
+    links = f" {SEP} ".join(parts)
+    return f'<nav class="top">{links}</nav>'
 
 
 def pages():
     for path in sorted(ROOT.rglob("*.html")):
-        if any(part in SKIP_DIRS for part in path.relative_to(ROOT).parts):
+        relative = path.relative_to(ROOT)
+        if any(part in SKIP_DIRS for part in relative.parts):
+            continue
+        # These are source trees for live builds, not editorial project pages.
+        # Their public route mirrors are updated separately and retain their
+        # product-specific navigation.
+        if is_live_project_source(path):
+            continue
+        # The catalog and public-build hub own labelled navigation with their
+        # active state. News deliberately offers a single back link to its
+        # chronological origin on the home page.
+        if path in OWN_NAV_PAGES:
             continue
         if path in SKIP_FILES:
             continue
@@ -100,14 +115,7 @@ def main() -> None:
             continue
 
         old = match.group(0)
-        # Keep whatever breadcrumb the page already carries (`~/projects`), and
-        # keep its marker convention, so this stays a nav rewrite and not a
-        # redesign of pages that deliberately look different.
-        prefix_match = re.match(r'<nav class="top">(~/\S+\s*&nbsp;\s*)', old)
-        prefix = prefix_match.group(1) if prefix_match else ""
-        bracket = "[" in re.sub(r"<[^>]*>", "", old)
-
-        new = build_nav(active_key(rel), keys, prefix, bracket)
+        new = build_nav(active_key(rel), keys)
         if new != old:
             path.write_text(html.replace(old, new, 1), encoding="utf-8")
             changed += 1

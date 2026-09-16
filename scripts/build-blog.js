@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * build-blog.js
- * Compile blog/posts/*.md → blog/*.html and regenerate blog/index.html
+ * Compile blog/posts/*.md → blog/<slug>/index.html and regenerate blog/index.html
  *
  * Frontmatter (YAML-style, between --- delimiters):
  *   title: My Post Title
@@ -132,17 +132,21 @@ function renderPost({ title, date, description, slug, body }) {
 <meta name="description" content="${safeDesc}">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ericspencer.us/blog/${slug}.html">
+<link rel="canonical" href="https://ericspencer.us/blog/${slug}/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${safeTitle} | Eric Spencer">
 <meta property="og:description" content="${safeDesc}">
-<meta property="og:url" content="https://ericspencer.us/blog/${slug}.html">
+<meta property="og:url" content="https://ericspencer.us/blog/${slug}/">
 <meta property="og:site_name" content="Eric Spencer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 <style>
-:root{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}
+:root{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}
+/* A custom property holds any value, so a hex fallback in the same block is
+   overwritten, not skipped. @supports is what keeps oklch off browsers that
+   cannot read it: Chrome <=110, Safari <=15.3, Firefox <=112. */
+@supports (color:oklch(0 0 0)){:root{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
 .wrap{max-width:680px;margin:0 auto;padding:56px 24px 100px}
@@ -158,8 +162,8 @@ h2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em
 h3{font-size:18px;font-weight:600;letter-spacing:-0.01em;margin:28px 0 6px}
 p{margin:14px 0;font-size:16px;line-height:1.75}
 code,kbd,pre{font-family:"IBM Plex Mono",ui-monospace,monospace}
-code{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}
-pre{background:oklch(0.12 0.01 240);color:oklch(0.85 0.02 80);padding:14px 18px;border-radius:6px;overflow-x:auto;font-size:13px;line-height:1.6;margin:16px 0}
+code{background:#edebe7;background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}
+pre{background:#030609;background:oklch(0.12 0.01 240);color:#d5cdc0;color:oklch(0.85 0.02 80);padding:14px 18px;border-radius:6px;overflow-x:auto;font-size:13px;line-height:1.6;margin:16px 0}
 pre code{background:none;padding:0;color:inherit}
 blockquote{margin:16px 0;padding:8px 18px;border-left:2px solid var(--rule);color:var(--dim);font-style:italic}
 ul,ol{margin:12px 0;padding-left:24px}li{margin:5px 0}
@@ -198,7 +202,7 @@ function rebuildIndex(posts) {
   } else {
     rows = '\n' + sorted.map(p => {
       const desc = p.description ? `\n<div class="post-desc">${escapeHtml(p.description)}</div>` : '';
-      return `<div class="post-row"><div class="post-d">${p.date || ''}</div><div class="post-body"><div class="post-title"><a href="/blog/${p.slug}.html">${escapeHtml(p.title)}</a></div>${desc}</div></div>`;
+      return `<div class="post-row"><div class="post-d">${p.date || ''}</div><div class="post-body"><div class="post-title"><a href="/blog/${p.slug}/">${escapeHtml(p.title)}</a></div>${desc}</div></div>`;
     }).join('\n') + '\n';
   }
 
@@ -249,9 +253,11 @@ for (const file of mdFiles) {
   const htmlBody = mdToHtml(body);
   const page = renderPost({ title, date, description, slug, body: htmlBody });
 
-  const outPath = join(BLOG_DIR, `${slug}.html`);
+  const outDir = join(BLOG_DIR, slug);
+  mkdirSync(outDir, { recursive: true });
+  const outPath = join(outDir, 'index.html');
   writeFileSync(outPath, page, 'utf8');
-  console.log(`  built  blog/${slug}.html`);
+  console.log(`  built  blog/${slug}/index.html`);
 
   built.push({ slug, title, date, description });
 }

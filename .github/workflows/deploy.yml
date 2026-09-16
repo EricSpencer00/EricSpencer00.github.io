@@ -27,26 +27,54 @@ jobs:
         with:
           python-version: "3.12"
 
+      # The dev mirror is already built, pruned, and marked noindex by deploy-dev.
+      # Publish that artifact as-is; rebuilding loses those transformations.
+      # The production build below is skipped for the dev mirror, but the
+      # checked-in AI4FM preview must also never be copied into the artifact.
       # The /ai4fm project path is deployed by the AI4FM repository's own
       # Pages workflow. Never publish the checked-in preview copy from this
       # personal-site artifact.
       - name: Remove checked-in AI4FM preview
         run: rm -rf ai4fm
-
       - name: Build static pages
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: |
+          python3 scripts/build_project_routes.py
           python3 scripts/build.py
           python3 scripts/build_blog.py
           python3 scripts/build_resume_pages.py
+          python3 scripts/build_projects.py
+          python3 scripts/build_legacy_redirects.py
+          python3 scripts/build_public_apps.py
+          python3 scripts/normalize_project_pages.py
+          python3 scripts/apply_portfolio_theme.py
 
       # One definition of the top nav for every page, so `cv` cannot reach only
       # the homepage again and `blog` only appears once something is published.
       - name: Apply the top nav
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/apply_nav.py
 
       # Before the sitemap: an unpublished blog should not be listed in it.
       - name: Drop the blog when nothing is published
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/prune_blog.py
+
+      # The old Hugo URLs (/projects/<year>/<slug>/, /miscellaneous/<slug>/) are
+      # kept as redirect stubs, not second copies of the page. Runs every build
+      # so a newly added project cannot quietly ship a duplicate again. Before
+      # apply_og_tags.py, which has to reapply the card tags to the new stub.
+      - name: Collapse the old Hugo URLs to redirects
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/collapse_mirrors.py
+
+      # collapse_mirrors.py reads each mirror's own canonical tag, so a mirror
+      # without one is skipped and keeps serving a second copy of the writeup.
+      # content/project-pages.txt says which mirror belongs to which page; this
+      # fails the build when the files disagree with it.
+      - name: Check every project page has one copy
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/check_project_pages.py
 
       # Runs last: the generators above rewrite whole <head> blocks, so the
       # link-preview tags have to be reapplied after them or every rebuild
@@ -54,29 +82,52 @@ jobs:
       # themselves are committed -- regenerating those needs Chrome and is a
       # local step (scripts/build_og_images.py).
       - name: Point pages at their link-preview cards
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/apply_og_tags.py
 
       # Also last, and for the same reason: favicon links, robots directives and
       # the structured-data image live in the same <head> the generators rewrite.
       - name: Apply search tags
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/seo_tags.py
 
       # Apply Analytics after every generator that rewrites a page head, so
       # future builds keep sending production page views to the same property.
       - name: Apply Google Analytics tag
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/apply_ga4.py
+
+      # Read the completed public site into a static retrieval index and attach
+      # the browser-only assistant to every public page.
+      - name: Build the browser-only site assistant
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/build_chatbot_knowledge.py
+
+      - name: Verify generated project catalog and article headings
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: |
+          python3 scripts/build_project_routes.py --check
+          python3 scripts/build_projects.py --check
+          python3 scripts/build_public_apps.py --check
+          python3 scripts/normalize_project_pages.py --check
 
       # Reads the finished pages, so it runs after everything that writes them.
       - name: Build sitemap
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/build_sitemap.py
 
-      # backup-site/ is an archive of the old Hugo site kept in git for
+      - name: Verify routes and SEO metadata
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/check_site.py
+
+      # backup-site/ and editor/ are local-only authoring material. Shipping
+      # either would publish duplicate or unpublished working copy.
       # reference. Shipping it published ~30 duplicate pages — including a
       # second copy of the homepage at /backup-site/ — which competed with the
       # real site in search. Keep it in the repo, keep it off the web. tests/
       # is the same deal: harnesses that drive a page in an iframe, not pages.
       - name: Strip non-published directories from the artifact
-        run: rm -rf backup-site tests
+        run: rm -rf backup-site tests editor
 
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3

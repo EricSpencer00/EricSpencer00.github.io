@@ -12,6 +12,14 @@ worth re-fetching.
 
 `changefreq` and `priority` are omitted: Google ignores both.
 
+The tree holds about twice as many .html files as the sitemap holds URLs, and
+every part of that gap is deliberate: redirect stubs under projects/<year>/ and
+miscellaneous/ share a canonical with the page they point at, live apps are
+linked from the projects page through durable /apps/<slug>/ paths, and noindex
+pages are left out. The run prints the count in each group, so a page
+that stops being published moves a number here instead of going missing without
+a trace.
+
     python3 scripts/build_sitemap.py
 """
 
@@ -20,6 +28,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from build_blog import load_posts
 from build_og_images import SITE, published_pages
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -27,6 +36,27 @@ OUT = ROOT / "sitemap.xml"
 
 NOINDEX = re.compile(r'<meta[^>]+name="robots"[^>]+content="[^"]*noindex', re.I)
 STUB = "<!-- redirect stub -->"
+
+# Not part of the site at all, so not part of the count either.
+ARCHIVE = ("/.git/", "/ai4fm/", "/backup-site/", "/.claude/")
+
+# A sitemap is navigation for crawlers, not an exhaustive inventory of every
+# backwards-compatible endpoint. The projects page is the single catalog;
+# individual live builds keep durable /apps/<slug>/ entry paths.
+CORE_URLS = {
+    f"{SITE}/",
+    f"{SITE}/cv/",
+    f"{SITE}/news/",
+    f"{SITE}/projects/",
+    f"{SITE}/research/",
+    f"{SITE}/1rm/",
+    f"{SITE}/ulam-spiral/",
+    f"{SITE}/ulam-spiral-b12/",
+}
+
+
+def belongs_in_sitemap(url):
+    return url in CORE_URLS or url.startswith(f"{SITE}/projects/")
 
 
 def last_commit(path):
@@ -41,7 +71,15 @@ def last_commit(path):
 
 
 def entries():
+    has_posts = bool(load_posts())
     for url, pages in sorted(published_pages().items()):
+        if not belongs_in_sitemap(url):
+            continue
+        # The committed blog shell is an authoring template. It is pruned from
+        # a release with no posts, so it must not leak back into a source-tree
+        # sitemap when this script is run locally before that pruning step.
+        if not has_posts and url.startswith(f"{SITE}/blog/"):
+            continue
         # Redirect stubs are never the page a URL is about; they point at one.
         # They have to be dropped before the noindex check, or a noindexed page
         # would still get listed on the strength of a stub aimed at it.
@@ -58,6 +96,36 @@ def entries():
         yield url, (dates[-1] if dates else None)
 
 
+def audit(listed):
+    """Account for every .html file in the tree, listed or not.
+
+    Each file falls in exactly one group, and the groups add up to the file
+    count, so the line can be read as a check rather than as a claim.
+    """
+    grouped = published_pages()
+    in_tree = [p for p in ROOT.rglob("*.html")
+               if not any(k in "/" + str(p.relative_to(ROOT)) for k in ARCHIVE)]
+    files = {p for pages in grouped.values() for p in pages}
+    # A canonical with no file of its own is served from another repo.
+    elsewhere = sum(1 for pages in grouped.values() if not pages)
+    here = len(grouped) - elsewhere
+    noindex = 0
+    off_map = 0
+    for url, pages in grouped.items():
+        local = [p for p in pages if STUB not in p.read_text(errors="replace")]
+        if not local:
+            continue
+        if all(NOINDEX.search(p.read_text(errors="replace")) for p in local):
+            noindex += 1
+        elif not belongs_in_sitemap(url):
+            off_map += 1
+    print(f"  {len(in_tree)} .html files: {len(in_tree) - len(files)} are not "
+          f"pages, {len(files) - here} are extra copies of a page already "
+          f"listed, {noindex} carry noindex, {off_map} are deliberately "
+          f"off-map, {listed} are listed")
+    print(f"  plus {elsewhere} pages served from another repo")
+
+
 def main():
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -72,6 +140,7 @@ def main():
     lines.append("</urlset>")
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Wrote sitemap.xml with {n} URLs")
+    audit(n)
     return 0
 
 

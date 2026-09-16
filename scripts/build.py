@@ -6,6 +6,7 @@ Run by GitHub Actions on every push; do not edit index.html directly.
 
 from pathlib import Path
 import html as htmllib
+import json
 
 from build_blog import load_posts
 
@@ -35,9 +36,81 @@ def build_news():
     rows = []
     for line in lines("news.txt"):
         date, text, url, label = parse(line, 4)
-        pill = f' <a href="{url}" target="_blank" rel="noopener" class="pill">{label}</a>' if url else ""
+        pill = f' <a href="{htmllib.escape(url, quote=True)}" target="_blank" rel="noopener" class="pill">{label}</a>' if url else ""
         rows.append(f'<div class="news"><span class="d">{date}</span><span class="t">{text}{pill}</span></div>')
+    rows.append('<p class="small"><a href="/news/">see all news</a></p>')
     return "\n".join(rows)
+
+
+def news_history():
+    history = json.loads((CONTENT / "news-history.json").read_text(encoding="utf-8"))
+    entries = []
+    for line in lines("news.txt"):
+        date, text, url, label = parse(line, 4)
+        entry = {"date": date, "html": text, "url": url}
+        entry.update(history["updates"].get(url, {}))
+        entries.append(entry)
+    entries.extend(history["entries"])
+    return sorted(entries, key=lambda entry: entry["date"])
+
+
+def news_attachment(attachment):
+    escape = htmllib.escape
+    image = attachment["image"]
+    if not (ROOT / image.lstrip("/")).is_file():
+        raise ValueError(f"Missing news preview: {image}")
+    return (
+        f'<a class="news-attachment" href="{escape(attachment["url"], quote=True)}" '
+        f'target="_blank" rel="noopener" aria-label="Open {escape(attachment["title"], quote=True)} PDF">'
+        f'<img src="{escape(image, quote=True)}" '
+        f'alt="First-page preview of {escape(attachment["title"], quote=True)}" '
+        f'width="{int(attachment["width"])}" height="{int(attachment["height"])}" '
+        'loading="lazy" decoding="async">'
+        f'<span class="attachment-caption">{escape(Path(image).stem)}.pdf</span></a>'
+    )
+
+
+def build_news_page():
+    rows = []
+    for entry in news_history():
+        date, text, url = entry["date"], entry["html"], entry["url"]
+        visible_url = "https://ericspencer.us" + url if url.startswith("/") else url
+        link = (f'<br><a href="{htmllib.escape(url, quote=True)}" target="_blank" '
+                f'rel="noopener">{htmllib.escape(visible_url)}</a>') if url else ""
+        attachment = news_attachment(entry["attachment"]) if entry.get("attachment") else ""
+        rows.append(
+            f'<div class="messages-title"><time datetime="{htmllib.escape(date)}">{htmllib.escape(date)}</time></div>'
+            '<div class="message message-received message-tail"><div class="message-content">'
+            f'{attachment}<div class="message-bubble"><div class="message-text">{text}{link}'
+            '</div></div></div></div>'
+        )
+    return '''<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News · Eric Spencer</title>
+<script src="/assets/js/news-scroll.js" defer></script>
+<meta name="description" content="Research, papers, and project updates from Eric Spencer.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ericspencer.us/news/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/vendor/framework7/messages.css">
+<link rel="stylesheet" href="/assets/css/void-news.css">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+</head><body class="news-surface">
+<div class="wrap">
+<p class="name-hero">Eric Spencer</p>
+<p class="sub">news</p>
+<nav class="top" aria-label="Primary"><a href="/">index</a> &middot; <a href="/research/">publications</a> &middot; <a href="/projects/">projects</a> &middot; <a href="/cv/">cv</a></nav>
+<hr>
+<main class="news-page">
+<h1 class="page-title">News</h1>
+<a class="news-back" href="/#news">← back to index</a>
+<section class="void-board ios" aria-label="News"><div class="messages">
+''' + "\n".join(rows) + '\n</div></section></main>\n<footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>\n</div></body></html>\n'
 
 def build_about():
     text = (CONTENT / "about.txt").read_text(encoding="utf-8")
@@ -46,10 +119,20 @@ def build_about():
 
 def build_selected():
     rows = []
-    for line in lines("selected.txt"):
+    for line in lines("homepage-selected.txt"):
         name, url, desc = parse(line, 3)
         rows.append(f'<div class="proj"><a class="nm" href="{url}">{name}</a><span class="dt"></span><span class="ds">{desc}</span></div>')
-    return "\n".join(rows)
+    visible = "\n".join(rows[:3])
+    rest = "\n".join(rows[3:])
+    if not rest:
+        return visible
+    count = len(rows) - 3
+    return (
+        f'{visible}\n'
+        f'<div class="gh-rest" id="selected-rest" hidden>\n{rest}\n</div>\n'
+        f'<button class="gh-more" type="button" aria-expanded="false" '
+        f'aria-controls="selected-rest" data-count="{count}">Show {count} more</button>'
+    )
 
 def build_blog():
     """The whole Blog section, or nothing at all when nothing is published.
@@ -67,7 +150,7 @@ def build_blog():
             f'<div class="post-row">'
             f'<span class="post-d">{post.date}</span>'
             f'<div class="post-body">'
-            f'<div class="post-title"><a href="/blog/{post.slug}.html">{htmllib.escape(post.title)}</a></div>'
+            f'<div class="post-title"><a href="/blog/{post.slug}/">{htmllib.escape(post.title)}</a></div>'
             f'<p class="post-desc">{htmllib.escape(post.description)}</p>'
             f'</div></div>'
         )
@@ -169,7 +252,11 @@ def build_page(news, about, selected, blog, experience):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 <style>
-:root{{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}
+:root{{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}}
+/* A custom property holds any value, so a hex fallback in the same block is
+   overwritten, not skipped. @supports is what keeps oklch off browsers that
+   cannot read it: Chrome <=110, Safari <=15.3, Firefox <=112. */
+@supports (color:oklch(0 0 0)){{:root{{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}}}
 *{{box-sizing:border-box}}html{{scroll-behavior:smooth}}
 body{{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}}
 .wrap{{max-width:720px;margin:0 auto;padding:56px 24px 100px}}
@@ -177,7 +264,7 @@ body{{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakart
 nav.top{{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;color:var(--dim);margin:16px 0 0}}
 nav.top a{{color:inherit;text-decoration:none;border:0;padding:0 2px}}
 nav.top a:hover{{color:var(--ink)}}
-nav.top a.active{{color:var(--ink);font-weight:600}}
+nav.top a.active{{color:var(--accent);font-weight:600}}
 hr{{border:0;border-top:1px solid var(--rule);margin:28px 0}}
 a{{color:var(--accent);text-decoration:none;border:0}}
 a:hover{{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}}
@@ -216,7 +303,7 @@ p{{margin:12px 0}}
 .cv-when{{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim);margin:2px 0 0}}
 .cv-note{{font-size:14px;color:var(--dim);margin:3px 0 0}}
 .small{{font-size:13px;color:var(--dim)}}
-code{{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}}
+code{{background:#edebe7;background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}}
 .tag{{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;border:1px solid var(--rule);border-radius:3px;padding:0 5px;color:var(--dim);background:transparent;margin-left:4px}}
 footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}}
 /* GitHub repos dynamic section */
@@ -246,9 +333,20 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 .cat-note{{font-size:14px;color:var(--dim);margin:-4px 0 10px;font-variant-numeric:tabular-nums}}
 .cat-note b{{color:var(--ink);font-weight:600}}
 @media(max-width:560px){{.wrap{{padding:36px 18px 80px}}.proj .dt,.proj .ds{{display:none}}.post-d{{display:none}}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{{display:none}}#hf-list .repo-row .dt,#hf-list .repo-row .ds{{display:none}}}}
+/* Tap targets. A finger needs 24x24 (WCAG 2.2 2.5.8); the desktop rows and the
+   [link] markers are about 18px and 14px tall. Grow the box, not the text: the
+   links that sit on a line of their own get min-height, and the markers inside
+   a sentence get a size bump as well. */
+@media(max-width:560px){{
+nav.top a,.linkrow a,a.pill,.cv-org a,.post-title a,.small a,footer a{{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}}
+.proj a.nm,#gh-repos .repo-row a,#hf-list .repo-row a,.gh-more{{min-height:24px}}
+.linkrow{{line-height:2}}
+a.pill{{font-size:12px}}
+.tag{{font-size:12px;padding:1px 6px}}
+}}
 </style></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
-<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 
 <h2 id="news">News</h2>
@@ -286,7 +384,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 <div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a><span class="dt"></span><span class="ds">gpt-oss-20b fine-tuned to write verifiable TLA+ specifications.</span></div>
 <div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00" target="_blank" rel="noopener">huggingface.co/EricSpencer00</a><span class="dt"></span><span class="ds">The ChatTLA+ models and the datasets they were trained on.</span></div>
 <div class="proj"><a class="nm" href="https://github.com/EricSpencer00" target="_blank" rel="noopener">github.com/EricSpencer00</a><span class="dt"></span><span class="ds">Formal methods, LLM tooling, compilers, macOS and iOS apps.</span></div>
-<div class="proj"><a class="nm" href="/projects.html">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
+<div class="proj"><a class="nm" href="/projects/">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
 </noscript>
 
 <h2 id="cv">Experience</h2>
@@ -399,14 +497,14 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
       {{ name: 'fromamerica-llc.com', url: 'https://fromamerica-llc.com',
         desc: 'FROM AMERICA LLC: independent software studio.' }},
       {{ repo: 'gcf-de', url: 'https://ericspencer.us/gcf-de/' }},
-      {{ name: 'stockgenie.app', url: 'https://stockgenie.app',
-        desc: 'Daily AI stock pick, free tier plus options.' }},
+      {{ name: 'stockgenie.app', url: '/apps/stockgenie/',
+        desc: 'AI-ranked market analysis for iPhone; informational only, not financial advice.' }},
     ],
     'Hackathons & Coursework': [
-      {{ name: 'sideswing.tech', url: 'https://sideswing.tech',
+      {{ name: 'sideswing.tech', url: '/apps/sideswing/',
         desc: 'Phone-as-club golf swing tracker.' }},
-      {{ repo: 'VoCal', name: 'vocal.best', url: 'https://vocal.best' }},
-      {{ name: 'brightbet.tech', url: 'https://brightbet.tech',
+      {{ repo: 'VoCal', name: 'vocal.best', url: '/apps/vocal/' }},
+      {{ name: 'brightbet.tech', url: '/apps/brightbet/',
         desc: 'Sports betting model and dashboard.' }},
     ],
     'Other': [
@@ -660,6 +758,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
     }}
   }}
 
+  wireDisclosures(document);
   render();
   renderHF();
 }})();
@@ -680,6 +779,10 @@ def main():
     out  = ROOT / "index.html"
     out.write_text(page, encoding="utf-8")
     print(f"Built {out} ({len(page):,} bytes)")
+    news_out = ROOT / "news" / "index.html"
+    news_out.parent.mkdir(exist_ok=True)
+    news_out.write_text(build_news_page(), encoding="utf-8")
+    print(f"Built {news_out}")
 
 if __name__ == "__main__":
     main()

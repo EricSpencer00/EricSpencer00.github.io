@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COMP 388 LLM Homework | Eric Spencer</title>
+<meta name="description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
+<meta name="author" content="Eric Spencer">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/comp388-llm/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#faf7f2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="COMP 388 LLM Homework | Eric Spencer">
+<meta property="og:description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
+<meta property="og:url" content="https://ericspencer.us/projects/comp388-llm/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/projects-comp388-llm.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="COMP 388 LLM Homework | Eric Spencer — ericspencer.us">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-comp388-llm.jpg">
+<meta name="twitter:image:alt" content="COMP 388 LLM Homework | Eric Spencer — ericspencer.us">
+<meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-comp388-llm.jpg">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:title" content="COMP 388 LLM Homework | Eric Spencer">
+<meta name="twitter:description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
+<meta property="linkedin:title" content="COMP 388 LLM Homework | Eric Spencer">
+<meta property="linkedin:description" content="Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"COMP 388 LLM Homework",
+"description":"Two homeworks from Loyola's special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.",
+"url":"https://ericspencer.us/projects/comp388-llm/",
+"image":"https://ericspencer.us/assets/og/projects-comp388-llm.jpg",
+"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
+"datePublished":"2026-04-23",
+"mainEntityOfPage":"https://ericspencer.us/projects/comp388-llm/"}
+</script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#181410; --maroon:#6d1414; --maroon2:#8a1f1f;
+  --rule:#d8d0bf; --dim:#6f675a; --gold:#9a7b3a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper);
+  background-image:radial-gradient(#00000005 1px,transparent 1px);
+  background-size:3px 3px;
+  color:var(--ink);
+  font-family:"Charter","Georgia","Times New Roman",serif;
+  font-size:17px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px}
+a{color:var(--maroon);text-decoration:none;border-bottom:1px dotted #b98c8c}
+a:hover{color:#fff;background:var(--maroon);border-bottom:1px solid var(--maroon)}
+code,kbd,.mono,pre{font-family:"IBM Plex Mono","SFMono-Regular","JetBrains Mono",ui-monospace,Menlo,monospace}
+pre.banner{
+  color:var(--maroon); font-size:clamp(5.4px,1.55vw,11px); line-height:1.12;
+  margin:0 0 2px; letter-spacing:0; overflow:hidden; white-space:pre;
+}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--dim);
+  letter-spacing:.04em;margin:0 0 4px}
+.cursor::after{content:"_";color:var(--maroon);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+hr{border:0;border-top:1px solid var(--rule);margin:22px 0}
+.dash{border:0;border-top:1px dashed var(--rule);margin:20px 0}
+h2{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--maroon);
+  margin:34px 0 12px;display:flex;align-items:center;gap:10px;
+  scroll-margin-top:20px}
+h2::before{content:"§";color:var(--gold);font-weight:400}
+h2 .ln{flex:1;border-top:1px solid var(--rule);height:1px}
+h3{font-size:18px;margin:20px 0 4px}
+p{margin:10px 0}
+nav.top{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:6px 0 0;color:var(--dim)}
+nav.top a{border:0;padding:1px 3px}
+nav.top a:hover{background:var(--maroon);color:#fff}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dim)}
+.lead{font-size:17px}
+ul.bare{list-style:none;margin:8px 0;padding:0}
+.proj{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.75;
+  display:flex;gap:10px;align-items:baseline;padding:1px 0;white-space:nowrap;
+  overflow:hidden}
+.proj a.nm{flex:0 0 auto;font-weight:600;border-bottom:1px dotted #b98c8c}
+.proj .dt{flex:1;border-bottom:1px dotted #ddd4c2;transform:translateY(-3px);min-width:14px}
+.proj .ds{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:"Charter",Georgia,serif;font-size:14px}
+.proj .lg{flex:0 0 auto;color:var(--maroon2);font-size:11px;opacity:.8}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  border:1px solid var(--rule);border-radius:2px;padding:0 5px;color:var(--dim);
+  background:#fff8;margin-left:4px}
+.news{font-family:"IBM Plex Mono",monospace;font-size:13.5px;display:flex;gap:14px;
+  align-items:baseline;padding:3px 0}
+.news .d{flex:0 0 92px;color:var(--maroon2);font-size:12px;font-variant-numeric:tabular-nums}
+.news .t{flex:1;font-family:Charter,Georgia,serif;font-size:15.5px;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim)}
+footer{margin-top:46px;border-top:1px solid var(--rule);padding-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.linkrow{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:4px 0 0}
+.linkrow a{margin-right:2px}
+blockquote{margin:14px 0;padding:6px 16px;border-left:3px solid var(--maroon);
+  color:#352f27;font-style:italic;background:#fff6}
+.small{font-size:13px;color:var(--dim)}
+pre.code{background:#0d0b09;color:#d4cfbf;padding:12px 16px;border-radius:3px;
+  overflow-x:auto;font-size:13px;line-height:1.5;margin:10px 0}
+pre.code code{background:none;padding:0;color:inherit}
+code{background:#e8e2d6;padding:1px 5px;border-radius:2px;font-size:14px}
+img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;margin:10px 0}
+.back{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 12px}
+.back a{border:0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+@media(max-width:560px){
+  .proj{white-space:normal;flex-wrap:wrap}
+  .proj .dt{display:none}.proj .ds{white-space:normal;flex-basis:100%}
+}
+h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+
+</head><body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p>
+<p class="sub">projects</p>
+<pre class="banner" aria-hidden="true" role="presentation"> _____      _        ____
+| ____|_ __(_) ___  / ___| _ __   ___ _ __   ___ ___ _ __
+|  _| | '__| |/ __| \___ \| '_ \ / _ \ '_ \ / __/ _ \ '__|
+| |___| |  | | (__   ___) | |_) |  __/ | | | (_|  __/ |
+|_____|_|  |_|\___| |____/| .__/ \___|_| |_|\___\___|_|
+                          |_|                             </pre>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<hr>
+<p class="back">&larr; <a href="/">back to index</a></p>
+<h1 class="article-title">COMP 388 LLM Homework<span class="ln"></span></h1>
+<p class="meta">Two homeworks from Loyola&#x27;s special-topics LLMs class: prompting GPT-2 and comparing base vs instruction-tuned Qwen.</p>
+<p class="meta">repo: <a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">https://github.com/EricSpencer00/comp388-llm</a></p>
+<hr class="dash">
+<p>COMP 388 at Loyola is the special-topics CS course, whose subject changes with the professor. The Spring 2026 version was on large language models, which overlaps with the TLA+ and fine-tuning work at ai4fm. This repository holds two of its assignments.</p>
+<h3>HW1: prompting GPT-2 and a small evaluation</h3>
+<p>The first assignment loads a Hugging Face model and runs it. The script <code>llm_prompt.py</code> loads <code>gpt2</code> via <code>transformers</code>, takes a prompt off the command line, and does manual token-by-token generation rather than calling <code>.generate()</code>. The reason is environmental: on an M1 Mac, <code>.generate()</code> crashed with a bus error about half the time, and so did single-word prompts. The workaround is to force CPU-only execution, set <code>PYTORCH_ENABLE_MPS_FALLBACK=1</code>, and hand-roll the sampling loop.</p>
+<p>The assignment then asked for a simple evaluation, done two ways. The first is a hand-written True/False dataset of 10 Wikipedia-style facts (<code>evaluate_wiki_tf.py</code>), on which GPT-2 scored 6 out of 10; every item it got wrong was a false statement that it called true. The second is BoolQ from Hugging Face datasets, 20 examples, run twice, once with the supporting passage and once without (<code>evaluate_boolq.py</code>). Both runs scored 45.0%. The outputs show GPT-2 answering yes to nearly everything, so the passage made no difference.</p>
+<h3>HW2: base versus instruction-tuned, and few-shot</h3>
+<p>The second assignment was to pick a small open model that ships both a base and an instruction-tuned variant, compare them, and then try few-shot prompting on the base model. The models used are Qwen2.5-0.5B and Qwen2.5-0.5B-Instruct: same architecture, same tokenizer, differing only in the instruction-tuning step.</p>
+<p>The base-vs-chat comparison behaved as expected. The base model treats a prompt as a document to continue, so "What is the capital of France?" produces more questions or bullet points, while the chat model answers "The capital of France is Paris."</p>
+<p>The evaluation was on SNLI (natural language inference), 100 examples, greedy decoding:</p>
+<ul>
+<li>Chat model, zero-shot: 61%</li>
+<li>Base model, zero-shot: 64%</li>
+<li>Base model, few-shot: 61%</li>
+</ul>
+<p>The base model beat the chat model zero-shot, and few-shot prompting made the base model worse rather than better. One reading is that at 0.5B the instruction tuning overfits to chatty response shapes that hurt on a constrained-label task like NLI, and that the longer few-shot prompts push the small model past what it handles well. The few-shot run also hit CPU and memory ceilings, since the in-context examples triple the prompt length; a GPU or a quantized model would have finished cleanly.</p>
+<h3>Constraints</h3>
+<p>This is coursework rather than a product, and the repository states its constraints plainly: pinned to Python 3.11, macOS on M1, CPU-only, with hardcoded paths that the assignment template called for.</p>
+<p><a href="https://github.com/EricSpencer00/comp388-llm" target="_blank" rel="noopener">GitHub Repo</a></p>
+<footer>
+<span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
+<span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>
+</footer>
+</div></body></html>

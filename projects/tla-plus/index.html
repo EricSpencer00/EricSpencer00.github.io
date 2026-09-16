@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TLA+ | Eric Spencer</title>
+<meta name="description" content="TLA+ modeling, model checking, and LLM-assisted specification work.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://ericspencer.us/projects/tla-plus/">
+<meta property="og:title" content="TLA+ | Eric Spencer">
+<meta property="og:description" content="TLA+ modeling, model checking, and LLM-assisted specification work.">
+<meta property="og:url" content="https://ericspencer.us/projects/tla-plus/">
+<meta name="twitter:title" content="TLA+ | Eric Spencer">
+<meta name="twitter:description" content="TLA+ modeling, model checking, and LLM-assisted specification work.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/project-article.css">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'">
+</head>
+<body class="portfolio-article"><div class="wrap">
+<p class="name">Eric Spencer</p><p class="sub">projects</p>
+<nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav><hr>
+<p class="back">← <a href="/projects/">back to projects</a></p>
+<main><h1>TLA+</h1><p class="meta">Modeling, model checking, and LLM-assisted specification work.</p>
+<p class="links"><a href="https://tla.ericspencer.us/" target="_blank" rel="noopener">TLA+ Generator</a> · <a href="https://tlakit.pages.dev/" target="_blank" rel="noopener">tlakit</a> · <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">AI4FM</a> · <a href="/research/">research</a></p>
+<p>This is the umbrella page for work with TLA+, a language for describing state machines and checking properties over their reachable states. The projects include small models of <a href="/projects/tla-laptop/">laptops</a>, <a href="/projects/tla-walk-in-oven/">walk-in ovens</a>, <a href="/projects/tla-dexcom-g7/">a Dexcom G7 session</a>, <a href="/projects/interactive-microwave-tla/">microwaves</a>, and <a href="/projects/connect-4/">game mechanics</a>.</p>
+<p>The research side studies whether language models can produce specifications that survive execution by SANY and TLC rather than merely matching an expected string. The related repositories include the <a href="/projects/chattla-dataset/">ChatTLA+ corpus and benchmark</a>, <a href="https://github.com/LUC-AI4FM/TLA-Prove" target="_blank" rel="noopener">TLA-Prove</a>, <a href="/research/#tools">TLA-Extraction</a>, the <a href="https://github.com/LUC-AI4FM/tla-dataset-pipeline" target="_blank" rel="noopener">TLA+ dataset pipeline</a>, and <a href="https://tlakit.pages.dev" target="_blank" rel="noopener">tlakit</a>, a Python and notebook client for the TLA+ toolchain.</p>
+<p><a href="https://tla.ericspencer.us/" target="_blank" rel="noopener">TLA+ Generator</a> is the browser-facing entry point. It accepts a natural-language description, generates a specification, and runs a correction loop until the available syntax and model checks pass. The individual models and repositories remain listed under Other work.</p>
+<h2>Scope</h2><p>The examples are models and research tools, not certified controllers. A passing TLC run covers the states and properties encoded in the model; it does not establish that the model represents every behavior of the real system.</p>
+</main><footer><span>© 2026 Eric Spencer · Chicago, IL</span><span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span></footer>
+</div></body></html>

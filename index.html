@@ -47,7 +47,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
 <style>
-:root{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}
+:root{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}
+/* A custom property holds any value, so a hex fallback in the same block is
+   overwritten, not skipped. @supports is what keeps oklch off browsers that
+   cannot read it: Chrome <=110, Safari <=15.3, Firefox <=112. */
+@supports (color:oklch(0 0 0)){:root{--paper:oklch(0.978 0.006 80);--ink:oklch(0.11 0.015 60);--accent:oklch(0.30 0.13 22);--dim:oklch(0.52 0.01 70);--rule:oklch(0.87 0.005 80)}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .wrap{max-width:720px;margin:0 auto;padding:56px 24px 100px}
@@ -55,7 +59,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta
 nav.top{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;color:var(--dim);margin:16px 0 0}
 nav.top a{color:inherit;text-decoration:none;border:0;padding:0 2px}
 nav.top a:hover{color:var(--ink)}
-nav.top a.active{color:var(--ink);font-weight:600}
+nav.top a.active{color:var(--accent);font-weight:600}
 hr{border:0;border-top:1px solid var(--rule);margin:28px 0}
 a{color:var(--accent);text-decoration:none;border:0}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
@@ -94,7 +98,7 @@ p{margin:12px 0}
 .cv-when{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim);margin:2px 0 0}
 .cv-note{font-size:14px;color:var(--dim);margin:3px 0 0}
 .small{font-size:13px;color:var(--dim)}
-code{background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}
+code{background:#edebe7;background:oklch(0.94 0.005 80);padding:1px 5px;border-radius:4px;font-size:13px}
 .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;border:1px solid var(--rule);border-radius:3px;padding:0 5px;color:var(--dim);background:transparent;margin-left:4px}
 footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 /* GitHub repos dynamic section */
@@ -124,22 +128,36 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 .cat-note{font-size:14px;color:var(--dim);margin:-4px 0 10px;font-variant-numeric:tabular-nums}
 .cat-note b{color:var(--ink);font-weight:600}
 @media(max-width:560px){.wrap{padding:36px 18px 80px}.proj .dt,.proj .ds{display:none}.post-d{display:none}#gh-repos .repo-row .dt,#gh-repos .repo-row .ds{display:none}#hf-list .repo-row .dt,#hf-list .repo-row .ds{display:none}}
-</style></head><body><div class="wrap">
+/* Tap targets. A finger needs 24x24 (WCAG 2.2 2.5.8); the desktop rows and the
+   [link] markers are about 18px and 14px tall. Grow the box, not the text: the
+   links that sit on a line of their own get min-height, and the markers inside
+   a sentence get a size bump as well. */
+@media(max-width:560px){
+nav.top a,.linkrow a,a.pill,.cv-org a,.post-title a,.small a,footer a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}
+.proj a.nm,#gh-repos .repo-row a,#hf-list .repo-row a,.gh-more{min-height:24px}
+.linkrow{line-height:2}
+a.pill{font-size:12px}
+.tag{font-size:12px;padding:1px 6px}
+}
+</style>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body><div class="wrap">
 <h1 class="name-hero">Eric Spencer</h1>
-<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research.html">research</a> &nbsp;&middot;&nbsp; <a href="/projects.html">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 
 <h2 id="news">News</h2>
 <div class="news"><span class="d">2026-06-05</span><span class="t"><b>tla-prover</b> accepted at <b>ICSOFT 2026</b>. <a href="https://arxiv.org/html/2606.06133v1" target="_blank" rel="noopener" class="pill">[link]</a></span></div>
 <div class="news"><span class="d">2026-04-17</span><span class="t">Presented <b>ChatTLA+</b> at Loyola's Undergraduate Research &amp; Engagement Symposium. <a href="https://ai4fm.cs.luc.edu/posts/chattla-presentation-2026/" target="_blank" rel="noopener" class="pill">[link]</a></span></div>
-<div class="news"><span class="d">2026-04</span><span class="t">Released <b>chattla-20b</b> on Hugging Face. 13,500+ downloads. <a href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener" class="pill">[model]</a></span></div>
-<div class="news"><span class="d">2026-04</span><span class="t">Paper <i>Can LLMs Write Correct TLA+ Specifications?</i> accepted to <b>ICSOFT 2026</b> (Porto). <a href="https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/" target="_blank" rel="noopener" class="pill">[paper]</a></span></div>
-<div class="news"><span class="d">2026-04</span><span class="t">Co-author on the <b>GSIRS 2026</b> poster: first systematic evaluation of LLM to TLA+ synthesis. <a href="https://ai4fm.cs.luc.edu/posts/gsirs-llm-tla-poster-2026/" target="_blank" rel="noopener" class="pill">[poster]</a></span></div>
+<div class="news"><span class="d">2026-04</span><span class="t">Released <b>chattla-20b</b> on Hugging Face. <a href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener" class="pill">[model]</a></span></div>
+<div class="news"><span class="d">2026-04</span><span class="t">Paper <i>Can LLMs Write Correct TLA+ Specifications?</i> accepted to and presented at <b>ICSOFT 2026</b> (Porto). <a href="https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/" target="_blank" rel="noopener" class="pill">[paper]</a></span></div>
+<div class="news"><span class="d">2026-04</span><span class="t">Co-author on the <b>GSIRS 2026</b> poster about systematic evaluation of LLM to TLA+ synthesis. <a href="https://ai4fm.cs.luc.edu/posts/gsirs-llm-tla-poster-2026/" target="_blank" rel="noopener" class="pill">[poster]</a></span></div>
 <div class="news"><span class="d">2025-05</span><span class="t">Awarded the <b>Mulcahy Scholar</b> stipend for LLM-based TLA+ research. <a href="https://ai4fm.cs.luc.edu/posts/eric-spencer-mulcahy-scholar-2025/" target="_blank" rel="noopener" class="pill">[link]</a></span></div>
+<p class="small"><a href="/news/">see all news</a></p>
 
 <h2 id="about">About</h2>
-<p class="lead">Graduate researcher at <b>Loyola University Chicago</b>, working at the intersection of formal methods and large language models. Member of Technical Staff at <a href="https://hornesci.github.io" target="_blank" rel="noopener"><b>HorneSci</b></a>.</p>
-<p>At the <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">AI4FM / FMitF group</a> under Prof. Konstantin Läufer: first systematic evaluation of LLM-generated <code>TLA+</code>, the <a href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a> model, and a paper at <b>ICSOFT 2026</b>. Outside the lab: the <a href="/projects/resilient.html">Resilient compiler</a>, macOS and iOS apps, and <a href="https://fromamerica-llc.com" target="_blank" rel="noopener">FROM AMERICA LLC</a>. <a href="https://en.wikipedia.org/wiki/Erd%C5%91s_number" target="_blank" rel="noopener">Erdős number</a>: 5.</p>
+<p class="lead">Graduate researcher at <b>Loyola University Chicago</b>, working on formal methods and large language models. Member of Technical Staff at <a href="https://hornesci.github.io" target="_blank" rel="noopener"><b>HorneSci</b></a>.</p>
+<p>At the <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">AI4FM / FMitF group</a> under Prof. Konstantin Läufer: systematic evaluation of LLM-generated <code>TLA+</code>, the <a href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a> model, and a paper at <b>ICSOFT 2026</b>. Outside the lab: the <a href="/projects/resilient/">Resilient compiler</a>, macOS and iOS apps, and <a href="https://fromamerica-llc.com" target="_blank" rel="noopener">FROM AMERICA LLC</a>. <a href="https://en.wikipedia.org/wiki/Erd%C5%91s_number" target="_blank" rel="noopener">Erdős number</a>: 5.</p>
 <div class="linkrow">
 &#9656; <a href="https://github.com/EricSpencer00" target="_blank" rel="me noopener">github</a> &middot;
 <a href="https://huggingface.co/EricSpencer00" target="_blank" rel="me noopener">huggingface</a> &middot;
@@ -150,11 +168,19 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 </div>
 
 <h2 id="selected">Selected Work</h2>
-<div class="proj"><a class="nm" href="https://ericspencer.us/hotdog/">Not Hotdog</a><span class="dt"></span><span class="ds">Hot dog or not hot dog: a 136,417-parameter int8 CNN with hand-written JavaScript kernels, zero dependencies, and bit-exact parity against a NumPy reference.</span></div>
-<div class="proj"><a class="nm" href="/projects/resilient.html">Resilient</a><span class="dt"></span><span class="ds">Statically-typed compiled language for safety-critical embedded systems. Z3-verified contracts, no_std runtime, ships to Cortex-M and RISC-V.</span></div>
-<div class="proj"><a class="nm" href="https://github.com/HorneSci/hst-studio">HST-Studio</a><span class="dt"></span><span class="ds">A delta-aware sparse linear algebra runtime, and the tooling around it.</span></div>
-<div class="proj"><a class="nm" href="https://tlakit.pages.dev">tlakit</a><span class="dt"></span><span class="ds">Python and notebook client for the TLA+ toolchain. Drives SANY, TLC, and TLAPS from a cell without reimplementing TLA+ semantics.</span></div>
-<div class="proj"><a class="nm" href="https://paper-digest.ericspencer.us">paper-digest</a><span class="dt"></span><span class="ds">Cloudflare Worker that ranks each day's new arXiv papers against plain-English interests, with a keyword fallback so the API never breaks.</span></div>
+<div class="proj"><a class="nm" href="https://palindrome.ericspencer.us/">Palindrome</a><span class="dt"></span><span class="ds">Palindromic sentence generator</span></div>
+<div class="proj"><a class="nm" href="https://ericspencer.us/hotdog/">Not Hotdog</a><span class="dt"></span><span class="ds">Browser image classifier</span></div>
+<div class="proj"><a class="nm" href="https://ipaidforthisshirt.com/">I Paid For This Shirt</a><span class="dt"></span><span class="ds">Shirt price printed on shirt</span></div>
+<div class="gh-rest" id="selected-rest" hidden>
+<div class="proj"><a class="nm" href="https://ericspencer.us/ulam-spiral/">Ulam Spiral</a><span class="dt"></span><span class="ds">Prime-marked number spiral</span></div>
+<div class="proj"><a class="nm" href="https://ericspencer.us/1rm/">One Rep Max</a><span class="dt"></span><span class="ds">One-rep-max calculator</span></div>
+<div class="proj"><a class="nm" href="https://tla.ericspencer.us/">TLA+ Generator</a><span class="dt"></span><span class="ds">Natural-language TLA+ generator</span></div>
+<div class="proj"><a class="nm" href="https://famousmoji.com/">Famous Moji</a><span class="dt"></span><span class="ds">Emoji app and archive</span></div>
+<div class="proj"><a class="nm" href="https://stemacle.com/">Stemacle</a><span class="dt"></span><span class="ds">Browser stem separation app</span></div>
+<div class="proj"><a class="nm" href="https://brightbet.tech/">BrightBet.tech</a><span class="dt"></span><span class="ds">Trade and prediction analysis</span></div>
+<div class="proj"><a class="nm" href="https://ai4fm.cs.luc.edu/">ai4fm.cs.luc.edu</a><span class="dt"></span><span class="ds">Loyola formal methods research group</span></div>
+</div>
+<button class="gh-more" type="button" aria-expanded="false" aria-controls="selected-rest" data-count="7">Show 7 more</button>
 
 
 
@@ -174,7 +200,7 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
 <div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00/chattla-20b" target="_blank" rel="noopener">chattla-20b</a><span class="dt"></span><span class="ds">gpt-oss-20b fine-tuned to write verifiable TLA+ specifications.</span></div>
 <div class="proj"><a class="nm" href="https://huggingface.co/EricSpencer00" target="_blank" rel="noopener">huggingface.co/EricSpencer00</a><span class="dt"></span><span class="ds">The ChatTLA+ models and the datasets they were trained on.</span></div>
 <div class="proj"><a class="nm" href="https://github.com/EricSpencer00" target="_blank" rel="noopener">github.com/EricSpencer00</a><span class="dt"></span><span class="ds">Formal methods, LLM tooling, compilers, macOS and iOS apps.</span></div>
-<div class="proj"><a class="nm" href="/projects.html">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
+<div class="proj"><a class="nm" href="/projects/">All projects</a><span class="dt"></span><span class="ds">Every public repository and writeup, by category.</span></div>
 </noscript>
 
 <h2 id="cv">Experience</h2>
@@ -294,14 +320,14 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
       { name: 'fromamerica-llc.com', url: 'https://fromamerica-llc.com',
         desc: 'FROM AMERICA LLC: independent software studio.' },
       { repo: 'gcf-de', url: 'https://ericspencer.us/gcf-de/' },
-      { name: 'stockgenie.app', url: 'https://stockgenie.app',
-        desc: 'Daily AI stock pick, free tier plus options.' },
+      { name: 'stockgenie.app', url: '/apps/stockgenie/',
+        desc: 'AI-ranked market analysis for iPhone; informational only, not financial advice.' },
     ],
     'Hackathons & Coursework': [
-      { name: 'sideswing.tech', url: 'https://sideswing.tech',
+      { name: 'sideswing.tech', url: '/apps/sideswing/',
         desc: 'Phone-as-club golf swing tracker.' },
-      { repo: 'VoCal', name: 'vocal.best', url: 'https://vocal.best' },
-      { name: 'brightbet.tech', url: 'https://brightbet.tech',
+      { repo: 'VoCal', name: 'vocal.best', url: '/apps/vocal/' },
+      { name: 'brightbet.tech', url: '/apps/brightbet/',
         desc: 'Sports betting model and dashboard.' },
     ],
     'Other': [
@@ -555,6 +581,7 @@ footer{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-fa
     }
   }
 
+  wireDisclosures(document);
   render();
   renderHF();
 })();

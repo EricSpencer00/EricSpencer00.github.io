@@ -38,6 +38,21 @@ ICONS = (
 ICON_MARKER = 'rel="icon" href="/favicon.svg"'
 
 ROBOTS = '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'
+REFERRER = '<meta name="referrer" content="strict-origin-when-cross-origin">'
+# GitHub Pages cannot set HTTP response headers. This document policy still
+# limits code, styles, and network requests in browsers; a header-capable edge
+# can add transport-level controls such as HSTS separately.
+CSP = (
+    '<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; '
+    "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; "
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+    "font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; "
+    "connect-src 'self' https://api.github.com https://huggingface.co; "
+    "object-src 'self'; base-uri 'self'; form-action 'self'\">"
+)
+KEYWORDS = re.compile(
+    r'^[ \t]*<meta\s+name=["\']keywords["\'][^>]*>\n?', re.IGNORECASE | re.MULTILINE
+)
 
 
 def og_image(head):
@@ -45,12 +60,17 @@ def og_image(head):
     return m.group(1) if m else None
 
 
-def apply(path):
+def apply(path, write=True):
     text = path.read_text(encoding="utf-8", errors="replace")
     head, sep, body = text.partition("</head>")
     if not sep:
         return "no-head"
     original = text
+
+    # Meta keywords have no search value and often preserve stale, repetitive
+    # labels from the old site. Remove them at the same post-build boundary
+    # that owns the rest of the page-wide SEO hygiene.
+    head = KEYWORDS.sub("", head)
 
     # The structured-data image should be the page's own card when it has one.
     if DEAD_IMAGE in head:
@@ -71,10 +91,26 @@ def apply(path):
     head = re.sub(
         r'<meta name="robots" content="index,\s*follow">', ROBOTS, head
     )
+    if 'name="robots"' not in head:
+        anchor = re.search(r'^[ \t]*<meta name="description"[^>]*>\n', head, re.M)
+        at = anchor.end() if anchor else len(head)
+        head = head[:at] + ROBOTS + "\n" + head[at:]
+
+    if 'name="referrer"' not in head:
+        head += "\n" + REFERRER
+    # Replace prior generated policies too. In particular, `object-src 'none'`
+    # broke the embedded CV PDFs, and WebLLM needs WebAssembly compilation.
+    head = re.sub(
+        r'<meta http-equiv="Content-Security-Policy" content="[^"]*">', CSP, head
+    )
+    if 'http-equiv="Content-Security-Policy"' not in head:
+        head += "\n" + CSP
 
     updated = head + sep + body
     if updated == original:
         return "same"
+    if not write:
+        return "would-write"
     path.write_text(updated, encoding="utf-8")
     return "wrote"
 
@@ -87,7 +123,7 @@ def main():
     counts = {}
     for pages in published_pages().values():
         for path in pages:
-            result = "would-write" if args.check else apply(path)
+            result = apply(path, write=not args.check)
             counts[result] = counts.get(result, 0) + 1
     print(", ".join(f"{v} {k}" for k, v in sorted(counts.items())))
     return 0
