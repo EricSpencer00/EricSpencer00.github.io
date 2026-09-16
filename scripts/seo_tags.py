@@ -19,6 +19,8 @@ Idempotent: run it after the generators and after apply_og_tags.py.
 """
 
 import argparse
+import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -58,6 +60,58 @@ KEYWORDS = re.compile(
 def og_image(head):
     m = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', head)
     return m.group(1) if m else None
+
+
+def meta_value(head, key):
+    m = re.search(
+        rf'<meta[^>]+(?:property|name)="{re.escape(key)}"[^>]+content="([^"]*)"',
+        head,
+        re.IGNORECASE,
+    )
+    return html.unescape(m.group(1)) if m else None
+
+
+def canonical_url(head):
+    m = re.search(r'<link rel="canonical" href="([^"]+)"', head, re.IGNORECASE)
+    return m.group(1) if m else None
+
+
+def first_title(head):
+    m = re.search(r"<title>(.*?)</title>", head, re.IGNORECASE | re.DOTALL)
+    return html.unescape(re.sub(r"\s+", " ", m.group(1)).strip()) if m else None
+
+
+def fallback_schema(head):
+    """Add a valid generic WebPage object when a page has no schema of its own."""
+    if 'type="application/ld+json"' in head.lower():
+        return ""
+
+    title = meta_value(head, "og:title") or first_title(head)
+    description = meta_value(head, "og:description") or meta_value(head, "description")
+    canonical = canonical_url(head)
+    if not title or not canonical:
+        return ""
+
+    data = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": title,
+        "url": canonical,
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Eric Spencer",
+            "url": f"{SITE}/",
+        },
+        "inLanguage": "en-US",
+    }
+    if description:
+        data["description"] = description
+    image = og_image(head)
+    if image:
+        data["image"] = image
+
+    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    return f'<script type="application/ld+json">\n{payload}\n</script>\n'
 
 
 def apply(path, write=True):
@@ -105,6 +159,25 @@ def apply(path, write=True):
     )
     if 'http-equiv="Content-Security-Policy"' not in head:
         head += "\n" + CSP
+
+    schema = fallback_schema(head)
+    if schema:
+        anchor = re.search(
+            r'^[ \t]*<meta[^>]+property="og:url"[^>]*>\n',
+            head,
+            re.IGNORECASE | re.MULTILINE,
+        )
+        if not anchor:
+            anchor = re.search(
+                r'^[ \t]*<link rel="canonical"[^>]*>\n',
+                head,
+                re.IGNORECASE | re.MULTILINE,
+            )
+        if anchor:
+            at = anchor.end()
+            head = head[:at] + schema + head[at:]
+        else:
+            head += "\n" + schema
 
     updated = head + sep + body
     if updated == original:
