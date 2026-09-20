@@ -6,10 +6,52 @@
     "description": "Loyola formal methods research group"
   },
   {
+    "slug": "als-signature-reversal",
+    "name": "als-signature-reversal",
+    "url": "https://ericspencer.us/als-signature-reversal/",
+    "description": "Computational hypothesis generator"
+  },
+  {
+    "slug": "audio-tabula-rasa",
+    "name": "audio-tabula-rasa",
+    "url": "https://ericspencer.us/audio-tabula-rasa/",
+    "description": "Interactive audio preview"
+  },
+  {
+    "slug": "auto-decode",
+    "name": "auto-decode",
+    "url": "https://ericspencer.us/auto-decode/",
+    "description": "Browser encoding decoder"
+  },
+  {
+    "slug": "blackjack",
+    "name": "BlackJack",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/blackjack/",
+    "description": "Browser blackjack with fake money"
+  },
+  {
     "slug": "brightbet",
     "name": "BrightBet.tech",
     "url": "https://brightbet.tech/",
     "description": "Trade and prediction analysis"
+  },
+  {
+    "slug": "caterpillar",
+    "name": "caterpillar",
+    "url": "https://ericspencer.us/caterpillar/",
+    "description": "Interactive machine interface"
+  },
+  {
+    "slug": "chess-game",
+    "name": "Chess Game",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/chess/",
+    "description": "Browser chess game"
+  },
+  {
+    "slug": "chess-com-stats",
+    "name": "Chess.com Stats",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/chess-stats/",
+    "description": "Chess.com stats visualizer"
   },
   {
     "slug": "claude-architect-quiz",
@@ -18,10 +60,22 @@
     "description": "Claude Architect exam practice"
   },
   {
+    "slug": "cubed-pack-solve",
+    "name": "cubed-pack-solve",
+    "url": "https://ericspencer.us/cubed-pack-solve/",
+    "description": "Interactive cube packing viewer"
+  },
+  {
     "slug": "ddia",
     "name": "DDIA Learning Lab",
     "url": "https://ericspencer.us/ddia/",
     "description": "DDIA study notes and quizzes"
+  },
+  {
+    "slug": "design-skill",
+    "name": "design-skill",
+    "url": "https://ericspencer.us/design-skill/",
+    "description": "Editorial web design experiment"
   },
   {
     "slug": "famous-moji",
@@ -30,10 +84,52 @@
     "description": "Emoji app and archive"
   },
   {
+    "slug": "fb-clone",
+    "name": "fb-clone",
+    "url": "https://fb-clone-7ng.pages.dev/",
+    "description": "Social network web app"
+  },
+  {
+    "slug": "fg-scrape",
+    "name": "fg-scrape",
+    "url": "https://ericspencer.us/fg-scrape/",
+    "description": "Family Guy cutaway encyclopedia"
+  },
+  {
+    "slug": "fortnite-oneshot",
+    "name": "fortnite-oneshot",
+    "url": "https://ericspencer.us/fortnite-oneshot/",
+    "description": "Browser one-shot game"
+  },
+  {
     "slug": "freelock",
     "name": "FreeLock",
     "url": "https://fromamerica-llc.com/FreeLock-web/",
     "description": "NFC focus app for iPhone"
+  },
+  {
+    "slug": "game-of-life",
+    "name": "Game of Life",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/gameoflife/",
+    "description": "Canvas cellular automaton"
+  },
+  {
+    "slug": "gcf-de",
+    "name": "gcf-de",
+    "url": "https://ericspencer.us/gcf-de/",
+    "description": "Interactive data engineering app"
+  },
+  {
+    "slug": "git-key-guardian",
+    "name": "git-key-guardian",
+    "url": "https://ericspencer.us/git-key-guardian/",
+    "description": "Git secret scanner demo"
+  },
+  {
+    "slug": "glucopilot",
+    "name": "GluCoPilot",
+    "url": "https://ericspencer.us/GluCoPilot/",
+    "description": "Glucose data copilot"
   },
   {
     "slug": "gta-gold-checklist",
@@ -54,6 +150,12 @@
     "description": "Browser LaTeX editing workspace"
   },
   {
+    "slug": "margaux-website",
+    "name": "margaux-website",
+    "url": "https://ericspencer.us/margaux-website/",
+    "description": "Jesuit mentorship network site"
+  },
+  {
     "slug": "not-hotdog",
     "name": "Not Hotdog",
     "url": "https://ericspencer.us/hotdog/",
@@ -64,6 +166,12 @@
     "name": "One Rep Max",
     "url": "https://ericspencer.us/1rm/",
     "description": "One-rep-max calculator"
+  },
+  {
+    "slug": "oneshot-hm2016",
+    "name": "oneshot-hm2016",
+    "url": "https://ericspencer.us/oneshot-hm2016/",
+    "description": "Browser canvas shooter"
   },
   {
     "slug": "palindrome",
@@ -84,16 +192,46 @@
     "description": "Layered photo editor"
   },
   {
+    "slug": "pitch",
+    "name": "pitch",
+    "url": "https://ericspencer.us/pitch/",
+    "description": "Interactive pitch deck"
+  },
+  {
+    "slug": "pixel-profile",
+    "name": "Pixel Profile",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/pixel-profile/",
+    "description": "GitHub avatar generator"
+  },
+  {
     "slug": "resilient",
     "name": "Resilient Docs",
     "url": "https://ericspencer.us/Resilient/",
     "description": "Resilient language documentation"
   },
   {
+    "slug": "rubix-snake-puzzle",
+    "name": "rubix-snake-puzzle",
+    "url": "https://ericspencer.us/rubix-snake-puzzle/",
+    "description": "Formal puzzle state explorer"
+  },
+  {
     "slug": "sideswing",
     "name": "SideSwing",
     "url": "https://sideswing.tech/",
     "description": "Map-based phone golf game"
+  },
+  {
+    "slug": "slot-machine",
+    "name": "slot-machine",
+    "url": "https://ericspencer.us/slot-machine/",
+    "description": "Browser slot machine"
+  },
+  {
+    "slug": "sneaker-run",
+    "name": "sneaker-run",
+    "url": "https://ericspencer.us/sneaker-run/",
+    "description": "Browser endless runner"
   },
   {
     "slug": "stemacle",
@@ -130,5 +268,17 @@
     "name": "VoCal",
     "url": "https://vocal.best/",
     "description": "Voice-assisted food logging"
+  },
+  {
+    "slug": "wiki-race",
+    "name": "Wiki Race",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/wiki-race/",
+    "description": "Wikipedia speedrun game"
+  },
+  {
+    "slug": "windows-design-website",
+    "name": "Windows Design Website",
+    "url": "https://ericspencer.us/ericspencer-site-backup/miscellaneous/windows/",
+    "description": "Windows 7 homepage recreation"
   }
 ]
