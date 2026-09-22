@@ -63,6 +63,7 @@ footer{{margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-f
 </style></head><body>
 <div class="wrap">
 <nav class="top"><a href="/">index</a></nav>
+<hr>
 <main>
 <h1>{title}</h1>
 <p class="sub">{blurb}</p>

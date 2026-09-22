@@ -23,9 +23,10 @@ from build_blog import load_posts
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "data" / "site-knowledge.js"
+KNOWLEDGE_TAG = '<script defer src="/assets/data/site-knowledge.js" data-site-knowledge></script>'
 BOOTSTRAP = (
     '<!-- site-assistant -->\n'
-    '<script src="/assets/data/site-knowledge.js" data-site-knowledge></script>\n'
+    f'{KNOWLEDGE_TAG}\n'
     '<script type="module" src="/assets/js/site-assistant.js" '
     'data-site-assistant></script>\n'
 )
@@ -128,9 +129,20 @@ def inject_bootstrap() -> int:
     # follow a visitor through the entire site.
     path = ROOT / "index.html"
     source = path.read_text(encoding="utf-8", errors="replace")
-    if 'data-site-assistant' in source or "</body>" not in source.lower():
+    if "</body>" not in source.lower():
         return 0
-    updated = re.sub(r"</body>", BOOTSTRAP + "</body>", source, count=1, flags=re.I)
+    if 'data-site-assistant' in source:
+        # Upgrade the earlier blocking script in place. Deferred classic scripts
+        # and modules execute in document order, so the data is ready when the
+        # assistant module starts without blocking the page's first paint.
+        updated = re.sub(
+            r'<script\b[^>]*\bdata-site-knowledge\b[^>]*>\s*</script>',
+            KNOWLEDGE_TAG, source, count=1, flags=re.I,
+        )
+    else:
+        updated = re.sub(r"</body>", BOOTSTRAP + "</body>", source, count=1, flags=re.I)
+    if updated == source:
+        return 0
     path.write_text(updated, encoding="utf-8")
     return 1
 

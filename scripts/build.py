@@ -356,6 +356,9 @@ nav.top a,.linkrow a,a.pill,.cv-org a,.post-title a,.small a,footer a{{display:i
 .linkrow{{line-height:2}}
 a.pill{{font-size:12px}}
 .tag{{font-size:12px;padding:1px 6px}}
+#gh-repos .repo-row,#hf-list .repo-row{{flex-wrap:wrap;white-space:normal;overflow:visible;gap:0 10px;padding:4px 0}}
+#gh-repos .repo-row a,#hf-list .repo-row a{{max-width:100%;overflow-wrap:anywhere}}
+#gh-repos .repo-row .stars,#hf-list .repo-row .stars{{max-width:100%;white-space:normal}}
 }}
 @media(prefers-reduced-motion:reduce){{html{{scroll-behavior:auto}}*,*::before,*::after{{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important}}}}
 </style></head><body>
