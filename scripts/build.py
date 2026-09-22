@@ -9,6 +9,7 @@ import html as htmllib
 import json
 
 from build_blog import load_posts
+from apply_portfolio_theme import FONT_STYLESHEET
 
 ROOT = Path(__file__).parent.parent
 CONTENT = ROOT / "content"
@@ -29,6 +30,17 @@ def parse(line, n):
     """Split a pipe-delimited line into exactly n fields (padding with '')."""
     parts = line.split("|", n - 1)
     return parts + [""] * (n - len(parts))
+
+
+def project_link_map():
+    """Resolve legacy homepage URLs returned by the GitHub API without a redirect."""
+    routes = {}
+    for line in lines("project-pages.txt"):
+        canonical, aliases, _ = parse(line, 3)
+        for alias in aliases.split(","):
+            if alias:
+                routes["/" + alias.lstrip("/")] = canonical
+    return routes
 
 # ── section builders ──────────────────────────────────────────────────────────
 
@@ -96,10 +108,8 @@ def build_news_page():
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/vendor/framework7/messages.css">
 <link rel="stylesheet" href="/assets/css/void-news.css">
-<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260922">
+''' + FONT_STYLESHEET + '''
 </head><body class="news-surface">
 <div class="wrap">
 <p class="name-hero">Eric Spencer</p>
@@ -170,7 +180,8 @@ def build_experience():
             logo_html = (
                 f'<div class="cv-logo">'
                 f'<img src="/assets/logos/{logo}" alt="{htmllib.escape(org)}" '
-                f'width="36" height="36" style="border-radius:6px;object-fit:contain;background:#fff">'
+                f'width="36" height="36" loading="lazy" decoding="async" '
+                f'style="border-radius:6px;object-fit:contain;background:#faf7f2">'
                 f'</div>'
             )
         else:
@@ -238,7 +249,7 @@ def build_page(news, about, selected, blog, experience):
 {{"@type":"WebSite","@id":"https://ericspencer.us/#site","url":"https://ericspencer.us/","name":"Eric Spencer","inLanguage":"en-US","publisher":{{"@id":"https://ericspencer.us/#eric"}}}},
 {{"@type":"ProfilePage","@id":"https://ericspencer.us/#page","url":"https://ericspencer.us/","name":"Eric Spencer — Formal Methods & LLM Researcher, Chicago","isPartOf":{{"@id":"https://ericspencer.us/#site"}},"primaryImageOfPage":{{"@id":"https://ericspencer.us/#pfp"}},"mainEntity":{{"@id":"https://ericspencer.us/#eric"}}}},
 {{"@type":"ImageObject","@id":"https://ericspencer.us/#pfp","url":"https://ericspencer.us/assets/img/eric-spencer.jpg","contentUrl":"https://ericspencer.us/assets/img/eric-spencer.jpg","width":460,"height":460,"caption":"Eric Spencer"}},
-{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":{{"@id":"https://ericspencer.us/#pfp"}},"sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/"],"owns":[{{"@id":"https://sideswing.tech/#app"}},{{"@id":"https://picai.us/#app"}},{{"@id":"https://vocal.best/#app"}},{{"@id":"https://stemacle.com/#app"}},{{"@id":"https://stockgenie.app/#app"}},{{"@id":"https://ipaidforthisshirt.com/#site"}},{{"@id":"https://famousmoji.com/#site"}}],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}},
+{{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","alternateName":"EricSpencer00","url":"https://ericspencer.us/","image":{{"@id":"https://ericspencer.us/#pfp"}},"sameAs":["https://github.com/EricSpencer00","https://huggingface.co/EricSpencer00","https://www.linkedin.com/in/ericspencer00/","https://dblp.org/pid/439/8284.html"],"owns":[{{"@id":"https://sideswing.tech/#app"}},{{"@id":"https://picai.us/#app"}},{{"@id":"https://vocal.best/#app"}},{{"@id":"https://stemacle.com/#app"}},{{"@id":"https://stockgenie.app/#app"}},{{"@id":"https://ipaidforthisshirt.com/#site"}},{{"@id":"https://famousmoji.com/#site"}}],"jobTitle":"Founder | AI researcher","knowsAbout":["Formal methods","TLA+","Large language models","Model checking","Systems programming","Compilers"],"affiliation":{{"@type":"CollegeOrUniversity","name":"Loyola University Chicago","url":"https://luc.edu"}},"worksFor":[{{"@type":"Organization","name":"HorneSci","url":"https://hornesci.github.io"}},{{"@type":"Organization","name":"FROM AMERICA LLC","url":"https://fromamerica-llc.com"}}],"address":{{"@type":"PostalAddress","addressLocality":"Chicago","addressRegion":"IL","addressCountry":"US"}},"email":"eric@ericspencer.us"}},
 {{"@type":"MobileApplication","@id":"https://sideswing.tech/#app","name":"SideSwing","url":"https://sideswing.tech/","applicationCategory":"GameApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
 {{"@type":"WebApplication","@id":"https://picai.us/#app","name":"Picaius","url":"https://picai.us/","applicationCategory":"MultimediaApplication","operatingSystem":"Web, iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
 {{"@type":"MobileApplication","@id":"https://vocal.best/#app","name":"VoCal","url":"https://vocal.best/","applicationCategory":"HealthApplication","operatingSystem":"iOS","author":{{"@id":"https://ericspencer.us/#eric"}}}},
@@ -248,9 +259,7 @@ def build_page(news, about, selected, blog, experience):
 {{"@type":"WebSite","@id":"https://famousmoji.com/#site","name":"Famous Moji","url":"https://famousmoji.com/","author":{{"@id":"https://ericspencer.us/#eric"}}}}
 ]}}
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+{FONT_STYLESHEET}
 <style>
 :root{{--paper:#faf7f2;--ink:#080401;--accent:#5f000b;--dim:#6d6863;--rule:#d6d4d1}}
 /* A custom property holds any value, so a hex fallback in the same block is
@@ -268,6 +277,10 @@ nav.top a.active{{color:var(--accent);font-weight:600}}
 hr{{border:0;border-top:1px solid var(--rule);margin:28px 0}}
 a{{color:var(--accent);text-decoration:none;border:0}}
 a:hover{{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}}
+a:focus-visible,button:focus-visible{{outline:2px solid var(--accent);outline-offset:3px}}
+p a,.news .t a,.cv-note a,.cv-org a{{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}}
+.skip-link{{position:absolute;left:18px;top:12px;z-index:10;padding:8px 12px;background:var(--paper);transform:translateY(-200%)}}
+.skip-link:focus{{transform:translateY(0)}}
 code,kbd,.mono,pre{{font-family:"IBM Plex Mono",ui-monospace,monospace}}
 h2{{font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--dim);margin:48px 0 14px;scroll-margin-top:20px}}
 h2 .pill{{font-family:"IBM Plex Mono",monospace;font-size:10px;text-transform:none;letter-spacing:0;font-weight:400;vertical-align:middle;margin-left:6px}}
@@ -314,7 +327,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 #gh-repos .repo-row a:hover{{color:var(--accent)}}
 #gh-repos .repo-row .dt{{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:14px}}
 #gh-repos .repo-row .ds{{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}}
-#gh-repos .repo-row .stars{{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim);opacity:0.65}}
+#gh-repos .repo-row .stars{{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}}
 #gh-repos .loading{{font-size:14px;color:var(--dim);font-style:italic;margin:8px 0}}
 /* Hugging Face section reuses the repo-row layout */
 #hf-list .gh-cat{{margin:48px 0 0}}
@@ -324,7 +337,7 @@ footer{{margin-top:60px;border-top:1px solid var(--rule);padding-top:16px;font-f
 #hf-list .repo-row a:hover{{color:var(--accent)}}
 #hf-list .repo-row .dt{{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-3px);min-width:14px}}
 #hf-list .repo-row .ds{{flex:0 1 auto;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}}
-#hf-list .repo-row .stars{{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim);opacity:0.65}}
+#hf-list .repo-row .stars{{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}}
 #hf-list .loading{{font-size:14px;color:var(--dim);font-style:italic;margin:8px 0}}
 /* "Show more" disclosure: rows past the third are hidden until asked for */
 .gh-rest[hidden]{{display:none}}
@@ -344,10 +357,16 @@ nav.top a,.linkrow a,a.pill,.cv-org a,.post-title a,.small a,footer a{{display:i
 a.pill{{font-size:12px}}
 .tag{{font-size:12px;padding:1px 6px}}
 }}
-</style></head><body><div class="wrap">
+@media(prefers-reduced-motion:reduce){{html{{scroll-behavior:auto}}*,*::before,*::after{{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important}}}}
+</style></head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap">
+<header>
 <h1 class="name-hero">Eric Spencer</h1>
-<nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
+<nav class="top" aria-label="Primary"><a href="/" class="active" aria-current="page">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/blog/">blog</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
+</header>
+<main id="main" tabindex="-1">
 
 <h2 id="news">News</h2>
 {news}
@@ -358,10 +377,17 @@ a.pill{{font-size:12px}}
 &#9656; <a href="https://github.com/EricSpencer00" target="_blank" rel="me noopener">github</a> &middot;
 <a href="https://huggingface.co/EricSpencer00" target="_blank" rel="me noopener">huggingface</a> &middot;
 <a href="https://www.linkedin.com/in/ericspencer00/" target="_blank" rel="me noopener">linkedin</a> &middot;
+<a href="https://dblp.org/pid/439/8284.html" target="_blank" rel="me noopener">dblp</a> &middot;
 <a href="https://ai4fm.cs.luc.edu/" target="_blank" rel="noopener">ai4fm.cs.luc.edu</a> &middot;
 <a href="/assets/resume.pdf" target="_blank" rel="noopener">r&eacute;sum&eacute;</a> &middot;
 <a href="mailto:eric@ericspencer.us">email</a>
 </div>
+
+<h2 id="research">Research</h2>
+<div class="proj"><a class="nm" href="/projects/tla-formal-generation/">TLA+ specification generation</a><span class="dt"></span><span class="ds">Language models and formal verification</span></div>
+<div class="proj"><a class="nm" href="/projects/chattla-dataset/">ChatTLA+ dataset</a><span class="dt"></span><span class="ds">Training data for TLA+ generation</span></div>
+<div class="proj"><a class="nm" href="/projects/resilient/">Resilient</a><span class="dt"></span><span class="ds">Programming language with Z3-verified contracts</span></div>
+<p class="small"><a href="/research/">Papers, models, and datasets</a></p>
 
 <h2 id="selected">Selected Work</h2>
 {selected}
@@ -389,6 +415,7 @@ a.pill{{font-size:12px}}
 
 <h2 id="cv">Experience</h2>
 {experience}
+</main>
 
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
@@ -540,12 +567,23 @@ a.pill{{font-size:12px}}
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g,
     c => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));
 
+  const PROJECT_ROUTES = {json.dumps(project_link_map(), ensure_ascii=True)};
+  function canonicalProjectUrl(url) {{
+    try {{
+      const parsed = new URL(url, location.origin);
+      const local = parsed.origin === location.origin ||
+        ['ericspencer.us', 'www.ericspencer.us', 'ericspencer00.github.io'].includes(parsed.hostname);
+      const canonical = local && PROJECT_ROUTES[parsed.pathname];
+      return canonical ? canonical + parsed.search + parsed.hash : url;
+    }} catch (_) {{ return url; }}
+  }}
+
   // One row, whether it came from a repo, a pin, or Hugging Face.
   function row({{ url, name, desc, count, tags }}) {{
     const tagHtml = (tags || []).map(t => `<span class="tag">${{esc(t)}}</span>`).join('');
     const countHtml = count ? `<span class="stars">${{count}}</span>` : '';
     return `<div class="repo-row">
-      <a href="${{esc(url)}}" target="_blank" rel="noopener">${{esc(name)}}</a>
+      <a href="${{esc(canonicalProjectUrl(url))}}" target="_blank" rel="noopener">${{esc(name)}}</a>
       <span class="dt"></span>
       <span class="ds">${{esc(desc)}}${{tagHtml}}</span>
       ${{countHtml}}

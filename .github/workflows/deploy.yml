@@ -42,6 +42,7 @@ jobs:
           python3 scripts/build_project_routes.py
           python3 scripts/build.py
           python3 scripts/build_blog.py
+          python3 scripts/build_research.py
           python3 scripts/build_resume_pages.py
           python3 scripts/build_projects.py
           python3 scripts/build_legacy_redirects.py
@@ -78,9 +79,9 @@ jobs:
 
       # Runs last: the generators above rewrite whole <head> blocks, so the
       # link-preview tags have to be reapplied after them or every rebuild
-      # silently drops each page back to a generic card. The card images
-      # themselves are committed -- regenerating those needs Chrome and is a
-      # local step (scripts/build_og_images.py).
+      # silently drops each page back to a generic card. The images are
+      # committed; build_social_cards.py creates missing metadata cards and
+      # build_og_images.py can refresh cards from browser screenshots.
       - name: Point pages at their link-preview cards
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/apply_og_tags.py
@@ -118,7 +119,10 @@ jobs:
 
       - name: Verify routes and SEO metadata
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
-        run: python3 scripts/check_site.py
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 scripts/check_site.py
+          python3 scripts/build_social_cards.py --check
 
       # backup-site/ and editor/ are local-only authoring material. Shipping
       # either would publish duplicate or unpublished working copy.

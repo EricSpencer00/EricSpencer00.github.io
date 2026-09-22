@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ericspencer.us/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/1rm/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/cv/</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/aeo-queries/</loc>
@@ -26,6 +26,7 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/aeo-queries/privacy/</loc>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/projects/agent-board/</loc>
@@ -37,10 +38,6 @@
   </url>
   <url>
     <loc>https://ericspencer.us/projects/ai-headshots/</loc>
-    <lastmod>2026-09-16</lastmod>
-  </url>
-  <url>
-    <loc>https://ericspencer.us/projects/ai-music-playground/</loc>
     <lastmod>2026-09-16</lastmod>
   </url>
   <url>
@@ -281,10 +278,10 @@
   </url>
   <url>
     <loc>https://ericspencer.us/ulam-spiral-b12/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://ericspencer.us/ulam-spiral/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
 </urlset>

@@ -110,10 +110,19 @@ nav.top a:hover,nav.top a.active{color:var(--signal)}
   #bar{gap:10px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+.base-link{flex-shrink:0;color:inherit;text-underline-offset:3px}
+.base-link:focus-visible{outline:2px solid currentColor;outline-offset:4px}
 </style>
 
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; object-src 'self'; base-uri 'self'; form-action 'self'"><script async src="https://www.googletagmanager.com/gtag/js?id=G-30FQRTZWJ8"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-30FQRTZWJ8');
+</script>
+</head>
 <body>
 <nav class="top"><a href="/" class="active">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 
@@ -131,6 +140,7 @@ nav.top a:hover,nav.top a.active{color:var(--signal)}
     <span class="sep" id="selsep" hidden>/</span>
     <span id="sel" hidden>tapped <b id="seln">—</b></span>
   </div>
+  <a class="base-link label" href="/ulam-spiral-b12/">base twelve</a>
   <button id="home" type="button">centre</button>
 </div>
 

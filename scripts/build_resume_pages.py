@@ -5,11 +5,13 @@ resume/CV variant (e.g. /cv/index.html, /resume/80626/index.html), plus a
 /resume/ index that forwards to the most recent dated variant.
 
 The PDFs themselves live in /assets/pdf/ and are pushed here by CI in
-github.com/EricSpencer00/resume. This script only builds the wrappers.
+github.com/EricSpencer00/resume. The public CV also has readable HTML drawn
+from content/cv.json, experience.txt, and publications.json.
 """
 
 from pathlib import Path
 import html as htmllib
+import json
 
 ROOT = Path(__file__).parent.parent
 CONTENT = ROOT / "content"
@@ -47,22 +49,34 @@ a:hover{{text-decoration:underline;text-underline-offset:3px}}
 .actions a{{border:1px solid var(--rule);border-radius:6px;padding:7px 13px;color:var(--ink)}}
 .actions a:hover{{border-color:var(--ink);text-decoration:none}}
 .doc{{width:100%;height:min(85vh,1100px);border:1px solid var(--rule);border-radius:8px;background:#fff}}
+.cv-summary{{max-width:72ch;margin:30px 0 42px}}
+.cv-summary h2,.pdf-title{{font-size:1.4rem;line-height:1.3;letter-spacing:-.02em;margin:34px 0 16px}}
+.cv-summary h3{{font-size:1rem;line-height:1.5;margin:0 0 4px}}
+.cv-summary p{{margin:6px 0 14px}}
+.cv-date{{color:var(--dim);font-size:.875rem}}
+.cv-entry{{padding:16px 0;border-top:1px solid var(--rule)}}
+.cv-publications{{padding-left:1.35rem}}
+.cv-publications li{{padding:7px 0}}
+.cv-summary a{{overflow-wrap:anywhere}}
 footer{{margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}}
 @media (max-width:640px){{.doc{{height:70vh}}}}
 </style></head><body>
 <div class="wrap">
 <nav class="top"><a href="/">index</a></nav>
+<main>
 <h1>{title}</h1>
 <p class="sub">{blurb}</p>
 <div class="actions">
   <a href="/assets/pdf/{pdf}" download>Download PDF</a>
-  <a href="/assets/pdf/{pdf}">Open in new tab</a>
+  <a href="/assets/pdf/{pdf}" target="_blank" rel="noopener">Open in new tab</a>
   <a href="https://github.com/EricSpencer00/resume">LaTeX source</a>
 </div>
+{summary}
 <object class="doc" data="/assets/pdf/{pdf}" type="application/pdf">
   <p>Your browser will not display the PDF inline.
   <a href="/assets/pdf/{pdf}">Download it instead</a>.</p>
 </object>
+</main>
 <footer>Built from LaTeX in <a href="https://github.com/EricSpencer00/resume">EricSpencer00/resume</a>.</footer>
 </div>
 </body></html>
@@ -106,6 +120,68 @@ def rows():
             yield parts[:5]
 
 
+def cv_summary():
+    """Render the public summary without requiring a PDF viewer or JavaScript."""
+    data = json.loads((CONTENT / "cv.json").read_text(encoding="utf-8"))
+    publications = json.loads((CONTENT / "publications.json").read_text(encoding="utf-8"))
+    escape = htmllib.escape
+    notes = {(entry["role"], entry["organization"]): entry["summary"]
+             for entry in data["experience_notes"]}
+    used_notes = set()
+    experience = []
+    for raw_line in (CONTENT / "experience.txt").read_text(encoding="utf-8").splitlines():
+        if not raw_line.strip() or raw_line.lstrip().startswith("#"):
+            continue
+        fields = raw_line.split("|")
+        if len(fields) < 5:
+            raise ValueError("experience.txt rows need role, organization, URL, start, and end")
+        role, organization, url, start, end = fields[:5]
+        note_key = (role, organization)
+        summary = notes.get(note_key, "")
+        if summary:
+            used_notes.add(note_key)
+        experience.append(
+            '<article class="cv-entry">'
+            f'<h3>{escape(role)} · <a href="{escape(url, quote=True)}">{escape(organization)}</a></h3>'
+            f'<p class="cv-date">{escape(start)} – {escape(end)}</p>'
+            + (f'<p>{escape(summary)}</p>' if summary else "")
+            + '</article>'
+        )
+    if unused := set(notes) - used_notes:
+        raise ValueError(f"CV experience notes have no matching current experience entry: {sorted(unused)}")
+    education = []
+    for entry in data["education"]:
+        education.append(
+            '<article class="cv-entry">'
+            f'<h3><a href="{escape(entry["url"], quote=True)}">{escape(entry["institution"])}</a></h3>'
+            f'<p>{escape(entry["qualification"])}</p>'
+            f'<p class="cv-date">Completed {escape(entry["completed"])}</p>'
+            f'<p>{escape(entry["details"])}</p></article>'
+        )
+    papers = []
+    for paper in publications:
+        papers.append(
+            f'<li><a href="{escape(paper["url"], quote=True)}">{escape(paper["title"])}</a>'
+            f'<br><span class="cv-date">{escape(str(paper["year"]))} · {escape(paper["venue"])}</span></li>'
+        )
+    return (
+        '<div class="cv-summary">'
+        f'<p>{escape(data["intro"])}</p>'
+        '<section aria-labelledby="cv-education"><h2 id="cv-education">Education</h2>'
+        + "".join(education) + '</section>'
+        '<section aria-labelledby="cv-experience"><h2 id="cv-experience">Experience</h2>'
+        + "".join(experience) + '</section>'
+        '<section aria-labelledby="cv-publications"><h2 id="cv-publications">Publications</h2>'
+        '<ol class="cv-publications">' + "".join(papers) + '</ol>'
+        '<p><a href="/research/">More research, models, and presentations</a></p></section>'
+        '<p><a href="/projects/resilient/">Resilient compiler</a> · '
+        '<a href="/projects/tla-plus/">TLA+ models and tools</a> · '
+        '<a href="/projects/">All projects</a></p>'
+        '</div><h2 class="pdf-title">Full CV</h2>'
+        '<p>The PDF includes the full list of roles, projects, and technical skills.</p>'
+    )
+
+
 def main():
     built = []
     for slug, pdf, title, blurb, index in rows():
@@ -122,6 +198,7 @@ def main():
                     f'<link rel="canonical" href="https://ericspencer.us/{slug}/">\n'
                     if indexable else ""
                 ),
+                summary=cv_summary() if slug == "cv" else "",
             ),
             encoding="utf-8",
         )

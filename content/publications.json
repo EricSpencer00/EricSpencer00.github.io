@@ -1,0 +1,63 @@
+[
+  {
+    "id": "tla-bench",
+    "title": "TLA+-Bench: An Execution-Grounded Benchmark and Dataset for Natural-Language to TLA+ Specification Generation",
+    "authors": ["Arslan Bisharat", "Eric Spencer", "Brian Ortiz", "Khushboo Bhadauria", "Mujtaba Nazari", "Beatriz Santos", "Anisa Ramos", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
+    "year": 2026,
+    "venue": "arXiv preprint, arXiv:2607.23425",
+    "status": "Preprint",
+    "role": "Coauthor",
+    "publication_date": "2026-07-26",
+    "url": "https://arxiv.org/abs/2607.23425",
+    "doi": "10.48550/arXiv.2607.23425",
+    "summary": "We built a benchmark that checks generated specifications by running them. It contains 403 model-checked specifications and 897 parse-only specifications from 13 public repositories. On a fixed set of model outputs, changing the grading rules moves the measured correctness rate from 10.0% to 1.7%. The paper makes those choices explicit so that a reported score says what was actually checked.",
+    "links": [
+      {"label": "Paper on arXiv", "url": "https://arxiv.org/abs/2607.23425"},
+      {"label": "Dataset, grader & model outputs", "url": "https://github.com/LUC-AI4FM/tla_benchmark/tree/reviewer-release"}
+    ],
+    "sources": ["https://arxiv.org/abs/2607.23425", "https://ai4fm.cs.luc.edu/papers/tla-bench/", "https://github.com/LUC-AI4FM/tla_benchmark/tree/reviewer-release"],
+    "verified_on": "2026-09-22"
+  },
+  {
+    "id": "chattla-gpt-oss-paper",
+    "title": "TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation",
+    "authors": ["Eric Spencer", "Arslan Bisharat", "Brian Ortiz", "Mujtaba Nazari", "Khushboo Bhadauria", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
+    "year": 2026,
+    "venue": "ICSOFT 2026, pp. 627–636",
+    "status": "Published",
+    "role": "First author",
+    "publication_date": "2026",
+    "url": "https://arxiv.org/abs/2606.06133",
+    "doi": "10.5220/0015234600004088",
+    "summary": "We trained a 20-billion-parameter model to generate TLA+ specifications, using supervised fine-tuning followed by repair-based reinforcement learning with TLC feedback. The paper reports 9 of 30 held-out problems passing both model checking and the Diamond check, which tests whether an altered invariant produces a violation. These are results for the paper's benchmark and evaluation procedure; they do not establish correctness on arbitrary systems.",
+    "links": [
+      {"label": "Published paper", "url": "https://doi.org/10.5220/0015234600004088"},
+      {"label": "Preprint", "url": "https://arxiv.org/abs/2606.06133"},
+      {"label": "Training code", "url": "https://github.com/LUC-AI4FM/TLA-Prove"},
+      {"label": "ChatTLA model", "url": "https://huggingface.co/EricSpencer00/chattla-20b"},
+      {"label": "Training data & benchmark notes", "url": "/projects/chattla-dataset/"}
+    ],
+    "sources": ["https://api.crossref.org/works/10.5220/0015234600004088", "https://arxiv.org/abs/2606.06133", "https://github.com/LUC-AI4FM/TLA-Prove"],
+    "verified_on": "2026-09-22"
+  },
+  {
+    "id": "eric-paper",
+    "title": "Can LLMs Write Correct TLA+ Specifications? Evaluating Natural-Language-to-TLA+ Generation",
+    "authors": ["Arslan Bisharat", "Brian Ortiz", "Eric Spencer", "Khushboo Bhadauria", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
+    "year": 2026,
+    "venue": "ICSOFT 2026, pp. 39–50",
+    "status": "Published",
+    "role": "Coauthor",
+    "publication_date": "2026",
+    "url": "https://arxiv.org/abs/2606.05792",
+    "doi": "10.5220/0015070400004088",
+    "summary": "We evaluated 30 language models against a corpus of 205 TLA+ specifications, checking their output with SANY and TLC. The study found a substantial gap between producing valid syntax and satisfying the modeled properties: the best reported rates were 26.6% and 8.6%, respectively. Larger models did not consistently do better. This evaluation motivated the later work on verifier feedback during training.",
+    "links": [
+      {"label": "Published paper", "url": "https://doi.org/10.5220/0015070400004088"},
+      {"label": "Preprint", "url": "https://arxiv.org/abs/2606.05792"},
+      {"label": "FormaLLM code & corpus", "url": "https://github.com/LUC-AI4FM/FormaLLM"}
+    ],
+    "sources": ["https://api.crossref.org/works/10.5220/0015070400004088", "https://arxiv.org/abs/2606.05792", "https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/"],
+    "verified_on": "2026-09-22"
+  }
+]

@@ -16,6 +16,7 @@ import sys
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urldefrag, urljoin, urlsplit
 
 from build_project_routes import is_live_project_source
 from build_blog import load_posts
@@ -28,6 +29,9 @@ SKIP_FILES = {
     ROOT / "blog" / "_template.html",
 }
 EXTENSIONFUL = re.compile(r"\.(?:html?|js)(?:[?#]|$)", re.IGNORECASE)
+# These public documents belong to a separately deployed GitHub project site.
+# Its canonical URLs really end in .html; this repository cannot rename them.
+EXTERNAL_HTML_ROUTES = {"/DailyTask-web/privacy.html", "/DailyTask-web/terms.html"}
 
 
 class PageParser(HTMLParser):
@@ -42,6 +46,8 @@ class PageParser(HTMLParser):
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.hrefs: list[str] = []
+        self.policies: list[str] = []
+        self.script_sources: list[str] = []
         self.h1_count = 0
         self.json_ld: list[str] = []
         self._in_title = False
@@ -56,6 +62,8 @@ class PageParser(HTMLParser):
         elif tag == "h1":
             self.h1_count += 1
         elif tag == "meta":
+            if values.get("http-equiv", "").lower() == "content-security-policy":
+                self.policies.append(values.get("content", ""))
             name = values.get("name", "").lower()
             prop = values.get("property", "").lower()
             if name == "description":
@@ -75,9 +83,12 @@ class PageParser(HTMLParser):
             self.canonicals.append(values.get("href", ""))
         elif tag == "a":
             self.hrefs.append(values.get("href", ""))
-        elif tag == "script" and values.get("type", "").lower() == "application/ld+json":
-            self._in_json_ld = True
-            self._json_buffer = []
+        elif tag == "script":
+            if values.get("src"):
+                self.script_sources.append(values["src"])
+            if values.get("type", "").lower() == "application/ld+json":
+                self._in_json_ld = True
+                self._json_buffer = []
 
     def handle_endtag(self, tag: str) -> None:
         tag = tag.lower()
@@ -127,9 +138,72 @@ def is_noindex(parser: PageParser) -> bool:
     return any("noindex" in value.lower() for value in parser.robots)
 
 
+def policy_allows(policy: str, directive: str, url: str) -> bool:
+    """Check the URL source expressions used by this static site's policies.
+
+    A nonce/hash-only policy fails closed here: this site doesn't emit either.
+    Checking actual origins catches an analytics tag that is present but cannot
+    load, which a metadata-only audit misses.
+    """
+    directives = {}
+    for item in policy.split(";"):
+        tokens = item.split()
+        if tokens:
+            directives.setdefault(tokens[0], tokens[1:])
+    fallback = "script-src" if directive == "script-src-elem" else "default-src"
+    sources = directives.get(directive, directives.get(fallback, directives.get("default-src")))
+    if sources is None:
+        return True
+    target = urlsplit(url)
+    for source in sources:
+        if source == "*" or source == target.scheme + ":":
+            return True
+        if source == "'self'" and target.netloc == urlsplit(SITE).netloc:
+            return True
+        allowed = urlsplit(source)
+        if allowed.scheme != target.scheme or not allowed.hostname:
+            continue
+        host = allowed.hostname
+        matches = target.hostname == host
+        if host.startswith("*."):
+            matches = bool(target.hostname and target.hostname.endswith(host[1:]))
+        if matches and allowed.port == target.port:
+            if not allowed.path or target.path.startswith(allowed.path):
+                return True
+    return False
+
+
+def check_analytics(parser: PageParser) -> list[str]:
+    tags = [src for src in parser.script_sources
+            if urlsplit(src).hostname == "www.googletagmanager.com"]
+    if not tags:
+        return []
+    problems = []
+    for policy in parser.policies:
+        if any(not policy_allows(policy, "script-src-elem", src) for src in tags):
+            problems.append("CSP blocks the Google Analytics loader")
+        for endpoint in ("https://www.google-analytics.com/g/collect",
+                         "https://region1.google-analytics.com/g/collect"):
+            if not policy_allows(policy, "connect-src", endpoint):
+                problems.append(f"CSP blocks Analytics collection: {endpoint}")
+    return problems
+
+
+def check_discovery(pages: dict[str, PageParser]) -> list[str]:
+    incoming = set()
+    for source, parser in pages.items():
+        for href in parser.hrefs:
+            target = urldefrag(urljoin(source, href))[0]
+            if target != source and target in pages:
+                incoming.add(target)
+    return [f"{url}: no incoming link from another indexable page"
+            for url in sorted(pages) if url != SITE + "/" and url not in incoming]
+
+
 def check_pages() -> tuple[list[str], dict[str, int]]:
     problems: list[str] = []
     indexable: dict[str, int] = {}
+    public_pages: dict[str, PageParser] = {}
     for path in page_files():
         text = path.read_text(encoding="utf-8", errors="replace")
         if "<html" not in text.lower():
@@ -141,6 +215,7 @@ def check_pages() -> tuple[list[str], dict[str, int]]:
             problems.append(f"{path.relative_to(ROOT)}: invalid HTML ({exc})")
             continue
         rel = str(path.relative_to(ROOT))
+        problems.extend(f"{rel}: {problem}" for problem in check_analytics(parser))
         canonical = next((value for value in parser.canonicals if value), None)
         if not canonical:
             if is_noindex(parser):
@@ -157,10 +232,13 @@ def check_pages() -> tuple[list[str], dict[str, int]]:
                 # it as a second indexable page.
                 if not is_live_project_source(path):
                     indexable[canonical] = indexable.get(canonical, 0) + 1
+                    public_pages[canonical] = parser
                 if not local_route_exists(route):
                     problems.append(f"{rel}: canonical route does not exist {route}")
         for href in parser.hrefs:
-            if href.startswith("/") and EXTENSIONFUL.search(href):
+            target = urlsplit(urljoin(SITE, href))
+            if (target.netloc == urlsplit(SITE).netloc and EXTENSIONFUL.search(target.path)
+                    and target.path not in EXTERNAL_HTML_ROUTES):
                 problems.append(f"{rel}: extensionful internal link {href}")
         if not is_noindex(parser):
             if len(parser.title) != 1 or not "".join(parser.title).strip():
@@ -187,6 +265,7 @@ def check_pages() -> tuple[list[str], dict[str, int]]:
     for canonical, count in sorted(indexable.items()):
         if count != 1:
             problems.append(f"duplicate indexable canonical ({count} copies): {canonical}")
+    problems.extend(check_discovery(public_pages))
     return problems, indexable
 
 

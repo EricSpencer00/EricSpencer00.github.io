@@ -83,13 +83,15 @@ Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug/` a
 
 ## Link previews
 
-Every page has its own 1200x630 card in `assets/og/`, so pasting a URL into
-Slack, iMessage, LinkedIn or Twitter shows that page rather than a shared
-thumbnail. Cards are screenshots of the live page, except where the page has
-real imagery of its own — then that image is used.
+Pages have 1200×630 preview cards in `assets/og/`. Existing cards use page
+screenshots or project imagery. New pages get a card from their title and
+description, using the same licensed fonts as the site.
 
 ```bash
-python3 scripts/build_og_images.py   # reshoot cards (needs Chrome, run locally)
+python3 -m pip install -r requirements-assets.txt
+python3 scripts/build_social_cards.py  # generate missing cards from metadata
+python3 scripts/build_social_cards.py --force --only research  # refresh a card
+python3 scripts/build_og_images.py   # optional page screenshots (needs Chrome)
 python3 scripts/apply_og_tags.py     # point pages at their cards
 ```
 
@@ -97,3 +99,22 @@ python3 scripts/apply_og_tags.py     # point pages at their cards
 rewrite whole `<head>` blocks, so the preview tags have to be reapplied or each
 rebuild quietly drops pages back to a generic card. The card images themselves
 are committed; only reshoot them after a visual change.
+
+## SEO release checks
+
+Publication citations, artifact links, and summaries live in
+`content/publications.json`. `scripts/build_research.py` updates the research
+page; the CV generator reads the same citations and `content/cv.json`.
+
+Run the generators in the order in `.github/workflows/deploy.yml`, then:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 scripts/check_site.py
+python3 scripts/build_social_cards.py --check
+```
+
+The release check rejects missing internal links to indexable pages and CSP
+policies that block the installed Analytics tag or its collection endpoints.
+Fonts are served from `assets/fonts/`; the upstream licenses are kept beside
+the font files. Experience logos use small WebP variants for their 36px boxes.
