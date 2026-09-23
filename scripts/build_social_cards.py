@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Create missing typographic preview cards from each canonical page's metadata.
+"""Create missing typographic cards for pages that people can share.
 
 Existing photographic or screenshot cards remain intact. This lightweight
-fallback keeps newly published pages shareable without requiring a browser.
-Install requirements-assets.txt to generate cards; --check uses only stdlib.
+fallback covers new canonical pages, noindex destinations, and the durable
+app redirects without requiring a browser. Install requirements-assets.txt to
+generate cards; --check uses only stdlib.
 """
 from __future__ import annotations
 
@@ -13,6 +14,7 @@ import sys
 from pathlib import Path
 
 from build_og_images import OUT, SITE, slug_for
+from build_public_apps import app_path, load_apps
 from check_site import PageParser, is_noindex, page_files, route_for
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,14 +25,37 @@ def candidates():
         route = route_for(path)
         if not route:
             continue
+        text = path.read_text(encoding='utf-8')
         parser = PageParser()
-        parser.feed(path.read_text(encoding='utf-8'))
-        if is_noindex(parser) or SITE + route not in parser.canonicals:
+        parser.feed(text)
+        if is_noindex(parser):
+            # A stub with a local canonical uses that page's card. Other
+            # noindex pages and external redirects still need their own card.
+            canonical = next((value for value in parser.canonicals if value), '')
+            if '<!-- redirect stub -->' in text and canonical.startswith(SITE):
+                continue
+            title = ''.join(parser.title).strip()
+            description = (
+                (parser.description[0] if parser.description else '')
+                or (parser.social_meta.get('og:description') or [''])[0]
+                or title
+            )
+            if title and description:
+                yield SITE + route, title, description
+            continue
+        if SITE + route not in parser.canonicals:
             continue
         title = ''.join(parser.title).strip()
         if not title or not parser.description:
             continue
         yield SITE + route, title, parser.description[0]
+
+    # The stable /apps/<slug>/ paths are noindex redirects to the app itself,
+    # but people can still share those portfolio links. Give each redirect a
+    # first-party card instead of relying on a social crawler to follow the
+    # redirect and read metadata from a separately hosted app.
+    for app in load_apps():
+        yield SITE + app_path(app), app['name'], app['description']
 
 
 def font(size, weight):
