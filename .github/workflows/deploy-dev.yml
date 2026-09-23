@@ -25,7 +25,9 @@ jobs:
       - name: Build blog HTML from Markdown
         run: python3 scripts/build_blog.py
       - name: Build resume/CV landing pages
-        run: python3 scripts/build_resume_pages.py
+        run: |
+          python3 scripts/build_research.py
+          python3 scripts/build_resume_pages.py
       - name: Build the public project catalog
         run: python3 scripts/build_projects.py
       - name: Build legacy hub redirects
@@ -51,7 +53,11 @@ jobs:
       - name: Build the browser-only site assistant
         run: python3 scripts/build_chatbot_knowledge.py
       - name: Verify routes and SEO metadata
-        run: python3 scripts/check_site.py
+        run: |
+          python3 scripts/build_sitemap.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 scripts/check_site.py
+          python3 scripts/build_social_cards.py --check
       - name: Keep development pages out of search
         run: |
           python3 - <<'PY'

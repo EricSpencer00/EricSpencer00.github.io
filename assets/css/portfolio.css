@@ -61,6 +61,19 @@ body.news-surface a:hover {
   text-underline-offset: 3px;
 }
 
+body.portfolio-page p a,
+body.portfolio-article p a,
+body.news-surface p a,
+body.portfolio-page li a,
+body.portfolio-article li a,
+body.news-surface li a,
+body.portfolio-page .news .t a,
+body.portfolio-article .news .t a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 body.portfolio-page a:focus-visible,
 body.portfolio-article a:focus-visible,
 body.news-surface a:focus-visible,
@@ -490,6 +503,10 @@ body.news-surface .attachment-caption {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
   body.portfolio-page *,
   body.portfolio-article *,
   body.news-surface * {

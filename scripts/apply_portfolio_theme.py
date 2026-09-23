@@ -13,8 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LEGACY_STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css">'
-STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">'
-FONT_STYLESHEET = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">'
+STYLESHEET = '<link rel="stylesheet" href="/assets/css/portfolio.css?v=20260922">'
+FONT_STYLESHEET = '<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>\n<link rel="stylesheet" href="/assets/css/fonts.css?v=20260922">'
 SKIP = {".git", ".claude", "backup-site", "editor", "tests", "assets"}
 
 
@@ -32,6 +32,7 @@ def targets() -> list[Path]:
         for path in sorted((ROOT / "projects").glob("*/index.html"))
         if path.parent.name != "2026" and path.parent.name != "index"
     )
+    paths.extend(sorted((ROOT / "blog").glob("*/index.html")))
     return [path for path in paths if path.is_file()]
 
 
@@ -114,8 +115,22 @@ def apply(path: Path) -> str:
     text = stylesheet_pattern.sub(normalize_stylesheet, text)
     if not stylesheet_seen and "</head>" in text:
         text = text.replace("</head>", f"{STYLESHEET}\n</head>", 1)
-    if "fonts.googleapis.com/css2?family=IBM+Plex+Mono" not in text and "</head>" in text:
-        text = text.replace("</head>", f"{FONT_STYLESHEET}\n</head>", 1)
+    # The older generators and hand-authored pages each load a Google stylesheet.
+    # Normalize them here so every rebuild uses the same local font assets.
+    text = re.sub(
+        r'<link\b[^>]*\bhref=["\']https://fonts\.(?:googleapis|gstatic)\.com[^"\']*["\'][^>]*>\s*',
+        '', text, flags=re.I,
+    )
+    local_font_pattern = re.compile(
+        r'<link\b[^>]*\bhref=["\']/assets/(?:css/fonts\.css(?:\?v=[^"\']+)?|fonts/plus-jakarta-sans-latin-variable\.woff2)["\'][^>]*>\s*',
+        re.I,
+    )
+    # Other post-build passes append metadata and scripts after the fonts. Keep
+    # an already-normalized pair in place, rather than moving it on each build.
+    if FONT_STYLESHEET not in text or len(local_font_pattern.findall(text)) != 2:
+        text = local_font_pattern.sub('', text)
+        if "</head>" in text:
+            text = text.replace("</head>", f"{FONT_STYLESHEET}\n</head>", 1)
     if text == original:
         return "same"
     path.write_text(text, encoding="utf-8")

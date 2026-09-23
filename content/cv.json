@@ -1,0 +1,50 @@
+{
+  "source": "https://github.com/EricSpencer00/resume/blob/main/cv.tex",
+  "intro": "I work on formal methods and large language models with Loyola University Chicago's AI4FM group, alongside software engineering at HorneSci and independent software through FROM AMERICA LLC.",
+  "education": [
+    {
+      "institution": "Loyola University Chicago",
+      "url": "https://www.luc.edu/",
+      "qualification": "B.S. in Computer Science, minor in Information Systems",
+      "completed": "May 2026",
+      "details": "Dean's List, Mulcahy Scholar for LLM-based TLA+ research, and Presidential Scholarship."
+    }
+  ],
+  "experience_notes": [
+    {
+      "role": "Member of Technical Staff",
+      "organization": "HorneSci",
+      "summary": "Technical discovery and delivery for customer integrations of the Hierarchical Sparse Transform, working across C++, Java, Python, and Kafka event pipelines."
+    },
+    {
+      "role": "Founder",
+      "organization": "From America",
+      "summary": "Product direction, licensing, and development for independent software ventures."
+    },
+    {
+      "role": "Researcher",
+      "organization": "AI4FM · Loyola University Chicago",
+      "summary": "Research on generating and evaluating TLA+ specifications with language models. The work connects generated specifications to SANY parsing and TLC model checking, and includes the released chattla-20b model."
+    },
+    {
+      "role": "Software Engineer",
+      "organization": "CCC Intelligent Solutions",
+      "summary": "Software engineering internship building a claims portal and operational dashboard with Vue.js and Spring Boot."
+    },
+    {
+      "role": "Software Engineer",
+      "organization": "EpiFinder, Inc.",
+      "summary": "Software engineering internship automating HR data, permissions, and email-based access requests with Google Apps Script."
+    },
+    {
+      "role": "IT Services Desk Technician",
+      "organization": "Loyola University Chicago",
+      "summary": "Technical support for students, faculty, and staff, including access provisioning and incident investigation with infrastructure teams."
+    },
+    {
+      "role": "Undergraduate Research Assistant",
+      "organization": "Loyola University Chicago",
+      "summary": "Studied language-model comprehension of advanced Java concepts and contributed to experimental design and documentation."
+    }
+  ]
+}

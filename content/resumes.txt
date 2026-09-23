@@ -6,6 +6,6 @@
 # index: "yes" to allow search engines, "no" to noindex (use "no" for tuned variants)
 # Source for all PDFs: https://github.com/EricSpencer00/resume
 
-cv|cv.pdf|Curriculum Vitae|Full list of all roles and positions of Eric Spencer|yes
+cv|cv.pdf|Curriculum Vitae|Eric Spencer's education, software engineering experience, and research publications in formal methods and large language models.|yes
 resume/80626|resume-80626.pdf|Resume|Eric Spencer — one-page resume.|no
 resume/81326|resume-81326.pdf|Resume|Eric Spencer — one-page resume.|no

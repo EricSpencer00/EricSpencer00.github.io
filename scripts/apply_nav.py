@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Directories that are in git for reference but never published, plus the blog
 # post template, which is a scaffold rather than a page.
-SKIP_DIRS = {".git", ".claude", "backup-site", "editor", "node_modules", "assets", "tests"}
+SKIP_DIRS = {".git", ".claude", "ai4fm", "backup-site", "editor", "node_modules", "assets", "tests"}
 SKIP_FILES = {ROOT / "blog" / "_template.html"}
 OWN_NAV_PAGES = {
     ROOT / "news" / "index.html",

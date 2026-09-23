@@ -27,7 +27,7 @@ gtag('js', new Date());
 gtag('config', '{MEASUREMENT_ID}');
 </script>
 '''
-SKIP_DIRS = {".git", "backup-site", "tests", "editor"}
+SKIP_DIRS = {".git", "ai4fm", "backup-site", "tests", "editor"}
 
 
 def pages():

@@ -16,6 +16,7 @@ import html
 import json
 import re
 import sys
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +24,7 @@ MANIFEST = ROOT / "content" / "public-projects.json"
 PRIORITIES = ROOT / "content" / "project-priorities.json"
 PUBLIC_APPS = ROOT / "content" / "public-apps.json"
 SELECTED = ROOT / "content" / "selected.txt"
+WRITEUPS = ROOT / "content" / "project-pages.txt"
 OUTPUT = ROOT / "projects" / "index.html"
 SITE = "https://ericspencer.us"
 PAGE_DESCRIPTION = (
@@ -52,6 +54,85 @@ def valid_url(url: str) -> bool:
 
 def absolute_url(url: str) -> str:
     return url if external(url) else SITE + url
+
+
+class WriteupMetadata(HTMLParser):
+    """Read authored metadata from the reviewed canonical-page manifest."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.title = ""
+        self.description = ""
+        self.canonical = ""
+        self.noindex = False
+        self.in_title = False
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "title":
+            self.in_title = True
+        elif tag == "meta":
+            if attrs.get("name") == "description":
+                self.description = attrs.get("content", "")
+            elif attrs.get("name") == "robots":
+                self.noindex = "noindex" in attrs.get("content", "").lower()
+        elif tag == "link" and attrs.get("rel") == "canonical":
+            self.canonical = attrs.get("href", "")
+
+    def handle_endtag(self, tag):
+        if tag == "title":
+            self.in_title = False
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title += data
+
+
+def load_writeups() -> list[dict[str, str]]:
+    """Only promote indexable local articles explicitly listed by their owner.
+
+    The sitemap is intentionally not a content source: utility pages and live
+    apps have different purposes. The canonical/mirror map is the reviewed
+    inventory of project writing, including articles whose repo names differ.
+    """
+    writeups = []
+    for raw_line in WRITEUPS.read_text(encoding="utf-8").splitlines():
+        if not raw_line.strip() or raw_line.lstrip().startswith("#"):
+            continue
+        fields = raw_line.split("|")
+        url = fields[0].strip()
+        if (not url.startswith("/projects/") or url == "/projects/"
+                or (len(fields) > 2 and fields[2].strip() == "external")):
+            continue
+        path = ROOT / url.strip("/") / "index.html"
+        metadata = WriteupMetadata()
+        metadata.feed(path.read_text(encoding="utf-8"))
+        if metadata.noindex:
+            continue
+        if metadata.canonical != absolute_url(url):
+            raise ValueError(f"writeup canonical disagrees with project-pages.txt: {url}")
+        name = re.sub(r"\s*[|—·]\s*Eric Spencer$", "", metadata.title).strip()
+        if not name or not metadata.description:
+            raise ValueError(f"writeup needs a title and description: {url}")
+        writeups.append({"name": name, "url": url, "description": metadata.description})
+    return sorted(writeups, key=lambda item: item["name"].casefold())
+
+
+def with_writeup(project: dict, writeups: list[dict[str, str]]) -> dict:
+    """Keep the live/source destination and link its article alongside it.
+
+    Match exact normalized names or slugs only. A loose substring match can
+    attach, for example, a Connect Four writeup to an unrelated fork.
+    Unmatched articles remain discoverable in the Project notes section.
+    """
+    tokens = {key(project["name"]), project_url_key(project["url"])}
+    if project.get("slug"):
+        tokens.add(key(project["slug"]))
+    matches = [article for article in writeups
+               if tokens & {key(article["name"]), project_url_key(article["url"])}]
+    if len(matches) == 1 and absolute_url(project["url"]) != absolute_url(matches[0]["url"]):
+        return {**project, "writeup": matches[0]}
+    return project
 
 
 def project_url_key(url: str) -> str:
@@ -220,10 +301,15 @@ def render_row(project: dict[str, str], show_description: bool = True) -> str:
     url = html.escape(project["url"], quote=True)
     name = html.escape(project["name"])
     attrs = ' target="_blank" rel="noopener"' if external(project["url"]) else ""
-    description = (
-        f'<span class="project-description">{html.escape(project["description"])}</span>'
-        if show_description else ""
-    )
+    description = html.escape(project["description"]) if show_description else ""
+    if project.get("writeup"):
+        article = project["writeup"]
+        label = html.escape(f"Read about {article['name']}", quote=True)
+        description += (
+            f'<a class="project-writeup" href="{html.escape(article["url"], quote=True)}" '
+            f'aria-label="{label}">Project writeup →</a>'
+        )
+    description = f'<span class="project-description">{description}</span>' if description else ""
     return (
         '<li class="project">'
         f'<a class="project-name" href="{url}"{attrs}>{name}</a>'
@@ -265,6 +351,10 @@ def render(
     selected: list[dict[str, str]],
     live_apps: list[dict[str, str]],
 ) -> str:
+    writeups = load_writeups()
+    projects = [with_writeup(project, writeups) for project in projects]
+    selected = [with_writeup(project, writeups) for project in selected]
+    live_apps = [with_writeup(app, writeups) for app in live_apps]
     live_rows = "\n".join(render_row(app, show_description=True) for app in live_apps)
     selected_rows = "\n".join(
         render_row(project, show_description=not project.get("is_live_app", False))
@@ -278,6 +368,19 @@ def render(
         and key(project["name"]) not in selected_keys
     ]
     other_rows = "\n".join(render_row(project) for project in other_projects)
+    linked = {absolute_url(project["url"]) for project in selected + live_apps + other_projects}
+    linked.update(absolute_url(project["writeup"]["url"])
+                  for project in selected + live_apps + other_projects if project.get("writeup"))
+    notes = [article for article in writeups if absolute_url(article["url"]) not in linked]
+    notes_section = ""
+    if notes:
+        note_rows = "\n".join(render_row(article) for article in notes)
+        notes_section = (
+            '<section aria-labelledby="project-notes">\n'
+            '<h2 id="project-notes">Project notes</h2>\n'
+            '<p class="section-intro">Writeups from classes, research, and side projects.</p>\n'
+            f'<ol class="project-list">{note_rows}</ol>\n</section>'
+        )
     selected_items = [
         {
             "@type": "ListItem",
@@ -367,6 +470,7 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 .project{{display:grid;grid-template-columns:minmax(13rem,.8fr) minmax(0,2fr);gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}}
 .project-name{{font-weight:700;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}} .project-name:hover{{color:var(--accent);text-decoration:underline;text-underline-offset:3px}}
 .project-description{{color:var(--dim);overflow-wrap:anywhere}} footer{{margin-top:60px;color:var(--dim);font-size:.85rem}}
+.project-writeup{{display:block;width:fit-content;margin-top:4px;color:var(--accent);font-size:.85rem;text-underline-offset:3px}}
 @media (max-width:680px){{.wrap{{padding:36px 18px 72px}}.project{{grid-template-columns:1fr;gap:3px;padding:14px 0}}}}
 </style>
 <link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
@@ -393,6 +497,7 @@ h2{{font-size:1.15rem;letter-spacing:-.02em;margin:34px 0 10px;line-height:1.25}
 {f'<p class="section-intro">{TIER_LABELS["P2"][1]}</p>' if TIER_LABELS["P2"][1] else ''}
 <ol class="project-list">{other_rows}</ol>
 </section>
+{notes_section}
 </main>
 <footer>© 2026 Eric Spencer · Chicago, IL · <a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></footer>
 </div>

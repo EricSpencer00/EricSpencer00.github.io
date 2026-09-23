@@ -2,8 +2,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ChatTLA+ Dataset | Eric Spencer</title>
-<meta name="description" content="ChatTLA+ dataset: an SFT corpus and held-out benchmark for TLA+ specification generation. The paper was accepted to and presented at ICSOFT 2026.">
+<title>ChatTLA+ Dataset &amp; Benchmark | Eric Spencer</title>
+<meta name="description" content="The ChatTLA+ dataset contains 209 training examples and a 30-problem benchmark for TLA+ specification generation. Paper, model, code, and data links.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/projects/chattla-dataset/">
@@ -12,34 +12,26 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ChatTLA+ Dataset | Eric Spencer">
-<meta property="og:description" content="ChatTLA+ dataset: an SFT corpus and held-out benchmark for TLA+ specification generation. The paper was accepted to and presented at ICSOFT 2026.">
+<meta property="og:title" content="ChatTLA+ Dataset &amp; Benchmark | Eric Spencer">
+<meta property="og:description" content="The ChatTLA+ dataset contains 209 training examples and a 30-problem benchmark for TLA+ specification generation. Paper, model, code, and data links.">
 <meta property="og:url" content="https://ericspencer.us/projects/chattla-dataset/">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-chattla-dataset.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ChatTLA+ Dataset | Eric Spencer — ericspencer.us">
+<meta property="og:image:alt" content="ChatTLA+ Dataset &amp; Benchmark | Eric Spencer — ericspencer.us">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-chattla-dataset.jpg">
-<meta name="twitter:image:alt" content="ChatTLA+ Dataset | Eric Spencer — ericspencer.us">
+<meta name="twitter:image:alt" content="ChatTLA+ Dataset &amp; Benchmark | Eric Spencer — ericspencer.us">
 <meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-chattla-dataset.jpg">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="ChatTLA+ Dataset | Eric Spencer">
-<meta name="twitter:description" content="ChatTLA+ dataset: an SFT corpus and held-out benchmark for TLA+ specification generation. The paper was accepted to and presented at ICSOFT 2026.">
-<meta property="linkedin:title" content="ChatTLA+ Dataset | Eric Spencer">
-<meta property="linkedin:description" content="ChatTLA+ dataset: an SFT corpus and held-out benchmark for TLA+ specification generation. The paper was accepted to and presented at ICSOFT 2026.">
+<meta name="twitter:title" content="ChatTLA+ Dataset &amp; Benchmark | Eric Spencer">
+<meta name="twitter:description" content="The ChatTLA+ dataset contains 209 training examples and a 30-problem benchmark for TLA+ specification generation. Paper, model, code, and data links.">
+<meta property="linkedin:title" content="ChatTLA+ Dataset &amp; Benchmark | Eric Spencer">
+<meta property="linkedin:description" content="The ChatTLA+ dataset contains 209 training examples and a 30-problem benchmark for TLA+ specification generation. Paper, model, code, and data links.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article",
-"headline":"ChatTLA+ Dataset",
-"description":"ChatTLA+ dataset: an SFT corpus and held-out benchmark for TLA+ specification generation. The paper was accepted to and presented at ICSOFT 2026.",
-"url":"https://ericspencer.us/projects/chattla-dataset/",
-"image":"https://ericspencer.us/assets/og/projects-chattla-dataset.jpg",
-"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
-"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
-"datePublished":"2026-05-13",
-"mainEntityOfPage":"https://ericspencer.us/projects/chattla-dataset/"}
+{"@context":"https://schema.org","@type":"Article","headline":"ChatTLA+ Dataset & Benchmark","description":"The ChatTLA+ dataset contains 209 training examples and a 30-problem benchmark for TLA+ specification generation. Paper, model, code, and data links.","url":"https://ericspencer.us/projects/chattla-dataset/","image":"https://ericspencer.us/assets/og/projects-chattla-dataset.jpg","author":{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","url":"https://ericspencer.us/"},"publisher":{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","url":"https://ericspencer.us/"},"datePublished":"2026-05-13","mainEntityOfPage":"https://ericspencer.us/projects/chattla-dataset/","dateModified":"2026-09-22"}
 </script>
 <style>
 :root{
@@ -124,11 +116,16 @@ li{margin:4px 0}
 h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
-
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260922">
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=20260922">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-30FQRTZWJ8"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-30FQRTZWJ8');
+</script>
 </head><body class="portfolio-article"><div class="wrap">
 <p class="name">Eric Spencer</p>
 <p class="sub">projects</p>
@@ -145,12 +142,12 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 <p class="meta">ChatTLA+ dataset: an SFT corpus and held-out benchmark for TLA+ specification generation. The paper was accepted to and presented at ICSOFT 2026.</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/chattla-dataset-anon" target="_blank" rel="noopener">https://github.com/EricSpencer00/chattla-dataset-anon</a></p>
 <hr class="dash">
-<p>This is the dataset release that accompanies the ChatTLA+ paper, accepted to and presented at ICSOFT 2026. The GitHub repository keeps its anonymized review-era name, but the release contains the training corpus and held-out benchmark used for the work.</p>
+<p>This is the dataset release from the ChatTLA+ work on training models to generate TLA+ specifications. The <a href="/research/#chattla-gpt-oss-paper">TLA-Prover paper at ICSOFT 2026</a> describes the training and evaluation. The GitHub repository keeps its anonymized review-era name and README, but the corpus and benchmark are public.</p>
 <p>The dataset has two parts. The first is <code>corpus/diamond_sft.jsonl</code>, 209 rows of supervised fine-tuning data. Each row is an OpenAI-style chat list (developer, user, assistant) in which the assistant turn is a TLA+ spec that TLC validated. Every row carries semantic metadata: how many distinct states TLC explored, what fraction of declared actions were exercised, whether the spec caught at least one mutation of its invariant, and how many invariants were checked. The <code>_source: opus_subagent</code> tag records that an Opus-family model drafted the seed and TLC verified it, which is a methodology marker rather than an author hint.</p>
 <p>The second part is a 30-problem held-out benchmark in <code>benchmark/</code>, split across six domains: consensus and election, data structures, classical puzzles, scheduling and resources, transactions and databases, and workflows and state machines. There are five problems per domain. Each entry has a natural-language description, an ordinal 1-5 difficulty, the invariants the spec must declare, and a module-name pointer to the closest reference spec in the public <a href="https://github.com/tlaplus/examples" target="_blank" rel="noopener"><code>tlaplus/examples</code></a> repository. No verbatim files from <code>tlaplus/examples</code> are redistributed, only pointers, which keeps the licensing clean. The dataset itself is CC-BY-4.0.</p>
 <p>A small <code>eval.jsonl</code> of four prompts is used as a generation eval during training.</p>
-<p>The dataset is the artifact that makes the paper reproducible. The companion training-code repository holds the TLC validator harness, reward-shaping config, and GRPO and SFT scripts; it is separate from this dataset release.</p>
-<p>Dataset repo (review-era name): <a href="https://github.com/EricSpencer00/chattla-dataset-anon" target="_blank" rel="noopener">chattla-dataset-anon</a>.</p>
+<p>The <a href="https://github.com/LUC-AI4FM/TLA-Prove">TLA-Prove training repository</a> holds the validator, training, and evaluation code. The <a href="https://huggingface.co/EricSpencer00/chattla-20b">chattla-20b model card</a> describes the model release. Use the <a href="https://arxiv.org/abs/2606.06133">paper's evaluation procedure</a> when comparing results; a model card or a later checkpoint can describe a different run.</p>
+<p>The <a href="https://github.com/EricSpencer00/chattla-dataset-anon">209-row ChatTLA+ dataset</a> is separate from <a href="/research/#tla-bench">TLA+-Bench</a>, the later 1,300-specification benchmark. TLA+-Bench has its own <a href="https://github.com/LUC-AI4FM/tla_benchmark/tree/reviewer-release">dataset, grader, and recorded model outputs</a>. For smaller examples of what TLC checks, see the <a href="/projects/tla-plus/">TLA+ project guide</a>.</p>
 <footer>
 <span>&copy; 2026 Eric Spencer &middot; Chicago, IL</span>
 <span><a href="mailto:eric@ericspencer.us">eric@ericspencer.us</a></span>

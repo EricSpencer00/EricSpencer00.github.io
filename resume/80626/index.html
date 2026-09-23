@@ -46,24 +46,44 @@ a:hover{text-decoration:underline;text-underline-offset:3px}
 .actions a{border:1px solid var(--rule);border-radius:6px;padding:7px 13px;color:var(--ink)}
 .actions a:hover{border-color:var(--ink);text-decoration:none}
 .doc{width:100%;height:min(85vh,1100px);border:1px solid var(--rule);border-radius:8px;background:#fff}
+.cv-summary{max-width:72ch;margin:30px 0 42px}
+.cv-summary h2,.pdf-title{font-size:1.4rem;line-height:1.3;letter-spacing:-.02em;margin:34px 0 16px}
+.cv-summary h3{font-size:1rem;line-height:1.5;margin:0 0 4px}
+.cv-summary p{margin:6px 0 14px}
+.cv-date{color:var(--dim);font-size:.875rem}
+.cv-entry{padding:16px 0;border-top:1px solid var(--rule)}
+.cv-publications{padding-left:1.35rem}
+.cv-publications li{padding:7px 0}
+.cv-summary a{overflow-wrap:anywhere}
 footer{margin-top:28px;border-top:1px solid var(--rule);padding-top:14px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dim)}
 @media (max-width:640px){.doc{height:70vh}}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"></head><body>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; object-src 'self'; base-uri 'self'; form-action 'self'"><script async src="https://www.googletagmanager.com/gtag/js?id=G-30FQRTZWJ8"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-30FQRTZWJ8');
+</script>
+</head><body>
 <div class="wrap">
 <nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/" class="active">cv</a></nav>
+<hr>
+<main>
 <h1>Resume</h1>
 <p class="sub">Eric Spencer — one-page resume.</p>
 <div class="actions">
   <a href="/assets/pdf/resume-80626.pdf" download>Download PDF</a>
-  <a href="/assets/pdf/resume-80626.pdf">Open in new tab</a>
+  <a href="/assets/pdf/resume-80626.pdf" target="_blank" rel="noopener">Open in new tab</a>
   <a href="https://github.com/EricSpencer00/resume">LaTeX source</a>
 </div>
+
 <object class="doc" data="/assets/pdf/resume-80626.pdf" type="application/pdf">
   <p>Your browser will not display the PDF inline.
   <a href="/assets/pdf/resume-80626.pdf">Download it instead</a>.</p>
 </object>
+</main>
 <footer>Built from LaTeX in <a href="https://github.com/EricSpencer00/resume">EricSpencer00/resume</a>.</footer>
 </div>
 </body></html>

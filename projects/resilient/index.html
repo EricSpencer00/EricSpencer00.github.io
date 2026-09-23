@@ -2,8 +2,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Resilient | Eric Spencer</title>
-<meta name="description" content="A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks">
+<title>Resilient — Language with Z3-Verified Contracts | Eric Spencer</title>
+<meta name="description" content="Resilient is an experimental programming language for embedded systems, with Z3-verified contracts, a no_std runtime, and self-healing blocks.">
 <meta name="author" content="Eric Spencer">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://ericspencer.us/projects/resilient/">
@@ -12,34 +12,26 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#faf7f2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Resilient | Eric Spencer">
-<meta property="og:description" content="A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks">
+<meta property="og:title" content="Resilient — Language with Z3-Verified Contracts | Eric Spencer">
+<meta property="og:description" content="Resilient is an experimental programming language for embedded systems, with Z3-verified contracts, a no_std runtime, and self-healing blocks.">
 <meta property="og:url" content="https://ericspencer.us/projects/resilient/">
 <meta property="og:image" content="https://ericspencer.us/assets/og/projects-resilient.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Resilient | Eric Spencer — ericspencer.us">
+<meta property="og:image:alt" content="Resilient — Language with Z3-Verified Contracts | Eric Spencer — ericspencer.us">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ericspencer.us/assets/og/projects-resilient.jpg">
-<meta name="twitter:image:alt" content="Resilient | Eric Spencer — ericspencer.us">
+<meta name="twitter:image:alt" content="Resilient — Language with Z3-Verified Contracts | Eric Spencer — ericspencer.us">
 <meta property="linkedin:image" content="https://ericspencer.us/assets/og/projects-resilient.jpg">
 <meta property="og:site_name" content="Eric Spencer">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Resilient | Eric Spencer">
-<meta name="twitter:description" content="A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks">
-<meta property="linkedin:title" content="Resilient | Eric Spencer">
-<meta property="linkedin:description" content="A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks">
+<meta name="twitter:title" content="Resilient — Language with Z3-Verified Contracts | Eric Spencer">
+<meta name="twitter:description" content="Resilient is an experimental programming language for embedded systems, with Z3-verified contracts, a no_std runtime, and self-healing blocks.">
+<meta property="linkedin:title" content="Resilient — Language with Z3-Verified Contracts | Eric Spencer">
+<meta property="linkedin:description" content="Resilient is an experimental programming language for embedded systems, with Z3-verified contracts, a no_std runtime, and self-healing blocks.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article",
-"headline":"Resilient",
-"description":"A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks",
-"url":"https://ericspencer.us/projects/resilient/",
-"image":"https://ericspencer.us/assets/og/projects-resilient.jpg",
-"author":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
-"publisher":{"@type":"Person","name":"Eric Spencer","url":"https://ericspencer.us/"},
-"datePublished":"2026-05-20",
-"mainEntityOfPage":"https://ericspencer.us/projects/resilient/"}
+{"@context":"https://schema.org","@type":"Article","headline":"Resilient — Language with Z3-Verified Contracts","description":"Resilient is an experimental programming language for embedded systems, with Z3-verified contracts, a no_std runtime, and self-healing blocks.","url":"https://ericspencer.us/projects/resilient/","image":"https://ericspencer.us/assets/og/projects-resilient.jpg","author":{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","url":"https://ericspencer.us/"},"publisher":{"@type":"Person","@id":"https://ericspencer.us/#eric","name":"Eric Spencer","url":"https://ericspencer.us/"},"datePublished":"2026-05-20","mainEntityOfPage":"https://ericspencer.us/projects/resilient/","dateModified":"2026-09-22"}
 </script>
 <style>
 :root{
@@ -124,11 +116,16 @@ li{margin:4px 0}
 h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,32px);font-weight:700;letter-spacing:-.04em;line-height:1.2;color:var(--ink);margin:24px 0 8px}
 </style>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260916">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
-
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://esm.run https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://huggingface.co https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; object-src 'self'; base-uri 'self'; form-action 'self'"><link rel="stylesheet" href="/assets/css/portfolio.css?v=20260922">
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=20260922">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-30FQRTZWJ8"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-30FQRTZWJ8');
+</script>
 </head><body class="portfolio-article"><div class="wrap">
 <p class="name">Eric Spencer</p>
 <p class="sub">projects</p>
@@ -141,7 +138,7 @@ h1.article-title{font-family:"IBM Plex Mono",monospace;font-size:clamp(23px,3vw,
 <nav class="top"><a href="/">index</a> &nbsp;&middot;&nbsp; <a href="/research/">publications</a> &nbsp;&middot;&nbsp; <a href="/projects/" class="active">projects</a> &nbsp;&middot;&nbsp; <a href="/cv/">cv</a></nav>
 <hr>
 <p class="back">&larr; <a href="/">back to index</a></p>
-<h1 class="article-title">Resilient<span class="ln"></span></h1>
+<h1 class="article-title">Resilient: a language with Z3-verified contracts<span class="ln"></span></h1>
 <p class="meta">A statically-typed compiled language for safety-critical embedded systems, with Z3-verified contracts and self-healing runtime blocks</p>
 <p class="meta">repo: <a href="https://github.com/EricSpencer00/Resilient" target="_blank" rel="noopener">https://github.com/EricSpencer00/Resilient</a></p>
 <hr class="dash">
@@ -158,7 +155,7 @@ fn safe_divide(int a, int b) -&gt; int
     return a / b;
 }
 </code></pre>
-<p>Built with <code>--features z3</code>, which needs <code>libz3</code> installed, the compiler hands those clauses to Z3 as SMT-LIB2 obligations and the prover either discharges them or reports that it cannot. The driver can also dump the proof to a <code>.smt2</code> file via <code>--emit-certificate ./certs/</code>, so a downstream reader can re-verify under a separate copy of Z3 without trusting the compiler binary. An Ed25519 signing step (<code>--sign-cert</code>) and a manifest with per-obligation SHA-256 hashes sit on top of that. The design puts the weight of the evidence on the certificate rather than on the compiler that produced it, which is what could in principle make the output usable in a real safety case.</p>
+<p>With the Z3 backend enabled, the compiler hands those clauses to Z3 as SMT-LIB2 obligations and the prover either discharges them or reports that it cannot. Source builds use <code>--features z3</code> and need <code>libz3</code>; the release binaries bundle Z3 on the platforms listed below. The driver can also dump the proof to a <code>.smt2</code> file via <code>--emit-certificate ./certs/</code>, so a downstream reader can re-verify under a separate copy of Z3 without trusting the compiler binary. An Ed25519 signing step (<code>--sign-cert</code>) and a manifest with per-obligation SHA-256 hashes sit on top of that. The design puts the weight of the evidence on the certificate rather than on the compiler that produced it, which is what could in principle make the output usable in a real safety case.</p>
 <p>A hand-rolled cheap verifier covers the easy cases (constant folding, let-binding propagation, inter-procedural chaining), so a useful subset is available without installing Z3. An <code>--infer-contracts</code> pass reads a function body and suggests omitted <code>requires</code> and <code>ensures</code> clauses: division-by-zero guards, index-bounds checks, single-return-expression invariants.</p>
 <p>The second mechanism is the self-healing live block. A <code>live { }</code> block is a region of code the runtime supervises, with an invariant attached to it. If something inside the block fails transiently (a glitched sensor read, a divide-by-zero on unsanitized input, a broken invariant) the runtime neither panics nor halts the program. It rewinds the block's local state to its value on entry and re-runs the body. Either the block completes with the invariant intact or it never happened, in the manner of a database transaction.</p>
 <pre class="code"><code>
@@ -178,10 +175,11 @@ live invariant: pressure &gt;= 0 &amp;&amp; pressure &lt;= 250 {
 <li><code>05-reactor-coolant-monitor</code>: sensor stream supervised by a <code>live</code> block with a <code>[0, 250] kPa</code> envelope.</li>
 <li><code>06-can-bus-parser</code>: CAN frame parser using <code>bytes</code> literals, <code>Result</code> chains, and <code>match</code> arm guards.</li>
 </ul>
-<p>The examples stress the language in a way the unit-test suite cannot: writing a pacemaker turns up more parser problems than any synthetic test. They are scoped deliberately to safety properties (nothing bad happens) and not yet to liveness (something good eventually happens). The TLA+ integration that would allow liveness specs is a V2 ticket and has not been started.</p>
+<p>The examples stress the language in a way the unit-test suite cannot: writing a pacemaker turns up parser problems that a small synthetic test misses. They model safety properties in particular control scenarios. For the separate work on state machines and model checking, see my <a href="/projects/tla-plus/">TLA+ projects</a>.</p>
 <h2>Current state<span class="ln"></span></h2>
-<p>Working today: the lexer and parser are panic-free and report <code>line:col:</code> diagnostics, 50+ tests cover the lexer through the interpreter, the Cranelift JIT runs <code>fib(25)</code> in 2.8 ms (about 145× the tree-walker, within ~1.4× of native Rust on the same workload), the runtime cross-compiles to both Cortex-M4F and RISC-V rv32imac with <code>.text</code> weight at about 2.3 KiB against a 64 KiB CI budget, certificates verify under stock Z3 from the command line, and the AI-threat lint pass (<code>--ai-threats</code>) catches the off-by-one, missed-else and swallowed-error patterns that show up in LLM-written embedded code that nobody read afterwards.</p>
-<p>Not done, and not claimed: tool qualification for DO-178C, ISO 26262 and IEC 62304 has not started, that being a multi-year effort with auditors. There is no temporal liveness checker. The self-hosting prototype lexes a tiny subset of the language and stops there. The standard library is small. Structs and pattern matching are partial. The formatter does not preserve comments. The public list of gaps is at <a href="https://github.com/EricSpencer00/Resilient/blob/main/docs/EXPRESSIBLE_INVALID_STATES.md" target="_blank" rel="noopener">docs/EXPRESSIBLE_INVALID_STATES.md</a>, with a closing ticket against each one. Open tickets across the goalpost ladder are listed in <a href="https://github.com/EricSpencer00/Resilient/blob/main/ROADMAP.md" target="_blank" rel="noopener">ROADMAP.md</a>.</p>
+<p>As of September 22, 2026, the <a href="https://github.com/EricSpencer00/Resilient/blob/44cae8e1fc3898c2310311ee21b1c62a31ed3695/README.md#project-status">project status recorded in the repository</a> reports more than 9,000 passing tests across the parser, type checker, interpreter, editor support, embedded builds, and example programs. The self-hosting work now includes both a lexer and a parser, with a parity harness that compares them against the Rust implementation. It remains work in progress.</p>
+<p>The release documentation lists bundled Z3 for Linux on x86-64 and ARM64, and macOS on Apple silicon. The Intel Mac build uses the smaller built-in verifier unless Z3 support is built separately. All four release targets include the language server. The <a href="https://github.com/EricSpencer00/Resilient/blob/44cae8e1fc3898c2310311ee21b1c62a31ed3695/README.md#performance-res-106">published performance example</a> measures <code>fib(25)</code> at 2.8 ms with the JIT on an Apple M1 Max; that is one workload, not a general speed claim.</p>
+<p>This is still a research compiler, not a tool qualified for a certified system. The <a href="https://github.com/EricSpencer00/Resilient/blob/main/ROADMAP.md">roadmap</a>, <a href="https://github.com/EricSpencer00/Resilient/blob/main/docs/EXPRESSIBLE_INVALID_STATES.md">known language gaps</a>, and <a href="https://github.com/EricSpencer00/Resilient/blob/main/self-host/README.md">self-hosting notes</a> track what is supported and what remains unfinished.</p>
 <p>Much of the code in the repository was written with help from Claude. The failure mode that matters is a model satisfying an obligation by adjusting the test instead of the implementation, and the compiler's trust model is built around it. The LLM is treated as an untrusted client of the type system, never as a participant in the proof. The verifier re-derives every safety claim from the typed AST, and nothing asserted in a comment or a pull request description is taken at face value. <a href="https://github.com/EricSpencer00/Resilient/blob/main/docs/STRUCTURAL_ENFORCEMENT.md" target="_blank" rel="noopener">STRUCTURAL_ENFORCEMENT.md</a> documents that constraint, which shapes more of the project than any single feature.</p>
 <h2>Installation<span class="ln"></span></h2>
 <pre class="code"><code>
