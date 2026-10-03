@@ -117,6 +117,12 @@ jobs:
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: python3 scripts/build_sitemap.py
 
+      - name: Set up Node for homepage regression tests
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Verify routes and SEO metadata
         if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
         run: |
@@ -132,6 +138,10 @@ jobs:
       # is the same deal: harnesses that drive a page in an iframe, not pages.
       - name: Strip non-published directories from the artifact
         run: rm -rf backup-site tests editor
+
+      - name: Verify the completed staging artifact
+        if: github.repository == 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: python3 scripts/prepare_staging.py --check
 
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3

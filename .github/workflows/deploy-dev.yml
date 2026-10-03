@@ -52,43 +52,23 @@ jobs:
         run: python3 scripts/seo_tags.py
       - name: Build the browser-only site assistant
         run: python3 scripts/build_chatbot_knowledge.py
+      - name: Set up Node for homepage regression tests
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Verify routes and SEO metadata
         run: |
           python3 scripts/build_sitemap.py
           python3 -m unittest discover -s tests -p 'test_*.py'
           python3 scripts/check_site.py
           python3 scripts/build_social_cards.py --check
-      - name: Keep development pages out of search
+      # Run after every generator: checked-in project pages can already carry
+      # the production tag even when the newly built homepage does not.
+      - name: Remove analytics and enforce staging host/crawler rules
         run: |
-          python3 - <<'PY'
-          import re
-          from pathlib import Path
-
-          for path in Path('.').rglob('*.html'):
-              if any(part in {'.git', 'backup-site', 'editor', 'tests'} for part in path.parts):
-                  continue
-              text = path.read_text(encoding='utf-8', errors='replace')
-              if '</head>' not in text:
-                  continue
-              noindex = '<meta name="robots" content="noindex, follow">'
-              if re.search(r'<meta name="robots" content="[^"]*">', text):
-                  text = re.sub(
-                  r'<meta name="robots" content="[^"]*">',
-                  noindex,
-                  text,
-                  )
-              else:
-                  text = text.replace('</head>', noindex + '\n</head>', 1)
-              path.write_text(text, encoding='utf-8')
-          PY
-      - name: Keep the staging host out of crawler discovery
-        run: |
-          # Dev has production canonicals and noindex tags. Do not hand
-          # crawlers a production sitemap from the staging hostname as well.
-          # Let crawlers see the noindex directive. A disallow would prevent
-          # fetching the HTML and can leave URL-only results in an index.
-          printf 'User-agent: *\nAllow: /\n' > robots.txt
-          rm -f sitemap.xml
+          python3 scripts/prepare_staging.py
+          python3 scripts/prepare_staging.py --check
       - name: Keep the copy review desk local
         run: rm -rf editor
       - uses: webfactory/ssh-agent@v0.9.0
@@ -103,6 +83,8 @@ jobs:
           git add -A CNAME index.html news blog robots.txt cv resume assets editor \
             miscellaneous research research.html projects.html apps 404.html projects sitemap.xml \
             1rm stem-player ulam-spiral ulam-spiral-b12
+          # Carry the guarded collector workflow into the generated mirror.
+          git add .github/workflows/signals.yml
           git commit --allow-empty -m "chore: build + set dev CNAME"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git remote add dev-site git@github.com:EricSpencer00/dev.EricSpencer00.github.io.git
