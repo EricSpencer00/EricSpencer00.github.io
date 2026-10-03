@@ -601,13 +601,22 @@ a.pill{{font-size:12px}}
   // signals.json and this just reads the file. If the file is missing or stale
   // the rows fall back to stars rather than losing their count entirely.
   let SIGNALS = {{}};
+  const SIGNALS_MAX_AGE_MS = 48 * 60 * 60 * 1000;
+
+  function freshSignals(data, now = Date.now()) {{
+    const generated = Date.parse(data && data.generated);
+    const age = now - generated;
+    return Number.isFinite(generated) && age >= 0 && age <= SIGNALS_MAX_AGE_MS
+      && data.repos && typeof data.repos === 'object' && !Array.isArray(data.repos)
+      ? data.repos : {{}};
+  }}
 
   async function loadSignals() {{
     try {{
       const res = await fetch('/assets/data/signals.json', {{ cache: 'no-cache' }});
       if (!res.ok) return;
       const data = await res.json();
-      SIGNALS = data.repos || {{}};
+      SIGNALS = freshSignals(data);
     }} catch (e) {{ /* stars remain the fallback */ }}
   }}
 

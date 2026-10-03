@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   collect:
+    if: github.repository == 'EricSpencer00/EricSpencer00.github.io'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +28,19 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check traffic access configuration
+        id: access
+        env:
+          SIGNALS_TOKEN: ${{ secrets.SIGNALS_TOKEN }}
+        run: |
+          if [ -n "$SIGNALS_TOKEN" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::SIGNALS_TOKEN is not configured; keeping existing traffic snapshots."
+          fi
+
       - name: Snapshot traffic
+        if: steps.access.outputs.configured == 'true'
         env:
           # A PAT with `repo` scope. The built-in GITHUB_TOKEN can only read
           # traffic for this repository, which would leave every other row
@@ -37,6 +50,7 @@ jobs:
         run: python3 scripts/collect_signals.py
 
       - name: Commit the rollup
+        if: steps.access.outputs.configured == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

@@ -121,3 +121,25 @@ The release check rejects missing internal links to indexable pages and CSP
 policies that block the installed Analytics tag or its collection endpoints.
 Fonts are served from `assets/fonts/`; the upstream licenses are kept beside
 the font files. Experience logos use small WebP variants for their 36px boxes.
+
+## Repository traffic and staging
+
+The homepage uses traffic only when `signals.json` has a valid timestamp from
+the last 48 hours. Missing, stale, or future-dated snapshots fall back to stars.
+The nightly collector runs only in this source repository. Without
+`SIGNALS_TOKEN`, it skips collection and keeps both existing snapshot files.
+Runs with no accessible traffic also preserve the snapshots; partial runs
+publish only repositories whose traffic was successfully read.
+
+Restoring nightly traffic requires a repository Actions secret named
+`SIGNALS_TOKEN`, provisioned separately through the approved secure credential
+workflow. It needs access to the selected repositories under EricSpencer00 and
+LUC-AI4FM and read permission for repository traffic (fine-grained token:
+Administration read). No token belongs in this repository or its staging mirror.
+
+After every staging generator, `python3 scripts/prepare_staging.py` strips
+analytics from all published HTML, preserves production canonicals, applies
+noindex, sets the development CNAME, and removes the production sitemap.
+`python3 scripts/prepare_staging.py --check` rejects leftover analytics in HTML,
+JavaScript, or JSON assets and verifies the host and crawler rules. The mirror's
+Pages workflow repeats this check before uploading its completed artifact.
