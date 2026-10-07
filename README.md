@@ -34,6 +34,7 @@ fails, the path 404s and this repo cannot cover for it.
 | --- | --- |
 | `/Claude-of-Duty/` | `Claude-of-Duty` (`gh-pages` branch; source on `main`) |
 | `/ddia/` | `ddia` |
+| `/deslopify/` | `deslopify` (`site/`, built by its Website workflow) |
 | `/gta-v-gold-checklist/` | `gta-v-gold-checklist` |
 | `/hotdog/` | `hotdog` |
 | `/ericspencer-site-backup/` | `ericspencer-site-backup` |

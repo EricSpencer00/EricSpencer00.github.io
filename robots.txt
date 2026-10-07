@@ -7,3 +7,6 @@ Allow: /
 Disallow: /blog/_template.html
 
 Sitemap: https://ericspencer.us/sitemap.xml
+
+# Pages that other repos serve under this domain list themselves.
+Sitemap: https://ericspencer.us/deslopify/sitemap.xml
