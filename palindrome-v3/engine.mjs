@@ -73,7 +73,7 @@ function render(plan, core) {
   if (plan.family==='condition' && core!=='sus') text=text.replace(/(Pat)s roti/,"$1's roti").replace(/(pot|pit|ward)s roti/,"$1s' roti");
   return text;
 }
-function anchors(plan, maxDebt) {
+export function anchors(plan, maxDebt) {
   const result=[];
   for (const c of plan.chunks) {
     const tape=normalize(c.text);
@@ -87,7 +87,7 @@ function anchors(plan, maxDebt) {
   }
   return result;
 }
-function extend(s,c,side,maxDebt) {
+export function extend(s,c,side,maxDebt) {
   const bindings={...s.bindings};
   for (const [key,value] of Object.entries(c.bindings)) {
     if (bindings[key] && bindings[key]!==value) return {error:'argument_conflict'};

@@ -1,4 +1,4 @@
-import {search} from './engine.mjs';
+import {search} from './editable-search.mjs';
 const controllers=new Map();
 self.onmessage=async ({data})=>{
   if (data.type==='cancel') {controllers.get(data.id)?.abort();return;}

@@ -1,0 +1,94 @@
+{
+  "examples": [
+    {
+      "id": "ward",
+      "text": "Draw a ward. I draw a ward.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "mock",
+      "text": "Draw a mock coma ward. I draw a mock coma ward.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "suss",
+      "text": "Some men, if editors suss roti, define memos.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "aide",
+      "text": "An aide rips nine memos; some men inspire Diana.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "war",
+      "text": "No, sir, a war is on.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "car",
+      "text": "No, sir, a car is on.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "radar",
+      "text": "No, sir, a dark radar is on.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "nod",
+      "text": "Don't nod.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "evil",
+      "text": "No evil did live on.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "geese",
+      "text": "Do geese on a cedar trade canoe see God?",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11",
+      "numeric_human_score": null
+    },
+    {
+      "id": "tap",
+      "text": "Some men, if editors tap Pat's roti, define memos.",
+      "human_label": "positive",
+      "control": true,
+      "evidence_date": "2026-10-11 20:29 UTC",
+      "numeric_human_score": null
+    }
+  ],
+  "source_sha256": "ad78da82640fbb03c8e654d26fdca385bee42f33edfd61ae95a89389178ef17e",
+  "policy": "Imported positive examples are controls, not held-out discoveries. New text retains a null human label."
+}

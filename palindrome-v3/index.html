@@ -28,14 +28,16 @@
   <div class="workspace">
     <form id="settings">
       <label for="seed">Start from</label><select id="seed" name="seed"></select>
-      <p id="seed-text" class="seed-text"></p><p class="hint">Human-liked starting text</p>
+      <p id="seed-text" class="seed-text"></p><p class="hint">Human-liked starting text; only its selected central window can change.</p><p id="window-hint" class="hint"></p>
       <label for="min-letters">Minimum letters <span id="length-hint"></span></label>
       <input id="min-letters" type="number" min="1" max="200" required value="39">
       <label for="overhang">Letters allowed to wait <output id="debt-value" for="overhang">4</output></label>
       <input id="overhang" type="range" min="0" max="8" step="1" value="4">
-      <p class="hint">A phrase can leave a small mismatch for the next phrase to repay. Zero requires an exact center at each step.</p>
+      <p class="hint">A phrase can leave a small mismatch for the next phrase to repay. This limit depends on phrase grouping; exhaustion does not prove a longer phrase is impossible.</p>
       <label for="required">Include words <span class="optional">optional</span></label>
       <input id="required" type="text" maxlength="40" pattern="[A-Za-z ]*" placeholder="e.g. now" autocomplete="off">
+      <label for="ranking">Order results</label><select id="ranking"><option value="shorter">Shorter edits first</option><option value="longer">Longer edits first</option><option value="repetition">Less repetition first</option></select>
+      <label><input id="controls" type="checkbox"> Include imported examples as controls</label>
       <button id="generate" type="submit">Expand next</button><button id="cancel" class="secondary" type="button" hidden>Cancel search</button>
       <button id="reset" class="text-button" type="button">Show previous results again</button>
     </form>

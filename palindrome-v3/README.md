@@ -22,19 +22,27 @@ typed graphs. Closure requires both complete grammatical endpoints and
 empty letter debt; the full rendered sentence then receives an independent
 two-pointer exactness check. The client repeats exactness before display.
 
-Two small phrase families are available. The condition family admits six
-exact texts from an independent 105-path oracle. The drawing family admits
-two, including a partial `com` root completed as `coma` at its fixed seam.
-The four seed examples have explicit positive human feedback from 2026-10-11.
-Matching them does not make the search result new: provenance identifies
-original controls and runtime results matching human-liked wording. Other
-texts remain human-ungraded. No long-paragraph or world-novelty claim is made.
+The active search compiles 21 source spans from 11 explicitly human-liked
+examples using the existing research typed phrase compiler. Four per-seed
+editable windows preserve the selected seed's actual prefix and suffix.
+The suss window carries one retained left-context letter, `s`, in its grammar;
+the editable window itself need not be a palindrome. No finished sentence is
+injected into search. Corpus membership is used only to label/filter controls.
+Tap permits only an insertion before its retained Pat; mock changes only its
+subject. These do not borrow the suss or ward search graphs.
 
-Ranking uses known reader preference and a finite soft repetition penalty.
-It is a heuristic, not a learned readability model or human certificate.
-Bindings preserve actors and objects within each graph, but cannot prove
-the semantic strength of a conditional link between roti and memos. The
-default ranks the Pat owner above less natural generated owner alternatives.
+The split grammar at debt four returns four exact suss closures (two imported
+controls and two corpus-unseen, human-ungraded recombinations), and one
+imported control each for tap, ward and mock. At debt eight ward also returns
+the known longer drawing control. There are two new texts overall, no new
+paragraph. Institution ownership of roti is a declared semantic adapter and
+needs human judgment. The conditional link to memos remains weak.
+
+Regrouping the suss VP recovers the same outputs at debt one that split
+chunks recover at debt four. Operational cap exhaustion is not a proof of
+linguistic impossibility. Ordering is user-adjustable shorter/longer/soft
+repetition; no lexical preference or invented human quality score is used.
+Imported controls are hidden by default and available explicitly.
 
 Every request searches again; no completed-output bank is sampled. A set of
 already shown normalized IDs makes repeated requests advance, then report
@@ -52,7 +60,8 @@ search time budget, so response latency is measured separately in the UI.
 
 ## Verification
 
-Run `node --test tests/palindrome-v3.test.mjs` or the existing Python unittest
+Run `node --test tests/palindrome-v3*.test.mjs` and
+`python3 scripts/compile_palindrome_windows.py --check` or the existing Python unittest
 suite. Dedicated GitHub checks target the dev branch; the existing deployment
 workflow remains unchanged. All product files are tracked before deployment,
 so the existing generated dev mirror includes the new route.
