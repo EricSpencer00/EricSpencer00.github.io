@@ -1,0 +1,28 @@
+name: Palindrome v3 correctness
+
+on:
+  pull_request:
+    branches: [dev]
+    paths: ['palindrome-v3/**', 'tests/*palindrome*', '.github/workflows/palindrome-v3-checks.yml']
+  push:
+    branches: [dev, feat/palindrome-v3-phrase-expansion]
+    paths: ['palindrome-v3/**', 'tests/*palindrome*', '.github/workflows/palindrome-v3-checks.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  phrase-search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate finite grammar, exactness, debt, cancellation and stale responses
+        run: node --test tests/palindrome-v3.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate existing site regression contract
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
