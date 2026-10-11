@@ -1,62 +1,31 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Palindrome v3 — phrase expansion</title>
-<meta name="description" content="Expand human-liked palindrome seeds with grammatical phrases and inspect every exact letter match.">
+<title>Palindrome</title>
+<meta name="description" content="Generate a palindrome.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://dev.ericspencer.us/palindrome-v3/">
-<meta property="og:title" content="Palindrome v3 — phrase expansion">
-<meta property="og:description" content="Expand human-liked palindrome seeds with grammatical phrases and inspect every exact letter match.">
+<meta property="og:title" content="Palindrome">
+<meta property="og:description" content="Generate a palindrome.">
 <meta property="og:url" content="https://dev.ericspencer.us/palindrome-v3/">
 <meta property="og:image" content="https://dev.ericspencer.us/assets/og/palindrome-v3.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Palindrome v3 — phrase expansion — ericspencer.us">
+<meta property="og:image:alt" content="Palindrome — ericspencer.us">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dev.ericspencer.us/assets/og/palindrome-v3.jpg">
-<meta name="twitter:image:alt" content="Palindrome v3 — phrase expansion — ericspencer.us">
+<meta name="twitter:image:alt" content="Palindrome — ericspencer.us">
 <meta property="linkedin:image" content="https://dev.ericspencer.us/assets/og/palindrome-v3.jpg">
-<meta name="twitter:title" content="Palindrome v3 — phrase expansion">
-<meta name="twitter:description" content="Expand human-liked palindrome seeds with grammatical phrases and inspect every exact letter match.">
+<meta name="twitter:title" content="Palindrome">
+<meta name="twitter:description" content="Generate a palindrome.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./style.css">
 </head><body>
-<header><a href="/projects/">Eric Spencer</a><span>Palindrome v3</span></header>
 <main>
-  <div class="intro"><h1>Grow a palindrome.<br>Keep the sentence.</h1><p>Start with wording a reader liked. Search for phrases that fit its grammar and meet in the middle.</p></div>
-  <div class="workspace">
-    <form id="settings">
-      <label for="seed">Start from</label><select id="seed" name="seed"></select>
-      <p id="seed-text" class="seed-text"></p><p class="hint">Human-liked starting text; only its selected central window can change.</p><p id="window-hint" class="hint"></p>
-      <label for="min-letters">Minimum letters <span id="length-hint"></span></label>
-      <input id="min-letters" type="number" min="1" max="200" required value="39">
-      <label for="overhang">Letters allowed to wait <output id="debt-value" for="overhang">4</output></label>
-      <input id="overhang" type="range" min="0" max="8" step="1" value="4">
-      <p class="hint">A phrase can leave a small mismatch for the next phrase to repay. This limit depends on phrase grouping; exhaustion does not prove a longer phrase is impossible.</p>
-      <label for="required">Include words <span class="optional">optional</span></label>
-      <input id="required" type="text" maxlength="40" pattern="[A-Za-z ]*" placeholder="e.g. now" autocomplete="off">
-      <label for="ranking">Order results</label><select id="ranking"><option value="shorter">Shorter edits first</option><option value="longer">Longer edits first</option><option value="repetition">Less repetition first</option></select>
-      <label><input id="controls" type="checkbox"> Include imported examples as controls</label>
-      <button id="generate" type="submit">Expand next</button><button id="cancel" class="secondary" type="button" hidden>Cancel search</button>
-      <button id="reset" class="text-button" type="button">Show previous results again</button>
-    </form>
-    <section id="output" class="output" aria-label="Palindrome result">
-      <div id="status" role="status" aria-live="polite">Choose a starting sentence, then expand it.</div>
-      <div id="result" hidden>
-        <p id="provenance" class="provenance"></p>
-        <p id="sentence" class="sentence"></p>
-        <div class="facts"><span id="letters"></span><span id="timing"></span><span class="verified">Exact palindrome</span></div>
-        <div class="result-actions"><button id="next" type="button">Expand next</button><button id="copy" class="secondary" type="button">Copy sentence</button><span id="copy-status" role="status"></span></div>
-        <div class="mirror" aria-label="Letters matched across the center"><p>Read the letters from either end.</p><div id="tape"></div></div>
-        <details id="trace"><summary>How the phrases fit</summary><p id="method-note"></p><ol id="steps"></ol></details>
-        <fieldset class="feedback"><legend>Does this wording read well?</legend><button type="button" data-rating="good" class="secondary">Reads well</button><button type="button" data-rating="hard" class="secondary">Hard to read</button><p id="feedback-status">Feedback stays in this browser.</p></fieldset>
-      </div>
-      <div id="empty"><p class="empty-title">A sentence is the starting point.</p><p>The search preserves its outer seams, then explores grammatical phrases around the center. New wording is marked for review.</p><div class="empty-fold" aria-hidden="true"><span>tap</span><span class="fold">│</span><span>Pat</span></div></div>
-    </section>
-  </div>
-  <footer><p>Small, bounded phrase search runs on your device. These finite phrase families can run out of expansions; longer text is not automatically better.</p><p><a href="https://github.com/EricSpencer00/palindrome-sentence-generator">Research source</a></p></footer>
+<p id="status" role="status">Loading generator…</p>
+<iframe id="generator" src="https://palindrome.ericspencer.us/" title="Palindrome generator" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<p id="unavailable" hidden>Generator unavailable. <a href="https://palindrome.ericspencer.us/">Open the generator</a>.</p>
 </main>
-<noscript>This phrase search needs JavaScript enabled.</noscript>
-<script type="module" src="./app.mjs"></script>
+<script type="module" src="./embed.mjs"></script>
 </body></html>
