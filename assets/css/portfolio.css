@@ -516,3 +516,10 @@ body.news-surface .attachment-caption {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Long addresses wrap within article text; code blocks keep their own scroller. */
+body.portfolio-article p,
+body.portfolio-article li,
+body.portfolio-article td {
+  overflow-wrap: anywhere;
+}

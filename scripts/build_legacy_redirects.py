@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Keep the old root .html hub URLs as noindex redirects.
+"""Keep known legacy URLs as noindex redirects to their existing pages.
 
 GitHub Pages cannot emit a server-side redirect from a checked-in static file,
 so these compatibility files use a meta refresh, an inline fallback, and an
@@ -19,6 +19,15 @@ SITE = "https://ericspencer.us"
 HUBS = {
     ROOT / "projects.html": ("Projects | Eric Spencer", "/projects/"),
     ROOT / "research.html": ("Publications | Eric Spencer", "/research/"),
+    # These seven exact roots were linked by the separately deployed Resilient
+    # documentation. Their verified project routes retain the source content.
+    ROOT / "certification/index.html": ('Certification and Safety Standards | Resilient', "/Resilient/certification"),
+    ROOT / "failure-model/index.html": ('Failure Model | Resilient', "/Resilient/failure-model"),
+    ROOT / "language-reference/index.html": ('Language Reference | Resilient', "/Resilient/language-reference"),
+    ROOT / "memory-model/index.html": ('Memory Model | Resilient', "/Resilient/memory-model"),
+    ROOT / "module-system/index.html": ('Module and Package System | Resilient', "/Resilient/module-system"),
+    ROOT / "no-std/index.html": ('no_std Runtime | Resilient', "/Resilient/no-std"),
+    ROOT / "stdlib-portability/index.html": ('Standard Library Portability | Resilient', "/Resilient/stdlib-portability"),
 }
 
 
@@ -61,6 +70,7 @@ def main() -> int:
         if not current:
             stale.append(path)
             if not args.check:
+                path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(redirect(title, target), encoding="utf-8")
     if stale and args.check:
         print(
