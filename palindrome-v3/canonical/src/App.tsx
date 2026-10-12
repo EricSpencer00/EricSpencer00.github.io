@@ -97,7 +97,10 @@ const API = IS_V2 ? "/api/v2/generate" : "/api/generate"
  * is in the first tenth of that — 40 to 400 letters is the difference between a
  * line and a paragraph; 13,000 to 14,500 is not a difference at all. A linear
  * track spends nine tenths of its travel on the range nobody wants. */
-const LEN_MIN = 40
+const REAL_SEARCH = import.meta.env.VITE_REAL_SEARCH === "true"
+const V3_COMPOSITION = REAL_SEARCH ? "/api/dev/v3/composition" : "/api/v3/composition"
+const V3_HEALTH = REAL_SEARCH ? "/api/dev/v3/health" : "/api/v3/health"
+const LEN_MIN = REAL_SEARCH ? 16 : 40
 const LEN_STEPS = 1000
 const fromSlider = (t: number, cap: number) =>
   Math.round(LEN_MIN * Math.pow(cap / LEN_MIN, t / LEN_STEPS))
@@ -378,8 +381,8 @@ export default function App() {
   /* v3's two extra controls. `cap` is the bank's own ceiling, asked for rather
      than assumed, so the dial cannot promise a length the material cannot
      reach. The fallback is what the deployed bank holds today. */
-  const [target, setTarget] = useState(1200)
-  const [cap, setCap] = useState(14500)
+  const [target, setTarget] = useState(REAL_SEARCH ? 22 : 1200)
+  const [cap, setCap] = useState(REAL_SEARCH ? 29 : 14500)
   const v3Timers = useRef<number[]>([])
 
   /* Words are written one at a time, spread evenly across the gap the frames
@@ -674,12 +677,12 @@ export default function App() {
       letters: String(target),
       seed: String(Date.now() % 1e9),
     })
-    if (prompt.trim()) q.set("centre", prompt.trim())
+    if (prompt.trim()) q.set(REAL_SEARCH ? "seed_text" : "centre", prompt.trim())
 
-    fetch(`/api/v3/composition?${q}`)
+    fetch(`${V3_COMPOSITION}?${q}`)
       .then(async (r) => {
         const body = await r.json().catch(() => ({}))
-        if (!r.ok) throw new Error(body.detail || `HTTP ${r.status}`)
+        if (!r.ok) throw new Error(body.detail?.message || body.detail || `HTTP ${r.status}`)
         return body
       })
       .then((c) => {
@@ -720,7 +723,7 @@ export default function App() {
   /* The dial cannot offer a length the bank cannot reach, so it asks. */
   useEffect(() => {
     if (!IS_V3) return
-    fetch("/api/v3/health")
+    fetch(V3_HEALTH)
       .then((r) => (r.ok ? r.json() : null))
       .then((h) => {
         const max = h?.capacity?.novel?.max_letters
@@ -755,9 +758,9 @@ export default function App() {
     // v3 is composed, not searched, so there is no elapsed time to report and
     // reporting one would be a fiction. What it has instead is the length that
     // was asked for, which is a thing v1 and v2 do not have at all.
-    IS_V3 && searching ? `${target.toLocaleString()} letters`
+    IS_V3 && searching ? `${REAL_SEARCH ? "Searching · " : ""}${target.toLocaleString()} letters`
     : IS_V3 && done && result
-      ? `${result.letters.toLocaleString()} letters · ${result.words} words`
+      ? `${REAL_SEARCH ? "Searched · " : ""}${result.letters.toLocaleString()} letters · ${result.words} words`
         + (result.yours ? " · yours at the centre" : "")
     : searching ? `${elapsed.toFixed(1)}s${result ? ` · ${result.letters} letters` : ""}`
     : phase === "error" ? error
@@ -980,7 +983,7 @@ export default function App() {
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter") run() }}
-                placeholder={IS_V3 ? "add your own palindrome" : "never odd or even"}
+                placeholder={IS_V3 ? (REAL_SEARCH ? "optional palindrome seed" : "add your own palindrome") : "never odd or even"}
                 disabled={searching}
                 autoComplete="off" autoCapitalize="none" autoCorrect="off"
                 spellCheck={false} enterKeyHint="go"
@@ -1047,7 +1050,7 @@ export default function App() {
             </div>
             <p className="label text-center leading-relaxed">
               reads the same backwards ·{" "}
-              {IS_V3 ? "composed on a mac mini" : "gpt-2 on a mac mini"} ·{" "}
+              {IS_V3 ? (REAL_SEARCH ? "experimental sentence search" : "composed on a mac mini") : "gpt-2 on a mac mini"} ·{" "}
               <a href="https://ericspencer.us" target="_blank" rel="noopener noreferrer"
                  className="underline decoration-from-font underline-offset-2 hover:text-signal">
                 ericspencer.us

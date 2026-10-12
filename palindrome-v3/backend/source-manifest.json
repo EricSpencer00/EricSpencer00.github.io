@@ -1,0 +1,53 @@
+{
+  "revision": "late-center-lexical-028",
+  "files": [
+    {
+      "path": "dev_real_search.py",
+      "sha256": "a216a6838084bcf8f0bb31894c264a9737c94f92d873c8bd883384e647dc1fca",
+      "bytes": 6993
+    },
+    {
+      "path": "experimental_search/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "experimental_search/admission.py",
+      "sha256": "2ad7fbfcb92c79a87ce21562dbc09496815ea92d4484fd4e3a7a515eb829bd51",
+      "bytes": 407
+    },
+    {
+      "path": "experimental_search/bilateral_seams.py",
+      "sha256": "b94f76775dce67e5592b04bdbb5913acf1cc2720a96467a7689b1970ba8ec0eb",
+      "bytes": 15154
+    },
+    {
+      "path": "experimental_search/late_center_lexical.py",
+      "sha256": "5a575fe7eb6f85196e74f63f8b2b8c1dd6b60967053ae7feacd3a0e7e7eb5400",
+      "bytes": 8901
+    },
+    {
+      "path": "experimental_search/seam_closure.py",
+      "sha256": "e00e4797c6f334b129721b92fef9785fdc7553bcd7e0bf7a0f33cdf6c9e6aac4",
+      "bytes": 930
+    },
+    {
+      "path": "experimental_search/search.py",
+      "sha256": "cf8c5834f313476ab9253adf3aa9f091fb52c32cd89a3683063bfe5e266370e0",
+      "bytes": 496
+    },
+    {
+      "path": "experimental_search/shape.py",
+      "sha256": "105ff2c975af6acdcf393ac20983ae8109e72f490766f0a90b18315dce495397",
+      "bytes": 895
+    },
+    {
+      "path": "experimental_search/validator.py",
+      "sha256": "edd177816d10c903d9c630241a62bf5ddad1ce42c8fe239ad463256c080615ea",
+      "bytes": 207
+    }
+  ],
+  "production_app_base_sha256": "ae83d12b560a0cb33e7def8157a58db7903086b9b6ff04faa0a7fe0d32a9517b",
+  "production_v3_sha256": "8134184447bf900d193e86379f017758e82868e7efc09b5f586d5c61ae841d08",
+  "production_bank_sha256": "f5ef16a8b594e4da72c19a62a0758ebc7dc75b33c42f80a718a2fb6539993676"
+}

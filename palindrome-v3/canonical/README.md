@@ -1,13 +1,9 @@
-# Jitter-only canonical frontend preview
+# Canonical and experimental search frontend
 
-Source is the inspected canonical frontend (mini revision6231fc3), with the writing-transform transition fix and independent response exactness check. Input, Generate, length, output, Read/Poster and Copy stay unchanged. No typed expansion or backend integration is active.
+The accepted WebKit writing-transform fix remains: writing updates apply directly, while the final 900 ms fit is eased. Physical-iPhone and genuine-pinch coverage is limited to the user's reported jitter acceptance; desktop WebKit emulation is recorded separately.
 
-The existing Cloudflare Pages palindrome project hosts only a preview branch named palindrome-webkit-fix. Its unchanged same-origin API function proxies the existing service. Canonical production deployment and backend stay untouched. The GitHub dev preview embeds this patched preview to preserve API access without CORS changes.
+`npm run build` and `npm run build:production` use the existing `/api/v3` composer, 40-letter minimum and 1,200-letter default. Production HTML, credit and public files retain their existing build path. This task does not redeploy that artifact.
 
-Build: npm ci && npm run build. Deploy only a preview branch, never main: wrangler pages deploy dist --project-name palindrome --branch palindrome-webkit-fix --commit-hash EXACT_SOURCE_SHA.
+`npm run build:search` selects the additive `/api/dev/v3` search route, a 16-letter slider minimum and 22-letter default. Optional input is a grammatical palindrome seed; supported seed spans can be recomposed internally while the literal center moves. Empty and unsupported requests display the API's honest error. The minimal controls, exactness validation, Read, Poster and Copy remain.
 
-Desktop WebKit with iPhone emulation reproduced camera tracking lag at1200 letters. Original140ms transitions are retargeted every writing tick; writing transforms now apply directly, retaining the final900ms eased fit. Same live E2E fails before and passes after. This is not physical-iPhone or genuine-pinch verification.
-
-## Frontend-only production promotion
-
-`npm run build:production` temporarily uses the original production HTML and footer credit, preserves all three existing public files (favicon, icon sprite, Panama), writes production-dist, then restores preview source. Deploy that artifact to the existing palindrome Pages main branch only after approval/CI. The API proxy remains the original unchanged implementation. No backend model/corpus files are packaged or deployed.
+Deploy the search build only to the existing Cloudflare project `palindrome` preview branch `palindrome-webkit-fix`, using the exact source commit. The unchanged same-origin proxy reaches the new API route. Never send a search build to the production `main` branch.

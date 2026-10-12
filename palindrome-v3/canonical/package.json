@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:production": "node scripts/build-production.mjs"
+    "build:production": "node scripts/build-production.mjs",
+    "build:search": "VITE_REAL_SEARCH=true npm run build"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
