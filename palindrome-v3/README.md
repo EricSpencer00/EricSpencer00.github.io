@@ -1,7 +1,5 @@
 # Palindrome development preview
 
-The minimal interface keeps the prompt, Generate, length slider, output, Read, Poster and Copy. Its experimental build calls `/api/dev/v3` through the existing same-origin proxy. It runs a finite typed lexical search on every request; errors do not silently display corpus output. The default target is a short sentence. Longer cohesive paragraphs remain a research objective, not an achieved capability.
+The stable dev route embeds the existing preview alias with the simple prompt, Generate, length, Read, Poster and Copy interface. The029 dev release uses real bounded word/role search, varied interactive traversal, approximate lengths and longer result-fragment composition. Punctuation and case are preserved in display/copy; final exactness uses normalized letters.
 
-Canonical production continues to use `/api/v3`, with its existing length controls and composer. `build:production` retains that behavior; `build:search` selects the development route. The accepted WebKit jitter fix remains in both builds. No paid model, new tunnel or changed credentials are required.
-
-See [backend/README.md](backend/README.md) for bounds, provenance, seed semantics, installation and rollback. Previous finite phrase-search sources and tests remain as evidence; they are not the primary page's generator.
+The finite language remains limited: memo statements and task dialogue, with longer results using a clarification fragment. It is not an open-ended coherent-prose or world-novelty claim. See backend/README.md for limits, source reuse, semantics, installation and rollback. Canonical production remains on its existing composer.
