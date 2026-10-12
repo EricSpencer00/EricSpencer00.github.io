@@ -99,7 +99,7 @@ def compiled_characters(depth):
  from .experimental_search.composition_030 import CharacterSearch,grammar030
  return CharacterSearch(grammar030(depth))
 
-def generate_characters(*,characters=100,seed=None,seed_text=None,budget_ms=150,exclude_id=None,tolerance=10):
+def generate_characters(*,characters=100,seed=None,seed_text=None,budget_ms=300,exclude_id=None,tolerance=10):
  start=time.perf_counter();actual_seed=seed if seed is not None else secrets.randbits(32);rng=random.Random(actual_seed)
  target=max(24,min(1200,characters));low=max(24,target-tolerance);high=min(1200,target+tolerance)
  runs=[];found={};seed_plan=None
@@ -151,15 +151,15 @@ def create_router(fallback):
  for depth in range(1,41):compiled_characters(depth).remaining_chars('START','END')
  router=APIRouter(prefix='/api/dev/v3')
  @router.get('/health')
- def health():return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'bounds':BOUNDS,'character_bounds':{'max_depth':40,'max_steps':320,'max_states':10000,'max_outputs':32,'seconds':.15},'default_characters':100,'length_window':10,'default_target':DEFAULT_TARGET,'minimum_target':MIN_TARGET,'capacity':{'novel':{'max_letters':MAX_TARGET,'max_characters':1200}},'capacity_basis':'finite typed grammar bound; not a novelty or readability claim','families':['memo_statement','task_dialogue'],'quality_unrated':True}
+ def health():return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'bounds':BOUNDS,'character_bounds':{'max_depth':40,'max_steps':320,'max_states':10000,'max_outputs':32,'seconds':.3},'default_characters':100,'length_window':10,'default_target':DEFAULT_TARGET,'minimum_target':MIN_TARGET,'capacity':{'novel':{'max_letters':MAX_TARGET,'max_characters':1200}},'capacity_basis':'finite typed grammar bound; not a novelty or readability claim','families':['memo_statement','task_dialogue'],'quality_unrated':True}
  @router.get('/composition')
- def composition(seed:int|None=None,letters:int=DEFAULT_TARGET,characters:int|None=Query(None,ge=24,le=1200),centre:str|None=Query(None,max_length=200),budget_ms:int=Query(150,ge=20,le=150),fallback:bool=False,seed_text:str|None=Query(None,max_length=1200),exclude_id:str|None=Query(None,max_length=64)):
+ def composition(seed:int|None=None,letters:int=DEFAULT_TARGET,characters:int|None=Query(None,ge=24,le=1200),centre:str|None=Query(None,max_length=200),budget_ms:int=Query(150,ge=20,le=150),character_budget_ms:int=Query(300,ge=20,le=300),fallback:bool=False,seed_text:str|None=Query(None,max_length=1200),exclude_id:str|None=Query(None,max_length=64)):
   if centre and seed_text:raise HTTPException(422,'Choose a seed or a literal centre, not both.')
   for value in [centre,seed_text]:
    if value and (not normalize(value)or any(not(c.isascii()and(c.isalpha()or c.isspace()or c in "'-.,;:!?"))for c in value)):raise HTTPException(422,'Use English words and punctuation in the seed or centre.')
   if characters is not None:
    if centre:raise HTTPException(422,'Character search accepts a licensed seed rather than a literal centre.')
-   result,receipt=generate_characters(characters=characters,seed=seed,seed_text=seed_text,budget_ms=budget_ms,exclude_id=exclude_id)
+   result,receipt=generate_characters(characters=characters,seed=seed,seed_text=seed_text,budget_ms=character_budget_ms,exclude_id=exclude_id)
    if result is not None:return result
    raise HTTPException(409,detail={'message':'No exact result found in this character window. Try another length or seed.','newly_searched':receipt.get('performed_search',False),'search':receipt})
   result,receipt=generate(letters=letters,seed=seed,centre=centre,seed_text=seed_text,budget_ms=budget_ms,exclude_id=exclude_id)

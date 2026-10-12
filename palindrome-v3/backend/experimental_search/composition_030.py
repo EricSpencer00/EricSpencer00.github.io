@@ -134,12 +134,7 @@ class CharacterSearch:
      else:debt=unit;dside=side
      if len(debt)>8:reject('debt_cap',s,c);continue
      maximum_debt=max(maximum_debt,len(debt));n={'left':s['left']+c.text if side=='left'else s['left'],'right':c.text+s['right']if side=='right'else s['right'],'ls':c.exit if side=='left'else s['ls'],'rs':c.entry if side=='right'else s['rs'],'side':dside,'debt':debt,'matched':matched,'bindings':b,'ids':s['ids']+[c.id],'trace':s['trace']+[{'side':side,'chunk':self.meta[c.id],'debt_before':{'side':s['side'],'letters':old},'debt_after':{'side':dside,'letters':debt},'paid':min(len(old),len(unit))if old else 0}],'steps':s['steps']+1,'total':s['total']+len(unit)};new.append(n)
-   rng.shuffle(new)
-   # Retain repeats as possible continuations, but visit diverse task bindings first.
-   def repetition(n):
-    b=n['bindings'];tasks=[(v,b['predicate'+k[6:]])for k,v in b.items()if k.startswith('qactor')and 'predicate'+k[6:]in b]
-    return len(tasks)-len(set(tasks))
-   new.sort(key=repetition,reverse=True);stack.extend(new)
+   rng.shuffle(new);stack.extend(new)
   return {'outputs':list(outputs.values()),'failures':failures,'closed_derivations':closed,'receipt':{'status':status,'seed':seed,'low':low,'high':high,'seconds_cap':seconds,'max_states':max_states,'max_steps':max_steps,'max_outputs':max_outputs,'states_visited':visited,'proposals':proposals,'duplicate_states':duplicates,'failure_counts':dict(reasons),'pending_states':len(stack),'max_debt_seen':maximum_debt,'elapsed_ms':1000*(time.perf_counter()-start),'outputs':len(outputs),'answer_cache':False,'indexed':indexed,'traversal':'seeded randomized depth-first; uniform final draw over discovered unique eligible tapes, not whole-language uniform'}}
 
 def verified_insertion(base,left,right,left_index,right_index):
