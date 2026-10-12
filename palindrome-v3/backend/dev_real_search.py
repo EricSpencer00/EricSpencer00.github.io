@@ -10,12 +10,26 @@ from .experimental_search.shape import shape
 BOUNDS={'max_steps':24,'max_states':3000,'max_outputs':32,'seconds':.15}
 VERSION='late-center-lexical-028'
 @lru_cache(maxsize=1)
-def lexical_inventory():return inventory('question','all')
+def lexical_inventory():
+ allowed={'snip','strap','spot','draw','redraw'};cs=[]
+ for c in inventory('question','all'):
+  verb=next((v for k,v in c.bindings if k.startswith('verb')),None)
+  path_verb=next((v for v in allowed|{'put','top','pat','stab','see','nip'} if ':OBJ:'+v+':' in c.entry+':' or ':OBJ:'+v+':' in c.exit+':'),None)
+  selected=verb or path_verb
+  if selected and selected not in allowed:continue
+  if selected in {'draw','redraw'}and (':ADJ:'in c.entry or ':ADJ:'in c.exit):continue
+  cs.append(c)
+ return tuple(cs)
 @lru_cache(maxsize=1)
 def known_tapes():
  p=Path(__file__).resolve().parents[1]/'data/v3_bank.json'
  if not p.exists():return frozenset()
  return frozenset(normalize(r['text'])for r in json.loads(p.read_text()))
+
+@lru_cache(maxsize=1)
+def source_hashes():
+ paths=[Path(__file__),Path(__file__).parent/'experimental_search/late_center_lexical.py',Path(__file__).parent/'experimental_search/bilateral_seams.py']
+ return {p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in paths}
 
 def seed_gap(seed_text):
  """Parse supplied words through the grammar; never look up finished outputs."""
@@ -54,7 +68,7 @@ def generate(*,letters=22,seed=0,centre=None,seed_text=None,budget_ms=150):
   at=(len(t)-len(ct))//2
   if len(t)<letters or(ct and (at<0 or (len(t)-len(ct))%2 or t[at:at+len(ct)]!=ct)):continue
   eligible.append(row)
- receipt={**run['receipt'],'revision':VERSION,'arcs':len(cs),'inventory_sha256':hashlib.sha256(repr(cs).encode()).hexdigest(),'elapsed_total_ms':1000*(time.perf_counter()-start),'eligible_outputs':len(eligible),'debt_cap':8,'answer_cache':False}
+ receipt={**run['receipt'],'revision':VERSION,'source_hashes':source_hashes(),'arcs':len(cs),'inventory_sha256':hashlib.sha256(repr(cs).encode()).hexdigest(),'elapsed_total_ms':1000*(time.perf_counter()-start),'eligible_outputs':len(eligible),'debt_cap':8,'answer_cache':False}
  if not eligible:return None,receipt
  random.Random(seed or 0).shuffle(eligible)
  # Soft preference for least token repetition; not a human-quality certificate.
@@ -66,7 +80,7 @@ def create_router(fallback):
  @router.get('/health')
  def health():
   cs=lexical_inventory()
-  return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'search':True,'bank_sampling':False,'arcs':len(cs),'bounds':BOUNDS,'debt_cap':8,'capacity':{'novel':{'max_letters':29}},'capacity_basis':'maximum exact length in completed finite fixture; not general paragraph capacity','quality_unrated':True}
+  return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'arcs':len(cs),'bounds':BOUNDS,'debt_cap':8,'capacity':{'novel':{'max_letters':29}},'capacity_basis':'maximum exact length in completed finite fixture; not general paragraph capacity','quality_unrated':True}
  @router.get('/composition')
  def composition(seed:int|None=None,letters:int=Query(22,ge=1,le=20000),centre:str|None=Query(None,max_length=200),budget_ms:int=Query(150,ge=20,le=150),fallback:bool=False,seed_text:str|None=Query(None,max_length=200)):
   if centre and seed_text:raise HTTPException(422,'Choose a seed or a literal centre, not both.')

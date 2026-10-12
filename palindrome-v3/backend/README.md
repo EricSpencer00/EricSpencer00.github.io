@@ -2,11 +2,11 @@
 
 This additive package mounts `/api/dev/v3/health` and `/api/dev/v3/composition`. The old `/api/v3` composer, bank, model, proxy and production frontend remain in place. No model inference is used by the new route.
 
-Each request runs bounded outside-in search over a typed lexical question grammar. Fixed grammatical actor/location spans may surround an editable internal gap when `seed_text` is supplied. Directional letter debt can cross words; the final normalized text is checked independently. Words and argument slots are inputs; completed answers are not cached or sampled. Grammar bindings establish only limited role consistency, not a readability certificate.
+Each request runs bounded outside-in search over a typed lexical question grammar with five action verbs. Fixed grammatical actor/location spans may surround an editable internal gap when `seed_text` is supplied. Directional letter debt can cross words; the final normalized text is checked independently. Words and argument slots are inputs; completed answers are not cached or sampled. Grammar bindings establish only limited role consistency, not a readability certificate.
 
 Defaults: 22 requested letters, 150 ms search timeout, 3,000 visited states, 24 steps, 32 output tapes, eight letters of debt. `seed` orders actual returned candidates. Literal `centre` and editable `seed_text` are distinct and cannot be combined. Unlicensed seeds and unsupported lengths return HTTP 409 with the real search receipt. `fallback=true` explicitly requests the unchanged legacy composer after failure; its response says `explicit-legacy-corpus-fallback` and `newly_searched:false`. The frontend never requests that fallback.
 
-The finite question fixture has 14 exact texts with maximum length 29. This is a narrow experimental English grammar. The supplied geese seed reconstructs its existing 31-letter control with a shifted center; it is labeled as a supplied-example reconstruction. Question-seed recomposition can change the predicate and object, so it preserves roles and outer spans rather than every original word. These behaviors do not establish a general long coherent paragraph generator or worldwide novelty.
+The finite question fixture has eight exact texts with maximum length 29. This is a narrow experimental English grammar. The supplied geese seed reconstructs its existing 31-letter control with a shifted center; it is labeled as a supplied-example reconstruction. Question-seed recomposition can change the predicate and object, so it preserves roles and outer spans rather than every original word. These behaviors do not establish a general long coherent paragraph generator or worldwide novelty.
 
 Mount only after backing up the inspected old app:
 
