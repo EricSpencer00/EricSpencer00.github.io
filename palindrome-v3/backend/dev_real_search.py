@@ -8,7 +8,7 @@ from .experimental_search.validator import normalize,is_palindrome
 from .experimental_search.shape import shape
 from . import dev_seed_028
 BOUNDS={'max_steps':24,'max_states':3000,'max_outputs':32,'seconds':.15}
-VERSION='character-composition-030';MIN_TARGET=16;MAX_TARGET=57;DEFAULT_TARGET=51
+VERSION='linked-clauses-033';MIN_TARGET=16;MAX_TARGET=57;DEFAULT_TARGET=51
 @lru_cache(maxsize=32)
 def compiled(depth,seed_actor=None,seed_verb=None,seed_object=None,outer_actor=None):
  cs=memo_grammar()if depth==0 else grammar(depth,outer=('snip',))
@@ -22,7 +22,7 @@ def compiled(depth,seed_actor=None,seed_verb=None,seed_object=None,outer_actor=N
  return GlobalSearch(cs)
 @lru_cache(maxsize=1)
 def source_hashes():
- paths=[Path(__file__),Path(__file__).parent/'experimental_search/composition_030.py',Path(__file__).parent/'experimental_search/composition_029.py',Path(__file__).parent/'experimental_search/shape.py']
+ paths=[Path(__file__),Path(__file__).parent/'experimental_search/continuations_033.py',Path(__file__).parent/'experimental_search/continuation-lexicon.json',Path(__file__).parent/'experimental_search/composition_030.py',Path(__file__).parent/'experimental_search/composition_029.py',Path(__file__).parent/'experimental_search/shape.py']
  return {p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in paths}
 
 def parse_direct_seed(text):
@@ -111,6 +111,13 @@ def generate_characters(*,characters=100,seed=None,seed_text=None,budget_ms=300,
    seed_plan={'licensed_end_to_end':True}
   if not seed_plan:
    return None,{'revision':VERSION,'status':'seed_not_in_character_grammar','performed_search':False,'eligible_outputs':0,'target_characters':target,'seed':actual_seed}
+ linked_receipt=None
+ if not seed_text and target<=200:
+  from .experimental_search.continuations_033 import search as linked_search
+  row,linked_receipt=linked_search(target=target,seed=actual_seed,seconds=min(.15,budget_ms/1000),exclude_id=exclude_id)
+  if row:
+   text=row['text'];t=normalize(text);receipt={**linked_receipt,'revision':VERSION,'source_hashes':source_hashes(),'target_characters':target,'length_unit':'displayed_characters','eligible_range':{'min':low,'max':high},'budget_ms':budget_ms,'performed_search':True}
+   return {'version':3,'result_id':row['id'],'text':text,'plain':text,'letters':len(t),'characters':len(text),'words':len(text.split()),'requested_characters':characters,'target_characters':target,'length_unit':'displayed_characters','eligible_range':{'min':low,'max':high},'shape':shape(text),'family':'linked_requests_and_reactions','construction_depth':row['depth'],'generation_method':'linked-clause-word-search033','newly_searched':True,'stored_answer_sampling':False,'quality_unrated':True,'novelty_unverified':True,'can_compose_as_component':False,'centre_is_yours':False,'seed_is_yours':False,'search':receipt,'features':row['features'],'derivation':{'bindings':row['bindings'],'trace':row['trace']},'quality_caption':'experimental linked clauses','quality_limit':'Referral purpose and causal links remain implicit; owner-model ratings are not human approval.'},receipt
  depths=list(range(1,41));rng.shuffle(depths)
  # Prefer a target-depth estimate to avoid spending the entire budget in a
  # barely reachable shallow grammar. This is a disclosed search heuristic.
@@ -138,12 +145,12 @@ def generate_characters(*,characters=100,seed=None,seed_text=None,budget_ms=300,
   for row in run['outputs']:
    row['depth']=depth;found[normalize(row['text'])]=row
   if found:break
- receipt={'revision':VERSION,'source_hashes':source_hashes(),'seed':actual_seed,'target_characters':target,'eligible_range':{'min':low,'max':high},'length_unit':'displayed_characters','length_window':tolerance,'runs':runs,'eligible_outputs':len(found),'elapsed_total_ms':1000*(time.perf_counter()-start),'budget_ms':budget_ms,'answer_cache':False,'performed_search':bool(runs),'sampling':'seeded word-arc search, estimated target depth first, ranking on repeated utterances and actors; not whole-language uniform'}
+ receipt={'linked_search_attempt':linked_receipt,'retained_030_route':True,'revision':VERSION,'source_hashes':source_hashes(),'seed':actual_seed,'target_characters':target,'eligible_range':{'min':low,'max':high},'length_unit':'displayed_characters','length_window':tolerance,'runs':runs,'eligible_outputs':len(found),'elapsed_total_ms':1000*(time.perf_counter()-start),'budget_ms':budget_ms,'answer_cache':False,'performed_search':bool(runs),'sampling':'seeded word-arc search, estimated target depth first, ranking on repeated utterances and actors; not whole-language uniform'}
  if not found:return None,receipt
  rows=list(found.values());rng.shuffle(rows)
  rows.sort(key=lambda r:(features(r['text'],r['bindings'])['duplicate_utterances'], -features(r['text'],r['bindings'])['distinct_named_actors'],abs(len(r['text'])-target)))
  row=rows[0];text=row['text'];t=normalize(text);assert is_palindrome(text)and low<=len(text)<=high
- return {'version':3,'result_id':row['id'],'text':text,'plain':text,'letters':len(t),'characters':len(text),'words':len(text.split()),'requested_characters':characters,'target_characters':target,'length_unit':'displayed_characters','eligible_range':{'min':low,'max':high},'shape':shape(text),'family':'task_dialogue','construction_depth':row['depth'],'generation_method':'typed-character-bounded-word-search','newly_searched':True,'stored_answer_sampling':False,'quality_unrated':True,'novelty_unverified':True,'can_compose_as_component':bool(parse_direct_seed(text)),'centre_is_yours':False,'seed_is_yours':bool(seed_text),'seed_semantics':'complete licensed central task retained'if seed_plan else None,'search':receipt,'features':features(text,row['bindings']),'derivation':{'bindings':row['bindings'],'trace':row['trace']},'quality_limit':'nested task questions and echo-object replies; long outputs are not evidence of coherent paragraph quality'},receipt
+ return {'version':3,'result_id':row['id'],'text':text,'plain':text,'letters':len(t),'characters':len(text),'words':len(text.split()),'requested_characters':characters,'target_characters':target,'length_unit':'displayed_characters','eligible_range':{'min':low,'max':high},'shape':shape(text),'family':'task_dialogue','construction_depth':row['depth'],'generation_method':'typed-character-bounded-word-search','newly_searched':True,'stored_answer_sampling':False,'quality_unrated':True,'novelty_unverified':True,'can_compose_as_component':bool(parse_direct_seed(text)),'centre_is_yours':False,'seed_is_yours':bool(seed_text),'seed_semantics':'complete licensed central task retained'if seed_plan else None,'search':receipt,'features':features(text,row['bindings']),'derivation':{'bindings':row['bindings'],'trace':row['trace']},'quality_caption':'experimental nested dialogue','quality_limit':'nested task questions and echo-object replies; long outputs are not evidence of coherent paragraph quality'},receipt
 
 def create_router(fallback):
  # Compile only immutable grammar/index inputs. No search or answer cache here.
@@ -151,7 +158,7 @@ def create_router(fallback):
  for depth in range(1,41):compiled_characters(depth).remaining_chars('START','END')
  router=APIRouter(prefix='/api/dev/v3')
  @router.get('/health')
- def health():return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'bounds':BOUNDS,'character_bounds':{'max_depth':40,'max_steps':320,'max_states':10000,'max_outputs':32,'seconds':.3},'default_characters':100,'length_window':10,'default_target':DEFAULT_TARGET,'minimum_target':MIN_TARGET,'capacity':{'novel':{'max_letters':MAX_TARGET,'max_characters':1200}},'capacity_basis':'finite typed grammar bound; not a novelty or readability claim','families':['memo_statement','task_dialogue'],'quality_unrated':True}
+ def health():return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'bounds':BOUNDS,'character_bounds':{'max_depth':40,'max_steps':320,'max_states':10000,'max_outputs':32,'seconds':.3},'default_characters':100,'length_window':10,'default_target':DEFAULT_TARGET,'minimum_target':MIN_TARGET,'capacity':{'novel':{'max_letters':MAX_TARGET,'max_characters':1200}},'capacity_basis':'finite typed grammar bound; not a novelty or readability claim','families':['memo_statement','task_dialogue','linked_requests_and_reactions'],'linked_clause_evaluated_max_characters':200,'quality_unrated':True}
  @router.get('/composition')
  def composition(seed:int|None=None,letters:int=DEFAULT_TARGET,characters:int|None=Query(None,ge=24,le=1200),centre:str|None=Query(None,max_length=200),budget_ms:int=Query(150,ge=20,le=150),character_budget_ms:int=Query(300,ge=20,le=300),fallback:bool=False,seed_text:str|None=Query(None,max_length=1200),exclude_id:str|None=Query(None,max_length=64)):
   if centre and seed_text:raise HTTPException(422,'Choose a seed or a literal centre, not both.')

@@ -1,0 +1,702 @@
+{
+  "role_words": {
+    "human_name": [
+      "Liam",
+      "Leon",
+      "Noel",
+      "Tara",
+      "Nora",
+      "Tim",
+      "Sam",
+      "Dan",
+      "Ada",
+      "Eva",
+      "Anna",
+      "Eve",
+      "Dennis",
+      "Hannah"
+    ],
+    "NOUN": [
+      "desserts",
+      "meals",
+      "cakes",
+      "pies",
+      "bread",
+      "mail",
+      "letters",
+      "notes",
+      "reports",
+      "messages"
+    ],
+    "ADJ": [
+      "stressed",
+      "tired",
+      "angry",
+      "sad",
+      "calm",
+      "happy",
+      "ready"
+    ],
+    "VERB": [
+      "reviled",
+      "praised",
+      "helped",
+      "warned",
+      "called",
+      "paid",
+      "repaid",
+      "rewarded",
+      "fed",
+      "met",
+      "refer",
+      "help",
+      "warn",
+      "call",
+      "pay",
+      "repay",
+      "feed",
+      "lived",
+      "sinned",
+      "waited",
+      "walked",
+      "ran",
+      "rested",
+      "deliver",
+      "is"
+    ]
+  },
+  "resource_hashes": {
+    "tools/polaris/payload/brown.json.gz": "14a81b69751dbb9e54251071a97b84fe3aef9b5532a308028810103acb478419",
+    "data/lexicon.txt": "0831919ec27fe131e8b4b4ad41630c48a37087802dc9a94f94cc57441f91f5e6",
+    "llm_palindrome/typed_constituents.py": "7e8112bfb594dc7bded2e239a0026f129e5db9959320a7a93d2b2af75532ad19"
+  },
+  "decisions": [
+    {
+      "word": "Liam",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "Leon",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Noel",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Tara",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Nora",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Tim",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Sam",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Dan",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Ada",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Eva",
+      "role": "human_name",
+      "supported": true,
+      "source": "existing authored human-name inventory",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Anna",
+      "role": "human_name",
+      "supported": true,
+      "source": "frozen Brown noun support plus explicit human-name class",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Eve",
+      "role": "human_name",
+      "supported": true,
+      "source": "frozen Brown noun support plus explicit human-name class",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Dennis",
+      "role": "human_name",
+      "supported": true,
+      "source": "frozen Brown noun support plus explicit human-name class",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "Hannah",
+      "role": "human_name",
+      "supported": true,
+      "source": "frozen Brown noun support plus explicit human-name class",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "desserts",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: dessert",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "meals",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: meal",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "cakes",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: cake",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "pies",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: pi,pie",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "bread",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "mail",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "letters",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: letter",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "notes",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: not,note",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "reports",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: report",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "messages",
+      "role": "NOUN",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: message",
+      "brown_tags": [
+        "NOUN"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "stressed",
+      "role": "ADJ",
+      "supported": true,
+      "source": "explicit adjectival participle stress+ed; frozen Brown verbal support",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "tired",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "angry",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "sad",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "calm",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "happy",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "reviled",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: revile",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "praised",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: praise",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "helped",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: help",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "warned",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: warn",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "called",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: call",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "paid",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: pay",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "repaid",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: repay",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "rewarded",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: reward",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "fed",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "met",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "refer",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "help",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN",
+        "PRT",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "warn",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "call",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "pay",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "repay",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "feed",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "lived",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "sinned",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: sin",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "waited",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: wait",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "walked",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: walk",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "ran",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "rested",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown inflected POS plus explicit local lemma realization: rest",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": false
+    },
+    {
+      "word": "ready",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "tired",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "angry",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "sad",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "calm",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "NOUN",
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "happy",
+      "role": "ADJ",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "ADJ",
+        "NOUN"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "deliver",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB"
+      ],
+      "in_local_lexicon": true
+    },
+    {
+      "word": "is",
+      "role": "VERB",
+      "supported": true,
+      "source": "frozen Brown POS and local lexicon",
+      "brown_tags": [
+        "VERB",
+        "X"
+      ],
+      "in_local_lexicon": true
+    }
+  ],
+  "contains_completed_sentences": false,
+  "inherited_seams": "005/006 deliver/revile and desserts/stressed; no new seam claim"
+}

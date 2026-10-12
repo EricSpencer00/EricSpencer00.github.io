@@ -24,7 +24,7 @@ class SearchEndpointTests(unittest.TestCase):
  def test_explicit_fallback_parameters(self):
   r=self.c.get('/api/dev/v3/composition?letters=1200&seed=7&seed_text=hello&fallback=true').json();self.assertFalse(r['newly_searched']);self.assertEqual(r['generation_method'],'explicit-legacy-corpus-fallback');self.assertEqual(self.calls,[{'seed':7,'letters':1200,'chops':None,'longest_first':False,'centre':'hello','novel':True}])
  def test_budget_and_health(self):
-  self.assertEqual(self.c.get('/api/dev/v3/composition?budget_ms=151').status_code,422);h=self.c.get('/api/dev/v3/health').json();self.assertEqual(h['revision'],'character-composition-030');self.assertEqual(h['length_window'],10);self.assertEqual(h['capacity']['novel']['max_letters'],57);self.assertFalse(h['bank_sampling'])
+  self.assertEqual(self.c.get('/api/dev/v3/composition?budget_ms=151').status_code,422);h=self.c.get('/api/dev/v3/health').json();self.assertEqual(h['revision'],'linked-clauses-033');self.assertEqual(h['length_window'],10);self.assertEqual(h['capacity']['novel']['max_letters'],57);self.assertFalse(h['bank_sampling'])
  def test_punctuation_case_and_true_letter_center(self):
   r=self.c.get('/api/dev/v3/composition?letters=51&seed=29').json();s=r['shape'];tokens=s['left']+([s['centerDisplay']]if s['centerDisplay']else[])+s['right'];self.assertEqual(' '.join(tokens),r['text']);self.assertIn('?',r['text']);self.assertIn('.',r['text']);self.assertTrue(r['text'].startswith('Did '));self.assertTrue(s['punctuated'])
   before=len(normalize(' '.join(s['left'])));raw=s['centerDisplay'];offset=len(normalize(raw[:s['pivot']]));self.assertEqual(before+offset,r['letters']//2)
