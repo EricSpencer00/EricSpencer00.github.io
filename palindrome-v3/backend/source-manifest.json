@@ -1,8 +1,13 @@
 {
-  "revision": "late-center-lexical-028",
+  "revision": "global-composition-029",
   "files": [
     {
       "path": "dev_real_search.py",
+      "sha256": "e67366c9705a58d8eada5f35e6a4361cf1a3bf4608b42c7b34f0ede1ed39bbb6",
+      "bytes": 10975
+    },
+    {
+      "path": "dev_seed_028.py",
       "sha256": "a216a6838084bcf8f0bb31894c264a9737c94f92d873c8bd883384e647dc1fca",
       "bytes": 6993
     },
@@ -22,6 +27,11 @@
       "bytes": 15154
     },
     {
+      "path": "experimental_search/composition_029.py",
+      "sha256": "51a421879718ec967f0adea1b532ed9eb66c0a16f69b38b61c2a4beb5abc40aa",
+      "bytes": 11695
+    },
+    {
       "path": "experimental_search/late_center_lexical.py",
       "sha256": "5a575fe7eb6f85196e74f63f8b2b8c1dd6b60967053ae7feacd3a0e7e7eb5400",
       "bytes": 8901
@@ -38,8 +48,8 @@
     },
     {
       "path": "experimental_search/shape.py",
-      "sha256": "105ff2c975af6acdcf393ac20983ae8109e72f490766f0a90b18315dce495397",
-      "bytes": 895
+      "sha256": "44574a73f7ef8e97039627c49b7179131f52abf12dba022316fb4f4b03414347",
+      "bytes": 920
     },
     {
       "path": "experimental_search/validator.py",
@@ -49,5 +59,6 @@
   ],
   "production_app_base_sha256": "ae83d12b560a0cb33e7def8157a58db7903086b9b6ff04faa0a7fe0d32a9517b",
   "production_v3_sha256": "8134184447bf900d193e86379f017758e82868e7efc09b5f586d5c61ae841d08",
-  "production_bank_sha256": "f5ef16a8b594e4da72c19a62a0758ebc7dc75b33c42f80a718a2fb6539993676"
+  "production_bank_sha256": "f5ef16a8b594e4da72c19a62a0758ebc7dc75b33c42f80a718a2fb6539993676",
+  "expected_previous_dev_sha256": "a216a6838084bcf8f0bb31894c264a9737c94f92d873c8bd883384e647dc1fca"
 }

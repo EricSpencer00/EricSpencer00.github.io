@@ -44,6 +44,7 @@ type Shape = {
   right: string[]
   letters: number
   words: number
+  punctuated?: boolean
 }
 
 type Result = Shape & {
@@ -62,6 +63,7 @@ type Result = Shape & {
   // should mean once there is a version that has any.
   written?: string
   yours?: boolean
+  expandedPrevious?: boolean
 }
 
 /* Which generator this page talks to.
@@ -101,6 +103,7 @@ const REAL_SEARCH = import.meta.env.VITE_REAL_SEARCH === "true"
 const V3_COMPOSITION = REAL_SEARCH ? "/api/dev/v3/composition" : "/api/v3/composition"
 const V3_HEALTH = REAL_SEARCH ? "/api/dev/v3/health" : "/api/v3/health"
 const LEN_MIN = REAL_SEARCH ? 16 : 40
+const letterCount = (s: string) => s.replace(/[^a-z]/gi, "").length
 const LEN_STEPS = 1000
 const fromSlider = (t: number, cap: number) =>
   Math.round(LEN_MIN * Math.pow(cap / LEN_MIN, t / LEN_STEPS))
@@ -265,9 +268,10 @@ function place(s: Shape, cols: number): Grid {
 
   /* The centre word is the palindromic core, so it sits symmetrically across the
      mirror: its C letters run from −C to +C in half-letters, whatever C is. */
-  const core = s.center.length
+  const core = s.punctuated ? letterCount(s.center) : s.center.length
+  const coreRel = s.punctuated ? -(2 * letterCount(display.slice(0, s.pivot)) + (s.pivotOdd ? 1 : 0)) : -core
   const center: Cell | null = display
-    ? { text: display, row: 0, col: cStart, rel: -core }
+    ? { text: display, row: 0, col: cStart, rel: coreRel }
     : null
 
   let base: Ext = { minRow: 0, maxRow: 0, minCol: c0, maxCol: c0 }
@@ -278,13 +282,13 @@ function place(s: Shape, cols: number): Grid {
   const rightExt: Ext[] = [base]
   let row = 0
   let col = rightStart
-  let rel = core
+  let rel = s.punctuated ? coreRel + 2 * core : core
   for (const w of s.right) {
     if (col + w.length > cols) { row += 1; col = 0 }
     right.push({ text: w, row, col, rel })
     rightExt.push(stretch(rightExt[rightExt.length - 1], row, col, w.length))
     col += w.length + 1
-    rel += 2 * w.length
+    rel += 2 * (s.punctuated ? letterCount(w) : w.length)
   }
 
   // Left half: prepended, so it fills leftward and wraps UPWARD, each line
@@ -295,12 +299,12 @@ function place(s: Shape, cols: number): Grid {
   const leftExt: Ext[] = [base]
   row = 0
   let end = leftEnd
-  rel = -core
+  rel = s.punctuated ? coreRel : -core
   for (let i = s.left.length - 1; i >= 0; i--) {
     const w = s.left[i]
     if (end - w.length + 1 < 0) { row -= 1; end = cols - 1 }
     const at = Math.max(0, end - w.length + 1)
-    rel -= 2 * w.length
+    rel -= 2 * (s.punctuated ? letterCount(w) : w.length)
     left.push({ text: w, row, col: at, rel })
     leftExt.push(stretch(leftExt[leftExt.length - 1], row, at, w.length))
     end = at - 2
@@ -381,9 +385,11 @@ export default function App() {
   /* v3's two extra controls. `cap` is the bank's own ceiling, asked for rather
      than assumed, so the dial cannot promise a length the material cannot
      reach. The fallback is what the deployed bank holds today. */
-  const [target, setTarget] = useState(REAL_SEARCH ? 22 : 1200)
-  const [cap, setCap] = useState(REAL_SEARCH ? 29 : 14500)
+  const [target, setTarget] = useState(REAL_SEARCH ? 51 : 1200)
+  const [cap, setCap] = useState(REAL_SEARCH ? 57 : 14500)
   const v3Timers = useRef<number[]>([])
+  const previousResultId = useRef("")
+  const previousComponent = useRef<{ text: string; letters: number; eligible: boolean } | null>(null)
 
   /* Words are written one at a time, spread evenly across the gap the frames
      arrive on. The search publishes in chunks of twenty-odd words because that
@@ -675,9 +681,13 @@ export default function App() {
 
     const q = new URLSearchParams({
       letters: String(target),
-      seed: String(Date.now() % 1e9),
+      seed: String(REAL_SEARCH ? crypto.getRandomValues(new Uint32Array(1))[0] : Date.now() % 1e9),
     })
+    const expandPrevious = REAL_SEARCH && !prompt.trim() && !!previousComponent.current?.eligible
+      && target > previousComponent.current.letters + 10
     if (prompt.trim()) q.set(REAL_SEARCH ? "seed_text" : "centre", prompt.trim())
+    else if (expandPrevious) q.set("seed_text", previousComponent.current!.text)
+    if (REAL_SEARCH && previousResultId.current) q.set("exclude_id", previousResultId.current)
 
     fetch(`${V3_COMPOSITION}?${q}`)
       .then(async (r) => {
@@ -690,6 +700,8 @@ export default function App() {
         if (!tape || tape !== [...tape].reverse().join("")) {
           throw new Error("The generator returned an invalid palindrome.")
         }
+        previousResultId.current = c.result_id || ""
+        previousComponent.current = { text: c.text, letters: c.letters, eligible: !!c.can_compose_as_component }
         const shape = c.shape as Shape
         // Fixed for the whole run, as in the streaming path: a regrid rewraps,
         // and a rewrap moves words already on screen.
@@ -698,7 +710,7 @@ export default function App() {
         setEndRows(Math.max(1, Math.ceil((c.letters * CHARS_PER_LETTER) / n)))
         setResult({
           ...shape, lm: null, coherence: 0, seconds: 0,
-          written: c.text, yours: c.centre_is_yours,
+          written: c.text, yours: c.centre_is_yours, expandedPrevious: expandPrevious,
         })
         const L = shape.left.length
         const R = shape.right.length
@@ -758,10 +770,11 @@ export default function App() {
     // v3 is composed, not searched, so there is no elapsed time to report and
     // reporting one would be a fiction. What it has instead is the length that
     // was asked for, which is a thing v1 and v2 do not have at all.
-    IS_V3 && searching ? `${REAL_SEARCH ? "Searching · " : ""}${target.toLocaleString()} letters`
+    IS_V3 && searching ? `${REAL_SEARCH ? "Searching · ~" : ""}${target.toLocaleString()} letters${REAL_SEARCH ? " (±10)" : ""}`
     : IS_V3 && done && result
       ? `${REAL_SEARCH ? "Searched · " : ""}${result.letters.toLocaleString()} letters · ${result.words} words`
         + (result.yours ? " · yours at the centre" : "")
+        + (result.expandedPrevious ? " · expanded previous result" : "")
     : searching ? `${elapsed.toFixed(1)}s${result ? ` · ${result.letters} letters` : ""}`
     : phase === "error" ? error
     : done && result ? `${result.letters} letters · ${result.words} words · ${result.seconds}s`
@@ -877,13 +890,14 @@ export default function App() {
           >
             {[...grid.left.slice(0, drawn.l), ...grid.right.slice(0, drawn.r)].map((c) => (
               <span
+                data-pal-word={c.text} data-letter-start={c.rel}
                 key={c.rel}
                 style={{ position: "absolute", left: c.col * charW, top: c.row * lineH }}
               >
                 <Word
                   text={c.text} rel={c.rel} pick={pick} mirror={mirror}
                   onPick={() => setPick((p) =>
-                    p && p[0] === c.rel ? null : [c.rel, c.rel + 2 * c.text.length])}
+                    p && p[0] === c.rel ? null : [c.rel, c.rel + 2 * (result.punctuated ? letterCount(c.text) : c.text.length)])}
                 />
               </span>
             ))}
@@ -899,10 +913,11 @@ export default function App() {
               // that letter is drawn by itself so it can blink, and a click
               // landing on it would otherwise fall through and clear.
               const toggle = () =>
-                setPick((p) => (p && p[0] === c.rel ? null : [c.rel, -c.rel]))
+                setPick((p) => (p && p[0] === c.rel ? null : [c.rel, result.punctuated ? c.rel + 2 * letterCount(c.text) : -c.rel]))
               const take = (e: MouseEvent) => { e.stopPropagation(); toggle() }
               return (
                 <span
+                  data-pal-word={c.text} data-letter-start={c.rel}
                   onClick={take}
                   className="cursor-pointer whitespace-pre"
                   style={{ position: "absolute", left: c.col * charW, top: c.row * lineH }}
@@ -933,6 +948,8 @@ export default function App() {
                 at each edge, and each steps one word further out every time a
                 word lands. They are what makes the pace visible. */}
             {!done && !result.pivotOdd && <Bar x={anchorX} y={anchorY} />}
+            {REAL_SEARCH && done && !result.pivotOdd && <span aria-hidden="true" className="absolute bg-signal"
+              style={{ left: anchorX - BAR_W / 2, top: anchorY - BAR_H / 2, width: BAR_W, height: BAR_H }} />}
             {!done && heads.map((h, i) => (
               <Bar key={i} x={(h.col + 0.5) * charW} y={h.row * lineH + lineH / 2} />
             ))}
@@ -1050,7 +1067,7 @@ export default function App() {
             </div>
             <p className="label text-center leading-relaxed">
               reads the same backwards ·{" "}
-              {IS_V3 ? (REAL_SEARCH ? "experimental sentence search" : "composed on a mac mini") : "gpt-2 on a mac mini"} ·{" "}
+              {IS_V3 ? (REAL_SEARCH ? "experimental palindrome search" : "composed on a mac mini") : "gpt-2 on a mac mini"} ·{" "}
               <a href="https://ericspencer.us" target="_blank" rel="noopener noreferrer"
                  className="underline decoration-from-font underline-offset-2 hover:text-signal">
                 ericspencer.us

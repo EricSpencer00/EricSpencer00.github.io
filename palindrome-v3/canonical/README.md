@@ -1,9 +1,7 @@
-# Canonical and experimental search frontend
+# Minimal dev and canonical interfaces
 
-The accepted WebKit writing-transform fix remains: writing updates apply directly, while the final 900 ms fit is eased. Physical-iPhone and genuine-pinch coverage is limited to the user's reported jitter acceptance; desktop WebKit emulation is recorded separately.
+build:search uses the additive dev endpoint, approximate ±10-letter targets,16–57bounds and51default. Fresh interactive seeds change the search traversal. The previous normalized result is excluded; increasing the target beyond a composable short result's window sends that result as a seed. Explicit seed input remains available. No additional primary controls are added.
 
-`npm run build` and `npm run build:production` use the existing `/api/v3` composer, 40-letter minimum and 1,200-letter default. Production HTML, credit and public files retain their existing build path. This task does not redeploy that artifact.
+Punctuated poster tokens retain case and symbols. Mirror coordinates and selection count letters separately from display columns; the blue glyph or gap marks the full-output center. Read and Copy preserve the original written form. The accepted direct writing-transform updates and final900ms eased fit remain.
 
-`npm run build:search` selects the additive `/api/dev/v3` search route, a 16-letter slider minimum and 22-letter default. Optional input is a grammatical palindrome seed; supported seed spans can be recomposed internally while the literal center moves. Empty and unsupported requests display the API's honest error. The minimal controls, exactness validation, Read, Poster and Copy remain.
-
-Deploy the search build only to the existing Cloudflare project `palindrome` preview branch `palindrome-webkit-fix`, using the exact source commit. The unchanged same-origin proxy reaches the new API route. Never send a search build to the production `main` branch.
+Normal/production builds keep the original production endpoints/defaults. This task deploys only the existing palindrome-webkit-fix preview branch; canonical production is not redeployed. The same-origin proxy remains unchanged. Unsupported constraints show the genuine no-result response, never silent corpus fallback.
