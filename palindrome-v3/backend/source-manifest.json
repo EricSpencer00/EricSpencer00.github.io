@@ -1,10 +1,10 @@
 {
-  "revision": "character-composition-030",
+  "revision": "linked-clauses-033",
   "files": [
     {
       "path": "dev_real_search.py",
-      "sha256": "3c733dac7fbed56163809be5c51272045092d54644fa140122254656ee7b785d",
-      "bytes": 16622
+      "sha256": "be401f9dbd26d655ade0a560c9defb3a4b14701bcec210bec3c0c9a2b5b0fe6a",
+      "bytes": 18349
     },
     {
       "path": "dev_seed_028.py",
@@ -60,10 +60,20 @@
       "path": "experimental_search/composition_030.py",
       "sha256": "c1a2e0fac7a6cc28ce3efc7ca89dc10e040c9f93139eaf2310dbe325ffd51fd1",
       "bytes": 11323
+    },
+    {
+      "path": "experimental_search/continuations_033.py",
+      "sha256": "1ed8ed490621f520fe9eef4b80d598e67aa0277ff0afd0925c67173be36bfce1",
+      "bytes": 6164
+    },
+    {
+      "path": "experimental_search/continuation-lexicon.json",
+      "sha256": "1fb785d97c9268933d3f811bdce5a12c101b7aa805b68f7d9a5ef8a0bbbb45ce",
+      "bytes": 15722
     }
   ],
   "production_app_base_sha256": "ae83d12b560a0cb33e7def8157a58db7903086b9b6ff04faa0a7fe0d32a9517b",
   "production_v3_sha256": "8134184447bf900d193e86379f017758e82868e7efc09b5f586d5c61ae841d08",
   "production_bank_sha256": "f5ef16a8b594e4da72c19a62a0758ebc7dc75b33c42f80a718a2fb6539993676",
-  "expected_previous_dev_sha256": "e67366c9705a58d8eada5f35e6a4361cf1a3bf4608b42c7b34f0ede1ed39bbb6"
+  "expected_previous_dev_sha256": "3c733dac7fbed56163809be5c51272045092d54644fa140122254656ee7b785d"
 }

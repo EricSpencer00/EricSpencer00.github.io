@@ -66,6 +66,7 @@ type Result = Shape & {
   expandedPrevious?: boolean
   characters?: number
   qualityLimit?: string
+  qualityCaption?: string
 }
 
 /* Which generator this page talks to.
@@ -712,7 +713,7 @@ export default function App() {
         setEndRows(Math.max(1, Math.ceil((c.letters * CHARS_PER_LETTER) / n)))
         setResult({
           ...shape, lm: null, coherence: 0, seconds: 0,
-          written: c.text, characters: c.characters, qualityLimit: c.quality_limit, yours: c.centre_is_yours, expandedPrevious: expandPrevious,
+          written: c.text, characters: c.characters, qualityLimit: c.quality_limit, qualityCaption: c.quality_caption, yours: c.centre_is_yours, expandedPrevious: expandPrevious,
         })
         const L = shape.left.length
         const R = shape.right.length
@@ -777,7 +778,7 @@ export default function App() {
       ? `${REAL_SEARCH ? `Searched · ${result.characters?.toLocaleString()} characters · ` : ""}${result.letters.toLocaleString()} letters · ${result.words} words`
         + (result.yours ? " · yours at the centre" : "")
         + (result.expandedPrevious ? " · expanded previous result" : "")
-        + (REAL_SEARCH && result.qualityLimit ? " · experimental nested dialogue" : "")
+        + (REAL_SEARCH && result.qualityLimit ? ` · ${result.qualityCaption || "experimental nested dialogue"}` : "")
     : searching ? `${elapsed.toFixed(1)}s${result ? ` · ${result.letters} letters` : ""}`
     : phase === "error" ? error
     : done && result ? `${result.letters} letters · ${result.words} words · ${result.seconds}s`
