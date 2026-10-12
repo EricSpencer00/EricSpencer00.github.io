@@ -1,10 +1,10 @@
 {
-  "revision": "global-composition-029",
+  "revision": "character-composition-030",
   "files": [
     {
       "path": "dev_real_search.py",
-      "sha256": "e67366c9705a58d8eada5f35e6a4361cf1a3bf4608b42c7b34f0ede1ed39bbb6",
-      "bytes": 10975
+      "sha256": "3c733dac7fbed56163809be5c51272045092d54644fa140122254656ee7b785d",
+      "bytes": 16622
     },
     {
       "path": "dev_seed_028.py",
@@ -55,10 +55,15 @@
       "path": "experimental_search/validator.py",
       "sha256": "edd177816d10c903d9c630241a62bf5ddad1ce42c8fe239ad463256c080615ea",
       "bytes": 207
+    },
+    {
+      "path": "experimental_search/composition_030.py",
+      "sha256": "c1a2e0fac7a6cc28ce3efc7ca89dc10e040c9f93139eaf2310dbe325ffd51fd1",
+      "bytes": 11323
     }
   ],
   "production_app_base_sha256": "ae83d12b560a0cb33e7def8157a58db7903086b9b6ff04faa0a7fe0d32a9517b",
   "production_v3_sha256": "8134184447bf900d193e86379f017758e82868e7efc09b5f586d5c61ae841d08",
   "production_bank_sha256": "f5ef16a8b594e4da72c19a62a0758ebc7dc75b33c42f80a718a2fb6539993676",
-  "expected_previous_dev_sha256": "a216a6838084bcf8f0bb31894c264a9737c94f92d873c8bd883384e647dc1fca"
+  "expected_previous_dev_sha256": "e67366c9705a58d8eada5f35e6a4361cf1a3bf4608b42c7b34f0ede1ed39bbb6"
 }

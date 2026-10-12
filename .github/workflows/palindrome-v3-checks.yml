@@ -33,7 +33,7 @@ jobs:
       - name: Validate real search endpoint and explicit fallback
         run: |
           python3 -m pip install fastapi==0.136.1 httpx==0.28.1
-          PYTHONPATH=palindrome-v3 python3 -m unittest backend.test_real_search backend.test_global_search
+          PYTHONPATH=palindrome-v3 python3 -m unittest backend.test_real_search backend.test_global_search backend.test_character_search
       - name: Validate existing site regression contract
         run: |
           python3 scripts/compile_palindrome_windows.py --check

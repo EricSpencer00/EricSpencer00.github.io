@@ -8,7 +8,7 @@ from .experimental_search.validator import normalize,is_palindrome
 from .experimental_search.shape import shape
 from . import dev_seed_028
 BOUNDS={'max_steps':24,'max_states':3000,'max_outputs':32,'seconds':.15}
-VERSION='global-composition-029';MIN_TARGET=16;MAX_TARGET=57;DEFAULT_TARGET=51
+VERSION='character-composition-030';MIN_TARGET=16;MAX_TARGET=57;DEFAULT_TARGET=51
 @lru_cache(maxsize=32)
 def compiled(depth,seed_actor=None,seed_verb=None,seed_object=None,outer_actor=None):
  cs=memo_grammar()if depth==0 else grammar(depth,outer=('snip',))
@@ -22,7 +22,7 @@ def compiled(depth,seed_actor=None,seed_verb=None,seed_object=None,outer_actor=N
  return GlobalSearch(cs)
 @lru_cache(maxsize=1)
 def source_hashes():
- paths=[Path(__file__),Path(__file__).parent/'experimental_search/composition_029.py',Path(__file__).parent/'experimental_search/shape.py']
+ paths=[Path(__file__),Path(__file__).parent/'experimental_search/composition_030.py',Path(__file__).parent/'experimental_search/composition_029.py',Path(__file__).parent/'experimental_search/shape.py']
  return {p.name:hashlib.sha256(p.read_bytes()).hexdigest()for p in paths}
 
 def parse_direct_seed(text):
@@ -94,17 +94,74 @@ def generate(*,letters=DEFAULT_TARGET,seed=None,centre=None,seed_text=None,budge
  half=len(t)//2
  return {'version':3,'result_id':row['id'],'text':text,'plain':text,'letters':len(t),'characters':len(text),'words':len(text.split()),'requested_letters':letters,'target_letters':target,'eligible_range':{'min':low,'max':high},'pairs':0,'chunks':[],'sentences':re.findall(r'[^.!?]+[.!?]',text),'hierarchical':True,'sentence_pairs':0,'distinct_chunks':len({s['chunk']['id']for s in row['trace']}),'repeats':features(text,row['bindings'])['duplicate_utterances'],'centre_is_yours':bool(ct),'seed_is_yours':bool(seed_text),'seed_semantics':('predicate/object fragments; participants and syntax recomposed'if direct and direct.get('fragment_only')else'complete normalized component retained'if direct else None),'removed_seed_modifiers':direct.get('removed_modifiers',[])if direct else[],'shape':shape(text),'family':row['family'],'construction_depth':row['depth'],'can_compose_as_component':row['family']=='task_dialogue'and row['depth']==1,'generation_method':'typed-global-result-composition'if row['depth']==2 else'typed-global-word-search','newly_searched':True,'stored_answer_sampling':False,'known_control':row['family']=='memo_statement','novelty_unverified':True,'quality_unrated':True,'search':receipt,'composition':composition,'center':{'letter_index':half,'odd':bool(len(t)%2),'character':t[half]if len(t)%2 else None,'derived_from_full_output':True,'original_seed_center_required':False},'features':features(text,row['bindings']),'derivation':{'bindings':row['bindings'],'trace':row['trace']}},receipt
 
+@lru_cache(maxsize=40)
+def compiled_characters(depth):
+ from .experimental_search.composition_030 import CharacterSearch,grammar030
+ return CharacterSearch(grammar030(depth))
+
+def generate_characters(*,characters=100,seed=None,seed_text=None,budget_ms=300,exclude_id=None,tolerance=10):
+ start=time.perf_counter();actual_seed=seed if seed is not None else secrets.randbits(32);rng=random.Random(actual_seed)
+ target=max(24,min(1200,characters));low=max(24,target-tolerance);high=min(1200,target+tolerance)
+ runs=[];found={};seed_plan=None
+ # Full seed insertion needs a separately licensed grammar derivation. Never
+ # silently treat arbitrary exact text as grammatical or discard the user's seed.
+ if seed_text:
+  seed_plan=parse_direct_seed(seed_text)
+  if not seed_plan and dev_seed_028.seed_gap(seed_text):
+   seed_plan={'licensed_end_to_end':True}
+  if not seed_plan:
+   return None,{'revision':VERSION,'status':'seed_not_in_character_grammar','performed_search':False,'eligible_outputs':0,'target_characters':target,'seed':actual_seed}
+ depths=list(range(1,41));rng.shuffle(depths)
+ # Prefer a target-depth estimate to avoid spending the entire budget in a
+ # barely reachable shallow grammar. This is a disclosed search heuristic.
+ depths.sort(key=lambda d:abs(d-max(1,round(target/35))))
+ for depth in depths:
+  g=compiled_characters(depth);bounds=g.remaining_chars('START','END')
+  if not bounds or bounds[1]<low or bounds[0]>high:continue
+  if seed_plan:
+   from .experimental_search.composition_030 import CharacterSearch
+   wanted={k.replace('0',str(depth-1)):v for k,v in seed_plan.items()if k.startswith(('qactor','answer_actor','predicate','object'))}
+   chunks=tuple(c for c in g.chunks if all(k not in wanted or wanted[k]==v for k,v in c.bindings))
+   if seed_plan.get('licensed_end_to_end'):
+    from .experimental_search.bilateral_seams import Chunk
+    prefix=f'q{depth-1}:';start_state='START'if depth==1 else f'OPEN:{depth-1}';end_state='END'if depth==1 else f'CLOSE:{depth-1}'
+    chunks=tuple(c for c in chunks if not(c.entry.startswith(prefix)or c.exit.startswith(prefix)or c.entry==start_state))
+    tokens=re.findall(r'[A-Za-z]+[^A-Za-z]*',seed_text);inserts=[]
+    for i,token in enumerate(tokens):
+     inserts.append(Chunk(f'seed{i}',token,start_state if i==0 else f'seed:{i}',end_state if i==len(tokens)-1 else f'seed:{i+1}','licensed supplied central phrase token','supplied end-to-end phrase; licensed by existing 028 seed grammar'))
+    chunks+=tuple(inserts)
+   g=CharacterSearch(chunks)
+  remaining=budget_ms/1000-(time.perf_counter()-start)
+  if remaining<=0:break
+  run=g.search(seed=actual_seed+depth,low_chars=low,high_chars=high,seconds=remaining,max_states=10000,max_steps=320,max_outputs=32,exclude_id=exclude_id)
+  runs.append({'depth':depth,**run['receipt']})
+  for row in run['outputs']:
+   row['depth']=depth;found[normalize(row['text'])]=row
+  if found:break
+ receipt={'revision':VERSION,'source_hashes':source_hashes(),'seed':actual_seed,'target_characters':target,'eligible_range':{'min':low,'max':high},'length_unit':'displayed_characters','length_window':tolerance,'runs':runs,'eligible_outputs':len(found),'elapsed_total_ms':1000*(time.perf_counter()-start),'budget_ms':budget_ms,'answer_cache':False,'performed_search':bool(runs),'sampling':'seeded word-arc search, estimated target depth first, ranking on repeated utterances and actors; not whole-language uniform'}
+ if not found:return None,receipt
+ rows=list(found.values());rng.shuffle(rows)
+ rows.sort(key=lambda r:(features(r['text'],r['bindings'])['duplicate_utterances'], -features(r['text'],r['bindings'])['distinct_named_actors'],abs(len(r['text'])-target)))
+ row=rows[0];text=row['text'];t=normalize(text);assert is_palindrome(text)and low<=len(text)<=high
+ return {'version':3,'result_id':row['id'],'text':text,'plain':text,'letters':len(t),'characters':len(text),'words':len(text.split()),'requested_characters':characters,'target_characters':target,'length_unit':'displayed_characters','eligible_range':{'min':low,'max':high},'shape':shape(text),'family':'task_dialogue','construction_depth':row['depth'],'generation_method':'typed-character-bounded-word-search','newly_searched':True,'stored_answer_sampling':False,'quality_unrated':True,'novelty_unverified':True,'can_compose_as_component':bool(parse_direct_seed(text)),'centre_is_yours':False,'seed_is_yours':bool(seed_text),'seed_semantics':'complete licensed central task retained'if seed_plan else None,'search':receipt,'features':features(text,row['bindings']),'derivation':{'bindings':row['bindings'],'trace':row['trace']},'quality_limit':'nested task questions and echo-object replies; long outputs are not evidence of coherent paragraph quality'},receipt
+
 def create_router(fallback):
  # Compile only immutable grammar/index inputs. No search or answer cache here.
  for depth in (0,1,2):compiled(depth)
+ for depth in range(1,41):compiled_characters(depth).remaining_chars('START','END')
  router=APIRouter(prefix='/api/dev/v3')
  @router.get('/health')
- def health():return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'bounds':BOUNDS,'length_window':10,'default_target':DEFAULT_TARGET,'minimum_target':MIN_TARGET,'capacity':{'novel':{'max_letters':MAX_TARGET}},'capacity_basis':'finite typed grammar bound; not a novelty or readability claim','families':['memo_statement','task_dialogue'],'quality_unrated':True}
+ def health():return {'ok':True,'version':3,'experimental':True,'revision':VERSION,'source_hashes':source_hashes(),'search':True,'bank_sampling':False,'bounds':BOUNDS,'character_bounds':{'max_depth':40,'max_steps':320,'max_states':10000,'max_outputs':32,'seconds':.3},'default_characters':100,'length_window':10,'default_target':DEFAULT_TARGET,'minimum_target':MIN_TARGET,'capacity':{'novel':{'max_letters':MAX_TARGET,'max_characters':1200}},'capacity_basis':'finite typed grammar bound; not a novelty or readability claim','families':['memo_statement','task_dialogue'],'quality_unrated':True}
  @router.get('/composition')
- def composition(seed:int|None=None,letters:int=DEFAULT_TARGET,centre:str|None=Query(None,max_length=200),budget_ms:int=Query(150,ge=20,le=150),fallback:bool=False,seed_text:str|None=Query(None,max_length=200),exclude_id:str|None=Query(None,max_length=64)):
+ def composition(seed:int|None=None,letters:int=DEFAULT_TARGET,characters:int|None=Query(None,ge=24,le=1200),centre:str|None=Query(None,max_length=200),budget_ms:int=Query(150,ge=20,le=150),character_budget_ms:int=Query(300,ge=20,le=300),fallback:bool=False,seed_text:str|None=Query(None,max_length=1200),exclude_id:str|None=Query(None,max_length=64)):
   if centre and seed_text:raise HTTPException(422,'Choose a seed or a literal centre, not both.')
   for value in [centre,seed_text]:
    if value and (not normalize(value)or any(not(c.isascii()and(c.isalpha()or c.isspace()or c in "'-.,;:!?"))for c in value)):raise HTTPException(422,'Use English words and punctuation in the seed or centre.')
+  if characters is not None:
+   if centre:raise HTTPException(422,'Character search accepts a licensed seed rather than a literal centre.')
+   result,receipt=generate_characters(characters=characters,seed=seed,seed_text=seed_text,budget_ms=character_budget_ms,exclude_id=exclude_id)
+   if result is not None:return result
+   raise HTTPException(409,detail={'message':'No exact result found in this character window. Try another length or seed.','newly_searched':receipt.get('performed_search',False),'search':receipt})
   result,receipt=generate(letters=letters,seed=seed,centre=centre,seed_text=seed_text,budget_ms=budget_ms,exclude_id=exclude_id)
   if result is not None:return result
   if fallback:

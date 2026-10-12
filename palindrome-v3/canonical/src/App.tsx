@@ -64,6 +64,8 @@ type Result = Shape & {
   written?: string
   yours?: boolean
   expandedPrevious?: boolean
+  characters?: number
+  qualityLimit?: string
 }
 
 /* Which generator this page talks to.
@@ -102,7 +104,7 @@ const API = IS_V2 ? "/api/v2/generate" : "/api/generate"
 const REAL_SEARCH = import.meta.env.VITE_REAL_SEARCH === "true"
 const V3_COMPOSITION = REAL_SEARCH ? "/api/dev/v3/composition" : "/api/v3/composition"
 const V3_HEALTH = REAL_SEARCH ? "/api/dev/v3/health" : "/api/v3/health"
-const LEN_MIN = REAL_SEARCH ? 16 : 40
+const LEN_MIN = REAL_SEARCH ? 24 : 40
 const letterCount = (s: string) => s.replace(/[^a-z]/gi, "").length
 const LEN_STEPS = 1000
 const fromSlider = (t: number, cap: number) =>
@@ -385,11 +387,11 @@ export default function App() {
   /* v3's two extra controls. `cap` is the bank's own ceiling, asked for rather
      than assumed, so the dial cannot promise a length the material cannot
      reach. The fallback is what the deployed bank holds today. */
-  const [target, setTarget] = useState(REAL_SEARCH ? 51 : 1200)
-  const [cap, setCap] = useState(REAL_SEARCH ? 57 : 14500)
+  const [target, setTarget] = useState(REAL_SEARCH ? 100 : 1200)
+  const [cap, setCap] = useState(REAL_SEARCH ? 1200 : 14500)
   const v3Timers = useRef<number[]>([])
   const previousResultId = useRef("")
-  const previousComponent = useRef<{ text: string; letters: number; eligible: boolean } | null>(null)
+  const previousComponent = useRef<{ text: string; letters: number; characters: number; eligible: boolean } | null>(null)
 
   /* Words are written one at a time, spread evenly across the gap the frames
      arrive on. The search publishes in chunks of twenty-odd words because that
@@ -680,11 +682,11 @@ export default function App() {
     setView("poster"); setPhase("searching")
 
     const q = new URLSearchParams({
-      letters: String(target),
+      [REAL_SEARCH ? "characters" : "letters"]: String(target),
       seed: String(REAL_SEARCH ? crypto.getRandomValues(new Uint32Array(1))[0] : Date.now() % 1e9),
     })
     const expandPrevious = REAL_SEARCH && !prompt.trim() && !!previousComponent.current?.eligible
-      && target > previousComponent.current.letters + 10
+      && target > previousComponent.current.characters + 10
     if (prompt.trim()) q.set(REAL_SEARCH ? "seed_text" : "centre", prompt.trim())
     else if (expandPrevious) q.set("seed_text", previousComponent.current!.text)
     if (REAL_SEARCH && previousResultId.current) q.set("exclude_id", previousResultId.current)
@@ -701,7 +703,7 @@ export default function App() {
           throw new Error("The generator returned an invalid palindrome.")
         }
         previousResultId.current = c.result_id || ""
-        previousComponent.current = { text: c.text, letters: c.letters, eligible: !!c.can_compose_as_component }
+        previousComponent.current = { text: c.text, letters: c.letters, characters: c.characters, eligible: !!c.can_compose_as_component }
         const shape = c.shape as Shape
         // Fixed for the whole run, as in the streaming path: a regrid rewraps,
         // and a rewrap moves words already on screen.
@@ -710,7 +712,7 @@ export default function App() {
         setEndRows(Math.max(1, Math.ceil((c.letters * CHARS_PER_LETTER) / n)))
         setResult({
           ...shape, lm: null, coherence: 0, seconds: 0,
-          written: c.text, yours: c.centre_is_yours, expandedPrevious: expandPrevious,
+          written: c.text, characters: c.characters, qualityLimit: c.quality_limit, yours: c.centre_is_yours, expandedPrevious: expandPrevious,
         })
         const L = shape.left.length
         const R = shape.right.length
@@ -738,7 +740,7 @@ export default function App() {
     fetch(V3_HEALTH)
       .then((r) => (r.ok ? r.json() : null))
       .then((h) => {
-        const max = h?.capacity?.novel?.max_letters
+        const max = REAL_SEARCH ? h?.capacity?.novel?.max_characters : h?.capacity?.novel?.max_letters
         if (max) { setCap(max); setTarget((t) => Math.min(t, max)) }
       })
       .catch(() => { /* the fallback is the deployed bank's size */ })
@@ -770,11 +772,12 @@ export default function App() {
     // v3 is composed, not searched, so there is no elapsed time to report and
     // reporting one would be a fiction. What it has instead is the length that
     // was asked for, which is a thing v1 and v2 do not have at all.
-    IS_V3 && searching ? `${REAL_SEARCH ? "Searching · ~" : ""}${target.toLocaleString()} letters${REAL_SEARCH ? " (±10)" : ""}`
+    IS_V3 && searching ? `${REAL_SEARCH ? "Searching · ~" : ""}${target.toLocaleString()} ${REAL_SEARCH ? "characters (±10)" : "letters"}`
     : IS_V3 && done && result
-      ? `${REAL_SEARCH ? "Searched · " : ""}${result.letters.toLocaleString()} letters · ${result.words} words`
+      ? `${REAL_SEARCH ? `Searched · ${result.characters?.toLocaleString()} characters · ` : ""}${result.letters.toLocaleString()} letters · ${result.words} words`
         + (result.yours ? " · yours at the centre" : "")
         + (result.expandedPrevious ? " · expanded previous result" : "")
+        + (REAL_SEARCH && result.qualityLimit ? " · experimental nested dialogue" : "")
     : searching ? `${elapsed.toFixed(1)}s${result ? ` · ${result.letters} letters` : ""}`
     : phase === "error" ? error
     : done && result ? `${result.letters} letters · ${result.words} words · ${result.seconds}s`
@@ -1023,7 +1026,7 @@ export default function App() {
             <div className="flex items-center gap-3 pl-1">
               <input
                 type="range"
-                aria-label="length in letters"
+                aria-label={REAL_SEARCH ? "length in displayed characters" : "length in letters"}
                 min={0} max={LEN_STEPS} step={1}
                 value={toSlider(Math.min(target, cap), cap)}
                 onChange={(e) => setTarget(fromSlider(Number(e.target.value), cap))}
