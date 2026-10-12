@@ -21,6 +21,10 @@ jobs:
           node-version: '22'
       - name: Validate finite grammar, exactness, debt, cancellation and stale responses
         run: node --test tests/palindrome-v3*.test.mjs
+      - name: Build the jitter-only canonical frontend
+        run: |
+          npm ci --prefix palindrome-v3/canonical --no-audit --no-fund
+          npm run build --prefix palindrome-v3/canonical
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
