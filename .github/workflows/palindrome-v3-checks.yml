@@ -32,3 +32,5 @@ jobs:
         run: |
           python3 scripts/compile_palindrome_windows.py --check
           python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 scripts/check_site.py
+          python3 scripts/build_social_cards.py --check

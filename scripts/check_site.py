@@ -28,6 +28,10 @@ SKIP_DIRS = {".git", "ai4fm", "backup-site", "editor", "tests"}
 SKIP_FILES = {
     ROOT / "404.html",  # GitHub Pages' fallback document keeps its file URL.
     ROOT / "blog" / "_template.html",
+    # Separately deployed Vite authoring entry and ignored local build output.
+    # The public dev route is palindrome-v3/index.html, not these templates.
+    ROOT / "palindrome-v3" / "canonical" / "index.html",
+    ROOT / "palindrome-v3" / "canonical" / "dist" / "index.html",
 }
 EXTENSIONFUL = re.compile(r"\.(?:html?|js)(?:[?#]|$)", re.IGNORECASE)
 # These public documents belong to a separately deployed GitHub project site.
