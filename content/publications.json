@@ -1,5 +1,23 @@
 [
   {
+    "id": "dirty-set",
+    "title": "How the Dirty Set Moves: Characterizing Schedule Reuse in Incremental Sparse Matrix Multiplication",
+    "authors": ["Hunter Horne", "Eric Spencer", "Alex Henningfield", "Arslan Bisharat"],
+    "year": 2026,
+    "venue": "arXiv preprint, arXiv:2610.19489",
+    "status": "Preprint",
+    "role": "Coauthor",
+    "publication_date": "2026-10-14",
+    "url": "https://arxiv.org/abs/2610.19489",
+    "doi": "10.48550/arXiv.2610.19489",
+    "summary": "In incremental sparse matrix multiplication, only a few input rows change per step, and we call those rows the dirty set. A direct column-wise incremental update beats a tiled executor that keeps its preparation and cached schedules in 779 of 837 workloads, and it is 2.1-8.2x faster than the best of eight full-recomputation codes. Tiling only pays off when tiles merge many entries into each output write.",
+    "links": [
+      {"label": "Paper on arXiv", "url": "https://arxiv.org/abs/2610.19489"}
+    ],
+    "sources": ["https://arxiv.org/abs/2610.19489"],
+    "verified_on": "2026-10-19"
+  },
+  {
     "id": "tla-bench",
     "title": "TLA+-Bench: An Execution-Grounded Benchmark and Dataset for Natural-Language to TLA+ Specification Generation",
     "authors": ["Arslan Bisharat", "Eric Spencer", "Brian Ortiz", "Khushboo Bhadauria", "Mujtaba Nazari", "Beatriz Santos", "Anisa Ramos", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
