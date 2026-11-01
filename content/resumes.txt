@@ -13,3 +13,4 @@ resume/110126|resume-110126.pdf|Resume|Eric Spencer — one-page resume.|no
 resume/110126-2|resume-110126-2.pdf|Resume|Eric Spencer — one-page resume.|no
 resume/110126-3|resume-110126-3.pdf|Resume|Eric Spencer — one-page resume.|no
 resume/110126-4|resume-110126-4.pdf|Resume|Eric Spencer — one-page resume.|no
+resume/110126-5|resume-110126-5.pdf|Resume|Eric Spencer — one-page resume.|no
