@@ -11,6 +11,7 @@ from content/cv.json, experience.txt, and publications.json.
 
 from pathlib import Path
 import html as htmllib
+import hashlib
 import json
 
 ROOT = Path(__file__).parent.parent
@@ -205,7 +206,7 @@ def main():
             PAGE.format(
                 title=htmllib.escape(title),
                 blurb=htmllib.escape(blurb),
-                pdf=htmllib.escape(pdf),
+                pdf=htmllib.escape(pdf + ("?v=" + hashlib.sha256((ROOT / "assets" / "pdf" / pdf).read_bytes()).hexdigest()[:12] if slug == "cv" else "")),
                 robots="index, follow" if indexable else "noindex, nofollow",
                 canonical=(
                     f'<link rel="canonical" href="https://ericspencer.us/{slug}/">\n'
