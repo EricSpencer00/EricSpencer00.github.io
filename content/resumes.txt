@@ -9,3 +9,4 @@
 cv|cv.pdf|Curriculum Vitae|Eric Spencer's education, software engineering experience, and research publications in formal methods and large language models.|yes
 resume/80626|resume-80626.pdf|Resume|Eric Spencer — one-page resume.|no
 resume/81326|resume-81326.pdf|Resume|Eric Spencer — one-page resume.|no
+resume/110126|resume-110126.pdf|Resume|Eric Spencer — one-page resume.|no

@@ -121,6 +121,18 @@ def rows():
             yield parts[:5]
 
 
+def current_variant(variants):
+    """An explicit pin wins; older sites fall back to the newest dated edition."""
+    available = [slug.strip("/") for slug in variants]
+    pin = CONTENT / "resume-current.txt"
+    if pin.exists():
+        selected = pin.read_text(encoding="utf-8").strip()
+        if selected not in available:
+            raise ValueError(f"Pinned resume is not listed in resumes.txt: {selected}")
+        return selected
+    return max(available, key=recency)
+
+
 def cv_summary():
     """Render the public summary without requiring a PDF viewer or JavaScript."""
     data = json.loads((CONTENT / "cv.json").read_text(encoding="utf-8"))
@@ -210,7 +222,7 @@ def main():
     # matching the tuned variants it points at.
     variants = [s for s in built if s.startswith("/resume/")]
     if variants:
-        latest = max((s.strip("/") for s in variants), key=recency)
+        latest = current_variant(variants)
         out = ROOT / "resume" / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(REDIRECT.format(target=latest), encoding="utf-8")
