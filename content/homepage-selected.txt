@@ -7,7 +7,7 @@ I Paid For This Shirt|https://ipaidforthisshirt.com/|Shirt price printed on shir
 Ulam Spiral|https://ericspencer.us/ulam-spiral/|Prime-marked number spiral
 One Rep Max|https://ericspencer.us/1rm/|One-rep-max calculator
 TLA+ Generator|https://tla.ericspencer.us/|Natural-language TLA+ generator
-Famous Moji|https://famousmoji.com/|Emoji app and archive
+Famous Moji|https://famousmoji.com/|artist webpage
 Stemacle|https://stemacle.com/|Browser stem separation app
 BrightBet.tech|https://brightbet.tech/|Trade and prediction analysis
 ai4fm.cs.luc.edu|https://ai4fm.cs.luc.edu/|Loyola formal methods research group
