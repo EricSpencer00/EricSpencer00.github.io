@@ -21,6 +21,7 @@ from pathlib import Path
 
 from build_og_images import OUT, SITE, published_pages, slug_for
 from build_public_apps import app_path, load_apps
+from build_project_routes import is_live_project_source
 from check_site import page_files, route_for
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -224,6 +225,9 @@ def main():
         route = route_for(path)
         if not route:
             continue
+        if is_live_project_source(path):
+            # Source and public mount must remain byte-for-byte mirrors.
+            route = route.replace("/projects/2026/", "/", 1)
         url = SITE + route
         slug = slug_for(url)
         include_card = (OUT / f"{slug}.jpg").exists()

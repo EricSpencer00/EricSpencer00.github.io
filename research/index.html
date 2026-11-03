@@ -62,30 +62,152 @@
       "@type": "ItemList",
       "@id": "https://ericspencer.us/research/#publications",
       "name": "Research publications",
-      "numberOfItems": 3,
+      "numberOfItems": 5,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "item": {
-            "@id": "https://ericspencer.us/research/#tla-bench"
+            "@id": "https://ericspencer.us/research/#alias"
           }
         },
         {
           "@type": "ListItem",
           "position": 2,
           "item": {
-            "@id": "https://ericspencer.us/research/#chattla-gpt-oss-paper"
+            "@id": "https://ericspencer.us/research/#dirty-set"
           }
         },
         {
           "@type": "ListItem",
           "position": 3,
           "item": {
+            "@id": "https://ericspencer.us/research/#tla-bench"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@id": "https://ericspencer.us/research/#chattla-gpt-oss-paper"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
             "@id": "https://ericspencer.us/research/#eric-paper"
           }
         }
       ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://ericspencer.us/research/#alias",
+      "headline": "ALIAS: Evaluating Performance and Memorization in LLM-Written TLA+ Specifications",
+      "name": "ALIAS: Evaluating Performance and Memorization in LLM-Written TLA+ Specifications",
+      "url": "https://ericspencer.us/research/#alias",
+      "sameAs": [
+        "https://arxiv.org/abs/2610.29767",
+        "https://doi.org/10.48550/arXiv.2610.29767"
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.48550/arXiv.2610.29767"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Arslan Bisharat"
+        },
+        {
+          "@type": "Person",
+          "name": "Mujtaba Nazari"
+        },
+        {
+          "@type": "Person",
+          "name": "Khushboo Bhadauria"
+        },
+        {
+          "@type": "Person",
+          "name": "Brian Ortiz"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://ericspencer.us/#eric",
+          "name": "Eric Spencer"
+        },
+        {
+          "@type": "Person",
+          "name": "Beatriz Santos"
+        },
+        {
+          "@type": "Person",
+          "name": "TaiNing Wang"
+        },
+        {
+          "@type": "Person",
+          "name": "George K. Thiruvathukal"
+        },
+        {
+          "@type": "Person",
+          "name": "Konstantin Läufer"
+        },
+        {
+          "@type": "Person",
+          "name": "Mohammed Abuhamad"
+        }
+      ],
+      "datePublished": "2026-10-21",
+      "description": "Across 111 TLA+-Bench tasks, we examine whether lower scores after identifier renaming reveal memorization. Behavior-based grading shows that the score changes also reflect name-based grading and the cost of unfamiliar names. Renaming alone therefore does not isolate memorization.",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "arXiv preprint, arXiv:2610.29767"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://ericspencer.us/research/#dirty-set",
+      "headline": "How the Dirty Set Moves: Characterizing Schedule Reuse in Incremental Sparse Matrix Multiplication",
+      "name": "How the Dirty Set Moves: Characterizing Schedule Reuse in Incremental Sparse Matrix Multiplication",
+      "url": "https://ericspencer.us/research/#dirty-set",
+      "sameAs": [
+        "https://arxiv.org/abs/2610.19489",
+        "https://doi.org/10.48550/arXiv.2610.19489"
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.48550/arXiv.2610.19489"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Hunter Horne"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://ericspencer.us/#eric",
+          "name": "Eric Spencer"
+        },
+        {
+          "@type": "Person",
+          "name": "Alex Henningfield"
+        },
+        {
+          "@type": "Person",
+          "name": "Arslan Bisharat"
+        }
+      ],
+      "datePublished": "2026-10-14",
+      "description": "In incremental sparse matrix multiplication, only a few input rows change per step, and we call those rows the dirty set. A direct column-wise incremental update beats a tiled executor that keeps its preparation and cached schedules in 779 of 837 workloads, and it is 2.1-8.2x faster than the best of eight full-recomputation codes. Tiling only pays off when tiles merge many entries into each output write.",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "arXiv preprint, arXiv:2610.19489"
+      },
+      "inLanguage": "en"
     },
     {
       "@type": "ScholarlyArticle",
@@ -448,6 +570,13 @@ gtag('config', 'G-30FQRTZWJ8');
 <p>I work on generating TLA+ specifications with language models and checking what those models actually get right. The papers below cover evaluation, training with model-checker feedback, and the datasets needed to reproduce the results. For runnable examples, see my <a href="/projects/tla-plus/">TLA+ projects and tools</a>.</p>
 <h2 id="papers">Papers<span class="ln"></span></h2>
 <!-- BEGIN GENERATED PUBLICATIONS -->
+<article class="publication" id="alias">
+<h3>ALIAS: Evaluating Performance and Memorization in LLM-Written TLA+ Specifications</h3>
+<p class="small">Arslan Bisharat, Mujtaba Nazari, Khushboo Bhadauria, Brian Ortiz, Eric Spencer, Beatriz Santos, TaiNing Wang, George K. Thiruvathukal, Konstantin Läufer, Mohammed Abuhamad.</p>
+<p class="small">2026 · arXiv preprint, arXiv:2610.29767 · Coauthor. <a href="https://doi.org/10.48550/arXiv.2610.29767">DOI: 10.48550/arXiv.2610.29767</a></p>
+<p>Across 111 TLA+-Bench tasks, we examine whether lower scores after identifier renaming reveal memorization. Behavior-based grading shows that the score changes also reflect name-based grading and the cost of unfamiliar names. Renaming alone therefore does not isolate memorization.</p>
+<p class="linkrow"><a href="https://arxiv.org/abs/2610.29767">Paper on arXiv</a></p>
+</article>
 <article class="publication" id="dirty-set">
 <h3>How the Dirty Set Moves: Characterizing Schedule Reuse in Incremental Sparse Matrix Multiplication</h3>
 <p class="small">Hunter Horne, Eric Spencer, Alex Henningfield, Arslan Bisharat.</p>
@@ -468,6 +597,7 @@ gtag('config', 'G-30FQRTZWJ8');
 <p class="small">2026 · ICSOFT 2026, pp. 627–636 · First author. <a href="https://doi.org/10.5220/0015234600004088">DOI: 10.5220/0015234600004088</a></p>
 <p>We trained a 20-billion-parameter model to generate TLA+ specifications, using supervised fine-tuning followed by repair-based reinforcement learning with TLC feedback. The paper reports 9 of 30 held-out problems passing both model checking and the Diamond check, which tests whether an altered invariant produces a violation. These are results for the paper&#x27;s benchmark and evaluation procedure; they do not establish correctness on arbitrary systems.</p>
 <p class="linkrow"><a href="https://doi.org/10.5220/0015234600004088">Published paper</a> · <a href="https://arxiv.org/abs/2606.06133">Preprint</a> · <a href="https://github.com/LUC-AI4FM/TLA-Prove">Training code</a> · <a href="https://huggingface.co/EricSpencer00/chattla-20b">ChatTLA model</a> · <a href="/projects/chattla-dataset/">Training data &amp; benchmark notes</a></p>
+<p><strong>Follow-up · 2026-10-29</strong> I’m testing TLA-skills: a skill file with checker feedback. Passing SANY and TLC is a first check; the specification still needs to be non-vacuous and match the intended behavior. <a href="https://luc-ai4fm.github.io/tla-skills/">TLA-skills and results</a></p>
 </article>
 <article class="publication" id="eric-paper">
 <h3>Can LLMs Write Correct TLA+ Specifications? Evaluating Natural-Language-to-TLA+ Generation</h3>

@@ -20,8 +20,8 @@
       "source": "https://huggingface.co/api/models/EricSpencer00/chattla-20b"
     },
     {
-      "date": "2026-04",
-      "html": "our paper on whether LLMs can write correct TLA+ was accepted to and presented at ICSOFT 2026 in Porto",
+      "date": "2026-07",
+      "html": "our paper on whether LLMs can write correct TLA+ was presented at ICSOFT 2026 in Porto",
       "url": "https://ai4fm.cs.luc.edu/papers/llm-tla-evaluation/",
       "attachment": {
         "image": "/assets/news/llm-tla.webp",

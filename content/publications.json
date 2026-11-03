@@ -72,7 +72,7 @@
   },
   {
     "id": "chattla-gpt-oss-paper",
-    "follow_up": {"date": "2026-10-29", "text": "After fine-tuning and repair-based RL for TLA-Prover, I’m exploring a simpler starting point with TLA-skills: a skill file, a capable model, and checker feedback. The humbling lesson for me is to get through SANY and TLC first, then check that the specification is non-vacuous and captures the intended behavior. Passing the tools alone is not correctness, and these runs do not establish that a skill file beats fine-tuning or RL.", "url": "https://luc-ai4fm.github.io/tla-skills/", "label": "TLA-skills and results"},
+    "follow_up": {"date": "2026-10-29", "text": "I’m testing TLA-skills: a skill file with checker feedback. Passing SANY and TLC is a first check; the specification still needs to be non-vacuous and match the intended behavior.", "url": "https://luc-ai4fm.github.io/tla-skills/", "label": "TLA-skills and results"},
     "title": "TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation",
     "authors": ["Eric Spencer", "Arslan Bisharat", "Brian Ortiz", "Mujtaba Nazari", "Khushboo Bhadauria", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
     "year": 2026,

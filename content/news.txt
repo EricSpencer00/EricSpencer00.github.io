@@ -3,7 +3,7 @@
 # html_text: HTML allowed (bold, links etc)
 # optional_link_url + label: appended as a pill link
 
-2026-10-29|<b>TLA-skills</b>: after fine-tuning and repair-based RL for TLA-Prover, I’m trying the humble skill file with checker feedback. SANY and TLC are the first gate; passing them still leaves vacuity and the intended behavior to check.|https://luc-ai4fm.github.io/tla-skills/|[skill &amp; results]
+2026-10-29|<b>TLA-skills</b>: testing a skill file with checker feedback for TLA+ generation.|https://luc-ai4fm.github.io/tla-skills/|[skill &amp; results]
 2026-10-21|<b>ALIAS: Evaluating Performance and Memorization in LLM-Written TLA+ Specifications</b>. New preprint on identifier renaming, grading, and memorization.|https://arxiv.org/abs/2610.29767|[paper]
 2026-10-14|<b>How the Dirty Set Moves</b>: characterizing schedule reuse in incremental sparse matrix multiplication, with Hunter Horne, Alex Henningfield and Arslan Bisharat. Preprint.|https://arxiv.org/abs/2610.19489|[paper]
 2026-06-05|<b>tla-prover</b> accepted at <b>ICSOFT 2026</b>.|https://arxiv.org/html/2606.06133v1|[link]

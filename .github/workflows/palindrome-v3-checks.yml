@@ -2,10 +2,10 @@ name: Palindrome v3 correctness
 
 on:
   pull_request:
-    branches: [dev]
+    branches: [dev, main]
     paths: ['palindrome-v3/**', 'tests/*palindrome*', 'scripts/*palindrome*', '.github/workflows/palindrome-v3-checks.yml']
   push:
-    branches: [dev, feat/palindrome-v3-phrase-expansion]
+    branches: [dev, main, feat/palindrome-v3-phrase-expansion]
     paths: ['palindrome-v3/**', 'tests/*palindrome*', 'scripts/*palindrome*', '.github/workflows/palindrome-v3-checks.yml']
 
 permissions:

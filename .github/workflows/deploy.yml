@@ -133,6 +133,14 @@ jobs:
       - name: Strip non-published directories from the artifact
         run: rm -rf backup-site tests editor
 
+      # This embeds an experimental preview, not the production generator.
+      - name: Keep the palindrome development preview off production
+        if: github.repository != 'EricSpencer00/dev.EricSpencer00.github.io'
+        run: rm -rf palindrome-v3
+
+      - name: Strip palindrome authoring sources from the dev mirror
+        run: rm -rf palindrome-v3/backend palindrome-v3/canonical
+
       - name: Upload Artifact for Deployment
         uses: actions/upload-pages-artifact@v3
         with:
