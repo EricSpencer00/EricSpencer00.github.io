@@ -86,6 +86,9 @@ Run `python3 scripts/build_blog.py` to compile Markdown into `blog/your-slug/` a
 Pages have 1200×630 preview cards in `assets/og/`. Existing cards use page
 screenshots or project imagery. New pages get a card from their title and
 description, using the same licensed fonts as the site.
+The stable `/apps/<slug>/` links are redirects, but they get their own cards so
+iMessage, X, and other share previews work even when a crawler does not follow
+the product's redirect.
 
 ```bash
 python3 -m pip install -r requirements-assets.txt

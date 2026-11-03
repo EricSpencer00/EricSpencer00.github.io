@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/archivo";
+
+/* shadcn's component tokens. They have to exist even though almost every
+   component here is restyled, because the primitives reference them. */
+:root {
+  --radius: 3px;
+  --background: #ffffff;
+  --foreground: #0d0d10;
+  --card: #ffffff;
+  --card-foreground: #0d0d10;
+  --popover: #ffffff;
+  --popover-foreground: #0d0d10;
+  --primary: #0d0d10;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f6;
+  --secondary-foreground: #0d0d10;
+  --muted: #f4f4f6;
+  --muted-foreground: #6b6b76;
+  --accent: #ece9ff;
+  --accent-foreground: #3a1ce0;
+  --destructive: #d92d20;
+  --border: #ececf1;
+  --input: #ececf1;
+  --ring: #3a1ce0;
+}
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* Neobrutalism with the outlines taken out: the structure survives — flat
+   fills, hard un-blurred shadows, square geometry, chunky type — but weight is
+   carried by offset and contrast instead of heavy black strokes. */
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #0d0d10;
+  --color-ash: #6b6b76;
+  --color-haze: #ececf1;
+  --color-signal: #3a1ce0;
+  --color-signal-soft: #ece9ff;
+
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+html, body, #root { height: 100%; }
+
+/* Mobile browsers: use the dynamic viewport unit so the URL bar collapsing
+   does not clip the canvas, and keep the page itself from bouncing. */
+@supports (height: 100dvh) {
+  html, body, #root { height: 100dvh; }
+}
+html { -webkit-text-size-adjust: 100%; }
+body { overscroll-behavior: none; touch-action: manipulation; }
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  margin: 0;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shadow and geometry only — never background. These sit unlayered, so they
+   would otherwise beat every Tailwind bg-* utility placed on the same element. */
+@layer components {
+  .slab {
+    box-shadow: 5px 5px 0 0 var(--color-haze);
+    border-radius: 3px;
+    transition: box-shadow .12s steps(2), transform .12s steps(2);
+  }
+  .slab:focus-within { box-shadow: 5px 5px 0 0 var(--color-signal-soft); }
+  .slab-press:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 0 var(--color-haze);
+  }
+  .label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: .625rem;
+    color: var(--color-ash);
+  }
+}
+
+/* The length slider on /dev. Square and flat like everything else here: a
+   two-pixel rule for the track and a solid block for the thumb, no gradient
+   and no rounding. Both vendor pseudo-elements are needed and neither can be
+   grouped with the other — a selector list containing an unrecognised
+   pseudo-element is dropped whole by both engines. */
+.range {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+.range::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--color-haze);
+}
+.range::-moz-range-track {
+  height: 2px;
+  background: var(--color-haze);
+}
+.range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 18px;
+  margin-top: -8px;          /* centre a 18px thumb on a 2px track */
+  border: 0;
+  border-radius: 1px;
+  background: var(--color-ink);
+}
+.range::-moz-range-thumb {
+  width: 12px;
+  height: 18px;
+  border: 0;
+  border-radius: 1px;
+  background: var(--color-ink);
+}
+.range:hover::-webkit-slider-thumb { background: var(--color-signal); }
+.range:hover::-moz-range-thumb { background: var(--color-signal); }
+.range:focus-visible { outline: none; }
+.range:focus-visible::-webkit-slider-thumb { background: var(--color-signal); }
+.range:focus-visible::-moz-range-thumb { background: var(--color-signal); }
+
+/* The cursor is the whole idle state, so it gets a real blink, not a fade. */
+@keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+.caret { animation: blink 1.06s steps(1, end) infinite; }
+
+/* An odd letter count leaves no gap for a bar: the mirror runs THROUGH the
+   middle letter. The block cursor is the same object one glyph wide — the letter
+   is inverted rather than replaced, so the word stays readable while the mirror
+   stays marked. It keeps the caret's rhythm because it is the same cursor. */
+@keyframes pivot-blink {
+  0%, 49%   { background: var(--color-signal); color: var(--color-paper) }
+  50%, 100% { background: transparent;         color: var(--color-signal) }
+}
+.pivot {
+  display: inline-block;
+  animation: pivot-blink 1.06s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret { animation: none; }
+  .slab { transition: none; }
+  .pivot {
+    animation: none;
+    background: var(--color-signal);
+    color: var(--color-paper);
+  }
+}
+
+::selection { background: var(--color-signal); color: #fff; }

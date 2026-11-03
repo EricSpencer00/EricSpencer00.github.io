@@ -1,5 +1,57 @@
 [
   {
+    "id": "alias",
+    "title": "ALIAS: Evaluating Performance and Memorization in LLM-Written TLA+ Specifications",
+    "authors": [
+      "Arslan Bisharat",
+      "Mujtaba Nazari",
+      "Khushboo Bhadauria",
+      "Brian Ortiz",
+      "Eric Spencer",
+      "Beatriz Santos",
+      "TaiNing Wang",
+      "George K. Thiruvathukal",
+      "Konstantin Läufer",
+      "Mohammed Abuhamad"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint, arXiv:2610.29767",
+    "status": "Preprint",
+    "role": "Coauthor",
+    "publication_date": "2026-10-21",
+    "url": "https://arxiv.org/abs/2610.29767",
+    "doi": "10.48550/arXiv.2610.29767",
+    "summary": "Across 111 TLA+-Bench tasks, we examine whether lower scores after identifier renaming reveal memorization. Behavior-based grading shows that the score changes also reflect name-based grading and the cost of unfamiliar names. Renaming alone therefore does not isolate memorization.",
+    "links": [
+      {
+        "label": "Paper on arXiv",
+        "url": "https://arxiv.org/abs/2610.29767"
+      }
+    ],
+    "sources": [
+      "https://arxiv.org/abs/2610.29767"
+    ],
+    "verified_on": "2026-10-29"
+  },
+  {
+    "id": "dirty-set",
+    "title": "How the Dirty Set Moves: Characterizing Schedule Reuse in Incremental Sparse Matrix Multiplication",
+    "authors": ["Hunter Horne", "Eric Spencer", "Alex Henningfield", "Arslan Bisharat"],
+    "year": 2026,
+    "venue": "arXiv preprint, arXiv:2610.19489",
+    "status": "Preprint",
+    "role": "Coauthor",
+    "publication_date": "2026-10-14",
+    "url": "https://arxiv.org/abs/2610.19489",
+    "doi": "10.48550/arXiv.2610.19489",
+    "summary": "In incremental sparse matrix multiplication, only a few input rows change per step, and we call those rows the dirty set. A direct column-wise incremental update beats a tiled executor that keeps its preparation and cached schedules in 779 of 837 workloads, and it is 2.1-8.2x faster than the best of eight full-recomputation codes. Tiling only pays off when tiles merge many entries into each output write.",
+    "links": [
+      {"label": "Paper on arXiv", "url": "https://arxiv.org/abs/2610.19489"}
+    ],
+    "sources": ["https://arxiv.org/abs/2610.19489"],
+    "verified_on": "2026-10-19"
+  },
+  {
     "id": "tla-bench",
     "title": "TLA+-Bench: An Execution-Grounded Benchmark and Dataset for Natural-Language to TLA+ Specification Generation",
     "authors": ["Arslan Bisharat", "Eric Spencer", "Brian Ortiz", "Khushboo Bhadauria", "Mujtaba Nazari", "Beatriz Santos", "Anisa Ramos", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
@@ -20,6 +72,7 @@
   },
   {
     "id": "chattla-gpt-oss-paper",
+    "follow_up": {"date": "2026-10-29", "text": "I’m testing TLA-skills: a skill file with checker feedback. Passing SANY and TLC is a first check; the specification still needs to be non-vacuous and match the intended behavior.", "url": "https://luc-ai4fm.github.io/tla-skills/", "label": "TLA-skills and results"},
     "title": "TLA-Prover: Verifiable TLA+ Specification Synthesis via Preference-Optimized Low-Rank Adaptation",
     "authors": ["Eric Spencer", "Arslan Bisharat", "Brian Ortiz", "Mujtaba Nazari", "Khushboo Bhadauria", "TaiNing Wang", "George K. Thiruvathukal", "Konstantin Läufer", "Mohammed Abuhamad"],
     "year": 2026,

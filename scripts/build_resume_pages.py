@@ -165,11 +165,12 @@ def cv_summary():
         raise ValueError(f"CV experience notes have no matching current experience entry: {sorted(unused)}")
     education = []
     for entry in data["education"]:
+        date = ("Begins " + entry["starts"]) if "starts" in entry else ("Completed " + entry["completed"])
         education.append(
             '<article class="cv-entry">'
             f'<h3><a href="{escape(entry["url"], quote=True)}">{escape(entry["institution"])}</a></h3>'
             f'<p>{escape(entry["qualification"])}</p>'
-            f'<p class="cv-date">Completed {escape(entry["completed"])}</p>'
+            f'<p class="cv-date">{escape(date)}</p>'
             f'<p>{escape(entry["details"])}</p></article>'
         )
     papers = []

@@ -64,9 +64,17 @@ def render_index() -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Projects | Eric Spencer</title>
+<meta name="description" content="Live apps, games, tools, and demos built by Eric Spencer.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="{target}">
 <meta http-equiv="refresh" content="0; url={target}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Eric Spencer">
+<meta property="og:title" content="Projects | Eric Spencer">
+<meta property="og:description" content="Live apps, games, tools, and demos built by Eric Spencer.">
+<meta property="og:url" content="{target}">
+<meta name="twitter:title" content="Projects | Eric Spencer">
+<meta name="twitter:description" content="Live apps, games, tools, and demos built by Eric Spencer.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <!-- redirect stub -->
 </head><body><p>See <a href="/projects/">projects</a>.</p><script>location.replace({json.dumps(target)});</script></body></html>
@@ -76,10 +84,16 @@ def render_index() -> str:
 def render_redirect(app: dict[str, str]) -> str:
     target = html.escape(app["url"], quote=True)
     name = html.escape(app["name"])
+    description = html.escape(app["description"], quote=True)
     return f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{name} | Eric Spencer</title><meta name="robots" content="noindex, follow">
 <link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0; url={target}">
+<meta name="description" content="{description}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Eric Spencer">
+<meta property="og:title" content="{name} | Eric Spencer"><meta property="og:description" content="{description}">
+<meta property="og:url" content="{target}">
+<meta name="twitter:title" content="{name} | Eric Spencer"><meta name="twitter:description" content="{description}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><!-- redirect stub -->
 </head><body><p>Opening <a href="{target}">{name}</a>.</p><script>location.replace({json.dumps(app['url'])});</script></body></html>
 """
@@ -122,7 +136,10 @@ def is_current(apps: list[dict[str, str]]) -> bool:
     if ("<!-- redirect stub -->" not in index_text
             or '<meta name="robots" content="noindex, follow">' not in index_text
             or f'<link rel="canonical" href="{target}">' not in index_text
-            or f'content="0; url={target}"' not in index_text):
+            or f'content="0; url={target}"' not in index_text
+            or '<meta property="og:type" content="website">' not in index_text
+            or '<meta property="og:description" content="Live apps, games, tools, and demos built by Eric Spencer.">' not in index_text
+            or '<meta name="twitter:description" content="Live apps, games, tools, and demos built by Eric Spencer.">' not in index_text):
         return False
 
     for app in apps:
@@ -134,7 +151,10 @@ def is_current(apps: list[dict[str, str]]) -> bool:
         if ("<!-- redirect stub -->" not in text
                 or '<meta name="robots" content="noindex, follow">' not in text
                 or f'<link rel="canonical" href="{target}">' not in text
-                or f'content="0; url={target}"' not in text):
+                or f'content="0; url={target}"' not in text
+                or '<meta property="og:type" content="website">' not in text
+                or f'<meta property="og:description" content="{html.escape(app["description"], quote=True)}">' not in text
+                or f'<meta name="twitter:description" content="{html.escape(app["description"], quote=True)}">' not in text):
             return False
     return True
 

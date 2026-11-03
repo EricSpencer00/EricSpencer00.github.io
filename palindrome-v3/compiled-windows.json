@@ -1,0 +1,2167 @@
+{
+  "schema": 1,
+  "corpus": {
+    "examples": [
+      {
+        "id": "ward",
+        "text": "Draw a ward. I draw a ward.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "mock",
+        "text": "Draw a mock coma ward. I draw a mock coma ward.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "suss",
+        "text": "Some men, if editors suss roti, define memos.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "aide",
+        "text": "An aide rips nine memos; some men inspire Diana.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "war",
+        "text": "No, sir, a war is on.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "car",
+        "text": "No, sir, a car is on.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "radar",
+        "text": "No, sir, a dark radar is on.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "nod",
+        "text": "Don't nod.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "evil",
+        "text": "No evil did live on.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "geese",
+        "text": "Do geese on a cedar trade canoe see God?",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11",
+        "numeric_human_score": null
+      },
+      {
+        "id": "tap",
+        "text": "Some men, if editors tap Pat's roti, define memos.",
+        "human_label": "positive",
+        "control": true,
+        "evidence_date": "2026-10-11 20:29 UTC",
+        "numeric_human_score": null
+      }
+    ],
+    "source_sha256": "ad78da82640fbb03c8e654d26fdca385bee42f33edfd61ae95a89389178ef17e",
+    "policy": "Imported positive examples are controls, not held-out discoveries. New text retains a null human label."
+  },
+  "fragments": [
+    {
+      "id": "v:suss",
+      "text": "suss ",
+      "source": "suss",
+      "start": 21,
+      "end": 26,
+      "original": "suss ",
+      "role": "base transitive inspect verb",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "v:tap",
+      "text": "tap ",
+      "source": "tap",
+      "start": 21,
+      "end": 25,
+      "original": "tap ",
+      "role": "base contact verb",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "v:draw",
+      "text": "draw ",
+      "source": "ward",
+      "start": 0,
+      "end": 5,
+      "original": "Draw ",
+      "role": "imperative/base depict verb",
+      "case_transform": "lower",
+      "separator_after": false
+    },
+    {
+      "id": "v:see",
+      "text": "see ",
+      "source": "geese",
+      "start": 32,
+      "end": 36,
+      "original": "see ",
+      "role": "base perception verb",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "v:rip",
+      "text": "rip ",
+      "source": "aide",
+      "start": 8,
+      "end": 11,
+      "original": "rip",
+      "role": "third-singular tear verb; strip agreement s",
+      "case_transform": "identity",
+      "separator_after": true
+    },
+    {
+      "id": "np:Pat",
+      "text": "Pat",
+      "source": "tap",
+      "start": 25,
+      "end": 28,
+      "original": "Pat",
+      "role": "person name",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "np:Diana",
+      "text": "Diana",
+      "source": "aide",
+      "start": 42,
+      "end": 47,
+      "original": "Diana",
+      "role": "person name",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "np:aide",
+      "text": "an aide",
+      "source": "aide",
+      "start": 0,
+      "end": 7,
+      "original": "An aide",
+      "role": "indefinite person NP",
+      "case_transform": "lower",
+      "separator_after": false
+    },
+    {
+      "id": "np:men",
+      "text": "some men",
+      "source": "suss",
+      "start": 0,
+      "end": 8,
+      "original": "Some men",
+      "role": "indefinite people NP",
+      "case_transform": "lower",
+      "separator_after": false
+    },
+    {
+      "id": "np:ward",
+      "text": "a ward",
+      "source": "ward",
+      "start": 5,
+      "end": 11,
+      "original": "a ward",
+      "role": "indefinite institution NP",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "np:mock",
+      "text": "a mock coma ward",
+      "source": "mock",
+      "start": 5,
+      "end": 21,
+      "original": "a mock coma ward",
+      "role": "indefinite institution NP",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "genitive",
+      "text": "'s ",
+      "source": "tap",
+      "start": 28,
+      "end": 31,
+      "original": "'s ",
+      "role": "possessive clitic; singular/irregular plural owner",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "prep:on",
+      "text": "on ",
+      "source": "geese",
+      "start": 9,
+      "end": 12,
+      "original": "on ",
+      "role": "preposition; contact target adapter",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "draw:original",
+      "text": "ward. I draw ",
+      "source": "ward",
+      "start": 7,
+      "end": 20,
+      "original": "ward. I draw ",
+      "role": "preserved imperative object and first-person clause opening",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "draw:modifier",
+      "text": "mock coma ",
+      "source": "mock",
+      "start": 7,
+      "end": 17,
+      "original": "mock coma ",
+      "role": "medical institution qualifier",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "draw:ward",
+      "text": "ward. ",
+      "source": "ward",
+      "start": 7,
+      "end": 13,
+      "original": "ward. ",
+      "role": "preserved imperative object and clause boundary",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "draw:subject",
+      "text": "I draw a ",
+      "source": "ward",
+      "start": 13,
+      "end": 22,
+      "original": "I draw a ",
+      "role": "first-person depict clause and object determiner",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "draw:partial",
+      "text": "mock com",
+      "source": "mock",
+      "start": 7,
+      "end": 15,
+      "original": "mock com",
+      "role": "qualifier with final a borrowed from retained right seam",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "subject:I",
+      "text": "I ",
+      "source": "ward",
+      "start": 13,
+      "end": 15,
+      "original": "I ",
+      "role": "human subject compatible with retained base draw",
+      "case_transform": "identity",
+      "separator_after": false
+    },
+    {
+      "id": "subject:men",
+      "text": "Some men ",
+      "source": "suss",
+      "start": 0,
+      "end": 8,
+      "original": "Some men",
+      "role": "human subject compatible with retained base draw",
+      "case_transform": "identity",
+      "separator_after": true
+    },
+    {
+      "id": "subject:editors",
+      "text": "editors ",
+      "source": "suss",
+      "start": 13,
+      "end": 20,
+      "original": "editors",
+      "role": "human subject compatible with retained base draw",
+      "case_transform": "identity",
+      "separator_after": true
+    }
+  ],
+  "plans": [
+    {
+      "seed_id": "tap",
+      "seed_text": "Some men, if editors tap Pat's roti, define memos.",
+      "start": 25,
+      "end": 25,
+      "prefix": "Some men, if editors tap ",
+      "suffix": "Pat's roti, define memos.",
+      "original_window": "",
+      "left_residual": "",
+      "right_residual": "",
+      "seam_debt": {
+        "side": "none",
+        "letters": ""
+      },
+      "allow_empty": true,
+      "window_type": "target-preposition insertion; retain tap, Pat and roti",
+      "chunks": [
+        {
+          "id": "rule-6890385194674101",
+          "text": "on ",
+          "entry": "START",
+          "exit": "END",
+          "role": "preposition; contact target adapter",
+          "source": "{\"donor\": \"geese\", \"end\": 12, \"fragment\": \"prep:on\", \"start\": 9}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        }
+      ],
+      "grouped_chunks": [
+        {
+          "id": "rule-6890385194674101",
+          "text": "on ",
+          "entry": "START",
+          "exit": "END",
+          "role": "preposition; contact target adapter",
+          "source": "{\"donor\": \"geese\", \"end\": 12, \"fragment\": \"prep:on\", \"start\": 9}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "seed_id": "suss",
+      "seed_text": "Some men, if editors suss roti, define memos.",
+      "start": 21,
+      "end": 26,
+      "prefix": "Some men, if editors ",
+      "suffix": "roti, define memos.",
+      "original_window": "suss ",
+      "left_residual": "s",
+      "right_residual": "",
+      "seam_debt": {
+        "side": "left",
+        "letters": "s"
+      },
+      "allow_empty": false,
+      "window_type": "transitive action plus optional possessor; retain food and outer clause",
+      "chunks": [
+        {
+          "id": "rule-744e7823b08404cf",
+          "text": "s",
+          "entry": "START",
+          "exit": "suss:W_START",
+          "role": "retained left-context residual",
+          "source": "{\"retained\": \"prefix\", \"seed\": \"suss\"}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-3a1df07bf8c18707",
+          "text": "suss ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "base transitive inspect verb",
+          "source": "{\"donor\": \"suss\", \"end\": 26, \"fragment\": \"v:suss\", \"start\": 21}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-1062706beb6bd43f",
+          "text": "suss ",
+          "entry": "suss:W_START",
+          "exit": "suss:OWNER",
+          "role": "base transitive inspect verb",
+          "source": "{\"donor\": \"suss\", \"end\": 26, \"fragment\": \"v:suss\", \"start\": 21}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-30965ec8aa4c1679",
+          "text": "tap ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "base contact verb",
+          "source": "{\"donor\": \"tap\", \"end\": 25, \"fragment\": \"v:tap\", \"start\": 21}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-156f8686cfe052f8",
+          "text": "tap ",
+          "entry": "suss:W_START",
+          "exit": "suss:OWNER",
+          "role": "base contact verb",
+          "source": "{\"donor\": \"tap\", \"end\": 25, \"fragment\": \"v:tap\", \"start\": 21}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-4d496a6b6be1b5e2",
+          "text": "draw ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "imperative/base depict verb",
+          "source": "{\"donor\": \"ward\", \"end\": 5, \"fragment\": \"v:draw\", \"start\": 0}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-e1529922d691ea8e",
+          "text": "draw ",
+          "entry": "suss:W_START",
+          "exit": "suss:OWNER",
+          "role": "imperative/base depict verb",
+          "source": "{\"donor\": \"ward\", \"end\": 5, \"fragment\": \"v:draw\", \"start\": 0}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-f4b6101f66dbe3fe",
+          "text": "see ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "base perception verb",
+          "source": "{\"donor\": \"geese\", \"end\": 36, \"fragment\": \"v:see\", \"start\": 32}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-8ceb3dc69f80158f",
+          "text": "see ",
+          "entry": "suss:W_START",
+          "exit": "suss:OWNER",
+          "role": "base perception verb",
+          "source": "{\"donor\": \"geese\", \"end\": 36, \"fragment\": \"v:see\", \"start\": 32}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-593a38919f990b8d",
+          "text": "rip ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "third-singular tear verb; strip agreement s",
+          "source": "{\"donor\": \"aide\", \"end\": 11, \"fragment\": \"v:rip\", \"start\": 8}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-894089290a0db7be",
+          "text": "rip ",
+          "entry": "suss:W_START",
+          "exit": "suss:OWNER",
+          "role": "third-singular tear verb; strip agreement s",
+          "source": "{\"donor\": \"aide\", \"end\": 11, \"fragment\": \"v:rip\", \"start\": 8}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-037613740f6ede10",
+          "text": "Pat",
+          "entry": "suss:OWNER",
+          "exit": "suss:POSS",
+          "role": "person name",
+          "source": "{\"donor\": \"tap\", \"end\": 28, \"fragment\": \"np:Pat\", \"start\": 25}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "owner",
+              "np:Pat"
+            ]
+          ]
+        },
+        {
+          "id": "rule-aea447c015c5dafe",
+          "text": "Diana",
+          "entry": "suss:OWNER",
+          "exit": "suss:POSS",
+          "role": "person name",
+          "source": "{\"donor\": \"aide\", \"end\": 47, \"fragment\": \"np:Diana\", \"start\": 42}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "owner",
+              "np:Diana"
+            ]
+          ]
+        },
+        {
+          "id": "rule-fe6ec9647fe5d5a4",
+          "text": "an aide",
+          "entry": "suss:OWNER",
+          "exit": "suss:POSS",
+          "role": "indefinite person NP",
+          "source": "{\"donor\": \"aide\", \"end\": 7, \"fragment\": \"np:aide\", \"start\": 0}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "owner",
+              "np:aide"
+            ]
+          ]
+        },
+        {
+          "id": "rule-c3dd19e9648a072f",
+          "text": "some men",
+          "entry": "suss:OWNER",
+          "exit": "suss:POSS",
+          "role": "indefinite people NP",
+          "source": "{\"donor\": \"suss\", \"end\": 8, \"fragment\": \"np:men\", \"start\": 0}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "owner",
+              "np:men"
+            ]
+          ]
+        },
+        {
+          "id": "rule-51e708764fab2c1f",
+          "text": "a ward",
+          "entry": "suss:OWNER",
+          "exit": "suss:POSS",
+          "role": "indefinite institution NP",
+          "source": "{\"donor\": \"ward\", \"end\": 11, \"fragment\": \"np:ward\", \"start\": 5}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "owner",
+              "np:ward"
+            ]
+          ]
+        },
+        {
+          "id": "rule-abef1644a7bc6a25",
+          "text": "a mock coma ward",
+          "entry": "suss:OWNER",
+          "exit": "suss:POSS",
+          "role": "indefinite institution NP",
+          "source": "{\"donor\": \"mock\", \"end\": 21, \"fragment\": \"np:mock\", \"start\": 5}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "owner",
+              "np:mock"
+            ]
+          ]
+        },
+        {
+          "id": "rule-eabbad39597a03ae",
+          "text": "'s ",
+          "entry": "suss:POSS",
+          "exit": "END",
+          "role": "possessive clitic; singular/irregular plural owner",
+          "source": "{\"donor\": \"tap\", \"end\": 31, \"fragment\": \"genitive\", \"start\": 28}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        }
+      ],
+      "grouped_chunks": [
+        {
+          "id": "rule-744e7823b08404cf",
+          "text": "s",
+          "entry": "START",
+          "exit": "suss:W_START",
+          "role": "retained left-context residual",
+          "source": "{\"retained\": \"prefix\", \"seed\": \"suss\"}",
+          "bindings": [
+            [
+              "subject",
+              "editors1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "document",
+              "memos1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-3a1df07bf8c18707",
+          "text": "suss ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-30965ec8aa4c1679",
+          "text": "tap ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-4d496a6b6be1b5e2",
+          "text": "draw ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-f4b6101f66dbe3fe",
+          "text": "see ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-593a38919f990b8d",
+          "text": "rip ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-63296f9f892adfeb",
+          "text": "suss Pat's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\", \"np:Pat\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Pat"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-760434a6d8d6ebb8",
+          "text": "suss Diana's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\", \"np:Diana\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Diana"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-e9f3c96df799926a",
+          "text": "suss an aide's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\", \"np:aide\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:aide"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-da6e6e1f2a958395",
+          "text": "suss some men's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\", \"np:men\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:men"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-3c558397aab82f72",
+          "text": "suss a ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\", \"np:ward\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:ward"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-588a267cd0312ed8",
+          "text": "suss a mock coma ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:suss\", \"np:mock\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:mock"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-301542d1778d3b5a",
+          "text": "tap Pat's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\", \"np:Pat\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Pat"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-c9acb65ce9dd9397",
+          "text": "tap Diana's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\", \"np:Diana\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Diana"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-7ff1996bcc5c8cab",
+          "text": "tap an aide's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\", \"np:aide\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:aide"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-eaa33dab0a5086b9",
+          "text": "tap some men's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\", \"np:men\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:men"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-79fb9320f6da713c",
+          "text": "tap a ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\", \"np:ward\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:ward"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-f4b368b99f7592ee",
+          "text": "tap a mock coma ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:tap\", \"np:mock\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:mock"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-4c2edad1ca2ffc0e",
+          "text": "draw Pat's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\", \"np:Pat\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Pat"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-e82a208ad3ec6fd6",
+          "text": "draw Diana's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\", \"np:Diana\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Diana"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-c317a8e5190847d8",
+          "text": "draw an aide's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\", \"np:aide\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:aide"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-8ab51a85bbdeabe3",
+          "text": "draw some men's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\", \"np:men\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:men"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-bf7ac49fd6ab479c",
+          "text": "draw a ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\", \"np:ward\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:ward"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-11cf5474d9cafa00",
+          "text": "draw a mock coma ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:draw\", \"np:mock\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:mock"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-6eddf40b6154b551",
+          "text": "see Pat's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\", \"np:Pat\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Pat"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-f47d9959c51c2ba3",
+          "text": "see Diana's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\", \"np:Diana\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Diana"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-796850c1c1ea9f8e",
+          "text": "see an aide's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\", \"np:aide\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:aide"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-92030b637e3f3202",
+          "text": "see some men's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\", \"np:men\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:men"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-e3dcf1c8d0bd8aec",
+          "text": "see a ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\", \"np:ward\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:ward"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-46d00016d9350b5f",
+          "text": "see a mock coma ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:see\", \"np:mock\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:mock"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-97173a48da8f6218",
+          "text": "rip Pat's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\", \"np:Pat\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Pat"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-af7f1e082d4a0d48",
+          "text": "rip Diana's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\", \"np:Diana\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:Diana"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-30593360d8c942ba",
+          "text": "rip an aide's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\", \"np:aide\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:aide"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-629a62631d9ce003",
+          "text": "rip some men's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\", \"np:men\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:men"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-3b981e5071ffcdda",
+          "text": "rip a ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\", \"np:ward\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:ward"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-17528ab28d0693a3",
+          "text": "rip a mock coma ward's ",
+          "entry": "suss:W_START",
+          "exit": "END",
+          "role": "regrouped partial transitive VP; retained roti completes object",
+          "source": "{\"regrouped\": true, \"seed\": \"suss\", \"leaf_fragments\": [\"v:rip\", \"np:mock\", \"genitive\"]}",
+          "bindings": [
+            [
+              "document",
+              "memos1"
+            ],
+            [
+              "object",
+              "roti1"
+            ],
+            [
+              "owner",
+              "np:mock"
+            ],
+            [
+              "subject",
+              "editors1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "seed_id": "ward",
+      "seed_text": "Draw a ward. I draw a ward.",
+      "start": 7,
+      "end": 20,
+      "prefix": "Draw a ",
+      "suffix": "a ward.",
+      "original_window": "ward. I draw ",
+      "left_residual": "",
+      "right_residual": "",
+      "seam_debt": {
+        "side": "none",
+        "letters": ""
+      },
+      "allow_empty": false,
+      "window_type": "central drawing phrase; retain outside text and ward/I/draw roles",
+      "chunks": [
+        {
+          "id": "rule-c45981478fbeb046",
+          "text": "ward. I draw ",
+          "entry": "START",
+          "exit": "END",
+          "role": "preserved imperative object and first-person clause opening",
+          "source": "{\"donor\": \"ward\", \"end\": 20, \"fragment\": \"draw:original\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-30c3573a137d7c45",
+          "text": "mock coma ",
+          "entry": "START",
+          "exit": "ward:D1",
+          "role": "medical institution qualifier",
+          "source": "{\"donor\": \"mock\", \"end\": 17, \"fragment\": \"draw:modifier\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-091df1eba2caf61c",
+          "text": "ward. ",
+          "entry": "ward:D1",
+          "exit": "ward:D2",
+          "role": "preserved imperative object and clause boundary",
+          "source": "{\"donor\": \"ward\", \"end\": 13, \"fragment\": \"draw:ward\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-84f77b1e321300fc",
+          "text": "I draw a ",
+          "entry": "ward:D2",
+          "exit": "ward:D3",
+          "role": "first-person depict clause and object determiner",
+          "source": "{\"donor\": \"ward\", \"end\": 22, \"fragment\": \"draw:subject\", \"start\": 13}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-6aa8c263bf17c63c",
+          "text": "mock com",
+          "entry": "ward:D3",
+          "exit": "END",
+          "role": "qualifier with final a borrowed from retained right seam",
+          "source": "{\"donor\": \"mock\", \"end\": 15, \"fragment\": \"draw:partial\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        }
+      ],
+      "grouped_chunks": [
+        {
+          "id": "rule-c45981478fbeb046",
+          "text": "ward. I draw ",
+          "entry": "START",
+          "exit": "END",
+          "role": "preserved imperative object and first-person clause opening",
+          "source": "{\"donor\": \"ward\", \"end\": 20, \"fragment\": \"draw:original\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-30c3573a137d7c45",
+          "text": "mock coma ",
+          "entry": "START",
+          "exit": "ward:D1",
+          "role": "medical institution qualifier",
+          "source": "{\"donor\": \"mock\", \"end\": 17, \"fragment\": \"draw:modifier\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-091df1eba2caf61c",
+          "text": "ward. ",
+          "entry": "ward:D1",
+          "exit": "ward:D2",
+          "role": "preserved imperative object and clause boundary",
+          "source": "{\"donor\": \"ward\", \"end\": 13, \"fragment\": \"draw:ward\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-84f77b1e321300fc",
+          "text": "I draw a ",
+          "entry": "ward:D2",
+          "exit": "ward:D3",
+          "role": "first-person depict clause and object determiner",
+          "source": "{\"donor\": \"ward\", \"end\": 22, \"fragment\": \"draw:subject\", \"start\": 13}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-6aa8c263bf17c63c",
+          "text": "mock com",
+          "entry": "ward:D3",
+          "exit": "END",
+          "role": "qualifier with final a borrowed from retained right seam",
+          "source": "{\"donor\": \"mock\", \"end\": 15, \"fragment\": \"draw:partial\", \"start\": 7}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "seed_id": "mock",
+      "seed_text": "Draw a mock coma ward. I draw a mock coma ward.",
+      "start": 23,
+      "end": 25,
+      "prefix": "Draw a mock coma ward. ",
+      "suffix": "draw a mock coma ward.",
+      "original_window": "I ",
+      "left_residual": "",
+      "right_residual": "",
+      "seam_debt": {
+        "side": "none",
+        "letters": ""
+      },
+      "allow_empty": false,
+      "window_type": "subject NP only; retain both mock-coma-ward clauses",
+      "chunks": [
+        {
+          "id": "rule-edb2996ced4e86dc",
+          "text": "I ",
+          "entry": "START",
+          "exit": "END",
+          "role": "human subject compatible with retained base draw",
+          "source": "{\"donor\": \"ward\", \"end\": 15, \"fragment\": \"subject:I\", \"start\": 13}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-7408d812640fdd81",
+          "text": "Some men ",
+          "entry": "START",
+          "exit": "END",
+          "role": "human subject compatible with retained base draw",
+          "source": "{\"donor\": \"suss\", \"end\": 8, \"fragment\": \"subject:men\", \"start\": 0}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-2a3384c03b364003",
+          "text": "editors ",
+          "entry": "START",
+          "exit": "END",
+          "role": "human subject compatible with retained base draw",
+          "source": "{\"donor\": \"suss\", \"end\": 20, \"fragment\": \"subject:editors\", \"start\": 13}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        }
+      ],
+      "grouped_chunks": [
+        {
+          "id": "rule-edb2996ced4e86dc",
+          "text": "I ",
+          "entry": "START",
+          "exit": "END",
+          "role": "human subject compatible with retained base draw",
+          "source": "{\"donor\": \"ward\", \"end\": 15, \"fragment\": \"subject:I\", \"start\": 13}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-7408d812640fdd81",
+          "text": "Some men ",
+          "entry": "START",
+          "exit": "END",
+          "role": "human subject compatible with retained base draw",
+          "source": "{\"donor\": \"suss\", \"end\": 8, \"fragment\": \"subject:men\", \"start\": 0}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        },
+        {
+          "id": "rule-2a3384c03b364003",
+          "text": "editors ",
+          "entry": "START",
+          "exit": "END",
+          "role": "human subject compatible with retained base draw",
+          "source": "{\"donor\": \"suss\", \"end\": 20, \"fragment\": \"subject:editors\", \"start\": 13}",
+          "bindings": [
+            [
+              "imperative_agent",
+              "addressee1"
+            ],
+            [
+              "statement_agent",
+              "speaker1"
+            ],
+            [
+              "object",
+              "ward1"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "compiler_parity": [
+    {
+      "seed": "tap",
+      "chunks": 1,
+      "identical_to_existing_research_compiler": true
+    },
+    {
+      "seed": "suss",
+      "chunks": 18,
+      "identical_to_existing_research_compiler": true
+    },
+    {
+      "seed": "ward",
+      "chunks": 5,
+      "identical_to_existing_research_compiler": true
+    },
+    {
+      "seed": "mock",
+      "chunks": 3,
+      "identical_to_existing_research_compiler": true
+    }
+  ],
+  "license": "Owner-audited source spans, narrow grammar and declared semantic adapters; not an automatic English parser or readability certificate."
+}

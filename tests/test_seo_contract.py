@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from check_site import PageParser, check_analytics, check_discovery
+from check_site import PageParser, check_analytics, check_discovery, check_share_preview
 from seo_tags import CSP
 from apply_ga4 import TAG
 
@@ -16,6 +16,38 @@ def page(html):
 
 
 class SEOContractTests(unittest.TestCase):
+    def test_open_graph_and_x_use_one_large_page_card(self):
+        preview = '''<meta property="og:title" content="A page">
+<meta property="og:description" content="A useful description">
+<meta property="og:url" content="https://ericspencer.us/page/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/home.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A page">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A page">
+<meta name="twitter:description" content="A useful description">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/home.jpg">
+<meta name="twitter:image:alt" content="A page">'''
+        self.assertEqual(check_share_preview(page(preview)), [])
+
+    def test_open_graph_and_x_card_must_share_the_same_image(self):
+        preview = '''<meta property="og:title" content="A page">
+<meta property="og:description" content="A useful description">
+<meta property="og:url" content="https://ericspencer.us/page/">
+<meta property="og:image" content="https://ericspencer.us/assets/og/home.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A page">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A page">
+<meta name="twitter:description" content="A useful description">
+<meta name="twitter:image" content="https://ericspencer.us/assets/og/other.jpg">
+<meta name="twitter:image:alt" content="A page">'''
+        self.assertIn("twitter:image must match og:image", check_share_preview(page(preview)))
+
     def test_deployed_analytics_tag_can_load_and_collect(self):
         self.assertEqual(check_analytics(page(CSP + TAG)), [])
 
