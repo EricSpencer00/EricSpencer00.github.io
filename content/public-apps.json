@@ -78,6 +78,12 @@
     "description": "Editorial web design experiment"
   },
   {
+    "slug": "deslopify",
+    "name": "deslopify",
+    "url": "https://ericspencer.us/deslopify/",
+    "description": "Agent skill for editing AI-isms"
+  },
+  {
     "slug": "famous-moji",
     "name": "Famous Moji",
     "url": "https://famousmoji.com/",

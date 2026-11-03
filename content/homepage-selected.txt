@@ -1,6 +1,7 @@
 # Homepage selected work — name|url|description
 # The first three rows are visible; the rest appear under "Show more".
 
+deslopify|https://ericspencer.us/deslopify/|Agent skill for editing AI-isms
 Palindrome|https://palindrome.ericspencer.us/|Palindromic sentence generator
 Not Hotdog|https://ericspencer.us/hotdog/|Browser image classifier
 I Paid For This Shirt|https://ipaidforthisshirt.com/|Shirt price printed on shirt

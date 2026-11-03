@@ -58,7 +58,7 @@ NOT_CONTENT = re.compile(
 # refresh it from this side.
 EXTERNAL = [
     f"{SITE}/{path}/"
-    for path in ("Claude-of-Duty", "ddia", "gta-v-gold-checklist", "hotdog")
+    for path in ("Claude-of-Duty", "ddia", "deslopify", "gta-v-gold-checklist", "hotdog")
 ]
 
 
