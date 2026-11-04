@@ -2,7 +2,7 @@
 """
 build_resume_pages.py — reads content/resumes.txt, writes a landing page per
 resume/CV variant (e.g. /cv/index.html, /resume/80626/index.html), plus a
-/resume/ index that forwards to the most recent dated variant.
+/resume/ index and /assets/resume.pdf for the current variant.
 
 The PDFs themselves live in /assets/pdf/ and are pushed here by CI in
 github.com/EricSpencer00/resume. The public CV also has readable HTML drawn
@@ -13,6 +13,7 @@ from pathlib import Path
 import html as htmllib
 import hashlib
 import json
+from shutil import copyfile
 
 ROOT = Path(__file__).parent.parent
 CONTENT = ROOT / "content"
@@ -199,6 +200,7 @@ def cv_summary():
 
 def main():
     built = []
+    variants = {}
     for slug, pdf, title, blurb, index in rows():
         indexable = index.strip().lower() in ("yes", "true", "1")
         out = ROOT / slug / "index.html"
@@ -218,13 +220,14 @@ def main():
             encoding="utf-8",
         )
         built.append(f"/{slug}/")
+        if slug.startswith("resume/"):
+            variants[slug.rstrip("/")] = pdf
 
-    # Bare /resume/ forwards to the newest dated variant, so the path stays
-    # valid as variants are added and never has to be hand-edited. noindex,
-    # matching the tuned variants it points at.
-    variants = [s for s in built if s.startswith("/resume/")]
+    # The landing page and direct PDF download use the same selected edition.
     if variants:
         latest = current_variant(variants)
+        assets = ROOT / "assets"
+        copyfile(assets / "pdf" / variants[latest], assets / "resume.pdf")
         out = ROOT / "resume" / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(REDIRECT.format(target=latest), encoding="utf-8")
