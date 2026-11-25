@@ -2,7 +2,7 @@
 """
 build_resume_pages.py — reads content/resumes.txt, writes a landing page per
 resume/CV variant (e.g. /cv/index.html, /resume/80626/index.html), plus a
-/resume/ index that forwards to the most recent dated variant.
+/resume/ index and /assets/resume.pdf for the current variant.
 
 The PDFs themselves live in /assets/pdf/ and are pushed here by CI in
 github.com/EricSpencer00/resume. The public CV also has readable HTML drawn
@@ -11,7 +11,9 @@ from content/cv.json, experience.txt, and publications.json.
 
 from pathlib import Path
 import html as htmllib
+import hashlib
 import json
+from shutil import copyfile
 
 ROOT = Path(__file__).parent.parent
 CONTENT = ROOT / "content"
@@ -121,6 +123,18 @@ def rows():
             yield parts[:5]
 
 
+def current_variant(variants):
+    """An explicit pin wins; older sites fall back to the newest dated edition."""
+    available = [slug.strip("/") for slug in variants]
+    pin = CONTENT / "resume-current.txt"
+    if pin.exists():
+        selected = pin.read_text(encoding="utf-8").strip()
+        if selected not in available:
+            raise ValueError(f"Pinned resume is not listed in resumes.txt: {selected}")
+        return selected
+    return max(available, key=recency)
+
+
 def cv_summary():
     """Render the public summary without requiring a PDF viewer or JavaScript."""
     data = json.loads((CONTENT / "cv.json").read_text(encoding="utf-8"))
@@ -152,11 +166,12 @@ def cv_summary():
         raise ValueError(f"CV experience notes have no matching current experience entry: {sorted(unused)}")
     education = []
     for entry in data["education"]:
+        date = ("Begins " + entry["starts"]) if "starts" in entry else ("Completed " + entry["completed"])
         education.append(
             '<article class="cv-entry">'
             f'<h3><a href="{escape(entry["url"], quote=True)}">{escape(entry["institution"])}</a></h3>'
             f'<p>{escape(entry["qualification"])}</p>'
-            f'<p class="cv-date">Completed {escape(entry["completed"])}</p>'
+            f'<p class="cv-date">{escape(date)}</p>'
             f'<p>{escape(entry["details"])}</p></article>'
         )
     papers = []
@@ -185,6 +200,7 @@ def cv_summary():
 
 def main():
     built = []
+    variants = {}
     for slug, pdf, title, blurb, index in rows():
         indexable = index.strip().lower() in ("yes", "true", "1")
         out = ROOT / slug / "index.html"
@@ -193,7 +209,7 @@ def main():
             PAGE.format(
                 title=htmllib.escape(title),
                 blurb=htmllib.escape(blurb),
-                pdf=htmllib.escape(pdf),
+                pdf=htmllib.escape(pdf + ("?v=" + hashlib.sha256((ROOT / "assets" / "pdf" / pdf).read_bytes()).hexdigest()[:12] if slug == "cv" else "")),
                 robots="index, follow" if indexable else "noindex, nofollow",
                 canonical=(
                     f'<link rel="canonical" href="https://ericspencer.us/{slug}/">\n'
@@ -204,13 +220,14 @@ def main():
             encoding="utf-8",
         )
         built.append(f"/{slug}/")
+        if slug.startswith("resume/"):
+            variants[slug.rstrip("/")] = pdf
 
-    # Bare /resume/ forwards to the newest dated variant, so the path stays
-    # valid as variants are added and never has to be hand-edited. noindex,
-    # matching the tuned variants it points at.
-    variants = [s for s in built if s.startswith("/resume/")]
+    # The landing page and direct PDF download use the same selected edition.
     if variants:
-        latest = max((s.strip("/") for s in variants), key=recency)
+        latest = current_variant(variants)
+        assets = ROOT / "assets"
+        copyfile(assets / "pdf" / variants[latest], assets / "resume.pdf")
         out = ROOT / "resume" / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(REDIRECT.format(target=latest), encoding="utf-8")

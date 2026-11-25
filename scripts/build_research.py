@@ -28,6 +28,13 @@ def render_papers(papers: list[dict]) -> str:
             f'<a href="{escape(link["url"], quote=True)}">{escape(link["label"])}</a>'
             for link in paper["links"]
         )
+        follow_up = ""
+        if note := paper.get("follow_up"):
+            follow_up = (
+                f'<p><strong>Follow-up · {escape(note["date"])}</strong> '
+                f'{escape(note["text"])} '
+                f'<a href="{escape(note["url"], quote=True)}">{escape(note["label"])}</a></p>\n'
+            )
         parts.append(
             f'<article class="publication" id="{escape(paper["id"], quote=True)}">\n'
             f'<h3>{escape(paper["title"])}</h3>\n'
@@ -38,7 +45,7 @@ def render_papers(papers: list[dict]) -> str:
             f'DOI: {escape(paper["doi"])}</a></p>\n'
             f'<p>{escape(paper["summary"])}</p>\n'
             f'<p class="linkrow">{links}</p>\n'
-            '</article>'
+            f'{follow_up}</article>'
         )
     return "\n".join(parts)
 

@@ -1,0 +1,72 @@
+name: Portfolio release checks
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build static pages
+        run: |
+          python3 scripts/build_project_routes.py
+          python3 scripts/build.py
+          python3 scripts/build_blog.py
+          python3 scripts/build_research.py
+          python3 scripts/build_resume_pages.py
+          python3 scripts/build_projects.py
+          python3 scripts/build_legacy_redirects.py
+          python3 scripts/build_public_apps.py
+          python3 scripts/normalize_project_pages.py
+          python3 scripts/apply_portfolio_theme.py
+
+      - name: Apply the top nav
+        run: python3 scripts/apply_nav.py
+
+      - name: Drop the blog when nothing is published
+        run: python3 scripts/prune_blog.py
+
+      - name: Collapse the old Hugo URLs to redirects
+        run: python3 scripts/collapse_mirrors.py
+
+      - name: Check every project page has one copy
+        run: python3 scripts/check_project_pages.py
+
+      - name: Point pages at their link-preview cards
+        run: python3 scripts/apply_og_tags.py
+
+      - name: Apply search tags
+        run: python3 scripts/seo_tags.py
+
+      - name: Apply Google Analytics tag
+        run: python3 scripts/apply_ga4.py
+
+      - name: Build the browser-only site assistant
+        run: python3 scripts/build_chatbot_knowledge.py
+
+      - name: Verify generated project catalog and article headings
+        run: |
+          python3 scripts/build_project_routes.py --check
+          python3 scripts/build_projects.py --check
+          python3 scripts/build_public_apps.py --check
+          python3 scripts/normalize_project_pages.py --check
+
+      - name: Build sitemap
+        run: python3 scripts/build_sitemap.py
+
+      - name: Verify routes and SEO metadata
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 scripts/check_site.py
+          python3 scripts/build_social_cards.py --check
+

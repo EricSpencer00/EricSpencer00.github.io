@@ -1,0 +1,42 @@
+name: Palindrome v3 correctness
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths: ['palindrome-v3/**', 'tests/*palindrome*', 'scripts/*palindrome*', '.github/workflows/palindrome-v3-checks.yml']
+  push:
+    branches: [dev, main, feat/palindrome-v3-phrase-expansion]
+    paths: ['palindrome-v3/**', 'tests/*palindrome*', 'scripts/*palindrome*', '.github/workflows/palindrome-v3-checks.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  phrase-search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate finite grammar, exactness, debt, cancellation and stale responses
+        run: node --test tests/palindrome-v3*.test.mjs
+      - name: Build canonical and experimental search frontends
+        run: |
+          npm ci --prefix palindrome-v3/canonical --no-audit --no-fund
+          npm run build --prefix palindrome-v3/canonical
+          npm run build:production --prefix palindrome-v3/canonical
+          npm run build:search --prefix palindrome-v3/canonical
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate real search endpoint and explicit fallback
+        run: |
+          python3 -m pip install fastapi==0.136.1 httpx==0.28.1
+          PYTHONPATH=palindrome-v3 python3 -m unittest backend.test_real_search backend.test_global_search backend.test_character_search backend.test_linked_clauses
+      - name: Validate existing site regression contract
+        run: |
+          python3 scripts/compile_palindrome_windows.py --check
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 scripts/check_site.py
+          python3 scripts/build_social_cards.py --check

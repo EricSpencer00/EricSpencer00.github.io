@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#f4f2ee"/><path d="M10 44h44v5H10zM12 15h8v22h-8zM28 15h8v22h-8zM44 15h8v22h-8z" fill="#1a1a1a"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 99.4595" role="img" aria-labelledby="title">
+  <title id="title">HorneSci 04.01: canonical</title>
+  <g id="mark">
+    <polygon id="black-body" points="0.000000,99.459459 36.756757,42.162162 102.702703,69.189189 120.000000,99.459459" fill="#171819"/>
+    <polygon id="red-cap" points="63.783784,0.000000 95.135135,54.054054 43.243243,32.432432" fill="#D52B2B"/>
+  </g>
+</svg>

@@ -3,6 +3,13 @@
   "intro": "I work on formal methods and large language models with Loyola University Chicago's AI4FM group, alongside software engineering at HorneSci and independent software through FROM AMERICA LLC.",
   "education": [
     {
+      "institution": "University of Illinois Urbana-Champaign",
+      "url": "https://illinois.edu/",
+      "qualification": "Master of Computer Science (MCS)",
+      "starts": "Spring 2027",
+      "details": "Incoming student."
+    },
+    {
       "institution": "Loyola University Chicago",
       "url": "https://www.luc.edu/",
       "qualification": "B.S. in Computer Science, minor in Information Systems",
